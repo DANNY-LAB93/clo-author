@@ -348,6 +348,34 @@ Each journal profile includes a **Referee pool** that weights which dispositions
 
 ---
 
+## Clinical Microbiology / Infectious Disease
+
+### Clinical Infectious Diseases (CID)
+**Focus:** Clinical infectious disease — treatment outcomes, antimicrobial resistance, diagnostics, infection prevention. Broad clinical readership including practicing ID physicians.
+**Bar:** Must matter to clinical practice, not just microbiology theory. Strong methodology (PRISMA-compliant for reviews) and a clear clinical takeaway are both required.
+**Domain referee adjusts:** Clinical relevance and applicability front and center — "would this change how a clinician treats MDR *Pseudomonas*?" Expects engagement with current antimicrobial stewardship guidelines. Skeptical of case-series-heavy evidence bases; wants the review to be honest about evidence quality (GRADE).
+**Methods referee adjusts:** PRISMA 2020 compliance checked line by line. Risk of bias assessment (RoB2/ROBINS-I) must be present per included study. Heterogeneity (I², τ²) must be reported and discussed, not just tabulated. Subgroup/meta-regression claims scrutinized for post-hoc data dredging.
+**Typical concerns:** "Is the search strategy sensitive enough?" "How much of this evidence is case reports vs. controlled studies?" "Does pooling across such heterogeneous phage regimens make clinical sense?"
+**Referee pool:** MEASUREMENT (high), CREDIBILITY (high), POLICY (medium), SKEPTIC (medium), STRUCTURAL (low), THEORY (low)
+
+### Antimicrobial Agents and Chemotherapy (AAC)
+**Focus:** Antimicrobial agents — mechanisms, resistance, novel therapeutics including phage therapy, pharmacokinetics/pharmacodynamics.
+**Bar:** Technically rigorous microbiology/pharmacology. For a review/meta-analysis, expects thorough coverage of the mechanistic and resistance literature alongside clinical outcomes.
+**Domain referee adjusts:** Wants engagement with phage-antibiotic synergy mechanisms, resistance evolution to phages, and pharmacodynamic considerations — not just pooled clinical outcomes in isolation.
+**Methods referee adjusts:** Expects clear eligibility criteria distinguishing in vitro/in vivo animal studies from clinical outcomes if both are discussed. Meta-analytic method (random- vs fixed-effects) must be justified given known heterogeneity in phage preparations.
+**Typical concerns:** "Are in vitro susceptibility results being conflated with clinical outcomes?" "What about phage resistance emerging during treatment?" "Is the phage preparation (single phage vs. cocktail) adequately characterized across included studies?"
+**Referee pool:** MEASUREMENT (high), STRUCTURAL (medium), CREDIBILITY (medium), SKEPTIC (medium), POLICY (low), THEORY (low)
+
+### PLOS Pathogens
+**Focus:** Broad pathogen biology and host-pathogen interaction, including translational/clinical applications of novel antimicrobial strategies.
+**Bar:** Must offer a clear, well-supported contribution to understanding pathogen biology or therapy — significance and rigor over incremental narrowness.
+**Domain referee adjusts:** Values mechanistic insight alongside clinical evidence. A pure clinical meta-analysis needs to connect findings back to phage-host biology (e.g., resistance mechanisms, host immune interaction) to clear the bar for this venue rather than a purely clinical journal.
+**Methods referee adjusts:** Same rigor expectations as CID/AAC for the synthesis methodology (PRISMA, risk of bias, heterogeneity), plus expects the discussion to connect statistical findings to biological mechanism.
+**Typical concerns:** "What does this tell us about phage-bacteria dynamics, not just clinical cure rates?" "Is this better suited to a clinical journal?"
+**Referee pool:** STRUCTURAL (medium), MEASUREMENT (high), CREDIBILITY (medium), THEORY (medium), SKEPTIC (low), POLICY (low)
+
+---
+
 ## Add Your Own Journal
 
 Copy this template and add it above this section:

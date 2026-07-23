@@ -1,0 +1,75 @@
+% PRISMA 2020-adapted flow diagram for this review's actual, disclosed
+% multi-channel identification process (see Methods, Section 3.2 and
+% Results, Section 4.1 for the narrative and every count used below;
+% full explanatory detail is carried in the figure caption, not here --
+% box text is deliberately terse, standard PRISMA-diagram practice).
+% Bare tikzpicture content only -- wrapped by a figure/caption in results.tex.
+% Core databases: PubMed/MEDLINE + ClinicalTrials.gov + Scopus (native, full
+% 860-record RIS export, 2026-07-23); the native Scopus search added the nine
+% clinical studies the PubMed-only rounds had missed and corrected one prior
+% exclusion. Two further supplementary channels (citation-chasing; a 201-doc
+% PDF/Elicit corpus) and this review's earlier discovery-phase scoping are
+% shown as distinct, clearly-labelled non-core channels.
+\begin{tikzpicture}[
+  font=\scriptsize,
+  box/.style={draw, rectangle, align=left, text width=2.7cm, inner sep=2.5pt, rounded corners=1pt, minimum height=2.3cm},
+  wide/.style={draw, rectangle, align=left, text width=14.4cm, inner sep=4pt, rounded corners=1pt},
+  lbl/.style={font=\scriptsize\bfseries},
+  arr/.style={-{Latex[length=2mm]}, thick}
+]
+
+% ============ Row Y-coordinates ============
+% Row 1 identification (y=0)   Row 2 screening (y=-3.2)
+% Row 3 eligibility (y=-6.3)   Row 4 excluded/pending/included (y=-9.1)
+% Row 5 quantitative synthesis (y=-13.0)
+
+% --- Row 1: Identification (5 channels), x = 0, 3.0, 6.0, 9.0, 12.0 ---
+\node[box] (db)    at (0,0)    {\textbf{PubMed/MEDLINE + ClinicalTrials.gov}\\topical search $n=481$ (2016--2026)\\$+$ 4 targeted comparative rounds (146)\\$+$ CT.gov (10)};
+\node[box] (scop)  at (3.0,0)  {\textbf{Scopus (native)}\\full RIS export, TITLE-ABS-KEY, PUBYEAR${>}$2018\\$n=860$ records};
+\node[box] (cite)  at (6.0,0)  {\textbf{Citation-chasing}\\of a prior meta-analysis's RoB table \parencite{Liu2025_ijaa}\\$n=5$};
+\node[box] (pdf)   at (9.0,0)  {\textbf{Supplementary corpus}\\201-doc.\ PDF/Elicit screen (non-PRISMA)\\$n=201$};
+\node[box] (disc)  at (12.0,0) {\textbf{Discovery-phase scoping}\\earlier WebSearch/WebFetch pass\\$n=6$};
+\node[lbl, above=1mm of db.north west, anchor=south west] {IDENTIFICATION};
+
+% --- Row 2: Screening outcomes per channel, y = -3.2 ---
+\node[box] (db-out)   at (0,-3.2)   {481 topical records screened; eligible clinical studies all PubMed-indexed and \textbf{already captured via Scopus} (0 unique-new; 2016--2018 sub-window all preclinical); the 4 comparative rounds found no dual-arm study};
+\node[box] (scop-out) at (3.0,-3.2) {860 screened on type/title $\rightarrow$ 28 clinical candidates $\rightarrow$ \textbf{10 studies added} (K\"ohler, Chan $+$ 8 new), 3 excluded; rest already held};
+\node[box] (cite-out) at (6.0,-3.2) {5 proceed to full-text eligibility};
+\node[box] (pdf-out)  at (9.0,-3.2) {189 excluded, 12 pass rubric $-$3 dupes $-$1 (Krakhotkin) $\rightarrow$ \textbf{8 proceed}};
+\node[box] (disc-out) at (12.0,-3.2){6 proceed to full-text eligibility};
+\node[lbl] at (-2.4,-3.2) {SCREENING};
+
+% --- Row 3: Eligibility summary, y = -6.3 ---
+\node[wide] (elig) at (6.0,-6.3) {\textbf{Assessed for full-text eligibility: $n=33$ unique records} (5 citation-chased $+$ 8 via the PDF corpus $+$ 6 via discovery-phase scoping $+$ 9 new via the native Scopus search $+$ 5 held records re-confirmed against Scopus)};
+\node[lbl] at (-2.4,-6.3) {ELIGIBILITY};
+
+% --- Row 4: Excluded / Pending / Included, y = -9.1 ---
+\node[box, text width=4.6cm, minimum height=4.3cm] (excl) at (0.6,-9.1) {\textbf{Excluded, $n=7$}\\$\bullet$ Krakhotkin 2025 -- wrong pathogen\\$\bullet$ Rhoads 2009 -- no antibiotic comparator\\$\bullet$ Dan 2023 -- duplicate (Aslam)\\$\bullet$ Van Nieuwenhuyse 2022 -- duplicate (Pirnay consortium)\\$\bullet$ Zurabov 2023 -- multi-pathogen, not separable\\$\bullet$ Hayakawa 2025 -- multi-pathogen feasibility\\$\bullet$ Chung 2025 -- review/perspective};
+\node[box, text width=4.6cm, minimum height=4.3cm] (pend) at (6.0,-9.1) {\textbf{Pending / unresolved, $n=2$}\\$\bullet$ Karn 2024\\$\bullet$ Stanley 2025 (CYPHY)\\Conditionally eligible; outstanding, not dropped};
+\node[box, text width=4.6cm, minimum height=4.3cm] (incl) at (11.4,-9.1) {\textbf{Included, $n=24$ studies}\\(29 study-arms)\\\smallskip Ten added by the native Scopus search (incl.\ K\"ohler 2023, Chan 2025, Law 2019, Li 2025)};
+\node[lbl] at (-2.4,-9.1) {};
+
+% --- Row 5: Quantitative synthesis, y = -13.0 ---
+\node[wide] (synth) at (6.0,-13.0) {\textbf{Included in quantitative synthesis (pooling): $n=23$ studies, 28 study-arms.} 1 study (Leitner et al.\ 2021) retained in the analytic dataset but excluded from all pooling -- reported only as a six-pathogen, trial-wide aggregate with no \textit{Pseudomonas}-specific breakdown.};
+\node[lbl] at (-2.4,-13.0) {INCLUDED};
+
+% ============ Arrows ============
+\draw[arr] (db.south) -- (db-out.north);
+\draw[arr] (scop.south) -- (scop-out.north);
+\draw[arr] (cite.south) -- (cite-out.north);
+\draw[arr] (pdf.south) -- (pdf-out.north);
+\draw[arr] (disc.south) -- (disc-out.north);
+
+\draw[arr] (db-out.south) |- ++(0,-0.9) -| (elig.north -| db.center);
+\draw[arr] (scop-out.south) |- ++(0,-0.9) -| (elig.north -| scop.center);
+\draw[arr] (cite-out.south) -- (elig.north -| cite.center);
+\draw[arr] (pdf-out.south) |- ++(0,-0.9) -| (elig.north -| pdf.center);
+\draw[arr] (disc-out.south) |- ++(0,-0.9) -| (elig.north -| disc.center);
+
+\draw[arr] (elig.south -| excl.center) -- (excl.north);
+\draw[arr] (elig.south) -- (pend.north);
+\draw[arr] (elig.south -| incl.center) -- (incl.north);
+
+\draw[arr] (incl.south) |- ++(0,-1.2) -| (synth.north -| incl.center);
+
+\end{tikzpicture}

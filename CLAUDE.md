@@ -1,13 +1,13 @@
-# CLAUDE.MD -- Empirical Economics Research with Claude Code
+# CLAUDE.MD -- Empirical Research with Claude Code
 
 <!-- HOW TO USE: Replace [BRACKETED PLACEHOLDERS] with your project info.
      Customize Beamer environments for your talk preamble.
      Keep this file under ~150 lines — Claude loads it every session.
      See the guide at https://hugosantanna.github.io/clo-author/ for full documentation. -->
 
-**Project:** [YOUR PROJECT NAME]
-**Institution:** [YOUR INSTITUTION]
-**Field:** [YOUR FIELD — Economics by default. Can be adapted to Finance, Accounting, Marketing, etc.]
+**Project:** Phage Therapy for MDR *Pseudomonas aeruginosa*: A Systematic Review and Meta-Analysis
+**Institution:** Universidad Católica de Cuenca
+**Field:** Clinical Microbiology / Infectious Disease — Systematic Review & Meta-Analysis (adapted from the economics-default template; see `.claude/references/domain-profile.md`)
 **Branch:** main
 
 ---
@@ -134,7 +134,7 @@ Output organization: by-script
 
 | Component | File | Status | Description |
 |-----------|------|--------|-------------|
-| Paper | `paper/main.tex` | [draft/submitted/R&R] | [Brief description] |
-| Data | `scripts/R/` | [complete/in-progress] | [Analysis description] |
-| Replication | `paper/replication/` | [not started/ready] | [Deposit status] |
-| Job Market Talk | `paper/talks/job_market_talk.tex` | -- | [Status] |
+| Paper | `paper/main.tex` | not started | Systematic review / meta-analysis of phage therapy outcomes in MDR *P. aeruginosa* infections |
+| Data | `scripts/R/` | not started | Literature not yet extracted — pending `/discover` (literature + data discovery) |
+| Replication | `paper/replication/` | not started | -- |
+| Job Market Talk | `paper/talks/job_market_talk.tex` | -- | Not applicable yet |

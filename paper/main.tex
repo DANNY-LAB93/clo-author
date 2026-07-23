@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+
+% ====================================================================
+% PHAGE THERAPY FOR MDR/XDR/PDR PSEUDOMONAS AERUGINOSA
+% Systematic Review and Meta-Analysis of Proportions
+%
+% Preamble adapted from .claude/rules/working-paper-format.md (the
+% project's economics-default reference preamble) for a biomedical
+% systematic review / meta-analysis. See the "Preamble Deviations"
+% note at the bottom of this file for what was kept, dropped, or
+% changed and why.
+% ====================================================================
+
+% ====== Page Layout and Basic Formatting ======
+\usepackage[left=1.0in,right=1.0in,top=1.0in,bottom=1.0in]{geometry}
+\usepackage{setspace}
+\doublespacing
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ====== Typography and Fonts ======
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+% fontspec + the OpenType Latin Modern Roman font: XeLaTeX-native Unicode
+% coverage for glyphs the legacy 8-bit T1/lmodern (ec-lmr) fonts lack, e.g.
+% c-acute (\'{c}) in the Savovi{\'c} citation -- otherwise "Missing character"
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
+% ====== Math Packages ======
+\usepackage{amsmath, amssymb}
+
+% ====== Color (base dependency for tabularray/hyperref internals) ======
+\usepackage{xcolor}
+
+% ====== Table Packages ======
+\usepackage{array, booktabs}
+\usepackage[flushleft]{threeparttable}
+\usepackage{siunitx}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs, siunitx}
+
+% ====== Figure and Caption Packages ======
+\usepackage{graphicx, subcaption}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, justification=justified}
+\captionsetup[figure]{labelfont=bf}
+% tikz: used only for the hand-built PRISMA 2020 flow diagram (Figure 1),
+% which is not R-generated data output, so it doesn't go through the
+% R figure pipeline like the forest/funnel plots
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, fit}
+
+% ====== List Formatting ======
+\usepackage{enumitem}
+
+% ====== Bibliography (biblatex + biber) ======
+\usepackage{xurl}
+\usepackage[backend=biber,
+            style=authoryear,
+            maxcitenames=3,
+            mincitenames=1,
+            maxbibnames=99,
+            giveninits=true,
+            uniquename=false,
+            uniquelist=true,
+            dashed=false,
+            urldate=long,
+            url=true,
+            natbib=true]{biblatex}
+\addbibresource{Bibliography_base.bib}
+% Bibliography_base.bib's `note` field holds this project's internal extraction/
+% verification audit trail (source, date, PMID, reviewer rationale) -- useful for
+% this review's own provenance tracking, not reader-facing bibliographic content.
+% biblatex's authoryear style prints `note` by default; suppress it here rather
+% than deleting the field, so the audit trail stays intact in the .bib source.
+\AtEveryBibitem{\clearfield{note}}
+
+% URL bleeding fixes
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburlnumpenalty}{9000}
+
+% ====== Hyperref (loaded second-to-last) ======
+\usepackage[hidelinks, breaklinks, colorlinks=false]{hyperref}
+
+% ====== Cleveref (loaded immediately after hyperref) ======
+\usepackage[nameinlink]{cleveref}
+
+\title{Phage Therapy for MDR/XDR/PDR \textit{Pseudomonas aeruginosa}: A Systematic Review and Meta-Analysis of Proportions}
+
+\author{%
+[Author Name(s)]\thanks{Universidad Cat\'olica de Cuenca, Cuenca, Ecuador. Corresponding author: [email address TBD]. Full author list, affiliations, and contribution statement (per ICMJE criteria) to be finalized before journal submission --- no specific authorship has been established as of this draft.}%
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent \singlespacing
+Background: Multidrug-resistant (MDR), extensively drug-resistant (XDR), and pandrug-resistant (PDR) \textit{Pseudomonas aeruginosa} is a WHO priority pathogen with few options. Phage therapy has expanded from compassionate use to early-phase trials without resistance- or route-stratified synthesis. Methods: We conducted a PRISMA 2020 meta-analysis of proportions (random-effects binomial-normal GLMM), pooling clinical success, safety, eradication, and mortality across phage-therapy studies of MDR/XDR/PDR \textit{P.\ aeruginosa}, stratified by resistance category, route, and modality. Results: Twenty-eight pooling-eligible study-arms (23 studies, 106 patients) yielded a secondary clinical-success proportion of 76.9\% (95\% CI 64.4--86.0\%). Of 37 pre-specified strata, 16 met threshold, including a first resistance-specific estimate: MDR clinical success 74.3\% (95\% CI 55.4--87.0\%). XDR, PDR, most routes, and monotherapy remained below threshold. Egger's test was non-significant for clinical success, safety, and eradication but significant for mortality (p=0.02), consistent with fatal case reports clustering at the small-study end. Conclusions: A resistance-stratified MDR estimate is achievable; the MDR-versus-XDR comparison remains open.
+\end{abstract}
+
+\vspace{1em}
+\noindent \textbf{Keywords:} Bacteriophages; Pseudomonas aeruginosa; Drug Resistance, Multiple, Bacterial; Phage Therapy; Systematic Reviews as Topic; Meta-Analysis as Topic
+
+\newpage
+\setcounter{page}{1}
+
+\input{sections/intro}
+
+\input{sections/methods}
+
+\input{sections/results}
+
+\input{sections/discussion}
+
+\clearpage
+\small
+\printbibliography
+
+\end{document}
+
+% ====================================================================
+% Preamble Deviations from .claude/rules/working-paper-format.md
+% ====================================================================
+% Dropped (econ-specific, not applicable to a systematic review):
+%   - titlesec / titling / \pretitle-\posttitle custom title styling
+%     (plain \maketitle is sufficient; no formal need for the econ
+%     "thanks-footnote per author" convention with a single placeholder
+%     author)
+%   - amsthy + \newtheorem{theorem/proposition/corollary/lemma/
+%     definition/hyp} and \argmax/\argmin/\norm/\1 macros: no formal
+%     theory, propositions, or optimization notation appear anywhere
+%     in this manuscript (theorist agent not dispatched for this
+%     project per permissions.md CONDITIONAL flag)
+%   - dsfont, mathtools, rotating, tabularx, pdflscape, tikz, float:
+%     unused by any drafted section
+%   - Custom L/C/R column types: no table in this paper uses them
+%   - Custom citationcolor (0,127,255) + \DeclareCiteCommand color
+%     overrides: replaced with hidelinks + colorlinks=false for a
+%     plain black-text manuscript, closer to clinical-journal
+%     convention than the azure citation-color aesthetic choice.
+%     NOTE: xcolor itself is still loaded (added back after a
+%     compile test) -- tabularray requires \color internals to be
+%     defined even when no explicit color is applied in-document;
+%     dropping xcolor entirely caused "Undefined control sequence
+%     \set@color" errors during table rendering.
+%   - JEL Codes: replaced with MeSH-style Keywords (Bacteriophages;
+%     Pseudomonas aeruginosa; Drug Resistance, Multiple, Bacterial;
+%     Phage Therapy; Systematic Reviews as Topic; Meta-Analysis as
+%     Topic), per domain-profile.md and this task's instructions
+% Kept (generically useful, field-agnostic):
+%   - geometry, setspace/\doublespacing, fancyhdr, lmodern, microtype,
+%     fontenc T1, amsmath/amssymb (needed for the GLMM display
+%     equation in methods.tex), booktabs/threeparttable/tabularray
+%     (+siunitx dependency), graphicx/subcaption/caption with
+%     captionsetup, enumitem (methods.tex uses \begin{itemize} for
+%     PICO eligibility criteria), biblatex+biber with natbib=true
+%     (natbib compatibility kept even though only \parencite/
+%     \textcite/\citeauthor/\citeyear are used in the drafted
+%     sections, not \citet/\citep), hyperref loaded second-to-last,
+%     cleveref loaded immediately after (results.tex and discussion.tex
+%     use \Cref{} extensively for tables and figures)
+% Title page: adapted to a single-author placeholder with an
+%   institutional \thanks{} footnote (Universidad Catolica de Cuenca)
+%   rather than the economics multi-author \quad-separated convention,
+%   since no author list has been finalized.
+% ====================================================================
