@@ -98,7 +98,13 @@ pooled_rows <- purrr::map_dfr(pooled_cells, function(r) {
     k_studies = r$k_studies,
     n_patients = r$n_patients,
     estimate = format_percent_ci(p_hat, ci_low, ci_high),
-    i2 = sprintf("%.0f%%", r$primary$I2 * 100),
+    # I^2 deliberately NOT reported: for a binomial-normal GLMM, meta::metaprop's
+    # $I2 slot derives from the GLMM conditional Q (which is ~0 by construction),
+    # giving a degenerate I^2 = 0% even for cells with large tau^2 -- an
+    # internally contradictory pairing. I^2 is in any case documented as
+    # unreliable for meta-analyses of proportions (Migliavaca et al. 2022). We
+    # report tau^2 and the 95% prediction interval, the defensible heterogeneity
+    # pair for a proportion GLMM, and omit I^2 entirely.
     tau2 = sprintf("%.3f", r$primary$tau2),
     pred_interval = if (has_pi) {
       sprintf("[%.1f%%, %.1f%%]", 100 * pi_low, 100 * pi_high)
@@ -113,20 +119,20 @@ pooled_rows <- purrr::map_dfr(pooled_cells, function(r) {
 # vector inside a for loop.
 pooled_row_lines <- vapply(seq_len(nrow(pooled_rows)), function(i) {
   sprintf(
-    "%s & %d & %d & %s & %s & %s & %s & %s \\\\",
+    "%s & %d & %d & %s & %s & %s & %s \\\\",
     escape_tex(pooled_rows$stratum[i]), pooled_rows$k_studies[i],
     pooled_rows$n_patients[i], escape_tex(pooled_rows$estimate[i]),
-    escape_tex(pooled_rows$i2[i]), pooled_rows$tau2[i],
+    pooled_rows$tau2[i],
     escape_tex(pooled_rows$pred_interval[i]), pooled_rows$model_marker[i]
   )
 }, character(1L))
 
 tex_lines_pooled <- c(
-  "\\begin{tabular}{lcccccccc}",
+  "\\begin{tabular}{lccccccc}",
   "\\toprule",
   paste(
     "Outcome -- Stratum & Studies ($k$) & Patients ($N$) &",
-    "Pooled proportion [95\\% CI] & $I^2$ & $\\tau^2$ &",
+    "Pooled proportion [95\\% CI] & $\\tau^2$ &",
     "95\\% prediction interval & Model \\\\"
   ),
   "\\midrule",
@@ -152,7 +158,14 @@ not_pooled_rows <- purrr::map_dfr(not_pooled_cells, function(r) {
   # resistance-stratified re-extraction added 3 new NOT_POOLED cells).
   k_fail <- r$k_studies < MIN_STUDIES
   n_fail <- r$n_patients < MIN_PATIENTS
-  reason <- if (k_fail && n_fail) {
+  # A cell can be NOT_POOLED either for failing the k/N gate or for zero-/all-
+  # event degeneracy (which passes k/N but is uninformative as a proportion --
+  # see pool_stratum()). Detect the latter from its reason string.
+  reason <- if (grepl("zero-event", r$reason)) {
+    "0 events"
+  } else if (grepl("all-event", r$reason)) {
+    "all events"
+  } else if (k_fail && n_fail) {
     sprintf("$k<%d$, $N<%d$", MIN_STUDIES, MIN_PATIENTS)
   } else if (k_fail) {
     sprintf("$k<%d$", MIN_STUDIES)

@@ -180,14 +180,20 @@ pooled_cells_all <- pooled_results[
   vapply(pooled_results, \(r) r$status == "POOLED", logical(1L))
 ]
 
+# Peters' test, NOT Egger's: for a meta-analysis of PROPORTIONS the standard
+# error is a deterministic function of the proportion, so Egger's linear
+# regression manufactures funnel asymmetry near the 0/1 boundary (it flagged
+# mortality spuriously because two n=1 case reports sit at 100%). Peters' test
+# regresses the effect on 1/n and is the recommended small-study test for
+# binary/proportion outcomes (Peters et al. 2006; Hunter et al. 2014).
 funnel_eligibility <- purrr::map_dfr(pooled_cells_all, function(r) {
   eligible <- r$k_studies >= MIN_STUDIES_FUNNEL
-  eggers <- NULL
+  peters <- NULL
   if (eligible) {
-    eggers <- tryCatch(
-      meta::metabias(r$primary, method.bias = "Egger"),
+    peters <- tryCatch(
+      meta::metabias(r$primary, method.bias = "Peters"),
       error = function(e) {
-        message("Egger's test failed for '", r$stratum, "': ", conditionMessage(e))
+        message("Peters' test failed for '", r$stratum, "': ", conditionMessage(e))
         NULL
       }
     )
@@ -196,14 +202,14 @@ funnel_eligibility <- purrr::map_dfr(pooled_cells_all, function(r) {
     stratum = r$stratum,
     k_studies = r$k_studies,
     eligible_for_funnel = eligible,
-    eggers_pval = if (!is.null(eggers)) eggers$pval else NA_real_,
-    eggers_statistic = if (!is.null(eggers)) eggers$statistic else NA_real_
+    peters_pval = if (!is.null(peters)) peters$pval else NA_real_,
+    peters_statistic = if (!is.null(peters)) peters$statistic else NA_real_
   )
 })
 
 n_eligible <- sum(funnel_eligibility$eligible_for_funnel)
 message(
-  "Funnel/Egger's test eligibility (k_studies >= ", MIN_STUDIES_FUNNEL, "): ",
+  "Funnel/Peters' test eligibility (k_studies >= ", MIN_STUDIES_FUNNEL, "): ",
   n_eligible, " of ", nrow(funnel_eligibility), " POOLED cells qualify."
 )
 if (n_eligible == 0L) {
@@ -216,8 +222,8 @@ if (n_eligible == 0L) {
   eligible_rows <- funnel_eligibility[funnel_eligibility$eligible_for_funnel, ]
   for (i in seq_len(nrow(eligible_rows))) {
     message(
-      "  Egger's test, ", eligible_rows$stratum[i], ": p = ",
-      round(eligible_rows$eggers_pval[i], 3)
+      "  Peters' test, ", eligible_rows$stratum[i], ": p = ",
+      round(eligible_rows$peters_pval[i], 3)
     )
   }
 }

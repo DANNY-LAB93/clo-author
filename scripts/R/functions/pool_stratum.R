@@ -62,6 +62,35 @@ pool_stratum <- function(df, event_col, n_col, stratum_label,
     ))
   }
 
+  # Zero-event (or all-event) degeneracy guard: a cell where the event never
+  # (or always) occurs yields no information as a random-effects proportion --
+  # the GLMM/HKSJ interval collapses to the useless [0, 100%] span. Report such
+  # a cell narratively with an exact one-sided (rule-of-three) bound instead of
+  # a degenerate pooled interval (methods referee, Peer Review 2026-07-23).
+  total_events <- sum(df[[event_col]], na.rm = TRUE)
+  if (total_events == 0L || total_events == n_patients) {
+    kind <- if (total_events == 0L) "zero-event" else "all-event"
+    approx_bound <- if (total_events == 0L) {
+      sprintf("0/%d; exact one-sided 97.5%% upper bound approx. %.0f%%",
+              n_patients, 100 * (1 - 0.025^(1 / n_patients)))
+    } else {
+      sprintf("%d/%d; exact one-sided 97.5%% lower bound approx. %.0f%%",
+              n_patients, n_patients, 100 * (0.025^(1 / n_patients)))
+    }
+    return(list(
+      status = "NOT_POOLED",
+      stratum = stratum_label,
+      k_arms = k_arms,
+      k_studies = k_studies,
+      n_patients = n_patients,
+      reason = sprintf(
+        "%s cell (%s) -- uninformative as a pooled random-effects proportion; reported narratively",
+        kind, approx_bound
+      ),
+      narrative_table = df[, c("study_id", "study_arm_id", n_col, event_col)]
+    ))
+  }
+
   event <- df[[event_col]]
   n_arm <- df[[n_col]]
   studlab <- df$study_arm_id
