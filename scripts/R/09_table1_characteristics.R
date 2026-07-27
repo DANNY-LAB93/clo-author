@@ -49,7 +49,9 @@ study_label <- c(
   Denis2026            = "Denis 2026",
   Malhotra2026         = "Malhotra 2026",
   Yang2025             = "Yang 2025",
-  Li2025_biliary       = "Li 2025"
+  Li2025_biliary       = "Li 2025",
+  Chan2018_omko1       = "Chan 2018",
+  Arya2026_pji         = "Arya 2026"
 )
 
 design_abbrev <- c(

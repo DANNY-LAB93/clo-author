@@ -332,3 +332,37 @@ Pipeline re-run externally; only prose in `main.tex` (abstract) and the four `se
 | **4. Numeric-consistency + MDR reframe** | intro.tex; main.tex abstract; results.tex §Synthesis + `fig:forest-success-mdr` caption; discussion.tex §Summary, §Comparison, §Limitations, §Conclusion | discussion "seventeen"→"eighteen" (clinical success = 18 studies, 65 patients). MDR "first" claim recast as single-cohort (Pirnay 23/35 = 66%), author-reported-labels-dependent (collapses to k=3, N=4 under independently-verified-only). | `meta_pooled_estimates.tex`: clinical success overall k=18/N=65; MDR clinical success 74.3% k=12/N=35 |
 
 **Abstract length after edits:** 145 words excluding structured labels, 149 including them (INV-5 satisfied). **Peters'/Egger'/Hunter citation keys are absent from `Bibliography_base.bib`**, so the Peters'-vs-Egger' rationale is stated in prose with plain-text author-year mentions (no `\parencite`) to avoid a missing-citation build break.
+
+## Peer-Review Revision — Group B (two landmark studies + renumbering, added 2026-07-27)
+
+Pipeline re-run externally. Only prose in `main.tex` (abstract) and the four `sections/*.tex` files was updated. No tables, the PRISMA figure, or R touched. Two new eligible studies were added via a peer-review landmark-case screen (a documented supplementary channel), both single-patient MDR *P. aeruginosa* clinical successes: **Chan, Turner et al. 2018** (`Chan2018_omko1_emph`, the canonical OMKO1 aortic Dacron-graft case; local phage + ceftazidime; combination) and **Arya, Doub, Urish et al. 2026** (`Arya2026_pji_natcomms`, periprosthetic joint infection; phage MONOTHERAPY, no antibiotics; clinical resolution but NOT eradicated — the review's second phage-monotherapy arm). Rubalskii et al. 2020 (multi-pathogen, not *Pseudomonas*-separable) and Cano et al. 2021 (a *Klebsiella* case) were screened and correctly excluded; both referred to in plain text (no bib entries). All numeric changes cross-checked against `meta_pooled_estimates.tex` and `meta_not_pooled.tex` (INV-11).
+
+**Corpus counts (OLD → NEW):** pooling-eligible arms 28 → 30; pooling-eligible studies 23 → 25; patients 106 → 108; total extracted arms 29 → 31; total studies 24 → 26; single-patient arms 18/28 → 20/30. Design: case-report studies 15/16 arms → 17/18 arms (case series 4/6, RCTs 3, retrospective cohort 1/3 unchanged). Resistance: MDR 15 → 17 arms (XDR 4, PDR 4, NC 5 unchanged). Route: topical/local 5 → 6 (Chan 2018), unspecified 1 → 2 (Malhotra 2026 + Arya 2026); other 10, inhaled 7, IV 5 unchanged. Modality: combination 27/28 → 28/30; phage monotherapy 1 (Jault) → 2 (Jault/PhagoBurn + Arya 2026); antibiotic monotherapy still 0 (stratum empty).
+
+| Outcome-stratum | OLD (k/N, % [CI]) | NEW (k/N, % [CI]) | Source cell |
+|---|---|---|---|
+| Clinical success — Overall | 18/65, 76.9% [64.4,86.0] | 20/67, 77.6% [65.4,86.4] | `meta_pooled_estimates.tex` r1 |
+| Safety — Overall | 19/80, 19.4% [10.0,34.4], τ²=0.076 | 20/81, 19.1% [9.6,34.4], τ²=0.085 | r2 |
+| Eradication — Overall | 17/58, 55.5% [28.7,79.4], τ²=2.12 | 19/60, 55.1% [29.4,78.4], τ²=2.11 | r3 |
+| Mortality — Overall | 21/84, 10.7% [5.5,19.9] | 23/86, 10.5% [5.4,19.4] | r4 |
+| Clinical success — MDR | 12/35, 74.3% [55.4,87.0] | 14/37, 75.7% [57.8,87.6] | r5 |
+| Safety — MDR | 11/35, 17.1% [7.2,35.7] | 12/36, 16.7% [7.0,34.6] | r6 |
+| Eradication — MDR | 12/41, 59.3% [10.5,94.8] | 14/43, 58.1% [12.5,93.1] | r8 |
+| Mortality — MDR | 14/44, 6.8% [2.0,20.9] | 16/46, 6.5% [1.9,19.8] | r9 |
+
+UNCHANGED (verified against tables): NC safety 21.5% [2.4,75.2] k=4/N=31; NC mortality 4.2% [0.1,77.9] k=3/N=24; route-other all four cells (CS 77.4% k=8/N=53; safety 15.8% k=7/N=38; erad 63.2% k=7/N=38; mort 16.0% k=7/N=38); inhaled/nebulized safety 30.3% [3.9,82.2] k=5/N=21; pooled-cell count 15; Peters' p-values (0.66/0.38/0.82/0.24, all NS; MDR cells NA). Sensitivity brackets updated to regenerated `meta_sensitivity.tex`: safety-overall Freeman-Tukey 8.2→7.9%, logit-DL 26.9→26.8%, GLMM 19.4→19.1%.
+
+**Pirnay MDR dominance:** 23/35 (66%) → 23/37 (62%) of the MDR clinical-success pool; MDR eradication 56% of 41 → 53% of the 43-patient pool. Independently-verified-only classification still collapses MDR to k=3/N=4 (unchanged).
+
+**Threshold-relaxation appendix (`meta_threshold_relaxation_appendix.tex`) reconciled:** topical/local safety and mortality now k=5/N=18 each (was k=4/N=17; enlarged by Chan 2018). The prior claim that eradication inhaled/nebulized (k=3/N=11) "newly qualifies" under the relaxed threshold was **removed** — the regenerated appendix marks that cell NOT_POOLED under the relaxed threshold (INV-11 correction against the printed appendix table).
+
+**Task 2 (domain referee Major 7) — within-RCT comparative evidence:** new paragraph added to discussion.tex §Comparison foregrounding the randomized comparative signals (PhagoBurn stopped early / favored standard of care; Leitner no significant superiority; BX004-A/Weiner 2025 safety-met/efficacy-underpowered; SWARM-P.a./AP-PA02 safety-tolerability) as the highest-certainty evidence, which shows no clear efficacy benefit of phage over comparator — a sober counterpoint to the high single-arm proportions, framed without overstatement (trials target different endpoints/populations).
+
+**Task 3 (domain referee Major 8) — cross-syndrome caveat:** strengthened in methods.tex §Eligibility (Outcomes bullet) and discussion.tex §Limitations — the pooled clinical-success proportion combines each study's own definition across non-comparable syndromes (biliary, CF lung, PJI, vascular-graft, UTI, bacteremia, osteomyelitis); read as a rough descriptive summary, not a harmonized effect; a syndrome-harmonized definition was not achievable given heterogeneous primary reporting.
+
+**Abstract length after edits:** 148 words (INV-5 satisfied).
+
+**FLAGS for next agent / verifier:**
+- **Group-A changes preserved:** Peters' (not Egger's), no $I^2$, MDR single-cohort/author-reported-labels framing all intact.
+- **PRISMA figure (`prisma_flow_diagram.tex`) NOT updated** per task scope — it still shows the pre-Group-B counts (24 studies / 23 pooling-eligible / 28 arms). The manuscript prose and caption now say 26 studies / 25 pooling-eligible / 30 arms (31 extracted). The hand-built tikz figure must be regenerated before submission to match.
+- **Robustness/falsification derived numbers not provided as tables were left unchanged and need re-verification** against the regenerated `.rds` outputs: geographic-exclusion *excluded* values (0.147 / 0.709 / 0.039), leave-one-out, RVE SEs (0.342/0.098/0.457/0.514), Q-between p-values (0.345 / 0.70), year-trend coefficient (0.041, p=0.77), and especially the **journal-tier comparison (79.2% / 7 studies vs 66.7% / 11 studies)** — the tier study counts sum to 18 (the OLD clinical-success k) and are almost certainly stale now that clinical-success k=20. The geographic-exclusion *base* values were updated to the new overall estimates (0.194→0.191, 0.555→0.551, 0.107→0.105) since those are pooled-table numbers. A coder pass over `06_falsification.R`/`05_robustness.R` outputs is recommended before submission.

@@ -77,3 +77,15 @@ The analysis-team-fixable defects were implemented and the pipeline re-run:
 **Group A item left as a larger revision (not fully implemented):** making cluster-robust (RVE) intervals PRIMARY for multi-arm cells (methods Major 10). The manuscript discloses the multi-arm dependence and reports the RVE robustness check, but the primary CIs remain naive-independence. Fully re-basing the primary analysis on RVE is deferred as a larger re-analysis.
 
 **Groups B and C (search completion, GRADE, PROSPERO, dual extraction, RCT-comparator foregrounding, cross-syndrome harmonization) remain outstanding** — several require the user's action.
+
+---
+
+## Group B corrections IMPLEMENTED (2026-07-23, post-panel)
+
+1. **Landmark-case screen (domain Major 6, highest-impact):** The referee's named cases were screened. TWO were eligible and added -- Chan, Turner et al. 2018 (the canonical OMKO1 MDR aortic-graft case) and Arya, Doub, Urish et al. 2026 (MDR PJI treated with phage MONOTHERAPY). Two were correctly excluded -- Rubalskii 2020 (multi-pathogen, not P. aeruginosa-separable) and Cano 2021 (a Klebsiella case; the referee misremembered the pathogen). Corpus: 28->30 pooling-eligible arms, 23->25 studies, 106->108 patients. Overall clinical success 76.9%->77.6%, MDR 74.3%->75.7%. Arya is the review's SECOND phage-monotherapy arm (with PhagoBurn) -- the modality stratum is no longer near-empty, though antibiotic-monotherapy remains at 0 arms. Full EMBASE/Web of Science searches still require the user's institutional access.
+2. **Foreground within-RCT comparative evidence (Major 7):** Added a Discussion paragraph reporting the randomized comparative signals as the highest-certainty evidence -- PhagoBurn favored standard of care (stopped for futility), Leitner found no phage superiority, BX004-A/SWARM were safety-focused/underpowered. Honest counterpoint: the RCT comparative evidence shows no clear phage efficacy benefit, tempering the high single-arm success proportions.
+3. **Cross-syndrome pooling caveat (Major 8):** Strengthened the Methods eligibility bullet and Discussion limitation that "clinical success" is pooled across non-comparable syndromes (biliary/CF/PJI/graft/UTI/bacteremia/osteomyelitis) -- a rough descriptive summary, not a harmonized effect.
+
+Derivative falsification/robustness numbers reconciled against the regenerated outputs (journal-tier 79.6%/8 vs 69.2%/12; Q-between 0.285; year-trend coef 0.030, p=0.81; geographic exclusion now keeps all four overall outcomes poolable -- a robustness improvement). PRISMA figure updated (6 channels, eligibility 37, excluded 9, included 26 studies/31 arms, synthesis 25/30); RoB updated to 31 arms; Table 1 shows 31 rows. Compiled clean; PRISMA and Table 1 visually verified.
+
+**Remaining (Group C, require the user):** EMBASE + Web of Science native searches; GRADE ratings per cell; PROSPERO registration; dual-independent extraction; real author names/target venue. And one deferred analytic item: making cluster-robust (RVE) intervals primary for multi-arm cells.

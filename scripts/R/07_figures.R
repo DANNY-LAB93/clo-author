@@ -63,7 +63,9 @@ forest_studlab <- c(
   Denis2026_A               = "Denis (2026)",
   Malhotra2026_A            = "Malhotra (2026)",
   Yang2025_A                = "Yang (2025)",
-  Li2025_biliary_A          = "Li (2025)"
+  Li2025_biliary_A          = "Li (2025)",
+  Chan2018_omko1_A          = "Chan (2018)",
+  Arya2026_pji_A            = "Arya (2026)"
 )
 
 #' Map a vector of raw study-arm keys to clean author-year labels.

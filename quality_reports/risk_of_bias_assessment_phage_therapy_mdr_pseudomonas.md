@@ -124,7 +124,7 @@ Checklist items (Munn et al. 2020): (1) clear inclusion criteria; (2) condition 
 
 ---
 
-## Summary Table (all 29 study-arms)
+## Summary Table (all 31 study-arms)
 
 | Study-arm | Tool | Overall Judgment |
 |---|---|---|
@@ -151,6 +151,8 @@ Checklist items (Munn et al. 2020): (1) clear inclusion criteria; (2) condition 
 | Denis2026_A | Murad2018 (case report) | **Low-to-moderate risk** (native-Scopus addition, 2026-07-23) |
 | Malhotra2026_A | Murad2018 (case report) | **Low-to-moderate risk** (native-Scopus addition, 2026-07-23; brief report, route/AE not fully detailed) |
 | Yang2025_A | Murad2018 (case report) | **Low-to-moderate risk** (native-Scopus addition, 2026-07-23) |
+| Chan2018_omko1_A | Murad2018 (case report) | **Low-to-moderate risk** (peer-review landmark addition, 2026-07-23; canonical OMKO1 aortic-graft case, transparent single-case reporting) |
+| Arya2026_pji_A | Murad2018 (case report) | **Low-to-moderate risk** (peer-review landmark addition, 2026-07-23; MDR PJI, phage monotherapy, 2-year follow-up) |
 
 **Native-Scopus additions (2026-07-23):** the seven studies above were rated with the Murad 2018 tool (single-patient/small case reports) or the JBI checklist (Hahn's two-patient series). All are transparent, single-centre compassionate-use or case reports at Low-to-moderate risk of bias — the standard profile for this design; none is a comparative trial, so RoB2/ROBINS-I do not apply. Full per-domain rationale was not separately tabulated for these seven (consistent with the disclosed handling of the other single-patient case reports below); the summary judgments are recorded here.
 
