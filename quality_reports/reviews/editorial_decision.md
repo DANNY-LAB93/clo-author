@@ -89,3 +89,16 @@ The analysis-team-fixable defects were implemented and the pipeline re-run:
 Derivative falsification/robustness numbers reconciled against the regenerated outputs (journal-tier 79.6%/8 vs 69.2%/12; Q-between 0.285; year-trend coef 0.030, p=0.81; geographic exclusion now keeps all four overall outcomes poolable -- a robustness improvement). PRISMA figure updated (6 channels, eligibility 37, excluded 9, included 26 studies/31 arms, synthesis 25/30); RoB updated to 31 arms; Table 1 shows 31 rows. Compiled clean; PRISMA and Table 1 visually verified.
 
 **Remaining (Group C, require the user):** EMBASE + Web of Science native searches; GRADE ratings per cell; PROSPERO registration; dual-independent extraction; real author names/target venue. And one deferred analytic item: making cluster-robust (RVE) intervals primary for multi-arm cells.
+
+---
+
+## EMBASE/Web of Science: reclassified as a permanent constraint (2026-07-23)
+
+The user confirmed the review team has **no institutional access to EMBASE** (and none to Web of Science). Both databases had been framed throughout the manuscript as outstanding work — "prepared and handed off for the corresponding author to run with institutional credentials," a "minor residual gap." That framing was inaccurate and has been corrected:
+
+- **Methods (search section):** now states plainly that the team holds no subscription to either database, so the searches *could not be executed* rather than merely not yet completed. The full adapted Ovid EMBASE and Web of Science `TS=` queries are now printed IN the manuscript (not merely promised to a supplement) so any reader with access can run and audit them. Two partial mitigations are stated without overclaiming: (1) Scopus/EMBASE biomedical coverage overlap, so EMBASE's marginal yield over the completed native Scopus search is smaller than its absence suggests; (2) in place of the unavailable WoS forward-citation function, hand-screening of the three anchor syntheses' reference/citing literature plus the targeted landmark-case screen, which did recover two eligible studies. Explicitly disclaims that either mitigation is equivalent to the searches themselves.
+- **Discussion:** the "minor residual gap" line is replaced with the permanent-constraint framing; the sensitivity passage now says we cannot rule out that a subscription-access search would shift the estimates as the Scopus search did, and asks readers to treat pooled figures as provisional in that specific sense.
+
+This removes an item from the "pending user action" list — not by completing it, but by correctly reclassifying it as a bounded, disclosed limitation of the review. Referees who raised the search-completeness concern (domain Major 6) should judge the review against what it can actually claim.
+
+**Peer re-review status:** both referees were dispatched for a second round after Groups A+B but terminated on a session limit before producing reports. Re-review is outstanding.
