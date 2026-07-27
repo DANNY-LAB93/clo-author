@@ -102,3 +102,23 @@ The user confirmed the review team has **no institutional access to EMBASE** (an
 This removes an item from the "pending user action" list — not by completing it, but by correctly reclassifying it as a bounded, disclosed limitation of the review. Referees who raised the search-completeness concern (domain Major 6) should judge the review against what it can actually claim.
 
 **Peer re-review status:** both referees were dispatched for a second round after Groups A+B but terminated on a session limit before producing reports. Re-review is outstanding.
+
+---
+
+## GRADE certainty assessment COMPLETED (2026-07-23)
+
+Both referees flagged the absence of GRADE ratings (domain Major 9; methods, RoB dimension). GRADE is now assessed for all 15 pooled cells via a new reproducible pipeline stage, `scripts/R/10_grade.R`, exporting `paper/tables/.../grade_summary.tex` (Table 6 in the manuscript) plus `grade_profile.rds`.
+
+**Design.** Ratings are produced by PRE-SPECIFIED RULES applied to each cell's own data, not by unaudited per-cell judgment — so the assessment is reproducible and a referee can check it. Every cell starts at **Low** (GRADE's default for observational evidence; each cell is an uncontrolled single-arm proportion, the RCTs contributing only their phage arms). Domains:
+- **Risk of bias**: from the cell's share of patients contributed by single-patient case reports, plus whether the one High-RoB trial (PhagoBurn) contributes. Very serious (-2) if both; serious (-1) otherwise.
+- **Inconsistency**: from 95% prediction-interval width (NOT I², which is degenerate for the GLMM and unreliable for proportions — consistent with the Group A fix). >=80pp -> -2; >=50pp -> -1.
+- **Indirectness**: -1 for the compassionate-use salvage population (all cells); -2 for clinical success, which is defined per study across non-comparable syndromes.
+- **Imprecision**: from 95% CI width. >=50pp -> -2; >=30pp -> -1.
+- **Publication bias**: -1 for all cells (favourable-outcome reporting is intrinsic to a compassionate-use case-report literature; Peters' test cannot exclude it at this corpus size).
+- **Upgrades**: none applicable (large magnitude, dose-response, and opposing-confounding are not estimable without a comparator).
+
+**Result: all 15 cells rate Very low** — the floor. This matches what the manuscript had previously only anticipated. The domain profile discriminates even though the final rating does not: three cells carry the minimum three downgrades (overall safety, overall mortality, route-"other" safety), while MDR eradication, not-classifiable safety, and inhaled/nebulized safety each accumulate seven. Two downgrades apply to every cell without exception (salvage-population indirectness; suspected publication bias) and cannot be remedied by adding more case reports of the same kind.
+
+**Manuscript integration:** Methods now describes the GRADE approach and rules (replacing "ratings remain unassigned"); Results gains a new subsection 3.x "Certainty of Evidence (GRADE)" with Table 6 and an interpretation of the domain profile; Discussion's "expected to warrant Very Low once completed" is replaced with the completed finding. Compiled clean; Table 6 visually verified (15 rows, all domain columns and notes within margins).
+
+This closes the GRADE item. Remaining Group C: PROSPERO registration, dual-independent extraction, author names/target venue (all require the user); EMBASE/WoS reclassified as a permanent access constraint.

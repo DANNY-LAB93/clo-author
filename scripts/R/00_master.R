@@ -17,5 +17,6 @@ source(here::here("scripts", "R", "06_falsification.R"))
 source(here::here("scripts", "R", "07_figures.R"))
 source(here::here("scripts", "R", "08_tables.R"))
 source(here::here("scripts", "R", "09_table1_characteristics.R"))
+source(here::here("scripts", "R", "10_grade.R"))
 
 message("00_master.R: full pipeline complete.")
