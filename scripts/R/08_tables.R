@@ -3,11 +3,12 @@
 # Purpose: Publication-ready summary tables. Exports bare `tabular`
 #          environments only (no \begin{table}, \caption{}, or notes --
 #          INV-13; main.tex wraps these with threeparttable + tablenotes).
-#          Table 1: pooled stratum-outcome cells with k, N, pooled
-#          proportion + 95% CI, I^2, tau^2, prediction interval, and model
+#          Table 1: pooled stratum-outcome cells with k (studies), arms, N,
+#          pooled proportion + 95% CI, tau^2, prediction interval, and model
 #          used (dagger marker on fallback cells, per pseudo_code.md S9 --
 #          footnote TEXT belongs in main.tex, the marker itself is
-#          legitimate bare-tabular content).
+#          legitimate bare-tabular content). I^2 is deliberately NOT reported;
+#          see the inline rationale at the pooled_rows builder below.
 #          Table 2: NOT_POOLED / NOT_ATTEMPTED cells with the stated reason.
 #          Table 3: transformation/model sensitivity comparison.
 #          Table 4 (appendix-only): minimum-study-count threshold
@@ -96,6 +97,10 @@ pooled_rows <- purrr::map_dfr(pooled_cells, function(r) {
   tibble::tibble(
     stratum = label_stratum(r$stratum),
     k_studies = r$k_studies,
+    # k_arms is reported alongside k_studies because the GLMM is fit on ARMS
+    # (studlab = study_arm_id), so the HKSJ t-quantile uses k_arms - 1 degrees
+    # of freedom. Without k_arms a reader cannot reproduce the intervals.
+    k_arms = r$k_arms,
     n_patients = r$n_patients,
     estimate = format_percent_ci(p_hat, ci_low, ci_high),
     # I^2 deliberately NOT reported: for a binomial-normal GLMM, meta::metaprop's
@@ -119,8 +124,9 @@ pooled_rows <- purrr::map_dfr(pooled_cells, function(r) {
 # vector inside a for loop.
 pooled_row_lines <- vapply(seq_len(nrow(pooled_rows)), function(i) {
   sprintf(
-    "%s & %d & %d & %s & %s & %s & %s \\\\",
+    "%s & %d & %d & %d & %s & %s & %s & %s \\\\",
     escape_tex(pooled_rows$stratum[i]), pooled_rows$k_studies[i],
+    pooled_rows$k_arms[i],
     pooled_rows$n_patients[i], escape_tex(pooled_rows$estimate[i]),
     pooled_rows$tau2[i],
     escape_tex(pooled_rows$pred_interval[i]), pooled_rows$model_marker[i]
@@ -128,10 +134,10 @@ pooled_row_lines <- vapply(seq_len(nrow(pooled_rows)), function(i) {
 }, character(1L))
 
 tex_lines_pooled <- c(
-  "\\begin{tabular}{lccccccc}",
+  "\\begin{tabular}{lcccccccc}",
   "\\toprule",
   paste(
-    "Outcome -- Stratum & Studies ($k$) & Patients ($N$) &",
+    "Outcome -- Stratum & $k$ & Arms & $N$ &",
     "Pooled proportion [95\\% CI] & $\\tau^2$ &",
     "95\\% prediction interval & Model \\\\"
   ),
@@ -175,6 +181,7 @@ not_pooled_rows <- purrr::map_dfr(not_pooled_cells, function(r) {
   tibble::tibble(
     stratum = label_stratum(r$stratum),
     k_studies = r$k_studies,
+    k_arms = r$k_arms,
     n_patients = r$n_patients,
     reason = reason
   )
@@ -183,23 +190,24 @@ not_pooled_rows <- dplyr::bind_rows(
   not_pooled_rows,
   tibble::tibble(
     stratum = "Modality: antibiotic monotherapy (all outcomes)",
-    k_studies = 0L, n_patients = 0L,
+    k_studies = 0L, k_arms = 0L, n_patients = 0L,
     reason = "0 arms (stratum empty)"
   )
 )
 
 not_pooled_row_lines <- vapply(seq_len(nrow(not_pooled_rows)), function(i) {
   sprintf(
-    "%s & %d & %d & %s \\\\",
+    "%s & %d & %d & %d & %s \\\\",
     escape_tex(not_pooled_rows$stratum[i]), not_pooled_rows$k_studies[i],
+    not_pooled_rows$k_arms[i],
     not_pooled_rows$n_patients[i], escape_tex(not_pooled_rows$reason[i])
   )
 }, character(1L))
 
 tex_lines_not_pooled <- c(
-  "\\begin{tabular}{lccl}",
+  "\\begin{tabular}{lcccl}",
   "\\toprule",
-  "Outcome -- Stratum & Studies ($k$) & Patients ($N$) & Reason not pooled \\\\",
+  "Outcome -- Stratum & $k$ & Arms & $N$ & Reason not pooled \\\\",
   "\\midrule",
   not_pooled_row_lines,
   "\\bottomrule",

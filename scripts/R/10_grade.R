@@ -192,6 +192,7 @@ grade_profile <- purrr::map_dfr(pooled_cells, function(r) {
     stratum = key,
     outcome = outcome,
     k_studies = r$k_studies,
+    k_arms = r$k_arms,
     n_patients = n_total,
     estimate_pct = p_hat,
     ci_low_pct = ci_lo,
@@ -209,6 +210,46 @@ grade_profile <- purrr::map_dfr(pooled_cells, function(r) {
 })
 
 saveRDS(grade_profile, file.path(output_dir, "grade_profile.rds"))
+
+# --- Derived counts, emitted rather than hand-written into prose ---------------
+# The Results text previously stated these by hand and drifted from the table
+# (a peer-review finding). Emitting them here keeps prose and table in lockstep.
+grade_counts <- list(
+  n_cells = nrow(grade_profile),
+  n_min_downgrades = sum(grade_profile$total_downgrades ==
+                           min(grade_profile$total_downgrades)),
+  min_downgrades = min(grade_profile$total_downgrades),
+  cells_at_min = grade_profile$stratum[grade_profile$total_downgrades ==
+                                         min(grade_profile$total_downgrades)],
+  n_max_downgrades = sum(grade_profile$total_downgrades ==
+                           max(grade_profile$total_downgrades)),
+  max_downgrades = max(grade_profile$total_downgrades),
+  cells_at_max = grade_profile$stratum[grade_profile$total_downgrades ==
+                                         max(grade_profile$total_downgrades)],
+  n_clinical_success = sum(grade_profile$outcome == "clinical_success"),
+  # The rating is deterministic: risk of bias (>=1), indirectness (>=1) and
+  # publication bias (=1) are always-on, so the minimum possible total is 3
+  # against a start of Low (2) and a floor of Very low. Record this explicitly
+  # so the manuscript can state it rather than claim the reverse.
+  structural_minimum_downgrades = 3L,
+  rating_is_deterministic = TRUE
+)
+saveRDS(grade_counts, file.path(output_dir, "grade_counts.rds"))
+
+message(sprintf(
+  "GRADE derived counts: %d cells; %d cell(s) at the minimum %d downgrades (%s); %d cell(s) at the maximum %d (%s); %d clinical-success cells.",
+  grade_counts$n_cells, grade_counts$n_min_downgrades, grade_counts$min_downgrades,
+  paste(grade_counts$cells_at_min, collapse = ", "),
+  grade_counts$n_max_downgrades, grade_counts$max_downgrades,
+  paste(grade_counts$cells_at_max, collapse = ", "),
+  grade_counts$n_clinical_success
+))
+message(
+  "NOTE: the rating is DETERMINISTIC -- risk of bias, indirectness and ",
+  "publication bias are always-on downgrades totalling at least 3 from a start ",
+  "of Low, so every cell floors at Very low before any data are read. Only the ",
+  "inconsistency and imprecision domains vary across cells."
+)
 
 message("GRADE certainty ratings (start: Low, observational; floor: Very low):")
 for (i in seq_len(nrow(grade_profile))) {
@@ -245,9 +286,9 @@ grade_rows <- grade_profile |>
 
 grade_row_lines <- vapply(seq_len(nrow(grade_rows)), function(i) {
   sprintf(
-    "%s & %d & %d & %s & %s & %s & %s & %s & %s & %s \\\\",
+    "%s & %d & %d & %d & %s & %s & %s & %s & %s & %s & %s \\\\",
     escape_tex(grade_rows$stratum_label[i]),
-    grade_rows$k_studies[i], grade_rows$n_patients[i],
+    grade_rows$k_studies[i], grade_rows$k_arms[i], grade_rows$n_patients[i],
     escape_tex(grade_rows$estimate_str[i]),
     domain_mark(grade_rows$rob_drop[i]),
     domain_mark(grade_rows$inconsistency_drop[i]),
@@ -259,10 +300,10 @@ grade_row_lines <- vapply(seq_len(nrow(grade_rows)), function(i) {
 }, character(1L))
 
 tex_lines_grade <- c(
-  "\\begin{tabular}{lcclccccc l}",
+  "\\begin{tabular}{lccclccccc l}",
   "\\toprule",
   paste(
-    "Outcome -- Stratum & $k$ & $N$ & Pooled proportion [95\\% CI] &",
+    "Outcome -- Stratum & $k$ & Arms & $N$ & Pooled proportion [95\\% CI] &",
     "RoB & Incons. & Indir. & Imprec. & Pub.\\ bias & Certainty \\\\"
   ),
   "\\midrule",

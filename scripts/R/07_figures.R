@@ -91,7 +91,12 @@ save_forest_plot <- function(model, file_path, convergence_note = NULL) {
     random = has_random,
     prediction = has_random,
     print.tau2 = has_random,
-    print.I2 = TRUE,
+    # I^2 is NOT printed, for the same reason it was dropped from the pooled
+    # estimates table (08_tables.R): meta's I^2 for a binomial-normal GLMM
+    # derives from the GLMM conditional Q and is ~0 by construction, so it
+    # would display an "I^2 = 0% alongside tau^2 > 0" pairing that the tables
+    # and text explicitly decline to report. Figures and tables must agree.
+    print.I2 = FALSE,
     leftlabs = c("Study", "Events", "Total"),
     rightlabs = c("Proportion", "95% CI"),
     xlab = "Proportion"

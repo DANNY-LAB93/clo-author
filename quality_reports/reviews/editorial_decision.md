@@ -122,3 +122,21 @@ Both referees flagged the absence of GRADE ratings (domain Major 9; methods, RoB
 **Manuscript integration:** Methods now describes the GRADE approach and rules (replacing "ratings remain unassigned"); Results gains a new subsection 3.x "Certainty of Evidence (GRADE)" with Table 6 and an interpretation of the domain profile; Discussion's "expected to warrant Very Low once completed" is replaced with the completed finding. Compiled clean; Table 6 visually verified (15 rows, all domain columns and notes within margins).
 
 This closes the GRADE item. Remaining Group C: PROSPERO registration, dual-independent extraction, author names/target venue (all require the user); EMBASE/WoS reclassified as a permanent access constraint.
+
+---
+
+## Round-2 peer review + code-level fixes (2026-07-27)
+
+**Round-2 scores: domain 59 -> 65, methods 65 -> 69. Both MAJOR REVISIONS** (the domain referee withdrew its round-1 reject, describing the shift from "overclaiming a hollow result" to "honestly reporting a thin evidence base" as the harder and more valuable transition). The domain referee also withdrew its Cano 2021 objection, confirming our screening was right that it is a Klebsiella case.
+
+**Verified-and-fixed this pass (all confirmed in the rendered PDF):**
+
+1. **I² removal was incomplete (methods Major 1).** `07_figures.R` still passed `print.I2 = TRUE`, so all four forest plots printed the I²/τ² pairing the tables had stopped reporting — the paper suppressed a statistic in Table 2 and displayed it in Figures 2-4. Set `print.I2 = FALSE` with the rationale inline. Verified: zero I² occurrences in the compiled PDF.
+2. **GRADE was deterministic while the prose denied it (methods Major 7).** The referee read the code and was right: risk of bias, indirectness and publication bias are always-on downgrades totalling >=3 against a start of Low, so every cell floors at Very low before any data are read. The Results text claimed the uniform verdict "is not a formality" — it is precisely a formality. Rewritten to state the determinism explicitly, identify which downgrades are structural vs data-driven, and explain that only inconsistency and imprecision vary. Methods now prints every numeric threshold (the domain referee's Major 5: the assessment was not reproducible without them).
+3. **Two GRADE prose counts were wrong (both referees).** "Three cells carry the minimum" -> **five** (safety/mortality overall, safety/mortality MDR, route-"other" safety); "the four clinical-success cells" -> **three**. `10_grade.R` now EMITS these counts to `grade_counts.rds` so prose and table cannot drift again.
+4. **13% vs 14.8% bound (methods Major 3a).** `pool_stratum.R` computes an exact Clopper-Pearson one-sided 97.5% bound = 14.8% for 0/23; the prose reported "approximately 13%", which is the rule-of-three (3/23) — a different quantity, and "exact rule-of-three" is a contradiction in terms. Code now labels the bound correctly and reports one decimal; prose quotes the computed 14.8%.
+5. **k_arms was invisible (methods Major 4a).** The GLMM is fitted on arms (`studlab = study_arm_id`), so the HKSJ interval uses arm-count df, but every table printed only k_studies — no reader could reproduce a single CI. Added an "Arms" column to the pooled, not-pooled and GRADE tables, with the df explanation in the Table 2 note. The gap is material: clinical success overall is k=20 studies but 24 arms.
+6. **Table-width regression caught by visual check.** Adding the Arms column pushed Table 2 over the text width (the "Model" column rendered as "GL" and the notes were clipped). Fixed by shortening the headers to `k / Arms / N` with a glossary in the note. Re-verified by rendering the page.
+7. Stale `08_tables.R` header comment still describing an I² column — corrected.
+
+**Still outstanding from round 2** (larger, and several need the user): the `not-classifiable` eligibility contradiction (43% of patients, domain Major 1 — needs a scope decision); demoting or caveating the four cells with >=50pp CIs; relabelling Peters' as a post-hoc change; screening Maddocks 2019 / Ferry 2021 / Aslam 2020 / documenting the Rubalskii exclusion locator; the RVE-model mismatch; Liu Tier-2 cross-validation; PROSPERO; dual extraction; the two pending records (Karn, Stanley).

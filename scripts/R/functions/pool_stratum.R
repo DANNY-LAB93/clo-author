@@ -70,11 +70,17 @@ pool_stratum <- function(df, event_col, n_col, stratum_label,
   total_events <- sum(df[[event_col]], na.rm = TRUE)
   if (total_events == 0L || total_events == n_patients) {
     kind <- if (total_events == 0L) "zero-event" else "all-event"
+    # Exact (Clopper-Pearson) one-sided 97.5% bound, i.e. the one-sided limit
+    # implied by a two-sided 95% exact interval when the count is at a boundary.
+    # NOTE: this is NOT the "rule of three" (3/n), which approximates the
+    # one-sided 95% limit and gives a different, smaller number -- 3/23 = 13%
+    # versus the exact 14.8% here. Reported to one decimal so the manuscript
+    # can quote the computed value rather than a rounded approximation.
     approx_bound <- if (total_events == 0L) {
-      sprintf("0/%d; exact one-sided 97.5%% upper bound approx. %.0f%%",
+      sprintf("0/%d; exact (Clopper-Pearson) one-sided 97.5%% upper bound %.1f%%",
               n_patients, 100 * (1 - 0.025^(1 / n_patients)))
     } else {
-      sprintf("%d/%d; exact one-sided 97.5%% lower bound approx. %.0f%%",
+      sprintf("%d/%d; exact (Clopper-Pearson) one-sided 97.5%% lower bound %.1f%%",
               n_patients, n_patients, 100 * (0.025^(1 / n_patients)))
     }
     return(list(
