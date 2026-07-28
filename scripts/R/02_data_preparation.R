@@ -92,7 +92,57 @@ trialpop_flag <- dat_raw$study_arm_id %in% NO_RESISTANCE_CRITERION_ARMS
 
 n_excluded_trialpop <- sum(trialpop_flag)
 
-dat_pooling_eligible <- dat_raw[!leitner_flag & !liu_flag & !trialpop_flag, ]
+# --- Consortium double-counting exclusion: cases inside the Pirnay 2024 roster --
+# Pirnay et al. 2024 is a retrospective cohort of the first 100 CONSECUTIVE cases
+# facilitated by the Belgian (Queen Astrid Military Hospital) consortium. Its
+# three resistance-stratified arms are already in this dataset. Any separately
+# published case report describing a patient inside that roster would therefore
+# be counted twice -- once in the cohort aggregate and once as a case report.
+# Van Nieuwenhuyse 2022 was previously identified and excluded on exactly this
+# ground, which established the risk is real rather than theoretical.
+#
+# A systematic crosswalk was run (2026-07-28) against the roster in the paper's
+# Supplementary Table 1, which lists all 100 cases with primary infection type,
+# narrative description, involved species, resistance profile and bacteriophage
+# product. NOTE: that table carries NO country and NO treatment-year column, so
+# the match is made on indication + species + resistance profile + phage product
+# + outcome pattern, not on provenance. Fifty of the 100 cases involve
+# P. aeruginosa. Two of this review's case-report arms match one of them closely
+# enough that duplication cannot be excluded, and per the conservative rule the
+# CASE REPORT is dropped and the cohort entry retained:
+#
+#   Ferry2022_A  ~ Pirnay case #79. #79 is the ONLY chronic spondylodiscitis in
+#     the entire roster, is P. aeruginosa, uses the Belgian PNM + PT07 phages,
+#     and per this review's own Pirnay extraction was not eradicated, had an
+#     adverse event and died -- matching Ferry 2022's eradication=0 and
+#     mortality=1 exactly. Ferry 2022 sources its phages from Belgium. The
+#     resistance labels differ (roster XDR, case report PDR derived from MICs),
+#     which is the expected discrepancy between consortium coding and an
+#     independent MIC-based derivation, not evidence of a different patient.
+#
+#   Racenis2023_LVAD_A ~ Pirnay case #56, "Persistent LVAD driveline infection",
+#     P. aeruginosa, MDR, phages 14-1 + PNM + PT07 with ceftolozane/tazobactam.
+#     Racenis 2023 states its phages came from Belgium QAMH. Indication, species,
+#     resistance class and phage source all agree.
+#
+# NOT excluded, because no clean match was found: Racenis2022_femur_A (the
+# roster's femoral cases are UDR (#23) or XDR (#27); ours is MDR),
+# Blasco2023_A (roster #92 mentions a leg stump and MDR bacteraemia but the rest
+# of its narrative does not correspond), and Tkhilaishvili2020_A (the roster's
+# only prosthetic-knee P. aeruginosa case, #15, is UDR; ours is XDR, and the
+# Berlin centre sources phages independently). These three are retained and the
+# residual uncertainty is reported in the manuscript rather than resolved here.
+PIRNAY_ROSTER_DUPLICATE_ARMS <- c(
+  "Ferry2022_A",         # ~ Pirnay case #79 (chronic spondylodiscitis)
+  "Racenis2023_LVAD_A"   # ~ Pirnay case #56 (persistent LVAD driveline infection)
+)
+pirnay_dup_flag <- dat_raw$study_arm_id %in% PIRNAY_ROSTER_DUPLICATE_ARMS
+
+n_excluded_pirnay_dup <- sum(pirnay_dup_flag)
+
+dat_pooling_eligible <- dat_raw[
+  !leitner_flag & !liu_flag & !trialpop_flag & !pirnay_dup_flag,
+]
 
 # --- Derived stratification variables -------------------------------------------
 dat_analysis <- dat_pooling_eligible |>
@@ -114,10 +164,11 @@ exclusion_log <- tibble(
     "Excluded: Leitner2021 (trial-wide, not Pseudomonas-specific)",
     "Excluded: Liu2025 (antibiogram does not meet the MDR population criterion)",
     "Excluded: trial populations recruited with no MDR/XDR/PDR entry criterion",
+    "Excluded: case reports duplicating a patient inside the Pirnay 2024 roster",
     "Rows entering stratified pooling eligibility checks"
   ),
   n_rows = c(nrow(dat_raw), n_excluded_leitner, n_excluded_liu,
-             n_excluded_trialpop, nrow(dat_analysis))
+             n_excluded_trialpop, n_excluded_pirnay_dup, nrow(dat_analysis))
 )
 
 message("Exclusion log:")
