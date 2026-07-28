@@ -32,7 +32,28 @@ leitner_flag[is.na(leitner_flag)] <- FALSE
 
 n_excluded_leitner <- sum(leitner_flag)
 
-dat_pooling_eligible <- dat_raw[!leitner_flag, ]
+# --- Population-eligibility exclusion: Liu2025_perinephric ----------------------
+# The review's Population criterion requires an infection attributed to MDR, XDR
+# or PDR P. aeruginosa. The data-engineer's extraction locator for this arm
+# records an ELIGIBILITY FLAG: the published antibiogram (Fig. 1B) shows
+# non-susceptibility to imipenem ONLY -- one agent of roughly eleven tested --
+# which does not reach the >= 3-antimicrobial-category threshold that defines
+# MDR, notwithstanding the paper's own "antibiotic-resistant" framing. It was
+# therefore coded not-classifiable rather than upgraded to MDR, and the
+# extraction note explicitly recommended eligibility review before pooling.
+#
+# That review is resolved here: this is not a case of MISSING resistance
+# information (the other not-classifiable arms), it is documented evidence that
+# the isolate does NOT satisfy the population criterion. Retaining it would put
+# a demonstrably non-MDR patient inside a review of MDR/XDR/PDR infection, so
+# the arm is excluded from pooling -- logged below, and reported in the
+# manuscript rather than dropped silently.
+liu_flag <- dat_raw$study_arm_id == "Liu2025_perinephric_P1"
+liu_flag[is.na(liu_flag)] <- FALSE
+
+n_excluded_liu <- sum(liu_flag)
+
+dat_pooling_eligible <- dat_raw[!leitner_flag & !liu_flag, ]
 
 # --- Derived stratification variables -------------------------------------------
 dat_analysis <- dat_pooling_eligible |>
@@ -52,9 +73,10 @@ exclusion_log <- tibble(
   step = c(
     "Rows in cleaned extraction dataset",
     "Excluded: Leitner2021 (trial-wide, not Pseudomonas-specific)",
+    "Excluded: Liu2025 (antibiogram does not meet the MDR population criterion)",
     "Rows entering stratified pooling eligibility checks"
   ),
-  n_rows = c(nrow(dat_raw), n_excluded_leitner, nrow(dat_analysis))
+  n_rows = c(nrow(dat_raw), n_excluded_leitner, n_excluded_liu, nrow(dat_analysis))
 )
 
 message("Exclusion log:")

@@ -578,6 +578,69 @@ message(
 saveRDS(transformation_sensitivity, file.path(output_dir, "transformation_sensitivity.rds"))
 saveRDS(divergence_flags, file.path(output_dir, "transformation_divergence_flags.rds"))
 saveRDS(classification_sensitivity, file.path(output_dir, "classification_sensitivity.rds"))
+
+# --- Population-eligibility sensitivity: exclude not-classifiable arms ----------
+# Peer-review finding (domain referee, round 2): the Population criterion
+# requires MDR/XDR/PDR P. aeruginosa, but the extraction ladder retains arms
+# carrying no resistance information at all as `not-classifiable` (NC), and
+# those arms then enter every "overall" pool -- including the headline clinical
+# success estimate. The review's population is therefore silently broader than
+# its own eligibility criterion.
+#
+# This check quantifies the consequence: every "overall" cell is re-pooled on
+# the subset of arms whose resistance status is positively established as MDR,
+# XDR or PDR, and compared against the primary estimate. It does not resolve
+# the contradiction (an editorial decision, reported in the manuscript), it
+# measures how much the reported proportions depend on arms that may not meet
+# the population criterion.
+nc_exclusion_sensitivity <- purrr::map_dfr(
+  c("clinical_success", "safety", "eradication", "mortality"),
+  function(outcome_name) {
+    col <- OUTCOME_COLS[[outcome_name]]
+    df_all <- dat_analysis[!is.na(dat_analysis[[col]]), ]
+    df_classified <- df_all[df_all$resistance_class != "not-classifiable", ]
+
+    r_all <- pool_stratum(
+      df_all, col, "n_arm", paste(outcome_name, "overall_all", sep = "__"),
+      min_studies = MIN_STUDIES, min_patients = MIN_PATIENTS
+    )
+    r_classified <- pool_stratum(
+      df_classified, col, "n_arm", paste(outcome_name, "overall_classified", sep = "__"),
+      min_studies = MIN_STUDIES, min_patients = MIN_PATIENTS
+    )
+    p_all <- if (r_all$status == "POOLED") bt_safe(r_all$primary, "TE", r_all$primary$sm) else NA_real_
+    p_cls <- if (r_classified$status == "POOLED") {
+      bt_safe(r_classified$primary, "TE", r_classified$primary$sm)
+    } else {
+      NA_real_
+    }
+    tibble::tibble(
+      outcome = outcome_name,
+      k_arms_all = r_all$k_arms, n_patients_all = r_all$n_patients,
+      status_all = r_all$status, p_hat_all = p_all,
+      k_arms_classified = r_classified$k_arms,
+      n_patients_classified = r_classified$n_patients,
+      status_classified = r_classified$status, p_hat_classified = p_cls,
+      n_patients_dropped = r_all$n_patients - r_classified$n_patients,
+      delta_pp = 100 * (p_cls - p_all)
+    )
+  }
+)
+
+saveRDS(nc_exclusion_sensitivity, file.path(output_dir, "nc_exclusion_sensitivity.rds"))
+
+message("\nPopulation-eligibility sensitivity (excluding not-classifiable arms):")
+for (i in seq_len(nrow(nc_exclusion_sensitivity))) {
+  row <- nc_exclusion_sensitivity[i, ]
+  message(sprintf(
+    "  %-18s all: %s %.1f%% (%d arms, N=%d) | classified-only: %s %s (%d arms, N=%d) | dropped N=%d%s",
+    row$outcome, row$status_all, 100 * row$p_hat_all, row$k_arms_all, row$n_patients_all,
+    row$status_classified,
+    if (is.na(row$p_hat_classified)) "--" else sprintf("%.1f%%", 100 * row$p_hat_classified),
+    row$k_arms_classified, row$n_patients_classified, row$n_patients_dropped,
+    if (is.na(row$delta_pp)) "" else sprintf(" | delta %+.1f pp", row$delta_pp)
+  ))
+}
 saveRDS(study_design_subgroup_test, file.path(output_dir, "study_design_subgroup_test.rds"))
 saveRDS(geo_concentration_sensitivity, file.path(output_dir, "geo_concentration_sensitivity.rds"))
 saveRDS(leave_one_out, file.path(output_dir, "leave_one_out.rds"))
