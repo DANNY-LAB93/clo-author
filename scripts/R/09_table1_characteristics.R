@@ -13,6 +13,9 @@
 
 dat_table1 <- read_csv(data_path, show_col_types = FALSE)
 
+# The single source of truth for what was actually pooled (see 02_data_preparation.R).
+pooled_arm_ids <- readRDS(file.path(output_dir, "dat_analysis.rds"))$study_arm_id
+
 #' Escape LaTeX-special characters in generated table cell text
 #' (same convention as 08_tables.R's escape_tex -- % and _ both appear in
 #' this dataset's free-text fields, e.g. geographic_source parentheticals).
@@ -32,6 +35,11 @@ study_label <- c(
   Ferry2022            = "Ferry 2022",
   Liu2025_perinephric  = "Liu 2025",
   Racenis2023_LVAD     = "Racenis 2023",
+  Ferry2021            = "Ferry 2021",
+  Maddocks2019         = "Maddocks 2019",
+  Aslam2020            = "Aslam 2020",
+  Cesta2023            = "Cesta 2023",
+  Khatami2021          = "Khatami 2021",
   Racenis2022_femur    = "Racenis 2022",
   Pirnay2024           = "Pirnay 2024",
   Onallah2023_PASA16   = "Onallah 2023",
@@ -83,7 +91,12 @@ route_abbrev <- c(
 
 table1_rows <- dat_table1 |>
   mutate(
-    study_col      = unname(study_label[study_id]),
+    # Unmapped study_ids previously rendered as a literal "NA" in the printed
+    # table (Ferry 2021 and Maddocks 2019 both shipped that way). Fall back to
+    # the raw id so a missing label is visibly wrong rather than invisibly blank,
+    # and assert below so it is caught before the table is written.
+    study_col      = ifelse(study_id %in% names(study_label),
+                            unname(study_label[study_id]), study_id),
     design_col      = unname(design_abbrev[study_design]),
     resistance_col  = unname(resistance_abbrev[resistance_class]),
     route_col       = {
@@ -106,13 +119,17 @@ table1_rows <- dat_table1 |>
       collapsed <- collapse_category(geographic_source)
       ifelse(collapsed %in% names(country_abbrev), unname(country_abbrev[collapsed]), collapsed)
     },
+    # Pooling status is read from the ANALYSIS OBJECT, never re-derived here.
+    # An earlier version regenerated it with a regex on `incomplete_reason`,
+    # which only ever caught the Leitner exclusion and therefore printed
+    # "Pooled" for PhagoBurn, BX004-A, SWARM-P.a., Liu 2025 Patient 1 and the
+    # two Pirnay-roster duplicates -- a table that directly contradicted the
+    # Methods and Results. Two implementations of one rule is the defect; there
+    # is now exactly one, in 02_data_preparation.R, and this table consumes it.
     pooling_col     = ifelse(
-      grepl(
-        "NOT usable in the primary Pseudomonas-specific proportion pooling",
-        incomplete_reason
-      ) & !is.na(incomplete_reason),
-      "Excluded$^{a}$",
-      "Pooled"
+      study_arm_id %in% pooled_arm_ids,
+      "Pooled",
+      "Excluded$^{a}$"
     )
   ) |>
   select(

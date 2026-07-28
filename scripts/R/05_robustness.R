@@ -451,14 +451,25 @@ for (i in seq_len(nrow(geo_concentration_sensitivity))) {
 # keyword (IV/inhaled/nebulized/oral/intra-articular) -- including
 # multi-route "other" arms with a systemic component -- is coded systemic;
 # pure topical/local arms are coded local-only.
+# NA-SAFE. grepl() returns FALSE for an NA route, so the previous version
+# silently classified arms with an UNREPORTED route as "local only" -- three
+# arms in the current corpus (Malhotra 2026, Arya 2026, Khatami 2021) were
+# being asserted into a route category the sources never stated. Unreported
+# routes are now carried as NA and dropped from the two-category test, which is
+# the honest treatment: this review does not know their route.
 route_2cat_all <- ifelse(
-  grepl("IV|inhaled|nebulized|oral|intra-articular", dat_analysis$route, ignore.case = TRUE),
-  "systemic (incl. multi-route)",
-  "local only (topical/local)"
+  is.na(dat_analysis$route),
+  NA_character_,
+  ifelse(
+    grepl("IV|inhaled|nebulized|oral|intra-articular", dat_analysis$route, ignore.case = TRUE),
+    "systemic (incl. multi-route)",
+    "local only (topical/local)"
+  )
 )
 
-df_route2 <- dat_analysis[!is.na(dat_analysis$clinical_success_n), ]
-df_route2$route_2cat <- route_2cat_all[!is.na(dat_analysis$clinical_success_n)]
+keep_r2 <- !is.na(dat_analysis$clinical_success_n) & !is.na(route_2cat_all)
+df_route2 <- dat_analysis[keep_r2, ]
+df_route2$route_2cat <- route_2cat_all[keep_r2]
 
 route_2cat_subgroup_test <- tryCatch(
   meta::metaprop(
