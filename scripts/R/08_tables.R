@@ -116,7 +116,18 @@ pooled_rows <- purrr::map_dfr(pooled_cells, function(r) {
     } else {
       "n/a (k too small)"
     },
-    model_marker = if (r$convergence_flag != "CONVERGED") "GLMM$^\\dagger$" else "GLMM"
+    # Uninformative-width marker (peer review, methods Major 3b): a cell whose
+    # back-transformed 95% CI spans >= 50 percentage points carries essentially
+    # no information about the underlying proportion -- as uninformative as the
+    # zero-event cells this review demotes to the narrative table. Rather than
+    # silently demote them (which would discard the only estimate several strata
+    # have), they are retained and FLAGGED so a reader can see at a glance which
+    # rows must not be read as estimates. Threshold matches the ci_width >= 50
+    # rule already used by the GRADE imprecision domain in 10_grade.R.
+    model_marker = paste0(
+      if (r$convergence_flag != "CONVERGED") "GLMM$^\\dagger$" else "GLMM",
+      if (100 * (ci_high - ci_low) >= 50) "$^\\ddagger$" else ""
+    )
   )
 })
 

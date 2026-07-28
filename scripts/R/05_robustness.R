@@ -256,11 +256,30 @@ rve_clustering_check <- purrr::map_dfr(rve_cells, function(r) {
       !is.na(dat_analysis[[event_col]]) & !is.na(dat_analysis[[strat_var]]) & dat_analysis[[strat_var]] == strat_level,
     ]
   }
+  # MODEL MISMATCH -- DISCLOSED, NOT HIDDEN (methods referee, round 2).
+  # metafor::robust() cannot be applied to the binomial-normal GLMM that
+  # produces this review's reported estimates, so this check necessarily fits a
+  # DIFFERENT model: a normal-normal inverse-variance random-effects model on
+  # continuity-corrected logits (escalc measure = "PLO"). The naive and RVE
+  # standard errors below are therefore internal to that auxiliary model. They
+  # indicate whether clustering matters in a model of the same data; they do
+  # NOT bound the GLMM-HKSJ interval reported in Table 2. The manuscript states
+  # this explicitly rather than presenting the SEs as if they applied to the
+  # primary model.
   dat_es <- metafor::escalc(measure = "PLO", xi = df_sub[[event_col]], ni = df_sub$n_arm)
   fit_naive <- metafor::rma(yi, vi, data = dat_es, method = "ML")
   fit_rve <- metafor::robust(fit_naive, cluster = df_sub$study_id, clubSandwich = TRUE)
+  # Cluster count and Satterthwaite df govern how much to trust the RVE SE.
+  # clubSandwich's CR2 correction is known to be erratic below roughly 10
+  # clusters, so both are recorded and reported: an SE that moves sharply at
+  # m = 7 clusters with df < 5 is a diagnostic of RVE instability, not evidence
+  # about the underlying variance.
+  n_clusters <- length(unique(df_sub$study_id))
+  satt_df <- tryCatch(as.numeric(fit_rve$ddf)[1], error = function(e) NA_real_)
   tibble::tibble(
     stratum = key,
+    n_clusters = n_clusters,
+    satterthwaite_df = satt_df,
     se_naive = fit_naive$se,
     se_rve = fit_rve$se,
     ci_width_naive = fit_naive$ci.ub - fit_naive$ci.lb,
@@ -274,7 +293,9 @@ if (nrow(rve_clustering_check) > 0L) {
     message(
       "  ", rve_clustering_check$stratum[i], ": naive SE = ",
       round(rve_clustering_check$se_naive[i], 3), ", RVE SE = ",
-      round(rve_clustering_check$se_rve[i], 3)
+      round(rve_clustering_check$se_rve[i], 3),
+      " (m = ", rve_clustering_check$n_clusters[i], " clusters, Satterthwaite df = ",
+      round(rve_clustering_check$satterthwaite_df[i], 1), ")"
     )
   }
 } else {
