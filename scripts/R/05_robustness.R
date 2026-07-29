@@ -581,8 +581,33 @@ reconstruct_cell_df <- function(key) {
   }
 }
 
+# A threshold is a statement about how much evidence is enough. Relaxing it can
+# only resurrect a cell that failed FOR WANT OF EVIDENCE. The DTR
+# "not-derivable" level did not: 04_estimation.R declines to fit it because a
+# proportion computed over arms whose DTR status is unknown describes no
+# definable population, which is a defect no sample size repairs. Pooling it
+# here anyway -- as this appendix originally did, reporting all four such cells
+# as "newly poolable" at k up to 23 and N up to 68 -- puts the two scripts in
+# direct contradiction and would let a reader conclude that a larger corpus
+# would rescue the DTR analysis. It would not.
+NOT_ELIGIBLE_FOR_RELAXATION <- function(key) {
+  grepl("__dtr_status__not-derivable$", key)
+}
+
 threshold_relaxation_appendix <- purrr::map_dfr(names(pooled_results), function(key) {
   r_primary <- pooled_results[[key]]
+
+  if (NOT_ELIGIBLE_FOR_RELAXATION(key)) {
+    return(tibble::tibble(
+      stratum = key,
+      status_primary = r_primary$status,
+      status_relaxed = "NOT_ELIGIBLE",
+      k_studies = r_primary$k_studies,
+      n_patients = r_primary$n_patients,
+      newly_poolable = FALSE
+    ))
+  }
+
   event_col <- OUTCOME_COLS[[strsplit(key, "__")[[1]][1]]]
   df_sub <- reconstruct_cell_df(key)
   r_relaxed <- pool_stratum(

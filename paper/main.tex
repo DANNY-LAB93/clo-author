@@ -58,6 +58,11 @@
 % ====== List Formatting ======
 \usepackage{enumitem}
 
+% Required by the pipeline-generated macros in generated_scalars.tex. A control
+% word swallows the space that follows it, so "\CellsPooled cells" typesets as
+% "13cells". xspace restores the space unless the next token is punctuation.
+\usepackage{xspace}
+
 % ====== Bibliography (biblatex + biber) ======
 \usepackage{xurl}
 \usepackage[backend=biber,

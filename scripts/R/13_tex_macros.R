@@ -60,6 +60,13 @@ despecialise <- function(x) {
 pct <- function(p, d = 1) sprintf(paste0("%.", d, "f\\%%"), 100 * p)
 num <- function(x, d = 3) sprintf(paste0("%.", d, "f"), x)
 
+# Every macro body ends with \xspace. A LaTeX control word swallows the
+# whitespace after it, so "\CellsPooled cells" would typeset as "13cells" --
+# which it did, throughout the first compiled draft of this system. xspace
+# restores the space unless the following token is punctuation or a closing
+# brace. It requires \usepackage{xspace}, which main.tex loads.
+XS <- "\\xspace"
+
 lines <- c(
   "% GENERATED FILE -- DO NOT EDIT.",
   "% Written by scripts/R/13_tex_macros.R. Edit the pipeline, not this file.",
@@ -103,7 +110,7 @@ for (key in names(pooled)) {
   stem <- cell_macro_stem(key)
 
   add <- function(suffix, value) {
-    lines <<- c(lines, paste0("\\newcommand{\\", stem, suffix, "}{", value, "}"))
+    lines <<- c(lines, paste0("\\newcommand{\\", stem, suffix, "}{", value, XS, "}"))
   }
 
   # Sample sizes are facts about the corpus and are emitted for EVERY cell,
@@ -190,12 +197,12 @@ n_cells_not <- n_cells_total - n_pooled
 
 lines <- c(lines,
   "% ---- corpus and cell counts ----",
-  paste0("\\newcommand{\\CellsTotal}{", n_cells_total, "}"),
-  paste0("\\newcommand{\\CellsPooled}{", n_cells_pooled, "}"),
-  paste0("\\newcommand{\\CellsNotPooled}{", n_cells_not, "}"),
-  paste0("\\newcommand{\\ArmsAnalysed}{", nrow(dat), "}"),
-  paste0("\\newcommand{\\StudiesAnalysed}{", length(unique(dat$study_id)), "}"),
-  paste0("\\newcommand{\\PatientsAnalysed}{", sum(dat$n_arm, na.rm = TRUE), "}"),
+  paste0("\\newcommand{\\CellsTotal}{", n_cells_total, XS, "}"),
+  paste0("\\newcommand{\\CellsPooled}{", n_cells_pooled, XS, "}"),
+  paste0("\\newcommand{\\CellsNotPooled}{", n_cells_not, XS, "}"),
+  paste0("\\newcommand{\\ArmsAnalysed}{", nrow(dat), XS, "}"),
+  paste0("\\newcommand{\\StudiesAnalysed}{", length(unique(dat$study_id)), XS, "}"),
+  paste0("\\newcommand{\\PatientsAnalysed}{", sum(dat$n_arm, na.rm = TRUE), XS, "}"),
   ""
 )
 
@@ -219,9 +226,9 @@ if (!is.null(fe)) {
     n_finite <- if (length(pcol) > 0) sum(is.finite(fe[[pcol[1]]])) else NA_integer_
     lines <- c(lines,
       "% ---- Peters' small-study test ----",
-      paste0("\\newcommand{\\PetersEligible}{", n_elig, "}"),
-      paste0("\\newcommand{\\PetersCellsTotal}{", nrow(fe), "}"),
-      paste0("\\newcommand{\\PetersFinite}{", n_finite, "}"),
+      paste0("\\newcommand{\\PetersEligible}{", n_elig, XS, "}"),
+      paste0("\\newcommand{\\PetersCellsTotal}{", nrow(fe), XS, "}"),
+      paste0("\\newcommand{\\PetersFinite}{", n_finite, XS, "}"),
       "")
   }
 }
@@ -248,6 +255,41 @@ if (!is.null(nc) && nrow(nc) > 0) {
     }
     lines <- c(lines, "")
   }
+}
+
+# ---- GRADE ------------------------------------------------------------------
+# The manuscript stated the structural minimum as three against a table showing
+# four, named the wrong cells as minimally downgraded, and described a
+# risk-of-bias rule the code does not implement. Emit the counts.
+gc <- safe_read("grade_counts.rds")
+gp <- safe_read("grade_profile.rds")
+if (!is.null(gc)) {
+  lines <- c(lines, "% ---- GRADE ----",
+    paste0("\\newcommand{\\GradeCells}{", gc$n_cells, XS, "}"),
+    paste0("\\newcommand{\\GradeStructuralMinimum}{", gc$structural_minimum_downgrades, XS, "}"),
+    paste0("\\newcommand{\\GradeMinDowngrades}{", gc$min_downgrades, XS, "}"),
+    paste0("\\newcommand{\\GradeCellsAtMin}{", gc$n_min_downgrades, XS, "}"),
+    paste0("\\newcommand{\\GradeMaxDowngrades}{", gc$max_downgrades, XS, "}"),
+    paste0("\\newcommand{\\GradeCellsAtMax}{", gc$n_max_downgrades, XS, "}"),
+    paste0("\\newcommand{\\GradeClinicalSuccessCells}{", gc$n_clinical_success, "}"))
+  if (!is.null(gp)) {
+    # Every cell's risk-of-bias deduction is identical by construction; state
+    # the constant so the text can say so without typing it.
+    lines <- c(lines,
+      paste0("\\newcommand{\\GradeRobDrop}{", unique(gp$rob_drop)[1], XS, "}"),
+      paste0("\\newcommand{\\GradeRobIsUniform}{",
+             if (length(unique(gp$rob_drop)) == 1L) "yes" else "no", "}"))
+  }
+  lines <- c(lines, "")
+}
+
+tr <- safe_read("threshold_relaxation_appendix.rds")
+if (!is.null(tr)) {
+  lines <- c(lines, "% ---- threshold relaxation ----",
+    paste0("\\newcommand{\\RelaxNewlyPoolable}{", sum(tr$newly_poolable, na.rm = TRUE), XS, "}"),
+    paste0("\\newcommand{\\RelaxNotEligible}{",
+           sum(tr$status_relaxed == "NOT_ELIGIBLE", na.rm = TRUE), "}"),
+    "")
 }
 
 # ---- exact bounds for zero-event route cells --------------------------------
@@ -307,6 +349,26 @@ if ("n_arm" %in% names(dat)) {
     paste0("\\newcommand{\\MultiPatientArms}{",
            sum(dat$n_arm > 1, na.rm = TRUE), "}"),
     "")
+}
+
+# Normalise xspace in ONE place rather than at each emission site. Macros are
+# written by several code paths (per-cell, stratum distributions, zero-event
+# bounds, GRADE, Peters', relaxation) and patching each one leaves gaps -- it
+# left 36 of 354 without xspace on the first attempt, which typesets as
+# "5cells". Enforce the invariant on the finished output instead.
+XS_RE <- "\\\\xspace\\}$"
+lines <- vapply(lines, function(ln) {
+  if (!grepl("^\\\\newcommand\\{", ln)) return(ln)
+  if (grepl(XS_RE, ln)) return(ln)
+  # Build by string surgery, not sub(): a backslash in sub()'s replacement is
+  # an escape character, so paste0(XS, "}") as a replacement silently drops it.
+  paste0(substr(ln, 1, nchar(ln) - 1), XS, "}")
+}, character(1), USE.NAMES = FALSE)
+
+n_cmd <- sum(grepl("^\\\\newcommand\\{", lines))
+n_xs <- sum(grepl("^\\\\newcommand\\{.*\\\\xspace\\}$", lines))
+if (n_cmd != n_xs) {
+  stop(sprintf("xspace invariant violated: %d macros, %d carry xspace", n_cmd, n_xs))
 }
 
 writeLines(lines, target)

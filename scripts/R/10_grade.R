@@ -121,34 +121,40 @@ grade_profile <- purrr::map_dfr(pooled_cells, function(r) {
   }
 
   # --- Domain 1: Risk of bias --------------------------------------------------
-  # Every cell rests on uncontrolled data, so no cell is free of serious RoB.
-  # A cell is downgraded TWICE where the majority of its patients come from
-  # single-patient case reports (the design least able to exclude selective
-  # reporting and co-intervention effects) AND a High-risk-of-bias trial also
-  # contributes.
-  # Every arm in this corpus rates High overall on Murad, because 30 of 31 give
-  # phage WITH antibiotics and the causality domain therefore cannot be
-  # satisfied. A rule keyed on overall rating would be constant, so the
-  # discriminating quantity is the SELECTION domain: the share of a cell's
-  # patients coming from stand-alone single-patient reports, where publication
-  # is itself the selection event. Two levels are deducted where that share
-  # exceeds one half.
   # RULE. Two levels are deducted where EVERY contributing arm rates High risk
-  # overall on Murad; one level otherwise. In this corpus the first branch is
-  # taken in every cell, because the causality domain cannot be satisfied
-  # anywhere: 30 of 31 arms give phage together with antibiotics, so no arm can
-  # attribute its outcome to the phage. We report the domain as UNIFORM and say
-  # why, rather than tuning a threshold until it appears to discriminate.
+  # of bias overall on Murad (2018); one level otherwise.
   #
-  # A second quantity is recorded but deliberately NOT used to set the level.
-  # The share of a cell's patients coming from single-patient reports (High on
-  # the selection domain) ranges from 10% to 35% and never exceeds half --
-  # because the model weights by patient, and the 20 single-patient reports
-  # together carry only 20 of 82 patients while three larger series carry 56.
-  # The corpus is numerically dominated by a few series, not by the many case
-  # reports, which is worth reporting and is the opposite of what the design
-  # distribution alone would suggest.
+  # In this corpus the second branch is UNREACHABLE, and saying so is more
+  # honest than leaving a live-looking conditional in the code. Murad's
+  # causality domain cannot be satisfied by any arm here: 30 of 31 gave phage
+  # together with antibiotics, so no arm can attribute its outcome to the phage
+  # rather than the co-intervention, and the 31st is a single patient. Overall
+  # rating is the maximum across domains, so every arm rates High, so
+  # high_overall_share is 1 in every cell by construction.
+  #
+  # The consequence, stated plainly because a referee is entitled to it: this
+  # domain is a CONSTANT, not a discriminating assessment. It contributes the
+  # same -2 to every cell and carries no information about which cell is more
+  # trustworthy than another. We keep the deduction because it is substantively
+  # right -- the evidence really is uniformly High risk -- but the manuscript
+  # must not present a constant as though the rule had adjudicated anything.
+  #
+  # The assertion below is the guard: if a future corpus ever contains an arm
+  # rating below High overall, it fires and forces this rule to be reconsidered
+  # rather than silently taking a branch nobody has tested.
+  stopifnot(
+    "rob rule assumes every arm rates High overall; corpus no longer satisfies this" =
+      is.na(high_overall_share) || isTRUE(all.equal(high_overall_share, 1))
+  )
   rob_drop <- if (!is.na(high_overall_share) && high_overall_share >= 1) 2L else 1L
+
+  # Recorded but deliberately NOT used to set the level: the share of a cell's
+  # patients from stand-alone single-patient reports (High on Murad's selection
+  # domain) runs from 10% to 35% and never reaches half, because the model
+  # weights by patient and the 20 single-patient reports carry only 20 of 82
+  # patients while three larger series carry 56. The corpus is numerically
+  # dominated by a few series, which is the opposite of what its design
+  # distribution alone suggests.
   rob_reason <- sprintf(
     "%s; %.0f%% of this cell's patients come from arms rated High risk overall on Murad (2018), the causality domain being unsatisfiable wherever phage was co-administered with antibiotics; %.0f%% come from single-patient reports rated High on selection",
     if (rob_drop == 2L) "Very serious" else "Serious",
@@ -260,11 +266,16 @@ grade_counts <- list(
   cells_at_max = grade_profile$stratum[grade_profile$total_downgrades ==
                                          max(grade_profile$total_downgrades)],
   n_clinical_success = sum(grade_profile$outcome == "clinical_success"),
-  # The rating is deterministic: risk of bias (>=1), indirectness (>=1) and
-  # publication bias (=1) are always-on, so the minimum possible total is 3
-  # against a start of Low (2) and a floor of Very low. Record this explicitly
-  # so the manuscript can state it rather than claim the reverse.
-  structural_minimum_downgrades = 3L,
+  # The rating is deterministic: risk of bias, indirectness and publication bias
+  # are always-on, so a floor exists independent of any cell's data. This was
+  # hardcoded at 3, which was the value under a superseded risk-of-bias rule
+  # that could deduct a single level. The implemented rule deducts two in every
+  # cell (see Domain 1), so the true floor is 2 + 1 + 1 = 4 -- and the manifest
+  # printed "structural minimum 3" one line above "cells at the minimum (4
+  # downgrades)". Derive it instead of asserting it.
+  structural_minimum_downgrades =
+    min(grade_profile$rob_drop) + min(grade_profile$indirectness_drop) +
+    min(grade_profile$pubbias_drop),
   rating_is_deterministic = TRUE
 )
 saveRDS(grade_counts, file.path(output_dir, "grade_counts.rds"))

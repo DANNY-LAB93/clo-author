@@ -25,6 +25,11 @@ tab_lines <- readLines(table_path, warn = FALSE)
 m <- str_match(macro_lines, "^\\\\newcommand\\{\\\\([A-Za-z]+)\\}\\{(.*)\\}$")
 macros <- setNames(m[!is.na(m[, 2]), 3], m[!is.na(m[, 2]), 2])
 
+# Macro bodies carry a trailing \xspace so a control word does not swallow the
+# following space. It is typesetting, not value, and must not enter the
+# comparison against the table.
+macros <- sub("\\\\xspace$", "", macros)
+
 # ---- parse the table --------------------------------------------------------
 # Rows look like:
 #   Clinical success -- Overall & 23 & 28 & 71 & 76.1\% [64.2\%, 84.9\%] & 0.000 & [..] & GLMM \\
