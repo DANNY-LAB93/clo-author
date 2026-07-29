@@ -197,6 +197,27 @@ if (!is.null(ts)) {
   add("")
 }
 
+hk <- safe_read("hk_binding_check.rds")
+if (!is.null(hk)) {
+  add("### 4.2b Does the Hartung-Knapp adjustment bind?")
+  add("")
+  add("Ratio of the model's reported SE to the naive complete-pooling binomial SE")
+  add("on the logit scale. A ratio of 1 means the interval is a plain t-interval")
+  add("on the pooled counts, with no variance inflation and no random-effect term.")
+  add("")
+  add("| Cell | method.random.ci | df | tau2 | model SE | naive binomial SE | ratio |")
+  add("|---|---|---|---|---|---|---|")
+  for (i in seq_len(nrow(hk))) {
+    add("| ", hk$stratum[i], " | ", hk$method_ci[i], " | ", hk$df_random[i], " | ",
+        fmt_num(hk$tau2[i]), " | ", fmt_num(hk$model_se[i], 4), " | ",
+        fmt_num(hk$naive_binomial_se[i], 4), " | ", fmt_num(hk$hk_inflation_ratio[i], 4), " |")
+  }
+  add("")
+  add("Cells where the ratio is exactly 1 (adjustment does not bind): ",
+      sum(abs(hk$hk_inflation_ratio - 1) < 1e-6, na.rm = TRUE), " of ", nrow(hk), ".")
+  add("")
+}
+
 rve <- safe_read("rve_clustering_check.rds")
 if (!is.null(rve) && nrow(rve) > 0) {
   add("### 4.3 Cluster-robust variance check")

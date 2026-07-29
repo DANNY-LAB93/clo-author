@@ -6,7 +6,7 @@ Every number quoted in `paper/main.tex` or `paper/sections/*.tex` must appear
 in this file. A number that is not here is not quotable. Regenerate with
 `Rscript scripts/R/00_master.R` and re-check the manuscript against it.
 
-Generated: 2026-07-28 23:10 | seed: 20260720
+Generated: 2026-07-28 23:30 | seed: 20260720
 
 ## 1. Corpus
 
@@ -165,6 +165,30 @@ Generated: 2026-07-28 23:10 | seed: 20260720
 ### 4.2 Transformation / model sensitivity
 
 Rows: 52. Full comparison is in `paper/tables/.../meta_sensitivity.tex`.
+
+### 4.2b Does the Hartung-Knapp adjustment bind?
+
+Ratio of the model's reported SE to the naive complete-pooling binomial SE
+on the logit scale. A ratio of 1 means the interval is a plain t-interval
+on the pooled counts, with no variance inflation and no random-effect term.
+
+| Cell | method.random.ci | df | tau2 | model SE | naive binomial SE | ratio |
+|---|---|---|---|---|---|---|
+| clinical_success__overall | HK | 27 | 0.000 | 0.2781 | 0.2781 | 1.0000 |
+| safety__overall | HK | 21 | 0.000 | 0.3519 | 0.3519 | 1.0000 |
+| eradication__overall | HK | 22 | 2.198 | 0.5552 | 0.2613 | 2.1244 |
+| mortality__overall | HK | 29 | 0.000 | 0.3994 | 0.3994 | 1.0000 |
+| clinical_success__resistance_class__MDR | HK | 14 | 0.000 | 0.3702 | 0.3702 | 1.0000 |
+| clinical_success__resistance_class__not-classifiable | HK | 6 | 0.000 | 0.6236 | 0.6236 | 1.0000 |
+| safety__resistance_class__MDR | HK | 12 | 0.000 | 0.4472 | 0.4472 | 1.0000 |
+| eradication__resistance_class__MDR | HK | 13 | 6.631 | 1.0079 | 0.3086 | 3.2660 |
+| mortality__resistance_class__MDR | HK | 16 | 0.000 | 0.5972 | 0.5972 | 1.0000 |
+| clinical_success__route_group__other | HK | 8 | 0.000 | 0.3291 | 0.3291 | 1.0000 |
+| safety__route_group__other | HK | 6 | 0.000 | 0.4472 | 0.4472 | 1.0000 |
+| eradication__route_group__other | HK | 7 | 0.000 | 0.3444 | 0.3444 | 1.0000 |
+| mortality__route_group__other | HK | 7 | 0.000 | 0.4809 | 0.4809 | 1.0000 |
+
+Cells where the ratio is exactly 1 (adjustment does not bind): 11 of 13.
 
 ### 4.3 Cluster-robust variance check
 

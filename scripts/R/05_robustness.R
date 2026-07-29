@@ -701,6 +701,58 @@ dedup_sensitivity <- purrr::map_dfr(
 )
 saveRDS(dedup_sensitivity, file.path(output_dir, "dedup_sensitivity.rds"))
 
+# --- What the reported interval actually is -----------------------------------
+# The Methods claim the Hartung-Knapp-Sidik-Jonkman adjustment is applied to
+# every stratum's confidence interval. meta() does report method.random.ci =
+# "HK". But an adjustment that is *labelled* is not necessarily an adjustment
+# that *binds*: the Hartung-Knapp variance estimator multiplies the standard
+# error by a factor q that reduces to 1 when the between-study variance estimate
+# sits at zero, which is the regime this corpus is in for most cells.
+#
+# This check computes, per pooled cell, the ratio of the model's reported
+# seTE.random to the naive complete-pooling binomial standard error on the logit
+# scale, sqrt(1/r + 1/(N-r)). A ratio of exactly 1 means the reported interval
+# is a plain t-interval on the logit computed from the pooled counts -- i.e. no
+# Hartung-Knapp inflation, no random-effect contribution, and every patient in
+# the cell treated as an independent Bernoulli draw. The manuscript must
+# describe the interval it actually reports.
+hk_binding_check <- purrr::map_dfr(pooled_cells, function(r) {
+  m <- r$primary
+  key <- r$stratum
+  parts <- strsplit(key, "__")[[1]]
+  col <- OUTCOME_COLS[[parts[1]]]
+  if (length(parts) == 2L && parts[2] == "overall") {
+    df_sub <- dat_analysis[!is.na(dat_analysis[[col]]), ]
+  } else {
+    sv <- parts[2]; sl <- paste(parts[-c(1, 2)], collapse = "__")
+    df_sub <- dat_analysis[!is.na(dat_analysis[[col]]) & !is.na(dat_analysis[[sv]]) &
+                             dat_analysis[[sv]] == sl, ]
+  }
+  ev <- sum(df_sub[[col]], na.rm = TRUE)
+  n  <- sum(df_sub$n_arm, na.rm = TRUE)
+  naive_se <- if (ev > 0 && ev < n) sqrt(1 / ev + 1 / (n - ev)) else NA_real_
+  model_se <- m$seTE.random
+  tibble::tibble(
+    stratum   = key,
+    method_ci = if (!is.null(m$method.random.ci)) m$method.random.ci else NA_character_,
+    df_random = if (!is.null(m$df.random)) m$df.random else NA_real_,
+    tau2      = m$tau2,
+    model_se  = model_se,
+    naive_binomial_se = naive_se,
+    hk_inflation_ratio = if (!is.na(naive_se) && naive_se > 0) model_se / naive_se else NA_real_
+  )
+})
+saveRDS(hk_binding_check, file.path(output_dir, "hk_binding_check.rds"))
+
+n_identity <- sum(abs(hk_binding_check$hk_inflation_ratio - 1) < 1e-6, na.rm = TRUE)
+message(sprintf(
+  "
+Hartung-Knapp binding check: the reported SE equals the naive complete-pooling binomial SE in %d of %d cells (inflation ratio = 1). Range of ratios: %.4f to %.4f.",
+  n_identity, nrow(hk_binding_check),
+  min(hk_binding_check$hk_inflation_ratio, na.rm = TRUE),
+  max(hk_binding_check$hk_inflation_ratio, na.rm = TRUE)
+))
+
 message("
 De-duplication sensitivity (Pirnay-roster matches restored):")
 for (i in seq_len(nrow(dedup_sensitivity))) {
