@@ -23,6 +23,9 @@ source(here::here("scripts", "R", "11_manifest.R"))
 # Emits paper/generated_scalars.tex. Must run after 04_estimation.R, since a
 # cell that stops pooling must lose its macros so the manuscript stops
 # compiling rather than silently keeping a stale number.
+source(here::here("scripts", "R", "14_prisma_counts.R"))
+# 13 runs last: it reads the outputs of everything above, including the
+# PRISMA counts, and writes the macros the manuscript compiles against.
 source(here::here("scripts", "R", "13_tex_macros.R"))
 
 message("00_master.R: full pipeline complete.")

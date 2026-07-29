@@ -292,6 +292,20 @@ if (!is.null(tr)) {
     "")
 }
 
+pc <- safe_read("prisma_counts.rds")
+if (!is.null(pc)) {
+  lines <- c(lines, "% ---- PRISMA flow ----",
+    paste0("\\newcommand{\\PrismaAssessed}{", pc$assessed, "}"),
+    paste0("\\newcommand{\\PrismaExcluded}{", pc$excluded, "}"),
+    paste0("\\newcommand{\\PrismaIncludedStudies}{", pc$included_studies, "}"),
+    paste0("\\newcommand{\\PrismaIncludedArms}{", pc$included_arms, "}"),
+    paste0("\\newcommand{\\PrismaPooledStudies}{", pc$pooled_studies, "}"),
+    paste0("\\newcommand{\\PrismaPooledArms}{", pc$pooled_arms, "}"),
+    paste0("\\newcommand{\\PrismaItemised}{", pc$itemised, "}"),
+    paste0("\\newcommand{\\PrismaShortfall}{", pc$channel_shortfall, "}"),
+    "")
+}
+
 # ---- exact bounds for zero-event route cells --------------------------------
 # A zero-event cell has no informative pooled proportion, so the text reports an
 # exact one-sided Clopper-Pearson bound instead. The bound depends on the
