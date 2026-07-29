@@ -175,6 +175,20 @@ if (!is.null(nc)) {
   add("")
 }
 
+dd <- safe_read("dedup_sensitivity.rds")
+if (!is.null(dd)) {
+  add("### 4.1b De-duplication sensitivity (Pirnay-roster matches restored)")
+  add("")
+  add("| Outcome | De-dup applied | Restored | Delta (pp) |")
+  add("|---|---|---|---|")
+  for (i in seq_len(nrow(dd))) {
+    add("| ", dd$outcome[i], " | ", fmt_pct(dd$p_hat_applied[i]), " (N=", dd$n_applied[i], ") | ",
+        fmt_pct(dd$p_hat_restored[i]), " (N=", dd$n_restored[i], ") | ",
+        sprintf("%+.1f", dd$delta_pp[i]), " |")
+  }
+  add("")
+}
+
 ts <- safe_read("transformation_sensitivity.rds")
 if (!is.null(ts)) {
   add("### 4.2 Transformation / model sensitivity")

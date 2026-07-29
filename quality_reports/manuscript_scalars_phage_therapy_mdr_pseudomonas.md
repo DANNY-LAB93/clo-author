@@ -6,7 +6,7 @@ Every number quoted in `paper/main.tex` or `paper/sections/*.tex` must appear
 in this file. A number that is not here is not quotable. Regenerate with
 `Rscript scripts/R/00_master.R` and re-check the manuscript against it.
 
-Generated: 2026-07-28 19:09 | seed: 20260720
+Generated: 2026-07-28 22:06 | seed: 20260720
 
 ## 1. Corpus
 
@@ -152,6 +152,15 @@ Generated: 2026-07-28 19:09 | seed: 20260720
 | safety | 19.2% | 16.3% | -2.9 | 3 |
 | eradication | 57.8% | 53.1% | -4.7 | 2 |
 | mortality | 10.4% | 11.5% | +1.0 | 6 |
+
+### 4.1b De-duplication sensitivity (Pirnay-roster matches restored)
+
+| Outcome | De-dup applied | Restored | Delta (pp) |
+|---|---|---|---|
+| clinical_success | 76.1% (N=71) | 76.7% (N=73) | +0.7 |
+| safety | 19.2% (N=52) | 18.5% (N=54) | -0.7 |
+| eradication | 57.8% (N=59) | 57.3% (N=61) | -0.5 |
+| mortality | 10.4% (N=67) | 11.6% (N=69) | +1.1 |
 
 ### 4.2 Transformation / model sensitivity
 

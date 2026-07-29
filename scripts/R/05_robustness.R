@@ -661,6 +661,56 @@ nc_exclusion_sensitivity <- purrr::map_dfr(
 
 saveRDS(nc_exclusion_sensitivity, file.path(output_dir, "nc_exclusion_sensitivity.rds"))
 
+# --- De-duplication sensitivity: restore the two Pirnay-roster matches ---------
+# The Methods drop Ferry 2022 and Racenis 2023 as probable duplicates of cases
+# inside the Pirnay consortium roster. That crosswalk could not use country or
+# treatment year (the roster publishes neither), so it is a judgement on
+# clinical fields, not a determination. A judgement that changes the corpus must
+# be shown both ways: this refits every overall cell with the two arms PUT BACK,
+# so a reader who disagrees with the de-duplication can see exactly what it cost.
+dedup_arms <- c("Ferry2022_A", "Racenis2023_LVAD_A")
+dat_raw_dedup <- readr::read_csv(data_path, show_col_types = FALSE)
+restored <- dat_raw_dedup[dat_raw_dedup$study_arm_id %in% dedup_arms, ]
+restored$route_group    <- collapse_category(restored$route)
+restored$modality_group <- collapse_category(restored$modality)
+dat_with_dups <- dplyr::bind_rows(dat_analysis, restored)
+
+dedup_sensitivity <- purrr::map_dfr(
+  c("clinical_success", "safety", "eradication", "mortality"),
+  function(outcome_name) {
+    col <- OUTCOME_COLS[[outcome_name]]
+    r_excl <- pool_stratum(
+      dat_analysis[!is.na(dat_analysis[[col]]), ], col, "n_arm",
+      paste0(outcome_name, "__dedup_applied"),
+      min_studies = MIN_STUDIES, min_patients = MIN_PATIENTS
+    )
+    r_rest <- pool_stratum(
+      dat_with_dups[!is.na(dat_with_dups[[col]]), ], col, "n_arm",
+      paste0(outcome_name, "__dedup_restored"),
+      min_studies = MIN_STUDIES, min_patients = MIN_PATIENTS
+    )
+    p_e <- if (r_excl$status == "POOLED") bt_safe(r_excl$primary, "TE", r_excl$primary$sm) else NA_real_
+    p_r <- if (r_rest$status == "POOLED") bt_safe(r_rest$primary, "TE", r_rest$primary$sm) else NA_real_
+    tibble::tibble(
+      outcome = outcome_name,
+      n_applied = r_excl$n_patients, p_hat_applied = p_e,
+      n_restored = r_rest$n_patients, p_hat_restored = p_r,
+      delta_pp = 100 * (p_r - p_e)
+    )
+  }
+)
+saveRDS(dedup_sensitivity, file.path(output_dir, "dedup_sensitivity.rds"))
+
+message("
+De-duplication sensitivity (Pirnay-roster matches restored):")
+for (i in seq_len(nrow(dedup_sensitivity))) {
+  row <- dedup_sensitivity[i, ]
+  message(sprintf("  %-18s applied %.1f%% (N=%d) | restored %.1f%% (N=%d) | delta %+.1f pp",
+    row$outcome, 100 * row$p_hat_applied, row$n_applied,
+    100 * row$p_hat_restored, row$n_restored, row$delta_pp))
+}
+
+
 message("\nPopulation-eligibility sensitivity (excluding not-classifiable arms):")
 for (i in seq_len(nrow(nc_exclusion_sensitivity))) {
   row <- nc_exclusion_sensitivity[i, ]
