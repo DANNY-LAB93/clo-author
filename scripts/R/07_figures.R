@@ -97,6 +97,19 @@ save_forest_plot <- function(model, file_path, convergence_note = NULL) {
     # would display an "I^2 = 0% alongside tau^2 > 0" pairing that the tables
     # and text explicitly decline to report. Figures and tables must agree.
     print.I2 = FALSE,
+    # The heterogeneity Q-test p-value is suppressed for the same reason I^2 is.
+    # meta::forest() otherwise prints a line reading "Heterogeneity: tau^2 = 0,
+    # p = 0.97", which a reader takes as evidence of homogeneity -- precisely the
+    # inference Section 4.5 argues is unavailable. With 24 of 31 arms carrying a
+    # single patient, tau^2 = 0 is non-identification of between-arm variance,
+    # and Cochran's Q is correspondingly powerless: a non-significant Q here
+    # reports that the design cannot detect heterogeneity, not that none exists.
+    # Printing it inside the figure would let the plot assert what the text
+    # denies, which is the defect that had I^2 displayed in four figures while
+    # the tables suppressed it.
+    print.pval.Q = FALSE,
+    print.Q = FALSE,
+    hetstat = has_random,
     leftlabs = c("Study", "Events", "Total"),
     rightlabs = c("Proportion", "95% CI"),
     xlab = "Proportion"
