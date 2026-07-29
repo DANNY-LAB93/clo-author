@@ -62,7 +62,12 @@ full_text_exclusions <- tibble::tribble(
   "Hayakawa 2025",          "multi-pathogen feasibility study",
   "Chung 2025",             "review / perspective, not primary data",
   "Karn 2024",              "multi-pathogen, no P. aeruginosa breakdown",
-  "Stanley 2025 (CYPHY)",   "NCT04684641; population rule (no resistance entry criterion)"
+  "Stanley 2025 (CYPHY)",   "NCT04684641; population rule (no resistance entry criterion)",
+  # Round 5. The P. aeruginosa arm was non-susceptible to the anti-Pseudomonas
+  # phages in the administered cocktail, so it measures nothing about phage
+  # therapy against this review's target organism; additionally a QAMH/Belgian
+  # case with Pirnay as co-author, the profile this review de-duplicates against.
+  "Onsea 2019",             "phage cocktail not active against the P. aeruginosa isolate"
 )
 n_excluded <- nrow(full_text_exclusions)
 
@@ -81,7 +86,14 @@ channels <- c(
   "native Scopus search"                              = 10,
   "held records re-confirmed"                         = 5,
   "landmark cases flagged at peer review"             = 4,
-  "further records named at peer review, round 2"     = 2
+  "further records named at peer review, round 2"     = 2,
+  # Round 5. Both referees identified the search string as under-sensitive by
+  # construction -- every executed query required a resistance keyword in
+  # title/abstract, while the eligibility criteria explicitly retain arms with no
+  # resistance documentation at all. A targeted search of the four studies the
+  # domain referee named confirmed it: three were retrievable and none carries a
+  # resistance term in its title or abstract.
+  "referee-named records screened at round 5"         = 3
 )
 n_itemised <- sum(channels)
 

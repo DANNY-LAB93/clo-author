@@ -344,6 +344,85 @@ if (!is.null(hk) && "hk_inflation_ratio" %in% names(hk)) {
     "")
 }
 
+# ---- geographic-concentration and de-duplication sensitivity -----------------
+# Both passages quoted before-and-after pairs from the round-4 corpus. Emitting
+# them means the pair moves together when the corpus does, instead of one half
+# going stale.
+geo <- safe_read("geo_concentration_sensitivity.rds")
+if (!is.null(geo)) {
+  sh <- c(clinical_success = "Cs", safety = "Saf", eradication = "Erad", mortality = "Mort")
+  lines <- c(lines, "% ---- geographic-concentration exclusion ----")
+  for (i in seq_len(nrow(geo))) {
+    k <- geo$outcome[i]
+    if (!k %in% names(sh)) next
+    nm <- unname(sh[k])
+    lines <- c(lines,
+      paste0("\\newcommand{\\Geo", nm, "Full}{", pct(geo$p_hat_full[i]), "}"),
+      paste0("\\newcommand{\\Geo", nm, "Excl}{", pct(geo$p_hat_excl[i]), "}"),
+      paste0("\\newcommand{\\Geo", nm, "ExclN}{", geo$n_patients_excl[i], "}"))
+  }
+  lines <- c(lines, "")
+}
+
+dd <- safe_read("dedup_sensitivity.rds")
+if (!is.null(dd)) {
+  sh <- c(clinical_success = "Cs", safety = "Saf", eradication = "Erad", mortality = "Mort")
+  lines <- c(lines, "% ---- de-duplication restore-both sensitivity ----")
+  for (i in seq_len(nrow(dd))) {
+    k <- dd$outcome[i]
+    if (!k %in% names(sh)) next
+    nm <- unname(sh[k])
+    lines <- c(lines,
+      paste0("\\newcommand{\\Dedup", nm, "Applied}{", pct(dd$p_hat_applied[i]), "}"),
+      paste0("\\newcommand{\\Dedup", nm, "Restored}{", pct(dd$p_hat_restored[i]), "}"))
+  }
+  lines <- c(lines,
+    paste0("\\newcommand{\\DedupMaxShiftPP}{",
+           sprintf("%.1f", max(abs(dd$delta_pp), na.rm = TRUE)), "}"),
+    "")
+}
+
+# ---- risk-of-bias distribution ----------------------------------------------
+# Through round 4 every arm rated High overall and the prose said so. The
+# round-5 phage-monotherapy arms rate Moderate on causality -- there is no
+# co-intervention to separate the effect from -- and therefore Moderate overall,
+# so the domain is no longer uniform and the GRADE deduction now discriminates.
+# Every per-domain count the prose quotes is emitted here.
+rob <- safe_read("rob_per_arm.rds")
+if (!is.null(rob)) {
+  lines <- c(lines, "% ---- risk of bias, per-domain distribution ----")
+  for (dom in c("selection", "ascertainment", "causality", "reporting", "overall")) {
+    if (!dom %in% names(rob)) next
+    stem2 <- paste0("Rob", camel(dom))
+    for (lv in c("High", "Moderate", "Low")) {
+      lines <- c(lines, paste0("\\newcommand{\\", stem2, lv, "}{",
+                               sum(rob[[dom]] == lv, na.rm = TRUE), "}"))
+    }
+  }
+  lines <- c(lines, "")
+}
+
+# ---- cluster-robust variance check ------------------------------------------
+# The Results quote naive-vs-RVE standard errors for two cells. Both moved when
+# the corpus grew, and the DIRECTION of the comparison moved with them, which is
+# the part a reader reasons from.
+rv <- safe_read("rve_clustering_check.rds")
+if (!is.null(rv)) {
+  short_rv <- c(clinical_success__overall = "Cs", safety__overall = "Saf",
+                eradication__overall = "Erad", mortality__overall = "Mort")
+  lines <- c(lines, "% ---- cluster-robust variance ----")
+  for (i in seq_len(nrow(rv))) {
+    key <- rv$stratum[i]
+    if (!key %in% names(short_rv)) next
+    nm <- unname(short_rv[key])
+    lines <- c(lines,
+      paste0("\\newcommand{\\Rve", nm, "Naive}{", sprintf("%.3f", rv$se_naive[i]), "}"),
+      paste0("\\newcommand{\\Rve", nm, "Robust}{", sprintf("%.3f", rv$se_rve[i]), "}"),
+      paste0("\\newcommand{\\Rve", nm, "Df}{", sprintf("%.1f", rv$satterthwaite_df[i]), "}"))
+  }
+  lines <- c(lines, "")
+}
+
 pc <- safe_read("prisma_counts.rds")
 if (!is.null(pc)) {
   lines <- c(lines, "% ---- PRISMA flow ----",
@@ -405,6 +484,44 @@ lines <- c(lines, "% ---- arm distribution by stratum ----",
            dist_macro("Route", "route_group"),
            dist_macro("Dtr", "dtr_status"),
            dist_macro("Mod", "modality_group"),
+           "")
+
+# ---- corpus-composition scalars the prose quotes -----------------------------
+# Every one of these was a typed literal that the round-5 additions falsified.
+# They are derived here so the next corpus change cannot leave them stale.
+n_arms <- nrow(dat)
+n_pat <- sum(dat$n_arm, na.rm = TRUE)
+nc_arms <- sum(dat$resistance_class == "not-classifiable", na.rm = TRUE)
+nc_pat <- sum(dat$n_arm[dat$resistance_class == "not-classifiable"], na.rm = TRUE)
+single <- dat$n_arm == 1
+
+# The three largest contributing studies, by patients. The prose named Pirnay,
+# Onallah and Chan and asserted 56 patients; both the identity and the total
+# have to follow the data.
+by_study <- sort(tapply(dat$n_arm, dat$study_id, sum, na.rm = TRUE), decreasing = TRUE)
+top3 <- head(by_study, 3)
+
+lines <- c(lines, "% ---- corpus composition ----",
+  paste0("\\newcommand{\\ResClassifiedArms}{", n_arms - nc_arms, "}"),
+  paste0("\\newcommand{\\ResNotClassifiablePatients}{", nc_pat, "}"),
+  paste0("\\newcommand{\\ResNotClassifiablePct}{",
+         sprintf("%.0f", 100 * nc_pat / n_pat), "\\%}"),
+  paste0("\\newcommand{\\SinglePatientPatients}{", sum(dat$n_arm[single], na.rm = TRUE), "}"),
+  paste0("\\newcommand{\\MultiPatientPatients}{", sum(dat$n_arm[!single], na.rm = TRUE), "}"),
+  paste0("\\newcommand{\\TopThreeStudiesPatients}{", sum(top3), "}"),
+  paste0("\\newcommand{\\LargestArmSize}{", max(dat$n_arm, na.rm = TRUE), "}"),
+  "")
+
+# Outcome-reporting completeness: how many arms report each secondary outcome.
+report_macro <- function(col, stem2) {
+  if (!col %in% names(dat)) return(character(0))
+  n_rep <- sum(!is.na(dat[[col]]))
+  c(paste0("\\newcommand{\\", stem2, "Reported}{", n_rep, "}"),
+    paste0("\\newcommand{\\", stem2, "Silent}{", n_arms - n_rep, "}"))
+}
+lines <- c(lines, "% ---- secondary-outcome reporting completeness ----",
+           report_macro("resistance_emergence_n", "ResistEmergence"),
+           report_macro("los_days", "Los"),
            "")
 
 # Single-patient arms: quoted as both 19 and 24 in different sections.

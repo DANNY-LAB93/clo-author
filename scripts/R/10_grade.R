@@ -124,28 +124,26 @@ grade_profile <- purrr::map_dfr(pooled_cells, function(r) {
   # RULE. Two levels are deducted where EVERY contributing arm rates High risk
   # of bias overall on Murad (2018); one level otherwise.
   #
-  # In this corpus the second branch is UNREACHABLE, and saying so is more
-  # honest than leaving a live-looking conditional in the code. Murad's
-  # causality domain cannot be satisfied by any arm here: 30 of 31 gave phage
-  # together with antibiotics, so no arm can attribute its outcome to the phage
-  # rather than the co-intervention, and the 31st is a single patient. Overall
-  # rating is the maximum across domains, so every arm rates High, so
-  # high_overall_share is 1 in every cell by construction.
+  # BOTH BRANCHES ARE NOW REACHABLE, and the history is worth recording because
+  # it changes what this domain means.
   #
-  # The consequence, stated plainly because a referee is entitled to it: this
-  # domain is a CONSTANT, not a discriminating assessment. It contributes the
-  # same -2 to every cell and carries no information about which cell is more
-  # trustworthy than another. We keep the deduction because it is substantively
-  # right -- the evidence really is uniformly High risk -- but the manuscript
-  # must not present a constant as though the rule had adjudicated anything.
+  # Through round 4 the second branch was unreachable: every arm gave phage
+  # together with antibiotics bar one single-patient report, so Murad's causality
+  # domain could not be satisfied anywhere, and because overall rating is the
+  # maximum across domains every arm rated High. The domain was therefore a
+  # constant contributing -2 to every cell, and a referee correctly objected that
+  # a deduction derived from a tautology is not an assessment. A stopifnot() was
+  # placed here to fire if that ever stopped being true.
   #
-  # The assertion below is the guard: if a future corpus ever contains an arm
-  # rating below High overall, it fires and forces this rule to be reconsidered
-  # rather than silently taking a branch nobody has tested.
-  stopifnot(
-    "rob rule assumes every arm rates High overall; corpus no longer satisfies this" =
-      is.na(high_overall_share) || isTRUE(all.equal(high_overall_share, 1))
-  )
+  # It fired at round 5. Zaldastanishvili's two Eliava patients are phage
+  # monotherapy -- there is no co-intervention to separate the effect from -- so
+  # they rate Moderate on causality, and Moderate overall. 32 of 34 arms rate
+  # High; 2 do not. Cells containing those arms now take -1 rather than -2, so
+  # the domain discriminates between cells for the first time in this review.
+  #
+  # The guard is replaced by a recorded quantity rather than deleted: the share
+  # is carried into the reason string so every cell states the evidence its
+  # rating rests on.
   rob_drop <- if (!is.na(high_overall_share) && high_overall_share >= 1) 2L else 1L
 
   # Recorded but deliberately NOT used to set the level: the share of a cell's
