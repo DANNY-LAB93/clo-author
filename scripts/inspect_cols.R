@@ -1,5 +1,0 @@
-cc <- readRDS(here::here("scripts", "R", "output", "citation_coverage.rds"))
-cat("uncited_included:\n"); print(cc$uncited_included)
-cat("\nincluded studies:\n"); print(cc$included)
-cat("\nis Liu2025_perinephric cited under either key?\n")
-print(grep("Liu2025", cc$cited, value = TRUE))
