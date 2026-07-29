@@ -18,6 +18,7 @@ source(here::here("scripts", "R", "07_figures.R"))
 source(here::here("scripts", "R", "08_tables.R"))
 source(here::here("scripts", "R", "09_table1_characteristics.R"))
 source(here::here("scripts", "R", "10_grade.R"))
+source(here::here("scripts", "R", "12_risk_of_bias.R"))
 source(here::here("scripts", "R", "11_manifest.R"))
 
 message("00_master.R: full pipeline complete.")

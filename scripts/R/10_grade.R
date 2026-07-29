@@ -58,9 +58,12 @@ escape_tex <- function(x) {
 START_CERTAINTY <- 2L  # 4 = High, 3 = Moderate, 2 = Low, 1 = Very low
 CERTAINTY_LABEL <- c("Very low", "Low", "Moderate", "High")
 
-# The study whose RoB2 assessment returned High risk (unmasked clinicians +
-# stopped early for futility); its presence in a cell is a risk-of-bias flag.
-HIGH_ROB_STUDY <- "Jault2019_PhagoBurn"
+# Per-arm risk of bias, computed in 12_risk_of_bias.R by applying the four
+# Murad (2018) domains to recorded extraction metadata. This REPLACES a rule
+# keyed on a single named trial (PhagoBurn), which the population criterion
+# later removed from the corpus -- leaving that rule's second branch permanently
+# unreachable and the risk-of-bias domain a constant across all cells.
+rob_per_arm <- readRDS(file.path(output_dir, "rob_per_arm.rds"))
 
 #' Reconstruct the arms contributing to a pooled cell.
 #' Mirrors the subsetting logic in 04_estimation.R / 05_robustness.R exactly
@@ -90,7 +93,17 @@ grade_profile <- purrr::map_dfr(pooled_cells, function(r) {
   n_total <- sum(df$n_arm, na.rm = TRUE)
   n_case_report <- sum(df$n_arm[df$study_design == "case report"], na.rm = TRUE)
   case_report_share <- if (n_total > 0) n_case_report / n_total else NA_real_
-  has_high_rob <- HIGH_ROB_STUDY %in% df$study_id
+  # Share of this cell's PATIENTS contributed by arms rated High risk overall,
+  # and by arms rated High on the selection domain specifically (the domain that
+  # carries the favourable-outcome-reporting concern).
+  cell_rob <- rob_per_arm[rob_per_arm$study_arm_id %in% df$study_arm_id, ]
+  n_rob <- sum(cell_rob$n_arm, na.rm = TRUE)
+  high_overall_share <- if (n_rob > 0) {
+    sum(cell_rob$n_arm[cell_rob$overall == "High"], na.rm = TRUE) / n_rob
+  } else NA_real_
+  high_selection_share <- if (n_rob > 0) {
+    sum(cell_rob$n_arm[cell_rob$selection == "High"], na.rm = TRUE) / n_rob
+  } else NA_real_
 
   # Back-transformed estimate, CI and prediction interval, on the % scale.
   p_hat  <- backtransform_prop(r$primary$TE.random, sm = r$primary$sm) * 100
@@ -113,16 +126,33 @@ grade_profile <- purrr::map_dfr(pooled_cells, function(r) {
   # single-patient case reports (the design least able to exclude selective
   # reporting and co-intervention effects) AND a High-risk-of-bias trial also
   # contributes.
-  rob_drop <- if (!is.na(case_report_share) && case_report_share > 0.5 && has_high_rob) {
-    2L
-  } else {
-    1L
-  }
+  # Every arm in this corpus rates High overall on Murad, because 30 of 31 give
+  # phage WITH antibiotics and the causality domain therefore cannot be
+  # satisfied. A rule keyed on overall rating would be constant, so the
+  # discriminating quantity is the SELECTION domain: the share of a cell's
+  # patients coming from stand-alone single-patient reports, where publication
+  # is itself the selection event. Two levels are deducted where that share
+  # exceeds one half.
+  # RULE. Two levels are deducted where EVERY contributing arm rates High risk
+  # overall on Murad; one level otherwise. In this corpus the first branch is
+  # taken in every cell, because the causality domain cannot be satisfied
+  # anywhere: 30 of 31 arms give phage together with antibiotics, so no arm can
+  # attribute its outcome to the phage. We report the domain as UNIFORM and say
+  # why, rather than tuning a threshold until it appears to discriminate.
+  #
+  # A second quantity is recorded but deliberately NOT used to set the level.
+  # The share of a cell's patients coming from single-patient reports (High on
+  # the selection domain) ranges from 10% to 35% and never exceeds half --
+  # because the model weights by patient, and the 20 single-patient reports
+  # together carry only 20 of 82 patients while three larger series carry 56.
+  # The corpus is numerically dominated by a few series, not by the many case
+  # reports, which is worth reporting and is the opposite of what the design
+  # distribution alone would suggest.
+  rob_drop <- if (!is.na(high_overall_share) && high_overall_share >= 1) 2L else 1L
   rob_reason <- sprintf(
-    "%s; %.0f%% of patients from single-patient case reports%s",
+    "%s; %.0f%% of this cell's patients come from arms rated High risk overall on Murad (2018), the causality domain being unsatisfiable wherever phage was co-administered with antibiotics; %.0f%% come from single-patient reports rated High on selection",
     if (rob_drop == 2L) "Very serious" else "Serious",
-    100 * case_report_share,
-    if (has_high_rob) "; includes a High-risk-of-bias trial (PhagoBurn)" else ""
+    100 * high_overall_share, 100 * high_selection_share
   )
 
   # --- Domain 2: Inconsistency -------------------------------------------------
@@ -200,7 +230,8 @@ grade_profile <- purrr::map_dfr(pooled_cells, function(r) {
     ci_low_pct = ci_lo,
     ci_high_pct = ci_hi,
     case_report_share = case_report_share,
-    has_high_rob = has_high_rob,
+    high_selection_share = high_selection_share,
+    high_overall_share = high_overall_share,
     rob_drop = rob_drop, rob_reason = rob_reason,
     inconsistency_drop = incons_drop, inconsistency_reason = incons_reason,
     indirectness_drop = indirect_drop, indirectness_reason = indirect_reason,

@@ -6,7 +6,7 @@ Every number quoted in `paper/main.tex` or `paper/sections/*.tex` must appear
 in this file. A number that is not here is not quotable. Regenerate with
 `Rscript scripts/R/00_master.R` and re-check the manuscript against it.
 
-Generated: 2026-07-28 22:58 | seed: 20260720
+Generated: 2026-07-28 23:10 | seed: 20260720
 
 ## 1. Corpus
 
@@ -136,9 +136,9 @@ Generated: 2026-07-28 22:58 | seed: 20260720
 | Certainty levels present | Very low |
 | Rating is deterministic (floors before data are read) | TRUE |
 | Structural minimum downgrades | 3 |
-| Cells at the minimum (3 downgrades) | 5 |
+| Cells at the minimum (4 downgrades) | 5 |
 | ... which cells | safety__overall; mortality__overall; safety__resistance_class__MDR; mortality__resistance_class__MDR; mortality__route_group__other |
-| Cells at the maximum (7 downgrades) | 2 |
+| Cells at the maximum (8 downgrades) | 2 |
 | ... which cells | eradication__overall; eradication__resistance_class__MDR |
 | Clinical-success cells | 4 |
 
