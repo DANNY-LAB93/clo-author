@@ -60,6 +60,66 @@ for (outcome_name in names(OUTCOME_COLS)) {
   }
 }
 
+# --- (b2) Difficult-to-treat resistance (DTR) subgroup -------------------------
+# A FOURTH stratification axis, run in parallel to resistance_class rather than
+# nested inside it. DTR (Kadri et al. 2018) is not a fifth Magiorakos level: it
+# asks whether ALL beta-lactams and ALL fluoroquinolones are lost, which cuts
+# across MDR/XDR/PDR rather than sitting beside them. An isolate can be MDR and
+# DTR, or MDR and not DTR.
+#
+# Only the "yes" level is ever estimable here, and only by entailment (PDR
+# implies DTR). Every other arm is "not-derivable" because its source publishes
+# no agent-level antibiogram. These cells will therefore fail the pooling gate
+# for a reason no other cell in this review fails for -- ABSENT DATA rather than
+# too few patients -- and that distinction is the point of running the axis at
+# all. It is reported, not suppressed.
+# ONLY the DTR-positive level is estimated. The "not-derivable" level is
+# deliberately NOT pooled: it is a data-availability status, not a clinical
+# category, and a proportion computed over arms whose DTR status is unknown
+# describes no definable population. It is instead reported as an explicit
+# not-pooled row carrying the reason that distinguishes it from every other
+# failed cell in this review.
+dtr_results <- list()
+for (outcome_name in names(OUTCOME_COLS)) {
+  col <- OUTCOME_COLS[[outcome_name]]
+
+  df_yes <- dat_analysis[
+    !is.na(dat_analysis[[col]]) &
+      !is.na(dat_analysis$dtr_status) &
+      dat_analysis$dtr_status == "yes",
+  ]
+  key_yes <- paste(outcome_name, "dtr_status", "yes", sep = "__")
+  dtr_results[[key_yes]] <- pool_stratum(
+    df_yes,
+    event_col = col, n_col = "n_arm", stratum_label = key_yes,
+    min_studies = MIN_STUDIES, min_patients = MIN_PATIENTS
+  )
+
+  df_nd <- dat_analysis[
+    !is.na(dat_analysis[[col]]) &
+      !is.na(dat_analysis$dtr_status) &
+      dat_analysis$dtr_status == "not-derivable",
+  ]
+  key_nd <- paste(outcome_name, "dtr_status", "not-derivable", sep = "__")
+  dtr_results[[key_nd]] <- list(
+    stratum = key_nd,
+    status = "NOT_POOLED",
+    k_studies = length(unique(df_nd$study_id)),
+    k_arms = nrow(df_nd),
+    n_patients = sum(df_nd$n_arm, na.rm = TRUE),
+    reason = sprintf(
+      paste0(
+        "DTR status not derivable for %d of %d contributing arms: the source ",
+        "publishes no agent-level antibiogram covering all beta-lactams and ",
+        "both fluoroquinolones. NOT a sample-size failure -- this cell fails ",
+        "for ABSENT DATA and is the only stratum in this review that does."
+      ),
+      nrow(df_nd), nrow(df_nd) + nrow(df_yes)
+    ),
+    primary = NULL, convergence_flag = "NOT_FITTED"
+  )
+}
+
 # --- (c) Route-of-administration subgroup -------------------------------------
 # Run for ALL 4 outcome families, per pseudo_code.md S3's literal loop.
 route_levels <- sort(unique(dat_analysis$route_group))
@@ -117,7 +177,7 @@ modality_skip_note <- list(
 message(modality_skip_note$reason)
 
 # --- Combine and save --------------------------------------------------------------
-pooled_results <- c(overall_results, resistance_results, route_results)
+pooled_results <- c(overall_results, resistance_results, dtr_results, route_results)
 
 # Convergence audit summary (mandatory reporting per pseudo_code.md S9)
 convergence_summary <- purrr::map_dfr(pooled_results, function(r) {

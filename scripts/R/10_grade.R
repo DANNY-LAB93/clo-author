@@ -38,6 +38,8 @@ label_stratum <- function(key) {
   key <- gsub("__resistance_class__", " -- Resistance: ", key, fixed = TRUE)
   key <- gsub("not-classifiable", "NC", key, fixed = TRUE)
   key <- gsub("__route_group__", " -- Route: ", key, fixed = TRUE)
+  key <- gsub("__dtr_status__not-derivable", " -- DTR: not derivable", key, fixed = TRUE)
+  key <- gsub("__dtr_status__yes", " -- DTR: positive", key, fixed = TRUE)
   key
 }
 

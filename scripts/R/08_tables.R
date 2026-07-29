@@ -57,6 +57,8 @@ label_stratum <- function(key) {
   # once this stratum started appearing as a POOLED (not just NOT_POOLED) row.
   key <- gsub("not-classifiable", "NC", key, fixed = TRUE)
   key <- gsub("__route_group__", " -- Route: ", key, fixed = TRUE)
+  key <- gsub("__dtr_status__not-derivable", " -- DTR: not derivable", key, fixed = TRUE)
+  key <- gsub("__dtr_status__yes", " -- DTR: positive", key, fixed = TRUE)
   key
 }
 
@@ -178,7 +180,13 @@ not_pooled_rows <- purrr::map_dfr(not_pooled_cells, function(r) {
   # A cell can be NOT_POOLED either for failing the k/N gate or for zero-/all-
   # event degeneracy (which passes k/N but is uninformative as a proportion --
   # see pool_stratum()). Detect the latter from its reason string.
-  reason <- if (grepl("zero-event", r$reason)) {
+  reason <- if (grepl("ABSENT DATA", r$reason, fixed = TRUE)) {
+    # The DTR "not-derivable" rows fail for a reason no other cell fails for:
+    # the antibiogram needed to classify them is not published. Marking them
+    # $N<20$ alongside genuine sample-size failures would erase the only
+    # distinction the DTR axis exists to make.
+    "no antibiogram published"
+  } else if (grepl("zero-event", r$reason)) {
     "0 events"
   } else if (grepl("all-event", r$reason)) {
     "all events"
