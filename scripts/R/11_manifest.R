@@ -40,8 +40,18 @@ safe_read <- function(name) {
   if (file.exists(f)) readRDS(f) else NULL
 }
 
-fmt_pct <- function(x, d = 1) if (is.null(x) || is.na(x)) "n/a" else sprintf(paste0("%.", d, "f%%"), 100 * x)
-fmt_num <- function(x, d = 3) if (is.null(x) || is.na(x)) "n/a" else sprintf(paste0("%.", d, "f"), x)
+# Defensive: a pipeline slot can legitimately be NULL, length 0, length > 1, or
+# non-numeric (a status string). The manifest must degrade to "n/a" rather than
+# abort -- a manifest that crashes is a manifest nobody regenerates.
+.scalar_ok <- function(x) {
+  !is.null(x) && length(x) == 1L && !is.na(suppressWarnings(as.numeric(x)))
+}
+fmt_pct <- function(x, d = 1) {
+  if (!.scalar_ok(x)) "n/a" else sprintf(paste0("%.", d, "f%%"), 100 * as.numeric(x))
+}
+fmt_num <- function(x, d = 3) {
+  if (!.scalar_ok(x)) "n/a" else sprintf(paste0("%.", d, "f"), as.numeric(x))
+}
 
 L <- c()
 add <- function(...) L <<- c(L, paste0(...))
@@ -203,14 +213,24 @@ add("## 5. Falsification / small-study checks")
 add("")
 fe <- safe_read("funnel_eligibility.rds")
 if (!is.null(fe)) {
+  # Guard against the exact defect this file is supposed to prevent: a renamed
+  # column made `fe$eligible` NULL, `sum(NULL)` returned 0, and the manifest
+  # emitted "Cells eligible for Peters' test: 0 of 13" -- a false statement,
+  # in the file whose whole purpose is to be the numeric source of truth.
+  stopifnot(
+    "funnel_eligibility.rds is missing eligible_for_funnel" =
+      "eligible_for_funnel" %in% names(fe),
+    "funnel_eligibility.rds is missing peters_pval" =
+      "peters_pval" %in% names(fe)
+  )
   add("| Cell | k studies | Eligible (k >= ", MIN_STUDIES_FUNNEL, ") | Peters p |")
   add("|---|---|---|---|")
   for (i in seq_len(nrow(fe))) {
-    add("| ", fe$stratum[i], " | ", fe$k_studies[i], " | ", fe$eligible[i], " | ",
+    add("| ", fe$stratum[i], " | ", fe$k_studies[i], " | ", fe$eligible_for_funnel[i], " | ",
         fmt_num(fe$peters_pval[i]), " |")
   }
   add("")
-  add("Cells eligible for Peters' test: ", sum(fe$eligible, na.rm = TRUE),
+  add("Cells eligible for Peters' test: ", sum(fe$eligible_for_funnel, na.rm = TRUE),
       " of ", nrow(fe), ". Cells returning a finite p-value: ",
       sum(is.finite(fe$peters_pval)), ".")
   add("")
@@ -218,8 +238,16 @@ if (!is.null(fe)) {
 
 yt <- safe_read("falsification_year_trend.rds")
 if (!is.null(yt)) {
-  add("Publication-year trend (clinical success, logit scale): ",
-      paste(utils::capture.output(print(unlist(yt))), collapse = " "))
+  # Named scalars only. An earlier version dumped capture.output(print(unlist(yt)))
+  # into a file described as human-readable and authoritative, which spilled the
+  # entire fitted metafor object -- every yi, every vb -- into the manifest.
+  add("| Quantity | Value |")
+  add("|---|---|")
+  add("| Publication-year trend, status | ", yt$status, " |")
+  add("| Publication-year trend, coefficient (logit per year) | ",
+      fmt_num(as.numeric(yt$coef_year), 4), " |")
+  add("| Publication-year trend, standard error | ", fmt_num(as.numeric(yt$se_year), 4), " |")
+  add("| Publication-year trend, p-value | ", fmt_num(as.numeric(yt$pval_year), 3), " |")
   add("")
 }
 
@@ -231,6 +259,51 @@ add("Peters' regressor is 1/n. Arms with n = 1: ", n1, " of ", nrow(dat_analysis
     " (", sprintf("%.0f%%", 100 * n1 / nrow(dat_analysis)),
     "), for which the regressor equals exactly 1. Distinct values of 1/n across ",
     "the corpus: ", length(unique(1 / dat_analysis$n_arm[!is.na(dat_analysis$n_arm)])), ".")
+add("")
+
+# --- Subgroup tests, RVE detail, and search yields --------------------------
+add("## 7. Subgroup tests and remaining reported scalars")
+add("")
+add("| Quantity | Value |")
+add("|---|---|")
+
+sd <- safe_read("study_design_subgroup_test.rds")
+if (!is.null(sd)) {
+  pv <- tryCatch(as.numeric(sd$pval.Q.b.random), error = function(e) NA_real_)
+  add("| Study-design subgroup, Q-between p | ", fmt_num(pv, 3), " |")
+}
+r2 <- safe_read("route_2cat_subgroup_test.rds")
+if (!is.null(r2)) {
+  pv <- tryCatch(as.numeric(r2$pval.Q.b.random), error = function(e) NA_real_)
+  add("| Route 2-category subgroup, Q-between p | ", fmt_num(pv, 3), " |")
+}
+jt <- safe_read("falsification_journal_tier.rds")
+if (!is.null(jt) && is.data.frame(jt)) {
+  jt <- as.data.frame(jt)
+  nm <- names(jt)
+  tier_col <- nm[1]
+  prop_col <- nm[grepl("prop|p_hat|success|rate", nm, ignore.case = TRUE)][1]
+  k_col    <- nm[grepl("^k|n_stud", nm, ignore.case = TRUE)][1]
+  for (i in seq_len(nrow(jt))) {
+    add("| Journal tier ", jt[[tier_col]][i], ", crude clinical success | ",
+        fmt_num(jt[[prop_col]][i], 3),
+        if (!is.na(k_col)) paste0(" (k = ", jt[[k_col]][i], ")") else "", " |")
+  }
+}
+loo <- safe_read("leave_one_out.rds")
+if (!is.null(loo)) {
+  loo <- as.data.frame(loo)
+  if ("flagged_sensitive" %in% names(loo)) {
+    add("| Leave-one-out: cells flagged sensitive | ",
+        sum(loo$flagged_sensitive, na.rm = TRUE), " of ", nrow(loo), " study-cell removals |")
+  }
+}
+add("")
+add("NOTE ON SEARCH YIELDS. Database hit counts (PubMed topical, Scopus native,")
+add("ClinicalTrials.gov, the supplementary PDF corpus) are recorded in the PRISMA")
+add("figure and Methods narrative, not here: they are screening-log quantities")
+add("rather than analysis outputs, and this manifest covers what the pipeline")
+add("computes. They must still reconcile against the PRISMA figure.")
 add("")
 
 manifest_path <- file.path(
