@@ -292,6 +292,58 @@ if (!is.null(tr)) {
     "")
 }
 
+# ---- falsification and small-study test statistics --------------------------
+# The last numeric literals in the prose: Peters' p-values, the publication-year
+# trend, and the Hartung-Knapp inflation ratio. Each was typed.
+if (!is.null(fe) && "peters_pval" %in% names(fe)) {
+  short <- c(clinical_success__overall = "Cs", safety__overall = "Saf",
+             eradication__overall = "Erad", mortality__overall = "Mort")
+  lines <- c(lines, "% ---- Peters' p-values ----")
+  for (i in seq_len(nrow(fe))) {
+    # [[ ]] on a named vector errors for an absent key rather than returning
+    # NULL, and most strata are not in this lookup by design.
+    key <- fe$stratum[i]
+    if (!key %in% names(short)) next
+    nm <- unname(short[key])
+    pv <- fe$peters_pval[i]
+    if (!is.finite(pv)) next
+    lines <- c(lines, paste0("\\newcommand{\\Peters", nm, "P}{", sprintf("%.2f", pv), "}"))
+  }
+  lines <- c(lines, "")
+}
+
+yt <- safe_read("falsification_year_trend.rds")
+if (!is.null(yt) && identical(yt$status, "FITTED")) {
+  lines <- c(lines, "% ---- publication-year trend ----",
+    paste0("\\newcommand{\\YearTrendCoef}{", sprintf("%.3f", as.numeric(yt$coef_year)), "}"),
+    paste0("\\newcommand{\\YearTrendSE}{", sprintf("%.3f", as.numeric(yt$se_year)), "}"),
+    paste0("\\newcommand{\\YearTrendP}{", sprintf("%.2f", as.numeric(yt$pval_year)), "}"),
+    "")
+}
+
+# The t quantile the reported intervals actually use, and the normal quantile
+# they are compared against. The t value depends on the degrees of freedom, so
+# typing it fixes a number that moves whenever the corpus does.
+cs <- pooled[["clinical_success__overall"]]
+if (!is.null(cs$primary$df.random) && is.finite(cs$primary$df.random)) {
+  dfr <- cs$primary$df.random
+  lines <- c(lines, "% ---- interval quantiles ----",
+    paste0("\\newcommand{\\TQuantile}{", sprintf("%.3f", qt(0.975, dfr)), "}"),
+    paste0("\\newcommand{\\TQuantileDf}{", dfr, "}"),
+    paste0("\\newcommand{\\ZQuantile}{", sprintf("%.3f", qnorm(0.975)), "}"),
+    "")
+}
+
+hk <- safe_read("hk_binding_check.rds")
+if (!is.null(hk) && "hk_inflation_ratio" %in% names(hk)) {
+  r <- hk$hk_inflation_ratio
+  lines <- c(lines, "% ---- Hartung-Knapp binding diagnostic ----",
+    paste0("\\newcommand{\\HkCellsAtUnity}{", sum(abs(r - 1) < 1e-6, na.rm = TRUE), "}"),
+    paste0("\\newcommand{\\HkCellsTotal}{", nrow(hk), "}"),
+    paste0("\\newcommand{\\HkMaxRatio}{", sprintf("%.2f", max(r, na.rm = TRUE)), "}"),
+    "")
+}
+
 pc <- safe_read("prisma_counts.rds")
 if (!is.null(pc)) {
   lines <- c(lines, "% ---- PRISMA flow ----",
