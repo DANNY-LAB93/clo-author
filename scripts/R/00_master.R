@@ -20,5 +20,9 @@ source(here::here("scripts", "R", "09_table1_characteristics.R"))
 source(here::here("scripts", "R", "10_grade.R"))
 source(here::here("scripts", "R", "12_risk_of_bias.R"))
 source(here::here("scripts", "R", "11_manifest.R"))
+# Emits paper/generated_scalars.tex. Must run after 04_estimation.R, since a
+# cell that stops pooling must lose its macros so the manuscript stops
+# compiling rather than silently keeping a stale number.
+source(here::here("scripts", "R", "13_tex_macros.R"))
 
 message("00_master.R: full pipeline complete.")

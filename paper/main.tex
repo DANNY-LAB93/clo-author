@@ -99,6 +99,12 @@
 
 \date{\today}
 
+% Pipeline-generated numeric macros (scripts/R/13_tex_macros.R). Loaded before
+% the body so every quoted estimate resolves from the analysis output rather
+% than from a literal typed into the prose. A cell that falls below the pooling
+% threshold emits no macros, so a sentence still quoting it fails to compile.
+\input{generated_scalars}
+
 \begin{document}
 
 \maketitle

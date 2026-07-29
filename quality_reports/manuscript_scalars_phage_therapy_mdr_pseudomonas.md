@@ -6,7 +6,7 @@ Every number quoted in `paper/main.tex` or `paper/sections/*.tex` must appear
 in this file. A number that is not here is not quotable. Regenerate with
 `Rscript scripts/R/00_master.R` and re-check the manuscript against it.
 
-Generated: 2026-07-28 23:30 | seed: 20260720
+Generated: 2026-07-29 06:57 | seed: 20260720
 
 ## 1. Corpus
 

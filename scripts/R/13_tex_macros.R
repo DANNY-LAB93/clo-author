@@ -1,0 +1,316 @@
+# Emit every prose-quotable number as a LaTeX macro.
+#
+# WHY THIS EXISTS. Across five review rounds the manuscript repeatedly quoted
+# numbers that the pipeline did not produce: estimates from a superseded corpus,
+# confidence intervals attached to the wrong point estimate, and -- worst --
+# three outcome-stratum cells reported as pooled that the pipeline had refused
+# to pool, complete with invented denominators and intervals. Two guards already
+# existed and neither caught it. The scalar manifest is a document, so nothing
+# forces the prose to agree with it; check_manuscript_numbers.py tests only
+# whether a number appears SOMEWHERE in the known set, so a value that is real
+# for one cell passes when quoted for another.
+#
+# The fix is to make the prose a build product. Every pooled cell emits macros
+# named after the cell. The manuscript writes \csOverallEst instead of "76.1\%".
+# Three properties follow, and only the third is new:
+#
+#   1. A stale number cannot survive, because there is no literal to go stale.
+#   2. A number cannot migrate between cells, because the macro names the cell.
+#   3. A cell that STOPS being poolable deletes its own macros, so any sentence
+#      still quoting it fails the build with an undefined control sequence.
+#      This is the property that would have caught the three fabricated cells.
+#
+# Macros are emitted ONLY for cells the pipeline actually pooled. That asymmetry
+# is deliberate and is the whole mechanism -- do not add a fallback that emits
+# an empty or placeholder macro for a not-pooled cell.
+
+suppressPackageStartupMessages({
+  library(here)
+})
+
+# Use the SAME back-transformation the tables and the manifest use. If the
+# macros computed the proportion independently they could drift from the table
+# they are supposed to agree with, which is the failure mode this file exists
+# to remove.
+source(here::here("scripts", "R", "functions", "backtransform_prop.R"))
+
+out_dir <- here::here("scripts", "R", "output")
+pooled <- readRDS(file.path(out_dir, "pooled_results.rds"))
+dat <- readRDS(file.path(out_dir, "dat_analysis.rds"))
+
+target <- here::here("paper", "generated_scalars.tex")
+
+# ---- helpers ----------------------------------------------------------------
+# LaTeX macro names may contain only letters, so cell keys are camel-cased.
+camel <- function(x) {
+  x <- gsub("[^A-Za-z0-9]+", " ", x)
+  parts <- strsplit(trimws(x), " +")[[1]]
+  if (length(parts) == 0) return("")
+  paste0(toupper(substring(parts, 1, 1)), substring(parts, 2), collapse = "")
+}
+
+# Digits are spelled out: \csOverallK cannot be \cs1K.
+num_word <- c("Zero", "One", "Two", "Three", "Four", "Five",
+              "Six", "Seven", "Eight", "Nine")
+despecialise <- function(x) {
+  for (i in 0:9) x <- gsub(as.character(i), num_word[i + 1], x)
+  x
+}
+
+pct <- function(p, d = 1) sprintf(paste0("%.", d, "f\\%%"), 100 * p)
+num <- function(x, d = 3) sprintf(paste0("%.", d, "f"), x)
+
+lines <- c(
+  "% GENERATED FILE -- DO NOT EDIT.",
+  "% Written by scripts/R/13_tex_macros.R. Edit the pipeline, not this file.",
+  "%",
+  "% Every macro below corresponds to a cell the pipeline POOLED. A cell that",
+  "% falls below the pooling threshold emits no macros, so a sentence that still",
+  "% quotes it will fail to compile. That is intended: see the header of",
+  "% scripts/R/13_tex_macros.R.",
+  ""
+)
+
+# ---- per-cell macros --------------------------------------------------------
+short_outcome <- c(
+  clinical_success = "Cs", safety = "Saf",
+  eradication = "Erad", mortality = "Mort"
+)
+
+cell_macro_stem <- function(key) {
+  parts <- strsplit(key, "__", fixed = TRUE)[[1]]
+  outcome <- short_outcome[[parts[1]]]
+  if (is.null(outcome) || is.na(outcome)) outcome <- camel(parts[1])
+  if (length(parts) == 2 && parts[2] == "overall") {
+    return(paste0(outcome, "Overall"))
+  }
+  # stratum_var + level, e.g. resistance_class + MDR -> ResistanceMDR
+  var_short <- c(resistance_class = "Res", route_group = "Route",
+                 dtr_status = "Dtr", modality = "Mod")
+  vs <- var_short[[parts[2]]]
+  if (is.null(vs) || is.na(vs)) vs <- camel(parts[2])
+  paste0(outcome, vs, despecialise(camel(parts[3])))
+}
+
+emitted <- character(0)
+n_pooled <- 0L
+
+for (key in names(pooled)) {
+  cell <- pooled[[key]]
+  status <- cell$status
+  is_pooled <- !is.null(status) && identical(as.character(status), "POOLED")
+
+  stem <- cell_macro_stem(key)
+
+  add <- function(suffix, value) {
+    lines <<- c(lines, paste0("\\newcommand{\\", stem, suffix, "}{", value, "}"))
+  }
+
+  # Sample sizes are facts about the corpus and are emitted for EVERY cell,
+  # pooled or not: the text legitimately needs to say how small a cell that
+  # failed the threshold actually was. Estimates and intervals are emitted only
+  # for pooled cells -- that asymmetry is the guard.
+  if (!is_pooled) {
+    lines <- c(lines, paste0("% ", key, "  [NOT POOLED -- sizes only, no estimate]"))
+    add("K", format(cell$k_studies))
+    add("Arms", format(cell$k_arms))
+    add("N", format(cell$n_patients))
+    lines <- c(lines, "")
+    next
+  }
+
+  n_pooled <- n_pooled + 1L
+  emitted <- c(emitted, stem)
+
+  lines <- c(lines, paste0("% ", key))
+  m <- cell$primary
+  est <- backtransform_prop(m$TE.random, sm = m$sm)
+  lo  <- backtransform_prop(m$lower.random, sm = m$sm)
+  hi  <- backtransform_prop(m$upper.random, sm = m$sm)
+
+  add("Est", pct(est))
+  add("Lo", pct(lo))
+  add("Hi", pct(hi))
+  add("CI", paste0("95\\% CI ", pct(lo), "--", pct(hi)))
+  add("EstCI", paste0(pct(est), " (95\\% CI ", pct(lo), "--", pct(hi), ")"))
+  add("K", format(cell$k_studies))
+  add("Arms", format(cell$k_arms))
+  add("N", format(cell$n_patients))
+  add("Events", format(sum(m$event, na.rm = TRUE)))
+  add("Tau", num(m$tau2))
+
+  # Alternative estimators. The manuscript quoted these for overall safety at
+  # values from a superseded corpus (7.9/26.8 against the true 8.4/27.4), and
+  # both round-5 referees noted that for three of the four overall outcomes an
+  # alternative estimator falls OUTSIDE the primary interval. Emitting them
+  # keeps that comparison honest.
+  # The Freeman-Tukey back-transform needs the harmonic mean of arm sizes. Use
+  # the identical expression 05_robustness.R uses to build the sensitivity
+  # table, or the macro and the table it is compared against will disagree --
+  # which they did on first implementation (7.1% against the table's 8.4%).
+  # Field names are stated per model rather than guessed by fallback: the
+  # fixed-effect object carries BOTH TE.common and a TE.random, and a generic
+  # "use TE.random if present" rule silently read the random-effects estimate
+  # out of the fixed-effect model (20.7% against the table's 20.5%). The table
+  # generator's own field choices are mirrored exactly.
+  n_harmonic <- 1 / mean(1 / cell$glmm_raw$n)
+  sens_spec <- list(
+    list(sfx = "FT", slot = "sens_ft",        field = "TE.random", sm = "PFT"),
+    list(sfx = "DL", slot = "sens_logit_dl",  field = "TE.random", sm = "PLOGIT"),
+    list(sfx = "FE", slot = "sens_fe",        field = "TE.common", sm = "PLOGIT")
+  )
+  for (sp in sens_spec) {
+    sm_obj <- cell[[sp$slot]]
+    if (is.null(sm_obj)) next
+    te <- sm_obj[[sp$field]]
+    if (is.null(te) || length(te) != 1 || !is.finite(te)) next
+    nh <- if (identical(sp$sm, "PFT")) n_harmonic else 1
+    add(sp$sfx, pct(backtransform_prop(te, sm = sp$sm, n_harmonic = nh)))
+  }
+
+  # The prediction interval is emitted only where meta() produced one. In the
+  # 11 cells with tau^2 = 0 it collapses onto the CI; that collapse is discussed
+  # in the text and is not hidden here.
+  has_pi <- !is.null(m$lower.predict) && length(m$lower.predict) == 1 &&
+            is.finite(m$lower.predict)
+  if (has_pi) {
+    add("PIlo", pct(backtransform_prop(m$lower.predict, sm = m$sm)))
+    add("PIhi", pct(backtransform_prop(m$upper.predict, sm = m$sm)))
+    add("PI", paste0("[", pct(backtransform_prop(m$lower.predict, sm = m$sm)),
+                     ", ", pct(backtransform_prop(m$upper.predict, sm = m$sm)), "]"))
+  }
+  lines <- c(lines, "")
+}
+
+# ---- corpus-level macros ----------------------------------------------------
+# These are the counts the manuscript got wrong in four consecutive captions.
+n_cells_total <- length(pooled)
+n_cells_pooled <- n_pooled
+n_cells_not <- n_cells_total - n_pooled
+
+lines <- c(lines,
+  "% ---- corpus and cell counts ----",
+  paste0("\\newcommand{\\CellsTotal}{", n_cells_total, "}"),
+  paste0("\\newcommand{\\CellsPooled}{", n_cells_pooled, "}"),
+  paste0("\\newcommand{\\CellsNotPooled}{", n_cells_not, "}"),
+  paste0("\\newcommand{\\ArmsAnalysed}{", nrow(dat), "}"),
+  paste0("\\newcommand{\\StudiesAnalysed}{", length(unique(dat$study_id)), "}"),
+  paste0("\\newcommand{\\PatientsAnalysed}{", sum(dat$n_arm, na.rm = TRUE), "}"),
+  ""
+)
+
+# ---- robustness and falsification scalars -----------------------------------
+# These are the quantities the Discussion misreported: the Peters' eligibility
+# count (stated three different ways across the manuscript) and the
+# population-eligibility deltas (stated with four different sets of values, two
+# of which were internally impossible -- a nonzero delta between identical
+# numbers).
+safe_read <- function(f) {
+  p <- file.path(out_dir, f)
+  if (file.exists(p)) readRDS(p) else NULL
+}
+
+fe <- safe_read("funnel_eligibility.rds")
+if (!is.null(fe)) {
+  elig_col <- intersect(c("eligible_for_funnel", "eligible"), names(fe))
+  if (length(elig_col) > 0) {
+    n_elig <- sum(fe[[elig_col[1]]], na.rm = TRUE)
+    pcol <- intersect(c("peters_p", "p_value", "peters_pval"), names(fe))
+    n_finite <- if (length(pcol) > 0) sum(is.finite(fe[[pcol[1]]])) else NA_integer_
+    lines <- c(lines,
+      "% ---- Peters' small-study test ----",
+      paste0("\\newcommand{\\PetersEligible}{", n_elig, "}"),
+      paste0("\\newcommand{\\PetersCellsTotal}{", nrow(fe), "}"),
+      paste0("\\newcommand{\\PetersFinite}{", n_finite, "}"),
+      "")
+  }
+}
+
+nc <- safe_read("nc_exclusion_sensitivity.rds")
+if (!is.null(nc) && nrow(nc) > 0) {
+  ocol <- intersect(c("outcome"), names(nc))
+  dcol <- intersect(c("delta_pp", "delta"), names(nc))
+  ncol_drop <- intersect(c("n_patients_dropped", "patients_dropped", "n_dropped"),
+                         names(nc))
+  if (length(ocol) > 0 && length(dcol) > 0) {
+    lines <- c(lines, "% ---- population-eligibility sensitivity ----")
+    for (i in seq_len(nrow(nc))) {
+      stem2 <- paste0("NcSens", despecialise(camel(nc[[ocol[1]]][i])))
+      d <- nc[[dcol[1]]][i]
+      lines <- c(lines,
+        paste0("\\newcommand{\\", stem2, "Delta}{",
+               sprintf("%+.1f", d), "}"),
+        paste0("\\newcommand{\\", stem2, "DeltaAbs}{", sprintf("%.1f", abs(d)), "}"))
+      if (length(ncol_drop) > 0) {
+        lines <- c(lines, paste0("\\newcommand{\\", stem2, "Dropped}{",
+                                 nc[[ncol_drop[1]]][i], "}"))
+      }
+    }
+    lines <- c(lines, "")
+  }
+}
+
+# ---- exact bounds for zero-event route cells --------------------------------
+# A zero-event cell has no informative pooled proportion, so the text reports an
+# exact one-sided Clopper-Pearson bound instead. The bound depends on the
+# denominator, and the manuscript previously quoted one computed for a
+# denominator the corpus does not have. Emitting it from the data removes that
+# possibility.
+for (rg in unique(dat$route_group)) {
+  sub <- dat[dat$route_group == rg, ]
+  ok <- !is.na(sub$mortality_n)
+  if (!any(ok)) next
+  deaths <- sum(sub$mortality_n[ok])
+  n <- sum(sub$n_arm[ok])
+  if (deaths != 0 || n == 0) next
+  stem <- paste0("MortZero", despecialise(camel(rg)))
+  lines <- c(lines,
+    paste0("\\newcommand{\\", stem, "N}{", n, "}"),
+    paste0("\\newcommand{\\", stem, "Arms}{", sum(ok), "}"),
+    paste0("\\newcommand{\\", stem, "CPupper}{", pct(1 - 0.025^(1 / n)), "}"))
+}
+lines <- c(lines, "")
+
+# Arm distribution by stratum -- the §4.2 counts that summed to 30 not 31.
+# Levels must sum to the corpus size. Dropping NA silently would understate the
+# denominator, which is precisely how §4.2's route counts came to sum to 30
+# against a 31-arm corpus. An arm with no recorded level is a real arm and gets
+# its own "NotReported" macro; the total is then asserted.
+dist_macro <- function(prefix, column) {
+  if (!column %in% names(dat)) return(character(0))
+  v <- dat[[column]]
+  v[is.na(v) | !nzchar(trimws(as.character(v)))] <- "not reported"
+  tb <- table(v)
+  out <- character(0)
+  for (lv in names(tb)) {
+    out <- c(out, paste0("\\newcommand{\\", prefix, despecialise(camel(lv)),
+                         "Arms}{", as.integer(tb[[lv]]), "}"))
+  }
+  if (sum(tb) != nrow(dat)) {
+    stop(sprintf("dist_macro(%s): levels sum to %d but the corpus has %d arms",
+                 column, sum(tb), nrow(dat)))
+  }
+  out
+}
+lines <- c(lines, "% ---- arm distribution by stratum ----",
+           dist_macro("Res", "resistance_class"),
+           dist_macro("Route", "route_group"),
+           dist_macro("Dtr", "dtr_status"),
+           dist_macro("Mod", "modality_group"),
+           "")
+
+# Single-patient arms: quoted as both 19 and 24 in different sections.
+if ("n_arm" %in% names(dat)) {
+  lines <- c(lines,
+    paste0("\\newcommand{\\SinglePatientArms}{",
+           sum(dat$n_arm == 1, na.rm = TRUE), "}"),
+    paste0("\\newcommand{\\MultiPatientArms}{",
+           sum(dat$n_arm > 1, na.rm = TRUE), "}"),
+    "")
+}
+
+writeLines(lines, target)
+
+cat("Wrote", target, "\n")
+cat("  pooled cells with macros :", n_pooled, "of", n_cells_total, "\n")
+cat("  macro stems              :", paste(sort(emitted), collapse = ", "), "\n")
