@@ -24,6 +24,10 @@ source(here::here("scripts", "R", "11_manifest.R"))
 # cell that stops pooling must lose its macros so the manuscript stops
 # compiling rather than silently keeping a stale number.
 source(here::here("scripts", "R", "14_prisma_counts.R"))
+# Supplementary table exposing what "clinical success" means arm by arm, with
+# the follow-up horizon each source states. A round-5 referee objected that no
+# table let a reader see a 3-day surrogate and a 2-year cure in one numerator.
+source(here::here("scripts", "R", "15_outcome_definitions.R"))
 # Emits quality_reports/corpus_identifier_index.txt and fails if any study
 # lacks a resolvable identifier. A screening pass diffs candidate lists
 # against that index; without it, Ngauy 2026 was re-screened as new when it

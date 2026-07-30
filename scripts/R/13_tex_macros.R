@@ -400,6 +400,27 @@ for (cls in c("MDR", "XDR", "PDR")) {
 }
 lines <- c(lines, "")
 
+# ---- follow-up horizon spread -----------------------------------------------
+# The quantity a referee asked to be made visible: clinical success is counted
+# over windows ranging from days to years, and most arms state no window at all.
+fus <- safe_read("followup_spread.rds")
+if (!is.null(fus)) {
+  fmt_fu <- function(d) {
+    if (is.na(d)) return("not stated")
+    if (d < 14) return(sprintf("%.0f days", d))
+    if (d < 60) return(sprintf("%.0f weeks", d / 7))
+    if (d < 730) return(sprintf("%.0f months", d / 30.44))
+    sprintf("%.0f years", d / 365.25)
+  }
+  lines <- c(lines, "% ---- follow-up horizon ----",
+    paste0("\\newcommand{\\FollowUpStated}{", fus$n_stated, "}"),
+    paste0("\\newcommand{\\FollowUpNotStated}{", fus$n_not_stated, "}"),
+    paste0("\\newcommand{\\FollowUpMin}{", fmt_fu(fus$min_days), "}"),
+    paste0("\\newcommand{\\FollowUpMax}{", fmt_fu(fus$max_days), "}"),
+    paste0("\\newcommand{\\FollowUpFold}{", sprintf("%.0f", fus$fold_range), "}"),
+    "")
+}
+
 # ---- risk-of-bias distribution ----------------------------------------------
 # Through round 4 every arm rated High overall and the prose said so. The
 # round-5 phage-monotherapy arms rate Moderate on causality -- there is no
