@@ -58,7 +58,11 @@ full_text_exclusions <- tibble::tribble(
   "Dan 2023",               "duplicate (Aslam)",
   "Van Nieuwenhuyse 2022",  "duplicate (Pirnay consortium)",
   "Zurabov 2023",           "multi-pathogen, not separable",
-  "Rubalskii 2020",         "multi-pathogen, not separable",
+  # Rubalskii 2020 was here until round 5. The domain referee challenged the
+  # "not separable" call, Table 1 upheld the challenge, and its Patient 8 --
+  # monomicrobial P. aeruginosa with an individually reported outcome -- is now
+  # in the analytic dataset. Listing it as an exclusion as well would count the
+  # study twice.
   "Hayakawa 2025",          "multi-pathogen feasibility study",
   "Chung 2025",             "review / perspective, not primary data",
   "Karn 2024",              "multi-pathogen, no P. aeruginosa breakdown",
@@ -67,7 +71,15 @@ full_text_exclusions <- tibble::tribble(
   # phages in the administered cocktail, so it measures nothing about phage
   # therapy against this review's target organism; additionally a QAMH/Belgian
   # case with Pirnay as co-author, the profile this review de-duplicates against.
-  "Onsea 2019",             "phage cocktail not active against the P. aeruginosa isolate"
+  "Onsea 2019",             "phage cocktail not active against the P. aeruginosa isolate",
+  # Round 5, un-blocked search. Screened in by a phage-therapy keyword and
+  # excluded on a stated ground each.
+  "Surana 2026",            "no phage administered; phages named only as unavailable",
+  "Jernigan 2025",          "induced native phage, not exogenous administration; multi-pathogen",
+  "Ferry 2024 (PHAGEinLYON)", "programme report; no P. aeruginosa-separable outcome",
+  "Otava 2024",             "isolate susceptible to all agents but trimethoprim-sulfa",
+  "Eiferman 2025",          "isolate described verbatim as multi-susceptible",
+  "Gupta 2019",             "outcomes pooled across pathogens; not separable"
 )
 n_excluded <- nrow(full_text_exclusions)
 
@@ -103,7 +115,7 @@ channels <- c(
   # four pooled, three extracted and then excluded on the population or
   # de-duplication rules. The bar was not met, and the concession that the search
   # remains under-sensitive is reported as a finding rather than a caveat.
-  "un-blocked PubMed search, round 5"                 = 7
+  "un-blocked PubMed search, round 5"                 = 14
 )
 n_itemised <- sum(channels)
 

@@ -30,6 +30,8 @@ escape_tex <- function(x) {
 # and results.tex Section 3.2's own citation list, kept in sync with both) --
 study_label <- c(
   # Round-5 additions and exclusions.
+  Rubalskii2020        = "Rubalskii 2020",
+  PardoFreire2025      = "Pardo-Freire 2025",
   Zaldastanishvili2021 = "Zaldastanishvili 2021",
   Green2023            = "Green 2023",
   Casazza2025          = "Casazza 2025",
@@ -83,7 +85,12 @@ resistance_abbrev <- c(
   "MDR"             = "MDR",
   "XDR"             = "XDR",
   "PDR"             = "PDR",
-  "not-classifiable" = "NC"
+  "not-classifiable" = "NC",
+  # Round 5. Arms whose PUBLISHED antibiogram positively establishes fewer than
+  # the three Magiorakos categories the population criterion requires. Distinct
+  # from NC, where no antibiogram exists at all, and the distinction is the whole
+  # basis on which one class is excluded and the other retained.
+  "below-MDR-threshold" = "$<$MDR"
 )
 
 country_abbrev <- c(
