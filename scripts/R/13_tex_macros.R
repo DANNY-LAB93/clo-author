@@ -400,6 +400,66 @@ for (cls in c("MDR", "XDR", "PDR")) {
 }
 lines <- c(lines, "")
 
+# ---- journal-tier falsification check ---------------------------------------
+# The Results quoted 79.6% (8 studies) against 69.2% (12 studies) and called the
+# gap "roughly 10 percentage points". A round-5 referee showed the arithmetic did
+# not hold; the corpus has since moved twice more. Derive it.
+jt <- safe_read("falsification_journal_tier.rds")
+if (!is.null(jt) && "journal_tier_simple" %in% names(jt)) {
+  for (i in seq_len(nrow(jt))) {
+    lab <- if (grepl("^high", jt$journal_tier_simple[i])) "High" else
+           if (grepl("^mid", jt$journal_tier_simple[i])) "Mid" else NA
+    if (is.na(lab)) next
+    lines <- c(lines,
+      paste0("\\newcommand{\\JournalTier", lab, "Prop}{",
+             sprintf("%.1f", 100 * jt$crude_proportion[i]), "\\%}"),
+      paste0("\\newcommand{\\JournalTier", lab, "K}{", jt$k_studies[i], "}"))
+  }
+  hi <- jt$crude_proportion[grepl("^high", jt$journal_tier_simple)]
+  mi <- jt$crude_proportion[grepl("^mid", jt$journal_tier_simple)]
+  if (length(hi) && length(mi)) {
+    lines <- c(lines, paste0("\\newcommand{\\JournalTierGapPP}{",
+                             sprintf("%.1f", 100 * (hi[1] - mi[1])), "}"))
+  }
+  lines <- c(lines, "")
+}
+
+# ---- single-source dominance of the MDR stratum ------------------------------
+# The Discussion quoted Pirnay's share of the MDR pools as 62% and 53%. Both were
+# from a superseded corpus; both are the load-bearing numbers in the paragraph
+# that concedes single-cohort dependence, so they must move with the data.
+for (sp in list(c("Cs", "clinical_success_n"), c("Erad", "microbio_eradication_n"))) {
+  col <- sp[2]
+  if (!col %in% names(dat)) next
+  sel <- dat$resistance_class == "MDR" & !is.na(dat[[col]])
+  tot <- sum(dat$n_arm[sel], na.rm = TRUE)
+  pir <- sum(dat$n_arm[sel & dat$study_id == "Pirnay2024"], na.rm = TRUE)
+  if (tot == 0) next
+  lines <- c(lines,
+    paste0("\\newcommand{\\PirnayShareMDR", sp[1], "}{",
+           sprintf("%.0f", 100 * pir / tot), "\\%}"),
+    paste0("\\newcommand{\\PirnayNMDR", sp[1], "}{", pir, "}"),
+    paste0("\\newcommand{\\PoolNMDR", sp[1], "}{", tot, "}"))
+}
+lines <- c(lines, "")
+
+# ---- leave-one-out sensitivity ----------------------------------------------
+# The Discussion asserted that removing Pirnay OR Jault collapses several cells,
+# including a not-classifiable MORTALITY estimate. Jault is excluded from pooling
+# and appears nowhere in the leave-one-out; the not-classifiable mortality cell
+# does not pool. Derive the actual result so the sentence cannot drift again.
+loo <- safe_read("leave_one_out.rds")
+if (!is.null(loo) && "shift_outside_full_ci" %in% names(loo)) {
+  flagged <- loo[loo$shift_outside_full_ci %in% TRUE, , drop = FALSE]
+  studies <- sort(unique(flagged$dropped_study))
+  lines <- c(lines, "% ---- leave-one-out ----",
+    paste0("\\newcommand{\\LooSensitiveCells}{", nrow(flagged), "}"),
+    paste0("\\newcommand{\\LooSensitiveStudies}{", length(studies), "}"),
+    paste0("\\newcommand{\\LooDominantStudy}{",
+           if (length(studies) == 1) studies[1] else paste(studies, collapse = ", "), "}"),
+    "")
+}
+
 # ---- DTR adjudicability -----------------------------------------------------
 # The corrected Kadri criterion makes DTR-negative reachable, so the axis now has
 # an adjudicable total rather than only a positive count.
@@ -565,8 +625,16 @@ lines <- c(lines, "% ---- corpus composition ----",
 report_macro <- function(col, stem2) {
   if (!col %in% names(dat)) return(character(0))
   n_rep <- sum(!is.na(dat[[col]]))
+  n_ev <- sum(dat[[col]], na.rm = TRUE)
+  # The EVENT count among arms that actually assessed the outcome. Reporting only
+  # the reporting RATE hid the substantive quantity: a round-6 referee pointed
+  # out that where investigators looked for phage resistance, roughly half found
+  # it -- a statement about phage therapy, not merely about publication practice.
   c(paste0("\\newcommand{\\", stem2, "Reported}{", n_rep, "}"),
-    paste0("\\newcommand{\\", stem2, "Silent}{", n_arms - n_rep, "}"))
+    paste0("\\newcommand{\\", stem2, "Silent}{", n_arms - n_rep, "}"),
+    paste0("\\newcommand{\\", stem2, "Events}{", n_ev, "}"),
+    paste0("\\newcommand{\\", stem2, "EventPct}{",
+           if (n_rep > 0) sprintf("%.0f\\%%", 100 * n_ev / n_rep) else "n/a", "}"))
 }
 lines <- c(lines, "% ---- secondary-outcome reporting completeness ----",
            report_macro("resistance_emergence_n", "ResistEmergence"),

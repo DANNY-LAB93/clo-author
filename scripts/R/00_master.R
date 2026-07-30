@@ -33,6 +33,18 @@ source(here::here("scripts", "R", "15_outcome_definitions.R"))
 # against that index; without it, Ngauy 2026 was re-screened as new when it
 # was already included.
 source(here::here("scripts", "check_identifier_traceability.R"))
+# The macro system guarantees nothing unless the PROSE uses it. This fails the
+# build when a percentage the pipeline computes is typed by hand instead --
+# the defect that left "73.0%" for the MDR cell in the Introduction and
+# Discussion long after the value became 75.0%.
+typed_check <- system2(
+  "python",
+  c(shQuote(here::here("scripts", "check_no_typed_estimates.py"))),
+  stdout = "", stderr = ""
+)
+if (!identical(as.integer(typed_check), 0L)) {
+  stop("check_no_typed_estimates.py failed: a computed estimate is typed into the prose")
+}
 # 13 runs last: it reads the outputs of everything above, including the
 # PRISMA counts, and writes the macros the manuscript compiles against.
 source(here::here("scripts", "R", "13_tex_macros.R"))
