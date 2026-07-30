@@ -400,6 +400,16 @@ for (cls in c("MDR", "XDR", "PDR")) {
 }
 lines <- c(lines, "")
 
+# ---- DTR adjudicability -----------------------------------------------------
+# The corrected Kadri criterion makes DTR-negative reachable, so the axis now has
+# an adjudicable total rather than only a positive count.
+if ("dtr_status" %in% names(dat)) {
+  n_yes <- sum(dat$dtr_status == "yes", na.rm = TRUE)
+  n_no  <- sum(dat$dtr_status == "no", na.rm = TRUE)
+  lines <- c(lines, "% ---- DTR adjudicability ----",
+    paste0("\\newcommand{\\DtrAdjudicable}{", n_yes + n_no, "}"), "")
+}
+
 # ---- follow-up horizon spread -----------------------------------------------
 # The quantity a referee asked to be made visible: clinical success is counted
 # over windows ranging from days to years, and most arms state no window at all.

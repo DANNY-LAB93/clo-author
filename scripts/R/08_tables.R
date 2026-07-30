@@ -59,6 +59,9 @@ label_stratum <- function(key) {
   key <- gsub("__route_group__", " -- Route: ", key, fixed = TRUE)
   key <- gsub("__dtr_status__not-derivable", " -- DTR: not derivable", key, fixed = TRUE)
   key <- gsub("__dtr_status__yes", " -- DTR: positive", key, fixed = TRUE)
+  # DTR-negative became reachable at round 6, when the criterion was corrected
+  # to Kadri's first-line agent set. Before that no arm could be shown negative.
+  key <- gsub("__dtr_status__no", " -- DTR: negative", key, fixed = TRUE)
   key
 }
 
@@ -180,12 +183,15 @@ not_pooled_rows <- purrr::map_dfr(not_pooled_cells, function(r) {
   # A cell can be NOT_POOLED either for failing the k/N gate or for zero-/all-
   # event degeneracy (which passes k/N but is uninformative as a proportion --
   # see pool_stratum()). Detect the latter from its reason string.
-  reason <- if (grepl("ABSENT DATA", r$reason, fixed = TRUE)) {
-    # The DTR "not-derivable" rows fail for a reason no other cell fails for:
-    # the antibiogram needed to classify them is not published. Marking them
-    # $N<20$ alongside genuine sample-size failures would erase the only
-    # distinction the DTR axis exists to make.
-    "no antibiogram published"
+  reason <- if (grepl("reporting-completeness failure", r$reason, fixed = TRUE)) {
+    # The DTR "not-derivable" rows fail for a reason no other cell fails for.
+    # Until round 6 this was described as "no antibiogram published", which was
+    # wrong: several of these sources DO publish a panel. The obstacle is that
+    # the panel is PARTIAL -- one untested first-line category is enough to
+    # block both a positive and a negative call. Marking these $N<20$ alongside
+    # genuine sample-size failures would erase the distinction the DTR axis
+    # exists to make; describing them as unpublished would overstate it.
+    "partial antibiogram"
   } else if (grepl("zero-event", r$reason)) {
     "0 events"
   } else if (grepl("all-event", r$reason)) {

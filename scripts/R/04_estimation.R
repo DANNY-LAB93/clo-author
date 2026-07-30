@@ -95,26 +95,53 @@ for (outcome_name in names(OUTCOME_COLS)) {
     min_studies = MIN_STUDIES, min_patients = MIN_PATIENTS
   )
 
+  # DTR-NEGATIVE. This level did not exist until round 6, and its absence was
+  # the tell that the criterion was mis-stated: a definition under which no arm
+  # can ever be shown negative is not being applied to data. It is estimated on
+  # the same footing as the positive level so the axis is symmetric.
+  df_no <- dat_analysis[
+    !is.na(dat_analysis[[col]]) &
+      !is.na(dat_analysis$dtr_status) &
+      dat_analysis$dtr_status == "no",
+  ]
+  key_no <- paste(outcome_name, "dtr_status", "no", sep = "__")
+  dtr_results[[key_no]] <- pool_stratum(
+    df_no,
+    event_col = col, n_col = "n_arm", stratum_label = key_no,
+    min_studies = MIN_STUDIES, min_patients = MIN_PATIENTS
+  )
+
   df_nd <- dat_analysis[
     !is.na(dat_analysis[[col]]) &
       !is.na(dat_analysis$dtr_status) &
       dat_analysis$dtr_status == "not-derivable",
   ]
   key_nd <- paste(outcome_name, "dtr_status", "not-derivable", sep = "__")
+  n_adjudicated <- nrow(df_yes) + nrow(df_no)
   dtr_results[[key_nd]] <- list(
     stratum = key_nd,
     status = "NOT_POOLED",
     k_studies = length(unique(df_nd$study_id)),
     k_arms = nrow(df_nd),
     n_patients = sum(df_nd$n_arm, na.rm = TRUE),
+    # The criterion is Kadri's: non-susceptibility to all FIRST-LINE agents --
+    # carbapenems, extended-spectrum cephalosporins, fluoroquinolones and
+    # beta-lactam/beta-lactamase-inhibitor combinations. Aminoglycosides,
+    # polymyxins and tigecycline are RESERVE agents by Kadri's own text and do
+    # not enter the determination. Earlier rounds required non-susceptibility to
+    # "all beta-lactams", which is stricter than Kadri and manufactured part of
+    # the non-derivability this cell reports.
     reason = sprintf(
       paste0(
-        "DTR status not derivable for %d of %d contributing arms: the source ",
-        "publishes no agent-level antibiogram covering all beta-lactams and ",
-        "both fluoroquinolones. NOT a sample-size failure -- this cell fails ",
-        "for ABSENT DATA and is the only stratum in this review that does."
+        "DTR status not derivable for %d of %d contributing arms; %d were ",
+        "adjudicable against Kadri's first-line criterion. The obstacle is a ",
+        "PARTIAL antibiogram, not an absent one: a source may print several ",
+        "agents and still leave at least one first-line category untested, and ",
+        "one untested first-line category is enough to prevent both a positive ",
+        "and a negative call. This is a reporting-completeness failure rather ",
+        "than a sample-size failure."
       ),
-      nrow(df_nd), nrow(df_nd) + nrow(df_yes)
+      nrow(df_nd), nrow(df_nd) + n_adjudicated, n_adjudicated
     ),
     primary = NULL, convergence_flag = "NOT_FITTED"
   )

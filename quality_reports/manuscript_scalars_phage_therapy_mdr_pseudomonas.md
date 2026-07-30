@@ -6,7 +6,7 @@ Every number quoted in `paper/main.tex` or `paper/sections/*.tex` must appear
 in this file. A number that is not here is not quotable. Regenerate with
 `Rscript scripts/R/00_master.R` and re-check the manuscript against it.
 
-Generated: 2026-07-30 11:46 | seed: 20260720
+Generated: 2026-07-30 12:11 | seed: 20260720
 
 ## 1. Corpus
 
@@ -73,8 +73,8 @@ Generated: 2026-07-30 11:46 | seed: 20260720
 | Quantity | Value |
 |---|---|
 | **Pooled cells** | **13** |
-| **Not-pooled cells** | **31** |
-| Total estimated cells | 44 |
+| **Not-pooled cells** | **35** |
+| Total estimated cells | 48 |
 
 | Cell | k studies | k arms | N | Estimate | 95% CI | tau2 | 95% PI | CI width (pp) |
 |---|---|---|---|---|---|---|---|---|
@@ -107,14 +107,18 @@ Generated: 2026-07-30 11:46 | seed: 20260720
 | mortality__resistance_class__not-classifiable | 9 | 11 | 11 | k_studies = 9, N = 11 patients (threshold: >= 3 studies AND >= 20 patients) |
 | mortality__resistance_class__PDR | 3 | 3 | 5 | k_studies = 3, N = 5 patients (threshold: >= 3 studies AND >= 20 patients) |
 | mortality__resistance_class__XDR | 5 | 5 | 11 | k_studies = 5, N = 11 patients (threshold: >= 3 studies AND >= 20 patients) |
-| clinical_success__dtr_status__yes | 2 | 2 | 3 | k_studies = 2, N = 3 patients (threshold: >= 3 studies AND >= 20 patients) |
-| clinical_success__dtr_status__not-derivable | 30 | 35 | 77 | DTR status not derivable for 35 of 37 contributing arms: the source publishes no agent-level antibiogram covering all beta-lactams and both fluoroquinolones. NOT a sample-size failure -- this cell fails for ABSENT DATA and is the only stratum in this review that does. |
-| safety__dtr_status__yes | 2 | 2 | 3 | k_studies = 2, N = 3 patients (threshold: >= 3 studies AND >= 20 patients) |
-| safety__dtr_status__not-derivable | 23 | 28 | 57 | DTR status not derivable for 28 of 30 contributing arms: the source publishes no agent-level antibiogram covering all beta-lactams and both fluoroquinolones. NOT a sample-size failure -- this cell fails for ABSENT DATA and is the only stratum in this review that does. |
-| eradication__dtr_status__yes | 3 | 3 | 5 | k_studies = 3, N = 5 patients (threshold: >= 3 studies AND >= 20 patients) |
-| eradication__dtr_status__not-derivable | 26 | 29 | 63 | DTR status not derivable for 29 of 32 contributing arms: the source publishes no agent-level antibiogram covering all beta-lactams and both fluoroquinolones. NOT a sample-size failure -- this cell fails for ABSENT DATA and is the only stratum in this review that does. |
-| mortality__dtr_status__yes | 3 | 3 | 5 | k_studies = 3, N = 5 patients (threshold: >= 3 studies AND >= 20 patients) |
-| mortality__dtr_status__not-derivable | 31 | 36 | 71 | DTR status not derivable for 36 of 39 contributing arms: the source publishes no agent-level antibiogram covering all beta-lactams and both fluoroquinolones. NOT a sample-size failure -- this cell fails for ABSENT DATA and is the only stratum in this review that does. |
+| clinical_success__dtr_status__yes | 4 | 4 | 5 | k_studies = 4, N = 5 patients (threshold: >= 3 studies AND >= 20 patients) |
+| clinical_success__dtr_status__no | 1 | 1 | 1 | k_studies = 1, N = 1 patients (threshold: >= 3 studies AND >= 20 patients) |
+| clinical_success__dtr_status__not-derivable | 28 | 32 | 74 | DTR status not derivable for 32 of 37 contributing arms; 5 were adjudicable against Kadri's first-line criterion. The obstacle is a PARTIAL antibiogram, not an absent one: a source may print several agents and still leave at least one first-line category untested, and one untested first-line category is enough to prevent both a positive and a negative call. This is a reporting-completeness failure rather than a sample-size failure. |
+| safety__dtr_status__yes | 4 | 4 | 5 | k_studies = 4, N = 5 patients (threshold: >= 3 studies AND >= 20 patients) |
+| safety__dtr_status__no | 1 | 1 | 1 | k_studies = 1, N = 1 patients (threshold: >= 3 studies AND >= 20 patients) |
+| safety__dtr_status__not-derivable | 21 | 25 | 54 | DTR status not derivable for 25 of 30 contributing arms; 5 were adjudicable against Kadri's first-line criterion. The obstacle is a PARTIAL antibiogram, not an absent one: a source may print several agents and still leave at least one first-line category untested, and one untested first-line category is enough to prevent both a positive and a negative call. This is a reporting-completeness failure rather than a sample-size failure. |
+| eradication__dtr_status__yes | 5 | 5 | 7 | k_studies = 5, N = 7 patients (threshold: >= 3 studies AND >= 20 patients) |
+| eradication__dtr_status__no | 1 | 1 | 1 | k_studies = 1, N = 1 patients (threshold: >= 3 studies AND >= 20 patients) |
+| eradication__dtr_status__not-derivable | 24 | 26 | 60 | DTR status not derivable for 26 of 32 contributing arms; 6 were adjudicable against Kadri's first-line criterion. The obstacle is a PARTIAL antibiogram, not an absent one: a source may print several agents and still leave at least one first-line category untested, and one untested first-line category is enough to prevent both a positive and a negative call. This is a reporting-completeness failure rather than a sample-size failure. |
+| mortality__dtr_status__yes | 5 | 5 | 7 | k_studies = 5, N = 7 patients (threshold: >= 3 studies AND >= 20 patients) |
+| mortality__dtr_status__no | 1 | 1 | 1 | k_studies = 1, N = 1 patients (threshold: >= 3 studies AND >= 20 patients) |
+| mortality__dtr_status__not-derivable | 29 | 33 | 68 | DTR status not derivable for 33 of 39 contributing arms; 6 were adjudicable against Kadri's first-line criterion. The obstacle is a PARTIAL antibiogram, not an absent one: a source may print several agents and still leave at least one first-line category untested, and one untested first-line category is enough to prevent both a positive and a negative call. This is a reporting-completeness failure rather than a sample-size failure. |
 | clinical_success__route_group__inhaled/nebulized | 4 | 4 | 4 | k_studies = 4, N = 4 patients (threshold: >= 3 studies AND >= 20 patients) |
 | clinical_success__route_group__IV | 6 | 8 | 8 | k_studies = 6, N = 8 patients (threshold: >= 3 studies AND >= 20 patients) |
 | clinical_success__route_group__topical/local | 7 | 7 | 7 | k_studies = 7, N = 7 patients (threshold: >= 3 studies AND >= 20 patients) |
