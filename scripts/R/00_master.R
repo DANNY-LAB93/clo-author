@@ -24,6 +24,11 @@ source(here::here("scripts", "R", "11_manifest.R"))
 # cell that stops pooling must lose its macros so the manuscript stops
 # compiling rather than silently keeping a stale number.
 source(here::here("scripts", "R", "14_prisma_counts.R"))
+# Emits quality_reports/corpus_identifier_index.txt and fails if any study
+# lacks a resolvable identifier. A screening pass diffs candidate lists
+# against that index; without it, Ngauy 2026 was re-screened as new when it
+# was already included.
+source(here::here("scripts", "check_identifier_traceability.R"))
 # 13 runs last: it reads the outputs of everything above, including the
 # PRISMA counts, and writes the macros the manuscript compiles against.
 source(here::here("scripts", "R", "13_tex_macros.R"))
