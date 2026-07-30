@@ -28,6 +28,10 @@ source(here::here("scripts", "R", "14_prisma_counts.R"))
 # the follow-up horizon each source states. A round-5 referee objected that no
 # table let a reader see a 3-day surrogate and a 2-year cure in one numerator.
 source(here::here("scripts", "R", "15_outcome_definitions.R"))
+# Tests whether the pooled eradication estimate is one construct or two. A
+# round-6 referee argued it is a category error; splitting chronic airway
+# colonisation from other sites drives tau^2 to zero, which settles it.
+source(here::here("scripts", "R", "16_eradication_site_split.R"))
 # Emits quality_reports/corpus_identifier_index.txt and fails if any study
 # lacks a resolvable identifier. A screening pass diffs candidate lists
 # against that index; without it, Ngauy 2026 was re-screened as new when it

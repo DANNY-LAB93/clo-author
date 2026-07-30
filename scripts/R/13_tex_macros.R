@@ -400,6 +400,28 @@ for (cls in c("MDR", "XDR", "PDR")) {
 }
 lines <- c(lines, "")
 
+# ---- eradication by site class ----------------------------------------------
+# The quantity that settles whether pooled eradication is one construct. Emitted
+# per class so the manuscript can report the split rather than assert coherence.
+es <- safe_read("eradication_site_split.rds")
+if (!is.null(es)) {
+  for (sp in list(c("Full", "full"), c("Air", "chronic_airway"), c("Other", "other_site"))) {
+    r <- es[[sp[2]]]
+    if (is.null(r)) next
+    lines <- c(lines,
+      paste0("\\newcommand{\\Erad", sp[1], "Est}{", sprintf("%.1f", 100 * r$p_hat), "\\%}"),
+      paste0("\\newcommand{\\Erad", sp[1], "CI}{95\\% CI ",
+             sprintf("%.1f", 100 * r$ci_low), "\\%--",
+             sprintf("%.1f", 100 * r$ci_high), "\\%}"),
+      paste0("\\newcommand{\\Erad", sp[1], "Tau}{", sprintf("%.3f", r$tau2), "}"),
+      paste0("\\newcommand{\\Erad", sp[1], "Arms}{", r$k_arms, "}"),
+      paste0("\\newcommand{\\Erad", sp[1], "K}{", r$k_studies, "}"),
+      paste0("\\newcommand{\\Erad", sp[1], "N}{", r$n_patients, "}"),
+      paste0("\\newcommand{\\Erad", sp[1], "Events}{", r$n_events, "}"))
+  }
+  lines <- c(lines, "")
+}
+
 # ---- journal-tier falsification check ---------------------------------------
 # The Results quoted 79.6% (8 studies) against 69.2% (12 studies) and called the
 # gap "roughly 10 percentage points". A round-5 referee showed the arithmetic did
