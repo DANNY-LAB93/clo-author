@@ -29,6 +29,16 @@ escape_tex <- function(x) {
 # extraction schema alone; hand-mapped once against Bibliography_base.bib
 # and results.tex Section 3.2's own citation list, kept in sync with both) --
 study_label <- c(
+  # Round-5 additions and exclusions.
+  Zaldastanishvili2021 = "Zaldastanishvili 2021",
+  Green2023            = "Green 2023",
+  Casazza2025          = "Casazza 2025",
+  Teney2024            = "Teney 2024",
+  Li2023_ILD           = "Li 2023",
+  Chen2022_empyema     = "Chen 2022",
+  Jennes2017           = "Jennes 2017",
+  Chung2026            = "Chung 2026",
+  Ronit2024            = "Ronit 2024",
   Tkhilaishvili2020    = "Tkhilaishvili 2020",
   Blasco2023           = "Blasco 2023",
   Ngauy2026            = "Ngauy 2026",
@@ -95,8 +105,13 @@ table1_rows <- dat_table1 |>
     # table (Ferry 2021 and Maddocks 2019 both shipped that way). Fall back to
     # the raw id so a missing label is visibly wrong rather than invisibly blank,
     # and assert below so it is caught before the table is written.
+    # The fallback prints a raw study_id, and study_ids contain underscores,
+    # which are LaTeX subscript operators outside math mode. Round-5 additions
+    # named Li2023_ILD and Chen2022_empyema produced four "Missing $ inserted"
+    # errors. Escape the fallback rather than relying on every id being mapped.
     study_col      = ifelse(study_id %in% names(study_label),
-                            unname(study_label[study_id]), study_id),
+                            unname(study_label[study_id]),
+                            gsub("_", "\\\\_", study_id)),
     design_col      = unname(design_abbrev[study_design]),
     resistance_col  = unname(resistance_abbrev[resistance_class]),
     route_col       = {

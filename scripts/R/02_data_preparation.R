@@ -48,7 +48,25 @@ n_excluded_leitner <- sum(leitner_flag)
 # a demonstrably non-MDR patient inside a review of MDR/XDR/PDR infection, so
 # the arm is excluded from pooling -- logged below, and reported in the
 # manuscript rather than dropped silently.
-liu_flag <- dat_raw$study_arm_id == "Liu2025_perinephric_P1"
+# Arms whose PUBLISHED ANTIBIOGRAM positively establishes non-susceptibility in
+# fewer than the three Magiorakos categories the MDR population criterion
+# requires. This is a different failure from "resistance not documented": these
+# sources print a panel, and the panel shows the organism was susceptible to most
+# of it. Arms with no antibiogram and no MDR/XDR/PDR label remain
+# not-classifiable and are RETAINED -- the asymmetry is deliberate and is argued
+# in the Methods.
+#
+# Liu 2025 Patient 1: 1 of ~11 tested agents resistant.
+# Chung 2026: intermediate to ciprofloxacin only; susceptible to
+#   piperacillin-tazobactam, ceftazidime-avibactam and meropenem.
+# Ronit 2024: resistant to piperacillin-tazobactam and ceftazidime; susceptible
+#   to meropenem and ciprofloxacin -- two categories, not three.
+BELOW_MDR_THRESHOLD_ARMS <- c(
+  "Liu2025_perinephric_P1",
+  "Chung2026_A",
+  "Ronit2024_A"
+)
+liu_flag <- dat_raw$study_arm_id %in% BELOW_MDR_THRESHOLD_ARMS
 liu_flag[is.na(liu_flag)] <- FALSE
 
 n_excluded_liu <- sum(liu_flag)
@@ -133,8 +151,17 @@ n_excluded_trialpop <- sum(trialpop_flag)
 # Berlin centre sources phages independently). These three are retained and the
 # residual uncertainty is reported in the manuscript rather than resolved here.
 PIRNAY_ROSTER_DUPLICATE_ARMS <- c(
-  "Ferry2022_A",         # ~ Pirnay case #79 (chronic spondylodiscitis)
-  "Racenis2023_LVAD_A"   # ~ Pirnay case #56 (persistent LVAD driveline infection)
+  "Ferry2022_A",          # ~ Pirnay case #79 (chronic spondylodiscitis)
+  "Racenis2023_LVAD_A",   # ~ Pirnay case #56 (persistent LVAD driveline infection)
+  # Round 5. Queen Astrid Military Hospital, BFC1, treated November 2016 --
+  # inside the roster's 1 Jan 2008 to 30 Apr 2022 window -- with Pirnay as senior
+  # author, and the roster records 27 of its 100 cases as published elsewhere.
+  # Roster case 13 matches on species, centre, product, intravenous route and the
+  # wound-plus-bloodstream indication. Case 13 is recorded as surviving whereas
+  # this patient died at four months, which a shorter roster follow-up explains;
+  # roster case 3, the only other XDR death, is a respiratory infection treated by
+  # inhalation for four days and is a different patient.
+  "Jennes2017_A"
 )
 pirnay_dup_flag <- dat_raw$study_arm_id %in% PIRNAY_ROSTER_DUPLICATE_ARMS
 
@@ -162,7 +189,7 @@ exclusion_log <- tibble(
   step = c(
     "Rows in cleaned extraction dataset",
     "Excluded: Leitner2021 (trial-wide, not Pseudomonas-specific)",
-    "Excluded: Liu2025 (antibiogram does not meet the MDR population criterion)",
+    "Excluded: published antibiogram below the MDR population criterion",
     "Excluded: trial populations recruited with no MDR/XDR/PDR entry criterion",
     "Excluded: case reports duplicating a patient inside the Pirnay 2024 roster",
     "Rows entering stratified pooling eligibility checks"

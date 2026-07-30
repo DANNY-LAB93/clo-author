@@ -93,7 +93,17 @@ channels <- c(
   # resistance documentation at all. A targeted search of the four studies the
   # domain referee named confirmed it: three were retrievable and none carries a
   # resistance term in its title or abstract.
-  "referee-named records screened at round 5"         = 3
+  "referee-named records screened at round 5"         = 3,
+  # Round 5, second pass. The methods referee set a falsifiable bar: re-run the
+  # search with the resistance block REMOVED, and if it yields two or fewer new
+  # eligible studies the corpus is near-complete. PubMed as title/abstract
+  # "Pseudomonas aeruginosa" AND phage-therapy terms, clinical publication types,
+  # 2016-2026, returned 45 records; 17 were already traceable to this corpus and
+  # 28 had never been screened. Seven of those 28 entered the analytic dataset --
+  # four pooled, three extracted and then excluded on the population or
+  # de-duplication rules. The bar was not met, and the concession that the search
+  # remains under-sensitive is reported as a finding rather than a caveat.
+  "un-blocked PubMed search, round 5"                 = 7
 )
 n_itemised <- sum(channels)
 

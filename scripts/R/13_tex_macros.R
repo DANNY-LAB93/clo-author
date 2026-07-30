@@ -382,6 +382,24 @@ if (!is.null(dd)) {
     "")
 }
 
+# ---- resistance-classification provenance ------------------------------------
+# How many MDR / XDR calls this review re-derived from a published antibiogram
+# rather than adopting the source's own label. The prose quoted four and three of
+# four; the round-5 additions moved both, and the claim is load-bearing because
+# it is what the classification-restriction sensitivity analysis turns on.
+for (cls in c("MDR", "XDR", "PDR")) {
+  sel <- dat$resistance_class == cls
+  if (!any(sel)) next
+  lines <- c(lines,
+    paste0("\\newcommand{\\Res", cls, "Verified}{",
+           sum(sel & dat$resistance_class_source == "independently-verified",
+               na.rm = TRUE), "}"),
+    paste0("\\newcommand{\\Res", cls, "Authored}{",
+           sum(sel & dat$resistance_class_source == "author-reported",
+               na.rm = TRUE), "}"))
+}
+lines <- c(lines, "")
+
 # ---- risk-of-bias distribution ----------------------------------------------
 # Through round 4 every arm rated High overall and the prose said so. The
 # round-5 phage-monotherapy arms rate Moderate on causality -- there is no
