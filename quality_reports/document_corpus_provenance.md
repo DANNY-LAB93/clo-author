@@ -95,6 +95,69 @@ missing:
 
 **No eligible study was missed in these folders.**
 
+## By what search were these documents retrieved? — the queries were not recorded
+
+This is the question the manifest does not answer, and the honest answer is that
+**no query string survives for this channel.** The corpus root was searched
+exhaustively for a search export — no `.nbib`, `.ris`, `.csv` or `.txt` from
+PubMed or Scopus exists.
+
+What does survive is the **result set, not the query**:
+
+- `Descargar_PDFs.html` lists **215 unique PMC identifiers** under the heading
+  "Mis Artículos Libres (PMC)" — a PubMed result set restricted to PMC free full
+  text, from which the 201 files in `PUBMED ELICIT` were downloaded. Every link
+  is a bare `ncbi.nlm.nih.gov/pmc/articles/PMCxxxxxxx/pdf/`. The file was searched
+  for `term=`, `query=` and any parameterised PubMed URL: **there are none.**
+- The folder names record the database and that the batch passed through Elicit.
+- Two screening spreadsheets record the decisions.
+
+Missing, for both PubMed and Scopus: the query string, the date the search was
+run, the filters and limits applied, and the count at each stage. That is
+**PRISMA 2020 item 7** ("full search strategies for all databases, registers and
+websites, including any filters and limits used"), and for this channel it is not
+recoverable. It must be declared as such. The 215 PMC identifiers should be
+deposited as the supplementary record of what the search returned, since that is
+the strongest evidence that does exist.
+
+## The screening was performed by a language model, and the manuscript does not say so
+
+`MARKDOWN_OUT/import os.py` is the screening script. It converts each PDF to
+markdown and submits it to a **locally hosted large language model —
+`qwen2.5-coder:7b` served by Ollama at `localhost:11434`** — under a prompt that
+instructs it to act as a methodological reviewer, apply the PICO criteria, and
+return `VERDICTO FINAL: [INCLUIDO o EXCLUIDO]` with a reason. The Scopus
+spreadsheet independently confirms this: its justification column reads
+"Excluido **automáticamente** por…".
+
+The manuscript describes this channel as an *"informal, single-reviewer screening
+pass"*. A reader will understand "single-reviewer" to mean one human rather than
+two. **It was not a human.** This must be disclosed, with the model named — not
+because the screen was necessarily worse (its decisions corroborate the review's
+final dispositions, see above), but because undisclosed automated screening is a
+misdescription of methods, and journal and ICMJE policy now require AI-assistance
+disclosure.
+
+The correct description is: an exploratory, non-PRISMA screening pass in which a
+locally hosted language model (`qwen2.5-coder:7b`) applied the PICO criteria to
+full-text conversions, with decisions recorded per record and subsequently
+reviewed by the author.
+
+### The automated screen applied a stricter recency criterion than the review
+
+The prompt in `import os.py` sets *"Antigüedad: Fecha menor o igual a 5 años"* —
+a five-year window, where this review's stated window is 2016–2026. A stricter
+filter inside a channel is a mechanism for losing eligible studies, so it was
+tested rather than assumed harmless.
+
+**It was harmless, and this is now checkable rather than asserted.** In the
+imported log, the number of records excluded on recency alone — with population,
+intervention and design all met — is **zero**. Nine records fall in 2016–2020,
+and each is marked as meeting the criterion, several with an explicit note that
+the cutoff was extended to 2019. The relaxation was applied in practice. The
+discrepancy should still be recorded, because it was undocumented and its
+harmlessness was luck rather than design.
+
 ## What this changes, and what it does not
 
 **Closed.** The channel is enumerable. Every included study traceable to it can

@@ -41,6 +41,11 @@ def main():
     if not src.exists():
         sys.exit("workbook not found: %s" % src)
 
+    # Two logs exist -- one per database -- so the destination is a parameter.
+    global OUT
+    if len(sys.argv) > 2:
+        OUT = ROOT / sys.argv[2]
+
     try:
         import openpyxl
     except ImportError:
