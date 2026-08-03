@@ -513,6 +513,30 @@ if (!is.null(fus)) {
     "")
 }
 
+# ---- PRISMA channel itemisation ---------------------------------------------
+# The flow diagram printed \PrismaItemised and then hard-typed a breakdown beside
+# it. The macro tracked the pipeline; the typed list did not. Round 5 added two
+# channels (3 referee-named + 14 un-blocked PubMed) to 14_prisma_counts.R and the
+# tikz node was never updated, so the figure asserted 57 and itemised 40 in the
+# same sentence -- a 17-record contradiction inside the one figure every referee
+# checks with a calculator. Emitting the list from the same object that computes
+# the total makes the two incapable of disagreeing.
+pc <- safe_read("prisma_counts.rds")
+if (!is.null(pc)) {
+  ch <- pc$channels
+  parts <- paste0(unname(ch), " ", names(ch))
+  listing <- paste(parts, collapse = " $+$ ")
+  # Assert before emitting: the printed list must sum to the printed total.
+  if (sum(ch) != pc$itemised) {
+    stop(sprintf("PRISMA channel list sums to %d but itemised total is %d",
+                 sum(ch), pc$itemised))
+  }
+  lines <- c(lines, "% ---- PRISMA channel itemisation ----",
+    paste0("\\newcommand{\\PrismaChannelList}{", listing, "}"),
+    paste0("\\newcommand{\\PrismaChannelCount}{", length(ch), "}"),
+    "")
+}
+
 # ---- phage-susceptibility reporting -----------------------------------------
 # The review made in-vitro activity an eligibility criterion (Onsea 2019 was
 # excluded on it) and then never recorded it. This is how often the primary
