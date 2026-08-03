@@ -513,6 +513,21 @@ if (!is.null(fus)) {
     "")
 }
 
+# ---- phage-susceptibility reporting -----------------------------------------
+# The review made in-vitro activity an eligibility criterion (Onsea 2019 was
+# excluded on it) and then never recorded it. This is how often the primary
+# sources say whether the administered phage could lyse the organism at all.
+psr <- safe_read("phage_susceptibility_reporting.rds")
+if (!is.null(psr)) {
+  lines <- c(lines, "% ---- phage-susceptibility reporting ----",
+    paste0("\\newcommand{\\PhageSuscArms}{", psr$n_arms, "}"),
+    paste0("\\newcommand{\\PhageSuscDocumented}{", psr$n_tested_documented, "}"),
+    paste0("\\newcommand{\\PhageSuscSilent}{", psr$n_silent, "}"),
+    paste0("\\newcommand{\\PhageSuscSilentPct}{",
+           pct(psr$n_silent / psr$n_arms, 0), "}"),
+    "")
+}
+
 # ---- risk-of-bias distribution ----------------------------------------------
 # Through round 4 every arm rated High overall and the prose said so. The
 # round-5 phage-monotherapy arms rate Moderate on causality -- there is no
