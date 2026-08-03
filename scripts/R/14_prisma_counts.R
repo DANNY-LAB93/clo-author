@@ -10,10 +10,22 @@
 # the figure caption said both remained outstanding and were folded into neither
 # count.
 #
-# The underlying cause is that this review never kept a machine-readable
-# screening log. The terminal counts come from the extraction dataset and are
-# checkable; the screening-stage counts existed only as prose typed into a tikz
-# picture, which is why the imbalance survived five rounds.
+# The underlying cause was stated here, for five rounds, as "this review never
+# kept a machine-readable screening log". THAT WAS FALSE, and the correction
+# matters more than the original claim did.
+#
+# A structured log exists -- Cribado_Sistematico_COMPLETO_76_3.xlsx, 75 documents
+# with a row each, a column per PICO criterion, a final decision and the verbatim
+# text supporting it. It was never in the repository, so no script could read it,
+# no referee could check it, and the person who wrote this comment could not see
+# it either. It is now imported to data/raw/local_screening_log.csv by
+# scripts/import_screening_log.py.
+#
+# The real cause is therefore narrower and less excusable than the one recorded
+# here: the screening WAS documented, and the documentation was not
+# version-controlled. The terminal counts come from the extraction dataset and
+# are checkable; the screening-stage counts existed only as prose typed into a
+# tikz picture, which is why the imbalance survived five rounds.
 #
 # WHAT THIS DOES. It records the screening decisions that ARE documented in the
 # manuscript's own narrative, derives every count the data can support, and
