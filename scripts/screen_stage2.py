@@ -60,7 +60,10 @@ def load_log():
     if not LOG.exists():
         return {}
     with open(LOG, encoding="utf-8", newline="") as fh:
-        return {r["pmid"]: r for r in csv.DictReader(fh)}
+        out = {}
+        for r in csv.DictReader(fh):
+            out[r["pmid"]] = r   # later rows supersede earlier ones
+        return out
 
 
 def append_log(rows):
@@ -89,6 +92,13 @@ def main():
     ap.add_argument("--record", default=None)
     ap.add_argument("--by", default=None)
     ap.add_argument("--audit", action="store_true")
+    # Corrections are APPENDED, never erased. The log is the record of what
+    # was decided and when, including what was decided wrongly; load_log()
+    # keeps the last row per pmid, so a later row supersedes an earlier one
+    # while both remain visible. An audit that finds an error and a log that
+    # hides the correction would be worse than no audit.
+    ap.add_argument("--override", action="store_true",
+                    help="allow a superseding decision for an already-decided record")
     # Screening order is not neutral. The pool is in PMID order, so screening it
     # front-to-back starts with the oldest and least relevant records. Arm A is
     # 1,320 records and holds 36 of the 40 known positives; arm B is 5,839 and
@@ -126,7 +136,7 @@ def main():
             if verdict not in {"ADVANCE", "EXCLUDE"}:
                 bad.append(("bad verdict", "%s %s" % (pmid, verdict)))
                 continue
-            if pmid in done:
+            if pmid in done and not args.override:
                 bad.append(("already decided", pmid))
                 continue
             rows.append({"pmid": pmid, "verdict": verdict, "reason": reason,
