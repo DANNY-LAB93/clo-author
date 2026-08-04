@@ -498,6 +498,62 @@ number of records. Neither register supports an export format the screening
 pipeline can ingest, so transcribe results manually into the screening log with
 their EudraCT / CTIS numbers.
 
+### Verified 2026-08-03 — both registers, and both have traps
+
+**EU CTR / EudraCT** — one term at a time, because its search does **no partial
+matching**:
+
+| Term | Results |
+|---|---|
+| `bacteriophage` | 2 |
+| `phage` | 2 |
+| `"Pseudomonas aeruginosa"` | 114 (1 phage-related on page 1) |
+
+`phage` does **not** retrieve records containing *bacteriophage*, and the two
+queries return different sets. Union: **3 unique trials**.
+
+| EudraCT | Sponsor | Disposition |
+|---|---|---|
+| 2022-003810-35 | BiomX Ltd. | already in corpus (BX004-A / Weiner 2025) |
+| 2014-000714-65 | Pherecydes Pharma | already in corpus (PhagoBurn / Jault 2019) — **register holds posted results** |
+| 2021-004469-11 | Pherecydes Pharma | exclude — *Staphylococcus aureus* PJI, wrong pathogen |
+
+PhagoBurn's EudraCT record carries "View results". The review currently cites the
+publication; the register's posted results are a second, independent source for
+that trial's outcomes and should be checked against it.
+
+**CTIS** — 5 phage trials, none of them in this corpus:
+
+| CTIS number | Trial |
+|---|---|
+| 2025-521533-85-00 | TP-122_101A, Phase 1/2a bacteriophage cocktail |
+| 2024-519856-94-00 | BMX-04-002, Phase 2b nebulized bacteriophage |
+| 2023-507737-17-00 | HY-133, first-in-man |
+| 2023-508825-29-00 | Phase 1/2a bacteriophage cocktail |
+| 2023-507716-13-00 | TP-102_102, Phase 2b topical bacteriophage |
+
+### ⚠️ CTIS's "Contain any of these terms" is not an OR
+
+Searching `bacteriophage phage` in the field labelled **"Contain any of these
+terms"** returns **0 results**. Searching `bacteriophage` alone returns **5**.
+Adding a term that should broaden the search emptied it, so the field behaves as
+a phrase or an AND, not the disjunction its label promises.
+
+A reviewer who entered both terms once would record zero and conclude the
+register holds no phage trials. It holds five, at least one of which
+(TP-102) also appears in ClinicalTrials.gov as NCT04803708.
+
+**Run one term per search in CTIS, and union the results by hand.** The same rule
+already applies to EudraCT for a different reason (no partial matching), so the
+instruction is uniform across both registers even though the underlying causes
+differ.
+
+**Positive control.** Before believing any zero from CTIS, run a term that must
+return results: `cancer` gave **3,036**. A zero without a control is not a
+finding, it is an untested assumption — the first `bacteriophage phage` run in
+this session returned 0 with an *empty* field, and the number looked identical to
+a real one.
+
 ---
 
 ## What to record for PRISMA, per database
