@@ -137,9 +137,54 @@ AND ( LIMIT-TO ( SUBJAREA , "MEDI" ) OR LIMIT-TO ( SUBJAREA , "IMMU" )
 > `phage*` is safe: it expands to phage, phages, phagemid — **not** phagocyte or
 > phagocytosis, which begin *phago*. Do not shorten it to `phag*`, which pulls in
 > the entire phagocytosis literature.
->
-> The previous Scopus run used `PUBYEAR > 2018`, inconsistent with the stated
-> 2016 window. Re-run from 2016 for a uniform audit trail.
+
+### Verified 2026-08-03
+
+| Query | Documents |
+|---|---|
+| Arm A — organism-first, 2016–2026 | **2,875** |
+| Arm B — no organism block, MEDI/IMMU/PHAR | **9,372** |
+
+The previous Scopus run returned 860 records using `PUBYEAR > 2018` **and a
+mandatory resistance block**. Removing the block and correcting the window to
+2016 yields 2,875 on arm A alone — a 3.3-fold increase before arm B is counted.
+That is the size of what the resistance block was costing in this database.
+
+### ⚠️ Chrome's page translator silently rewrote the query
+
+Typing arm A into the Scopus advanced-search box produced this **as the field's
+actual value**, not merely its rendered appearance:
+
+```
+TÍTULO-ABS-KEY ( ( "Pseudomonas aeruginosa" O "P. aeruginosa" O pseudomonal )
+Y ( fago* O bacteriófago* O fagoterapia* O "terapia con fagos"
+O "cóctel de fagos" O piófago O intestífago ) ) Y PUBYEAR > 2015 ...
+```
+
+`TITLE-ABS-KEY` became `TÍTULO-ABS-KEY`, `OR`/`AND` became `O`/`Y`, and **the
+search terms themselves were translated** — `phage*` to `fago*`, `pyophage` to
+`piófago`. Scopus's query box is a `contenteditable`, so the translator edited
+the query, not a label. `document.documentElement.lang` was `es` and the root
+carried the `translated` class.
+
+Running that would have returned a number for a query nobody wrote, and nothing
+downstream would have flagged it: the count would simply have been wrong.
+
+**Mitigation, and it is the reason both counts above are trustworthy:** pass the
+query in the URL instead of typing it into the page —
+
+```
+https://www.scopus.com/results/results.uri?sort=plf-f&src=s&sot=b&sdt=b&s=<URL-ENCODED QUERY>
+```
+
+The query travels as a URL parameter, so the translator never touches it, and
+the results page then renders it back in English, which is the visual
+confirmation that it arrived intact. **Verify that rendering every time.**
+
+This hazard is not specific to Scopus. Any database whose search box is a
+`contenteditable` — and any typed query on a page Chrome has decided to
+translate — is exposed. Disable automatic translation for every database domain
+before searching.
 
 ## 3. Embase (Elsevier) via Ovid
 
