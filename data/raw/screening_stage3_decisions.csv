@@ -64,3 +64,133 @@ pmid,verdict,reason,decided_by,decided_at
 34663499,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:03:21
 34696396,EXCLUDE,"laboratory study: phage isolation, characterisation, susceptibility or biofilm testing on isolates; no patients treated","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:03:21
 34943709,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:03:21
+35444073,FULLTEXT,"case: post-pneumonectomy empyema with broncho-pleural fistula, carbapenem-resistant","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35529052,FULLTEXT,"case: 25-year-old, cranial osteomyelitis after electrocution, phage plus cefiderocol","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35547216,FULLTEXT,"case: post-traumatic femoral osteomyelitis, BFC 1.10 with ceftazidime-avibactam","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35869081,FULLTEXT,"case: pandrug-resistant spinal bone and joint infection, personalised phage","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36082999,FULLTEXT,lung transplant recipient on adjunctive phage; phage-specific CD4 T cells and immunoglobulin,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36175406,FULLTEXT,case: XDR P. aeruginosa infection treated to allow liver transplantation,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36578069,FULLTEXT,"randomised placebo-controlled trial protocol, single intravenous dose, ~72 adults with cystic fibrosis","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36636832,FULLTEXT,first-in-human dsRNA phage phiYY in a 40-year-old with interstitial lung disease,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36861092,FULLTEXT,"case: 62-year-old, chronic hip prosthetic joint infection, phage with meropenem","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37160359,FULLTEXT,"single-arm open-label trial, intrabronchial and nebulised phage in children with cystic fibrosis","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37243293,FULLTEXT,"case: left ventricular assist device infection, phage-antibiotic combination","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37275366,FULLTEXT,"case: phage therapy failure in prosthetic vascular graft infection, PT07/14-01/PNM","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37369702,FULLTEXT,"case: 41-year-old with Kartagener syndrome, aerosolised personalised phage","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37409241,FULLTEXT,case: refractory bronchopulmonary infection after lung transplant for common variable immunodeficiency,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37515541,FULLTEXT,"two persons with cystic fibrosis, pandrug-resistant P. aeruginosa","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37562400,FULLTEXT,compassionate-use case series treated with phage PASA16,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38066373,FULLTEXT,"case: 3-month-old girl, severe bronchitis after tracheostomy, consecutive phage and antibiotics","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38302552,FULLTEXT,Yale emergency phage therapy preparation pipeline; programme report with treated patients,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38305316,FULLTEXT,title was a placeholder; abstract confirms a case report of chronic relapsing prosthetic aortic graft infection treated with two lytic antipseudomonal phages,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38470133,FULLTEXT,"retrospective series: five ventricular assist device infections, ineffective phage therapy","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38917792,FULLTEXT,neutralising antibodies after nebulised phage therapy in cystic fibrosis patients,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39066242,FULLTEXT,"case: burn patient, XDR P. aeruginosa relapsing ventilator-associated pneumonia","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39074617,FULLTEXT,"safety, tolerability and potential efficacy of bronchoscopic and nebulised phage administration","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35040388,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35041506,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35150435,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35165237,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35671882,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35752612,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35880080,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35931928,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36090087,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36320594,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36344073,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36468950,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36584930,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36748497,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+36898591,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37508185,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37598024,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37644177,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37770166,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37843118,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37843121,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37967634,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37997873,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38016738,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38261031,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38280761,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38284691,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38345396,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38391505,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38646632,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38787276,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38934592,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39017931,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39066214,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39072666,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39104636,EXCLUDE,narrative or systematic review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+35258339,EXCLUDE,"laboratory study: genome announcement, formulation, cocktail design or platform technology; no patients treated","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38045026,EXCLUDE,"laboratory study: genome announcement, formulation, cocktail design or platform technology; no patients treated","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38786114,EXCLUDE,"laboratory study: genome announcement, formulation, cocktail design or platform technology; no patients treated","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+38992046,EXCLUDE,"laboratory study: genome announcement, formulation, cocktail design or platform technology; no patients treated","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+37931230,EXCLUDE,in vitro or preclinical activity testing against isolates; no patients treated,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39091071,EXCLUDE,in vitro or preclinical activity testing against isolates; no patients treated,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:11:12
+39452183,FULLTEXT,"case: recurrent Pseudomonas septicaemia with arterial stent, phage-meropenem","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39491599,FULLTEXT,PHAGEinLYON programme; all 2022 phage therapy requests collected prospectively,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39740667,FULLTEXT,randomised double-blind trial of TP-102 in patients with diabetic foot ulcers,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39834667,FULLTEXT,case: chronic bronchiectasis treated with an induced native phage cocktail,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39861912,FULLTEXT,"case: recurrent P. aeruginosa Bentall endocarditis, phage as rescue","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39965256,FULLTEXT,"case: 47-year-old, intratympanic phage for chronic mastoiditis from MDR P. aeruginosa","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40301561,FULLTEXT,personalised inhaled phage for MDR P. aeruginosa in cystic fibrosis,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40368965,FULLTEXT,adjunctive phage in ventilator-associated pneumonia,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40593506,FULLTEXT,BX004-A randomised first-in-human trial in cystic fibrosis,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40639454,FULLTEXT,observational feasibility study of personalised phage therapy in Japan,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40810649,FULLTEXT,clinical practice case studies of P. aeruginosa infections,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40899889,FULLTEXT,polyvalent pyobacteriophage in 30 intensive-care patients with nosocomial sinusitis,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40975185,FULLTEXT,"no abstract; cannot be judged, advanced rather than excluded","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41022989,FULLTEXT,case report: phage for carbapenem-resistant P. aeruginosa lung infection,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41244966,FULLTEXT,case: acute rejection resolved in a bilateral lung transplant recipient after phage,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41479406,FULLTEXT,two cases: perinephric abscess in kidney transplant recipients,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41510198,FULLTEXT,pharmacodynamic individualisation against a KPC-5-producing isolate; clinical assessment,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41513696,FULLTEXT,"case: refractory mediastinitis and vascular graft infection, bespoke phage-antibiotic","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41565011,FULLTEXT,case: recalcitrant intra-abdominal MDR infection in a paediatric patient,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41589298,FULLTEXT,case report: pan-resistant P. aeruginosa septic shock in a critically ill patient,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41667461,FULLTEXT,longitudinal multiomic case analysis of a man in his seventies on phage-antibiotic therapy,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41853116,FULLTEXT,clearance of hypermutator XDR Pseudomonas osteomyelitis and hardware infection,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42070625,FULLTEXT,"case: 37-year-old man, multisite phage cocktail salvage for MDR bone infection","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42263718,FULLTEXT,"case: calciphylaxis with NDM-1 P. aeruginosa, cefepime-zidebactam alongside phage","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42364990,FULLTEXT,chronic suppression of MDR P. aeruginosa prosthetic joint infection with personalised phage,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39125890,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39452768,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39482746,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39518670,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+39545100,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40284749,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40413913,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40426494,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40478338,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40488994,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40635382,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40781777,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40854749,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40979551,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41065368,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41089845,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41139254,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41156622,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41323151,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41334893,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41412007,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41597449,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41648009,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41750423,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41781219,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41908588,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42029769,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42044976,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42071311,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42283824,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42299205,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42353674,EXCLUDE,narrative review with no primary patient data of its own,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40596887,EXCLUDE,secondary synthesis (systematic or scoping review); usable for citation-chasing but not a primary study,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41881246,EXCLUDE,secondary synthesis (systematic or scoping review); usable for citation-chasing but not a primary study,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+41887374,EXCLUDE,secondary synthesis (systematic or scoping review); usable for citation-chasing but not a primary study,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42198401,EXCLUDE,secondary synthesis (systematic or scoping review); usable for citation-chasing but not a primary study,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42291894,EXCLUDE,secondary synthesis (systematic or scoping review); usable for citation-chasing but not a primary study,"claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40255216,EXCLUDE,"methodological, survey or in vitro work; no patient outcomes reported","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+40976373,EXCLUDE,"methodological, survey or in vitro work; no patient outcomes reported","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
+42168489,EXCLUDE,"methodological, survey or in vitro work; no patient outcomes reported","claude-opus-5 (abstract stage, LLM-assisted; pending human verification)",2026-08-04T07:12:18
