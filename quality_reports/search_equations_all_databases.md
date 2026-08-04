@@ -46,6 +46,36 @@ not* human and keeps the unindexed.
 
 ---
 
+## What this institution actually provides — verified 2026-08-03
+
+Checked directly against the UCACUE Biblioteca Virtual portal while
+authenticated, not inferred from a subscription list.
+
+| Source | Available | Evidence |
+|---|---|---|
+| PubMed / NCBI | ✅ free | both arms executed, 9,561 records |
+| Scopus | ✅ subscribed | listed under "Bases de datos multidisciplinar" |
+| Cochrane CENTRAL | ✅ | executed: 53 / 304, Issue 7 of 12, July 2026 |
+| ClinicalTrials.gov | ✅ free | both arms executed, 17 / 121 |
+| EU registers | ✅ free | EudraCT and CTIS, both open |
+| BVS / LILACS | ✅ subscribed | in portal, **not yet used** |
+| ProQuest | ✅ subscribed | 6 databases, **names not yet recorded** |
+| **Web of Science** | ❌ | no route found — see below |
+| **Embase** | ❌ | portal has Ovid MEDLINE, Ovid Español and Books Ovid Odontología; none is Embase |
+| **EBSCO (bibliographic)** | ❌ | only two e-book collections |
+
+**Web of Science.** Research4Life is subscribed and lists Clarivate as a content
+provider, but the two entries are *Clarivate — Current Contents* and *Clarivate —
+free*. Current Contents is a table-of-contents alerting service: no citation
+index, no `TS=` field searching, no export suitable for systematic screening. It
+is not Web of Science. Two routes remain unchecked and neither can be verified
+from here — a CEDIA consortium licence held outside the portal, and whatever
+route a colleague at this institution used. WoS overlaps heavily with Scopus for
+this literature, so its absence is a declared limitation rather than a blocking
+one; **Embase is the material gap.**
+
+---
+
 ## 1. PubMed / NCBI — validated
 
 The only pair below that has been run. Coverage measured per study.
@@ -146,7 +176,20 @@ substantial part of the clinical phage corpus sits.
 > the direct measure of what a resistance block would have excluded. Report it.
 > Line 12 is the export set. Never export 13.
 
-## 4. MyEBSCO (EBSCOhost)
+## 4. ~~MyEBSCO (EBSCOhost)~~ — VOID, there is no database to run it against
+
+**Withdrawn 2026-08-03 after checking the institutional portal.** The UCACUE
+Biblioteca Virtual exposes exactly two EBSCO products — *EBSCO eBooks Engineering
+Core* and *EBSCO eBooks Collection*. Both are **e-book collections**. There is no
+CINAHL, no MEDLINE-via-EBSCO, no Academic Search. The equation below has nowhere
+to execute, and declaring EBSCO as a searched database would be false.
+
+The strategy is retained struck-through rather than deleted, so that a reader of
+this file's history can see the source was considered and why it was dropped.
+
+<details><summary>Withdrawn equation</summary>
+
+## ~~MyEBSCO (EBSCOhost)~~
 
 Syntax varies by which databases the subscription exposes. `MH` is the exact
 subject heading with `+` to explode; it works in MEDLINE-via-EBSCO and CINAHL,
@@ -180,7 +223,9 @@ AND
 Limiters: Published Date 2016-01 to 2026-12; Human (if the panel offers it —
 record whether it was applied, per rule 4).
 
-## 5. Cochrane Library (Wiley) — CENTRAL
+</details>
+
+## 5. Cochrane Library (Wiley) — CENTRAL — **verified and executed**
 
 CENTRAL is small enough that arm B needs no narrowing: run the intervention block
 alone and screen it all. Use the Search Manager, one line per row.
@@ -200,6 +245,109 @@ alone and screen it all. Use the Search Manager, one line per row.
 Set Custom Date Range 2016 to 2026. Export #9; it subsumes #8, and report both
 counts. Record CENTRAL and CDSR separately — they are different databases and
 PRISMA counts them separately.
+
+### Verified 2026-08-03
+
+Run through the UCACUE portal, Title/Abstract/Keyword field:
+
+| Query | Trials (CENTRAL) |
+|---|---|
+| `(bacteriophage OR phage) AND ("Pseudomonas aeruginosa" OR pseudomonal)` — arm A | **53** |
+| `bacteriophage OR phage` — arm B | **304** |
+
+Interface reports **"Cochrane Central Register of Controlled Trials, Issue 7 of
+12, July 2026"** — record that string, it dates the snapshot. Cochrane Reviews,
+Protocols, Editorials, Special Collections and Clinical Answers all returned
+**0**, so CENTRAL is the only Cochrane database contributing. Export is enabled.
+
+**Arm B at 304 records is small enough to screen in full.** Do that rather than
+using arm A: it is the whole phage literature CENTRAL holds.
+
+### Two findings from running it that change what can be claimed
+
+**CENTRAL carries records sourced from Embase.** The CYPHY record is tagged
+`Embase` in the results list. Cochrane runs its own systematic Embase searches
+and deposits the trial records into CENTRAL. This **partially mitigates the
+Embase gap — for controlled trials only.** CENTRAL holds trials; it does not hold
+case reports or case series, which are roughly 90% of this review's corpus. State
+the mitigation at exactly that width and no wider.
+
+**CENTRAL also ingests ClinicalTrials.gov records.** The first arm-B result is
+`NCT07698002`, one of the twelve registry candidates assessed separately. CENTRAL
+and the ClinicalTrials.gov search therefore overlap, and de-duplication must run
+across them on the NCT identifier, not only on DOI/PMID.
+
+## 5b. BVS — Biblioteca Virtual en Salud (includes LILACS)
+
+Subscribed and, until now, unused. **This is the most valuable addition available
+to this review**, because LILACS indexes Latin American and Caribbean health
+journals that neither MEDLINE nor Scopus covers — regional literature is exactly
+the kind of coverage lost by not having Embase. It does not replace Embase; the
+two index different literatures. It is a recognised source in systematic reviews.
+
+BVS uses the iAH/VHL interface. Terms in Spanish, Portuguese and English, because
+the corpus is trilingual and titles are indexed in the original language:
+
+**Arm A**
+
+```
+(fago OR fagos OR bacteriofago OR bacteriófago OR bacteriofagos OR fagoterapia
+ OR phage OR bacteriophage OR "phage therapy" OR "terapia con fagos"
+ OR "terapia fágica" OR fagoterapia)
+AND
+("Pseudomonas aeruginosa" OR "P. aeruginosa" OR pseudomonas OR pseudomonal)
+```
+
+**Arm B**
+
+```
+(fago OR fagos OR bacteriofago OR bacteriófago OR fagoterapia OR phage
+ OR bacteriophage OR "phage therapy" OR "terapia con fagos" OR "terapia fágica")
+AND
+(paciente OR pacientes OR "relato de caso" OR "reporte de caso" OR "serie de casos"
+ OR "case report" OR clinico OR clínico OR clinical OR humano OR humanos)
+```
+
+Filter by year 2016–2026 in the left-hand facets, and **record which BVS
+databases the facet reports** (LILACS, MEDLINE, IBECS, BDENF, CUMED and others
+are searched together and MEDLINE will duplicate the PubMed arm). Report LILACS
+separately from the MEDLINE component, or the counts double-count.
+
+## 5c. ProQuest — access confirmed, database list must be recorded
+
+Confirmed 2026-08-03: institutional access via UCACUE, banner reads *"Está
+buscando en 6 bases de datos"*. **The six are not named on the search page and
+must be read from "Cambiar bases de datos" and written into the Methods** — a
+Methods section saying "ProQuest" without naming the constituent databases is not
+reproducible, exactly as "EBSCO" was not.
+
+ProQuest field codes: `TI`, `AB`, `SU` (subject), `NOFT` (all fields except full
+text — prefer it over the default, which searches full text and inflates counts
+with passing mentions).
+
+**Arm A**
+
+```
+(TI("Pseudomonas aeruginosa" OR "P. aeruginosa") OR AB("Pseudomonas aeruginosa" OR "P. aeruginosa") OR SU("Pseudomonas aeruginosa"))
+AND
+(TI(phage* OR bacteriophage* OR phagotherap*) OR AB(phage* OR bacteriophage* OR phagotherap*) OR SU(bacteriophages))
+AND pd(20160101-20261231)
+```
+
+**Arm B**
+
+```
+(TI(phage* OR bacteriophage*) OR AB(phage* OR bacteriophage*) OR SU(bacteriophages))
+AND
+(AB("phage therapy" OR "bacteriophage therapy" OR compassionate OR salvage
+    OR "case report" OR "case series" OR patient*))
+AND pd(20160101-20261231)
+```
+
+Do **not** tick "Texto completo" or "Evaluado por expertos" as limiters: the first
+restricts to what this institution can read rather than to what exists, and the
+second would drop case reports in non-indexed venues. Both are availability
+filters masquerading as quality filters.
 
 ## 6. ClinicalTrials.gov (NIH)
 
