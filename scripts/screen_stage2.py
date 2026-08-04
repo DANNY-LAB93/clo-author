@@ -89,9 +89,18 @@ def main():
     ap.add_argument("--record", default=None)
     ap.add_argument("--by", default=None)
     ap.add_argument("--audit", action="store_true")
+    # Screening order is not neutral. The pool is in PMID order, so screening it
+    # front-to-back starts with the oldest and least relevant records. Arm A is
+    # 1,320 records and holds 36 of the 40 known positives; arm B is 5,839 and
+    # holds four that nothing else can reach. Doing arm A first front-loads the
+    # yield without changing what eventually gets screened.
+    ap.add_argument("--arm", default=None,
+                    help="A_organism_first | B_no_organism_block")
     args = ap.parse_args()
 
     pool = load_pool()
+    if args.arm:
+        pool = [r for r in pool if args.arm in (r.get("arms") or "")]
     done = load_log()
 
     if args.record:
