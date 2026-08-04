@@ -425,6 +425,31 @@ restricts to what this institution can read rather than to what exists, and the
 second would drop case reports in non-indexed venues. Both are availability
 filters masquerading as quality filters.
 
+### Verified 2026-08-03
+
+| Scope | Arm A |
+|---|---|
+| Default — subscribed content only | 999 |
+| **"Mostrar resultados fuera de la suscripción de mi biblioteca" ticked** | **1,013** |
+
+**Tick that box.** It is off by default, and left off the search silently returns
+what this library can read rather than what exists — an availability filter
+applied before screening, which is not a defensible thing to do in a systematic
+review. Here it hides only 14 records, but the size of the effect is not the
+point: it is not measurable in advance and it varies by topic.
+
+The 999 default reading is also a trap for a different reason: it looks exactly
+like a display cap, and BVS's tab genuinely does cap at 999. Two adjacent
+databases, the same number, one real and one an artefact. Check by changing the
+scope and seeing whether the number moves.
+
+ProQuest's query box is a real `<textarea>`, so the Chrome-translator hazard
+documented under Scopus does not apply here — `.value` is untouched by page
+translation. Verified: `document.documentElement.lang` was `es` while the query
+round-tripped in English.
+
+Arm B not yet run.
+
 ## 6. ClinicalTrials.gov (NIH)
 
 Registries hold protocol records, not publications, so the organism/no-organism
