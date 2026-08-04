@@ -1,0 +1,478 @@
+% ====================================================================
+% VERSIÓN EN ESPAÑOL -- SÓLO PARA LECTURA Y REVISIÓN INTERNA
+%
+% Traducción de main_cmi.tex (versión de envío a Clinical Microbiology
+% and Infection). NO es la versión de envío: CMI publica en inglés y el
+% documento que se manda es main_cmi.tex.
+%
+% Usa el MISMO generated_scalars.tex que las versiones en inglés, de
+% modo que ninguna cifra puede divergir entre los tres documentos.
+% Donde un macro produce texto en inglés (p. ej. "95\% CI"), se usan
+% sus componentes numéricos y se escribe el rótulo en español.
+% ====================================================================
+\documentclass[12pt]{article}
+
+\usepackage[left=2.2cm,right=2.2cm,top=2.2cm,bottom=2.2cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\footnotesize Versión en español --- sólo para revisión interna}
+\fancyhead[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\usepackage[spanish,es-noquoting,es-nodecimaldot]{babel}
+
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{array, booktabs}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, justification=justified}
+\usepackage{enumitem}
+\usepackage{xspace}
+
+\usepackage{xurl}
+\usepackage[backend=biber, style=numeric-comp, sorting=none,
+            maxcitenames=3, mincitenames=1, maxbibnames=99,
+            giveninits=true, uniquename=false, uniquelist=true,
+            url=true, natbib=true]{biblatex}
+\addbibresource{Bibliography_base.bib}
+\AtEveryBibitem{\clearfield{note}}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburlnumpenalty}{9000}
+
+\usepackage[hidelinks, breaklinks, colorlinks=false]{hyperref}
+
+\input{generated_scalars}
+
+\title{Fagoterapia para \textit{Pseudomonas aeruginosa} multirresistente, extremadamente resistente y panresistente: revisión sistemática y metaanálisis de proporciones}
+\author{[Lista de autores por definir]\thanks{Universidad Cat\'olica de Cuenca, Cuenca, Ecuador.}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\small\textbf{Documento de trabajo.} Traducción al
+español de la versión de envío a \textit{Clinical Microbiology and Infection},
+preparada únicamente para lectura y revisión interna. El documento que se
+enviará a la revista es la versión en inglés. Todas las cifras proceden del
+mismo archivo de macros generado por el análisis, de modo que no pueden
+discrepar entre versiones.}}
+\end{center}
+
+\vspace{1em}
+
+\section*{Resumen estructurado}
+\small
+
+\textbf{Antecedentes.} \textit{Pseudomonas aeruginosa} multirresistente (MDR),
+extremadamente resistente (XDR) y panresistente (PDR) deja pocas opciones
+terapéuticas, y la fagoterapia se ha extendido como tratamiento de rescate sin
+que exista una síntesis estratificada por clase de resistencia.
+
+\textbf{Objetivos.} Estimar proporciones agrupadas de éxito clínico, eventos
+adversos, erradicación microbiológica y mortalidad, estratificadas por clase de
+resistencia, vía de administración y modalidad de tratamiento.
+
+\textbf{Métodos. Fuentes de datos:} PubMed/MEDLINE, Scopus, ProQuest, Cochrane
+CENTRAL, BVS/LILACS, ClinicalTrials.gov, EudraCT y CTIS, cada una con un brazo
+anclado en el organismo y otro sin él; EMBASE y Web of Science no estaban
+disponibles. \textbf{Criterios de elegibilidad:} informes clínicos en humanos de
+cualquier diseño. \textbf{Participantes:} pacientes con infección por \textit{P.\
+aeruginosa} MDR/XDR/PDR; se excluyeron los ensayos que no exigían resistencia al
+ingreso. \textbf{Intervenciones:} fagoterapia por cualquier vía, sola o con
+antibióticos. La preparación no es caracterizable: producto, dosis, duración y
+personalización no se informan en la mayoría de las fuentes, y sólo
+\PhageSuscDocumented de \PhageSuscArms brazos documentan actividad del fago in
+vitro frente al aislado. \textbf{Evaluación del riesgo de sesgo:} cuatro
+dominios de Murad, JBI y RoB2 según diseño; GRADE para la certeza.
+\textbf{Síntesis:} modelo lineal generalizado mixto binomial-normal de efectos
+aleatorios con enlace logit, agrupando sólo celdas con $\ge$3 estudios y $\ge$20
+pacientes.
+
+\textbf{Resultados.} \PrismaPooledArms brazos (\PrismaPooledStudies estudios,
+\PatientsAnalysed pacientes), todos observacionales, dieron un éxito clínico de
+\CsOverallEst (IC 95\,\%: \CsOverallLo--\CsOverallHi). \CellsPooled de
+\CellsTotal celdas alcanzaron el umbral. Bajo clasificación de resistencia
+verificada de forma independiente, la celda MDR cae de \ClassMDRStudiesAll
+estudios y \ClassMDRPatientsAll pacientes a \ClassMDRStudiesVerified y
+\ClassMDRPatientsVerified, y deja de ser agrupable. La heterogeneidad de la
+erradicación resultó ser un artefacto de mezcla: separar la colonización crónica
+de vía aérea llevó $\tau^2$ de \EradFullTau a \EradOtherTau. $\tau^2$ fue cero en
+11 celdas. Todas las celdas obtuvieron certeza Muy baja.
+
+\textbf{Conclusiones.} Estas proporciones no pueden fundamentar decisiones
+terapéuticas. La clasificación de resistencia no sobrevive a la verificación y la
+erradicación no es un único constructo; ambas son propiedades de la base de
+evidencia, no de la fagoterapia.
+
+\normalsize
+\vspace{1em}
+\noindent\textbf{Palabras clave:} bacteriófagos; \textit{Pseudomonas
+aeruginosa}; farmacorresistencia bacteriana múltiple; fagoterapia; revisión
+sistemática; metaanálisis.
+
+\newpage
+\setcounter{page}{1}
+
+\section{Introducción}
+
+\textit{Pseudomonas aeruginosa} sigue siendo un patógeno prioritario para la
+Organización Mundial de la Salud, si bien la actualización de 2024
+\emph{rebajó} \textit{P.\ aeruginosa} resistente a carbapenémicos de la
+categoría Crítica a la categoría Alta \parencite{WHO2024_bppl,Tacconelli2018_who}.
+Lo declaramos explícitamente en lugar de citar la lista superada de 2018, porque
+juega en contra de la urgencia de nuestra propia pregunta.
+
+Una segunda corrección es obligada respecto de la premisa habitual. El desarrollo
+de antipseudomónicos no se ha detenido: ceftolozano--tazobactam,
+ceftazidima--avibactam, imipenem--relebactam y cefiderocol llegaron a uso clínico
+en la última década y recuperaron actividad frente a muchos aislados que las
+definiciones antiguas llaman multirresistentes. La escasez que motiva la terapia
+de rescate es, por tanto, más estrecha: el paciente en quien también esos agentes
+han fracasado. Esa distinción tiene una contrapartida formal. Las categorías de
+Magiorakos cuentan cuántas \emph{categorías} de antimicrobianos resiste un
+aislado \parencite{Magiorakos2012_mdrxdr}, una magnitud que los agentes nuevos
+han vuelto menos relevante para la decisión clínica. \textcite{Kadri2018_dtr}
+definen en cambio la resistencia difícil de tratar (DTR) como no sensibilidad a
+\emph{todos} los agentes de primera línea, que es el punto en el que el clínico
+se ve forzado a la terapia de reserva; los propios agentes de reserva no entran
+en la determinación, de modo que un aislado sensible sólo a colistina es DTR
+precisamente porque la colistina es lo que queda. Es DTR, y no MDR, lo que la
+guía actual utiliza para decidir el tratamiento en este organismo. Mantenemos
+Magiorakos como eje primario porque es lo que la literatura informa, y llevamos
+DTR en paralelo para mostrar lo que esa práctica de reporte cuesta.
+
+La fagoterapia para este patógeno se ha sintetizado repetidamente desde
+\textcite{ElHaddad2019_eskape}, incluida una revisión en \textit{Lancet
+Infectious Diseases} \parencite{Uyttebroek2022_lancetid} y un metaanálisis de
+datos individuales de 130 estudios \parencite{Liu2025_ijaa}. Ninguna restringe la
+agrupación a \textit{P.\ aeruginosa}, y ninguna estratifica por categoría de
+resistencia ni por vía de administración: las dos variables que un clínico más
+necesita resueltas.
+
+Nos preguntamos qué proporción de pacientes con \textit{P.\ aeruginosa}
+MDR, XDR o PDR tratados con fagoterapia alcanza el éxito clínico o experimenta un
+evento adverso, y si esas proporciones difieren por clase de resistencia, vía o
+modalidad.
+
+\section{Métodos}
+
+\subsection*{Protocolo}
+
+La revisión sigue PRISMA 2020. \textbf{No fue registrada prospectivamente}: la
+extracción había comenzado antes de que se considerara el registro, y lo
+declaramos en lugar de registrar retrospectivamente sin decirlo. Los métodos
+completos, las estrategias de búsqueda con conteos por fuente y todos los
+análisis de sensibilidad están en el material suplementario.
+
+\subsection*{Elegibilidad}
+
+\textbf{Población:} pacientes con infección por \textit{P.\ aeruginosa} que
+cumple criterios MDR, XDR o PDR \parencite{Magiorakos2012_mdrxdr}. Rigen tres
+reglas. Se excluyen los brazos cuyos datos de sensibilidad \emph{incumplen
+positivamente} el umbral. Se excluyen los brazos reclutados \emph{sin ningún
+requisito de resistencia}, porque la población demostrablemente no fue
+seleccionada por resistencia; esto retira de la síntesis todos los ensayos
+aleatorizados, un costo que aceptamos y sobre el que volvemos. Se conservan, y se
+codifican como no clasificables, los brazos en que un informe de rescate
+simplemente no \emph{informa} un panel de sensibilidad, porque la ausencia de
+panel no es evidencia de sensibilidad.
+
+\textbf{Intervención:} fagoterapia por cualquier vía, sola o con antibióticos. Un
+brazo se excluye únicamente cuando la preparación administrada \emph{nunca} se
+documentó activa in vitro frente al aislado.
+
+\textbf{Desenlaces:} éxito clínico y eventos adversos (primarios); erradicación,
+mortalidad, estancia hospitalaria y emergencia de resistencia (secundarios), cada
+uno según la definición del propio estudio primario.
+
+\textbf{Diseños:} ensayos aleatorizados, cohortes, series y reportes de casos,
+incluido el uso compasivo. Se excluyen los brazos cuyos desenlaces de \textit{P.\
+aeruginosa} no pueden separarse de una cohorte multipatógeno.
+
+\subsection*{Fuentes de información}
+
+Se buscaron ocho fuentes hasta el 3 de agosto de 2026: PubMed/MEDLINE, Scopus,
+ProQuest, Cochrane CENTRAL, BVS (LILACS, CUMED, BINACIS), ClinicalTrials.gov, EU
+CTR/EudraCT y CTIS. Cada una se buscó con \textbf{dos brazos}. El brazo A se
+ancla en el organismo; \textbf{el brazo B lo omite por completo}, porque cuatro
+estudios incluidos ---entre ellos el mayor contribuyente del corpus
+\parencite{Pirnay2024_natmicrobiol}--- son cohortes multipatógeno de fagoterapia
+que no nombran el organismo en título, resumen ni vocabulario controlado, y
+ninguna consulta anclada en el organismo puede recuperarlos con ninguna
+sensibilidad. Medido en PubMed, el brazo A cubrió 36 de 40 estudios incluidos, el
+brazo B cubrió 29, y sólo su unión cubrió los 40. Ninguna consulta exigió un
+término de resistencia, dado que el criterio de población conserva brazos sin
+documentación de resistencia.
+
+\textbf{EMBASE y Web of Science no se buscaron:} la institución no dispone de
+ninguna de las dos. CENTRAL mitiga parcialmente la primera, ya que incorpora
+registros procedentes de Embase, pero sólo para ensayos controlados, no para los
+reportes de casos que predominan en este corpus.
+
+\subsection*{Selección y extracción}
+
+Los registros se cribaron en Rayyan \parencite{Ouzzani2016_rayyan}. Los datos se
+extrajeron por brazo de estudio a un esquema estructurado. El riesgo de sesgo
+empleó los cuatro dominios de \textcite{Murad2018_casereports} para reportes y
+series de casos, JBI \parencite{Munn2020_jbicaseseries} para cohortes y RoB2 para
+ensayos; la certeza empleó GRADE para evidencia observacional sin comparador.
+
+\subsection*{Síntesis}
+
+Las proporciones se agruparon con un modelo lineal generalizado mixto
+binomial-normal de efectos aleatorios con enlace logit
+\parencite{Hamza2008_binomial,Nyaga2014_metaprop}, con intervalos de
+Hartung--Knapp--Sidik--Jonkman, en \texttt{meta} y \texttt{metafor}. Una celda se
+agrupó sólo con $\ge$3 estudios independientes y $\ge$20 pacientes; las celdas
+por debajo del umbral se informan narrativamente.
+
+Dos decisiones analíticas importan para la interpretación. Primera:
+$\hat\tau^2=0$ se trata como \textbf{no identificación, no como homogeneidad};
+con \SingleArmArms de \ArmsAnalysed brazos de un solo paciente, el intercepto
+aleatorio queda identificado únicamente por los brazos multipaciente, y en esas
+celdas el modelo se reduce a un binomial de efecto fijo con cuantil $t$. Segunda:
+los modelos de Freeman--Tukey y DerSimonian--Laird se informan como análisis de
+sensibilidad y no como alternativas; para la mortalidad global el GLMM devuelve
+exactamente la proporción cruda (\MortOverallEst), mientras Freeman--Tukey
+devuelve \MortOverallFT y DerSimonian--Laird \MortOverallDL ---los modos de
+fallo documentados, respectivamente, de la retrotransformación bajo
+heterogeneidad extrema del tamaño muestral \parencite{Schwarzer2019_doublearcsine}
+y de la corrección de continuidad con muchos brazos sin eventos.
+
+Para efectos de estudio pequeño se usó la prueba de Peters, dado que la
+regresión de Egger no es válida para proporciones.
+
+\section{Resultados}
+
+\subsection*{Selección y características}
+
+La Figura~1 muestra el flujo. Se evaluaron \PrismaAssessed registros a texto
+completo, de los cuales se incluyeron \PrismaIncludedStudies y se excluyeron
+\PrismaExcluded. El corpus analítico son \ArmsAnalysed brazos de
+\StudiesAnalysed estudios, \PatientsAnalysed pacientes. Es \textbf{enteramente
+observacional}: aplicar la regla de resistencia al ingreso retiró todos los
+ensayos aleatorizados, y quedan reportes de casos de uso compasivo, series de
+casos y una cohorte retrospectiva. \SingleArmArms de \ArmsAnalysed brazos llevan
+un solo paciente.
+
+La resistencia está positivamente establecida en \ResClassifiedArms de
+\ArmsAnalysed brazos; \ResNotClassifiableArms brazos con
+\ResNotClassifiablePatients pacientes (\ResNotClassifiablePct) no informan
+ninguna información de resistencia.
+
+\subsection*{Estimaciones agrupadas}
+
+El éxito clínico se agrupó en \CsOverallEst (IC 95\,\%:
+\CsOverallLo--\CsOverallHi) sobre \CsOverallK estudios y \CsOverallN pacientes.
+\CellsPooled de \CellsTotal celdas alcanzaron el umbral (Tabla~1; celdas no
+agrupadas y sus razones en la Tabla~2).
+
+Tres rasgos de esa tabla importan más que las propias estimaciones.
+
+\subsection*{Hallazgo 1: la clasificación de resistencia no sobrevive a la verificación}
+
+MDR es la única clase de resistencia que se agrupa, y lo hace sólo bajo etiquetas
+\emph{informadas por los autores}. Rederivar la clasificación de forma
+independiente a partir de los datos de sensibilidad publicados hace que la celda
+MDR de éxito clínico caiga de \ClassMDRStudiesAll estudios y
+\ClassMDRPatientsAll pacientes a \ClassMDRStudiesVerified estudios y
+\ClassMDRPatientsVerified pacientes: por debajo del umbral, no agrupable. La
+variable de estratificación sobre la que descansa el análisis primario de esta
+revisión no es, por tanto, verificable a la escala a la que se usa.
+
+El mismo fallo de reporte aparece en el eje que la guía actual sí utiliza. La
+resistencia difícil de tratar es adjudicable en \DtrAdjudicable de
+\ArmsAnalysed brazos; \DtrNotDerivableArms no pueden determinarse en ninguna
+dirección. La razón es precisa, y una versión anterior de esta revisión la
+enunció mal: no es que las fuentes no publiquen antibiograma, sino que los
+paneles son \emph{parciales} ---el criterio de \citeauthor{Kadri2018_dtr} exige
+conocer el estado de cada categoría de primera línea, y las fuentes suelen
+nombrar los agentes administrados y no los evaluados.
+
+\subsection*{Hallazgo 2: la erradicación no es un único constructo}
+
+La erradicación microbiológica concentra la única varianza sustancial entre
+brazos de la revisión ($\tau^2=\EradFullTau$). Esa amplitud no es variación
+clínica. En la infección \emph{establecida} de vía aérea crónica ---fibrosis
+quística, bronquiectasias, colonización crónica en enfermedad pulmonar
+intersticial--- la eliminación del microorganismo no se logra ni es el objetivo
+terapéutico; en los demás sitios es exactamente la meta.
+
+Dividir por esa línea resuelve la varianza por completo. Entre los
+\EradOtherArms brazos de otros sitios la proporción agrupada es \EradOtherEst
+(\EradOtherCI) con $\tau^2=\EradOtherTau$ ---\emph{exactamente cero}. Entre los
+\EradAirArms brazos de vía aérea crónica el modelo degenera (\EradAirEst,
+$\tau^2=\EradAirTau$), lo que es el comportamiento de frontera de una celda con
+casi ningún evento y no una estimación. La cifra agrupada es un promedio
+ponderado de una proporción coherente y otra degenerada, mezcladas en la
+proporción que el registro publicado haya provisto.
+
+\subsection*{Hallazgo 3: la intervención no es verificable}
+
+De \PhageSuscArms brazos, \PhageSuscDocumented registran alguna prueba de
+sensibilidad fágica ---fagograma, eficiencia de plaqueo, prueba en gota, o una
+afirmación explícita de actividad. Para los \PhageSuscSilent restantes
+(\PhageSuscSilentPct), el registro publicado no establece que el fago
+administrado pudiera lisar el organismo para el que se administró. No es una
+preocupación hipotética: un estudio fue excluido de esta revisión precisamente
+porque su cóctel se administró y el aislado resultó no sensible a él.
+
+El éxito clínico se define asimismo en cada fuente según sus propios términos, en
+ventanas de seguimiento que van de \FollowUpMin a \FollowUpMax cuando se declaran
+---\FollowUpNotStated de \ArmsAnalysed brazos no declaran ninguna.
+
+\subsection*{Heterogeneidad, riesgo de sesgo y certeza}
+
+$\hat\tau^2$ es exactamente cero en 11 de \CellsPooled celdas agrupadas. Se
+informan como proporciones binomiales agrupadas con intervalos basados en $t$ y
+no como estimaciones de efectos aleatorios, porque no hay varianza entre brazos
+identificada y el intervalo de predicción colapsa sobre el de confianza.
+
+Todos los brazos obtienen riesgo de sesgo Alto en el dominio de causalidad: el
+fago se coadministró con antibióticos en todos salvo \ModalityMonoArms brazos, de
+modo que ningún brazo puede atribuir su desenlace al fago. No hubo ningún brazo
+de monoterapia antibiótica, por lo que la comparación de modalidad que motivó
+esta revisión no pudo construirse.
+
+Las \CellsPooled celdas agrupadas obtienen certeza \textbf{Muy baja}. Esto es
+determinista y no discriminativo: para proporciones observacionales no
+controladas, el riesgo de sesgo, la evidencia indirecta y el sesgo de publicación
+descuentan cada uno al menos un nivel desde un punto de partida Bajo.
+
+La prueba de Peters no fue informativa ---su regresor de tamaño muestral inverso
+es constante entre los brazos de un solo paciente--- y tratamos por tanto la
+asimetría de estudios pequeños como no evaluada, no como ausente.
+
+\subsection*{La evidencia aleatorizada, que queda fuera de la síntesis}
+
+La regla de población excluye todos los ensayos aleatorizados, y eso los vuelve
+más útiles como comparación externa, no menos. PhagoBurn se detuvo
+precozmente por eficacia insuficiente, con su desenlace primario favoreciendo el
+cuidado estándar \parencite{Jault2019_phagoburn}.
+\textcite{Leitner2021_lancetid_pyophage} no halló superioridad del fago
+intravesical sobre placebo ni sobre antibióticos. BX004-A cumplió sus desenlaces
+de seguridad y quedó infrapotenciado para eficacia
+\parencite{Weiner2025_natcomms}. El ensayo CYPHY de Yale no mostró prácticamente
+separación respecto del placebo. \textbf{La señal aleatorizada es nula o
+negativa}, mientras la proporción agrupada de brazo único es alta y procede de
+informes cuya publicación depende del resultado.
+
+\section{Discusión}
+
+Esta revisión se propuso estratificar los desenlaces de la fagoterapia en
+\textit{P.\ aeruginosa} resistente por clase de resistencia, vía y modalidad. Lo
+logró para una celda y falló para el resto, y el patrón de ese fallo es más
+informativo que las estimaciones que sobrevivieron.
+
+Dos hallazgos son propiedades de la base de evidencia y no de la fagoterapia, y
+ambos son cuantitativos. La clasificación de resistencia ---la variable de
+estratificación primaria--- cae por debajo de la agrupabilidad cuando se rederiva
+de los datos de sensibilidad publicados en lugar de aceptarse de las etiquetas de
+los autores. Y la erradicación microbiológica no es un único constructo: separar
+la colonización crónica de vía aérea de los demás sitios lleva $\tau^2$ de
+\EradFullTau a exactamente cero, mostrando que la heterogeneidad antes atribuida
+a variación clínica la producía agrupar dos desenlaces que comparten nombre.
+
+Ninguno de los dos exige creer nada sobre la eficacia de los fagos. Ambos afectan
+directamente a cómo deben construirse las síntesis de esta literatura, incluidas
+las ya publicadas: ninguna de las revisiones previas
+\parencite{ElHaddad2019_eskape,Uyttebroek2022_lancetid,Liu2025_ijaa} verifica las
+etiquetas de resistencia ni separa la erradicación por sitio.
+
+\subsection*{Por qué las proporciones agrupadas no deben guiar el tratamiento}
+
+La proporción global de éxito clínico de \CsOverallEst describe una población de
+rescate seleccionada por derivación, a la que se ofreció fagoterapia después del
+fracaso antibiótico. Es una proporción \emph{del registro publicado}, no de los
+pacientes tratados. Tres rasgos estructurales impiden una lectura más fuerte. El
+fago se coadministró con antibióticos en todos salvo \ModalityMonoArms brazos, de
+modo que la atribución causal no está disponible por diseño. La estimación más
+alta de la revisión, \CsResNotClassifiableEst, cae en el estrato definido por la
+\emph{ausencia} de documentación de resistencia ---un estrato cuyo rasgo
+definitorio es la falta de dato, no una clase clínica. Y la certeza GRADE es Muy
+baja en todas las celdas agrupadas.
+
+La evidencia aleatorizada agudiza esto. Es uniformemente nula o negativa, y queda
+fuera de la síntesis por una razón defendible: esos ensayos no reclutaron por
+resistencia y no estimaban este estimando. Pero la arquitectura resultante asigna
+estatus cuantitativo a la literatura de reportes de caso condicionada al
+resultado, y estatus narrativo a la evidencia comparativa. Por eso informamos
+ambas juntas, y quien tome la proporción agrupada sin el contraste de los ensayos
+leerá mal el estado del campo.
+
+\subsection*{Limitaciones}
+
+\textbf{El cribado lo realizó un solo revisor}, con la crítica de un segundo
+revisor aplicada de forma secuencial y no concurrente. Ese proceso detectó
+errores reales ---un paciente duplicado y dos pacientes que no cumplían el propio
+criterio de resistencia de la revisión--- pero no equivale al doble cribado
+independiente, y un recribado formal podría cambiar la inclusión.
+
+\textbf{La revisión no fue registrada prospectivamente.}
+
+\textbf{EMBASE y Web of Science no se buscaron}, al no disponer la institución de
+ninguna de las dos. Es una restricción permanente de este trabajo y no una tarea
+inconclusa. CENTRAL aporta registros procedentes de Embase para ensayos
+controlados, lo que no cubre los reportes de casos que constituyen la mayor parte
+del corpus.
+
+\textbf{La intervención no está caracterizada.} Ninguna extracción registra
+producto, título, dosis, pauta ni personalización, de modo que las proporciones
+agrupadas tratan como una misma exposición un fago personalizado y un cóctel
+comercial. Con actividad documentada en \PhageSuscDocumented de \PhageSuscArms
+brazos, la revisión no puede establecer que la intervención se administrara en
+sentido farmacológico en la mayor parte de su corpus.
+
+\textbf{El corpus es lo bastante pequeño como para moverse.} Con \ArmsAnalysed
+brazos y \PatientsAnalysed pacientes, un puñado de registros adicionales desplaza
+una cifra de titular; la estimación agrupada de erradicación se movió más de diez
+puntos porcentuales entre rondas de búsqueda.
+
+\subsection*{Implicaciones}
+
+Para el clínico, ninguna proporción aquí informada debe fundamentar una decisión
+terapéutica; el marco de consenso del ARLG sigue siendo la guía apropiada sobre
+cuándo puede considerarse la fagoterapia \parencite{Suh2022_aac}.
+
+Para el campo, tres necesidades se siguen directamente de lo que esta revisión no
+pudo hacer. Los estudios primarios deben informar el panel de sensibilidad que
+usaron, y no sólo los agentes que administraron, o la clasificación de
+resistencia seguirá siendo inverificable. Deben informar si el fago administrado
+era activo frente al aislado. Y las definiciones de desenlace deben armonizarse
+por síndrome infeccioso, dado que la erradicación demostrablemente no significa
+lo mismo en distintos sitios.
+
+Para la síntesis de evidencia, la recomendación concreta es que las etiquetas de
+resistencia se rederiven en lugar de aceptarse, y que la erradicación se
+estratifique por sitio antes de agrupar. Ambas cosas son baratas, ambas son
+comprobables, y ambas cambian la respuesta.
+
+\subsection*{Conclusión}
+
+La fagoterapia para \textit{P.\ aeruginosa} MDR, XDR y PDR se apoya en un
+registro publicado que todavía no puede responder la pregunta estratificada que
+un clínico formularía. Lo que esta revisión establece es más estrecho y más firme
+que un porcentaje agrupado: la clasificación de resistencia en esta literatura no
+sobrevive a la verificación independiente, la erradicación microbiológica no es
+un constructo único entre sitios de infección, y la actividad del fago
+administrado está sin documentar en la gran mayoría de los casos publicados.
+Hasta que el reporte primario atienda esas tres cosas, seguir sintetizando la
+misma literatura de reportes de caso no resolverá lo que queda abierto.
+
+\clearpage
+\small
+\printbibliography
+
+\end{document}
