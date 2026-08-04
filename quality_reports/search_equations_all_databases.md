@@ -353,10 +353,41 @@ AND
  OR "case report" OR clinico OR clínico OR clinical OR humano OR humanos)
 ```
 
-Filter by year 2016–2026 in the left-hand facets, and **record which BVS
-databases the facet reports** (LILACS, MEDLINE, IBECS, BDENF, CUMED and others
-are searched together and MEDLINE will duplicate the PubMed arm). Report LILACS
-separately from the MEDLINE component, or the counts double-count.
+### Verified 2026-08-03 — and arm B does not work here
+
+| Query | LILACS Plus tab | Full BVS |
+|---|---|---|
+| Arm A — phage terms AND Pseudomonas | 109 | 5,649 |
+| Arm B — phage terms AND clinical terms | 999 (capped) | 35,466 |
+| Intervention block alone | 2,379 | 119,561 |
+
+**Arm B is unusable in BVS and should not be run.** Its clinical block —
+*paciente*, *clínico*, *humano*, *case report* — does not discriminate in a
+database whose entire content is clinical, and the tab caps at 999 rather than
+reporting a true count. The design rationale for arm B (reaching multi-pathogen
+cohorts that name no organism) is better served here the way it is in CENTRAL:
+run the intervention block alone and screen everything.
+
+### The tab label is misleading, and the facet is what counts
+
+**"Colección LILACS Plus" is not LILACS.** For the intervention-block query the
+database facet reports:
+
+| Database | Records |
+|---|---|
+| MEDLINE | 1,815 |
+| **LILACS** | **382** |
+| **CUMED** (Cuba) | **37** |
+| **BINACIS** (Argentina) | **35** |
+
+So the 2,379 figure is roughly three-quarters MEDLINE, which duplicates the
+PubMed arm in full. **The non-duplicating yield of this source is about 454
+records** — LILACS, CUMED and BINACIS combined — and that is the number to
+screen and the number to report.
+
+Open **Más filtros → base de datos** and deselect MEDLINE before exporting.
+Reporting the tab total instead would double-count PubMed and inflate the PRISMA
+identification box by more than 1,800 records.
 
 ## 5c. ProQuest — access confirmed, database list must be recorded
 
