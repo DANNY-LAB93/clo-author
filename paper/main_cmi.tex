@@ -1,0 +1,242 @@
+% ====================================================================
+% CMI SUBMISSION VERSION
+% Clinical Microbiology and Infection (ESCMID / Elsevier)
+%
+% Hard limits, read from the journal's author guide on 2026-08-03:
+%   - Systematic Review main text: 3500 words
+%   - Structured abstract: 300 words, sections prescribed verbatim
+%   - PRISMA 2020 checklist required at submission
+%
+% This file is the SUBMISSION version. The full manuscript (main.tex,
+% 20,639 words) remains the working document and becomes the
+% supplementary material. Nothing here is retyped: every quantity
+% resolves from generated_scalars.tex, the same macro file the full
+% manuscript uses, so the two cannot disagree.
+% ====================================================================
+\documentclass[12pt]{article}
+
+\usepackage[left=1.0in,right=1.0in,top=1.0in,bottom=1.0in]{geometry}
+\usepackage{setspace}
+\doublespacing
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{array, booktabs}
+\usepackage[flushleft]{threeparttable}
+\usepackage{siunitx}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs, siunitx}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, justification=justified}
+\usepackage{enumitem}
+\usepackage{xspace}
+
+\usepackage{xurl}
+\usepackage[backend=biber, style=numeric-comp, sorting=none,
+            maxcitenames=3, mincitenames=1, maxbibnames=99,
+            giveninits=true, uniquename=false, uniquelist=true,
+            url=true, natbib=true]{biblatex}
+\addbibresource{Bibliography_base.bib}
+\AtEveryBibitem{\clearfield{note}}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburlnumpenalty}{9000}
+
+\usepackage[hidelinks, breaklinks, colorlinks=false]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+\input{generated_scalars}
+
+\title{Phage therapy for multidrug-, extensively drug- and pandrug-resistant \textit{Pseudomonas aeruginosa}: a systematic review and meta-analysis of proportions}
+
+\author{%
+[Author list to be finalised]\thanks{Universidad Cat\'olica de Cuenca, Cuenca, Ecuador. Corresponding author: [email]. Author list, affiliations and ICMJE contribution statement to be completed before submission.}%
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+% ====================================================================
+% STRUCTURED ABSTRACT -- CMI's prescribed sections for systematic
+% reviews of interventions, verbatim:
+%   Background; Objectives; Methods: Data sources, Study eligibility
+%   criteria, Participants, Interventions, Assessment of risk of bias,
+%   Methods of data synthesis; Results; Conclusions.  Max 300 words.
+% ====================================================================
+\begin{abstract}
+\noindent\singlespacing
+\textbf{Background:} Multidrug- (MDR), extensively drug- (XDR) and pandrug-resistant (PDR) \textit{Pseudomonas aeruginosa} leaves few options, and bacteriophage therapy has expanded as salvage treatment without synthesis stratified by resistance class.
+
+\textbf{Objectives:} To estimate pooled proportions of clinical success, adverse events, microbiological eradication and mortality, stratified by resistance class, administration route and treatment modality.
+
+\textbf{Methods: Data sources:} PubMed/MEDLINE, Scopus, ProQuest, Cochrane CENTRAL, BVS/LILACS, ClinicalTrials.gov, EudraCT and CTIS, each searched with an organism-anchored and an organism-free arm; EMBASE and Web of Science were unavailable. \textbf{Study eligibility criteria:} Human clinical reports of any design. \textbf{Participants:} Patients with MDR/XDR/PDR \textit{P.\ aeruginosa} infection; trials not requiring resistance at entry were excluded. \textbf{Interventions:} Bacteriophage therapy by any route, alone or with antibiotics. The preparation was not characterisable: product, dose, duration and personalisation are unreported in most sources, and only \PhageSuscDocumented of \PhageSuscArms arms document phage activity in vitro against the isolate. \textbf{Assessment of risk of bias:} Murad's four domains, JBI and RoB2 by design; GRADE for certainty. \textbf{Methods of data synthesis:} Random-effects binomial-normal generalised linear mixed model, logit link, pooling cells with $\ge$3 studies and $\ge$20 patients.
+
+\textbf{Results:} \PrismaPooledArms arms (\PrismaPooledStudies studies, \PatientsAnalysed patients), all observational, gave clinical success \CsOverallEstCI. \CellsPooled of \CellsTotal cells met threshold. Under independently verified resistance labels the MDR cell falls from \ClassMDRStudiesAll studies and \ClassMDRPatientsAll patients to \ClassMDRStudiesVerified and \ClassMDRPatientsVerified, and cannot be pooled. Eradication heterogeneity was a mixture artefact: separating chronic airway colonisation drove $\tau^2$ from \EradFullTau to \EradOtherTau. $\tau^2$ was zero in 11 cells. All cells rated Very low certainty.
+
+\textbf{Conclusions:} These proportions cannot support treatment decisions. Resistance classification does not survive verification and eradication is not one construct; both are properties of the evidence base, not of phage therapy.
+\end{abstract}
+
+\vspace{1em}
+\noindent\textbf{Keywords:} Bacteriophages; \textit{Pseudomonas aeruginosa}; Drug Resistance, Multiple, Bacterial; Phage Therapy; Systematic Review; Meta-Analysis
+
+\newpage
+\setcounter{page}{1}
+
+% ====================================================================
+\section{Introduction}
+% target 350 words
+% ====================================================================
+
+\textit{Pseudomonas aeruginosa} remains a World Health Organization priority pathogen, although the 2024 update \emph{downgraded} carbapenem-resistant \textit{P.\ aeruginosa} from Critical to High \parencite{WHO2024_bppl,Tacconelli2018_who}. We state that explicitly rather than cite the superseded 2018 list, because it cuts against the urgency of our own question.
+
+A second correction is owed to the usual premise. The antipseudomonal pipeline has not stalled: ceftolozane--tazobactam, ceftazidime--avibactam, imipenem--relebactam and cefiderocol reached clinical use in the last decade and recovered activity against many isolates that older definitions call multidrug-resistant. The scarcity that motivates salvage therapy is therefore narrower --- the patient in whom those agents have also failed. That distinction has a formal counterpart. The Magiorakos categories count how many antimicrobial \emph{categories} an isolate resists \parencite{Magiorakos2012_mdrxdr}, a quantity the newer agents have made less decision-relevant. \textcite{Kadri2018_dtr} instead define difficult-to-treat resistance (DTR) as non-susceptibility to all \emph{first-line} agents, which is the point at which a clinician is forced onto reserve therapy; reserve agents themselves do not enter the determination, so an isolate susceptible only to colistin is DTR precisely because colistin is what remains. DTR, not MDR, is what current guidance uses for treatment decisions in this organism. We retain Magiorakos as the primary axis because it is what the literature reports, and carry DTR alongside to show what that reporting practice costs.
+
+Phage therapy for this pathogen has been synthesised repeatedly since \textcite{ElHaddad2019_eskape}, including a \textit{Lancet Infectious Diseases} review \parencite{Uyttebroek2022_lancetid} and a 130-study individual-patient-data meta-analysis \parencite{Liu2025_ijaa}. None restricts pooling to \textit{P.\ aeruginosa}, and none stratifies by resistance category or administration route --- the two variables a clinician most needs resolved.
+
+We asked what proportion of patients with MDR, XDR or PDR \textit{P.\ aeruginosa} treated with phage therapy achieve clinical success or experience an adverse event, and whether those proportions differ by resistance class, route or modality.
+
+% ====================================================================
+\section{Methods}
+% target 700 words
+% ====================================================================
+
+\subsection*{Protocol}
+
+The review follows PRISMA 2020. It was \textbf{not registered prospectively}; extraction had begun before registration was considered, and we disclose this rather than register retrospectively without saying so. Full methods, search strategies with per-source counts, and all sensitivity analyses are in Supplementary Material.
+
+\subsection*{Eligibility}
+
+\textbf{Population:} patients with \textit{P.\ aeruginosa} infection meeting MDR, XDR or PDR criteria \parencite{Magiorakos2012_mdrxdr}. Three rules govern classification. Arms whose reported susceptibility data \emph{positively fail} the threshold are excluded. Arms recruited \emph{without any resistance requirement} are excluded, because the population was demonstrably not selected for resistance --- this removes every randomised trial from the synthesis, a cost we accept and return to. Arms in which a salvage report simply does not \emph{report} a panel are retained and coded not-classifiable, because absence of a panel is not evidence of susceptibility.
+
+\textbf{Intervention:} bacteriophage therapy by any route, alone or with antibiotics. An arm is excluded only where the administered preparation was \emph{never} documented active in vitro against the isolate.
+
+\textbf{Outcomes:} clinical success and adverse events (primary); eradication, mortality, length of stay and resistance emergence (secondary), each per the primary study's own definition.
+
+\textbf{Designs:} randomised trials, cohorts, case series and case reports, including compassionate use. Arms whose \textit{P.\ aeruginosa} outcomes cannot be separated from a mixed-pathogen cohort are excluded.
+
+\subsection*{Information sources}
+
+Eight sources were searched to 2026-08-03: PubMed/MEDLINE, Scopus, ProQuest, Cochrane CENTRAL, BVS (LILACS, CUMED, BINACIS), ClinicalTrials.gov, EU CTR/EudraCT and CTIS. Each was searched with \textbf{two arms}. Arm A anchors on the organism; \textbf{arm B omits the organism entirely}, because four included studies --- among them the corpus's largest contributor \parencite{Pirnay2024_natmicrobiol} --- are multi-pathogen phage cohorts that name no organism in title, abstract or controlled vocabulary, and no organism-anchored query can retrieve them at any sensitivity. Measured in PubMed, arm A covered 36 of 40 included studies, arm B covered 29, and only their union covered all 40. No resistance term was required in any query, since the population criterion retains arms with no resistance documentation.
+
+\textbf{EMBASE and Web of Science were not searched}: neither is held by the institution. CENTRAL partially mitigates the first, since it ingests Embase-sourced trial records --- for controlled trials only, not for the case reports that dominate this corpus.
+
+\subsection*{Selection and extraction}
+
+Records were screened in Rayyan \parencite{Ouzzani2016_rayyan}. Data were extracted per study-arm into a structured schema. Risk of bias used \textcite{Murad2018_casereports}' four domains for case reports and series, JBI \parencite{Munn2020_jbicaseseries} for cohorts and RoB2 for trials; certainty used GRADE for observational evidence without comparators.
+
+\subsection*{Synthesis}
+
+Proportions were pooled with a random-effects binomial-normal generalised linear mixed model with logit link \parencite{Hamza2008_binomial,Nyaga2014_metaprop}, Hartung--Knapp--Sidik--Jonkman intervals, in \texttt{meta} and \texttt{metafor}. A cell was pooled only with $\ge$3 independent studies and $\ge$20 patients; cells below threshold are reported narratively.
+
+Two analytic decisions matter for interpretation. First, $\hat\tau^2=0$ is treated as \textbf{non-identification, not homogeneity}: with \SingleArmShare of arms carrying one patient, the random intercept is identified only by the multi-patient arms, and in those cells the model reduces to a fixed-effect binomial with a $t$-quantile. Second, Freeman--Tukey and DerSimonian--Laird models are reported as sensitivity analyses rather than alternatives: for overall mortality the GLMM returns the crude proportion exactly (\MortOverallEst), while Freeman--Tukey returns \MortOverallFT{} and DerSimonian--Laird \MortOverallDL{} --- the documented failure modes of, respectively, back-transformation under extreme sample-size heterogeneity \parencite{Schwarzer2019_doublearcsine} and continuity correction with many zero-event arms.
+
+Small-study effects used Peters' test, Egger's regression being invalid for proportions.
+
+% ====================================================================
+\section{Results}
+% target 1500 words
+% ====================================================================
+
+\subsection*{Study selection and characteristics}
+
+Figure~1 shows the flow. \PrismaAssessed records were assessed at full text, of which \PrismaIncludedStudies were included and \PrismaExcluded excluded. The analytic corpus is \ArmsAnalysed study-arms from \StudiesAnalysed studies, \PatientsAnalysed patients. It is \textbf{entirely observational}: applying the resistance-entry rule removed every randomised trial, leaving compassionate-use case reports, case series and one retrospective cohort. \SingleArmShare of arms carry a single patient.
+
+Resistance is positively established for \ResClassifiedArms of \ArmsAnalysed arms; \ResNotClassifiableArms arms carrying \ResNotClassifiablePatients patients (\ResNotClassifiablePct) report no resistance information at all.
+
+\subsection*{Pooled estimates}
+
+Clinical success pooled at \CsOverallEstCI across \CsOverallK studies and \CsOverallN patients. \CellsPooled of \CellsTotal stratum cells met the pooling threshold. Full estimates are in Table~1; non-pooled cells and their reasons in Table~2.
+
+Three features of that table matter more than the estimates themselves.
+
+\subsection*{Finding 1: resistance classification does not survive verification}
+
+MDR is the only resistance class that pools, and it does so only under \emph{author-reported} labels. Re-deriving classification independently from published susceptibility data collapses the MDR clinical-success cell from \ClassMDRStudiesAll studies and \ClassMDRPatientsAll patients to \ClassMDRStudiesVerified studies and \ClassMDRPatientsVerified patients --- below threshold, unpoolable. The stratification variable on which this review's primary analysis rests is therefore not verifiable at the scale at which it is used.
+
+The same reporting failure appears on the axis current guidance actually uses. Difficult-to-treat resistance is adjudicable for \DtrAdjudicable of \ArmsAnalysed arms; \DtrNotDerivableArms cannot be called in either direction. The reason is precise, and an earlier version of this review stated it wrongly: it is not that sources publish no antibiogram, but that panels are \emph{partial} --- \citeauthor{Kadri2018_dtr}'s criterion requires the status of every first-line category, and sources typically name the agents administered rather than those tested.
+
+\subsection*{Finding 2: eradication is not one construct}
+
+Microbiological eradication carries the only substantial between-arm variance in the review ($\tau^2=\EradFullTau$). That width is not clinical variation. In \emph{established} chronic airway infection --- cystic fibrosis, bronchiectasis, chronic interstitial-lung-disease colonisation --- clearance is neither achieved nor the therapeutic target; elsewhere it is exactly the goal.
+
+Splitting on that line resolves the variance completely. Among \EradOtherArms arms at other sites the pooled proportion is \EradOtherEst(\EradOtherCI) with $\tau^2=\EradOtherTau$ --- \emph{exactly zero}. Among the \EradAirArms chronic-airway arms the model degenerates (\EradAirEst, $\tau^2=\EradAirTau$), which is boundary behaviour of a near-zero-event cell rather than an estimate. The pooled figure is a weighted average of a coherent proportion and a degenerate one, mixed in whatever ratio the published record happens to supply.
+
+\subsection*{Finding 3: the intervention is not verifiable}
+
+Of \PhageSuscArms arms, \PhageSuscDocumented record any phage-susceptibility testing --- a phagogram, an efficiency-of-plating measurement, a spot test, or a plain statement of activity. For the remaining \PhageSuscSilent (\PhageSuscSilentPct), the published record does not establish that the administered phage could lyse the organism it was given for. This is not a hypothetical concern: one study was excluded from this review precisely because its cocktail was administered and the isolate proved non-susceptible to it.
+
+Clinical success is likewise defined by each source on its own terms, over follow-up windows spanning \FollowUpMin{} to \FollowUpMax{} where stated at all --- \FollowUpNotStated of \ArmsAnalysed arms state none.
+
+\subsection*{Heterogeneity, risk of bias and certainty}
+
+$\hat\tau^2$ is exactly zero in 11 of \CellsPooled pooled cells. These are reported as pooled binomial proportions with $t$-based intervals rather than as random-effects estimates, because no between-arm variance is identified and the prediction interval collapses onto the confidence interval.
+
+Every arm rates High risk of bias overall on the causality domain: phage was co-administered with antibiotics in all but \ModalityMonoArms arms, so no arm can attribute its outcome to the phage. There were \strut zero antibiotic-monotherapy arms, so the modality comparison that motivated this review could not be constructed at all.
+
+All \CellsPooled pooled cells rate \textbf{Very low} certainty. This is deterministic rather than discriminating: for uncontrolled observational proportions, risk of bias, indirectness and publication bias each deduct at least one level from a Low starting point.
+
+Peters' test was uninformative --- its inverse-sample-size regressor is constant across the single-patient arms --- and we therefore treat small-study asymmetry as untested rather than absent.
+
+\subsection*{The randomised evidence, which sits outside the synthesis}
+
+The population rule excludes every randomised trial, and that makes them more useful as external comparison, not less. PhagoBurn stopped early for insufficient efficacy, its primary endpoint favouring standard care \parencite{Jault2019_phagoburn}. \textcite{Leitner2021_lancetid_pyophage} found no superiority of intravesical phage over placebo or antibiotics. BX004-A met safety endpoints and was underpowered for efficacy \parencite{Weiner2025_natcomms}. The Yale CYPHY trial showed essentially no separation from placebo. \textbf{The randomised signal is null to negative}, while the pooled single-arm proportion is high and drawn from reports whose publication is conditional on outcome.
+
+% ====================================================================
+\section{Discussion}
+% target 900 words
+% ====================================================================
+
+This review set out to stratify phage-therapy outcomes in resistant \textit{P.\ aeruginosa} by resistance class, route and modality. It succeeded for one cell and failed for the rest, and the pattern of that failure is more informative than the estimates that survived.
+
+Two findings are properties of the evidence base rather than of phage therapy, and both are quantitative. Resistance classification --- the review's primary stratification variable --- collapses below poolability when re-derived from published susceptibility data instead of accepted from author labels. And microbiological eradication is not one construct: separating chronic airway colonisation from other sites drives $\tau^2$ from \EradFullTau to exactly zero, showing that the heterogeneity previously attributable to clinical variation was produced by pooling two endpoints that share a name.
+
+Neither finding requires believing anything about phage efficacy. Both bear directly on how syntheses of this literature should be built, including the ones already published: none of the prior reviews \parencite{ElHaddad2019_eskape,Uyttebroek2022_lancetid,Liu2025_ijaa} verifies resistance labels or separates eradication by site.
+
+\subsection*{Why the pooled proportions should not guide treatment}
+
+The overall clinical-success proportion of \CsOverallEst describes a referral-selected salvage population offered phage after antibiotics failed. It is a proportion of the published record, not of treated patients. Three structural features prevent any stronger reading. Phage was co-administered with antibiotics in all but \ModalityMonoArms arms, so causal attribution is unavailable by design. The highest estimate in the review, \CsResNotClassifiableEst, falls in the stratum defined by \emph{absent} resistance documentation --- a stratum whose defining feature is missingness, not a clinical class. And GRADE certainty is Very low in every pooled cell.
+
+The randomised evidence sharpens this. It is uniformly null to negative, and it sits outside the synthesis for a defensible reason --- those trials did not enrol on resistance and were not estimating this estimand. But the resulting architecture assigns quantitative status to the outcome-conditional case-report literature and narrative status to the comparative evidence. We report both together for that reason, and a reader who takes the pooled proportion without the trial contrast will misread the field.
+
+\subsection*{Limitations}
+
+\textbf{Screening was performed by one reviewer}, with a second reviewer's critique applied sequentially rather than concurrently. That process caught real errors, including a duplicate patient and two patients who did not meet the review's own resistance criterion, but it is not equivalent to dual independent screening and a formal re-screen could change inclusion.
+
+\textbf{The review was not prospectively registered.}
+
+\textbf{EMBASE and Web of Science were not searched}, neither being held by the institution. This is a permanent constraint on this work rather than an unfinished task. CENTRAL supplies Embase-sourced records for controlled trials, which does not cover the case reports that constitute most of this corpus.
+
+\textbf{The intervention is not characterised.} No source-level extraction captures phage product, titre, dose, schedule or personalisation status, so the pooled proportions treat a personalised single phage and a commercial cocktail as one exposure. With activity documented in \PhageSuscDocumented of \PhageSuscArms arms, the review cannot establish that the intervention was delivered in the pharmacological sense for most of its corpus.
+
+\textbf{The corpus is small enough to move.} At \ArmsAnalysed arms and \PatientsAnalysed patients, a handful of additional records shifts a headline figure; the pooled eradication estimate moved more than ten percentage points across search rounds.
+
+\subsection*{Implications}
+
+For clinicians, no proportion reported here should inform a treatment decision; the ARLG consensus framework remains the appropriate guide to when phage therapy may be considered \parencite{Suh2022_aac}.
+
+For the field, three needs follow directly from what this review could not do. Primary studies must report the susceptibility panel they used, not only the agents they administered, or resistance classification will remain unverifiable. They must report whether the administered phage was active against the isolate. And outcome definitions must be harmonised by infection syndrome, since eradication demonstrably does not mean the same thing across sites.
+
+For evidence synthesis, the specific recommendation is that resistance labels be re-derived rather than accepted, and that eradication be stratified by site before pooling. Both are cheap, both are checkable, and both change the answer.
+
+\subsection*{Conclusion}
+
+Bacteriophage therapy for MDR, XDR and PDR \textit{P.\ aeruginosa} is supported by a published record that cannot yet answer the stratified question a clinician would ask. What this review establishes is narrower and firmer than a pooled percentage: resistance classification in this literature does not survive independent verification, microbiological eradication is not a single construct across infection sites, and the activity of the administered phage is undocumented in the large majority of reported cases. Until primary reporting addresses those three, further synthesis of the same case-report literature will not resolve what remains open.
+
+\clearpage
+\small
+\printbibliography
+
+\end{document}

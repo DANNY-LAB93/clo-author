@@ -513,6 +513,21 @@ if (!is.null(fus)) {
     "")
 }
 
+# ---- corpus shape quantities the CMI version quotes --------------------------
+# Two facts the condensed submission version leans on in place of the full
+# manuscript's paragraphs: how much of the corpus is single-patient arms (which
+# is why tau-hat-squared is non-identified rather than zero), and how few arms
+# gave phage without a concomitant antibiotic (which is why no arm can attribute
+# its outcome to the phage). Emitted rather than typed for the usual reason.
+n_single <- sum(dat$n_arm == 1, na.rm = TRUE)
+mono <- grepl("monotherapy", dat$modality, ignore.case = TRUE) &
+        !grepl("antibiotic monotherapy", dat$modality, ignore.case = TRUE)
+lines <- c(lines, "% ---- corpus shape ----",
+  paste0("\\newcommand{\\SingleArmArms}{", n_single, "}"),
+  paste0("\\newcommand{\\SingleArmShare}{", n_single, " of ", nrow(dat), "}"),
+  paste0("\\newcommand{\\ModalityMonoArms}{", sum(mono), "}"),
+  "")
+
 # ---- classification sensitivity, verified labels -----------------------------
 # The Introduction said the MDR cell "collapses to three studies and four
 # patients" under independently verified resistance labels. The pipeline says two
