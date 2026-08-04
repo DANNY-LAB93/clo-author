@@ -513,6 +513,26 @@ if (!is.null(fus)) {
     "")
 }
 
+# ---- classification sensitivity, verified labels -----------------------------
+# The Introduction said the MDR cell "collapses to three studies and four
+# patients" under independently verified resistance labels. The pipeline says two
+# studies and three patients. A number spelled out in words is invisible to
+# check_no_typed_estimates.py, which matches one-decimal percentages, so the
+# error survived every gate and propagated into a referee brief that quoted it
+# back. Emitting it makes the prose unable to disagree with the analysis.
+cls <- safe_read("classification_sensitivity.rds")
+if (!is.null(cls)) {
+  row <- cls[cls$outcome == "clinical_success" & cls$resistance_class == "MDR", ]
+  if (nrow(row) == 1) {
+    lines <- c(lines, "% ---- verified-classification collapse (MDR clinical success) ----",
+      paste0("\\newcommand{\\ClassMDRStudiesAll}{", row$k_studies_all, "}"),
+      paste0("\\newcommand{\\ClassMDRPatientsAll}{", row$n_patients_all, "}"),
+      paste0("\\newcommand{\\ClassMDRStudiesVerified}{", row$k_studies_verified, "}"),
+      paste0("\\newcommand{\\ClassMDRPatientsVerified}{", row$n_patients_verified, "}"),
+      "")
+  }
+}
+
 # ---- PRISMA channel itemisation ---------------------------------------------
 # The flow diagram printed \PrismaItemised and then hard-typed a breakdown beside
 # it. The macro tracked the pipeline; the typed list did not. Round 5 added two
