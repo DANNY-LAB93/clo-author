@@ -46,6 +46,27 @@ not* human and keeps the unindexed.
 
 ---
 
+## Executed searches — all counts verified 2026-08-03
+
+| Source | Arm A | Arm B | Non-duplicating contribution |
+|---|---|---|---|
+| PubMed / NCBI | 1,481 | 8,532 | **9,561** union, corpus frozen |
+| Scopus | 2,875 | 9,372 | — pending de-duplication |
+| ProQuest | 1,013 | 3,403 | — pending de-duplication |
+| Cochrane CENTRAL | 53 | 304 | **304** |
+| ClinicalTrials.gov | 17 | 121 | **121** |
+| BVS — LILACS 382, CUMED 37, BINACIS 35 | — | not applicable | **~454** |
+| EudraCT | — | — | **3** |
+| CTIS | — | — | **5** |
+
+Not searched, with the reason recorded: **Embase** (not in the institutional
+subscription), **Web of Science** (no route found), **EBSCO** (e-book collections
+only, no bibliographic database).
+
+De-duplication must run on **DOI, PMID *and* NCT**. CENTRAL ingests
+ClinicalTrials.gov records and BVS includes MEDLINE, so two of these sources
+overlap other sources by construction rather than by chance.
+
 ## What this institution actually provides — verified 2026-08-03
 
 Checked directly against the UCACUE Biblioteca Virtual portal while
@@ -448,7 +469,15 @@ documented under Scopus does not apply here — `.value` is untouched by page
 translation. Verified: `document.documentElement.lang` was `es` while the query
 round-tripped in English.
 
-Arm B not yet run.
+**Arm B: 3,403** (2026-08-03). The subscription toggle made no difference to this
+set, unlike arm A where it moved 999 → 1,013.
+
+**A submission quirk worth knowing.** Setting the query by script does not
+register with ProQuest's form handler — the value appears in the box and the
+search never runs. Type it, and click the *visible* "Buscar" button; the page
+carries more than one element with that label and the off-screen one does
+nothing. Both failures look identical from outside: the page simply stays on
+`/advanced` with no error.
 
 ## 6. ClinicalTrials.gov (NIH)
 
