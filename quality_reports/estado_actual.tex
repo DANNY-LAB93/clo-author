@@ -1,0 +1,265 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[left=2.2cm,right=2.2cm,top=2.2cm,bottom=2.2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\definecolor{acc}{RGB}{0,90,160}
+\definecolor{warn}{RGB}{170,60,20}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{acc}}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing{\section}{0pt}{14pt}{6pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\footnotesize Fagoterapia MDR/XDR/PDR \textit{P.\ aeruginosa} --- estado del proyecto}
+\fancyhead[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\newcommand{\ok}{\textcolor{acc}{\textbf{✓}}}
+\newcommand{\no}{\textcolor{warn}{\textbf{✗}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Fagoterapia para \textit{Pseudomonas aeruginosa} MDR/XDR/PDR}\\[2pt]
+{\large Revisión sistemática y metaanálisis de proporciones}\\[6pt]
+{\normalsize Estado del proyecto --- 3 de agosto de 2026}\\[2pt]
+{\footnotesize Universidad Católica de Cuenca}
+\end{center}
+
+\vspace{4pt}
+\hrule
+\vspace{10pt}
+
+\section{Dónde estamos}
+
+El corpus analítico está cerrado y estable: \textbf{40 brazos de estudio, 33
+estudios, 91 pacientes}, todos observacionales. El manuscrito compila sin errores
+y las seis compuertas de calidad automáticas pasan.
+
+Esta sesión no tocó el análisis. Se dedicó a \textbf{reconstruir la arquitectura
+de búsqueda}, que era el defecto más grave que arrastraba la revisión, y a
+resolver una revisión por pares Q1 de doble especialidad.
+
+\section{Arquitectura de búsqueda: ocho fuentes ejecutadas}
+
+Cada fuente se busca con \textbf{dos brazos}. El brazo A exige el organismo; el
+brazo B lo omite deliberadamente.
+
+\begin{center}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+\textbf{Fuente} & \textbf{Brazo A} & \textbf{Brazo B} & \textbf{Aporte no duplicado} \\
+\midrule
+PubMed / NCBI            & 1\,481 & 8\,532 & 9\,561 (corpus congelado) \\
+Scopus                   & 2\,875 & 9\,372 & pendiente deduplicar \\
+ProQuest                 & 1\,013 & 3\,403 & pendiente deduplicar \\
+Cochrane CENTRAL         &     53 &    304 & 304 \\
+ClinicalTrials.gov       &     17 &    121 & 121 \\
+BVS (LILACS/CUMED/BINACIS) & --- & n/a & $\sim$454 \\
+EudraCT                  & --- & --- & 3 \\
+CTIS                     & --- & --- & 5 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Por qué hacen falta dos brazos}
+
+Cuatro estudios incluidos --- \textbf{Pirnay 2024}, Green 2023, Leitner 2021 y
+Liu 2025 --- son cohortes multipatógeno que \textbf{no nombran el organismo} en
+título, resumen ni vocabulario controlado. Una consulta que exija ``Pseudomonas
+aeruginosa'' no puede alcanzar un artículo titulado \textit{``Personalized
+bacteriophage therapy outcomes for 100 consecutive cases''} por mucha
+sensibilidad que se le ponga. Medido en PubMed: el brazo A cubre 36 de 40, el
+brazo B cubre 29, y \textbf{sólo la unión cubre 40}.
+
+Pirnay es el mayor contribuyente del corpus. Sin el brazo B se pierde.
+
+\subsection{Tres fuentes ausentes, con evidencia}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \no~\textbf{Embase} --- no está en la suscripción institucional. El portal
+ofrece Ovid MEDLINE, Ovid Español y Books Ovid Odontología; ninguno es Embase.
+\emph{Mitigación parcial:} CENTRAL sí lleva registros que Cochrane obtiene de sus
+propias búsquedas en Embase --- pero sólo ensayos controlados, no reportes de
+caso, que son el 90\,\% de este corpus.
+\item \no~\textbf{Web of Science} --- sin vía encontrada. Research4Life lista a
+Clarivate, pero como \textit{Current Contents} (servicio de alertas de índices,
+sin índice de citas ni exportación para cribado). Quedan sin comprobar la vía
+CEDIA y el acceso de terceros.
+\item \no~\textbf{EBSCO} --- sólo dos colecciones de libros electrónicos. No hay
+CINAHL, ni MEDLINE-vía-EBSCO, ni Academic Search. La ecuación se retiró porque no
+tenía dónde ejecutarse.
+\end{itemize}
+
+\section{Cribado}
+
+\begin{center}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Corpus congelado de PubMed (denominador PRISMA) & 9\,561 \\
+Excluidos en etapa 1 por regla determinista & 2\,402 \\
+\quad fago como técnica de laboratorio & 2\,132 \\
+\quad tipo de artículo sin datos primarios & 140 \\
+\quad indexado animal y no humano & 130 \\
+\midrule
+\textbf{Pasan a cribado por título/resumen} & \textbf{7\,159} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Las reglas se validaron contra los \textbf{42 estudios incluidos conocidos}:
+ninguna regla excluye a ninguno, y el script se niega a aplicarse si esa
+validación falla.
+
+\textbf{Se probaron cuatro filtros de contenido y tres fallaron.} Exigir MeSH
+\textit{Humans} pierde 11 positivos conocidos (los registros recientes aún no
+están indexados); exigir palabra clave clínica pierde 5; la disyunción de ambos
+todavía pierde 2. Sólo ``fago como técnica de laboratorio'' no pierde ninguno.
+Las tres reglas rechazadas quedaron documentadas para que nadie las reintente.
+
+\subsection{Plataforma}
+
+Reseña creada en \textbf{Rayyan} (Ouzzani et al., 2016), en modo ciego, con los
+archivos RIS listos para importar. Rayyan aporta doble cribado independiente,
+registro nativo de decisiones y generación del diagrama PRISMA.
+
+\section{Revisión por pares Q1 --- veredicto}
+
+Se ejecutó una revisión de doble especialidad (microbiología de \textit{P.\
+aeruginosa} + metaanálisis de proporciones). \textbf{Veredicto: Major Revision},
+y \textbf{en contra} de reclasificar como scoping review.
+
+Antes de argumentar, se verificaron las cifras del propio informe contra el
+pipeline. \textbf{Dos no sobrevivieron:}
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=3pt]
+\item El informe decía que el estrato MDR colapsa a ``3 estudios / 4 pacientes''
+bajo clasificación verificada. Son \textbf{2 estudios y 3 pacientes} --- el
+colapso es peor de lo que el propio referee creía.
+\item El informe leía la divergencia entre modelos (FT 0{,}5\,\%; GLMM 9{,}2\,\%;
+DL 24{,}0\,\%) como posible señal de que los datos no admiten \emph{ningún}
+modelo. La aritmética dice lo contrario: el GLMM reproduce la proporción cruda
+7/76 = 9{,}21\,\% \textbf{exactamente}, y DL coincide con el modelo de efecto fijo
+porque $\hat\tau^2 = 0$ colapsa uno sobre otro. No son tres estimadores
+compitiendo: es una verosimilitud correcta más dos modos de fallo con nombre y
+cita. \textbf{La Tabla 6 es evidencia \emph{a favor} del modelo primario.}
+\end{enumerate}
+
+\subsection{Los tres cambios críticos}
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=3pt]
+\item \textbf{Tabla estructurada ECA vs.\ observacional en el texto principal.}
+Los cuatro ensayos aleatorizados son la única evidencia comparativa del campo y
+su señal es nula o negativa --- pero están en prosa, mientras la literatura de
+uso compasivo, cuya publicación depende del resultado favorable, conserva estatus
+cuantitativo. \emph{La evidencia positiva se agrupa y la negativa se narra.}
+\item \textbf{Degradar las estimaciones estratificadas por resistencia} a
+análisis de sensibilidad, y llevar el colapso verificado al resumen.
+\item \textbf{En las 11 celdas con $\hat\tau^2 = 0$}, dejar de llamarlas efectos
+aleatorios y suprimir el intervalo de predicción, que hoy se imprime idéntico al
+IC e implica una propagación de incertidumbre que no ocurre.
+\end{enumerate}
+
+\section{Revista objetivo}
+
+\textbf{\textit{Clinical Microbiology and Infection} (CMI)}, revista oficial de
+ESCMID. Elegida sobre JAC por audiencia: los dos hallazgos de cabecera son de
+\textbf{medición microbiológica} --- que las etiquetas de Magiorakos no
+sobreviven a la verificación independiente, y que la erradicación no es un solo
+constructo --- y el lector de CMI asigna esas etiquetas profesionalmente.
+
+Requisitos leídos de la guía de autores de CMI el 3 de agosto de 2026:
+
+\begin{center}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & \textbf{CMI} & \textbf{Manuscrito} \\
+\midrule
+Texto principal (revisión sistemática) & 3\,500 palabras & \textcolor{warn}{\textbf{20\,639}} \\
+Abstract estructurado & 300 máximo & 140, sin estructurar \\
+Checklist PRISMA 2020 & obligatoria al enviar & pendiente \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Hay que recortar el \textbf{83\,\%}. Para calibrar: CMI limita los
+\textit{Original Articles} a 2\,500 palabras, así que ``Systematic Review'' ya es
+el formato más generoso de la revista.
+
+\textbf{Un requisito que muerde:} CMI exige que el abstract estructurado incluya
+una sección \textbf{``Interventions''}, y esta revisión \emph{no caracteriza la
+intervención} --- no registra producto, dosis, duración ni si fue personalizada.
+Es una limitación ya reconocida en Methods, pero ahora ocupa un campo obligatorio.
+
+\section{Lo que falta}
+
+\subsection{Depende del equipo}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item \textbf{Registro en PROSPERO.} CMI lo pedirá; el ítem 24a de PRISMA exige
+el número. Se puede hacer ya.
+\item \textbf{Segundo revisor independiente.} Rayyan está en modo ciego, pero el
+doble cribado \emph{sólo existe si hay dos personas}. Es la objeción que los
+referees marcan desde la ronda 5 y la única que no se cierra con trabajo técnico.
+\item \textbf{Exportar las siete fuentes restantes} a Rayyan. Scopus en tandas de
+2\,000; en BVS hay que desmarcar MEDLINE antes de exportar o se cuenta dos veces.
+\item Anotar las \textbf{seis bases de ProQuest} --- ya identificadas: Coronavirus
+Research Database, Ebook Central, Education Research Index, PRISMA Database with
+HAPI Index, ProQuest Central y Publicly Available Content Database.
+\end{itemize}
+
+\subsection{Trabajo técnico pendiente}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item Deduplicación cruzada sobre \textbf{DOI, PMID y NCT}. Las tres claves son
+necesarias: CENTRAL ingiere registros de ClinicalTrials.gov y BVS incluye
+MEDLINE, así que esos solapes son estructurales.
+\item Reconciliar las decisiones de Rayyan contra el corpus congelado.
+\item Recorte a 3\,500 palabras con reubicación a material suplementario.
+\item Reescritura de Methods y del diagrama PRISMA con la arquitectura definitiva.
+\end{itemize}
+
+\textbf{Orden recomendado:} no reescribir Methods antes de terminar el cribado.
+Los conteos por fuente y por etapa son lo que imprime el diagrama, y si cambian
+después habrá que rehacer el texto con riesgo de dejar una cifra vieja.
+
+\section{Advertencias registradas en esta sesión}
+
+Cuatro trampas que producen números equivocados sin dar ninguna señal de error:
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=3pt]
+\item \textbf{El traductor de Chrome corrompe consultas.} En Scopus reescribió el
+valor real del campo: \texttt{phage*} pasó a \texttt{fago*}, \texttt{AND} a
+\texttt{Y}. La consulta se ejecuta y devuelve un número plausible para algo que
+nadie escribió. \emph{Solución:} pasar la consulta por URL y verificar que la
+página la reimprime en inglés.
+\item \textbf{``Contain any of these terms'' de CTIS no es un OR.}
+\texttt{bacteriophage phage} devuelve 0; \texttt{bacteriophage} solo devuelve 5.
+Añadir un término vació la búsqueda.
+\item \textbf{Un cero puede ser un campo vacío.} El primer intento en CTIS
+devolvió ``0 results'' porque el texto nunca llegó al campo. Un nulo real y un
+fallo de interfaz se ven idénticos. \emph{Regla:} ningún cero vale sin control
+positivo (\texttt{cancer} devuelve 3\,036).
+\item \textbf{Las etiquetas de pestaña mienten.} ``Colección LILACS Plus'' de BVS
+incluye MEDLINE: de sus 2\,379 registros, 1\,815 son MEDLINE y duplicarían el
+brazo de PubMed. El desglose real está en la faceta de base de datos.
+\end{enumerate}
+
+\vspace{8pt}
+\hrule
+\vspace{6pt}
+{\footnotesize Documentación completa en \texttt{quality\_reports/}:
+\texttt{search\_equations\_all\_databases.md} (ecuaciones y conteos por fuente),
+\texttt{2026-08-03\_referee\_q1\_micro\_stats.md} (informe de revisión),
+\texttt{journal\_targeting.md} y \texttt{cmi\_submission\_requirements.md}
+(revista objetivo), \texttt{document\_corpus\_provenance.md} (auditoría de
+procedencia).}
+
+\end{document}
