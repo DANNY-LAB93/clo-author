@@ -410,7 +410,45 @@ Open **Más filtros → base de datos** and deselect MEDLINE before exporting.
 Reporting the tab total instead would double-count PubMed and inflate the PRISMA
 identification box by more than 1,800 records.
 
-## 5c. ProQuest — access confirmed, database list must be recorded
+## 5c. ProQuest — the six databases, and none of them is biomedical
+
+**Enumerated 2026-08-03** from *Cambiar bases de datos → Seleccionar bases de
+datos*:
+
+| # | Database | Coverage |
+|---|---|---|
+| 1 | Coronavirus Research Database | — |
+| 2 | Ebook Central | — |
+| 3 | Education Research Index (contains ERIC and Supplemental Education Index) | 1966– |
+| 4 | PRISMA Database with HAPI Index | 1966– |
+| 5 | ProQuest Central | 1970– |
+| 6 | Publicly Available Content Database | — |
+
+**There is no health or medical database in this package.** No ProQuest Health &
+Medical Collection, no MEDLINE via ProQuest, no Public Health Database, no
+Nursing & Allied Health. What is here is education (ERIC), books, a COVID
+collection, a Latin American humanities index, a general multidisciplinary
+collection, and an open-access aggregator.
+
+That sets what ProQuest can contribute. Its 1,013 and 3,403 hits come mostly from
+ProQuest Central, which is general rather than biomedical, and from Publicly
+Available Content Database, which aggregates open access and will therefore
+duplicate PubMed Central heavily. **Expect a low unique yield after
+de-duplication and report it as measured rather than as expected.** ProQuest
+should be declared as searched — it was — but the Methods should name these six
+so a reader can see what was and was not covered, which is precisely what naming
+"EBSCO" without its panel failed to do.
+
+### A name collision worth stating explicitly
+
+The portal lists this resource as **"Proquest + Prisma"**, and database 4 is the
+**PRISMA Database with HAPI Index** — the *Hispanic American Periodicals Index*,
+covering language, literature, social sciences, history and the arts. **It has
+nothing to do with the PRISMA reporting guideline** this review follows. Anyone
+reading "ProQuest + PRISMA" in a methods section will assume otherwise. Write the
+full database name or do not abbreviate it.
+
+## 5c-bis. ProQuest search syntax
 
 Confirmed 2026-08-03: institutional access via UCACUE, banner reads *"Está
 buscando en 6 bases de datos"*. **The six are not named on the search page and
