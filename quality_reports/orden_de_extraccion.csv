@@ -1,0 +1,125 @@
+﻿id,prioridad,diseno,n,texto_completo,ya_extraido,revista,anio,titulo
+EST-021,1. COMPARATIVO,RCT,,si,no,The Lancet. Infectious diseases,2019,Efficacy and tolerability of a cocktail of bacteriophages to treat burn wounds infected 
+EST-035,1. COMPARATIVO,RCT,,si,no,Trials,2022,Safety and microbiological activity of phage therapy in persons with cystic fibrosis col
+EST-063,1. COMPARATIVO,non-randomised trial,,si,no,BMJ open respiratory research,2023,"Single-arm, open-labelled, safety and tolerability of intrabronchial and nebulised bacte"
+EST-086,1. COMPARATIVO,RCT,30,si,no,Journal of Drug Delivery Science and Technol,2023,Inhalation phage therapy as a new approach to preventing secondary bacterial pneumonia i
+EST-101,1. COMPARATIVO,RCT,30,si,no,Biomedicines,2025,The Efficacy of Inhaled Phage Cocktail to Prevent Ventilator-Associated Pneumonia in Chi
+EST-122,1. COMPARATIVO,non-randomised trial,,si,no,BMJ open,2022,Standardised treatment and monitoring protocol to assess safety and tolerability of bact
+EST-132,1. COMPARATIVO,RCT,76,si,no,Indian Journal of Critical Care Medicine,2026,Evaluation of the Potential Efficacy of Bacteriophage Therapy for the Management of Pres
+EST-178,1. COMPARATIVO,non-randomised trial,80,si,no,"Wiadomosci lekarskie (Warsaw, Poland : 1960)",2021,CLINICAL AND LABORATORY JUSTIFICATION FOR USE OF POLYVALENT BACTERIOPHAGE IN TECHNIQUE O
+EST-181,1. COMPARATIVO,non-randomised trial,23,si,no,Viruses,2023,Short-Term Outcomes of Phage-Antibiotic Combination Treatment in Adult Patients with Per
+EST-029,1. COMPARATIVO,RCT,13,no,no,"Med (New York, N.Y.)",2025,Randomized double-blind study on safety and tolerability of TP-102 phage cocktail in pat
+EST-052,1. COMPARATIVO,RCT,,no,no,Journal of cystic fibrosis,2023,CYstic Fibrosis bacterioPHage study at Yale (CYPHY)
+EST-078,1. COMPARATIVO,RCT,,no,no,International journal of diabetes in develop,2025,Efficacy of Bacteriophage Therapy in the Treatment of Diabetic Foot Ulcers: a Pilot Stud
+EST-092,1. COMPARATIVO,RCT,70,no,no,Pirogov Russian Journal of Surgery,2025,Phage therapy analysis of effectiveness in comorbid patients with wounds and surgical in
+EST-103,1. COMPARATIVO,RCT,80,no,no,Pirogov Russian Journal of Surgery,2026,Phage therapy of purulent wounds: comparative clinical cytomorphological and microbiolog
+EST-118,1. COMPARATIVO,RCT,,no,no,The Lancet. Infectious diseases,2021,Intravesical bacteriophages for treating urinary tract infections in patients undergoing
+EST-126,1. COMPARATIVO,RCT,212,no,no,International Journal of Pediatrics and Adol,2024,Application of bacteriophage therapy in the treatment of children with acute tonsillitis
+EST-157,1. COMPARATIVO,RCT,30,no,no,The international journal of lower extremity,2026,"A Randomized, Placebo-controlled, Double-blind Clinical Trial of Bacteriophage Cocktails"
+EST-167,1. COMPARATIVO,non-randomised trial,27,no,no,The international journal of lower extremity,2024,Biological Therapy on Infected Traumatic Wounds: A Case-Control Study.
+EST-173,1. COMPARATIVO,non-randomised trial,68,no,no,Surgical Chronicles,2016,Use of bacteriophages in the treatment of infected wounds in patients who have allergy t
+EST-177,1. COMPARATIVO,RCT,20,no,no,Otolaryngologia polska = The Polish otolaryn,2021,"A randomized, double-blind, placebo- -controlled study to investigate the use of bacteri"
+EST-188,1. COMPARATIVO,RCT,,no,no,Nephrology dialysis transplantation,2020,Potential treatment method of recurrent urinary tract infection in postmenopausal kidney
+EST-219,1. COMPARATIVO,non-randomised trial,,no,no,Pirogov Russian Journal of Surgery,2023,Bacteriophages in complex treatment of septic diseases of the hand; [Использование лекар
+EST-008,1. COMPARATIVO,RCT,9,si,si,Nature Communications ,2025,Phage therapy with nebulized cocktail BX004-A for chronic Pseudomonas aeruginosa infecti
+EST-024,2. serie o cohorte,case series,2,si,no,Journal of investigative medicine high impac,2023,Bacteriophage Therapy for Pan-Drug-Resistant Pseudomonas aeruginosa in Two Persons With 
+EST-039,2. serie o cohorte,case series,3,si,no,Antibiotics,2023,Adaptive Phage Therapy for the Prevention of Recurrent Nosocomial Pneumonia: Novel Proto
+EST-042,2. serie o cohorte,case series,2,si,no,mLife,2025,Phage therapy of perinephric abscess in kidney transplantation recipients caused by drug
+EST-055,2. serie o cohorte,prospective cohort,217,si,no,Current Urology,2025,Bacteriophage therapy in women with chronic recurrent cystitis caused by multidrug-resis
+EST-074,2. serie o cohorte,case series,8,si,no,"Antibiotics (Basel, Switzerland)",2020,Bacteriophage Therapy for Critical Infections Related to Cardiothoracic Surgery.
+EST-075,2. serie o cohorte,prospective cohort,19,si,no,Medical Immunology (Russia),2021,Phage therapy in antibiotic resistant pneumonia: Immunomodulation or redistribution?; [Ф
+EST-077,2. serie o cohorte,case series,4,si,no,Antimicrobial agents and chemotherapy,2024,Pseudomonas aeruginosa ventricular assist device infections: findings from ineffective p
+EST-080,2. serie o cohorte,case series,4,si,no,"PHAGE: Therapy, Applications, and Research",2020,Bacteriophage Therapy as a Potential Management Option for Surgical Wound Infections
+EST-091,2. serie o cohorte,prospective cohort,10,si,no,International journal of molecular sciences,2025,Analysis of Pro- and Anti-Inflammatory Gene Response Patterns in Patients Receiving Phag
+EST-108,2. serie o cohorte,retrospective cohort,100,si,no,Nature microbiology,2024,"Personalized bacteriophage therapy outcomes for 100 consecutive cases: a multicentre, mu"
+EST-116,2. serie o cohorte,retrospective cohort,15,si,no,Viruses,2019,Processing Phage Therapy Requests in a Brussels Military Hospital: Lessons Identified.
+EST-117,2. serie o cohorte,prospective cohort,25,si,no,Folia microbiologica,2021,Anti-phage serum antibody responses and the outcome of phage therapy.
+EST-134,2. serie o cohorte,case series,,si,no,Frontiers in microbiology,2018,Adapted Bacteriophages for Treating Urinary Tract Infections.
+EST-146,2. serie o cohorte,retrospective cohort,12,si,no,Clinical infectious diseases : an official p,2023,"A Retrospective, Observational Study of 12 Cases of Expanded-Access Customized Phage The"
+EST-152,2. serie o cohorte,prospective cohort,27,si,no,Antibiotics,2025,The Appearance of Antiphage Antibodies in Sera of Patients Treated with Phages
+EST-169,2. serie o cohorte,case series,2,si,no,Virus research,2024,Safety and tolerability of bronchoscopic and nebulised administration of bacteriophage.
+EST-019,2. serie o cohorte,case series,3,no,no,"Med (New York, N.Y.)",2024,Neutralizing antibodies after nebulized phage therapy in cystic fibrosis patients.
+EST-028,2. serie o cohorte,prospective cohort,,no,no,Journal of infection and chemotherapy : offi,2025,A feasibility study for personalized phage therapy against drug-resistant bacteria in Ja
+EST-031,2. serie o cohorte,case series,1,no,no,Medicine in Microecology,2026,Harnessing bacteriophages to combat antibiotic-resistant chronic postoperative infection
+EST-034,2. serie o cohorte,case series,10,no,no,Open forum infectious diseases,2020,Lessons Learned From the First 10 Consecutive Cases of Intravenous Bacteriophage Therapy
+EST-038,2. serie o cohorte,case series,2,no,no,Viruses,2021,Phage Therapy Experience at the Eliava Phage Therapy Center: Three Cases of Bacterial Pe
+EST-050,2. serie o cohorte,prospective cohort,26,no,no,International journal of antimicrobial agent,2024,Access to phage therapy at Hospices Civils de Lyon in 2022: Implementation of the PHAGEi
+EST-059,2. serie o cohorte,prospective cohort,42,no,no,Infektsionnye Bolezni,2017,Anti-phage antibody response in phage therapy against healthcare-associated infections (
+EST-061,2. serie o cohorte,case series,2,no,no,American journal of transplantation : offici,2019,Early clinical experience of bacteriophage therapy in 3 lung transplant recipients.
+EST-070,2. serie o cohorte,prospective cohort,,no,no,Open Forum Infectious Diseases,2023,Compassionate Use of Bacteriophages for Failed Persistent Infections During the First 5 
+EST-073,2. serie o cohorte,prospective cohort,20,no,no,The international journal of lower extremity,2019,Bacteriophage Therapy of Chronic Nonhealing Wound: Clinical Study.
+EST-076,2. serie o cohorte,case series,10,no,no,Clinical infectious diseases : an official p,2023,Experience Using Adjuvant Bacteriophage Therapy for the Treatment of 10 Recalcitrant Per
+EST-096,2. serie o cohorte,prospective cohort,,no,no,Antibiotics,2021,Low immunogenicity of intravesical phage therapy for urogenitary tract infections
+EST-098,2. serie o cohorte,case series,,no,no,The Journal of heart and lung transplantatio,2022,Bacteriophage therapy as a treatment option for complex cardiovascular implant infection
+EST-115,2. serie o cohorte,prospective cohort,62,no,no,Future microbiology,2017,Antiphage activity of sera during phage therapy in relation to its outcome.
+EST-133,2. serie o cohorte,case series,,no,no,"European urology, supplements",2016,Phage therapy for the treatment for urinary tract infection: results of in-vitro screeni
+EST-164,2. serie o cohorte,case series,4,no,no,Viruses,2019,Bacteriophage Application for Difficult-to-treat Musculoskeletal Infections: Development
+EST-165,2. serie o cohorte,prospective cohort,48,no,no,The international journal of lower extremity,2021,Use of Customized Bacteriophages in the Treatment of Chronic Nonhealing Wounds: A Prospe
+EST-185,2. serie o cohorte,retrospective cohort,10,no,no,"Journal of Plastic, Reconstructive and Aesth",2026,The management of sternal mediastinitis in heart and lung transplant patients: An 8-year
+EST-004,2. serie o cohorte,case series,9,si,si,Nature medicine,2025,Personalized inhaled bacteriophage therapy for treatment of multidrug-resistant Pseudomo
+EST-003,2. serie o cohorte,case series,15,no,si,"Med (New York, N.Y.)",2023,Refractory Pseudomonas aeruginosa infections treated with phage PASA16: A compassionate 
+EST-020,3. caso unico,,,si,no,Nature Communications ,2025,Adjunctive phage therapy improves antibiotic treatment of ventilator-associated-pneumoni
+EST-027,3. caso unico,case report,1,si,no,Nature communications,2023,Personalized aerosolised bacteriophage treatment of a chronic lung infection due to mult
+EST-030,3. caso unico,case report,1,si,no,ASM case reports,2026,Clearance of hypermutator XDR Pseudomonas osteomyelitis and hardware infection with adju
+EST-037,3. caso unico,,,si,no,Clinical Medicine Insights: Case Reports ,2026,Pan-Resistant Pseudomonas aeruginosa Septic Shock in a Critically Ill Patient: A Case Re
+EST-040,3. caso unico,case report,1,si,no,Infection and drug resistance,2023,Refractory Pseudomonas aeruginosa Bronchopulmonary Infection After Lung Transplantation 
+EST-041,3. caso unico,,,si,no,Scientific reports,2024,Optimized preparation pipeline for emergency phage therapy against Pseudomonas aeruginos
+EST-046,3. caso unico,case report,1,si,no,"Critical care (London, England)",2017,Use of bacteriophages in the treatment of colistin-only-sensitive Pseudomonas aeruginosa
+EST-047,3. caso unico,case report,1,si,no,Antimicrobial agents and chemotherapy,2019,Bacteriophages as Adjuvant to Antibiotics for the Treatment of Periprosthetic Joint Infe
+EST-048,3. caso unico,case report,1,si,no,Open forum infectious diseases,2023,Application of Phage Therapy in a Case of a Chronic Hip-Prosthetic Joint Infection due t
+EST-051,3. caso unico,case report,1,si,no,Frontiers in Medicine,2024,Case report: Local bacteriophage therapy for fracture-related infection with polymicrobi
+EST-053,3. caso unico,case report,1,si,no,"Antibiotics (Basel, Switzerland)",2024,Phage-Antibiotic Combination Therapy against Recurrent Pseudomonas Septicaemia in a Pati
+EST-057,3. caso unico,case report,1,si,no,Viruses,2025,Phage Therapy as a Rescue Treatment for Recurrent Pseudomonas aeruginosa Bentall Infecti
+EST-058,3. caso unico,case report,1,si,no,ASM case reports,2025,Resolution of acute rejection in a bilateral double-lung transplanted cystic fibrosis pa
+EST-062,3. caso unico,case report,1,si,no,Nature Communications ,2022,Bacteriophage-antibiotic combination therapy against extensively drug-resistant Pseudomo
+EST-085,3. caso unico,case report,1,si,no,Microbial biotechnology,2023,First-in-human application of double-stranded RNA bacteriophage in the treatment of pulm
+EST-088,3. caso unico,case report,1,si,no,Frontiers in cellular and infection microbio,2024,Case report: Personalized triple phage-antibiotic combination therapy to rescue necrotiz
+EST-093,3. caso unico,,,si,no,JAC-antimicrobial resistance,2026,Pharmacodynamic individualization of phage therapy against a KPC-5-producing Pseudomonas
+EST-094,3. caso unico,case report,1,si,no,Nature Communications ,2026,Timely bespoke phage-antibiotic combination to treat refractory Pseudomonas aeruginosa m
+EST-095,3. caso unico,case report,1,si,no,EMBO molecular medicine,2021,"Bacterial lysis, autophagy and innate immune responses during adjunctive phage therapy i"
+EST-106,3. caso unico,case report,1,si,no,"Evolution, medicine, and public health",2018,Phage treatment of an aortic graft infected with Pseudomonas aeruginosa.
+EST-121,3. caso unico,,,si,no,Antibiotics,2022,Do Anti-Phage Antibodies Persist after Phage Therapy? A Preliminary Report
+EST-124,3. caso unico,case report,1,si,no,Viruses,2023,Successful Bacteriophage-Antibiotic Combination Therapy against Multidrug-Resistant Pseu
+EST-129,3. caso unico,,,si,no,Antibiotics,2025,Phage Therapy for Orthopaedic Infections: The First Three Cases from the United Kingdom
+EST-130,3. caso unico,,,si,no,Nature communications,2025,Prolonged disease remission of the chronic immunological skin disorder hidradenitis supp
+EST-135,3. caso unico,,,si,no,Frontiers in Medicine,2020,The Potential Innovative Use of Bacteriophages Within the DAC® Hydrogel to Treat Patient
+EST-159,3. caso unico,case report,1,si,no,Antibiotics,2022,Bacteriophage-Enriched Galenic for Intrapericardial Ventricular Assist Device Infection
+EST-199,3. caso unico,case report,1,si,no,Frontiers in Medicine,2023,Successful use of a phage endolysin for treatment of chronic pelvic pain syndrome/chroni
+EST-212,3. caso unico,case report,1,si,no,Antibiotics,2022,Local Treatment of Driveline Infection with Bacteriophages
+EST-018,3. caso unico,,,no,no,"Journal of chemotherapy (Florence, Italy)",2026,Bacteriophage therapy in clinical practice: case studies of Pseudomonas aeruginosa infec
+EST-032,3. caso unico,case report,1,no,no,Journal of the Pediatric Infectious Diseases,2018,Refractory Pseudomonas Bacteremia in a 2-Year-Old Sterilized by Bacteriophage Therapy.
+EST-033,3. caso unico,,,no,no,American journal of respiratory and critical,2019,Bacteriophage Therapy of Ventilator-associated Pneumonia and Empyema Caused by Pseudomon
+EST-043,3. caso unico,case report,1,no,no,The Lancet. Infectious diseases,2026,Calciphylaxis complicated by NDM-1-producing Pseudomonas aeruginosa: first experience wi
+EST-044,3. caso unico,case report,1,no,no,The Journal of pediatrics,2026,Successful Bacteriophage Treatment of a Recalcitrant Intra-Abdominal Infection Caused by
+EST-045,3. caso unico,,,no,no,Infektsionnye Bolezni,2017,Concept of individualized medicine based on personalized phage therapy for intensive car
+EST-049,3. caso unico,case report,1,no,no,The Journal of infectious diseases,2023,Development of Host Immune Response to Bacteriophage in a Lung Transplant Recipient on A
+EST-054,3. caso unico,case report,1,no,no,Otology & neurotology : official publication,2025,Bacteriophage Therapy for Chronic Mastoiditis.
+EST-060,3. caso unico,,,no,no,Viruses,2018,Clinical Indications and Compassionate Use of Phage Therapy: Personal Experience and Lit
+EST-064,3. caso unico,,,no,no,International journal of antimicrobial agent,2025,Adjunctive bacteriophage therapy for refractory/resistant Pseudomonas aeruginosa infecti
+EST-065,3. caso unico,case report,1,no,no,Enfermedades Infecciosas y Microbiologia Cli,2025,Successful phage therapy in a patient with prosthetic joint infection; [Tratamiento exit
+EST-081,3. caso unico,,,no,no,Current opinion in infectious diseases,2020,Bacteriophage therapy as a treatment option for transplant infections.
+EST-083,3. caso unico,,,no,no,Viruses,2021,Bacteriophage Therapy for Difficult-to-Treat Infections: The Implementation of a Multidi
+EST-105,3. caso unico,case report,1,no,no,The Journal of antimicrobial chemotherapy,2018,Innovations for the treatment of a complex bone and joint infection due to XDR Pseudomon
+EST-110,3. caso unico,case report,1,no,no,"Methods in molecular biology (Clifton, N.J.)",2024,Successful Use of Phage and Antibiotics Therapy for the Eradication of Two Bacterial Pat
+EST-131,3. caso unico,case report,1,no,no,International journal of antimicrobial agent,2025,Results of TOR001: An open-label single patient study using targeted bacteriophage thera
+EST-140,3. caso unico,case report,1,no,no,The Journal of heart and lung transplantatio,2019,Novel bacteriophage therapy for treatment of left ventricular assist device infection.
+EST-147,3. caso unico,case report,1,no,no,Pirogov Russian Journal of Surgery,2023,Complex surgical treatment of recurrent post-injection abscess in a patient with systemi
+EST-170,3. caso unico,case report,1,no,no,Annals of Vascular Surgery - Brief Reports a,2024,Thoracic endovascular aneurysm repair of a ruptured zone 0 mycotic thoracic aortic aneur
+EST-184,3. caso unico,case report,1,no,no,JAAD Case Reports,2026,Severe Darier disease complicated by recurrent multidrug-resistant cutaneous infection
+EST-205,3. caso unico,,,no,no,Revista Cubana de Angiología y Cirugía Vascu,2017,Beneficios obtenidos con el empleo de bacteriófagos en el tratamiento de infecciones cró
+EST-207,3. caso unico,case report,1,no,no,"Europace : European pacing, arrhythmias, and",2020,Successful bacteriophage treatment of infection involving cardiac implantable electronic
+EST-208,3. caso unico,case report,1,no,no,European journal of cardio-thoracic surgery ,2020,Treatment of chronic left ventricular assist device infection with local application of 
+EST-001,3. caso unico,case report,1,si,si,Frontiers in medicine,2021,"Case Report: Arthroscopic ""Debridement Antibiotics and Implant Retention"" With Local Inj"
+EST-002,3. caso unico,case report,1,si,si,Frontiers in medicine,2023,Case report: Analysis of phage therapy failure in a patient with a Pseudomonas aeruginos
+EST-006,3. caso unico,case report,1,si,si,Viruses,2024,Phage Therapy in a Burn Patient Colonized with Extensively Drug-Resistant Pseudomonas ae
+EST-009,3. caso unico,case report,1,si,si,Frontiers in pharmacology,2021,Case Report: Chronic Bacterial Prostatitis Treated With Phage Therapy After Multiple Fai
+EST-010,3. caso unico,case report,1,si,si,Nature Communications ,2022,Personalized bacteriophage therapy to treat pandrug-resistant spinal Pseudomonas aerugin
+EST-011,3. caso unico,case report,1,si,si,Scientific reports,2025,A case report of bacteriophage therapy for the treatment of lung infection due to carbap
+EST-012,3. caso unico,case report,1,si,si,Nature communications,2026,Chronic suppression of a multidrug-resistant Pseudomonas aeruginosa in prosthetic joint 
+EST-014,3. caso unico,case report,1,si,si,Bioscience trends,2022,Bacteriophage therapy for empyema caused by carbapenem-resistant Pseudomonas aeruginosa.
+EST-016,3. caso unico,case report,1,si,si,Frontiers in medicine,2022,Use of Phage Cocktail BFC 1.10 in Combination With Ceftazidime-Avibactam in the Treatmen
+EST-017,3. caso unico,case report,1,si,si,Cureus,2025,Successful Treatment of a Patient With Chronic Bronchiectasis Using an Induced Native Ph
+EST-005,3. caso unico,case report,1,no,si,Infection,2019,Successful adjunctive use of bacteriophage therapy for treatment of multidrug-resistant 
+EST-007,3. caso unico,case report,1,no,si,International journal of infectious diseases,2026,Adjuvant multisite bacteriophage cocktail administration as salvage treatment in a patie
+EST-013,3. caso unico,case report,1,no,si,hLife,2025,Personalized bacteriophage therapy for chronic biliary tract Pseudomonas aeruginosa infe
+EST-015,3. caso unico,case report,1,no,si,JAC-antimicrobial resistance,2022,Combination of phage therapy and cefiderocol to successfully treat Pseudomonas aeruginos

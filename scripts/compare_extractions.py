@@ -143,9 +143,19 @@ def main():
         ac = sum(1 for a, b in pares if a == b)
         if campo in CATEGORICOS:
             k_, motivo = kappa(pares)
+            # LA PARADOJA DE LA KAPPA. Cuando casi todas las filas comparten el
+            # mismo valor, el acuerdo esperado por azar ya es altisimo y la
+            # kappa se desploma aunque los dos revisores coincidan en el 85 %
+            # de los casos. Informar solo la kappa haria parecer un desacuerdo
+            # grave donde hay acuerdo casi total; informar solo el porcentaje
+            # ocultaria el desacuerdo real donde lo hay. Se marcan los casos.
+            marca = ""
+            if k_ is not None and n and (ac / n) >= 0.80 and k_ < 0.40:
+                marca = " — acuerdo alto con kappa baja: distribucion muy sesgada, la kappa no es informativa aqui"
             resumen.append((campo, "categórico", n, ac,
                             "%.0f%%" % (100 * ac / n) if n else "—",
-                            "%.2f (%s)" % (k_, etiqueta(k_)) if k_ is not None else motivo))
+                            ("%.2f (%s)%s" % (k_, etiqueta(k_), marca))
+                            if k_ is not None else motivo))
         else:
             md = "%.2f" % (sum(difs) / len(difs)) if difs else "—"
             resumen.append((campo, "numérico", n, ac,
@@ -170,8 +180,13 @@ def main():
             w.writerows(filas_conf)
 
     puntuables = [r for r in resumen if r[2] > 0]
+    # Para el resumen se usan SOLO las kappas informativas: se dejan fuera las
+    # que la paradoja distorsiona, porque una mediana que las incluya describe
+    # el sesgo de la distribucion y no la concordancia entre revisores.
     kappas = [float(r[5].split()[0]) for r in resumen
-              if r[1] == "categórico" and r[5][0].isdigit()]
+              if r[1] == "categórico" and r[5][0].isdigit()
+              and "no es informativa" not in r[5]]
+    acuerdos = [100.0 * r[3] / r[2] for r in resumen if r[2]]
     lin = ["# Concordancia entre extracciones independientes", "",
            "Generado el %s por `scripts/compare_extractions.py`." % datetime.date.today().isoformat(),
            "", "| | |", "|---|---:|",
@@ -181,9 +196,17 @@ def main():
            "| Solo en %s | %d |" % (args.nombre_a, len(solo_a)),
            "| Solo en %s | %d |" % (args.nombre_b, len(solo_b)),
            "| Conflictos de valor | %d |" % len(filas_conf), ""]
+    if acuerdos:
+        lin += ["Acuerdo mediano entre las dos extracciones: **%.0f %%**."
+                % sorted(acuerdos)[len(acuerdos) // 2], ""]
     if kappas:
-        lin += ["Kappa mediana de los campos categóricos calculables: **%.2f**." %
-                sorted(kappas)[len(kappas) // 2], ""]
+        lin += ["Kappa mediana de los campos donde la kappa es informativa "
+                "(%d de %d categóricos): **%.2f**. Los demás se excluyen porque "
+                "su distribución está tan sesgada que la kappa mide el sesgo y "
+                "no la concordancia."
+                % (len(kappas),
+                   sum(1 for r in resumen if r[1] == "categórico"),
+                   sorted(kappas)[len(kappas) // 2]), ""]
     lin += ["## Por variable", "",
             "| variable | tipo | n | acuerdos | % acuerdo | kappa / dispersión |",
             "|---|---|---:|---:|---:|---|"]
@@ -211,8 +234,12 @@ def main():
 
     print("filas comparadas: %d | conflictos: %d | solo en A: %d | solo en B: %d"
           % (len(comunes), len(filas_conf), len(solo_a), len(solo_b)))
+    if acuerdos:
+        print("acuerdo mediano: %.0f%%" % sorted(acuerdos)[len(acuerdos) // 2])
     if kappas:
-        print("kappa mediana (categóricos calculables): %.2f" % sorted(kappas)[len(kappas) // 2])
+        print("kappa mediana (solo campos informativos, %d de %d): %.2f"
+              % (len(kappas), sum(1 for r in resumen if r[1] == "categórico"),
+                 sorted(kappas)[len(kappas) // 2]))
     print("escrito %s" % INFORME)
     if filas_conf:
         print("escrito %s" % CONFLICTOS)
