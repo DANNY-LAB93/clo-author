@@ -16,7 +16,7 @@ still have to be applied by a human to the full text. The only question this
 answers is the one that is mechanical: have we seen this record before?
 
 USAGE
-    python scripts/screen_ovid_export.py data/raw/ovid_export_2026-08-03.ris
+    python scripts/screen_ovid_export.py revision_sistematica/busqueda/ovid_export_2026-08-03.ris
     python scripts/screen_ovid_export.py <file> --out quality_reports/ovid_screen.md
 
 Accepts RIS (Ovid's default) or CSV. Identifier extraction is deliberately

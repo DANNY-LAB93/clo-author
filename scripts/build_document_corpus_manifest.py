@@ -39,7 +39,7 @@ warnings.filterwarnings("ignore")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX = ROOT / "quality_reports" / "corpus_identifier_index.txt"
-OUT_CSV = ROOT / "data" / "raw" / "document_corpus_manifest.csv"
+OUT_CSV = ROOT / "metaanalisis" / "datos" / "document_corpus_manifest.csv"
 
 DOI_RE = re.compile(r"(10\.\d{4,9}/[^\s,;)}\]\"'<>]+)")
 PMID_RE = re.compile(r"PMID[:\s]*(\d{7,8})", re.I)

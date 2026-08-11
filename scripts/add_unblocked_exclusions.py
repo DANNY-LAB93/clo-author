@@ -14,7 +14,7 @@ import pathlib
 import sys
 
 root = pathlib.Path(__file__).resolve().parent.parent
-csv_path = root / "data" / "cleaned" / "phage_therapy_extraction_dataset.csv"
+csv_path = root / "metaanalisis" / "datos" / "phage_therapy_extraction_dataset.csv"
 
 with csv_path.open(encoding="utf-8", newline="") as fh:
     reader = csv.DictReader(fh)

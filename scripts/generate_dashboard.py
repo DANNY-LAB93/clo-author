@@ -468,7 +468,7 @@ def build_data_panel(data):
       <h2>Data</h2>
       <div class="empty-state">
         No data files found yet.<br>
-        Add datasets to <code>data/raw/</code> or <code>data/cleaned/</code>.
+        Add datasets to <code>revision_sistematica/busqueda/</code> or <code>metaanalisis/datos/</code>.
       </div>
     </section>"""
 

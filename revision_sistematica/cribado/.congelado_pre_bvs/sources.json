@@ -1,0 +1,10 @@
+{
+  "PubMed": "data/raw/screening_pubmed_union.csv",
+  "ClinicalTrials.gov": "data/raw/clinicaltrials_gov.csv",
+  "Cochrane CENTRAL": "data/raw/central_export.ris",
+  "EudraCT": "data/raw/eudract_export.csv",
+  "CTIS": "data/raw/ctis_export.csv",
+  "SciELO": "data/raw/scielo_export.ris",
+  "Scopus (brazo A)": "data/raw/scopus_armA.csv",
+  "Scopus (brazo B)": "data/raw/scopus_armB.csv"
+}

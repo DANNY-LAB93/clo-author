@@ -24,7 +24,7 @@ WHAT IS DELIBERATELY NOT A RULE:
 
 USAGE
     python scripts/screen_stage1_rules.py --validate
-    python scripts/screen_stage1_rules.py --apply --out data/raw/screening_stage1.csv
+    python scripts/screen_stage1_rules.py --apply --out revision_sistematica/cribado/screening_stage1.csv
 """
 import argparse
 import csv
@@ -33,7 +33,7 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CORPUS = ROOT / "data" / "raw" / "screening_pubmed_union.csv"
+CORPUS = ROOT / "revision_sistematica" / "busqueda" / "screening_pubmed_union.csv"
 INDEX = ROOT / "quality_reports" / "corpus_identifier_index.txt"
 
 csv.field_size_limit(10_000_000)
@@ -132,7 +132,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--validate", action="store_true")
     ap.add_argument("--apply", action="store_true")
-    ap.add_argument("--out", default="data/raw/screening_stage1.csv")
+    ap.add_argument("--out", default="revision_sistematica/cribado/screening_stage1.csv")
     args = ap.parse_args()
 
     rows = load_corpus()

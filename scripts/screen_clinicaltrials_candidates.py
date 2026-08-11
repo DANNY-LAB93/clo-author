@@ -36,7 +36,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SRC = ROOT / "data" / "raw" / "clinicaltrials_gov.csv"
+SRC = ROOT / "revision_sistematica" / "busqueda" / "clinicaltrials_gov.csv"
 INDEX = ROOT / "quality_reports" / "corpus_identifier_index.txt"
 OUT = ROOT / "quality_reports" / "clinicaltrials_candidate_screen.md"
 API = "https://clinicaltrials.gov/api/v2/studies/"

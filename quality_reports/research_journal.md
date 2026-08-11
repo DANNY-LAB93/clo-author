@@ -326,3 +326,87 @@
 **Score:** N/A (data integration + renumbering; writer dispatched for prose, derivative values manually reconciled)
 **Verdict:** The user's native Scopus RIS (860 records) added 7 eligible studies the PubMed-only rounds missed and corrected the Law 2019 exclusion; corpus grew to 27 arms/22 studies/105 patients, 16 pooled cells. The expansion surfaced a genuine, honestly-reported new finding — Egger's mortality asymmetry is now significant (p=0.023) because two small fatal case reports cluster at the low-precision end — and diluted the MDR stratum's single-source dependence (Pirnay 79%→68%). Search reframed to 3 core databases per the user's directive. Five latent pipeline robustness bugs (NULL-primary POOLED cell, NA-condition phantom rows, fixed-effect accessor mismatch, forest prediction on fixed-effect, NA divergence message) were found and fixed. Compiled clean and visually verified (PRISMA 5-channel, Table 1 28 rows, Table 2 16 cells). Final main.pdf pending an Adobe Acrobat lock release.
 **Report:** `quality_reports/claim_source_map_phage_therapy_mdr_pseudomonas.md` ("Native Scopus Database Search" entry)
+
+### 2026-08-05 — Cribado por título (fase 2, pozo priorizado)
+**Phase:** Discovery — selección de estudios (PRISMA 2020)
+**Target:** `data/raw/screening_stage2_priorizado.csv` (13.509 registros)
+**Score:** PASS — auditoría de control positivo 40/40 en los 92 lotes
+**Verdict:** Pozo agotado. 460 avanzan a cribado por resumen; 13.049 excluidos con vocabulario cerrado (LAB 3.823 · ORG 3.014 · REV 2.668 · OFF 2.575 · VET 790 · SEC 74, más 79 motivos en texto libre de lotes iniciales). El contador del script muestra `pendientes: -14` porque el libro de decisiones conserva 14 filas huérfanas de la versión del corpus anterior a la deduplicación; los 13.509 registros actuales tienen decisión propia y ninguno quedó sin decidir.
+**Report:** `data/raw/screening_stage2_pool_decisions.csv`
+
+### 2026-08-05 — Saneamiento del índice de controles positivos
+**Phase:** Discovery — selección de estudios (PRISMA 2020)
+**Target:** `quality_reports/corpus_identifier_index.txt` y `scripts/check_identifier_traceability.R`
+**Score:** PASS — auditoría de etapa 2 (40/40) y de etapa 3 (37/40 decididos) tras la corrección
+**Verdict:** La auditoría de etapa 3 falló al excluir correctamente un metaanálisis: el índice atribuía a `Liu2025_perinephric` el DOI y el PMID de `Liu2025_ijaa`, un artículo distinto. El barrido encontró cuatro estudios contaminados por cosecha de identificadores de terceros (`Liu2025_perinephric`, `Li2025_biliary`, `Maddocks2019`, `Chan2025`). Se corrigieron las tres causas en el generador —fusión por stem autor+año, lectura de DOI dentro de `note`, y uso de la prosa de procedencia de la extracción— más un cuarto defecto preexistente: la clase de caracteres `[.,;:)\]]+$` nunca recortaba puntuación en base R (TRE), por lo que los DOI de PhagoBurn y Leitner llevaban años truncados en `10.1016/s1473-3099(18`. Retirados 10 identificadores ajenos, reparados 2 DOI truncados, añadido el PMID real de Liu2025_perinephric (41479406). Los 42 estudios siguen siendo trazables.
+**Report:** `scripts/check_identifier_traceability.R` (mensajes de descarte por estudio)
+
+### 2026-08-05 — Cribado por resumen (etapa 3, pozo priorizado)
+**Phase:** Discovery — selección de estudios (PRISMA 2020)
+**Target:** `data/raw/screening_stage3_pool_decisions.csv` (460 registros que avanzaron por título)
+**Score:** PASS — los 40 estudios de control positivo conservan al menos un informe en texto completo
+**Verdict:** Pozo agotado en las dos corrientes. Bases de datos: 389 decididos, 214 a texto completo, 175 excluidos (77 de ellos heredados del brazo por PMID, no rejuzgados). Registros de ensayos: 71 decididos sobre la ficha, 54 avanzan, 17 excluidos. Total 268 informes a texto completo. Recolector nuevo `scripts/screen_stage3_pool.py`, indexado por `record_id` porque 257 de los 460 no tienen PMID; corrientes separadas «bases de datos» y «registros» según PRISMA 2020, decidido por el usuario.
+**Report:** `data/raw/screening_stage3_pool_decisions.csv`
+
+### 2026-08-05 — Libro de cribado para revisión humana
+**Phase:** Discovery — selección de estudios (PRISMA 2020)
+**Target:** `quality_reports/cribado_pozo.xlsx` (generado por `scripts/export_cribado_pozo_xlsx.py`)
+**Score:** N/A — artefacto de revisión, no puntuado
+**Verdict:** Ocho hojas con TODAS las decisiones del pozo (13.509 en etapa 2, 389 + 71 en etapa 3), no solo las supervivientes. La hoja `Texto_completo` es la lista de trabajo: 268 informes agrupados en 233 estudios distintos, con columnas vacías para el revisor y dos particiones útiles: (a) 46 informes que ya pertenecen a uno de los 42 estudios extraídos frente a 222 candidatos nuevos; (b) estado de recuperación, que expone 70 registros cuyo único DOI es el sustituto de Cochrane CENTRAL y 10 sin identificador alguno. Comprobación adicional al control positivo: los 42 estudios del corpus extraído conservan al menos un informe entre los 268 — ninguno se perdió en el cribado.
+**Report:** `quality_reports/cribado_pozo.xlsx`
+
+### 2026-08-05 — Resolución del cuello de botella de recuperación (etapa 4)
+**Phase:** Discovery → recuperación de textos completos
+**Target:** `scripts/resolve_fulltext_ids.py`, `data/raw/fulltext_identifiers.csv`, hoja `Recuperacion` de `cribado_pozo.xlsx`
+**Score:** N/A
+**Verdict:** El "80 de 268 irrecuperables" que se informó antes era erróneo por partida doble. Primero, `estado_id()` comprobaba el DOI antes que el PMID y, como Cochrane CENTRAL asigna un DOI sustituto (`10.1002/central/...`) a todo lo que indexa, marcaba como irrecuperables 35 informes que tenían PMID o NCT: los sin vía real eran 45. Segundo, de esos 45, **21 llevaban su identificador dentro del propio registro** — 17 en la URL de `trialsearch.who.int` del campo `journal` (ChiCTR, CTIS, IRCT, ACTRN, KCT, CTRI) y 4 como código de protocolo en el título (PHRC-N/2015/AS-01, Phage4Cure-001, BMX-04-002). Quedan **24 que exigen búsqueda por cita**: 15 resúmenes de congreso indexados solo en CENTRAL y 7 artículos sin DOI en el registro. Se comprobó contra PubMed que varios de esos resúmenes de congreso no están indexados allí, así que la vía es la cita (revista+año), no el PMID. Además se detectaron 10 duplicados internos probables (solapamiento de título ≥0,80 con un informe ya identificado), entre ellos tres registros del mismo ensayo CYPHY.
+**Report:** `data/raw/fulltext_identifiers.csv`
+
+### 2026-08-05 — Cierre de la recuperación: 45 de 45 resueltos
+**Phase:** Discovery → recuperación de textos completos
+**Target:** `data/raw/fulltext_identifiers.csv`, `scripts/resolve_fulltext_ids.py`
+**Score:** N/A — comprobación de coherencia del canal completa: 5/5 OK
+**Verdict:** Los 268 informes tienen vía de recuperación; ninguno queda sin resolver. 38 con identificador recuperado (17 del ICTRP leídos del campo `journal`, 4 códigos de protocolo CTIS/EudraCT del título, 17 atribuidos a su ensayo padre) y 7 con cita verificada. Las atribuciones a ensayo padre están codificadas a mano en `ATRIBUCION` con su justificación línea a línea: los siete resúmenes de BX004-A se apoyan en que el propio resumen nombra el producto, no en el parecido del título — el emparejamiento difuso apuntaba erróneamente a NCT05453578 (WRAIR-PAM-CF1), que es otro ensayo. Se comprobó contra PubMed que los 7 restantes (Int J Diabetes Dev Ctries, Pharmaceutisch Weekblad, Eur Urol Suppl, Jpn J Clin Ophthalmol, Surgical Chronicles, Nephrol Dial Transplant, Rev Cubana Angiol) NO están indexados: no tienen PMID que buscar, se recuperan por cita.
+**Report:** `quality_reports/cribado_pozo.xlsx` (hoja Recuperacion)
+
+### 2026-08-05 — Enmienda de protocolo: unidad de inclusión y resúmenes de congreso
+**Phase:** Selección de estudios → preparación de la extracción
+**Target:** `scripts/group_reports_into_studies.py`, `data/raw/study_groups.csv`, memo de estrategia §5, `quality_reports/decisions/2026-08-05_unidad-de-inclusion-y-resumenes-de-congreso.md`
+**Score:** N/A — comprobación de invariantes de la agrupación: 5/5 OK
+**Verdict:** Decidido con el usuario que los resúmenes de congreso son elegibles y que la unidad de inclusión es el estudio, no el informe. Los 268 informes se agrupan en **219 estudios**: 156 extraíbles, 60 solo-registro (en curso o sin resultados; fuera de la síntesis, listados aparte) y 3 solo-resumen (posiciones 288, 888, 4039), que se incluyen y entran en la nueva comprobación de sensibilidad #14. La agrupación destapó dos errores que habrían llegado a la extracción: (1) los siete resúmenes del BX004-A figuraban como siete estudios distintos, con riesgo de meter los mismos pacientes varias veces en el metaanálisis — ahora son once informes de un solo estudio; (2) el artículo del BX004-A en Nature Communications (PMID 40593506) no lleva el NCT en su registro, así que el ensayo salía clasificado como «solo-resumen» teniendo publicación completa y se habría ido al análisis de sensibilidad que excluye justo esos. Se corrigió rastreando el NCT dentro del resumen, aceptándolo solo si ya existe como registro propio de otro informe del pozo.
+**Report:** `quality_reports/decisions/2026-08-05_unidad-de-inclusion-y-resumenes-de-congreso.md`
+
+### 2026-08-05 — Maquinaria de doble extracción
+**Phase:** Extracción de datos
+**Target:** `scripts/extraction_schema.py`, `scripts/make_extraction_forms.py`, `scripts/compare_extractions.py`
+**Score:** N/A — probada de punta a punta: 10 discrepancias sembradas, 10 detectadas, 0 falsos positivos
+**Verdict:** Formularios ciegos para 159 estudios y comparador que calcula kappa de Cohen por variable, acuerdo exacto y diferencia media en numéricas, más lista de conflictos con columnas de resolución. Cuatro decisiones de medida quedaron documentadas porque ninguna es neutral: (1) la concordancia se mide sobre el valor normalizado, ya que `route` tiene 23 variantes que son casi todas `other (...)` con distinto paréntesis y comparadas literalmente hundirían la kappa por artefacto de redacción; (2) las filas presentes en una sola extracción se cuentan como desacuerdo de cobertura, no de valor; (3) la kappa sin variación se informa como "no calculable" en vez de 0 o NaN; (4) el emparejamiento va por `id_provisional` y no por `study_id`, porque el pozo no guarda el autor y dos revisores escribirían el id de forma distinta — en la prueba escribieron ids completamente distintos y aun así se emparejaron las 159 filas.
+**Report:** `quality_reports/decisions/2026-08-05_unidad-de-inclusion-y-resumenes-de-congreso.md` (adenda)
+
+### 2026-08-10 19:50 — Pre-extracción desde resumen (microbiología + metodología)
+**Phase:** Execution
+**Target:** data/extraction/pre_extraccion_desde_resumen.csv
+**Score:** N/A (insumo de contraste, no extracción definitiva)
+**Verdict:** 159 de 159 estudios extraíbles pre-extraídos desde el resumen, cada uno con alerta de microbiología y alerta de metodología. Todos marcados PARTIAL: no sustituyen la lectura del texto completo de Danny y Nataly.
+**Report:** data/extraction/pre_extraccion_desde_resumen.csv
+
+### 2026-08-10 20:05 — Comprobación de coherencia del canal completo
+**Phase:** Execution
+**Target:** corpus → etapa 1 → pozo → etapa 2 → etapa 3 → estudios → pre-extracción
+**Score:** 15 comprobaciones OK, 0 fallos
+**Verdict:** La cadena cuadra eslabón por eslabón. La comprobación destapó que BVS (638 registros) estaba en disco pero fuera del manifiesto y nunca se había cribado.
+**Report:** quality_reports/decisions/2026-08-10_incorporacion-bvs-al-corpus.md
+
+### 2026-08-10 20:20 — Incorporación de BVS y reconstrucción del corpus
+**Phase:** Discovery / Cribado
+**Target:** data/raw/sources.json, screening_corpus_all.csv, screening_stage2_pool_decisions.csv
+**Score:** auditoría de control positivo PASS (40/40 estudios conservan informe)
+**Verdict:** Corpus 16 698 → 17 129 informes; pozo 13 509 → 13 894; 394 títulos nuevos cribados y todos excluidos (LAB 230, REV 56, OFF 54, VET 44, ORG 8, SEC 2). Aporte neto a la síntesis: cero, pero ahora demostrado en vez de supuesto. Corregido además un defecto del lector: el marcado HTML de los títulos de BVS impedía la deduplicación por título y contaminaba el corpus.
+**Report:** quality_reports/decisions/2026-08-10_incorporacion-bvs-al-corpus.md
+
+### 2026-08-10 21:10 — Separación revisión / metaanálisis y corrección de índices posicionales
+**Phase:** Execution
+**Target:** revision_sistematica/, metaanalisis/, scripts/
+**Score:** 24 comprobaciones OK, 0 fallos; canal idempotente
+**Verdict:** Datos separados en dos árboles sin ficheros compartidos. La migración destapó tres tablas curadas a mano indexadas por posición en el pozo: partían el BX004-A y el TP-102, y corrían la numeración EST-NNN doce puestos, que es la clave de los cuadernos de Danny y Nataly. Las tres reindexadas a record_id; numeración EST ahora estable entre ejecuciones.
+**Report:** quality_reports/decisions/2026-08-10_incorporacion-bvs-al-corpus.md

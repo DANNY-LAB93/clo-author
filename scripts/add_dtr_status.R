@@ -32,7 +32,7 @@
 # usually the drug that was administered, not an antibiogram. This is the
 # finding: the DTR cells fail for ABSENT DATA, not for too few patients, and
 # they are the only cells in the review that fail for that reason.
-p <- "data/cleaned/phage_therapy_extraction_dataset.csv"
+p <- "metaanalisis/datos/phage_therapy_extraction_dataset.csv"
 d <- read.csv(p, stringsAsFactors = FALSE, check.names = FALSE)
 
 stopifnot(!"dtr_status" %in% names(d))

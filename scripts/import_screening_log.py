@@ -13,7 +13,7 @@ documented than the manuscript claims, and none of the documentation was
 version-controlled, which left an identification channel that could be described
 but not audited.
 
-WHAT THIS DOES. Converts the workbook to CSV under data/raw/ so the decisions are
+WHAT THIS DOES. Converts the workbook to CSV under revision_sistematica/cribado/ so the decisions are
 versioned, diffable and citable. It normalises nothing and judges nothing: the
 decisions are imported verbatim, including the one row whose decision reads
 "EXCLUIDO (duplicado de #40)" rather than a bare EXCLUIDO, because collapsing
@@ -31,7 +31,7 @@ import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT = ROOT / "data" / "raw" / "local_screening_log.csv"
+OUT = ROOT / "revision_sistematica" / "cribado" / "local_screening_log.csv"
 
 
 def main():

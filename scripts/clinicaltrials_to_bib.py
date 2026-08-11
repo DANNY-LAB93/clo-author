@@ -26,7 +26,7 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SRC = ROOT / "data" / "raw" / "clinicaltrials_gov.csv"
+SRC = ROOT / "revision_sistematica" / "busqueda" / "clinicaltrials_gov.csv"
 INDEX = ROOT / "quality_reports" / "corpus_identifier_index.txt"
 
 # Backslash MUST be first, or every subsequent replacement gets re-escaped.
@@ -62,7 +62,7 @@ def main():
         return re.search(r"pseudomonas|aeruginosa", blob, re.I) is not None
 
     sel = [r for r in rows if mentions_pa(r)] if args.pseudomonas_only else rows
-    out = ROOT / "data" / "raw" / (
+    out = ROOT / "revision_sistematica" / "busqueda" / (
         "clinicaltrials_pseudomonas.bib" if args.pseudomonas_only
         else "clinicaltrials_gov.bib")
 
@@ -108,7 +108,7 @@ def main():
 
     header = [
         "%% ClinicalTrials.gov search results -- GENERATED, do not edit by hand.",
-        "%% Written by scripts/clinicaltrials_to_bib.py from data/raw/clinicaltrials_gov.csv",
+        "%% Written by scripts/clinicaltrials_to_bib.py from revision_sistematica/busqueda/clinicaltrials_gov.csv",
         "%% Arm A: condition 'Pseudomonas aeruginosa' AND intervention (bacteriophage OR phage) -- 17",
         "%% Arm B: intervention (bacteriophage OR phage), all conditions -- 121",
         "%% Retrieved 2026-08-03 via the ClinicalTrials.gov v2 API. No date filter:",

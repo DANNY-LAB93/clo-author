@@ -1,0 +1,10 @@
+﻿Concepto;n;Nota
+Registros recuperados (PubMed, dos brazos, union);9561;
+Etapa 1 - excluidos por regla automatica;2402;PRISMA: 'records removed before screening'
+Etapa 2 - pozo de cribado por titulo;7159;
+Etapa 2 - decididos;1320;
+Etapa 2 - pasan a resumen;195;
+Etapa 3 - decididos;195;
+Etapa 3 - pasan a texto completo;69;lista de trabajo
+;;
+Estudios ya incluidos en el corpus (control);43;ninguno debe quedar excluido en ninguna etapa

@@ -9,7 +9,7 @@ is native, so auditability stops depending on scripts written for this project.
 
 WHAT IS EXPORTED. The records that survived stage 1, one RIS entry each, carrying
 the PMID so every Rayyan decision maps back to the frozen corpus in
-data/raw/screening_pubmed_union.csv. Without that mapping the exported decisions
+revision_sistematica/busqueda/screening_pubmed_union.csv. Without that mapping the exported decisions
 could not be reconciled with the PRISMA counts.
 
 WHAT PRISMA CALLS STAGE 1. PRISMA 2020's flow has a box for "records removed
@@ -35,9 +35,9 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-STAGE1 = ROOT / "data" / "raw" / "screening_stage1.csv"
+STAGE1 = ROOT / "revision_sistematica" / "cribado" / "screening_stage1.csv"
 INDEX = ROOT / "quality_reports" / "corpus_identifier_index.txt"
-OUTDIR = ROOT / "data" / "raw" / "rayyan"
+OUTDIR = ROOT / "revision_sistematica" / "cribado" / "rayyan"
 
 csv.field_size_limit(10_000_000)
 
@@ -121,7 +121,7 @@ def main():
     print("  criteria are being applied more narrowly than the review's own.")
     print()
     print("Import into Rayyan as RIS. Keep the PMID visible: it is how every")
-    print("decision maps back to data/raw/screening_pubmed_union.csv.")
+    print("decision maps back to revision_sistematica/busqueda/screening_pubmed_union.csv.")
 
 
 if __name__ == "__main__":

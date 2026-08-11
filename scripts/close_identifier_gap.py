@@ -29,7 +29,7 @@ import pathlib
 import sys
 
 root = pathlib.Path(__file__).resolve().parent.parent
-csv_path = root / "data" / "cleaned" / "phage_therapy_extraction_dataset.csv"
+csv_path = root / "metaanalisis" / "datos" / "phage_therapy_extraction_dataset.csv"
 
 # study_id -> identifier block to prepend
 IDS = {

@@ -29,9 +29,9 @@ except ImportError:
     raise SystemExit("openpyxl required: python -m pip install openpyxl")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-STAGE1 = ROOT / "data" / "raw" / "screening_stage1.csv"
-STAGE2 = ROOT / "data" / "raw" / "screening_stage2_decisions.csv"
-STAGE3 = ROOT / "data" / "raw" / "screening_stage3_decisions.csv"
+STAGE1 = ROOT / "revision_sistematica" / "cribado" / "screening_stage1.csv"
+STAGE2 = ROOT / "revision_sistematica" / "cribado" / "screening_stage2_decisions.csv"
+STAGE3 = ROOT / "revision_sistematica" / "cribado" / "screening_stage3_decisions.csv"
 INDEX = ROOT / "quality_reports" / "corpus_identifier_index.txt"
 OUT = ROOT / "quality_reports" / "cribado.xlsx"
 

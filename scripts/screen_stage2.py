@@ -35,8 +35,8 @@ import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-STAGE1 = ROOT / "data" / "raw" / "screening_stage1.csv"
-LOG = ROOT / "data" / "raw" / "screening_stage2_decisions.csv"
+STAGE1 = ROOT / "revision_sistematica" / "cribado" / "screening_stage1.csv"
+LOG = ROOT / "revision_sistematica" / "cribado" / "screening_stage2_decisions.csv"
 INDEX = ROOT / "quality_reports" / "corpus_identifier_index.txt"
 
 csv.field_size_limit(10_000_000)

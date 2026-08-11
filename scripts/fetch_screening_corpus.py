@@ -29,8 +29,8 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT = ROOT / "data" / "raw" / "screening_pubmed_union.csv"
-CACHE = ROOT / "data" / "raw" / ".screening_cache"
+OUT = ROOT / "revision_sistematica" / "busqueda" / "screening_pubmed_union.csv"
+CACHE = ROOT / "revision_sistematica" / "cribado" / ".screening_cache"
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
 
 ORG = '("Pseudomonas aeruginosa"[tiab] OR "P. aeruginosa"[tiab] OR "Pseudomonas aeruginosa"[MeSH])'
@@ -89,10 +89,19 @@ def parse_article(art):
         first = (txt(authors[0], "LastName") + " " + txt(authors[0], "Initials")).strip()
         if not first:
             first = txt(authors[0], "CollectiveName")
-    doi = ""
-    for eid in art.iter("ArticleId"):
-        if eid.get("IdType") == "doi":
-            doi = (eid.text or "").strip()
+    # The article's OWN id list only. art.iter() walks the whole subtree, which
+    # includes PubmedData/ReferenceList/Reference/ArticleIdList -- one entry per
+    # cited reference. A phage genomics paper cites 60-80 of them, so iterating
+    # the subtree stores the last reference's DOI (Bowtie2, Trimmomatic, PHASTER)
+    # as if it were the article's. Same failure class as scanning a PDF's
+    # bibliography; see build_document_corpus_manifest.py.
+    doi = next(((e.text or "").strip()
+                for e in art.findall("PubmedData/ArticleIdList/ArticleId")
+                if e.get("IdType") == "doi"), "")
+    if not doi and a is not None:
+        doi = next(((e.text or "").strip()
+                    for e in a.findall("ELocationID")
+                    if e.get("EIdType") == "doi"), "")
     return {
         "pmid": pmid,
         "year": year,

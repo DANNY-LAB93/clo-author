@@ -1,0 +1,701 @@
+record_id,orden,verdict,reason,decided_by,decided_at
+R003952,1,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R005833,2,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R005996,3,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R007889,4,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R002339,5,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R007025,6,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009271,7,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009698,8,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R004035,9,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R004962,10,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R006165,11,EXCLUDE,caso unico de E. coli en prostatitis cronica; no P. aeruginosa ni cohorte multipatogeno,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R008098,12,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009816,13,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R008447,14,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009474,15,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009694,16,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R007062,17,EXCLUDE,"revision narrativa sobre alternativas en fibrosis quistica, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009416,18,EXCLUDE,"revision de avances y retos traslacionales, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R001645,19,EXCLUDE,"Achromobacter xylosoxidans, no P. aeruginosa","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009611,20,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R010720,21,EXCLUDE,Enterococcus faecalis en infeccion periprotesica,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R010311,22,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R004753,23,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R004779,24,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R004787,25,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009697,26,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R007356,27,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R008931,28,EXCLUDE,revision de estado actual y perspectivas,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R007559,29,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R008275,30,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R003784,31,EXCLUDE,Acinetobacter baumannii resistente a carbapenemicos,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R006059,32,EXCLUDE,Klebsiella pneumoniae multirresistente,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R004864,33,EXCLUDE,infecciones por Mycobacterium,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R014380,34,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R006920,35,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R007941,36,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009130,37,EXCLUDE,"revision sistematica; sirve para rastreo de citas, no es estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009846,38,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009586,39,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R009574,40,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:49
+R016636,41,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R003637,42,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R003970,43,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R015637,44,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009716,45,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009831,46,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R005975,47,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010677,48,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R013662,49,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R007685,50,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R007982,51,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009272,52,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R001648,53,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R001911,54,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009736,55,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R003778,56,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009735,57,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R005133,58,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R006293,59,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R005890,60,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R005934,61,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R007138,62,EXCLUDE,trabajo de laboratorio o modelizacion; sin pacientes tratados,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009699,63,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R008149,64,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R008357,65,EXCLUDE,trabajo de laboratorio o modelizacion; sin pacientes tratados,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R007490,66,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009112,67,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010127,68,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009541,69,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010157,70,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R001085,71,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R001223,72,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R001955,73,EXCLUDE,"sintesis secundaria; util para rastreo de citas, no estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R002558,74,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R003385,75,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R016975,76,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009624,77,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009832,78,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R004944,79,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R005400,80,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R015487,81,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R006995,82,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009701,83,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010267,84,EXCLUDE,no evalua fagoterapia,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R007757,85,EXCLUDE,trabajo de laboratorio o modelizacion; sin pacientes tratados,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010196,86,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R007664,87,EXCLUDE,trabajo de laboratorio o modelizacion; sin pacientes tratados,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R008881,88,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009509,89,EXCLUDE,"infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009363,90,EXCLUDE,"sintesis secundaria; util para rastreo de citas, no estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R000401,91,EXCLUDE,trabajo de laboratorio o modelizacion; sin pacientes tratados,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R002608,92,EXCLUDE,trabajo de laboratorio o modelizacion; sin pacientes tratados,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R009826,93,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R016563,94,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R004338,95,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R004311,96,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010555,97,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R005579,98,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R005918,99,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010607,100,EXCLUDE,trabajo de laboratorio o modelizacion; sin pacientes tratados,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:50
+R010422,101,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006982,102,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009695,103,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006496,104,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006467,105,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008296,106,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008204,107,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007773,108,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007661,109,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008804,110,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009407,111,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009134,112,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009025,113,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009182,114,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009432,115,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008857,116,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009139,117,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R018530,118,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R000284,119,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R018299,120,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R000994,121,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R002604,122,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003668,123,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010774,124,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005578,125,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009635,126,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010619,127,EXCLUDE,no evalua fagoterapia en pacientes,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005094,128,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005174,129,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007328,130,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010689,131,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009729,132,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006530,133,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006843,134,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007293,135,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008059,136,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007640,137,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R012324,138,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010368,139,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008022,140,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009715,141,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007586,142,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008621,143,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009072,144,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008840,145,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009149,146,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008689,147,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009855,148,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009848,149,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R000646,150,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011309,151,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011284,152,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R000850,153,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011259,154,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R002086,155,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R001302,156,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R002401,157,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R002936,158,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003710,159,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011051,160,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004047,161,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009613,162,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009830,163,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004475,164,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004260,165,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011078,166,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011199,167,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003519,168,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009606,169,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005154,170,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004763,171,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004624,172,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009713,173,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009623,174,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005184,175,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R014862,176,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009618,177,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005875,178,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R014585,179,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R014699,180,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005887,181,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R005753,182,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007322,183,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006730,184,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007143,185,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008413,186,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008184,187,EXCLUDE,no evalua fagoterapia en pacientes,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R012889,188,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008140,189,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008482,190,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007666,191,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008026,192,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008419,193,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R012390,194,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008750,195,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007821,196,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008761,197,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011513,198,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009557,199,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008659,200,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009247,201,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R001795,202,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R017934,203,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R002777,204,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003378,205,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R002974,206,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003306,207,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009689,208,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003311,209,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003106,210,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011209,211,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004380,212,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R003610,213,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004522,214,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004649,215,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R004232,216,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009704,217,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009703,218,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009726,219,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009728,220,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010585,221,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010581,222,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009691,223,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006255,224,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R014768,225,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006316,226,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006933,227,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R013448,228,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006549,229,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R006848,230,EXCLUDE,"sintesis secundaria; util para rastreo de citas, no estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007294,231,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009718,232,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R013444,233,EXCLUDE,"infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009702,234,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007344,235,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010442,236,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007851,237,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008322,238,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R012817,239,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010376,240,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008074,241,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008552,242,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007879,243,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010329,244,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010233,245,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R008870,246,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009040,247,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R009250,248,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R010182,249,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R011569,250,EXCLUDE,no evalua fagoterapia en pacientes,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:54
+R007988,251,EXCLUDE,"sintesis secundaria; util para rastreo de citas, no estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009429,252,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R001142,253,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R011231,254,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R002263,255,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R002326,256,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R002296,257,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R002645,258,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R017493,259,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R002412,260,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R017054,261,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003072,262,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R016767,263,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R011106,264,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004170,265,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R016336,266,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003654,267,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R011173,268,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R016504,269,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010874,270,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010842,271,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005103,272,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005171,273,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010798,274,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004910,275,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004570,276,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006323,277,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005107,278,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R013469,279,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010407,280,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R013609,281,EXCLUDE,"no evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007030,282,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006627,283,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007484,284,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007043,285,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007057,286,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007370,287,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010318,288,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R012700,289,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R012962,290,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008311,291,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010458,292,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009734,293,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008104,294,EXCLUDE,"sintesis secundaria; util para rastreo de citas, no estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008416,295,EXCLUDE,"no evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007692,296,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007612,297,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007712,298,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008248,299,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010489,300,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008259,301,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008816,302,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009003,303,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009426,304,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009169,305,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009045,306,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008749,307,EXCLUDE,"no evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009854,308,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R000350,309,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R000360,310,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R018613,311,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R000047,312,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R000669,313,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R000865,314,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R001226,315,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R000924,316,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R011331,317,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R000964,318,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R001435,319,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R002260,320,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R017823,321,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R017723,322,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R002186,323,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003108,324,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R016918,325,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R011054,326,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009593,327,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009824,328,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003209,329,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003214,330,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003460,331,EXCLUDE,"no evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003543,332,EXCLUDE,"no evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009598,333,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009797,334,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R017055,335,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R016778,336,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R011047,337,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003329,338,EXCLUDE,"aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R016495,339,EXCLUDE,"sintesis secundaria; util para rastreo de citas, no estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004145,340,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004192,341,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010820,342,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R016515,343,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004054,344,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004034,345,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R003828,346,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004586,347,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004999,348,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004947,349,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004520,350,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R015630,351,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005036,352,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005039,353,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004407,354,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R004683,355,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009595,356,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005093,357,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009771,358,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006021,359,EXCLUDE,"sintesis secundaria; util para rastreo de citas, no estudio primario","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005971,360,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010579,361,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005011,362,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005569,363,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005434,364,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005795,365,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R014295,366,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009723,367,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007327,368,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009639,369,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005556,370,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005853,371,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R014549,372,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009630,373,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R005997,374,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006264,375,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006738,376,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009705,377,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006988,378,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007217,379,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007022,380,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R013681,381,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006518,382,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006847,383,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010651,384,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007159,385,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010396,386,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R006825,387,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R013519,388,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010593,389,EXCLUDE,revision o comentario sin datos primarios propios,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007150,390,EXCLUDE,"no evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R013270,391,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R013314,392,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R012943,393,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008832,394,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R009649,395,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R007928,396,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R010461,397,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008793,398,EXCLUDE,"organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008313,399,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008082,400,EXCLUDE,"trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-04 23:56
+R008411,401,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008651,402,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007054,403,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R012668,404,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007584,405,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R012573,406,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008490,407,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007728,408,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R012892,409,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007983,410,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011979,411,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008373,412,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007615,413,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008206,414,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008408,415,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010128,416,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009257,417,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011734,418,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010141,419,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009717,420,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009044,421,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008655,422,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008826,423,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009397,424,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011499,425,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011469,426,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008829,427,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009392,428,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001721,429,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011275,430,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002048,431,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R017709,432,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002299,433,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R017576,434,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009712,435,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R016849,436,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011185,437,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R016638,438,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R003276,439,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R017116,440,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R003170,441,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004313,442,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R003663,443,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R016276,444,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004143,445,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R003641,446,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009607,447,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R015935,448,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R003638,449,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R003877,450,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004356,451,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010893,452,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004342,453,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009706,454,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R015960,455,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010846,456,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R016629,457,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R003689,458,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004106,459,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R005147,460,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004608,461,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004920,462,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004384,463,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R015278,464,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R005254,465,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004517,466,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R004791,467,EXCLUDE,Sintesis secundaria (revision sistematica o scoping),"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R005284,468,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R015418,469,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R014995,470,EXCLUDE,"Aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R005099,471,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R014423,472,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R014567,473,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006330,474,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R014441,475,EXCLUDE,"Aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009685,476,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010642,477,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R005857,478,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006193,479,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R014617,480,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010590,481,EXCLUDE,"Aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R005640,482,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007029,483,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006489,484,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009719,485,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010702,486,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006640,487,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007014,488,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006482,489,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006876,490,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R013690,491,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006501,492,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007321,493,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R013435,494,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R006635,495,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007222,496,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R013849,497,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R012641,498,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R012972,499,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007936,500,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010471,501,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007909,502,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008753,503,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008704,504,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010185,505,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008575,506,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R007970,507,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008676,508,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008546,509,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010189,510,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009687,511,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009711,512,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009539,513,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009127,514,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009056,515,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008967,516,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008888,517,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009132,518,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R010205,519,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009241,520,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011721,521,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R008711,522,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009546,523,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R009654,524,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R000086,525,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011340,526,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R000267,527,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R000704,528,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R000291,529,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011237,530,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001091,531,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R018232,532,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001168,533,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001715,534,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001963,535,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001964,536,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001796,537,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011252,538,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011324,539,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011242,540,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001553,541,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R001912,542,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002262,543,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002461,544,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002566,545,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002527,546,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002254,547,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R011158,548,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R002567,549,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R017633,550,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:00
+R017693,551,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R017085,552,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011005,553,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002953,554,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011013,555,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002753,556,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002909,557,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R003438,558,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R003281,559,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011028,560,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004138,561,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004325,562,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004101,563,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004306,564,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004402,565,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R003901,566,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R016062,567,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010980,568,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011152,569,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R003222,570,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R016130,571,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R003686,572,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R003853,573,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004060,574,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R003777,575,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005333,576,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009617,577,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R015516,578,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004471,579,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005119,580,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004616,581,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004508,582,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005395,583,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010956,584,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005391,585,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010943,586,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004878,587,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R015411,588,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R004515,589,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006133,590,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005921,591,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005447,592,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005789,593,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010514,594,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006217,595,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005984,596,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005822,597,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R014210,598,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005754,599,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010594,600,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010738,601,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010684,602,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006253,603,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R014421,604,EXCLUDE,Sintesis secundaria (revision sistematica o scoping),"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R014490,605,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005416,606,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006181,607,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R014639,608,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R005959,609,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R013108,610,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009646,611,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006535,612,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007069,613,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006526,614,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007205,615,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010455,616,EXCLUDE,"Aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007218,617,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007280,618,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006875,619,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R013878,620,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006589,621,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006624,622,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010509,623,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006916,624,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R013527,625,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006361,626,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007184,627,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007119,628,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R006861,629,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007705,630,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007873,631,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008188,632,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009700,633,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009655,634,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008693,635,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008523,636,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008643,637,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008548,638,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007614,639,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008143,640,EXCLUDE,Sintesis secundaria (revision sistematica o scoping),"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008796,641,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010291,642,EXCLUDE,"Aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010190,643,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011921,644,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R012835,645,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008738,646,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R012396,647,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007954,648,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R012996,649,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007599,650,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007495,651,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007676,652,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009670,653,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008798,654,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010463,655,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R007532,656,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008869,657,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008970,658,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009675,659,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008585,660,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008986,661,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009477,662,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009372,663,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009281,664,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009651,665,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008859,666,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009686,667,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008802,668,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008995,669,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009151,670,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R008601,671,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R010232,672,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R009599,673,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R000107,674,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R018705,675,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R018459,676,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R000425,677,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R000582,678,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R000581,679,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R000608,680,EXCLUDE,"Aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R000692,681,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R018186,682,EXCLUDE,"Aislados o infeccion veterinaria, no humana","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R001355,683,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R018371,684,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002059,685,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R001920,686,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R017855,687,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R001635,688,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R017871,689,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R001664,690,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011258,691,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011041,692,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R017683,693,EXCLUDE,Sintesis secundaria (revision sistematica o scoping),"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002735,694,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002287,695,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002391,696,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002271,697,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R011133,698,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R017668,699,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08
+R002217,700,ADVANCE,posible estudio primario elegible; decidir con el resumen,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 00:08

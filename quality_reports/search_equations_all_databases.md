@@ -48,16 +48,25 @@ not* human and keeps the unindexed.
 
 ## Executed searches — all counts verified 2026-08-03
 
-| Source | Arm A | Arm B | Non-duplicating contribution |
-|---|---|---|---|
-| PubMed / NCBI | 1,481 | 8,532 | **9,561** union, corpus frozen |
-| Scopus | 2,875 | 9,372 | — pending de-duplication |
-| ProQuest | 1,013 | 3,403 | — pending de-duplication |
-| Cochrane CENTRAL | 53 | 304 | **304** |
-| ClinicalTrials.gov | 17 | 121 | **121** |
-| BVS — LILACS 382, CUMED 37, BINACIS 35 | — | not applicable | **~454** |
-| EudraCT | — | — | **3** |
-| CTIS | — | — | **5** |
+| Source | Arm A | Arm B | Records exported | Downloaded |
+|---|---|---|---|---|
+| PubMed / NCBI | 1,481 | 8,532 | **9,561** union, corpus frozen | ✅ |
+| Scopus | 2,875 | 9,372 | — | ❌ session expired |
+| ProQuest | 1,013 | 3,403 | — | ❌ session expired |
+| Cochrane CENTRAL | 53 | 304 | **226** (2016–2026 limit) | ✅ |
+| ClinicalTrials.gov | 17 | 121 | **121** | ✅ |
+| BVS — non-MEDLINE | — | not applicable | **638** | ✅ |
+| EudraCT | — | — | **3** | ✅ |
+| CTIS | — | — | **10** | ✅ |
+
+**De-duplicated total across the six downloaded sources: 10,414 records from
+10,559 retrieved (145 duplicates).** Report: `quality_reports/deduplication.md`.
+
+Two counts in this table were revised on 2026-08-04 after actually exporting:
+BVS **638** rather than ~454 (all non-MEDLINE databases kept, not only LILACS /
+CUMED / BINACIS), and CTIS **10** rather than 5 (see the whole-word matching
+finding under CTIS below). CENTRAL exports 226 of its 304 because the
+2016–2026 eligibility window is applied in-database, as it is for PubMed.
 
 Not searched, with the reason recorded: **Embase** (not in the institutional
 subscription), **Web of Science** (no route found), **EBSCO** (e-book collections
@@ -614,6 +623,33 @@ register holds no phage trials. It holds five, at least one of which
 already applies to EudraCT for a different reason (no partial matching), so the
 instruction is uniform across both registers even though the underlying causes
 differ.
+
+### ⚠️ It is also not a substring match — executed 2026-08-04
+
+Running the terms separately, as the rule above requires, showed the field matches
+**whole words only**:
+
+| Term | Trials | Overlap with `bacteriophage` |
+|---|---|---|
+| `bacteriophage` | 5 | — |
+| `phage` | **6** | **1** |
+| **Union** | **10** | |
+
+`phage` does not match `bacteriophage`, so the two searches are almost disjoint.
+The **5** recorded above was an undercount of a register that holds **at least
+10** relevant trials, and the five missed ones are not marginal:
+
+- `2023-507203-55-00` and `2022-503145-22-00` — **Phage4Cure-001**, inhaled
+  nebulised phage cocktail in patients with chronic *Pseudomonas aeruginosa* lung
+  colonisation. Directly on this review's topic and invisible to `bacteriophage`.
+- `2024-516207-17-00` PhagoDAIR I, `2024-516555-40-00` GLORIA, and
+  `2022-500541-24-00` (phage therapy for diabetic foot ulcers).
+
+Export saved to `data/raw/ctis_export.csv`, which carries a `found_by_term`
+column so each record states which search retrieved it.
+
+**Still to sweep:** `phages`, `bacteriophages`, `phagotherapy`, `pyophage`. Under
+whole-word matching a plural is a different term, so these may add further trials.
 
 **Positive control.** Before believing any zero from CTIS, run a term that must
 return results: `cancer` gave **3,036**. A zero without a control is not a

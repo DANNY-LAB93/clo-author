@@ -1,0 +1,11 @@
+{
+  "PubMed": "revision_sistematica/busqueda/screening_pubmed_union.csv",
+  "ClinicalTrials.gov": "revision_sistematica/busqueda/clinicaltrials_gov.csv",
+  "Cochrane CENTRAL": "revision_sistematica/busqueda/central_export.ris",
+  "EudraCT": "revision_sistematica/busqueda/eudract_export.csv",
+  "CTIS": "revision_sistematica/busqueda/ctis_export.csv",
+  "SciELO": "revision_sistematica/busqueda/scielo_export.ris",
+  "Scopus (brazo A)": "revision_sistematica/busqueda/scopus_armA.csv",
+  "Scopus (brazo B)": "revision_sistematica/busqueda/scopus_armB.csv",
+  "BVS (no MEDLINE)": "revision_sistematica/busqueda/bvs_non_medline.ris"
+}
