@@ -1,0 +1,461 @@
+record_id,orden,corriente,verdict,reason,decided_by,decided_at
+R66ce888912,1,base,FULLTEXT,case: 88-year-old with relapsing Pseudomonas prosthetic knee infection,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R63890cda1e,2,base,FULLTEXT,"case: phage therapy failure in prosthetic vascular graft infection, PT07/14-01/PNM","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R85046e1707,3,base,FULLTEXT,compassionate-use case series treated with phage PASA16,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R71bf5d0001,4,base,FULLTEXT,personalised inhaled phage for MDR P. aeruginosa in cystic fibrosis,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R1d5dcd7d44,5,base,FULLTEXT,"case: 26-year-old cystic fibrosis patient, MDR P. aeruginosa pneumonia","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rd3f6adc58a,6,base,FULLTEXT,"case: burn patient, XDR P. aeruginosa relapsing ventilator-associated pneumonia","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rc6db9630c3,7,base,FULLTEXT,"case: 37-year-old man, multisite phage cocktail salvage for MDR bone infection","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R7f5e8ad26a,9,base,FULLTEXT,case: chronic bacterial prostatitis treated with phage after antibiotic failure,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R65dafc8475,10,base,FULLTEXT,"case: pandrug-resistant spinal bone and joint infection, personalised phage","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R1907f2a97a,12,base,FULLTEXT,BX004-A randomised first-in-human trial in cystic fibrosis,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R92e57101da,14,base,FULLTEXT,case report: phage for carbapenem-resistant P. aeruginosa lung infection,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R4097bfc5b7,15,base,FULLTEXT,chronic suppression of MDR P. aeruginosa prosthetic joint infection with personalised phage,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R5f5c60be8e,23,base,FULLTEXT,"case: post-pneumonectomy empyema with broncho-pleural fistula, carbapenem-resistant","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rc16977760e,24,base,FULLTEXT,"case: 25-year-old, cranial osteomyelitis after electrocution, phage plus cefiderocol","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R0145584831,25,base,FULLTEXT,"case: post-traumatic femoral osteomyelitis, BFC 1.10 with ceftazidime-avibactam","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R22c0af5ec3,27,base,EXCLUDE,narrative review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Re9d81705c2,29,base,FULLTEXT,case: chronic bronchiectasis treated with an induced native phage cocktail,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Raf45c3cf1c,30,base,FULLTEXT,clinical practice case studies of P. aeruginosa infections,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rff26853b4a,35,base,FULLTEXT,neutralising antibodies after nebulised phage therapy in cystic fibrosis patients,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R5934512026,36,base,FULLTEXT,adjunctive phage in ventilator-associated pneumonia,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R47091e7271,43,base,EXCLUDE,narrative or systematic review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rc5f05c2543,47,base,FULLTEXT,"two persons with cystic fibrosis, pandrug-resistant P. aeruginosa","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R49b7551b94,54,base,FULLTEXT,"PhagoBurn randomised trial, burn wounds infected by P. aeruginosa","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R87db0a0109,60,base,FULLTEXT,"case: 41-year-old with Kartagener syndrome, aerosolised personalised phage","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Re06c450e37,64,base,FULLTEXT,observational feasibility study of personalised phage therapy in Japan,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R179a877749,66,base,FULLTEXT,randomised double-blind trial of TP-102 in patients with diabetic foot ulcers,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R71c51137b3,67,base,FULLTEXT,clearance of hypermutator XDR Pseudomonas osteomyelitis and hardware infection,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R6556b80259,72,base,FULLTEXT,"case: pediatric refractory MDR P. aeruginosa bacteraemia, 2-phage cocktail","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R30e4263f97,74,base,FULLTEXT,no abstract; title reports phage therapy of ventilator-associated pneumonia and empyema,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R239f702d9a,75,base,FULLTEXT,first 10 consecutive intravenous phage therapy cases at one centre,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rf29fc741e7,80,base,FULLTEXT,"randomised placebo-controlled trial protocol, single intravenous dose, ~72 adults with cystic fibrosis","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R91ba44e4e5,88,base,FULLTEXT,case report: pan-resistant P. aeruginosa septic shock in a critically ill patient,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R02b1e109ec,95,base,FULLTEXT,retrospective descriptive study of three patients at the Eliava centre,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R5b72edadd2,99,base,FULLTEXT,case: refractory bronchopulmonary infection after lung transplant for common variable immunodeficiency,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R7e46934a02,104,base,FULLTEXT,Yale emergency phage therapy preparation pipeline; programme report with treated patients,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R35b74982e8,110,base,FULLTEXT,two cases: perinephric abscess in kidney transplant recipients,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R2105e151c4,111,base,FULLTEXT,"case: calciphylaxis with NDM-1 P. aeruginosa, cefepime-zidebactam alongside phage","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rf4a46a9238,112,base,EXCLUDE,secondary synthesis (systematic or scoping review); usable for citation-chasing but not a primary study,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rdcfed12d81,116,base,FULLTEXT,case: recalcitrant intra-abdominal MDR infection in a paediatric patient,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rb2ced3ce85,121,base,FULLTEXT,no abstract; title reports phage treatment of septicaemia in a named patient,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Red52d0884d,122,base,FULLTEXT,case: chronic relapsing periprosthetic joint infection and femoral osteomyelitis,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rcdf0cd1678,125,base,FULLTEXT,"case: 62-year-old, chronic hip prosthetic joint infection, phage with meropenem","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R0785077af4,128,base,FULLTEXT,lung transplant recipient on adjunctive phage; phage-specific CD4 T cells and immunoglobulin,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R50e1887412,130,base,FULLTEXT,PHAGEinLYON programme; all 2022 phage therapy requests collected prospectively,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R067acd0a39,135,base,FULLTEXT,"case: recurrent Pseudomonas septicaemia with arterial stent, phage-meropenem","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rb03837dd03,137,base,FULLTEXT,"case: 47-year-old, intratympanic phage for chronic mastoiditis from MDR P. aeruginosa","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rd563210071,139,base,EXCLUDE,narrative review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rd428980732,141,base,FULLTEXT,"case: recurrent P. aeruginosa Bentall endocarditis, phage as rescue","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R1705a32c41,142,base,FULLTEXT,case: acute rejection resolved in a bilateral lung transplant recipient after phage,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R74bbdc17bb,145,base,EXCLUDE,narrative review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R02681511a0,146,base,EXCLUDE,narrative review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R85f6503e9a,156,base,FULLTEXT,case series: three lung transplant recipients with MDR infections,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rb506e81130,169,base,FULLTEXT,case: XDR P. aeruginosa infection treated to allow liver transplantation,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R436ad33f7e,181,base,FULLTEXT,"single-arm open-label trial, intrabronchial and nebulised phage in children with cystic fibrosis","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rb93cd3cbd9,185,base,FULLTEXT,"no abstract; cannot be judged, advanced rather than excluded","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R3d9c41d5ac,212,base,EXCLUDE,narrative or systematic review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R607037aeaa,253,base,FULLTEXT,clinical study of phage therapy in chronic non-healing wound,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R93e07521e9,259,base,FULLTEXT,cardiothoracic surgical infections treated with phage,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rf41ce1f437,278,base,FULLTEXT,"retrospective series: five ventricular assist device infections, ineffective phage therapy","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R2768d2659e,299,base,EXCLUDE,secondary synthesis (systematic or scoping review); usable for citation-chasing but not a primary study,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rbcb0bd26fd,324,base,FULLTEXT,transplant infection review citing recent published cases; possible case source,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R3f6eb49e93,355,base,EXCLUDE,narrative or systematic review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R188612f054,359,base,FULLTEXT,first-in-human dsRNA phage phiYY in a 40-year-old with interstitial lung disease,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rc8ff79c3d5,414,base,FULLTEXT,pharmacodynamic individualisation against a KPC-5-producing isolate; clinical assessment,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rfc0fff7284,418,base,FULLTEXT,"case: refractory mediastinitis and vascular graft infection, bespoke phage-antibiotic","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Ra1f20b8500,436,base,FULLTEXT,adjunctive phage in a 7-year-old with chronic P. aeruginosa osteoarticular infection,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rad03dbff94,525,base,FULLTEXT,no abstract; title reports XDR P. aeruginosa bone and joint infection with local phage,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R4c045cf31e,529,base,FULLTEXT,case: prosthetic vascular graft infection treated with phage,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rf9e8793e57,613,base,FULLTEXT,"case: 3-month-old girl, severe bronchitis after tracheostomy, consecutive phage and antibiotics","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rb9ec93cff9,686,base,FULLTEXT,QAMH programme report on processing phage therapy requests; may carry patient outcomes,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Re6bb7aa443,768,base,EXCLUDE,narrative or systematic review with no primary patient data of its own,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Ra969af6438,772,base,FULLTEXT,"case: left ventricular assist device infection, phage-antibiotic combination","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R495e188248,793,base,FULLTEXT,title was a placeholder; abstract confirms a case report of chronic relapsing prosthetic aortic graft infection treated with two lytic antipseudomonal phages,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Reba6a0e48c,894,base,FULLTEXT,adapted phages for urinary tract infection; abstract does not settle whether patients were treated,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R286533ffbf,979,base,FULLTEXT,polyvalent pyobacteriophage in 30 intensive-care patients with nosocomial sinusitis,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+Rd7ea09ed5c,2304,base,FULLTEXT,"safety, tolerability and potential efficacy of bronchoscopic and nebulised phage administration","heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R950d0ccc67,4035,base,EXCLUDE,human subjects but not P. aeruginosa infection treated with phage,"heredada del brazo por PMID (claude-opus-5 (abstract stage, LLM-assisted; pending human verification))",2026-08-05 22:23
+R55112b0914,8,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rd8129eda1c,13,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R28423b4c7c,16,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R1283b43e8a,22,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R793249bfc4,26,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rb142a5ed7d,34,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R7b2a90b3b7,45,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Refd51ea317,46,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R8a3bc1100e,55,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R154a4d73a3,57,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R81e3ce4d79,59,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R0a69ad3198,61,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rc29fe2424c,63,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rad7d40f6e0,68,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R81f1d1c8cd,69,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R8e9df36288,78,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Re500315433,83,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R73ebf766af,93,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R6af434b8ab,94,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R146b3e2f13,97,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R363a2dea21,101,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rc4889b04ba,103,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R786d185312,120,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R79b5603bcb,131,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R9c54b30733,132,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rd343ee57dd,138,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R66c7c93018,140,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R205facad9c,144,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R1add858cdd,151,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R20aeab326d,153,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rd3d851640e,154,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rf4bd7736b3,155,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R04ceacf139,162,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R24e314ef3b,174,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rbc912d0c25,179,base,EXCLUDE,Sintesis secundaria (revision sistematica o scoping),"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Raf56eb15fd,184,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R2b8d09a235,188,base,EXCLUDE,Sintesis secundaria (revision sistematica o scoping),"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+Rdfeb34f4ef,193,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R8ce8ef7546,197,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R0496a4bb02,198,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:25
+R9a7778c237,207,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Ra452a89898,210,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rd3e6b7531f,213,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R93635b599b,216,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R3bdd2fe777,217,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rcea9abc521,218,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rdd0e4fa658,219,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R92876627c6,220,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rf59c46bc73,221,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R2e350dba66,222,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Re47d2e9383,227,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R63f460ad1a,230,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R71b87ec1f2,231,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R37a5f82ac0,234,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Ra1e1bcb247,254,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R7217180e58,258,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R4e80e5028d,264,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Re596c8bd2a,269,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rcc3adc1532,272,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R66891a5069,274,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R5b8ba0cf2c,282,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rb8199cd755,283,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R51b94c189b,285,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Re9fa49ae6d,288,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Re398a135c1,295,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R41767b7368,296,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rde30f4212d,321,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R5e2a0a085b,323,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Ra27f5e9de1,329,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Ra669243a04,336,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rc80438c039,343,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rc6e0bf55a4,346,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R916f8071c2,349,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R70a4408081,350,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rc74ef3ed71,353,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R9a169ae02f,361,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R9d091cf924,362,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R560788b76c,363,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rdfe01141eb,369,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+Rfbcac5d987,371,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:45
+R0b195c9d15,373,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Rec6999ba1f,374,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R26f756e05e,375,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R7038fd9f37,384,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R44633e72a3,385,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R99c5855b1c,386,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R72f673966a,387,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R0ba25ff795,399,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R9b61a61b50,423,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Re198b54d4f,443,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Rf9b6e43f7f,444,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R3d7a0bb6e2,445,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Rc14af04e09,451,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R96667a0c25,464,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R50771e1a90,466,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R30617631dc,478,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R4fb3c8bdc8,479,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R2923eeb1ab,487,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R2395232511,498,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R1ea2de24a9,499,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Rc16af7be8b,500,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R7456f123b7,506,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Rb4843251c1,539,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R3febf5a4f4,559,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R15187cfc96,579,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R7b9aae5dd5,585,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R3841f327ba,606,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R56db7c3999,610,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R413debb856,620,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R478cf184a3,653,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R5632faae0a,664,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R0bfe86965a,665,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R6bfeb7120a,670,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R0b92c684cf,677,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Ra1da63894a,680,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R995494cde1,698,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R91cad59160,700,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R658149cf02,705,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Ra48f1861e9,707,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+Rbfbf4e5c53,708,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:46
+R2c1865c2b1,712,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R7fbc1e408c,719,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Re8456aab59,724,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R910cda929d,726,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R25ca0976a4,729,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rc9278fd229,735,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R36f8e8613e,737,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rfbaf0ae13f,740,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R82609ed7d3,741,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R6d0e86c453,747,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R2da73d7257,751,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R56334c0408,759,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rbd411d9ab5,775,base,EXCLUDE,Sintesis secundaria (revision sistematica o scoping),"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Re1167c5f1e,778,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Ra4e9fbb2ff,784,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rf175166f20,785,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rdd1c8a983b,787,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rf5e604c65a,788,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Re0299b8911,792,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R8dfb947a55,820,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Re6bdbee7be,843,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R3bb13be569,852,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rcfc3dae56a,853,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R8b119ef966,856,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rc63b7d8aac,867,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R9504ca6b8e,868,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R4e21091a66,884,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Raa2e529a17,888,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Recf0d5a022,890,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rd0bf3a54b9,892,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R0a298e4dbb,899,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R35097ad062,900,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rade663acac,906,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R9575f5ba66,909,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rf76e86bc31,911,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Re3b246161f,933,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R71be3d4867,956,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R3039307bcc,959,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rfef2fe2708,980,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+R021dd1bdfd,983,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:47
+Rf1442eb8fd,1007,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R7a8b3408e2,1011,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Ra4d543e854,1013,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R410523c1f9,1041,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R36411565f8,1077,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R64cd8732a6,1098,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R9c549ef7a3,1122,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rf6e02386eb,1127,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rcb6a2ca7d4,1135,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R45e6601a0b,1141,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R0429ecd254,1161,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R7c489f3ecc,1169,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R5c1f4c25b8,1178,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rb7a7014f58,1185,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rad45df3566,1213,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Ra049b227ae,1230,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R3405f1429d,1231,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R4d6d6ce617,1243,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Ra1b2dc8611,1284,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R653348cf94,1312,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R5bcca56135,1316,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R717df5fd85,1327,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R5d4320919d,1335,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R7af35f9e71,1354,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R157654d30f,1401,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R0cfbc4a041,1418,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R56c55f565b,1425,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R2404d31e92,1504,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R169d437ac8,1507,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rb9a1909e9c,1531,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rab641cbbee,1538,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rd0143ab955,1590,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Re9525331c5,1593,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Ra7f10103d6,1595,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rab18b3d474,1614,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R16ecfd85b8,1623,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rbc25e976cb,1625,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R18831247ea,1630,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+R25dd658b99,1639,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Rdb9a7a73d3,1747,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:48
+Raf15835230,1782,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R4ad09fd8ae,1842,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R9160a3191e,1875,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R38406111de,2012,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R91b5b8d9ef,2013,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R509b5448ca,2036,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R519f20ec17,2055,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rb798d1142b,2071,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R3ec3a782bb,2072,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R6572f7054b,2135,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R9b7fc7c6a6,2162,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R7a9234f40b,2197,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rb69a153b09,2201,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Re6084b7743,2256,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R4bdcc905f1,2259,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rc513775cd3,2313,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rffe72018f7,2348,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rab6ee89e4c,2350,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rb65634196d,2489,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R48df9e96ab,2514,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Ra36a922d0a,2579,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R21af282137,2612,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R4a198d51c5,2743,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R23d5098396,2744,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Ra399cc97d7,2750,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R207291c79c,2789,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R326c83d964,2873,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R8d9027dea4,2904,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rb31b2f85d1,2929,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R7238cb8c19,2998,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R58e4f5ffa4,3020,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rebfb8e15d3,3128,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rced15312b7,3170,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Re0514528a5,3192,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R7be28addf1,3311,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rf2699aa65a,3346,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rd410a028f3,3358,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rb7e75ed161,3368,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R46195882c7,3385,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+Rca6aa8d801,3388,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:49
+R74193f5d47,3688,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rcea5337472,3740,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R07baeea025,3744,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Raf37bb5c66,3849,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R419c6f6d67,3870,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R667ca55ab2,3891,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rfb0454fbcf,4000,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R95ed8fa775,4039,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R4e73c16c95,4083,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rfdb691fef9,4150,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rc7bed8d4a9,4229,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R9e614d76ec,4283,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R03a7447506,4390,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rf84921307f,4504,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rc5e81057ce,4524,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rcc97c6eba2,4715,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R524929d304,4727,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Ra8e407d553,4805,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rffa60e5773,4881,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R0eead3dd62,4996,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rf8681f8b3e,5002,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R90d8f8231c,5019,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R4833ac2080,5082,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R09627449c5,5177,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R3f77d618e7,5203,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R0a34130320,5207,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R5dad00bd24,5398,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rcf5acab330,5405,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R61f26d31d3,5448,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rcdc64d4926,5532,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rd226635cbb,5659,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rb9d3a3c831,5672,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R13afad8af6,5731,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R4c32396f34,6048,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R07e092ec2e,6060,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rc4ccb0f775,6321,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Ra641ca5509,6519,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Rf0cdd141d7,6569,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+Ra1e6870c9a,6708,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R7afa3ffdf3,6709,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:50
+R9e51826497,6759,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Rd877e7abc0,6870,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R4d675da8ac,7198,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Rd9fa27bc20,7314,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R851541f8af,7485,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R25d5b5f574,7588,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R7084caa9c9,7609,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R4ed45bc910,7863,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R903ff04487,7894,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R65b56c8408,7911,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R48f287c11f,7950,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Rf50b64c576,7974,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Rcd179dd8cf,8472,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R466bca70fe,8714,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Rc68fafc06d,8799,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R83f1eec7c2,8847,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R048b27c983,8942,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Ra3eb2043d4,9075,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R5eac0fde9e,9335,base,EXCLUDE,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratados","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R8da84e2f04,9396,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R5dd521bed2,9556,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Re3ffc68fa1,9584,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R75b470b937,10014,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R4584fe11af,10540,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R7a03d73604,10609,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Rd99ae8446a,10757,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R451bce0c4a,10811,base,FULLTEXT,cumple criterios aparentes; verificar en texto completo,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R5d17d80fb2,10872,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R36a0e09b26,10902,base,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R77027b34a0,11138,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R820a528c5a,11401,base,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+R93563c8968,12241,base,EXCLUDE,"Revision narrativa o comentario, sin datos primarios propios","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:51
+Re2c1c6e52f,20,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rc27a7629de,38,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R00267b912e,39,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Ra2af797394,40,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R4215a33dab,77,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R17a60bebc5,126,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R8e8222e790,161,registro,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R685eac0bf9,168,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rcdf346a99e,176,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R7a4fdd4c60,322,registro,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Ra0a7764be2,328,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rced39d2e31,351,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R4be8d3bd67,364,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R86898bdcba,367,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rbd524d27e8,388,registro,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R2298493744,438,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rb19dcd4efb,512,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rd722f8e7bc,565,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R0765f3e9d9,639,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R6cfa72b38c,651,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Racba465763,659,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R0afae6295c,994,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R39bc0a2a80,996,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R09d4ba6319,1101,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R23483b48bc,1133,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rcb166dcd37,1209,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R221c13dfc7,1263,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rea9d786d26,1334,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R9f1214e6e5,1374,registro,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rbb08a249dc,1424,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R763c89176a,1458,registro,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rdff19cdd5b,1627,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R1517c6529b,1663,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Red9286ca0b,1952,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R5b4b3e9cf3,1955,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R71d2c2521c,2033,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R899d693366,2749,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R4360ac52ef,3686,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R82ba22a1d4,3905,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rc6b6f2d004,3906,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R3608cade6a,4410,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rb4a8aeb7e8,4411,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rb7ef70c6bc,4503,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R46ad854611,4514,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rf38d966057,4581,registro,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R6ce58a44af,4658,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rc08e36041c,6446,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R9483d0060a,6454,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Ra3cf2dc671,6633,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R9e58bab3c1,7008,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rbe6f5e0205,7600,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R717f588fdf,8074,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Ra0054657c8,8296,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R4dfe961e12,8300,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rcc006883b6,8474,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R1db63ef613,8522,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rf56ec00127,8720,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rd218ea735a,8773,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Ra53bedf340,8804,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R663b355c69,8967,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R74adbef4c7,9020,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R8902b595d1,9238,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rf40bdbe56e,9247,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R5e5bac7d74,9350,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+Rd5b3d080e3,9535,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R70682cc783,9583,registro,EXCLUDE,"Organismo distinto de P. aeruginosa, sin subgrupo separable","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R58c987406c,9921,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R47b6c2d383,9958,registro,EXCLUDE,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)","claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R0460c7eae8,10230,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R80ac05ea69,10303,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
+R7312fa024a,10602,registro,FULLTEXT,registro de ensayo elegible en apariencia; evaluar la ficha completa,"claude-opus-5 (revisor unico, sin duplicacion)",2026-08-05 22:52
