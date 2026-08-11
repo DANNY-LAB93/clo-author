@@ -180,6 +180,56 @@ def main():
         S[nombre] = sin(campo)
         S[nombre + "_pct"] = round(100.0 * sin(campo) / len(extraibles), 1)
 
+    # ---- efecto de la enmienda de idioma -----------------------------------
+    # El registro de decisiones es solo-anexar, asi que el estado ANTERIOR a la
+    # enmienda se reconstruye del propio registro: basta ignorar las filas cuyo
+    # motivo deriva en IDI y quedarse con la decision previa de cada informe.
+    # Reconstruirlo asi, en vez de teclear las cifras de memoria, es lo que
+    # permite que un revisor rehaga la comparacion sin pedirnos nada.
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from exclusion_codes import code_for
+    crudo3 = leer(RS / "cribado" / "screening_stage3_pool_decisions.csv")
+    previo = {}
+    for r in crudo3:
+        if code_for(r.get("reason", "")) != "IDI":
+            previo[r["record_id"]] = r
+    ft_previo = {k for k, v in previo.items() if v["verdict"] == "FULLTEXT"}
+    idi = {r["record_id"] for r in crudo3 if code_for(r.get("reason", "")) == "IDI"}
+    S["enmienda_idioma_informes_excluidos"] = len(idi)
+
+    por_est_prev = collections.defaultdict(set)
+    for g in grupos:
+        por_est_prev[g["clave"]].add(g["record_id"])
+    # los informes excluidos por idioma ya no estan en study_groups; se
+    # recuperan del pozo por su clave de estudio reconstruida
+    S["informes_a_texto_completo_antes"] = len(ft_previo)
+    S["estudios_eliminados_por_idioma"] = len(ft_previo) - len(
+        {r for r in ft_previo if r in {g["record_id"] for g in grupos}})
+    S["estudios_antes_de_la_enmienda"] = (S["estudios"]
+                                          + S["estudios_eliminados_por_idioma"])
+
+    # El fichero de pre-extraccion se hizo sobre el corpus previo y sigue
+    # intacto, asi que sirve de fotografia del ANTES sin conservar copias.
+    idi_path = RS / "cribado" / "idioma_informes.csv"
+    if idi_path.exists():
+        idioma = {r["record_id"]: r for r in leer(idi_path)}
+        fuera = collections.Counter(
+            r["idioma"] for r in idioma.values() if r["veredicto"] == "excluir")
+        S["informes_excluidos_por_idioma_detalle"] = dict(fuera.most_common())
+        S["informes_excluidos_en_ruso"] = fuera.get("rus", 0)
+    todos_pre = set(pre)
+    S["extraibles_antes_de_la_enmienda"] = len(todos_pre)
+    S["comparativos_antes_de_la_enmienda"] = sum(
+        1 for k in todos_pre if pre[k].get("study_design") in COMPARATIVOS)
+    S["ecas_antes_de_la_enmienda"] = sum(
+        1 for k in todos_pre if pre[k].get("study_design") == "RCT")
+    S["comparativos_perdidos_por_idioma"] = (
+        S["comparativos_antes_de_la_enmienda"] - S["estudios_comparativos"])
+    S["ecas_perdidos_por_idioma"] = (S["ecas_antes_de_la_enmienda"] - S["ecas"])
+    paises_pre = collections.Counter(
+        (pre[k].get("geographic_source") or "no declarada") for k in todos_pre)
+    S["rusos_antes_de_la_enmienda"] = paises_pre.get("Rusia", 0)
+
     # ---- motivos de exclusion, para el diagrama PRISMA ---------------------
     sys.path.insert(0, str(ROOT / "scripts"))
     from exclusion_codes import CODES, code_for

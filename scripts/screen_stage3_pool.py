@@ -205,21 +205,43 @@ def main():
     for r in pool:
         if r["pmid"] and r["pmid"] in known:
             by_study[known[r["pmid"]]].append(r)
-    perdidos = []
+    # El conjunto de control se fijo bajo el protocolo ORIGINAL, que no tenia
+    # criterio de idioma. Cuando una enmienda de elegibilidad entra despues, un
+    # control positivo puede perderse legitimamente: no es un fallo del cribado,
+    # es el precio del criterio nuevo. Las dos cosas se separan porque
+    # confundirlas arruina la auditoria en cualquiera de los dos sentidos --
+    # fallar siempre la vuelve ruido que se acaba ignorando, y pasar siempre
+    # deja de detectar el error que existe para detectar.
+    perdidos, por_enmienda = [], []
     for sid, recs in by_study.items():
-        estados = [decided.get(x["record_id"], {}).get("verdict") for x in recs]
-        if estados and all(e == "EXCLUDE" for e in estados):
+        filas = [decided.get(x["record_id"], {}) for x in recs]
+        estados = [f.get("verdict") for f in filas if f]
+        if not estados or not all(e == "EXCLUDE" for e in estados):
+            continue
+        codigos = {code_for(f.get("reason", "")) for f in filas if f}
+        if codigos == {"IDI"}:
+            por_enmienda.append((sid, filas[0].get("reason", "")))
+        else:
             perdidos.append(sid)
     tocados = sum(1 for recs in by_study.values()
                   if any(x["record_id"] in decided for x in recs))
     print("\nestudios incluidos con algun informe ya decidido: %d de %d"
           % (tocados, len(by_study)))
+    if por_enmienda:
+        print("\nPERDIDOS POR LA ENMIENDA DE IDIOMA (%d). No es un fallo del "
+              "cribado, pero SI es un coste del criterio y debe declararse en "
+              "el manuscrito:" % len(por_enmienda))
+        for sid, motivo in por_enmienda:
+            print("  %-16s %s" % (sid, motivo[:96]))
     if perdidos:
-        print("\nFALLO: un estudio incluido pierde todos sus informes decididos")
+        print("\nFALLO: un estudio incluido pierde todos sus informes por un "
+              "motivo que no es una enmienda declarada")
         for sid in perdidos:
             print("  %s" % sid)
         sys.exit("revisa esas decisiones antes de continuar")
-    print("auditoria de control positivo: PASS")
+    print("auditoria de control positivo: PASS%s"
+          % (" (con %d perdidos por la enmienda de idioma)" % len(por_enmienda)
+             if por_enmienda else ""))
 
     # ---------------- listados de trabajo ----------------
     if args.next:

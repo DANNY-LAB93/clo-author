@@ -32,14 +32,15 @@ ES_DISENO = {
     "no declarado": "No declarado en el resumen",
 }
 COMPARATIVOS = {"RCT", "non-randomised trial"}
-CODIGOS = {
-    "ORG": "Organismo distinto de *P. aeruginosa*, sin subgrupo separable",
-    "REV": "Revisión narrativa o comentario, sin datos primarios propios",
-    "SEC": "Síntesis secundaria (revisión sistemática o scoping)",
-    "LAB": "Trabajo de laboratorio, preclínico o de modelización",
-    "VET": "Aislados o infección veterinaria, no humana",
-    "OFF": "No evalúa fagoterapia en pacientes",
-}
+# Los codigos se leen del vocabulario, no se copian: una copia se queda
+# desfasada en cuanto se anade un codigo, y la tabla del manuscrito dejaria
+# de sumar sin que nada avise.
+import sys as _sys, pathlib as _pl
+_sys.path.insert(0, str(_pl.Path(__file__).resolve().parent))
+from exclusion_codes import CODES as _CODES
+CODIGOS = dict(_CODES)
+CODIGOS['ORG'] = 'Organismo distinto de *P. aeruginosa*, sin subgrupo separable'
+CODIGOS['IDI'] = 'Informe no redactado en inglés ni en español (enmienda)'
 
 
 def leer(p):
@@ -171,9 +172,12 @@ def main():
     escribe("tabla_4_exclusiones", ["Código", "Motivo", "Por título",
                                     "Por resumen", "Total"], filas,
             "Tabla 4. Motivos de exclusión por etapa, con el vocabulario cerrado.",
-            "El vocabulario se fijó antes de iniciar el cribado. Un motivo que no "
-            "encaje en uno de los seis códigos no recibe un séptimo improvisado: "
-            "el registro avanza a la etapa siguiente para lectura humana. El "
+            "Los seis primeros códigos se fijaron antes de iniciar el cribado. Un "
+            "motivo que no encaje en ellos no recibe otro improvisado sobre la "
+            "marcha: el registro avanza a la etapa siguiente para lectura "
+            "humana. IDI es una ENMIENDA posterior al protocolo, incorporada el "
+            "11 de agosto de 2026 y aplicada solo en la etapa de resumen; su "
+            "adopción y su impacto se declaran en Métodos y en Limitaciones. El "
             "registro de decisiones es solo-anexar y conserva el texto literal "
             "escrito al decidir, del que se deriva el código.")
 

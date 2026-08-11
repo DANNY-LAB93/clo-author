@@ -128,8 +128,18 @@ def main():
         extr = {"EST-%03d" % int(g["estudio"]) for g in reps
                 if g["situacion"] in ("extraible", "solo-resumen")}
         ids = {p["id_provisional"] for p in pre}
-        chk(ids == extr, "pre-extraccion cubre los extraibles (%d de %d)"
+        # Se exige COBERTURA, no igualdad. La pre-extraccion se hizo sobre 159
+        # estudios y la enmienda de idioma excluyo 32 de ellos: esas filas se
+        # conservan porque son el registro del trabajo hecho, y exigir igualdad
+        # obligaria a borrarlas, que es justo lo que este proyecto no hace.
+        chk(extr <= ids, "pre-extraccion cubre los extraibles (%d de %d)"
             % (len(ids & extr), len(extr)))
+        sobra = ids - extr
+        chk(not sobra,
+            "pre-extraccion sin sobrantes"
+            if not sobra else
+            "%d pre-extracciones de estudios excluidos despues por la enmienda "
+            "de idioma; se conservan como registro" % len(sobra), blando=True)
         chk(len(ids) == len(pre), "pre-extraccion sin filas repetidas")
         chk(all(p.get("extraction_status") == "PARTIAL" for p in pre),
             "toda la pre-extraccion sigue marcada PARTIAL")

@@ -161,6 +161,10 @@ def read_ris(text):
         first = lambda *t: next((r[k][0] for k in t if k in r and r[k]), "")
         out.append({
             "title": first("TI", "T1"),
+            # El idioma no interviene en la deduplicacion; se arrastra porque
+            # es un criterio de elegibilidad declarado y hay que poder
+            # comprobarlo contra la fuente en vez de deducirlo de la revista.
+            "language": first("LA", "L1"),
             "year": re.sub(r"\D", "", first("PY", "Y1", "DA"))[:4],
             "journal": first("JO", "JF", "T2", "JA"),
             # C3 is Cochrane's source-accession field: short, structured pairs
@@ -199,7 +203,8 @@ def read_nbib(text):
     for r in recs:
         first = lambda *t: next((r[k][0] for k in t if k in r and r[k]), "")
         out.append({
-            "title": first("TI"), "year": re.sub(r"\D", "", first("DP"))[:4],
+            "title": first("TI"), "language": first("LA"),
+            "year": re.sub(r"\D", "", first("DP"))[:4],
             "journal": first("JT", "TA"),
             "idfields": " ".join("PMID: " + v if k == "PMID" else v
                                  for k, vs in r.items()
@@ -226,6 +231,7 @@ def read_csv_any(path):
         pick = lambda *n: next((low[x] for x in n if x in low and low[x]), "")
         out.append({
             "title": pick("title", "brieftitle", "ti", "article title"),
+            "language": pick("language of original document", "language", "la"),
             "year": re.sub(r"\D", "", pick("year", "py", "publication year", "date"))[:4],
             # "source title" before "source": Scopus ships both, and its
             # "Source" column holds the literal string "Scopus", not the journal.

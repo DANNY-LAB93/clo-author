@@ -17,9 +17,9 @@
 
 **Objetivos.** Delimitar de forma reproducible la literatura clínica sobre fagoterapia en *P. aeruginosa* resistente y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
 
-**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases bibliográficas y registros de ensayos. Se interrogaron nueve fuentes sin restricción de idioma ni de fecha, incluidas BVS y SciELO. La selección usó un vocabulario cerrado de seis códigos y se auditó contra controles positivos fijados a priori. La unidad de inclusión fue el estudio, no el informe.
+**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases bibliográficas y registros de ensayos. Se interrogaron nueve fuentes sin restricción de fecha, incluidas BVS y SciELO. Se admitieron informes redactados en inglés o español; este criterio de idioma se incorporó como enmienda posterior al cribado y se declara como tal. La selección usó un vocabulario cerrado de códigos de exclusión y se auditó contra controles positivos fijados a priori. La unidad de inclusión fue el estudio, no el informe.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 268, que se agruparon en 219 estudios; 159 de ellos tienen publicación recuperable. El 32,7 % son casos únicos y solo el 25,8 % son comparativos. No consta la procedencia geográfica en el 50,9 % ni la clase de resistencia en el 76,7 %. Se obtuvo el texto completo de 74 estudios (46,5 %); la fracción restante concentra el 63,4 % de los diseños comparativos y la mayor parte de la literatura rusa.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 236, agrupados en 187 estudios; 127 de ellos tienen publicación recuperable. El 38,6 % son casos únicos y solo el 20,5 % son comparativos. No consta la procedencia geográfica en el 59,8 % ni la clase de resistencia en el 70,9 %. Se obtuvo el texto completo de 64 estudios (50,4 %); la fracción restante concentra el 65,4 % de los diseños comparativos. El criterio de idioma excluyó 32 informes y eliminó 32 estudios, entre ellos 15 comparativos y un estudio del conjunto de control positivo.
 
 **Conclusiones.** El cuerpo de evidencia es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de éxito publicadas descansan sobre supuestos que estos datos no sostienen.
 
@@ -61,6 +61,10 @@ Esta revisión se condujo conforme a la declaración PRISMA 2020 [@Page2021_pris
 
 **Diseños.** Todo diseño con pacientes tratados: ensayos aleatorizados y no aleatorizados, cohortes, series y reportes de caso. Se excluyeron trabajos de laboratorio, preclínicos y de modelización; revisiones sin datos primarios propios; síntesis secundarias; infecciones veterinarias; y estudios sobre organismos distintos sin subgrupo separable.
 
+**Idioma.** Se admitieron informes redactados en inglés o en español. **Este criterio no formaba parte del protocolo original y se incorporó el 11 de agosto de 2026, con el cribado ya concluido**, de modo que la decisión se tomó conociendo el contenido del corpus. Es exactamente lo que el registro prospectivo existe para impedir, y por eso se declara como enmienda, con su impacto medido, en la sección 2.9 y en las limitaciones.
+
+El idioma no se dedujo del nombre de la revista, que falla en ambos sentidos: *Pirogov Russian Journal of Surgery* publica en inglés, y una cabecera en inglés puede alojar un artículo en otra lengua. Se tomó del campo `language` que declara Europe PMC —el mismo dato que PubMed archiva en LA— y, cuando la fuente no lo indexaba, del campo de idioma de la propia exportación (Scopus, SciELO y BVS lo traen). Las fichas de registro de ensayos y los registros de Cochrane CENTRAL se consideraron elegibles porque esas fuentes publican en inglés por construcción. Los informes de revistas que editan una versión íntegra en inglés se conservaron. Los 236 informes evaluados tienen idioma documentado por una de esas vías, y la asignación de cada uno, con su procedencia, se aporta como suplemento.
+
 **Unidad de inclusión.** El **estudio**, no el informe, conforme a PRISMA 2020. Un protocolo, sus resúmenes de congreso y su publicación final son un solo estudio con varios informes. La decisión y su justificación constan en el registro de decisiones del proyecto.
 
 ### 2.3 Fuentes de información y estrategia de búsqueda
@@ -97,42 +101,52 @@ La viabilidad de un metaanálisis de proporciones se evaluó de forma explícita
 
 Todo el canal está escrito en código versionado y es reejecutable: búsqueda, deduplicación, cribado, agrupación y cálculo de cifras. Cada registro se identifica con una clave derivada de su contenido y nunca de su posición en un listado, porque una clave posicional cambia de referente en cuanto cambia el conjunto de fuentes. Una comprobación automática cuadra la salida de cada etapa contra la entrada de la siguiente, y falla si alguna fuente declarada no aparece representada en el corpus. Durante el desarrollo, esa comprobación destapó una base entera que se había buscado y descargado sin llegar nunca al corpus.
 
+### 2.9 Enmienda al protocolo: criterio de idioma
+
+El 11 de agosto de 2026, con el cribado concluido y los 219 estudios ya delimitados, se decidió restringir la elegibilidad a los informes redactados en inglés o en español. La enmienda responde a una limitación operativa del equipo revisor, que no puede extraer con garantías de un texto en ruso, y se declara aquí en lugar de presentarse como si hubiera regido desde el principio.
+
+Su efecto se midió antes de adoptarla, y no fue menor. Excluyó **32 informes** —29 en ruso, uno en neerlandés, uno en danés y uno en japonés— y con ellos **32 estudios completos**, porque ninguno tenía un informe alternativo en lengua admitida. El corpus pasó de 219 a 187 estudios y de 159 a 127 estudios con publicación recuperable. La pérdida no se repartió de forma uniforme: de los 41 diseños comparativos quedaron 26, y de los 21 ensayos aleatorizados, 17.
+
+La auditoría de controles positivos registró además una pérdida concreta. **Ronit et al. (2024)**, un caso de fagoterapia en prótesis vascular infectada por *P. aeruginosa* publicado en danés en *Ugeskrift for Læger*, pertenecía al conjunto de 40 estudios fijados a priori como elegibles y queda excluido por el criterio. No es un fallo del cribado —el estudio se identificó y se clasificó correctamente— sino el precio del criterio, y se informa porque una auditoría que solo se reporta cuando pasa no demuestra nada.
+
+Las cifras de la revisión sin la enmienda se conservan íntegras en el registro de decisiones, que es solo-anexar, de modo que cualquier lector puede reconstruir el corpus previo y comprobar el efecto por sí mismo.
+
 ---
 
 ## 3. Resultados
 
 ### 3.1 Selección de los estudios
 
-Las nueve fuentes aportaron **23 057 registros**, de los que se eliminaron 5 928 duplicados para dejar **17 129 informes únicos** (Figura 1). Las reglas de etapa 1 excluyeron 3 235; de los 13 894 títulos cribados se excluyeron 13 434 y avanzaron 460 a lectura de resumen; de estos se excluyeron 192 y **268 informes pasaron a texto completo**. Al agrupar los informes por estudio, esos 268 corresponden a **219 estudios**: 189 con un solo informe y 30 con varios, hasta un máximo de once informes de un mismo ensayo.
+Las nueve fuentes aportaron **23 057 registros**, de los que se eliminaron 5 928 duplicados para dejar **17 129 informes únicos** (Figura 1). Las reglas de etapa 1 excluyeron 3 235; de los 13 894 títulos cribados se excluyeron 13 434 y avanzaron 460 a lectura de resumen; de estos se excluyeron 224 y **236 informes pasaron a texto completo**. Al agrupar los informes por estudio, esos 236 corresponden a **187 estudios**: 157 con un solo informe y 30 con varios, hasta un máximo de once informes de un mismo ensayo.
 
-De los 219 estudios, **159 tienen publicación recuperable**: 156 artículos y 3 que solo existen como resumen de congreso. Los **60 restantes son únicamente fichas de registro de ensayo**, sin publicación asociada localizable. Esa cifra basta por sí sola para describir un campo en el que uno de cada cuatro estudios registrados no ha publicado resultados.
+De los 187 estudios, **127 tienen publicación recuperable**: 124 artículos y 3 que solo existen como resumen de congreso. Los **60 restantes son únicamente fichas de registro de ensayo**, sin publicación asociada localizable. Esa cifra basta por sí sola para describir un campo en el que casi uno de cada tres estudios registrados no ha publicado resultados.
 
-Los motivos de exclusión por título fueron trabajo de laboratorio o preclínico (4 062), organismo distinto sin subgrupo separable (3 031), revisión o comentario sin datos primarios (2 807), no evalúa fagoterapia en pacientes (2 634), ámbito veterinario (838) y síntesis secundaria (84). En la lectura de resumen: organismo distinto (65), revisión o comentario (64), no evalúa fagoterapia (40), laboratorio (18) y síntesis secundaria (5).
+Los motivos de exclusión por título fueron trabajo de laboratorio o preclínico (4 062), organismo distinto sin subgrupo separable (3 031), revisión o comentario sin datos primarios (2 807), no evalúa fagoterapia en pacientes (2 634), ámbito veterinario (838) y síntesis secundaria (84). En la lectura de resumen: organismo distinto (65), revisión o comentario (64), no evalúa fagoterapia (40), **idioma no admitido (32)**, laboratorio (18) y síntesis secundaria (5).
 
 ### 3.2 Recuperación del texto completo y su sesgo
 
-Se obtuvo el texto completo de **74 de los 159 estudios recuperables (46,5 %)** por vías de acceso abierto legítimas. Los 85 restantes requieren préstamo interbibliotecario, acceso institucional o solicitud a los autores.
+Se obtuvo el texto completo de **64 de los 127 estudios recuperables (50,4 %)** por vías de acceso abierto legítimas. Los 63 restantes requieren préstamo interbibliotecario, acceso institucional o solicitud a los autores.
 
-La fracción no obtenida **no es una muestra aleatoria del conjunto** (Tabla 3). Contiene 26 de los 41 estudios comparativos, el **63,4 %**, y declara más pacientes que la fracción obtenida: 2 094 frente a 1 839. Entre esos comparativos aún no leídos figuran los cuatro ensayos aleatorizados más citados del campo [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @Stanley2025_themicrobe_cyphy; @Onallah2023_med]. Veinticinco de los 85 son literatura rusa.
+La fracción no obtenida **no es una muestra aleatoria del conjunto** (Tabla 3). Contiene 17 de los 26 estudios comparativos, el **65,4 %**, y declara más pacientes que la fracción obtenida: 922 frente a 790. Entre esos comparativos aún no leídos figuran los cuatro ensayos aleatorizados más citados del campo [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @Stanley2025_themicrobe_cyphy; @Onallah2023_med].
 
-La asimetría es en sí misma un resultado. La accesibilidad del texto completo covaría con la región de publicación y con el diseño del estudio. Una revisión limitada a lo descargable transforma así la pregunta sin declararlo: deja de tratar sobre fagoterapia y pasa a tratar sobre fagoterapia en la literatura anglosajona de acceso abierto.
+La asimetría es en sí misma un resultado. La accesibilidad del texto completo covaría con la región de publicación y con el diseño del estudio, y se suma a la restricción de idioma en la misma dirección: ambas empujan el corpus hacia la literatura anglosajona de acceso abierto. Una revisión que no declare ninguna de las dos transforma la pregunta sin decirlo.
 
 ### 3.3 Características del cuerpo de evidencia
 
-Los 159 estudios recuperables se publicaron entre **2016 y 2026**, y el **81,8 %** desde 2020. Es un cuerpo de evidencia joven y en expansión rápida (Tabla 1).
+Los 127 estudios recuperables se publicaron entre **2016 y 2026**, y el **83,5 %** desde 2020. Es un cuerpo de evidencia joven y en expansión rápida (Tabla 1).
 
-Su composición por diseño es la que cabe esperar de una literatura de rescate, no la que una síntesis de eficacia necesita: **52 reportes de caso único (32,7 %)**, 22 cohortes prospectivas, 21 ensayos aleatorizados, 21 series de casos, 20 ensayos no aleatorizados y 5 cohortes retrospectivas. Otros 18 no declaran su diseño de forma reconocible en el resumen. Los comparativos suman **41 estudios, el 25,8 %** del total, y son los únicos capaces de sostener una afirmación de eficacia relativa.
+Su composición por diseño es la que cabe esperar de una literatura de rescate, no la que una síntesis de eficacia necesita: **49 reportes de caso único (38,6 %)**, 19 series de casos, 17 ensayos aleatorizados, 13 cohortes prospectivas, 9 ensayos no aleatorizados y 4 cohortes retrospectivas. Otros 16 no declaran su diseño de forma reconocible en el resumen. Los comparativos suman **26 estudios, el 20,5 %** del total, y son los únicos capaces de sostener una afirmación de eficacia relativa.
 
-La procedencia geográfica, cuando consta, está dominada por Rusia (34 estudios), seguida de Georgia y Polonia (6 cada una), Alemania (4), Estados Unidos, Francia y Ucrania (3 cada una). No consta en 81 estudios.
+La procedencia geográfica, cuando consta, se reparte entre Rusia (10 estudios), Georgia y Polonia (6 cada una), Alemania (4), Estados Unidos y Francia (3 cada una), y España, Irán y Ucrania (2 cada una). No consta en 76 estudios. La caída de la representación rusa respecto del corpus previo a la enmienda —de 34 estudios a 10— es efecto directo del criterio de idioma y no de la búsqueda.
 
 ### 3.4 Lo que el cuerpo de evidencia no declara
 
 La completitud de reporte, medida sobre lo que los resúmenes hacen explícito, es baja precisamente en las variables de las que depende cualquier estratificación (Tabla 2):
 
-- La **clase de resistencia** (MDR, XDR o PDR) no consta en el **76,7 %** de los estudios.
-- La **vía de administración** no consta en el **60,4 %**.
-- El **ámbito de patógeno**, esto es, si el estudio trata solo *P. aeruginosa* o es mixto con subgrupo separable, no consta en el **61,0 %**.
-- El cumplimiento del criterio **DTR** (*difficult-to-treat resistance*) no consta en el **98,7 %**.
+- La **clase de resistencia** (MDR, XDR o PDR) no consta en el **70,9 %** de los estudios.
+- La **vía de administración** no consta en el **55,9 %**.
+- El **ámbito de patógeno**, esto es, si el estudio trata solo *P. aeruginosa* o es mixto con subgrupo separable, no consta en el **52,8 %**.
+- El cumplimiento del criterio **DTR** (*difficult-to-treat resistance*) no consta en el **98,4 %**.
 
 Estas cifras describen el reporte en el resumen, no forzosamente en el artículo completo, y la distinción importa porque parte de la información puede estar en el texto. Ahora bien, el resumen es lo que indexan las bases y lo que alimenta las revisiones automatizadas. Que tres de cada cuatro estudios no declaren allí su categoría de resistencia implica que ninguna estratificación por MDR/XDR/PDR construida a partir de resúmenes puede ser correcta.
 
@@ -140,7 +154,7 @@ Estas cifras describen el reporte en el resumen, no forzosamente en el artículo
 
 Un metaanálisis de proporciones exige denominadores interpretables, un desenlace que nombre lo mismo en todos los estudios y una intervención suficientemente homogénea. El cuerpo delimitado aquí falla en los tres requisitos.
 
-**Denominadores.** Un tercio de los estudios son casos únicos, en los que la proporción de éxito solo puede tomar los valores 0 o 1 y su varianza binomial es máxima. Agregar cincuenta y dos denominadores de uno con veinte denominadores de decenas produce una media ponderada cuyo peso lo determina el tamaño de la serie y no la calidad de la evidencia.
+**Denominadores.** Casi cuatro de cada diez estudios son casos únicos, en los que la proporción de éxito solo puede tomar los valores 0 o 1 y su varianza binomial es máxima. Agregar cuarenta y nueve denominadores de uno con unas pocas decenas de series mayores produce una media ponderada cuyo peso lo determina el tamaño de la serie y no la calidad de la evidencia.
 
 **Desenlace.** «Éxito clínico» abarca en esta literatura desde la resolución de una fístula a dos años hasta la ausencia de fiebre a los tres días. Sin una definición común, la proporción agrupada suma numeradores que no cuentan lo mismo.
 
@@ -154,15 +168,15 @@ A ello se añade el sesgo de recuperación documentado en la sección 3.2, que e
 
 ### 4.1 Hallazgos principales
 
-Esta revisión delimita el cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente con más amplitud que las síntesis previas: nueve fuentes, sin restricción de idioma, con literatura regional y registros de ensayos incluidos. El resultado son 219 estudios frente a las decenas que manejan las revisiones publicadas. Ese aumento no habla bien de la madurez del campo. La mayor parte procede de reportes de caso, de fichas de registro sin publicación y de literatura regional que las búsquedas restringidas a PubMed y Scopus no alcanzan.
+Esta revisión delimita el cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente con más amplitud que las síntesis previas: nueve fuentes, sin restricción de idioma, con literatura regional y registros de ensayos incluidos. El resultado son 187 estudios frente a las decenas que manejan las revisiones publicadas, y habrían sido 219 sin la restricción de idioma que se adoptó al final. Ese aumento no habla bien de la madurez del campo. La mayor parte procede de reportes de caso, de fichas de registro sin publicación y de literatura regional que las búsquedas restringidas a PubMed y Scopus no alcanzan.
 
-El resultado central es negativo y conviene enunciarlo sin rodeos: **la amplitud del cuerpo de evidencia no se traduce en capacidad de síntesis**. Uno de cada tres estudios recuperables es un caso único. Solo uno de cada cuatro es comparativo. Tres de cada cuatro no declaran la categoría de resistencia con la que se pretende estratificar. Y uno de cada cuatro estudios identificados existe únicamente como registro, sin resultados publicados.
+El resultado central es negativo y conviene enunciarlo sin rodeos: **la amplitud del cuerpo de evidencia no se traduce en capacidad de síntesis**. Casi cuatro de cada diez estudios recuperables son un caso único. Solo uno de cada cinco es comparativo. Siete de cada diez no declaran la categoría de resistencia con la que se pretende estratificar. Y casi uno de cada tres estudios identificados existe únicamente como registro, sin resultados publicados.
 
 ### 4.2 Comparación con la literatura previa
 
 Las revisiones recientes han reportado proporciones globales de éxito clínico que superan sistemáticamente el 80 % [@Uyttebroek2022_lancetid; @Liu2025_ijaa; @Krakhotkin2025_currurol]. Esos resultados no contradicen los nuestros; los explican. Una literatura compuesta en su mayoría por casos que se publican tras un desenlace favorable produce, al agregarse, una proporción alta por construcción. Lo que esa proporción mide es la propensión a publicar éxitos, no la eficacia de la intervención.
 
-Nuestra delimitación sugiere además que aquellas síntesis trabajaron sobre una fracción del campo. Llama la atención la ausencia de literatura rusa y ucraniana, 34 y 3 estudios en nuestro conjunto, porque es justamente donde se concentran los diseños con comparador.
+Nuestra delimitación sugiere además que aquellas síntesis trabajaron sobre una fracción del campo. La búsqueda sin restricción de idioma recuperó 34 estudios rusos y 3 ucranianos, y ahí es justamente donde se concentran los diseños con comparador. La enmienda de idioma nos obliga a dejarlos fuera, de modo que esta revisión documenta la existencia de ese cuerpo de literatura pero no puede pronunciarse sobre su contenido. Esa es una deuda explícita con la próxima revisión que cuente con capacidad de traducción.
 
 ### 4.3 Implicaciones
 
@@ -170,13 +184,13 @@ Nuestra delimitación sugiere además que aquellas síntesis trabajaron sobre un
 
 **Para la investigación.** Hay tres deficiencias subsanables sin coste añadido que bastarían para transformar la utilidad de los próximos informes. Declarar la categoría de resistencia junto con los criterios explícitos que se aplicaron para asignarla. Documentar que el fago administrado tenía actividad lítica comprobada sobre el aislado del paciente. Y definir el éxito clínico con un horizonte temporal explícito. La primera es la más urgente: sin ella, la población de la pregunta no está definida.
 
-**Para los registros.** Que 60 de 219 estudios sean fichas de registro sin publicación localizable es un problema de sesgo de publicación de primer orden, y no se resuelve con métodos estadísticos.
+**Para los registros.** Que 60 de 187 estudios sean fichas de registro sin publicación localizable es un problema de sesgo de publicación de primer orden, y no se resuelve con métodos estadísticos.
 
 ### 4.4 Fortalezas y limitaciones
 
 **Fortalezas.** La búsqueda abarcó nueve fuentes en dos corrientes separadas, sin restringir el idioma. La selección usó un vocabulario cerrado fijado de antemano y se auditó contra un conjunto de controles positivos definido antes de empezar, lo que permite afirmar, y no solo confiar, que el cribado no perdió estudios elegibles conocidos. Todo el canal es código reejecutable con claves derivadas del contenido, y una comprobación automática cuadra cada eslabón con el siguiente.
 
-**Limitaciones.** Son cuatro y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 46,5 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado lo realizó un solo revisor asistido por reglas explícitas, con auditoría de controles positivos pero sin duplicación independiente. La duplicación está prevista para la fase de extracción.
+**Limitaciones.** Son cinco y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 50,4 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado lo realizó un solo revisor asistido por reglas explícitas, con auditoría de controles positivos pero sin duplicación independiente. La duplicación está prevista para la fase de extracción. **Quinta:** la restricción a inglés y español se adoptó cuando el cribado ya había terminado, y eliminó 32 estudios, 15 de ellos comparativos y uno perteneciente al conjunto de control positivo. Empuja el corpus en la misma dirección que el sesgo de recuperación y reduce lo que esta revisión puede decir sobre la literatura de Europa del Este, que es donde se concentran los diseños con comparador.
 
 ---
 
