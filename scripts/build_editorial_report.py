@@ -110,8 +110,39 @@ def informe_editorial(S):
         "contrario de lo habitual, y es lo correcto cuando los requisitos del "
         "diseño no se cumplen.",
         "La declaración de uso de IA cumple las recomendaciones del ICMJE.",
+        "El criterio de idioma no se da por supuesto en ningún informe. Se "
+        "verificó contra el campo de idioma de la fuente y, en los 62 estudios "
+        "con PDF, contra el texto completo. Esa comprobación detectó dos "
+        "estudios cuyos metadatos declaraban inglés y cuyo artículo está en "
+        "ruso, que se excluyeron: sin abrir el PDF se habrían quedado dentro. "
+        "Los 234 informes incluidos quedan con evidencia nombrada y ninguno "
+        "sin prueba (S9 y S10).",
     ]:
         d.add_paragraph(t, style="List Bullet")
+
+    d.add_heading("Sobre la restricción de idioma", level=1)
+    d.add_paragraph(
+        "La revisión restringe la elegibilidad a informes en inglés o español. "
+        "El criterio se adoptó con el cribado ya cerrado y está declarado como "
+        "enmienda en §2.9, con su impacto medido. Como editor lo acepto "
+        "declarado, pero advierto de la objeción que le van a plantear y que el "
+        "manuscrito debe seguir respondiendo con claridad: el propio artículo "
+        "demuestra que los diseños comparativos se concentran en la literatura "
+        "de Europa del Este, y el criterio deja fuera precisamente esa "
+        "literatura. La respuesta actual -- que la búsqueda sí la recuperó, que "
+        "la revisión documenta su existencia y su tamaño, y que declara no "
+        "poder pronunciarse sobre su contenido -- es defendible. Debe "
+        "mantenerse en Discusión y no diluirse.")
+    tabla(d, ["Efecto del criterio", "Antes", "Después"],
+          [("Estudios", 219, 185),
+           ("Con publicación recuperable", 159, 125),
+           ("Diseños comparativos", 41, 24),
+           ("Ensayos aleatorizados", 21, 16),
+           ("Estudios de procedencia rusa", 34, 8)],
+          [7.0, 4.4, 4.4])
+    nota(d, "De los 34 estudios eliminados, dos se detectaron solo al leer el "
+            "PDF: sus metadatos declaraban inglés y el artículo está en ruso. "
+            "Se pierde además Ronit 2024, del conjunto de control positivo.")
 
     d.add_heading("Condiciones para publicar (bloqueantes)", level=1)
     tabla(d,
@@ -253,6 +284,12 @@ def md_a_docx(origen, destino, titulo):
     d.save(destino)
 
 
+def nombre_s5():
+    """El listado lleva el recuento en el nombre, asi que se busca en disco."""
+    hit = sorted(OUT.glob("S5_listado_*_estudios.csv"))
+    return hit[0].name if hit else "S5_listado_estudios.csv"
+
+
 def indice(S):
     d = doc_nuevo("Verificables — Revisión sistemática de fagoterapia en "
                   "Pseudomonas aeruginosa multirresistente",
@@ -262,8 +299,10 @@ def indice(S):
           [("S0_informe_editorial.docx",
             "Evaluación editorial: qué bloquea la publicación y qué solo la "
             "mejora", "Uso interno"),
-           ("manuscrito_es.docx / manuscript_en.docx",
-            "Manuscrito completo en español y en inglés", "Envío"),
+           ("manuscrito_es.docx",
+            "Manuscrito completo en español", "Envío"),
+           ("manuscript_en.docx",
+            "Manuscrito completo en inglés, para envío a revista", "Envío"),
            ("S1_lista_PRISMA_2020.docx",
             "Lista de comprobación ítem por ítem, con estado y ubicación",
             "PRISMA 2020, ítem 27"),
@@ -279,7 +318,7 @@ def indice(S):
            ("S4_pre_extraccion_desde_resumen.csv",
             "Pre-extracción de los 159 estudios, marcada como parcial",
             "PRISMA 2020, ítems 9 y 10"),
-           ("S5_listado_219_estudios.csv",
+           (nombre_s5(),
             "Los 219 estudios con situación, diseño, procedencia y si se "
             "obtuvo el texto completo", "PRISMA 2020, ítem 17"),
            ("S6_auditoria_controles_positivos.docx",
@@ -291,6 +330,12 @@ def indice(S):
            ("S8_recuperacion_texto_completo.csv",
             "Vía de recuperación resuelta para cada informe sin DOI editorial",
             "Justifica el 46,5 % de §3.2"),
+           ("S9_idioma_por_informe_y_clase_de_evidencia.csv",
+            "Idioma de cada informe incluido, con la clase de evidencia y la "
+            "prueba concreta", "PRISMA 2020, ítem 5"),
+           ("S10_idioma_verificado_sobre_texto_completo.csv",
+            "Idioma determinado sobre el texto completo de cada PDF recuperado",
+            "PRISMA 2020, ítem 5"),
            ("figuras y tablas/",
             "Figuras 1 y 2 en PDF vectorial; tablas 1 a 4 en CSV",
             "PRISMA 2020, ítem 16a")],
@@ -299,7 +344,9 @@ def indice(S):
     d.add_heading("Estado del envío", level=1)
     tabla(d, ["Elemento", "Estado"],
           [("Búsqueda en nueve fuentes", "COMPLETA"),
-           ("Cribado por título y resumen", "COMPLETO — 219 estudios"),
+           ("Cribado por título y resumen", "COMPLETO — 185 estudios"),
+           ("Verificación del criterio de idioma",
+            "COMPLETA — 234 informes, ninguno sin prueba"),
            ("Agrupación de informes en estudios", "COMPLETA"),
            ("Pre-extracción desde resumen", "COMPLETA — 159 de 159"),
            ("Recuperación de texto completo", "PARCIAL — %d de %d (%.1f %%)"
@@ -314,6 +361,21 @@ def indice(S):
             "el canal de datos. Una comprobación automática recorre el "
             "manuscrito y falla si alguna cifra del texto no procede de él.")
     d.save(OUT / "00_INDICE.docx")
+
+    # Un indice que nombra un fichero inexistente es peor que no tener indice:
+    # el editor lo pide, no lo encuentra y deja de fiarse del resto del paquete.
+    citados = set()
+    for tab in d.tables:
+        for fila in tab.rows:
+            n = fila.cells[0].text.strip()
+            if n and "." in n:
+                citados.add(n)
+    faltan = sorted(n for n in citados if not (OUT / n).exists())
+    if faltan:
+        print("  AVISO: el indice cita ficheros que no existen: %s"
+              % ", ".join(faltan))
+    else:
+        print("  indice comprobado: todos los ficheros citados existen")
 
 
 def main():

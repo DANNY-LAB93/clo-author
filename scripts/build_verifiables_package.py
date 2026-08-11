@@ -102,7 +102,9 @@ def v1_prisma(S):
         ("2", "Resumen estructurado", "Ver lista PRISMA for Abstracts", "CUMPLE", "Resumen"),
         ("3", "Justificación", "Base racional en el contexto de lo conocido", "CUMPLE", "§1"),
         ("4", "Objetivos", "Pregunta explícita", "CUMPLE", "§1, último párrafo"),
-        ("5", "Criterios de elegibilidad", "Y cómo se agruparon los estudios", "CUMPLE", "§2.2"),
+        ("5", "Criterios de elegibilidad", "Y cómo se agruparon los estudios", "CUMPLE",
+         "§2.2, incluido el criterio de idioma (inglés o español), verificado "
+         "informe por informe en S9 y sobre el texto completo en S10"),
         ("6", "Fuentes de información", "Todas, con fecha de la última búsqueda", "CUMPLE", "§2.3"),
         ("7", "Estrategia de búsqueda", "Literal, para cada base y registro", "CUMPLE", "§2.3 y S2"),
         ("8", "Proceso de selección", "Cuántos revisores, cómo trabajaron", "PARCIAL",
@@ -141,8 +143,11 @@ def v1_prisma(S):
          "§2.1 declara explícitamente que NO está registrada"),
         ("24b", "Protocolo", "Dónde consultarlo", "PARCIAL",
          "Repositorio del proyecto; no depositado en registro público"),
-        ("24c", "Enmiendas", "", "CUMPLE",
-         "Registro de decisiones solo-anexar; toda corrección conserva la fila previa"),
+        ("24c", "Enmiendas", "", "CUMPLE (una enmienda declarada)",
+         "§2.9 declara la restricción de idioma adoptada el 11-08-2026, con el "
+         "cribado ya cerrado, y mide su impacto: 34 estudios eliminados, 17 de "
+         "ellos comparativos y uno del conjunto de control positivo. El registro "
+         "de decisiones es solo-anexar y permite reconstruir el corpus previo"),
         ("25", "Apoyo económico", "", "CUMPLE", "Declaraciones"),
         ("26", "Conflictos de interés", "", "CUMPLE", "Declaraciones"),
         ("27", "Disponibilidad de datos y código", "", "CUMPLE", "Declaraciones y S3–S6"),
@@ -213,8 +218,12 @@ def v5_listado(S):
                       p.get("study_design", ""), p.get("n_arm", ""),
                       p.get("geographic_source", ""),
                       "sí" if eid in pdfs else "no", g["clave"]])
-    with open(OUT / "S5_listado_219_estudios.csv", "w", encoding="utf-8-sig",
-              newline="") as fh:
+    # El numero va en el nombre y por tanto SE CALCULA: dejarlo escrito hizo
+    # que el fichero siguiera diciendo 219 cuando ya contenia 185.
+    for viejo in OUT.glob("S5_listado_*_estudios.csv"):
+        viejo.unlink()
+    with open(OUT / ("S5_listado_%d_estudios.csv" % len(filas)), "w",
+              encoding="utf-8-sig", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["id", "situacion", "anio", "revista", "titulo",
                     "n_informes", "diseno", "n_brazo", "procedencia",
@@ -244,6 +253,22 @@ def v6_auditoria(S):
           [("Etapa 1 (reglas explícitas)", 40, 40, "SUPERADA"),
            ("Etapa 2 (título)", 40, 40, "SUPERADA"),
            ("Etapa 3 (resumen)", 40, 40, "SUPERADA")], [6.0, 3.6, 3.6, 3.0])
+    d.add_heading("Perdida por la enmienda de idioma", level=2)
+    d.add_paragraph(
+        "La restriccion a ingles y espanol, adoptada el 11 de agosto de 2026 con "
+        "el cribado ya cerrado, elimina uno de los 40 estudios de control: "
+        "Ronit et al. (2024), un caso de fagoterapia en protesis vascular "
+        "infectada por P. aeruginosa publicado en danes en Ugeskrift for Laeger. "
+        "No es un fallo del cribado, porque el estudio se identifico y se "
+        "clasifico correctamente, sino el precio del criterio.")
+    d.add_paragraph(
+        "La auditoria distingue ahora las dos situaciones. Una perdida por una "
+        "enmienda declarada se informa pero no detiene el canal; una perdida sin "
+        "motivo declarado sigue siendo un fallo que lo detiene. Confundirlas "
+        "arruina la auditoria en cualquiera de los dos sentidos: si falla "
+        "siempre se acaba ignorando, y si pasa siempre deja de detectar el error "
+        "que existe para detectar.")
+
     d.add_heading("Incidencia detectada y corregida", level=2)
     d.add_paragraph(
         "En una ejecución intermedia la auditoría falló: una regla de exclusión "
@@ -320,7 +345,14 @@ def main():
             ("extraccion/pre_extraccion_desde_resumen.csv",
              "S4_pre_extraccion_desde_resumen.csv"),
             ("textos_completos/fulltext_identifiers.csv",
-             "S8_recuperacion_texto_completo.csv")):
+             "S8_recuperacion_texto_completo.csv"),
+            # La prueba del criterio de idioma. Va tal cual, informe por
+            # informe: un criterio de elegibilidad que el lector no puede
+            # recomprobar no es un criterio, es una afirmacion.
+            ("cribado/idioma_verificacion.csv",
+             "S9_idioma_por_informe_y_clase_de_evidencia.csv"),
+            ("cribado/idioma_texto_completo.csv",
+             "S10_idioma_verificado_sobre_texto_completo.csv")):
         p = RS / origen
         if p.exists():
             shutil.copy2(p, OUT / destino)
@@ -333,6 +365,8 @@ def main():
     v7_declaraciones(S)
     print("  S7  declaraciones ICMJE")
     print("  S8  registro de recuperacion de texto completo")
+    print("  S9  idioma por informe, con clase de evidencia")
+    print("  S10 idioma verificado sobre el texto completo")
     # figuras y tablas, ya listas
     fig = OUT / "figuras y tablas"
     fig.mkdir(exist_ok=True)

@@ -6,20 +6,20 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 292; main text 3 581.
+**Word count:** abstract 246; main text 3 581.
 **Tables:** 4. **Figures:** 2. **Supplementary files:** 6.
 
 ---
 
 ## Abstract
 
-**Background.** *Pseudomonas aeruginosa* resistant to multiple antimicrobial classes is a WHO critical-priority pathogen. Several recent syntheses have pooled phage therapy outcomes into overall success proportions. Doing so assumes that this evidence base can be aggregated, and that assumption has never been examined.
+**Background.** Multidrug-resistant *Pseudomonas aeruginosa* is a WHO critical-priority pathogen. Several recent syntheses have pooled phage therapy outcomes into overall success proportions. Doing so assumes this evidence base can be aggregated, and that assumption has never been examined.
 
 **Objectives.** To delimit the clinical literature on phage therapy for resistant *P. aeruginosa* reproducibly, and to determine whether its structure and reporting completeness permit a quantitative synthesis of efficacy.
 
-**Methods.** Systematic review following PRISMA 2020, with separate streams for bibliographic databases and trial registers. Nine sources were searched without date restriction, including the regional databases BVS and SciELO. Reports written in English or Spanish were eligible; this language criterion was adopted after screening had closed and is declared as a protocol amendment. Language was verified report by report against the source language field and, for every retrieved PDF, against the full text. Selection used a closed exclusion vocabulary and was audited against positive-control studies fixed a priori. The unit of inclusion was the study, not the report.
+**Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Nine sources were searched without date restriction, including the regional databases BVS and SciELO. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 234 reports, which grouped into 185 studies; 125 of these have a retrievable publication. Single case reports account for 39.2 % and only 19.2 % are comparative designs. Geographic origin is not stated in 60.8 % and resistance class is not stated in 70.4 %. Full text was obtained for 62 studies (49.6 %); the remaining fraction concentrates 70.8 % of the comparative designs. The language criterion excluded 34 reports and removed 34 studies, among them 17 comparative designs and one positive-control study.
+**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 234 reports, which grouped into 185 studies; 125 of these have a retrievable publication. Single case reports account for 39.2 % and only 19.2 % are comparative designs. Geographic origin is not stated in 60.8 % and resistance class is not stated in 70.4 %. Full text was obtained for 62 studies (49.6 %); the remaining fraction concentrates 70.8 % of the comparative designs. The language criterion removed 34 studies, 17 of them comparative.
 
 **Conclusions.** This evidence base is simultaneously large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
 

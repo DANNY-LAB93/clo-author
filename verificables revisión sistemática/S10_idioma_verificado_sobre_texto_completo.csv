@@ -1,0 +1,75 @@
+id,paginas,palabras,idioma_texto_completo,confianza,evidencia,idioma_previo,coincide,revista,titulo
+EST-001,5,2367,eng,probado,eng 0.195 frente a por 0.009; palabras: the of and in to a for with,eng,si,Frontiers in medicine,"Case Report: Arthroscopic ""Debridement Antibiotics and Implant Retention"" With Local Injec"
+EST-002,8,4439,eng,probado,eng 0.170 frente a por 0.006; palabras: the of and in to a for with,eng,si,Frontiers in medicine,Case report: Analysis of phage therapy failure in a patient with a Pseudomonas aeruginosa 
+EST-004,20,7370,eng,probado,eng 0.160 frente a por 0.003; palabras: the of and in to a for with,eng,si,Nature medicine,Personalized inhaled bacteriophage therapy for treatment of multidrug-resistant Pseudomona
+EST-006,16,5306,eng,probado,eng 0.233 frente a por 0.006; palabras: the of and in to a for with,eng,si,Viruses,Phage Therapy in a Burn Patient Colonized with Extensively Drug-Resistant Pseudomonas aeru
+EST-008,15,4936,eng,probado,eng 0.186 frente a por 0.011; palabras: the of and in to a for with,eng,si,Nature Communications ,Phage therapy with nebulized cocktail BX004-A for chronic Pseudomonas aeruginosa infection
+EST-009,8,4958,eng,probado,eng 0.177 frente a fre 0.015; palabras: the of and in to a for with,eng,si,Frontiers in pharmacology,Case Report: Chronic Bacterial Prostatitis Treated With Phage Therapy After Multiple Faile
+EST-010,6,3793,eng,probado,eng 0.199 frente a por 0.007; palabras: the of and in to a for with,eng,si,Nature Communications ,Personalized bacteriophage therapy to treat pandrug-resistant spinal Pseudomonas aeruginos
+EST-011,15,4442,eng,probado,eng 0.180 frente a por 0.007; palabras: the of and in to a for with,eng,si,Scientific reports,A case report of bacteriophage therapy for the treatment of lung infection due to carbapen
+EST-012,33,2733,eng,probado,eng 0.216 frente a por 0.007; palabras: the of and in to a for with,eng,si,Nature communications,Chronic suppression of a multidrug-resistant Pseudomonas aeruginosa in prosthetic joint in
+EST-014,5,1173,eng,probado,eng 0.196 frente a dan 0.005; palabras: the of and in to a for with,eng,si,Bioscience trends,Bacteriophage therapy for empyema caused by carbapenem-resistant Pseudomonas aeruginosa.
+EST-016,9,5162,eng,probado,eng 0.193 frente a por 0.006; palabras: the of and in to a for with,eng,si,Frontiers in medicine,Use of Phage Cocktail BFC 1.10 in Combination With Ceftazidime-Avibactam in the Treatment 
+EST-017,5,2275,eng,probado,eng 0.240 frente a por 0.011; palabras: the of and in to a for with,eng,si,Cureus,Successful Treatment of a Patient With Chronic Bronchiectasis Using an Induced Native Phag
+EST-020,17,5566,eng,probado,eng 0.153 frente a por 0.013; palabras: the of and in to a for with,eng,si,Nature Communications ,Adjunctive phage therapy improves antibiotic treatment of ventilator-associated-pneumonia 
+EST-024,5,2621,eng,probado,eng 0.201 frente a por 0.005; palabras: the of and in to a for with,eng,si,Journal of investigative medicine high impact case reports,Bacteriophage Therapy for Pan-Drug-Resistant Pseudomonas aeruginosa in Two Persons With Cy
+EST-027,10,7065,eng,probado,eng 0.169 frente a por 0.011; palabras: the of and in to a for with,eng,si,Nature communications,Personalized aerosolised bacteriophage treatment of a chronic lung infection due to multid
+EST-030,8,2854,eng,probado,eng 0.177 frente a por 0.005; palabras: the of and in to a for with,eng,si,ASM case reports,Clearance of hypermutator XDR Pseudomonas osteomyelitis and hardware infection with adjunc
+EST-035,12,4978,eng,probado,eng 0.209 frente a por 0.007; palabras: the of and in to a for with,eng,si,Trials,Safety and microbiological activity of phage therapy in persons with cystic fibrosis colon
+EST-037,6,2863,eng,probado,eng 0.154 frente a spa 0.007; palabras: the of and in to a for with,eng,si,Clinical Medicine Insights: Case Reports ,Pan-Resistant Pseudomonas aeruginosa Septic Shock in a Critically Ill Patient: A Case Repo
+EST-039,12,4375,eng,probado,eng 0.258 frente a spa 0.008; palabras: the of and in to a for with,eng,si,Antibiotics,Adaptive Phage Therapy for the Prevention of Recurrent Nosocomial Pneumonia: Novel Protoco
+EST-040,7,2682,eng,probado,eng 0.219 frente a por 0.007; palabras: the of and in to a for with,eng,si,Infection and drug resistance,Refractory Pseudomonas aeruginosa Bronchopulmonary Infection After Lung Transplantation fo
+EST-041,13,5971,eng,probado,eng 0.189 frente a dan 0.010; palabras: the of and in to a for with,eng,si,Scientific reports,Optimized preparation pipeline for emergency phage therapy against Pseudomonas aeruginosa 
+EST-042,8,3233,eng,probado,eng 0.166 frente a dan 0.006; palabras: the of and in to a for with,eng,si,mLife,Phage therapy of perinephric abscess in kidney transplantation recipients caused by drug-r
+EST-046,3,592,eng,probado,eng 0.188 frente a por 0.015; palabras: the of and in to a for with,eng,si,"Critical care (London, England)",Use of bacteriophages in the treatment of colistin-only-sensitive Pseudomonas aeruginosa s
+EST-047,5,1587,eng,probado,eng 0.165 frente a spa 0.004; palabras: the of and in to a for with,eng,si,Antimicrobial agents and chemotherapy,Bacteriophages as Adjuvant to Antibiotics for the Treatment of Periprosthetic Joint Infect
+EST-048,8,4419,eng,probado,eng 0.197 frente a dan 0.011; palabras: the of and in to a for with,eng,si,Open forum infectious diseases,Application of Phage Therapy in a Case of a Chronic Hip-Prosthetic Joint Infection due to 
+EST-051,7,3809,eng,probado,eng 0.222 frente a por 0.006; palabras: the of and in to a for with,eng,si,Frontiers in Medicine,Case report: Local bacteriophage therapy for fracture-related infection with polymicrobial
+EST-053,8,4309,eng,probado,eng 0.231 frente a por 0.007; palabras: the of and in to a for with,eng,si,"Antibiotics (Basel, Switzerland)",Phage-Antibiotic Combination Therapy against Recurrent Pseudomonas Septicaemia in a Patien
+EST-055,8,3390,eng,probado,eng 0.189 frente a por 0.008; palabras: the of and in to a for with,eng,si,Current Urology,Bacteriophage therapy in women with chronic recurrent cystitis caused by multidrug-resista
+EST-057,6,2820,eng,probado,eng 0.182 frente a spa 0.005; palabras: the of and in to a for with,eng,si,Viruses,Phage Therapy as a Rescue Treatment for Recurrent Pseudomonas aeruginosa Bentall Infection
+EST-058,7,2433,eng,probado,eng 0.200 frente a spa 0.010; palabras: the of and in to a for with,eng,si,ASM case reports,Resolution of acute rejection in a bilateral double-lung transplanted cystic fibrosis pati
+EST-062,12,6009,eng,probado,eng 0.183 frente a dan 0.012; palabras: the of and in to a for with,eng,si,Nature Communications ,Bacteriophage-antibiotic combination therapy against extensively drug-resistant Pseudomona
+EST-063,10,5798,eng,probado,eng 0.199 frente a fre 0.011; palabras: the of and in to a for with,eng,si,BMJ open respiratory research,"Single-arm, open-labelled, safety and tolerability of intrabronchial and nebulised bacteri"
+EST-067,11,603,no-latino,probado,alfabeto cirilico dominante: 22546 caracteres frente a 3771 latinas,eng,NO,Obshchaya Reanimatologiya,Adaptive Phage Therapy in the Treatment of Patients with Recurrent Pneumonia (Pilot Study)
+EST-074,12,3418,eng,probado,eng 0.168 frente a por 0.009; palabras: the of and in to a for with,eng,si,"Antibiotics (Basel, Switzerland)",Bacteriophage Therapy for Critical Infections Related to Cardiothoracic Surgery.
+EST-075,6,2681,eng,probado,eng 0.209 frente a por 0.009; palabras: the of and in to a for with,eng,si,Medical Immunology (Russia),Phage therapy in antibiotic resistant pneumonia: Immunomodulation or redistribution?; [ФАГ
+EST-077,20,2588,eng,probado,eng 0.182 frente a por 0.006; palabras: the of and in to a for with,eng,si,Antimicrobial agents and chemotherapy,Pseudomonas aeruginosa ventricular assist device infections: findings from ineffective pha
+EST-079,7,1145,no-latino,probado,alfabeto cirilico dominante: 17747 caracteres frente a 6183 latinas,no-latino,si,Meditsinskiy Sovet,The potential use of phage therapy in the treatment of exacerbated chronic suppurative oti
+EST-080,8,4137,eng,probado,eng 0.244 frente a por 0.009; palabras: the of and in to a for with,eng,si,"PHAGE: Therapy, Applications, and Research",Bacteriophage Therapy as a Potential Management Option for Surgical Wound Infections
+EST-085,6,2707,eng,probado,eng 0.179 frente a fre 0.015; palabras: the of and in to a for with,eng,si,Microbial biotechnology,First-in-human application of double-stranded RNA bacteriophage in the treatment of pulmon
+EST-086,8,4576,eng,probado,eng 0.223 frente a por 0.009; palabras: the of and in to a for with,eng,si,Journal of Drug Delivery Science and Technology,Inhalation phage therapy as a new approach to preventing secondary bacterial pneumonia in 
+EST-088,9,5125,eng,probado,eng 0.169 frente a fre 0.010; palabras: the of and in to a for with,eng,si,Frontiers in cellular and infection microbiology,Case report: Personalized triple phage-antibiotic combination therapy to rescue necrotizin
+EST-091,25,2884,eng,probado,eng 0.179 frente a ita 0.026; palabras: the of and in to a for with,eng,si,International journal of molecular sciences,Analysis of Pro- and Anti-Inflammatory Gene Response Patterns in Patients Receiving Phage 
+EST-093,5,2042,eng,probado,eng 0.182 frente a por 0.005; palabras: the of and in to a for with,eng,si,JAC-antimicrobial resistance,Pharmacodynamic individualization of phage therapy against a KPC-5-producing Pseudomonas a
+EST-094,11,6815,eng,probado,eng 0.164 frente a por 0.009; palabras: the of and in to a for with,eng,si,Nature Communications ,Timely bespoke phage-antibiotic combination to treat refractory Pseudomonas aeruginosa med
+EST-095,9,4570,eng,probado,eng 0.174 frente a fre 0.007; palabras: the of and in to a for with,eng,si,EMBO molecular medicine,"Bacterial lysis, autophagy and innate immune responses during adjunctive phage therapy in "
+EST-101,11,3451,eng,probado,eng 0.222 frente a por 0.007; palabras: the of and in to a for with,eng,si,Biomedicines,The Efficacy of Inhaled Phage Cocktail to Prevent Ventilator-Associated Pneumonia in Child
+EST-106,7,3926,eng,probado,eng 0.227 frente a por 0.005; palabras: the of and in to a for with,eng,si,"Evolution, medicine, and public health",Phage treatment of an aortic graft infected with Pseudomonas aeruginosa.
+EST-108,30,5417,eng,probado,eng 0.185 frente a spa 0.006; palabras: the of and in to a for with,eng,si,Nature microbiology,"Personalized bacteriophage therapy outcomes for 100 consecutive cases: a multicentre, mult"
+EST-109,176,28,no-latino,probado,alfabeto cirilico dominante: 11411 caracteres frente a 171 latinas,(sin dato),,,
+EST-116,11,3218,eng,probado,eng 0.220 frente a por 0.009; palabras: the of and in to a for with,eng,si,Viruses,Processing Phage Therapy Requests in a Brussels Military Hospital: Lessons Identified.
+EST-117,5,1822,eng,probado,eng 0.164 frente a por 0.012; palabras: the of and in to a for with,eng,si,Folia microbiologica,Anti-phage serum antibody responses and the outcome of phage therapy.
+EST-120,8,970,no-latino,probado,alfabeto cirilico dominante: 19177 caracteres frente a 5289 latinas,(sin dato),,,
+EST-121,6,2384,eng,probado,eng 0.238 frente a spa 0.013; palabras: the of and in to a for with,eng,si,Antibiotics,Do Anti-Phage Antibodies Persist after Phage Therapy? A Preliminary Report
+EST-124,15,5995,eng,probado,eng 0.221 frente a por 0.004; palabras: the of and in to a for with,eng,si,Viruses,Successful Bacteriophage-Antibiotic Combination Therapy against Multidrug-Resistant Pseudo
+EST-127,9,743,no-latino,probado,alfabeto cirilico dominante: 9553 caracteres frente a 4049 latinas,(sin dato),,,
+EST-128,3,653,dan,insuficiente,dan 0.101 frente a eng 0.064: margen escaso,(sin dato),,,
+EST-129,7,3109,eng,probado,eng 0.200 frente a spa 0.004; palabras: the of and in to a for with,eng,si,Antibiotics,Phage Therapy for Orthopaedic Infections: The First Three Cases from the United Kingdom
+EST-130,10,8206,eng,probado,eng 0.179 frente a por 0.012; palabras: the of and in to a for with,eng,si,Nature communications,Prolonged disease remission of the chronic immunological skin disorder hidradenitis suppur
+EST-132,8,4742,eng,probado,eng 0.174 frente a por 0.007; palabras: the of and in to a for with,eng,si,Indian Journal of Critical Care Medicine,Evaluation of the Potential Efficacy of Bacteriophage Therapy for the Management of Pressu
+EST-134,7,4017,eng,probado,eng 0.198 frente a fre 0.012; palabras: the of and in to a for with,eng,si,Frontiers in microbiology,Adapted Bacteriophages for Treating Urinary Tract Infections.
+EST-135,8,4337,eng,probado,eng 0.228 frente a por 0.010; palabras: the of and in to a for with,eng,si,Frontiers in Medicine,The Potential Innovative Use of Bacteriophages Within the DAC® Hydrogel to Treat Patients 
+EST-144,8,1631,no-latino,probado,alfabeto cirilico dominante: 20214 caracteres frente a 8718 latinas,(sin dato),,,
+EST-146,13,4146,eng,probado,eng 0.172 frente a spa 0.019; palabras: the of and in to a for with,eng,si,Clinical infectious diseases : an official publication of the Infectious Diseases Society of America,"A Retrospective, Observational Study of 12 Cases of Expanded-Access Customized Phage Thera"
+EST-152,10,4898,eng,probado,eng 0.207 frente a por 0.010; palabras: the of and in to a for with,eng,si,Antibiotics,The Appearance of Antiphage Antibodies in Sera of Patients Treated with Phages
+EST-159,6,2685,eng,probado,eng 0.191 frente a por 0.008; palabras: the of and in to a for with,eng,si,Antibiotics,Bacteriophage-Enriched Galenic for Intrapericardial Ventricular Assist Device Infection
+EST-168,7,622,no-latino,probado,alfabeto cirilico dominante: 8236 caracteres frente a 3357 latinas,(sin dato),,,
+EST-169,5,1831,eng,probado,eng 0.193 frente a fre 0.010; palabras: the of and in to a for with,eng,si,Virus research,Safety and tolerability of bronchoscopic and nebulised administration of bacteriophage.
+EST-176,14,1097,no-latino,probado,alfabeto cirilico dominante: 24338 caracteres frente a 6288 latinas,(sin dato),,,
+EST-178,6,2175,eng,probado,eng 0.253 frente a fre 0.007; palabras: the of and in to a for with,eng,si,"Wiadomosci lekarskie (Warsaw, Poland : 1960)",CLINICAL AND LABORATORY JUSTIFICATION FOR USE OF POLYVALENT BACTERIOPHAGE IN TECHNIQUE OF 
+EST-180,16,629,no-latino,probado,alfabeto cirilico dominante: 20286 caracteres frente a 3075 latinas,(sin dato),,,
+EST-197,7,1063,no-latino,probado,alfabeto cirilico dominante: 22399 caracteres frente a 5518 latinas,(sin dato),,,
+EST-199,9,6273,eng,probado,eng 0.210 frente a por 0.005; palabras: the of and in to a for with,eng,si,Frontiers in Medicine,Successful use of a phage endolysin for treatment of chronic pelvic pain syndrome/chronic 
+EST-200,7,635,no-latino,probado,alfabeto cirilico dominante: 6792 caracteres frente a 3567 latinas,(sin dato),,,
+EST-212,6,2557,eng,probado,eng 0.215 frente a por 0.007; palabras: the of and in to a for with,eng,si,Antibiotics,Local Treatment of Driveline Infection with Bacteriophages

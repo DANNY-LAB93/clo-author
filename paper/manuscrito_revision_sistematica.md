@@ -6,20 +6,20 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 292; texto principal 3 855.
+**Recuento de palabras:** resumen 258; texto principal 3 855.
 **Tablas:** 4. **Figuras:** 2. **Material suplementario:** 6 archivos.
 
 ---
 
 ## Resumen
 
-**Antecedentes.** *Pseudomonas aeruginosa* resistente a múltiples clases de antimicrobianos figura entre los patógenos de prioridad crítica de la OMS. Varias síntesis recientes han agregado los desenlaces de la fagoterapia en proporciones globales de éxito. Hacerlo da por supuesto que este cuerpo de evidencia admite agregación, y nadie ha examinado ese supuesto.
+**Antecedentes.** *Pseudomonas aeruginosa* multirresistente es un patógeno de prioridad crítica de la OMS. Varias síntesis recientes han agregado los desenlaces de la fagoterapia en proporciones globales de éxito. Hacerlo da por supuesto que este cuerpo de evidencia admite agregación, y nadie ha examinado ese supuesto.
 
 **Objetivos.** Delimitar de forma reproducible la literatura clínica sobre fagoterapia en *P. aeruginosa* resistente y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
 
-**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases bibliográficas y registros de ensayos. Se interrogaron nueve fuentes sin restricción de fecha, incluidas BVS y SciELO. Se admitieron informes redactados en inglés o español; este criterio de idioma se incorporó como enmienda posterior al cribado y se declara como tal. La selección usó un vocabulario cerrado de códigos de exclusión y se auditó contra controles positivos fijados a priori. La unidad de inclusión fue el estudio, no el informe.
+**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron nueve fuentes sin restricción de fecha, incluidas BVS y SciELO. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 234, agrupados en 185 estudios; 125 de ellos tienen publicación recuperable. El 39,2 % son casos únicos y solo el 19,2 % son comparativos. No consta la procedencia geográfica en el 60,8 % ni la clase de resistencia en el 70,4 %. Se obtuvo el texto completo de 62 estudios (49,6 %); la fracción restante concentra el 70,8 % de los diseños comparativos. El criterio de idioma excluyó 34 informes y eliminó 34 estudios, entre ellos 17 comparativos y un estudio del conjunto de control positivo.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 234, agrupados en 185 estudios; 125 de ellos tienen publicación recuperable. El 39,2 % son casos únicos y solo el 19,2 % son comparativos. No consta la procedencia geográfica en el 60,8 % ni la clase de resistencia en el 70,4 %. Se obtuvo el texto completo de 62 estudios (49,6 %); la fracción restante concentra el 70,8 % de los diseños comparativos. El criterio de idioma eliminó 34 estudios, 17 de ellos comparativos.
 
 **Conclusiones.** El cuerpo de evidencia es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de éxito publicadas descansan sobre supuestos que estos datos no sostienen.
 
