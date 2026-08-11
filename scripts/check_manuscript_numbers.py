@@ -58,9 +58,21 @@ EXCEPCIONES = {
 
 
 def norm(s):
-    """1 839 y 1.839 y 1839 son el mismo numero; 46,5 es 46.5."""
-    return s.replace(" ", "").replace(" ", "").replace(" ", "") \
-            .replace(".", "").replace(",", ".")
+    """Normaliza a punto decimal, sea cual sea la convencion del texto.
+
+    El manuscrito existe en espanol (46,5 y 1 839) y en ingles (46.5 y
+    23 057). Tratar el punto siempre como separador de millares convertia 63.4
+    en 634 y marcaba como sin respaldo cada porcentaje de la version inglesa.
+    La regla aplicada es la del ultimo separador: si le siguen una o dos cifras
+    hasta el final, es un decimal; cualquier otro separador agrupa millares.
+    """
+    for esp in (" ", " ", " ", " "):
+        s = s.replace(esp, "")
+    s = s.strip()
+    m = re.search(r"[.,](\d{1,2})$", s)
+    if m:
+        return "%s.%s" % (re.sub(r"[.,]", "", s[:m.start()]), m.group(1))
+    return re.sub(r"[.,]", "", s)
 
 
 def main():
@@ -99,11 +111,12 @@ def main():
     # La numeracion de secciones no es un dato: "seccion 3.2" y el encabezado
     # "## 3. Resultados" son referencias internas, no cifras que respaldar.
     texto = re.sub(r"(?m)^#{1,6}\s*\d+(\.\d+)*\.?\s", " ", texto)
-    texto = re.sub(r"secci[oó]n(es)?\s+\d+(\.\d+)*", " ", texto, flags=re.I)
+    texto = re.sub(r"(secci[oó]n(es)?|sections?)\s+\d+(\.\d+)*", " ",
+                   texto, flags=re.I)
     texto = re.sub(r"(?m)^-\s*S\d+\.", " ", texto)
     # El recuento de palabras es metadato autorreferente del propio manuscrito:
     # no procede del canal y no tiene sentido exigirle respaldo.
-    texto = re.sub(r"(?m)^\*\*Recuento de palabras.*$", " ", texto)
+    texto = re.sub(r"(?m)^\*\*(Recuento de palabras|Word count).*$", " ", texto)
 
     sin_respaldo = []
     vistos = set()
