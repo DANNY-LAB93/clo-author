@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 257; texto principal 3 127.
+**Recuento de palabras:** resumen 292; texto principal 3 855.
 **Tablas:** 4. **Figuras:** 2. **Material suplementario:** 6 archivos.
 
 ---
