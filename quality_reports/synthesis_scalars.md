@@ -19,59 +19,66 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `cribados_por_titulo` | 13894 |
 | `excluidos_titulo` | 13434 |
 | `a_resumen` | 460 |
-| `excluidos_resumen` | 224 |
-| `informes_a_texto_completo` | 236 |
+| `excluidos_resumen` | 226 |
+| `informes_a_texto_completo` | 234 |
 | `corriente_bases` | 389 |
 | `corriente_registros` | 71 |
-| `estudios` | 187 |
-| `informes_agrupados` | 236 |
-| `estudios_con_articulo` | 124 |
+| `estudios` | 185 |
+| `informes_agrupados` | 234 |
+| `estudios_con_articulo` | 122 |
 | `estudios_solo_resumen` | 3 |
 | `estudios_solo_registro` | 60 |
 | `estudios_multiinforme` | 30 |
 | `informes_del_estudio_mayor` | 11 |
-| `estudios_extraibles` | 127 |
-| `texto_completo_obtenido` | 64 |
+| `estudios_extraibles` | 125 |
+| `texto_completo_obtenido` | 62 |
 | `texto_completo_no_obtenido` | 63 |
-| `texto_completo_pct` | 50.4 |
-| `disenos` | case report: 49; case series: 19; RCT: 17; no declarado: 16; prospective cohort: 13; non-randomised trial: 9; retrospective cohort: 4 |
-| `estudios_comparativos` | 26 |
-| `estudios_comparativos_pct` | 20.5 |
-| `ecas` | 17 |
+| `texto_completo_pct` | 49.6 |
+| `disenos` | case report: 49; case series: 19; RCT: 16; no declarado: 16; prospective cohort: 13; non-randomised trial: 8; retrospective cohort: 4 |
+| `estudios_comparativos` | 24 |
+| `estudios_comparativos_pct` | 19.2 |
+| `ecas` | 16 |
 | `casos_unicos` | 49 |
-| `casos_unicos_pct` | 38.6 |
+| `casos_unicos_pct` | 39.2 |
 | `comparativos_sin_texto` | 17 |
-| `comparativos_sin_texto_pct` | 65.4 |
-| `pacientes_declarados_con_texto` | 790 |
+| `comparativos_sin_texto_pct` | 70.8 |
+| `pacientes_declarados_con_texto` | 714 |
 | `pacientes_declarados_sin_texto` | 922 |
-| `procedencia` | no declarada: 76; Rusia: 10; Georgia: 6; Polonia: 6; Alemania: 4; Francia: 3; Estados Unidos: 3; Israel: 2; India: 2; Ucrania: 2 |
+| `procedencia` | no declarada: 76; Rusia: 8; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Israel: 2; Ucrania: 2; Belgica: 2 |
 | `procedencia_no_declarada` | 76 |
-| `procedencia_no_declarada_pct` | 59.8 |
+| `procedencia_no_declarada_pct` | 60.8 |
 | `anio_min` | 2016 |
 | `anio_max` | 2026 |
-| `publicados_desde_2020` | 106 |
-| `publicados_desde_2020_pct` | 83.5 |
-| `sin_ambito_de_patogeno` | 67 |
+| `publicados_desde_2020` | 104 |
+| `publicados_desde_2020_pct` | 83.2 |
+| `sin_ambito_de_patogeno` | 66 |
 | `sin_ambito_de_patogeno_pct` | 52.8 |
-| `sin_clase_de_resistencia` | 90 |
-| `sin_clase_de_resistencia_pct` | 70.9 |
+| `sin_clase_de_resistencia` | 88 |
+| `sin_clase_de_resistencia_pct` | 70.4 |
 | `sin_via_de_administracion` | 71 |
-| `sin_via_de_administracion_pct` | 55.9 |
-| `sin_modalidad` | 90 |
-| `sin_modalidad_pct` | 70.9 |
-| `sin_criterio_dtr` | 125 |
+| `sin_via_de_administracion_pct` | 56.8 |
+| `sin_modalidad` | 88 |
+| `sin_modalidad_pct` | 70.4 |
+| `sin_criterio_dtr` | 123 |
 | `sin_criterio_dtr_pct` | 98.4 |
-| `enmienda_idioma_informes_excluidos` | 32 |
+| `enmienda_idioma_informes_excluidos` | 34 |
 | `informes_a_texto_completo_antes` | 268 |
-| `estudios_eliminados_por_idioma` | 32 |
+| `estudios_eliminados_por_idioma` | 34 |
 | `estudios_antes_de_la_enmienda` | 219 |
 | `informes_excluidos_por_idioma_detalle` | rus: 29; dut: 1; dan: 1; jpn: 1 |
 | `informes_excluidos_en_ruso` | 29 |
 | `extraibles_antes_de_la_enmienda` | 159 |
 | `comparativos_antes_de_la_enmienda` | 41 |
 | `ecas_antes_de_la_enmienda` | 21 |
-| `comparativos_perdidos_por_idioma` | 15 |
-| `ecas_perdidos_por_idioma` | 4 |
+| `comparativos_perdidos_por_idioma` | 17 |
+| `ecas_perdidos_por_idioma` | 5 |
 | `rusos_antes_de_la_enmienda` | 34 |
+| `idioma_probado_por_texto` | 205 |
+| `idioma_por_campo_de_fuente` | 3 |
+| `idioma_por_version_inglesa` | 0 |
+| `idioma_por_norma_del_registro` | 26 |
+| `texto_completo_verificado` | 62 |
+| `texto_completo_verificado_ingles` | 62 |
+| `excluidos_por_texto_completo` | 2 |
 | `exclusiones_titulo` | ORG: 3031; REV: 2807; SEC: 84; LAB: 4062; VET: 838; OFF: 2634 |
-| `exclusiones_resumen` | ORG: 65; REV: 64; SEC: 5; LAB: 18; OFF: 40; IDI: 32 |
+| `exclusiones_resumen` | ORG: 65; REV: 64; SEC: 5; LAB: 18; OFF: 40; IDI: 34 |

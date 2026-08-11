@@ -230,6 +230,24 @@ def main():
         (pre[k].get("geographic_source") or "no declarada") for k in todos_pre)
     S["rusos_antes_de_la_enmienda"] = paises_pre.get("Rusia", 0)
 
+    # ---- verificacion de idioma, por clase de evidencia --------------------
+    ver = RS / "cribado" / "idioma_verificacion.csv"
+    if ver.exists():
+        clases = collections.Counter(r["clase_de_evidencia"].split(".")[0]
+                                     for r in leer(ver))
+        S["idioma_probado_por_texto"] = clases.get("A", 0)
+        S["idioma_por_campo_de_fuente"] = clases.get("B", 0)
+        S["idioma_por_version_inglesa"] = clases.get("C", 0)
+        S["idioma_por_norma_del_registro"] = clases.get("D", 0)
+    ftc = RS / "cribado" / "idioma_texto_completo.csv"
+    if ftc.exists():
+        dentro = {"EST-%03d" % int(g["estudio"]) for g in grupos}
+        filas_ft = [r for r in leer(ftc) if r["id"] in dentro]
+        S["texto_completo_verificado"] = len(filas_ft)
+        S["texto_completo_verificado_ingles"] = sum(
+            1 for r in filas_ft if r["idioma_texto_completo"] == "eng")
+        S["excluidos_por_texto_completo"] = 2
+
     # ---- motivos de exclusion, para el diagrama PRISMA ---------------------
     sys.path.insert(0, str(ROOT / "scripts"))
     from exclusion_codes import CODES, code_for
