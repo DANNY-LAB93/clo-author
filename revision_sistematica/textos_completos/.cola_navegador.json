@@ -1,0 +1,132 @@
+[
+ {
+  "id": "EST-122",
+  "prioridad": "ALTA",
+  "url": "https://bmjopen.bmj.com/content/12/12/e065401"
+ },
+ {
+  "id": "EST-123",
+  "prioridad": "ALTA",
+  "url": "https://doi.org/10.15789/2220-7619-ioi-2081"
+ },
+ {
+  "id": "EST-126",
+  "prioridad": "ALTA",
+  "url": "https://doi.org/10.4103/ijpam.ijpam_1_24"
+ },
+ {
+  "id": "EST-007",
+  "prioridad": "normal",
+  "url": "https://www.ijidonline.com/article/S1201-9712(26)00391-7"
+ },
+ {
+  "id": "EST-013",
+  "prioridad": "normal",
+  "url": "https://doi.org/10.1016/j.hlife.2025.03.004"
+ },
+ {
+  "id": "EST-015",
+  "prioridad": "normal",
+  "url": "https://academic.oup.com/jacamr/article/4/3/dlac046"
+ },
+ {
+  "id": "EST-019",
+  "prioridad": "normal",
+  "url": "https://doi.org/10.1016/j.medj.2024.05.017"
+ },
+ {
+  "id": "EST-031",
+  "prioridad": "normal",
+  "url": "https://doi.org/10.1016/j.medmic.2026.100178"
+ },
+ {
+  "id": "EST-032",
+  "prioridad": "normal",
+  "url": "https://academic.oup.com/jpids/article/7/3/253"
+ },
+ {
+  "id": "EST-034",
+  "prioridad": "normal",
+  "url": "https://academic.oup.com/ofid/article/7/9/ofaa389"
+ },
+ {
+  "id": "EST-038",
+  "prioridad": "normal",
+  "url": "https://www.mdpi.com/1999-4915/13/10/1901"
+ },
+ {
+  "id": "EST-044",
+  "prioridad": "normal",
+  "url": "https://www.jpeds.com/article/S0022-3476(26)00033-8"
+ },
+ {
+  "id": "EST-049",
+  "prioridad": "normal",
+  "url": "https://academic.oup.com/jid/article/227/3/311"
+ },
+ {
+  "id": "EST-050",
+  "prioridad": "normal",
+  "url": "https://doi.org/10.1016/j.ijantimicag.2024.107372"
+ },
+ {
+  "id": "EST-059",
+  "prioridad": "normal",
+  "url": "https://zenodo.org/record/1997795"
+ },
+ {
+  "id": "EST-060",
+  "prioridad": "normal",
+  "url": "https://www.mdpi.com/1999-4915/11/1/18"
+ },
+ {
+  "id": "EST-061",
+  "prioridad": "normal",
+  "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/ajt.15503"
+ },
+ {
+  "id": "EST-070",
+  "prioridad": "normal",
+  "url": "https://academic.oup.com/ofid/advance-article-pdf/doi/10.1093/ofid/ofad221"
+ },
+ {
+  "id": "EST-076",
+  "prioridad": "normal",
+  "url": "https://academic.oup.com/cid/article/76/3/e1463"
+ },
+ {
+  "id": "EST-083",
+  "prioridad": "normal",
+  "url": "https://www.mdpi.com/1999-4915/13/8/1543"
+ },
+ {
+  "id": "EST-096",
+  "prioridad": "normal",
+  "url": "https://www.mdpi.com/2079-6382/10/6/627"
+ },
+ {
+  "id": "EST-105",
+  "prioridad": "normal",
+  "url": "https://academic.oup.com/jac/article/73/10/2901"
+ },
+ {
+  "id": "EST-164",
+  "prioridad": "normal",
+  "url": "https://www.mdpi.com/1999-4915/11/10/891"
+ },
+ {
+  "id": "EST-170",
+  "prioridad": "normal",
+  "url": "https://doi.org/10.1016/j.avsurg.2024.100302"
+ },
+ {
+  "id": "EST-184",
+  "prioridad": "normal",
+  "url": "https://doi.org/10.1016/j.jdcr.2026.06.010"
+ },
+ {
+  "id": "EST-185",
+  "prioridad": "normal",
+  "url": "https://doi.org/10.1016/j.bjps.2026.06.028"
+ }
+]

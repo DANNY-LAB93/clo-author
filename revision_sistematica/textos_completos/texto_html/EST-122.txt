@@ -1,0 +1,386 @@
+Title: Standardised treatment and monitoring protocol to assess safety and tolerability of bacteriophage therapy for adult and paediatric patients (STAMP study): protocol for an open-label, single-arm trial 
+URL: https://bmjopen.bmj.com
+Source element: <section>
+---
+You are here
+Home
+Archive
+Volume 12, Issue 12
+Standardised treatment and monitoring protocol to assess safety and tolerability of bacteriophage therapy for adult and paediatric patients (STAMP study): protocol for an open-label, single-arm trial
+
+Article Text
+
+Article menu 
+
+PDF
+
+PDF +
+Supplementary
+Material
+
+Infectious diseases
+Protocol
+Standardised treatment and monitoring protocol to assess safety and tolerability of bacteriophage therapy for adult and paediatric patients (STAMP study): protocol for an open-label, single-arm trial
+http://orcid.org/0000-0001-9114-6694Ameneh Khatami1,2, David A Foley3,4, Morgyn S Warner5,6, Elizabeth H Barnes7, Anton Y Peleg8,9, Jian Li8, Stephen Stick10,11, Nettie Burke12, http://orcid.org/0000-0003-4163-511XRuby C Y Lin13,14, Julia Warning15, Thomas L Snelling1,16, Steven Y C Tong17,18, Jonathan Iredell14,19 for the Phage Australia Clinical Network
+The Children's Hospital at Westmead Department of Infectious Diseases and Microbiology, The Sydney Children's Hospitals Network, Westmead, New South Wales, Australia
+Children's Hospital Westmead Clinical School, The University of Sydney, Sydney, New South Wales, Australia
+Wesfarmers Centre of Vaccines and Infectious Diseases, Telethon Kids Institute, Nedlands, Western Australia, Australia
+Department of Microbiology, PathWest Laboratory Medical WA, Nedlands, Western Australia, Australia
+Infectious Diseases Unit, Central Adelaide Local Health Network, Adelaide, South Australia, Australia
+Discipline of Medicine, The University of Adelaide Faculty of Health and Medical Sciences, Adelaide, South Australia, Australia
+NHMRC Clinical Trials Centre, Faculty of Medicine and Health, The University of Sydney, Sydney, New South Wales, Australia
+Infection Program, Monash Biomedicine Discovery Institute, Department of Microbiology, Monash University, Clayton, Victoria, Australia
+Department of Infectious Diseases, The Alfred Hospital and Central Clinical School, Monash University, Clayton, Victoria, Australia
+Wal-yan Respiratory Research Centre, Telethon Kids Institute, Nedlands, Western Australia, Australia
+Department of Respiratory and Sleep Medicine, Perth Children's Hospital, Nedlands, Western Australia, Australia
+Former CEO, Cystic Fibrosis Australia, North Ryde, New South Wales, Australia
+Faculty of Medicine and Health, The University of Sydney, Sydney, New South Wales, Australia
+Centre for Infectious Diseases and Microbiology, Westmead Institute for Medical Research, Westmead, New South Wales, Australia
+Office for Health and Medical Research, New South Wales Ministry of Health, St Leonards, New South Wales, Australia
+School of Public Health, The University of Sydney, Sydney, New South Wales, Australia
+Department of Infectious Diseases, The University of Melbourne, at the Peter Doherty Institute for Infection and Immunity, Melbourne, Victoria, Australia
+Victorian Infectious Diseases Service, The Royal Melbourne Hospital, at the Peter Doherty Institute for Infection and Immunity, Melbourne, Victoria, Australia
+Department of Infectious Diseases, Westmead Hospital, Westmead, New South Wales, Australia
+Correspondence to Dr Ameneh Khatami; ameneh.khatami{at}health.nsw.gov.au
+Abstract
+
+Introduction There has been renewed interest in the therapeutic use of bacteriophages (phages); however, standardised therapeutic protocols are lacking, and there is a paucity of rigorous clinical trial data assessing efficacy.
+
+Methods and analysis We propose an open-label, single-arm trial investigating a standardised treatment and monitoring protocol for phage therapy. Patients included will have exhausted other therapeutic options for control of their infection and phage therapy will be administered under Australia’s Therapeutic Goods Administration Special Access Scheme. A phage product with high in vitro activity against the targeted pathogen(s) must be available in line with relevant regulatory requirements. We aim to recruit 50–100 patients over 5 years, from any public or private hospitals in Australia. The standardised protocol will specify clinical assessments and biological sampling at scheduled time points. The primary outcome is safety at day 29, assessed by the frequency of adverse events, and overseen by an independent Data Safety Monitoring Board. Secondary outcomes include long-term safety (frequency of adverse events until at least 6 months following phage therapy), and feasibility, measured as the proportion of participants with>80% of minimum data available for analysis. Additional endpoints assessed include clinical response, patient/guardian reported quality of life measures, phage pharmacokinetics, human host immune responses and microbiome analysis. All trial outcomes will be summarised and presented using standard descriptive statistics.
+
+Ethics and dissemination Participant inclusion will be dependent on obtaining written informed consent from the patient or guardian. The trial protocol was approved by the Sydney Children’s Hospitals Network Human Research Ethics Committee in December 2021 (Reference 2021/ETH11861). In addition to publication in a peer-reviewed scientific journal, a lay summary of study outcomes will be made available for participants and the public on the Phage Australia website (https://www.phageaustralia.org/).
+
+Trial registration number Registered on ANZCTR, 10 November 2021 (ACTRN12621001526864; WHO Universal Trial Number: U1111-1269-6000).
+
+http://creativecommons.org/licenses/by-nc/4.0/
+
+This is an open access article distributed in accordance with the Creative Commons Attribution Non Commercial (CC BY-NC 4.0) license, which permits others to distribute, remix, adapt, build upon this work non-commercially, and license their derivative works on different terms, provided the original work is properly cited, appropriate credit is given, any changes made indicated, and the use is non-commercial. See: http://creativecommons.org/licenses/by-nc/4.0/.
+
+https://doi.org/10.1136/bmjopen-2022-065401
+
+Statistics from Altmetric.com
+
+See more details
+
+Picked up by 11 news outlets
+Blogged by 1
+Referenced in 1 policy sources
+Posted by 71 X users
+68 readers on Mendeley
+Request Permissions
+
+If you wish to reuse any or all of this article please use the link below which will take you to the Copyright Clearance Center’s RightsLink service. You will be able to get a quick price and instant permission to reuse the content in many different ways.
+
+Strengths and limitations of this study
+
+This protocol builds on an existing phage therapy programme, expanding it to a national scale, codesigned with key stakeholders including government and the public.
+
+The trial has been endorsed by adult and paediatric infectious diseases specialists throughout Australia, optimising potential for participant recruitment.
+
+The trial is designed to be embedded into routine clinical practice and is both pragmatic and inclusive.
+
+The protocol promotes standardisation of therapy and outcome assessment, enabling credible inference about risks and benefits.
+
+Heterogeneity in disease syndromes and phage products used will limit inference about any particular syndromes or products.
+
+Introduction
+
+There has been renewed interest in the therapeutic use of bacteriophages (phages), driven by emerging challenges in the medical landscape.1 Growing antimicrobial resistance (AMR) has fuelled a crisis in medicine, contributing to a significant rise in mortality, morbidity and associated healthcare costs.2 Without novel solutions, AMR infections are predicted to be the leading cause of death by 2050, to cost US$30 billion annually in lost productivity, and to threaten many advances in medicine.2 Similarly, there is an unmet need for new strategies to manage complex infections in individuals with chronic conditions, including cystic fibrosis, and infections that respond poorly to antibiotics, such as prosthetic device-related infections.1 Phage therapy (PT) has the potential to meet these needs.
+
+Phages are viruses that selectively kill bacteria.3 PT uses this characteristic to provide a novel, non-antibiotic approach to treating infections,3 with effectiveness independent of antimicrobial susceptibility.3 PT has a proven safety record4–11 and can be used as monotherapy or in conjunction with antibiotics.3 PT can also alter the bacterial antimicrobial susceptibility profile. Bacterial reversion to susceptible phenotypes has been observed with PT, restoring the efficacy of antibiotics to pathogens that were previously testing non-susceptible.12 13
+
+PT has several other potential advantages over standard care. Phages are highly selective, targeting a narrow range of bacteria. This specificity reduces their impact on the microbiome and sidesteps the associated risk of the emergence of AMR and Clostridioides difficile infection.14 Biofilm formation is increasingly recognised to play a role in a broad range of conditions beyond the traditionally recognised prosthetic device-related infections.15 In these difficult-to-treat infections, biofilms protect bacteria from the human immune response and reduce antibiotic efficacy.15 Due to their mechanism of action, many phages remain effective in killing bacteria present in biofilms.15 16
+
+There are increasing reports underlining the value of PT in severe sepsis, bladder infections and osteomyelitis.6 7 9–11 Despite these potential benefits, PT is not routinely used currently. Numerous barriers to widespread adoption remain. Experience with PT is restricted to a handful of centres worldwide. Standardised therapeutic protocols are lacking, and there is a paucity of rigorous clinical trial data assessing efficacy. Furthermore, due to limitations in production, sufficiently purified phages from licensed Good Manufacturing Practice facilities, are generally not readily available.17
+
+Since 2007, a programme for compassionate access to PT for adults and children has been in operation at Westmead Hospital and Sydney Children’s Hospitals Network. This protocol aims to enable a national expansion of this programme to both adults and children, providing a standardised treatment and monitoring protocol linked to a national database to ensure systematic data collection. This protocol will allow rapid and efficient data capture to strengthen the evidence base, including the dosing and monitoring data required to establish PT on the national formulary.
+
+Objectives
+
+This research aims to determine the safety and tolerability of PT in adults and children with bacterial infections in both the short and long terms; and to assess the feasibility of a standardised protocol used for the administration and monitoring of PT. A range of other exploratory objectives will also be investigated, including to:
+
+Report the clinical response to PT 15 days following completion.
+
+Describe changes to patient-reported quality-of-life indicators during and after PT.
+
+Describe proportions of patients achieving microbiological clearance, and time to clearance, by phage product and clinical indication, as well as the frequency of emergence of in vitro phage resistance.
+
+Identify biomarker(s) that correlate with clinical efficacy.
+
+Explore pharmacokinetics/pharmacodynamics of different phage preparations to guide optimal dosing schedules and durations of treatment according to various routes of administration.
+
+Characterise immune responses to PT, including age-related differences.
+
+Explore microbiome changes as assessed by non-human metagenomics during and after completion of PT.
+
+Methods and analysis
+
+This is an open-label, single-arm trial investigating a standardised treatment and monitoring protocol for PT. The trial is open for enrolment with the first participant recruited 1 April 2022. Fifty participants are expected to be enrolled by 31 December 2025. This trial will include multiple subgroups based on clinical indication and route of PT administration. We used the Standard Protocol Items: Recommendations for Interventional Trials checklist when writing our report.18
+
+Participant recruitment and eligibility
+
+Study participants of all ages will be recruited through existing infectious diseases networks from any public or private hospitals in Australia where site-specific approval is obtained. Eligibility will be limited to patients assessed as having exhausted other therapeutic options to control their infection, and where the clinical syndrome is linked directly to the aetiological bacteria targeted. This assessment will be performed by two appropriately qualified clinical specialists and must include a specialist in infection management and a specialist with prior PT experience or from within a defined clinical working group of the Phage Australia consortium (Trial Steering Committee, TSC).
+
+Inclusion will be dependent on obtaining written informed consent from the patient or guardian and identification of a suitable phage product. Consent must be obtained by the site Principal investigator (PI) or their qualified designee such as the primary clinician (online supplemental file A). A phage product must demonstrate high in vitro activity (by plaquing in solid or semisolid media and/or growth inhibition in broth media19) against the targeted pathogen(s) to be considered suitable. Similarly, the phage product must comply with all relevant local and national regulatory requirements for therapeutic administration, according to the special access scheme (SAS) for unregistered medicines as determined by the Australian Therapeutic Goods Administration (TGA)20 or equivalent relevant authority in European (European Medicines Agency; EMA) or USA (Food and Drug Administration; FDA) jurisdictions.21 22 Examples of therapeutic phage product quality control documents are provided in online supplemental file B. Participants unable or unlikely to adhere to the schedule of monitoring and follow-up will be excluded.
+
+Supplemental material
+[bmjopen-2022-065401supp001.pdf]
+Supplemental material
+[bmjopen-2022-065401supp002.pdf]
+Sample size
+
+Sample size was based on logistical considerations and the ability to estimate the proportion of participants with PT-related serious adverse events (SAE). A sample size of at least 50 participants will enable the proportion to be estimated with a 95% CI of maximum width±15%. If no SAE is observed in 50 participants, this would be consistent with a true rate of SAEs which is no higher than 7% (ie, 95% CI 0% to 7%). In line with this calculation, we aim to recruit 50–100 participants over the 5 years of the study.
+
+Interventions
+
+The schedule of enrolment, interventions and assessments for each participant is outlined in table 1. At enrolment, demographic and clinical data will be collected, including primary infection diagnosis and previous and current antimicrobial treatments. Culture confirmation of infection and phage matching of isolated bacteria will be performed. The specific phage product, duration and route of administration will be determined individually for each patient by the clinical team in discussion with the site PI, dependent on the site of infection, bacterial pathogens, patient factors (eg, immune compromise, intravenous access) and availability of phage products (eg, formulation, purification). All other care, including adjunctive antibiotics and interventions during the trial, as well as post-trial care, will be as per the treating clinical team.
+
+VIEW INLINE VIEW POPUP
+Table 1
+
+Schedule of enrolment, interventions, and assessments for each participant
+
+Repeat episodes of infection, including relapse or refractory illness, will be assessed for eligibility for re-enrolment in the trial, following a separation of at least 15 days to allow assessment of the primary outcome. The first episode per patient will be used for primary analyses, with additional courses described.
+
+Phage therapy
+Duration
+
+Where appropriate, a standard 14-day course will be used for intravenous/oral PT (table 2) and non-systemic PT as the default option (table 3). For critically unwell patients needing urgent infection management, initial two times a day dosing may be used (ie, from day 1). The dosing frequency will be guided by practical limitations in patients receiving outpatient treatment or PT for longer than 14 days.
+
+VIEW INLINE VIEW POPUP
+Table 2
+
+Treatment and laboratory monitoring protocol for standard 14-day intravenous/oral phage therapy
+
+VIEW INLINE VIEW POPUP
+Table 3
+
+Treatment and laboratory monitoring protocol for standard 14-day non-systemic phage therapy
+
+Adherence will be ensured with the first 14 days of intravenous PT administered in hospital, which may include transition to suitably staffed Hospital Outreach/Hospital in the Home services after the first dose/s are administered. Topical, aerosolised or oral administration can occur in the outpatient setting. All administered doses of phage will be prescribed by a suitably qualified doctor, dispensed from the hospital pharmacy and recorded in standard medical records.
+
+Dosage
+
+For intravenously administered phage, the dose will be limited by the endotoxin level of the phage product, keeping below the accepted human pyrogenic threshold of 5 EU/kg per dose set by the US FDA, aiming to administer approximately 109 plaque-forming units (pfu) of phage at each dose. For non-intravenous routes of administration, approximately 1010 pfu/dose will be administered. For multiple routes of administration, the total dose administered will not exceed the 5 EU/kg endotoxin limit.
+
+Dosing strategies at initiation will be guided by distribution volume and clearance by non-specific mechanisms (innate effector cells, renal clearance and non-specific inactivation of viral particles). However, the kinetics of subsequent PT doses can be more dynamic.23 Phage amplification in targeted bacterial populations can change over time. Acquired immune clearance (eg, the development of neutralising antibodies) can increase phage clearance. Thus, phage kinetics is ideally monitored and assessed during PT (table 2). Phage quantification in blood will be determined by plaque assay and quantitative PCR (qPCR). The timing of blood sampling is outlined in table 4. Subsequent phage dosing intervals may be adjusted guided by these results (one to two times a day), aiming for a trough level of approximately 102 pfu/mL.11 The dose may be adjusted accordingly, at the physician’s discretion.
+
+VIEW INLINE VIEW POPUP
+Table 4
+
+Timing of blood samples for quantification of phage and bacterial loads
+
+All three timepoints (prior to dose, 30 min, and 2 hours post dose) should be drawn on days 2, 4, 8 and 11. On days 15 and 29, only a single blood draw in the morning is required as no further phage doses will be administered.
+
+Clinical monitoring
+
+A complete physical examination will be performed within 24 hours before starting PT. Vitals (heart rate, respiratory rate, blood pressure, oxygen saturation, temperature) will be measured within 15 min prior to, and at 15 and 30 min after, each dose of phage. For patients receiving only topical or nebulised/aerosolised phage products, vital signs are only required 30 min after administration. Additional clinical monitoring will be performed according to routine clinical care.
+
+Laboratory monitoring
+
+Laboratory monitoring for the first 29 days in patients receiving intravenous/oral PT and non-systemic PT is outlined in tables 2 and 3. It is expected that essential monitoring is performed in laboratories subject to regular accreditation by a national regulatory authority which ensures compliance with ISO15189 (Requirements for Quality Management in Medical Laboratories) while some applications such as transcriptomics may be available only in research laboratories, using methods such as those previously described.9 11 If abnormalities are detected (including worsening of prior abnormalities) that were not present at baseline, these will be followed up beyond the intervention period until resolution. Bacterial cultures will be obtained from the site of infection or representative site if not practical. Blood cultures should be obtained daily for patients with bacteraemia at the commencement of PT, continuing until resolution of the bacteraemia has been documented, consistent with Good Clinical Practice.24 For invasive samples other than blood or endotracheal aspirates (eg, bronchoalveolar lavage or surgical biopsies), baseline (day 0) and post-treatment (day 15) samples are sufficient for monitoring where practical. Bacterial target populations will be quantified by qPCR as genome copies/mL in whole blood at the same timepoints outlined for phage kinetics (table 4).
+
+Measurement of antiphage antibodies (total or neutralising antibodies25), and gene expression profiling of immune responses will characterise the human host’s innate and adaptive immune responses following a set schedule in those receiving intravenous/oral PT (table 2) and non-systemic PT (table 3), as available.
+
+Quality-of-life assessments
+
+Participants will complete a brief quality-of-life questionnaire using a validated age-appropriate patient reported outcome measures (PROMs) tool (EQ-5D-5L/EQ-5D-Y) during the study from baseline until 12 months following the completion of PT.
+
+Safety and tolerability
+
+Safety and tolerability will be measured through adverse events (AEs), vital signs, and clinical laboratory assessments. An AE is defined as any untoward medical occurrence in a participant regardless of its causal relationship to the administered phage product. All AEs will be evaluated for severity, causality and seriousness and will be elicited and assessed from the first dose until 15 days after the last dose of phage. From 15 days to 6 months following the completion of PT, only adverse reactions (ARs; AEs that are at least probably (probably or definitely) related to PT), will be collected. An SAE is defined as any event that results in death, is immediately life-threatening, requires inpatient hospitalisation or prolongation of existing hospitalisation, results in persistent or significant disability/incapacity or congenital anomaly. A serious adverse reaction (SAR) is an SAE that is at least probably related to PT. A suspected, unexpected, serious adverse reaction (SUSAR) is defined as an AE that is serious in nature (ie, meets SAE criteria), is at least probably related to PT and is an unexpected reaction based on what is known and has been reported in the literature. SUSARs will be adjudicated by site PIs. Evidence of severe immune-related phenomena after infusion may occur and may be criteria for cessation of therapy. For any SAR, decisions regarding cessation of PT will be made by the primary clinician in consultation with the site PI. Early cessation of PT will not constitute a withdrawal criterion from the trial. The PI should make every effort to continue all other patient monitoring as per the protocol to ensure data integrity and safety monitoring.
+
+Data collection and management
+
+Data will be collected using a Research Electronic Data Capture (REDCap) database hosted by the University of Sydney on a controlled, protected server that requires multifactor authentication and encrypted connections. Clinical data will be coded but reidentifiable by clinicians for their patients. PIs will only have access to reidentifiable data for patients at their respective recruitment sites. Deidentified data will be used for analysis. Data quality will be optimised using range checks for data values and error messages for missing data points. The data fields and the associated data dictionary are included in online supplemental file C. Any data obtained prior to withdrawal of consent from a participant will be retained.
+
+Supplemental material
+[bmjopen-2022-065401supp003.pdf]
+
+Most biological samples collected as part of the trial will be processed in clinical diagnostic laboratories and stored, processed and discarded as per routine laboratory procedures. For non-routine assessments, samples may be processed in research laboratories and will be coded prior to shipment, storage and analysis, and reidentifiable to PIs and treating clinicians at the site only. Deidentified data and left-over biological samples may be retained up to 15 years after the study is completed, or until the youngest participant reaches 25 years old, whichever is later. Residual samples may be used for additional research, if specific consent for this is obtained.
+
+Primary and secondary safety outcomes
+
+Safety will be defined by the absence of SAEs attributable to study material (phage). AEs related to PT are predominantly expected during active administration or shortly thereafter. The primary endpoint for safety assessments will be any SAE attributable to PT (SARs) occurring from day 1 (first dose of phage administered) until 15 days after completion of therapy (ie, day 29 for patients receiving 14 days of therapy). The primary outcome of the proportion of participants who experience one or more SAEs attributable to study therapy will be presented with a 95% CI. Secondary safety endpoints will be any AR occurring from day 1 (first dose of phage administered) until 6 months after completion of PT.
+
+Secondary and exploratory outcomes
+Feasibility
+
+The feasibility of using a national standardised treatment and monitoring protocol will be measured as the proportion of participants with >80% of minimum data available for analysis entered in the REDCap dataset. The feasibility endpoint will be assessed at least 15 days after completion of PT.
+
+This protocol includes a range of exploratory outcomes. The data we develop here will allow the best quality design of formal clinical trials and help to inform regulatory reviews.
+
+Clinical response
+
+Clinical response will be assessed 15 days following completion of PT. ‘Cure’ will be defined as no evidence of ongoing infection (including clinical signs and symptoms, laboratory and radiological abnormalities, and microbiological evidence of infection), with or without persisting disability. Clinical response will be considered ‘partial’ if there are improvements in clinical, radiological or laboratory parameters, or stabilisation of previously documented decline in function, but with evidence of ongoing infection. Worsening clinical signs and symptoms, radiological or laboratory parameters, and evidence of ongoing infection will be defined as ‘no response’. For analysis, cure and partial response will be grouped and termed ‘good clinical response’.
+
+Quality-of-life indicators
+
+Patient-reported quality-of-life indicators will be measured during and after PT. A carer will complete this report for individuals unable. Changes in the quality-of-life questionnaire will be assessed using a validated PROMs tool (EQ-5D-5L/EQ-5D-Y), and results from baseline will be compared with each subsequent assessment (day 29, 3, 6 or 12 months after starting PT).
+
+Microbiological clearance
+
+Microbiological clearance will be evaluated using time to clearance and the proportion with sustained clearance at the end of the intervention period (day 29). Time to clearance will be measured for each infected site from the first day of PT to the first negative culture among participants with sustained clearance. Sustained clearance is defined as at least two consecutive negative cultures with no other positive cultures during the intervention and follow-up.
+
+Phage resistance can emerge during PT, contributing to poor microbiological clearance. To identify phage resistance, all positive culture(s) of the target pathogen(s) isolated after day 1 of treatment will be reassessed for ongoing phage susceptibility.
+
+Pharmacokinetics and immune response
+
+The pharmacokinetics of different phage preparations will be assessed using the results of qPCR and plaque assays from serum. These data will guide optimal dosing schedules and durations for phage products used according to different routes of administration (intravenous, oral, nebulised/aerosolised, topical).
+
+Immune responses to PT will be assessed by examining and comparing gene expression profiles coupled with the level of antiphage neutralising or total antibodies at different time points during and after PT, and between age groups. Gene expression profiling will be restricted to genes belonging to the innate and adaptive immune response regulatory pathways only.
+
+Microbiome changes
+
+Metagenomics will be performed on any available clinical samples (blood, sputum, urine, faeces or other samples that may have been collected) to investigate changes in the microbiome during treatment. The analysis pipeline will be restricted to non-human genetic material and will only be used to determine the microbiome of various clinical specimens during and after PT, including endogenous phages.
+
+Monitoring and analysis
+
+A review of included and excluded participants and reasons for inclusion/exclusion will be undertaken annually to ensure the appropriateness of patient selection. Interim safety analysis for the primary outcome will be conducted after 30 participants have been followed at 29 days after commencement of treatment. The expected attributable SAE rate is<5%. If 20% or more participants suffer an SAR, the treatment may not be considered acceptable in its current form. An analysis of the first 30 participants who are followed at least 1 month after commencing treatment has 80% statistical power at 5% one-sided alpha to rule out a rate of 20% or higher if the true rate is 5% or lower, using an exact one-sample binomial test. If 3 or more of these 30 participants have experienced an SAR, then consideration will be given to stopping or modifying the study due to safety concerns. Otherwise, recruitment will continue to the target of 50–100 participants to collect data on other outcomes.
+
+The TSC will regularly review study progress, including data on all safety, secondary and exploratory outcomes. Reports will be provided 6 monthly and may be used for amending the trial protocol, external reporting and publication, or early trial termination. A final analysis will be undertaken when the last enrolled participant has been followed up for at least 6 months after the last dose of phage.
+
+All trial outcomes will be summarised and presented using standard descriptive statistics: frequencies and percentages for categorical data and mean, SD and range or median, quartiles and range for continuous data and the Kaplan-Meier method for time-to-event variables. Results will be presented overall and by subgroups. Participants may be subgrouped according to clinical indication (infectious syndrome), route of administration or phage formulation used, or patient demographics (eg, age). Exploratory comparisons of outcomes between subgroups, including those receiving treatment targeting different groups of organisms, and clinical phenotypes (acute bacteraemia vs chronic osteoarticular infections) will use standard statistical methods: t-test, χ2 test, log-rank test and corresponding regression models.
+
+Safety data will be reported for all participants who receive at least one dose of PT. Clinical response to therapy and microbiological clearance outcomes will be reported for participants who receive at least 5 days of PT (cumulative). All other outcomes will be reported for all enrolled participants based on available data with no adjustment for missing data.
+
+Patient and public involvement
+
+The protocol has been shaped by reviews and comments from stakeholder and consumer representatives including from the cystic fibrosis community and the New South Wales Ministry of Health.
+
+Ethics and dissemination
+
+This trial protocol (version 1.1, 29/05/2022; online supplemental file D) was assessed and approved by the Sydney Children’s Hospitals Network Human Research Ethics Committee (HREC) in May 2022 (version one approved December 2021; Reference 2021/ETH11861). All major protocol amendments will only be implemented after approval is gained from the HREC and governance committees for participating sites. Amendments will also be notified to the trial registry, and the journal in which the protocol is published.
+
+Supplemental material
+[bmjopen-2022-065401supp004.pdf]
+
+Following interim and final analyses, trial results will be shared with the investigator group who will have ongoing custody of the data, and will be prepared for scientific publication or presentation. The final results will be submitted for publication in a peer-reviewed scientific journal. A lay summary of the final trial results will be made available for participants and the public on the Phage Australia website (https://www.phageaustralia.org/). On recruitment, a link to the website will be provided to all study participants.
+
+As the protocol is embedded in usual clinical practice, participants may expect to be informed of test results and response to treatment. All routinely available clinical assays will be available for clinicians to discuss with participants. The results may or may not be available during treatment for more specialised tests. Some results such as for transcriptomic and metagenomic analyses will not be reported individually to participants.
+
+Sponsor information
+
+Sponsor: Western Sydney Local Health District, Research and Education Network Clinical Trial Support Unit, Westmead Hospital, Hawkesbury Road, Westmead, NSW 2145, Australia (WSLHD-ClinicalTrialsSupportUnit@health.nsw.gov.au)
+
+No trial funding is provided by the sponsor. Representatives from the sponsor were involved in the development of the protocol with respect to safety monitoring and reporting procedures. The sponsor will not be involved in collection, management or interpretation of data, writing the study report or the decision to submit the report for publication.
+
+Trial committees
+
+The TSC includes a multidisciplinary group that, collectively, have experience/expertise in the management of patients with condition(s) relevant to the study, pathways for use of PT, and in the conduct and monitoring of randomised clinical trials. Co-conveners are ST, AK and MW and the committee includes JI. JI and AK are physicians with prior PT experience. The committee also includes members with statistical expertise and stakeholder representatives.
+
+The independent Data Safety Monitoring Board (DSMB) includes a chair with management experience in clinical trials and five additional members, of whom at least one will be a paediatrician, at least one will be an adult physician and at least one will have established clinical expertise in the delivery of PT. The DSMB will have access to all safety data available at the time of each meeting and will make a recommendation to the coordinating PI and site PIs within 4 weeks regarding:
+
+Cessation of the trial for all participants or for a subgroup.
+
+Interim suspension while reviewing the data in more detail.
+
+Modification of the trial.
+
+Continuation of the trial.
+
+Discussion
+
+PT is a promising therapeutic option with evidence of clinical efficacy. However, heterogenous reports, limited clinician experience outside specialist centres and restricted access to suitable phage products has undermined its widespread adoption. This protocol builds on an established PT programme, expanding it to a national scale, codesigned with key stakeholders including government and the public. The protocol promotes standardisation of PT administration and outcome assessments, enabling credible inference about risks and benefits. The aim is to standardise the process of administration and monitoring of PT, once that therapy has been approved by the relevant authorities. Although specific phage products are not under direct investigation, and heterogeneity in disease syndromes and phage products used within the trial will limit inference about any particular syndromes or products, insights from this trial will allow the design of future controlled trials that can both measure, and validate diagnostic surrogates of clinical efficacy. Importantly, eligibility will be limited to patients assessed as having exhausted other therapeutic options to control their infection, and where the clinical syndrome is linked directly to the aetiological bacteria targeted, as assessed by two appropriately qualified clinical specialists including a specialist in infection management and a specialist with prior PT experience.
+
+The trial is designed to be embedded into routine clinical practice and is both pragmatic and inclusive, with many interventions determined by standard clinical and laboratory practice of treating physicians and recruitment sites. These methodological strengths will ensure that the data obtained in this trial will help define the safety profile of PT in all age groups and establish the feasibility of a standardised treatment protocol. Downstream effects include overcoming unfamiliarity and increasing both consumer and clinician confidence by collating standardised objective data. Due to the inherent challenges in traditional trial designs for PT, large patient registries collating standardised data, such as this one, will allow rapid and efficient data generation to strengthen the PT evidence base, including the dosing and monitoring data required to inform regulatory frameworks.
+
+Ethics statements
+Patient consent for publication
+
+Not applicable.
+
+Acknowledgments
+
+We thank all additional members of the Phage Australia Clinical Network which includes David L. Paterson (University of Queensland, Royal Brisbane and Women’s Hospital), Adam Irwin (The University of Queensland; Queensland Children’s Hospital), Christopher Heath (Departments of Microbiology [PathWest Laboratory Medicine] and Infectious Diseases, Fiona Stanley Hospital Network), Anthony Kicic (Telethon Kid’s Institute; Curtin University), Kim Chan (University of Sydney), Bernard Hudson (Royal North Shore Hospital), Holly A. Sinclair (Royal Brisbane and Women's Hospital) and Susan Maddocks (Western Sydney Local Health District) who contributed to the set up of the trial. We also thank Lani Attwood (Kids Advanced Therapeutics Program, Sydney Children’s Hospitals Network) for her assistance in developing participant information sheets and obtaining ethical approval for the trial; and Jan Zheng and Jessica Sacher (Phage Directory; Westmead Institute for Medical Research) for their work developing the REDCap database for this trial.
+
+References
+↵Suh GA, Lodise TP, Tamma PD, et al. Considerations for the use of phage therapy in clinical practice. Antimicrob Agents Chemother 2022;66:02071–21.doi:10.1128/aac.02071-21pmid:http://www.ncbi.nlm.nih.gov/pubmed/35041506OpenUrlPubMed
+↵O'Neill J. Tackling drug-resistant infections globally: final report and recommendations. London: Wellcome Trust, 2016.
+↵Lin DM, Koskella B, Lin HC. Phage therapy: an alternative to antibiotics in the age of multi-drug resistance. World J Gastrointest Pharmacol Ther 2017;8:162–73.doi:10.4292/wjgpt.v8.i3.162pmid:http://www.ncbi.nlm.nih.gov/pubmed/28828194OpenUrlCrossRefPubMed
+↵Jault P, Leclerc T, Jennes S, et al. Efficacy and tolerability of a cocktail of bacteriophages to treat burn wounds infected by Pseudomonas aeruginosa (PhagoBurn): a randomised, controlled, double-blind phase 1/2 trial. Lancet Infect Dis 2019;19:35–45.doi:10.1016/S1473-3099(18)30482-1pmid:http://www.ncbi.nlm.nih.gov/pubmed/30292481OpenUrlCrossRefPubMed
+↵Dedrick RM, Guerrero-Bustamante CA, Garlena RA, et al. Engineered bacteriophages for treatment of a patient with a disseminated drug-resistant Mycobacterium abscessus. Nat Med 2019;25:730–3.doi:10.1038/s41591-019-0437-zpmid:http://www.ncbi.nlm.nih.gov/pubmed/31068712OpenUrlCrossRefPubMed
+↵Schooley RT, Biswas B, Gill JJ, et al. Development and use of personalized bacteriophage-based therapeutic cocktails to treat a patient with a disseminated resistant Acinetobacter baumannii infection. Antimicrob Agents Chemother 2017;61:e00954–17.doi:10.1128/AAC.00954-17pmid:http://www.ncbi.nlm.nih.gov/pubmed/28807909OpenUrlPubMed
+↵Maddocks S, Fabijan AP, Ho J, et al. Bacteriophage Therapy of Ventilator-associated Pneumonia and Empyema Caused by Pseudomonas aeruginosa. Am J Respir Crit Care Med 2019;200:1179–81.doi:10.1164/rccm.201904-0839LEpmid:http://www.ncbi.nlm.nih.gov/pubmed/31437402OpenUrlPubMed
+↵Gilbey T, Ho J, Cooley LA, et al. Adjunctive bacteriophage therapy for prosthetic valve endocarditis due to Staphylococcus aureus. Med J Aust 2019;211:142–3.doi:10.5694/mja2.50274pmid:http://www.ncbi.nlm.nih.gov/pubmed/31281964OpenUrlPubMed
+↵Petrovic Fabijan A, Lin RCY, Ho J, et al. Safety of bacteriophage therapy in severe Staphylococcus aureus infection. Nat Microbiol 2020;5:465–72.doi:10.1038/s41564-019-0634-zpmid:http://www.ncbi.nlm.nih.gov/pubmed/32066959OpenUrlPubMed
+↵Khawaldeh A, Morales S, Dillon B, et al. Bacteriophage therapy for refractory Pseudomonas aeruginosa urinary tract infection. J Med Microbiol 2011;60:1697–700.doi:10.1099/jmm.0.029744-0pmid:http://www.ncbi.nlm.nih.gov/pubmed/21737541OpenUrlCrossRefPubMed
+↵Khatami A, Lin RCY, Petrovic-Fabijan A, et al. Bacterial lysis, autophagy and innate immune responses during adjunctive phage therapy in a child. EMBO Mol Med 2021;13:e13936.doi:10.15252/emmm.202113936pmid:http://www.ncbi.nlm.nih.gov/pubmed/34369652OpenUrlCrossRefPubMed
+↵Gordillo Altamirano F, Forsyth JH, Patwa R, et al. Bacteriophage-resistant Acinetobacter baumannii are resensitized to antimicrobials. Nat Microbiol 2021;6:157–61.doi:10.1038/s41564-020-00830-7pmid:http://www.ncbi.nlm.nih.gov/pubmed/33432151OpenUrlPubMed
+↵Duplessis C, Biswas B, Hanisch B, et al. Refractory Pseudomonas bacteremia in a 2-year-old sterilized by bacteriophage therapy. J Pediatric Infect Dis Soc 2018;7:253–6.doi:10.1093/jpids/pix056pmid:http://www.ncbi.nlm.nih.gov/pubmed/28992111OpenUrlCrossRefPubMed
+↵Petrovic Fabijan A, Khalid A, Maddocks S, et al. Phage therapy for severe bacterial infections: a narrative review. Med J Aust 2020;212:279–85.doi:10.5694/mja2.50355pmid:http://www.ncbi.nlm.nih.gov/pubmed/31587298OpenUrlPubMed
+↵Sharma D, Misba L, Khan AU. Antibiotics versus biofilm: an emerging battleground in microbial communities. Antimicrob Resist Infect Control 2019;8:76.doi:10.1186/s13756-019-0533-3pmid:http://www.ncbi.nlm.nih.gov/pubmed/31131107OpenUrlPubMed
+↵Chang RYK, Das T, Manos J, et al. Bacteriophage PEV20 and ciprofloxacin combination treatment enhances removal of Pseudomonas aeruginosa biofilm isolated from cystic fibrosis and wound patients. Aaps J 2019;21:49.doi:10.1208/s12248-019-0315-0pmid:http://www.ncbi.nlm.nih.gov/pubmed/30949776OpenUrlPubMed
+↵Lin RC, Sacher JC, Ceyssens P-J, et al. Phage Biobank: present challenges and future perspectives. Curr Opin Biotechnol 2021;68:221–30.doi:10.1016/j.copbio.2020.12.018pmid:http://www.ncbi.nlm.nih.gov/pubmed/33581425OpenUrlPubMed
+↵Chan A-W, Tetzlaff JM, Gøtzsche PC, et al. SPIRIT 2013 explanation and elaboration: guidance for protocols of clinical trials. BMJ 2013;346:e7586.doi:10.1136/bmj.e7586pmid:http://www.ncbi.nlm.nih.gov/pubmed/23303884OpenUrlAbstract/FREE Full Text
+↵Glonti T, Pirnay J-P. In vitro techniques and measurements of phage characteristics that are important for phage therapy success. Viruses 2022;14:1490.doi:10.3390/v14071490pmid:http://www.ncbi.nlm.nih.gov/pubmed/35891470OpenUrlPubMed
+↵Therapeutic Goods Administration. Special access scheme, 2022. Available: https://www.tga.gov.au/form/special-access-scheme
+↵Pirnay J-P, Ferry T, Resch G. Recent progress toward the implementation of phage therapy in Western medicine. FEMS Microbiol Rev 2022;46:fuab040.doi:10.1093/femsre/fuab040pmid:http://www.ncbi.nlm.nih.gov/pubmed/34289033OpenUrlPubMed
+↵Food and Drug Administration. Science and regulation of bacteriophage therapy workshop: research gaps, 2021. Available: https://www.fda.gov/news-events/fda-meetings-conferences-and-workshops/science-and-regulation-bacteriophage-therapy-workshop-08302021
+↵Dąbrowska K. Phage therapy: what factors shape phage pharmacokinetics and bioavailability? Systematic and critical review. Med Res Rev 2019;39:2000–25.doi:10.1002/med.21572pmid:http://www.ncbi.nlm.nih.gov/pubmed/30887551OpenUrlPubMed
+↵Habib G, Lancellotti P, Antunes MJ, et al. 2015 ESC guidelines for the management of infective endocarditis: the task force for the management of infective endocarditis of the European Society of cardiology (ESC). endorsed by: European association for Cardio-Thoracic surgery (EACTS), the European association of nuclear medicine (EANM). Eur Heart J 2015;36:3075–128.doi:10.1093/eurheartj/ehv319pmid:http://www.ncbi.nlm.nih.gov/pubmed/26320109OpenUrlCrossRefPubMed
+↵Nick JA, Dedrick RM, Gray AL, et al. Host and pathogen response to bacteriophage engineered against Mycobacterium abscessus lung infection. Cell 2022;185:1860–74.doi:10.1016/j.cell.2022.04.024pmid:http://www.ncbi.nlm.nih.gov/pubmed/35568033OpenUrlPubMed
+Supplementary materials
+Supplementary Data
+
+This web only file has been produced by the BMJ Publishing Group from an electronic file supplied by the author(s) and has not been edited for content.
+
+Data supplement 1
+Data supplement 2
+Data supplement 3
+Data supplement 4
+Footnotes
+
+Twitter @PhageAustralia
+
+Contributors AK and JI conceived the study. AK, JI, SYCT and MSW initiated the study design and protocol development. AP, TLS, JL, SS and RCYL contributed to refinement of the study protocol. NB provided input into the protocol development in her role as an advocate for the cystic fibrosis community; and JW provided input in her role as the Principal Policy Officer for Advanced Therapeutics at the Office for Health and Medical Research, New South Wales Ministry of Health. JI and AK are grant holders. TLS and EHB provided statistical expertise. DAF and AK drafted the initial manuscript for publication. All authors reviewed and approved the final manuscript for submission.
+
+Funding Initial set-up costs for the trial, including database design and development and project management, are funded by a Medical Research Futures Fund (MRFF) Frontiers Stage 1 grant (RFRHPI000017; PHAGE AUSTRALIA: Integrating Australian Phage Biobanking and Therapeutic Networks and Delivering Solutions for Antimicrobial Resistance, CIA Iredell); and National Health and Medical Research Council Investigator Grants 2008024 (Phage Therapy: A novel solution for difficult-to-treat infections in children, CIA Khatami) and 1197534 (Positive solutions for critical infection, CIA Iredell). Local phage production and development of companion diagnostics are supported by the MRFF Frontiers Stage 1 grant, and a National Health and Medical Research Council Investigator Grant (1197534: Positive Solutions for Critical Infection, CIA Iredell).
+
+Competing interests None declared.
+
+Patient and public involvement Patients and/or the public were involved in the design, or conduct, or reporting, or dissemination plans of this research. Refer to the Methods section for further details.
+
+Provenance and peer review Not commissioned; externally peer reviewed.
+
+Supplemental material This content has been supplied by the author(s). It has not been vetted by BMJ Publishing Group Limited (BMJ) and may not have been peer-reviewed. Any opinions or recommendations discussed are solely those of the author(s) and are not endorsed by BMJ. BMJ disclaims all liability and responsibility arising from any reliance placed on the content. Where the content includes any translated material, BMJ does not warrant the accuracy and reliability of the translations (including but not limited to local regulations, clinical guidelines, terminology, drug names and drug dosages), and is not responsible for any error and/or omissions arising from translation and adaptation or otherwise.
+
+Read the full text or download the PDF:
+Subscribe
+Log in 
+Log in via Institution
+Log in via OpenAthens
+Log in using your username and password
+For personal accounts OR managers of institutional accounts
+Username *
+Password *
+Forgot your log in details?
+Register a new account?
+Other content recommended for you
+3PC-041 Public production of therapeutic bacteriophages
+C Merienne, European Journal of Hospital Pharmacy, 2024
+Phage therapy is highly effective against chronic lung infections with Pseudomonas aeruginosa
+Elaine M Waters, Thorax, 2017
+Randomised multicentre effectiveness trial of rapid syndromic testing by panel assay in children presenting to European emergency departments with acute respira...
+ADEQUATE Paediatric Trial Group, BMJ Open, 2024
+To prescribe or not to prescribe for paediatric sore throat: a retrospective cohort study comparing clinician-led antibiotic prescriptions to FeverPAIN and Cent...
+Michael Malley, Emerg Med J, 2021
+P32 An audit to assess the suitability of patients at a tertiary/quaternary paediatric hospital to switch from intravenous (IV) to oral (PO) antimicrobial thera...
+Orlagh McGarrity, Aliya Pabani, Archives of Disease in Childhood, 2020
+Recent progress toward the implementation of phage therapy in Western medicine
+Jean-Paul Pirnay, FEMS Microbiology Reviews, 2022
+Phage Therapy
+Carl R Merril Dean scholl sankar adhya, Oxford Academic Books, 2005
+Current challenges and future opportunities of phage therapy
+Diana P Pires, FEMS Microbiology Reviews, 2020
+Phage Are All the Rage: Bacteriophage in Clinical Practice
+Pranita D Tamma, Journal of the Pediatric Infectious Diseases Society, 2021
+Moving Back to Stay Ahead: Phage Research Comes Out of Storage
+Stone, AIBS Bulletin (now BioScience), 2017
+Powered by
+
+
+Tab Context:
+- Executed on tabId: seed
+- Available tabs:
+  • tabId seed: "Standardised treatment and monitoring protocol to assess safety and tolerability of bacteriophage therapy for adult and paediatric patients (STAMP study): protocol for an open-label, single-arm trial " (https://bmjopen.bmj.com)

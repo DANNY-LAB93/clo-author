@@ -54,8 +54,15 @@ def main():
 # El texto completo no siempre llega en PDF: el manuscrito de autor de
 # PhagoBurn esta depositado en ORBi como .docx. Contar solo *.pdf lo
 # dejaba fuera del recuento aunque estuviera en disco y fuera legible.
+    # El texto completo puede llegar como PDF, como manuscrito de autor en
+    # .docx o como el texto integro de la pagina del editor cuando este
+    # sirve el articulo en HTML y bloquea la descarga automatica del PDF.
+    # Las tres formas son el mismo dato para quien va a extraer.
     pdfs = {q.stem for q in (RS / "textos_completos" / "pdf").iterdir()
             if q.suffix.lower() in (".pdf", ".docx")}
+    web = RS / "textos_completos" / "texto_html"
+    if web.exists():
+        pdfs |= {q.stem for q in web.glob("*.txt")}
 
     S = {}
 

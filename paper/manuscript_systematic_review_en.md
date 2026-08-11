@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 246; main text 3 581.
+**Word count:** abstract 246; main text 3 610.
 **Tables:** 4. **Figures:** 2. **Supplementary files:** 6.
 
 ---
@@ -19,7 +19,7 @@
 
 **Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Nine sources were searched without date restriction, including the regional databases BVS and SciELO. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 234 reports, which grouped into 185 studies; 125 of these have a retrievable publication. Single case reports account for 39.2 % and only 19.2 % are comparative designs. Geographic origin is not stated in 60.8 % and resistance class is not stated in 70.4 %. Full text was obtained for 63 studies (50.4 %); the remaining fraction concentrates 66.7 % of the comparative designs. The language criterion removed 34 studies, 17 of them comparative.
+**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class is not stated in 70.2 %. Full text was obtained for 65 studies (52.4 %); the remaining fraction concentrates 56.5 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
 
 **Conclusions.** This evidence base is simultaneously large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
 
@@ -65,7 +65,7 @@ This review was conducted following the PRISMA 2020 statement [@Page2021_prisma]
 
 Language was not inferred from the journal name, which fails in both directions: *Pirogov Russian Journal of Surgery* publishes in English, and an English masthead can carry an article in another tongue. It was taken from the `language` field declared by Europe PMC, the same datum PubMed files under LA, and, where the source did not index it, from the language field of the export itself, which Scopus, SciELO and BVS all carry. Trial registry entries and Cochrane CENTRAL records were treated as eligible on the published language rules of those sources rather than on assumption.
 
-Verification did not stop at metadata. For the studies with a retrieved full text the language was checked against the **whole article**, analysing the central pages rather than the front matter, which many journals publish in English even when the body is not. That check exposed two reports whose metadata declared English and whose text is in Russian; both were excluded. The 234 included reports rest on one of three classes of evidence: 205 on analysis of their own text, 26 on the language rule of the trial register that publishes them, and 3 on the source language field. None is unproven. The assignment for each report, with its evidence class and proof, is supplied as supplementary material.
+Verification did not stop at metadata. For the studies with a retrieved full text the language was checked against the **whole article**, analysing the central pages rather than the front matter, which many journals publish in English even when the body is not. That check exposed three reports whose metadata declared English and whose body is in Russian; all three were excluded. The 233 included reports rest on one of three classes of evidence: analysis of their own text, the language rule of the trial register that publishes them, or the source language field. None is unproven. The assignment for each report, with its evidence class and proof, is supplied as supplementary material.
 
 **Unit of inclusion.** The **study**, not the report, following PRISMA 2020. A protocol, its conference abstracts and its final publication constitute one study with several reports. The decision and its justification are recorded in the project decision log.
 
@@ -107,9 +107,9 @@ The entire pipeline is written as versioned, re-runnable code: search, deduplica
 
 On 11 August 2026, with screening complete and 219 studies already delimited, eligibility was restricted to reports written in English or Spanish. The amendment answers an operational limit of the review team, which cannot extract reliably from a Russian text, and is declared here rather than presented as though it had applied from the outset.
 
-Its effect was measured before it was adopted, and it was not small. It excluded **34 reports** and with them **34 whole studies**, none of which retained a report in an admissible language. The corpus fell from 219 to 185 studies and from 159 to 125 studies with a retrievable publication. The loss was not evenly spread: of 41 comparative designs, 24 remained, and of 21 randomised trials, 16.
+Its effect was measured before it was adopted, and it was not small. It excluded **35 reports** and with them **35 whole studies**, none of which retained a report in an admissible language. The corpus fell from 219 to 184 studies and from 159 to 124 studies with a retrievable publication. The loss was not evenly spread: of 41 comparative designs, 23 remained, and of 21 randomised trials, 16.
 
-Two of those 34 were detected only by reading the PDF. Their metadata declared English; their full text is in Russian, with Cyrillic dominating the body of the article. Had verification stopped at the source language field, both would have stayed in the review.
+Three of those 35 were detected only by reading the article itself. Their metadata declared English; the body is in Russian. The third surfaced only on the publisher's own page, which labels the full text as Russian while the abstract is in English. Had verification stopped at the source language field, all three would have stayed in the review.
 
 The positive-control audit also recorded a concrete casualty. **Ronit et al. (2024)**, a case of phage therapy for a *P. aeruginosa*-infected vascular prosthesis published in Danish in *Ugeskrift for Laeger*, belonged to the set of 40 studies fixed a priori as eligible and is excluded by the criterion. This is not a screening failure, since the study was identified and classified correctly, but the price of the criterion, and it is reported because an audit that is only reported when it passes demonstrates nothing.
 
@@ -121,35 +121,35 @@ The figures for the review without the amendment survive intact in the decision 
 
 ### 3.1 Study selection
 
-The nine sources yielded **23 057 records**, from which 5 928 duplicates were removed to leave **17 129 unique reports** (Figure 1). Stage 1 rules excluded 3 235; of the 13 894 titles screened, 13 434 were excluded and 460 advanced to abstract screening; of those, 226 were excluded and **234 reports proceeded to full text**. Grouped by study, those 234 reports correspond to **185 studies**: 155 with a single report and 30 with several, up to a maximum of eleven reports of one trial.
+The nine sources yielded **23 057 records**, from which 5 928 duplicates were removed to leave **17 129 unique reports** (Figure 1). Stage 1 rules excluded 3 235; of the 13 894 titles screened, 13 434 were excluded and 460 advanced to abstract screening; of those, 227 were excluded and **233 reports proceeded to full text**. Grouped by study, those 233 reports correspond to **184 studies**: 154 with a single report and 30 with several, up to a maximum of eleven reports of one trial.
 
-Of the 185 studies, **125 have a retrievable publication**: 122 articles and 3 that exist only as conference abstracts. The remaining **60 are trial registry entries alone**, with no locatable associated publication. That figure by itself describes a field in which almost one study in three has been registered but has never published results.
+Of the 184 studies, **124 have a retrievable publication**: 121 articles and 3 that exist only as conference abstracts. The remaining **60 are trial registry entries alone**, with no locatable associated publication. That figure by itself describes a field in which almost one study in three has been registered but has never published results.
 
-Exclusion reasons at title screening were laboratory or preclinical work (4 062), other organism without a separable subgroup (3 031), review or commentary without primary data (2 807), does not evaluate phage therapy in patients (2 634), veterinary scope (838) and secondary synthesis (84). At abstract screening: other organism (65), review or commentary (64), does not evaluate phage therapy (40), **inadmissible language (34)**, laboratory (18) and secondary synthesis (5).
+Exclusion reasons at title screening were laboratory or preclinical work (4 062), other organism without a separable subgroup (3 031), review or commentary without primary data (2 807), does not evaluate phage therapy in patients (2 634), veterinary scope (838) and secondary synthesis (84). At abstract screening: other organism (65), review or commentary (64), does not evaluate phage therapy (40), **inadmissible language (35)**, laboratory (18) and secondary synthesis (5).
 
 ### 3.2 Full-text retrieval and its bias
 
-Full text was obtained for **63 of the 125 retrievable studies (50.4 %)** through legitimate open-access routes. The remaining 62 require interlibrary loan, institutional access or a request to the authors.
+Full text was obtained for **65 of the 124 retrievable studies (52.4 %)** through legitimate open-access routes. The remaining 59 require interlibrary loan, institutional access or a request to the authors.
 
-The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 16 of the 24 comparative studies, **66.7 %**, and reports more patients than the retrieved fraction. Among those unread comparative studies are the field's four landmark randomised trials [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy]; one of them, the Yale trial, has no full journal article, only a conference abstract and results deposited in the register.
+The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 13 of the 23 comparative studies, **56.5 %**, and reports more patients than the retrieved fraction. Among those unread comparative studies are the field's four landmark randomised trials [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy]; one of them, the Yale trial, has no full journal article, only a conference abstract and results deposited in the register.
 
 The asymmetry is itself a finding. Full-text accessibility covaries with region of publication and with study design, and it pushes in the same direction as the language restriction: both tilt the corpus towards the anglophone open-access literature. A review that declares neither transforms the question without saying so.
 
 ### 3.3 Characteristics of the evidence base
 
-The 125 retrievable studies were published between **2016 and 2026**, and **83.2 %** since 2020. This is a young and rapidly expanding evidence base (Table 1).
+The 124 retrievable studies were published between **2016 and 2026**, and **83.1 %** since 2020. This is a young and rapidly expanding evidence base (Table 1).
 
-Its composition by design is what a rescue literature produces, not what a synthesis of efficacy needs: **49 single case reports (39.2 %)**, 19 case series, 16 randomised trials, 13 prospective cohorts, 8 non-randomised trials and 4 retrospective cohorts. A further 16 do not state a recognisable design in the abstract. Comparative designs total **24 studies, 19.2 %** of the whole, and are the only ones able to sustain a claim of relative efficacy.
+Its composition by design is what a rescue literature produces, not what a synthesis of efficacy needs: **49 single case reports (39.5 %)**, 19 case series, 16 randomised trials, 13 prospective cohorts, 7 non-randomised trials and 4 retrospective cohorts. A further 16 do not state a recognisable design in the abstract. Comparative designs total **23 studies, 18.5 %** of the whole, and are the only ones able to sustain a claim of relative efficacy.
 
-Where stated, geographic origin is spread across Russia (8 studies), Poland and Georgia (6 each), Germany (4), France and the United States (3 each), and Belgium, Spain and India (2 each). It is not stated in 76 studies. The fall in Russian representation relative to the pre-amendment corpus, from 34 studies to 8, is a direct effect of the language criterion and not of the search.
+Where stated, geographic origin is spread across Russia (7 studies), Poland and Georgia (6 each), Germany (4), France and the United States (3 each), and India, Iran and Israel (2 each). It is not stated in 76 studies. The fall in Russian representation relative to the pre-amendment corpus, from 34 studies to 7, is a direct effect of the language criterion and not of the search.
 
 ### 3.4 What the evidence base does not state
 
 Reporting completeness, measured on what abstracts make explicit, is lowest precisely in the variables on which any stratification depends (Table 2):
 
-- **Resistance class** (MDR, XDR or PDR) is not stated in **70.4 %** of studies.
-- **Route of administration** is not stated in **56.8 %**.
-- **Pathogen scope**, that is, whether the study covers only *P. aeruginosa* or is mixed with a separable subgroup, is not stated in **52.8 %**.
+- **Resistance class** (MDR, XDR or PDR) is not stated in **70.2 %** of studies.
+- **Route of administration** is not stated in **57.3 %**.
+- **Pathogen scope**, that is, whether the study covers only *P. aeruginosa* or is mixed with a separable subgroup, is not stated in **52.4 %**.
 - Fulfilment of the **DTR** criterion (difficult-to-treat resistance) is not stated in **98.4 %**.
 
 These figures describe reporting in the abstract, not necessarily in the full article, and the distinction matters because some of the information may sit in the body of the text. That said, the abstract is what databases index and what automated reviews consume. Three studies in four failing to state their resistance category there means that no MDR/XDR/PDR stratification built from abstracts can be correct.
@@ -172,7 +172,7 @@ Added to this is the retrieval bias documented in section 3.2, which as things s
 
 ### 4.1 Principal findings
 
-This review delimits the clinical evidence base for phage therapy in resistant *P. aeruginosa* more broadly than previous syntheses: nine sources, no language restriction, regional literature and trial registers included. The result is 185 studies against the dozens handled by published reviews, and would have been 219 without the language restriction adopted at the end. That increase does not speak well of the field's maturity. Most of it comes from case reports, from registry entries without publication, and from regional literature that searches confined to PubMed and Scopus do not reach.
+This review delimits the clinical evidence base for phage therapy in resistant *P. aeruginosa* more broadly than previous syntheses: nine sources, no language restriction, regional literature and trial registers included. The result is 184 studies against the dozens handled by published reviews, and would have been 219 without the language restriction adopted at the end. That increase does not speak well of the field's maturity. Most of it comes from case reports, from registry entries without publication, and from regional literature that searches confined to PubMed and Scopus do not reach.
 
 The central result is negative and worth stating plainly: **the breadth of this evidence base does not translate into capacity for synthesis**. Almost four retrievable studies in ten are a single case. Fewer than one in five is comparative. Seven in ten do not state the resistance category by which stratification is attempted. And almost one identified study in three exists only as a registry entry, with no published results.
 
@@ -188,13 +188,13 @@ Our delimitation further suggests that those syntheses worked on a fraction of t
 
 **For research.** Three shortcomings could be remedied at no added cost and would transform the usefulness of the next reports. State the resistance category together with the explicit criteria used to assign it. Document that the administered phage had verified lytic activity against the patient's isolate. And define clinical success with an explicit time horizon. The first is the most urgent: without it, the population of the question is undefined.
 
-**For registries.** That 60 of 185 studies are registry entries without a locatable publication is a first-order publication-bias problem, and no statistical method resolves it.
+**For registries.** That 60 of 184 studies are registry entries without a locatable publication is a first-order publication-bias problem, and no statistical method resolves it.
 
 ### 4.4 Strengths and limitations
 
 **Strengths.** The search covered nine sources across two separate streams, with no language restriction. Selection used a closed vocabulary fixed in advance and was audited against a positive-control set defined before screening began, which allows us to state, rather than merely hope, that screening lost no known eligible study. The whole pipeline is re-runnable code with content-derived keys, and an automated check reconciles each link with the next.
 
-**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 50.4 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, screening was performed by a single reviewer supported by explicit rules, with a positive-control audit but without independent duplication. Duplication is planned for the extraction stage. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 34 studies, 17 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
+**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 52.4 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, screening was performed by a single reviewer supported by explicit rules, with a positive-control audit but without independent duplication. Duplication is planned for the extraction stage. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 35 studies, 18 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
 
 ---
 
