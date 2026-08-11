@@ -271,6 +271,11 @@ def main():
     ap.add_argument("--revisor", required=True)
     ap.add_argument("--muestra", type=int, default=0,
                     help="extraer solo una muestra aleatoria de N estudios")
+    ap.add_argument("--previo",
+                    help="cuaderno anterior de ESTE revisor; su trabajo se "
+                         "arrastra al nuevo formulario")
+    ap.add_argument("--orden", choices=("prioridad", "pozo"), default="prioridad",
+                    help="prioridad = comparativos primero (por defecto)")
     ap.add_argument("--semilla", type=int, default=20260805)
     args = ap.parse_args()
 
@@ -288,7 +293,35 @@ def main():
     # tienen ficha de registro no se extraen: se listan como estudios en curso.
     fuentes = [g for g in grupos if g["informe_para_extraer"] == "SI"
                and g["situacion"] in ("extraible", "solo-resumen")]
-    fuentes.sort(key=lambda g: int(g["orden"]))
+    # ORDEN DE TRABAJO. Por defecto van primero los disenos comparativos, que
+    # son los unicos capaces de sostener una afirmacion de eficacia, y dentro de
+    # ellos los que ya tienen el texto completo en disco. Extraer por posicion en
+    # el pozo gasta las primeras horas en reportes de caso unico, que es lo que
+    # menos aporta por hora invertida.
+    COMPARATIVOS = {"RCT", "non-randomised trial"}
+    SERIES = {"case series", "prospective cohort", "retrospective cohort"}
+    pre_ext = {}
+    p_pre = DEST / "pre_extraccion_desde_resumen.csv"
+    if p_pre.exists():
+        with open(p_pre, encoding="utf-8", newline="") as fh:
+            pre_ext = {r["id_provisional"]: r for r in csv.DictReader(fh)}
+    con_texto = set()
+    for sub in ("pdf", "texto_html"):
+        d = ROOT / "revision_sistematica" / "textos_completos" / sub
+        if d.exists():
+            con_texto |= {q.stem for q in d.iterdir()
+                          if q.suffix.lower() in (".pdf", ".docx", ".txt")}
+
+    def rango(g):
+        eid = "EST-%03d" % int(g["estudio"])
+        d = pre_ext.get(eid, {}).get("study_design", "")
+        cat = 0 if d in COMPARATIVOS else (1 if d in SERIES else 2)
+        return (cat, 0 if eid in con_texto else 1, int(g["orden"]))
+
+    if args.orden == "prioridad":
+        fuentes.sort(key=rango)
+    else:
+        fuentes.sort(key=lambda g: int(g["orden"]))
     if args.muestra and args.muestra < len(fuentes):
         random.Random(args.semilla).shuffle(fuentes)
         fuentes = sorted(fuentes[:args.muestra], key=lambda g: int(g["orden"]))
@@ -357,20 +390,60 @@ def main():
             celda.comment.height = 250 if grande else 110
     ws.row_dimensions[1].height = 46
 
-    for g in fuentes:
-        rec = pool[g["record_id"]]
-        ident = (rec["doi"] if rec["doi"] and not rec["doi"].startswith("10.1002/central/")
-                 else "") or rec["pmid"] or rec["nct"] or recuperacion.get(g["orden"], "")
-        url = enlace(rec, recuperacion.get(g["orden"], ""))
+    # ARRASTRE. Lo que el revisor ya escribio se recupera de su cuaderno
+    # anterior y se vuelca en el nuevo. Pedirle que reescriba trece estudios
+    # porque el corpus cambio seria una forma segura de perder datos y de que
+    # deje de fiarse del formulario. Se indexa por (estudio, brazo), de modo
+    # que los estudios con varios brazos conservan cada uno el suyo.
+    previo = {}
+    if args.previo:
+        vw = openpyxl.load_workbook(args.previo, read_only=True, data_only=True)
+        vs = vw["Extraccion"]
+        vfilas = list(vs.iter_rows(values_only=True))
+        vcab = [str(c or "") for c in vfilas[0]]
+        for fila in vfilas[1:]:
+            if not fila or not fila[0] or not str(fila[0]).startswith("EST-"):
+                continue
+            eid = str(fila[0]).split()[0].strip()
+            d = {vcab[i]: fila[i] for i in range(min(len(fila), len(vcab)))}
+            brazo = str(d.get("Brazo", "A") or "A").strip() or "A"
+            previo.setdefault(eid, {})[brazo] = d
+        print("arrastrando trabajo previo de %d estudios" % len(previo))
+
+    def escribe_fila(g, rec, ident, url, datos=None, brazo="A"):
         fila = ["EST-%03d" % int(g["estudio"]), int(g["orden"]),
                 g["titulo"][:180], g["revista"], g["anio"], g["tipo_informe"],
                 ident, "abrir" if url else ""]
-        fila += ["A" if c == "arm_id" else "" for c in CAMPOS]
+        for c in CAMPOS:
+            if c == "arm_id":
+                fila.append(brazo)
+            elif datos:
+                # OJO CON EL CERO. `valor or ""` borra los ceros, porque en
+                # Python 0 es falso: "0 eventos adversos" se convertia en celda
+                # vacia y pasaba de ser un dato reportado a parecer un dato que
+                # falta. En una revision sistematica eso no es un detalle de
+                # formato, es un numerador alterado.
+                v = datos.get(ETIQUETAS.get(c, c))
+                fila.append("" if v is None else v)
+            else:
+                fila.append("")
         ws.append(fila)
         if url:
             celda = ws.cell(ws.max_row, 8)
             celda.hyperlink = url
             celda.font = Font(color="0563C1", underline="single")
+
+    for g in fuentes:
+        rec = pool[g["record_id"]]
+        ident = (rec["doi"] if rec["doi"] and not rec["doi"].startswith("10.1002/central/")
+                 else "") or rec["pmid"] or rec["nct"] or recuperacion.get(g["orden"], "")
+        url = enlace(rec, recuperacion.get(g["orden"], ""))
+        eid = "EST-%03d" % int(g["estudio"])
+        if eid in previo:
+            for brazo in sorted(previo[eid]):
+                escribe_fila(g, rec, ident, url, previo[eid][brazo], brazo)
+        else:
+            escribe_fila(g, rec, ident, url)
 
     fin, n_ctx = ws.max_row, len(CONTEXTO)
     for r in range(2, fin + 1):
