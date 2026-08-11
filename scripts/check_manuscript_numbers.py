@@ -101,6 +101,9 @@ def main():
     texto = re.sub(r"(?m)^#{1,6}\s*\d+(\.\d+)*\.?\s", " ", texto)
     texto = re.sub(r"secci[oó]n(es)?\s+\d+(\.\d+)*", " ", texto, flags=re.I)
     texto = re.sub(r"(?m)^-\s*S\d+\.", " ", texto)
+    # El recuento de palabras es metadato autorreferente del propio manuscrito:
+    # no procede del canal y no tiene sentido exigirle respaldo.
+    texto = re.sub(r"(?m)^\*\*Recuento de palabras.*$", " ", texto)
 
     sin_respaldo = []
     vistos = set()
