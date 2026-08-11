@@ -31,17 +31,17 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `estudios_multiinforme` | 30 |
 | `informes_del_estudio_mayor` | 11 |
 | `estudios_extraibles` | 125 |
-| `texto_completo_obtenido` | 62 |
-| `texto_completo_no_obtenido` | 63 |
-| `texto_completo_pct` | 49.6 |
+| `texto_completo_obtenido` | 63 |
+| `texto_completo_no_obtenido` | 62 |
+| `texto_completo_pct` | 50.4 |
 | `disenos` | case report: 49; case series: 19; RCT: 16; no declarado: 16; prospective cohort: 13; non-randomised trial: 8; retrospective cohort: 4 |
 | `estudios_comparativos` | 24 |
 | `estudios_comparativos_pct` | 19.2 |
 | `ecas` | 16 |
 | `casos_unicos` | 49 |
 | `casos_unicos_pct` | 39.2 |
-| `comparativos_sin_texto` | 17 |
-| `comparativos_sin_texto_pct` | 70.8 |
+| `comparativos_sin_texto` | 16 |
+| `comparativos_sin_texto_pct` | 66.7 |
 | `pacientes_declarados_con_texto` | 714 |
 | `pacientes_declarados_sin_texto` | 922 |
 | `procedencia` | no declarada: 76; Rusia: 8; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Israel: 2; Ucrania: 2; Belgica: 2 |

@@ -72,7 +72,11 @@ def main():
     grupos = leer(RS / "cribado" / "study_groups.csv")
     pre = {p["id_provisional"]: p for p in
            leer(RS / "extraccion" / "pre_extraccion_desde_resumen.csv")}
-    pdfs = {p.stem for p in (RS / "textos_completos" / "pdf").glob("*.pdf")}
+# El texto completo no siempre llega en PDF: el manuscrito de autor de
+# PhagoBurn esta depositado en ORBi como .docx. Contar solo *.pdf lo
+# dejaba fuera del recuento aunque estuviera en disco y fuera legible.
+    pdfs = {q.stem for q in (RS / "textos_completos" / "pdf").iterdir()
+            if q.suffix.lower() in (".pdf", ".docx")}
     reps = {"EST-%03d" % int(g["estudio"]): g for g in grupos
             if g["informe_para_extraer"] == "SI"}
     extr = {k for k, g in reps.items()
