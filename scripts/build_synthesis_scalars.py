@@ -1,0 +1,208 @@
+"""Calcula TODAS las cifras que el manuscrito puede citar, y solo esas.
+
+POR QUE EXISTE. Un numero tecleado a mano en la prosa deja de coincidir con los
+datos en cuanto los datos cambian, y nadie lo nota: este proyecto ya arrastro un
+"73.0%" en Introduccion y Discusion mucho despues de que el valor real fuera
+75.0%. Aqui cada cifra sale del canal, se escribe con su nombre, y el manuscrito
+la cita por ese nombre.
+
+QUE NO HACE. No inventa una sintesis de eficacia. La extraccion por duplicado de
+Danny y Nataly no ha ocurrido, y 85 de los 159 estudios extraibles no tienen
+texto completo, asi que ninguna proporcion de exito agrupada seria defendible.
+Lo que se puede sostener hoy es la caracterizacion del cuerpo de evidencia y su
+verificabilidad, y eso es lo que se calcula.
+
+SALIDA
+    quality_reports/synthesis_scalars.json   (cifras con nombre)
+    quality_reports/synthesis_scalars.md     (las mismas, legibles)
+"""
+import collections
+import csv
+import json
+import pathlib
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+RS = ROOT / "revision_sistematica"
+csv.field_size_limit(200_000_000)
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+COMPARATIVOS = {"RCT", "non-randomised trial"}
+UN_SOLO_BRAZO = {"case report", "case series", "prospective cohort",
+                 "retrospective cohort"}
+
+
+def leer(p):
+    with open(p, encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh))
+
+
+def main():
+    corpus = leer(RS / "cribado" / "screening_corpus_all.csv")
+    s1 = leer(RS / "cribado" / "screening_stage1_all.csv")
+    d2 = {r["record_id"]: r for r in
+          leer(RS / "cribado" / "screening_stage2_pool_decisions.csv")}
+    d3 = {r["record_id"]: r for r in
+          leer(RS / "cribado" / "screening_stage3_pool_decisions.csv")}
+    grupos = leer(RS / "cribado" / "study_groups.csv")
+    pre = {p["id_provisional"]: p for p in
+           leer(RS / "extraccion" / "pre_extraccion_desde_resumen.csv")}
+    man = json.loads((RS / "busqueda" / "sources.json").read_text(encoding="utf-8"))
+    pdfs = {p.stem for p in (RS / "textos_completos" / "pdf").glob("*.pdf")}
+
+    S = {}
+
+    # ---- identificacion -----------------------------------------------------
+    por_fuente = collections.Counter()
+    for c in corpus:
+        for f in c["sources"].split(";"):
+            if f.strip():
+                por_fuente[f.strip()] += 1
+    S["fuentes_n"] = len(man)
+    S["fuentes_nombres"] = sorted(man)
+    S["registros_por_fuente"] = dict(por_fuente.most_common())
+    S["informes_unicos"] = len(corpus)
+
+    # ---- cribado ------------------------------------------------------------
+    # Registros identificados = filas de origen ANTES de deduplicar. Es la
+    # primera casilla del diagrama PRISMA y no coincide con los informes unicos.
+    S["registros_identificados"] = sum(
+        int(r["n_source_records"] or 1) for r in corpus)
+    S["duplicados_eliminados"] = S["registros_identificados"] - len(corpus)
+    S["excluidos_etapa1"] = sum(1 for r in s1 if r["stage1"] == "EXCLUDED")
+    S["cribados_por_titulo"] = sum(1 for r in s1 if r["stage1"] == "ADVANCE")
+    en_pozo = {r["record_id"] for r in s1 if r["stage1"] == "ADVANCE"}
+    d2_pozo = {k: v for k, v in d2.items() if k in en_pozo}
+    S["excluidos_titulo"] = sum(1 for r in d2_pozo.values()
+                                if r["verdict"] == "EXCLUDE")
+    S["a_resumen"] = sum(1 for r in d2_pozo.values() if r["verdict"] == "ADVANCE")
+    S["excluidos_resumen"] = sum(1 for r in d3.values() if r["verdict"] == "EXCLUDE")
+    S["informes_a_texto_completo"] = sum(1 for r in d3.values()
+                                         if r["verdict"] == "FULLTEXT")
+    S["corriente_bases"] = sum(1 for r in d3.values() if r["corriente"] == "base")
+    S["corriente_registros"] = sum(1 for r in d3.values()
+                                   if r["corriente"] == "registro")
+
+    # ---- de informes a estudios (PRISMA 2020 los separa) --------------------
+    reps = {"EST-%03d" % int(g["estudio"]): g for g in grupos
+            if g["informe_para_extraer"] == "SI"}
+    S["estudios"] = len(reps)
+    S["informes_agrupados"] = len(grupos)
+    sit = collections.Counter(g["situacion"] for g in reps.values())
+    S["estudios_con_articulo"] = sit["extraible"]
+    S["estudios_solo_resumen"] = sit["solo-resumen"]
+    S["estudios_solo_registro"] = sit["solo-registro"]
+    multi = collections.Counter(g["estudio"] for g in grupos)
+    S["estudios_multiinforme"] = sum(1 for v in multi.values() if v > 1)
+    S["informes_del_estudio_mayor"] = max(multi.values())
+
+    # ---- recuperacion de texto completo ------------------------------------
+    extraibles = {k for k, g in reps.items()
+                  if g["situacion"] in ("extraible", "solo-resumen")}
+    S["estudios_extraibles"] = len(extraibles)
+    con = extraibles & pdfs
+    S["texto_completo_obtenido"] = len(con)
+    S["texto_completo_no_obtenido"] = len(extraibles - con)
+    S["texto_completo_pct"] = round(100.0 * len(con) / len(extraibles), 1)
+
+    # ---- caracterizacion del cuerpo de evidencia ---------------------------
+    def n_de(k):
+        try:
+            return int(pre.get(k, {}).get("n_arm") or 0)
+        except ValueError:
+            return 0
+
+    disenos = collections.Counter(
+        (pre.get(k, {}).get("study_design") or "no declarado")
+        for k in extraibles)
+    S["disenos"] = dict(disenos.most_common())
+    comp = {k for k in extraibles
+            if pre.get(k, {}).get("study_design") in COMPARATIVOS}
+    S["estudios_comparativos"] = len(comp)
+    S["estudios_comparativos_pct"] = round(100.0 * len(comp) / len(extraibles), 1)
+    S["ecas"] = disenos.get("RCT", 0)
+    S["casos_unicos"] = disenos.get("case report", 0)
+    S["casos_unicos_pct"] = round(100.0 * disenos.get("case report", 0)
+                                  / len(extraibles), 1)
+
+    # El sesgo de recuperacion, medido y no supuesto: si lo no recuperado se
+    # parece a lo recuperado, prescindir de ello cuesta precision; si difiere,
+    # cambia la pregunta. Aqui difiere, y por eso la cifra va al manuscrito.
+    S["comparativos_sin_texto"] = len(comp - con)
+    S["comparativos_sin_texto_pct"] = round(
+        100.0 * len(comp - con) / len(comp), 1) if comp else 0.0
+    S["pacientes_declarados_con_texto"] = sum(n_de(k) for k in con)
+    S["pacientes_declarados_sin_texto"] = sum(n_de(k) for k in extraibles - con)
+
+    paises = collections.Counter(
+        (pre.get(k, {}).get("geographic_source") or "no declarada")
+        for k in extraibles)
+    S["procedencia"] = dict(paises.most_common(10))
+    S["procedencia_no_declarada"] = paises.get("no declarada", 0)
+    S["procedencia_no_declarada_pct"] = round(
+        100.0 * paises.get("no declarada", 0) / len(extraibles), 1)
+
+    anios = [int(pre[k]["publication_year"]) for k in extraibles
+             if (pre.get(k, {}).get("publication_year") or "").isdigit()]
+    S["anio_min"] = min(anios) if anios else None
+    S["anio_max"] = max(anios) if anios else None
+    S["publicados_desde_2020"] = sum(1 for a in anios if a >= 2020)
+    S["publicados_desde_2020_pct"] = round(
+        100.0 * sum(1 for a in anios if a >= 2020) / len(anios), 1) if anios else 0
+
+    # ---- lo que el cuerpo de evidencia NO declara --------------------------
+    def sin(campo):
+        return sum(1 for k in extraibles if not (pre.get(k, {}).get(campo) or ""))
+    for campo, nombre in (("pathogen_scope", "sin_ambito_de_patogeno"),
+                          ("resistance_class", "sin_clase_de_resistencia"),
+                          ("route", "sin_via_de_administracion"),
+                          ("modality", "sin_modalidad"),
+                          ("dtr_status", "sin_criterio_dtr")):
+        S[nombre] = sin(campo)
+        S[nombre + "_pct"] = round(100.0 * sin(campo) / len(extraibles), 1)
+
+    # ---- motivos de exclusion, para el diagrama PRISMA ---------------------
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from exclusion_codes import CODES, code_for
+    for etapa, dec in (("titulo", d2), ("resumen", d3)):
+        c = collections.Counter()
+        for r in dec.values():
+            if r["verdict"] in ("EXCLUDE",):
+                cod = code_for(r["reason"])
+                c[cod or "SIN CODIGO"] += 1
+        S["exclusiones_%s" % etapa] = {k: c[k] for k in CODES if c[k]}
+        if c["SIN CODIGO"]:
+            S["exclusiones_%s_sin_codigo" % etapa] = c["SIN CODIGO"]
+
+    # ---- salida -------------------------------------------------------------
+    sal = ROOT / "quality_reports" / "synthesis_scalars.json"
+    sal.write_text(json.dumps(S, indent=2, ensure_ascii=False) + "\n",
+                   encoding="utf-8")
+
+    L = ["# Cifras del manuscrito", "",
+         "Generado por `scripts/build_synthesis_scalars.py`. **Ninguna cifra del",
+         "manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**", "",
+         "| Nombre | Valor |", "|---|---|"]
+    for k, v in S.items():
+        if isinstance(v, dict):
+            v = "; ".join("%s: %s" % (a, b) for a, b in v.items())
+        elif isinstance(v, list):
+            v = ", ".join(map(str, v))
+        L.append("| `%s` | %s |" % (k, v))
+    (ROOT / "quality_reports" / "synthesis_scalars.md").write_text(
+        "\n".join(L) + "\n", encoding="utf-8", newline="\n")
+
+    print("cifras calculadas: %d" % len(S))
+    for k in ("informes_unicos", "cribados_por_titulo", "informes_a_texto_completo",
+              "estudios", "estudios_extraibles", "texto_completo_obtenido",
+              "estudios_comparativos", "comparativos_sin_texto_pct"):
+        print("   %-32s %s" % (k, S[k]))
+    print("escrito %s" % sal)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

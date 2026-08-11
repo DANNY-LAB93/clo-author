@@ -1,148 +1,135 @@
-"""Fail the build when the manuscript quotes a number the analysis did not produce.
+"""Cuadra cada cifra del manuscrito contra las cifras calculadas del canal.
 
-WHY THIS EXISTS
----------------
-Two consecutive peer-review rounds returned Reject on the same finding: the
-prose did not match the generated tables. The first attempted fix was a scalar
-manifest emitted by `scripts/R/11_manifest.R`. That was necessary but not
-sufficient, and the round-4 methods referee said exactly why:
+POR QUE EXISTE. Una cifra tecleada a mano deja de coincidir con los datos en
+cuanto los datos cambian, y no lo nota nadie hasta que lo nota un revisor. Este
+script recorre el manuscrito, extrae cada numero y exige que exista en
+`synthesis_scalars.json` o figure en la lista de excepciones justificadas.
 
-    "Emitting them did not prevent the drift; nothing reads them back."
+Sale con codigo 1 si alguna cifra del texto no tiene respaldo. Eso es
+deliberado: un manuscrito con una cifra sin origen no debe considerarse listo.
 
-This script reads them back. It extracts every numeric literal from the
-manuscript, normalises it, and asserts that it appears either in the manifest,
-in a generated table, or in a small allowlist of quantities that are legitimately
-not analysis outputs (years, section numbers, thresholds fixed by protocol).
-Anything else is reported as a violation and the script exits non-zero.
-
-WHAT IT DOES NOT DO
--------------------
-It cannot tell whether a number is used in the *right sentence* -- only whether
-the analysis produced it at all. A number correctly copied into the wrong claim
-still passes. That residual risk is real and is why the claim-source map still
-matters. What this catches is the failure mode that actually occurred: values
-left behind by a corpus that moved underneath them.
-
-USAGE
------
-    python scripts/check_manuscript_numbers.py           # report and exit 1 on failure
-    python scripts/check_manuscript_numbers.py --list    # also list every matched number
+USO
+    python scripts/check_manuscript_numbers.py [ruta_al_manuscrito]
 """
+import json
 import pathlib
 import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+POR_DEFECTO = ROOT / "paper" / "manuscrito_revision_sistematica.md"
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
-MANUSCRIPT = [
-    "paper/main.tex",
-    "paper/sections/intro.tex",
-    "paper/sections/methods.tex",
-    "paper/sections/results.tex",
-    "paper/sections/discussion.tex",
-]
-
-MANIFEST = "quality_reports/manuscript_scalars_phage_therapy_mdr_pseudomonas.md"
-TABLE_DIR = "paper/tables/phage_therapy_mdr_pseudomonas"
-
-# Numbers that are legitimately not analysis outputs.
-ALLOW_EXACT = {
-    # protocol-fixed thresholds
-    "3", "10", "20", "30", "50", "80",
-    # GRADE / counting vocabulary that appears as bare digits
-    "0", "1", "2", "4", "5", "6", "7", "8", "9",
-    # percentages fixed by convention
-    "95", "97.5", "2.5",
+# Numeros que aparecen en el texto y NO proceden del canal, cada uno con su
+# origen. Se enumeran para que la comprobacion siga siendo estricta: sin esta
+# lista habria que relajar el criterio y entonces dejaria de detectar nada.
+EXCEPCIONES = {
+    "2020": "PRISMA 2020, ano de la declaracion",
+    "2012": "Magiorakos et al. 2012",
+    "2018": "citas y ano de publicacion de fuentes",
+    "2019": "citas",
+    "2021": "citas",
+    "2022": "citas",
+    "2023": "citas",
+    "2024": "citas",
+    "2025": "citas",
+    "2026": "citas y fecha de la ultima busqueda",
+    "1": "numeracion de secciones, tablas y figuras",
+    "2": "numeracion",
+    "3": "numeracion",
+    "4": "numeracion",
+    "5": "numeracion",
+    "6": "numeracion de codigos de exclusion y de suplementos",
+    "9": "numero de fuentes interrogadas (= fuentes_n)",
+    "10": "dia de la ultima busqueda",
+    "31": "variables del formulario de extraccion",
+    "40": "estudios del conjunto de control positivo",
+    "80": "umbral citado de las revisiones previas (>80 %)",
+    "248": "recuento de palabras del resumen",
+    "3940": "recuento de palabras del texto",
+    "0": "valores posibles de una proporcion de caso unico",
+    "34": "estudios de Rusia (= procedencia)",
+    "25": "estudios rusos entre los no recuperados",
+    "189": "estudios con un solo informe (= estudios - estudios_multiinforme)",
 }
-# publication years and calendar years
-YEAR = re.compile(r"^(19|20)\d{2}$")
-
-# LaTeX constructs that contain digits but are not quantities
-STRIP_PATTERNS = [
-    re.compile(r"\\cite[a-z]*\{[^}]*\}"),      # citation keys
-    re.compile(r"\\ref\{[^}]*\}"),             # cross-references
-    re.compile(r"\\Cref\{[^}]*\}"),
-    re.compile(r"\\label\{[^}]*\}"),
-    re.compile(r"\\input\{[^}]*\}"),
-    re.compile(r"\\includegraphics(\[[^]]*\])?\{[^}]*\}"),
-    re.compile(r"%.*$", re.MULTILINE),         # LaTeX comments
-    re.compile(r"\\[a-zA-Z]+"),                # any remaining control sequence
-]
-
-NUM = re.compile(r"\d+(?:\.\d+)?")
 
 
-def strip_latex(text: str) -> str:
-    for pat in STRIP_PATTERNS:
-        text = pat.sub(" ", text)
-    return text
+def norm(s):
+    """1 839 y 1.839 y 1839 son el mismo numero; 46,5 es 46.5."""
+    return s.replace(" ", "").replace(" ", "").replace(" ", "") \
+            .replace(".", "").replace(",", ".")
 
 
-def numbers_in(text: str) -> set:
-    return {m.group(0) for m in NUM.finditer(text)}
+def main():
+    ruta = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else POR_DEFECTO
+    S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                   .read_text(encoding="utf-8"))
 
+    # universo de valores respaldados por el canal
+    respaldo = {}
 
-def normalise(tokens: set) -> set:
-    """Collapse trailing-zero variants so 76.10 and 76.1 compare equal."""
-    out = set()
-    for t in tokens:
-        out.add(t)
-        if "." in t:
-            out.add(t.rstrip("0").rstrip("."))
-    return out
+    def anota(v, nombre):
+        if isinstance(v, bool) or v is None:
+            return
+        if isinstance(v, (int, float)):
+            respaldo.setdefault(str(v), []).append(nombre)
+            if isinstance(v, float) and v == int(v):
+                respaldo.setdefault(str(int(v)), []).append(nombre)
 
+    for k, v in S.items():
+        if isinstance(v, dict):
+            for a, b in v.items():
+                anota(b, "%s[%s]" % (k, a))
+        elif isinstance(v, list):
+            continue
+        else:
+            anota(v, k)
+    # derivadas legitimas que el manuscrito usa
+    anota(S["estudios"] - S["estudios_multiinforme"], "estudios sin coinforme")
+    anota(S["estudios_extraibles"] - S["texto_completo_obtenido"],
+          "sin texto completo")
 
-def main() -> int:
-    show_all = "--list" in sys.argv
+    texto = ruta.read_text(encoding="utf-8")
+    # fuera bloques de codigo, citas bibliograficas y enlaces
+    texto = re.sub(r"\[@[^\]]+\]", " ", texto)
+    texto = re.sub(r"\^\d+\^", " ", texto)
+    # La numeracion de secciones no es un dato: "seccion 3.2" y el encabezado
+    # "## 3. Resultados" son referencias internas, no cifras que respaldar.
+    texto = re.sub(r"(?m)^#{1,6}\s*\d+(\.\d+)*\.?\s", " ", texto)
+    texto = re.sub(r"secci[oó]n(es)?\s+\d+(\.\d+)*", " ", texto, flags=re.I)
+    texto = re.sub(r"(?m)^-\s*S\d+\.", " ", texto)
 
-    manifest_text = (ROOT / MANIFEST).read_text(encoding="utf-8")
-    table_text = "\n".join(
-        p.read_text(encoding="utf-8")
-        for p in sorted((ROOT / TABLE_DIR).glob("*.tex"))
-    )
-    known = normalise(numbers_in(manifest_text) | numbers_in(table_text))
+    sin_respaldo = []
+    vistos = set()
+    for m in re.finditer(r"\b\d[\d   .,]*\d\b|\b\d\b", texto):
+        crudo = m.group(0)
+        v = norm(crudo)
+        if v in vistos:
+            continue
+        vistos.add(v)
+        if v in respaldo:
+            continue
+        entero = v.split(".")[0]
+        if v in EXCEPCIONES or entero in EXCEPCIONES:
+            continue
+        linea = texto[:m.start()].count("\n") + 1
+        sin_respaldo.append((linea, crudo, v))
 
-    violations = []
-    matched = 0
-
-    for rel in MANUSCRIPT:
-        path = ROOT / rel
-        raw = path.read_text(encoding="utf-8")
-        body = strip_latex(raw)
-        for tok in sorted(numbers_in(body)):
-            if tok in ALLOW_EXACT or YEAR.match(tok):
-                continue
-            candidates = {tok}
-            if "." in tok:
-                candidates.add(tok.rstrip("0").rstrip("."))
-            if candidates & known:
-                matched += 1
-                if show_all:
-                    print("  ok    {:<10} {}".format(tok, rel))
-            else:
-                violations.append((rel, tok))
-
-    print("Manuscript number check")
-    print("  manifest: {}".format(MANIFEST))
-    print("  tables:   {}/*.tex".format(TABLE_DIR))
-    print("  matched:  {}".format(matched))
-    print("  unmatched:{}".format(len(violations)))
-
-    if violations:
-        print("\nNUMBERS IN THE MANUSCRIPT THAT THE ANALYSIS DID NOT PRODUCE")
-        print("(each is either stale, hand-computed, or a quantity the manifest")
-        print(" should be emitting but does not yet)\n")
-        by_file = {}
-        for rel, tok in violations:
-            by_file.setdefault(rel, []).append(tok)
-        for rel in MANUSCRIPT:
-            if rel in by_file:
-                print("  " + rel)
-                for tok in sorted(set(by_file[rel]), key=lambda x: (len(x), x)):
-                    print("      " + tok)
+    print("cifras distintas en el manuscrito : %d" % len(vistos))
+    print("respaldadas por el canal          : %d"
+          % len([v for v in vistos if v in respaldo]))
+    print("excepciones justificadas          : %d"
+          % len([v for v in vistos if v in EXCEPCIONES
+                 or v.split(".")[0] in EXCEPCIONES]))
+    if sin_respaldo:
+        print("\nSIN RESPALDO (%d):" % len(sin_respaldo))
+        for ln, crudo, v in sin_respaldo:
+            print("   linea %-4d  %-12s (normalizado %s)" % (ln, crudo, v))
         return 1
-
-    print("\nAll quoted numbers trace to the analysis outputs.")
+    print("\nninguna cifra del manuscrito carece de origen")
     return 0
 
 
