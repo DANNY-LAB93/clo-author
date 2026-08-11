@@ -202,13 +202,18 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 ## Tablas y figuras
 
+Las cuatro tablas se aportan como archivos independientes (`paper/tablas/`), cada una con su nota al pie. Las dos figuras se aportan en PDF vectorial (`paper/figuras/`).
+
 **Tabla 1.** Características del cuerpo de evidencia recuperable (n = 159 estudios).
-**Tabla 2.** Completitud del reporte en variables críticas para la estratificación.
-**Tabla 3.** Comparación entre estudios con y sin texto completo obtenido.
+**Tabla 2.** Completitud del reporte en las variables críticas para la estratificación.
+**Tabla 3.** Comparación entre los estudios con y sin texto completo obtenido.
 **Tabla 4.** Motivos de exclusión por etapa, con el vocabulario cerrado.
 
-**Figura 1.** Diagrama de flujo PRISMA 2020 con corrientes separadas para bases bibliográficas y registros.
-**Figura 2.** Distribución de los estudios por diseño y por año de publicación.
+**Figura 1. Diagrama de flujo PRISMA 2020.**
+*Qué muestra.* El paso de los registros identificados a los estudios incluidos, con las dos corrientes de identificación —bases bibliográficas y registros de ensayos— contabilizadas por separado, como exige la declaración PRISMA 2020. *Cómo leerla.* La columna izquierda es el flujo principal; las cajas grises de la derecha recogen lo excluido en cada paso, con el desglose por el vocabulario cerrado de seis códigos (ORG, REV, SEC, LAB, VET, OFF; definidos en la Tabla 4). La corriente de registros entra por el lateral y no atraviesa la deduplicación bibliográfica, porque una ficha de registro no tiene DOI con el que colisionar contra un artículo. La caja final de la derecha no forma parte del flujo de selección: informa de cuántos de los estudios incluidos se han podido leer a texto completo hasta la fecha. *Fuente.* Canal de cribado del proyecto; última ejecución de la búsqueda, 10 de agosto de 2026.
+
+**Figura 2. Composición del cuerpo de evidencia recuperable (n = 159 estudios).**
+*Qué muestra.* El Panel A ordena los estudios por diseño; el Panel B los distribuye por año de publicación, separando en cada año los diseños comparativos del resto. *Cómo leerla.* En ambos paneles el color oscuro marca los diseños comparativos —ensayos aleatorizados y no aleatorizados—, que son los únicos capaces de sostener una afirmación de eficacia relativa. «No declarado» en el Panel A significa que el resumen no permite reconocer el diseño, no que el estudio carezca de él. El año 2026 está incompleto: la búsqueda se cerró en agosto. *Fuente.* Pre-extracción sistemática desde el resumen de los 159 estudios con publicación recuperable.
 
 ## Material suplementario
 

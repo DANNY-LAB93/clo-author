@@ -5,6 +5,10 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 
 | Nombre | Valor |
 |---|---|
+| `informes_de_bases` | 16995 |
+| `informes_de_registros` | 134 |
+| `fuentes_bases_n` | 6 |
+| `fuentes_registros_n` | 3 |
 | `fuentes_n` | 9 |
 | `fuentes_nombres` | BVS (no MEDLINE), CTIS, ClinicalTrials.gov, Cochrane CENTRAL, EudraCT, PubMed, SciELO, Scopus (brazo A), Scopus (brazo B) |
 | `registros_por_fuente` | PubMed: 9561; Scopus (brazo B): 9360; Scopus (brazo A): 2871; BVS (no MEDLINE): 575; SciELO: 241; Cochrane CENTRAL: 225; ClinicalTrials.gov: 121; CTIS: 10; EudraCT: 3 |
@@ -40,7 +44,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `comparativos_sin_texto_pct` | 63.4 |
 | `pacientes_declarados_con_texto` | 1839 |
 | `pacientes_declarados_sin_texto` | 2094 |
-| `procedencia` | no declarada: 81; Rusia: 34; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Ucrania: 3; Israel: 2; India: 2 |
+| `procedencia` | no declarada: 81; Rusia: 34; Georgia: 6; Polonia: 6; Alemania: 4; Ucrania: 3; Francia: 3; Estados Unidos: 3; Belgica: 2; Japon: 2 |
 | `procedencia_no_declarada` | 81 |
 | `procedencia_no_declarada_pct` | 50.9 |
 | `anio_min` | 2016 |

@@ -61,6 +61,22 @@ def main():
         for f in c["sources"].split(";"):
             if f.strip():
                 por_fuente[f.strip()] += 1
+    # PRISMA 2020 exige separar bases bibliograficas de registros de ensayos:
+    # son dos corrientes de identificacion distintas y se cuentan aparte. Un
+    # informe que llega por ambas se asigna a bases, porque alli tiene registro
+    # bibliografico propio; contarlo dos veces inflaria la identificacion.
+    REGISTROS = {"ClinicalTrials.gov", "EudraCT", "CTIS"}
+    de_bases = de_registros = 0
+    for c in corpus:
+        f = {x.strip() for x in c["sources"].split(";") if x.strip()}
+        if f - REGISTROS:
+            de_bases += 1
+        elif f:
+            de_registros += 1
+    S["informes_de_bases"] = de_bases
+    S["informes_de_registros"] = de_registros
+    S["fuentes_bases_n"] = len(set(man) - REGISTROS)
+    S["fuentes_registros_n"] = len(set(man) & REGISTROS)
     S["fuentes_n"] = len(man)
     S["fuentes_nombres"] = sorted(man)
     S["registros_por_fuente"] = dict(por_fuente.most_common())

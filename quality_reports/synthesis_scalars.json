@@ -1,4 +1,8 @@
 {
+  "informes_de_bases": 16995,
+  "informes_de_registros": 134,
+  "fuentes_bases_n": 6,
+  "fuentes_registros_n": 3,
   "fuentes_n": 9,
   "fuentes_nombres": [
     "BVS (no MEDLINE)",
@@ -65,14 +69,14 @@
   "procedencia": {
     "no declarada": 81,
     "Rusia": 34,
-    "Polonia": 6,
     "Georgia": 6,
+    "Polonia": 6,
     "Alemania": 4,
-    "Estados Unidos": 3,
-    "Francia": 3,
     "Ucrania": 3,
-    "Israel": 2,
-    "India": 2
+    "Francia": 3,
+    "Estados Unidos": 3,
+    "Belgica": 2,
+    "Japon": 2
   },
   "procedencia_no_declarada": 81,
   "procedencia_no_declarada_pct": 50.9,
