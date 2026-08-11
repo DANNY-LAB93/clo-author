@@ -1,0 +1,24 @@
+id,nombre,via,resultado,detalle
+EST-021,PhagoBurn,Europe PMC,consultado,doi=10.1016/s1473-3099(18)30482-1 abierto=no en PMC=no
+EST-021,PhagoBurn,Unpaywall,sin copia en abierto,is_oa=True
+EST-021,PhagoBurn,OpenAIRE,consultado,1 registro(s)
+EST-021,PhagoBurn,Registro NCT02116010,sin resultados,el promotor no ha publicado datos
+EST-118,Leitner (resultados),Europe PMC,consultado,doi=10.1016/s1473-3099(20)30330-3 abierto=no en PMC=no
+EST-118,Leitner (resultados),Unpaywall,sin copia en abierto,is_oa=False
+EST-118,Leitner (resultados),OpenAIRE,consultado,1 registro(s)
+EST-118,Leitner (resultados),Registro NCT03140085,sin resultados,el promotor no ha publicado datos
+EST-118p,"Leitner (protocolo, BMC Urology)",Europe PMC,consultado,doi=10.1186/s12894-017-0283-6 abierto=si en PMC=si
+EST-118p,"Leitner (protocolo, BMC Urology)",PMC texto completo,fallo,HTTPError
+EST-118p,"Leitner (protocolo, BMC Urology)",Unpaywall,copia en abierto,publisher (cc-by)
+EST-118p,"Leitner (protocolo, BMC Urology)",Unpaywall PDF,DESCARGADO,728 KB
+EST-029,TP-102,Europe PMC,consultado,doi=10.1016/j.medj.2024.11.018 abierto=no en PMC=no
+EST-029,TP-102,Unpaywall,sin copia en abierto,is_oa=False
+EST-029,TP-102,OpenAIRE,consultado,1 registro(s)
+EST-029,TP-102,Registro NCT04803708,sin resultados,el promotor no ha publicado datos
+EST-052,CYPHY,Europe PMC,consultado,doi=10.1093/pnasnexus/pgad406 abierto=si en PMC=si
+EST-052,CYPHY,PMC texto completo,fallo,HTTPError
+EST-052,CYPHY,Unpaywall,copia en abierto,publisher (cc-by)
+EST-052,CYPHY,Unpaywall PDF,fallo,HTTPError
+EST-052,CYPHY,OpenAIRE,consultado,1 registro(s)
+EST-052,CYPHY,Registro NCT04684641,CON RESULTADOS,seccion de resultados publicada por el promotor
+EST-052,CYPHY,Registro NCT04684641,GUARDADO,EST-052_NCT04684641.json

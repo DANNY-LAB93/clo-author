@@ -1,0 +1,1957 @@
+{
+ "protocolSection": {
+  "identificationModule": {
+   "nctId": "NCT04684641",
+   "orgStudyIdInfo": {
+    "id": "2000029160"
+   },
+   "secondaryIdInfos": [
+    {
+     "id": "20-004179",
+     "type": "OTHER_GRANT",
+     "domain": "Cystic Fibrosis Foundation (CFF)"
+    }
+   ],
+   "organization": {
+    "fullName": "Yale University",
+    "class": "OTHER"
+   },
+   "briefTitle": "CYstic Fibrosis bacterioPHage Study at Yale (CYPHY)",
+   "officialTitle": "CYstic Fibrosis bacterioPHage Study at Yale (CYPHY): A Single-site, Randomized, Double-blind, Placebo-controlled Study of Bacteriophage Therapy YPT-01 for Pseudomonas Aeruginosa Infections in Adults With Cystic Fibrosis"
+  },
+  "statusModule": {
+   "statusVerifiedDate": "2023-10",
+   "overallStatus": "COMPLETED",
+   "expandedAccessInfo": {
+    "hasExpandedAccess": false
+   },
+   "startDateStruct": {
+    "date": "2021-03-29",
+    "type": "ACTUAL"
+   },
+   "primaryCompletionDateStruct": {
+    "date": "2023-05-26",
+    "type": "ACTUAL"
+   },
+   "completionDateStruct": {
+    "date": "2023-06-22",
+    "type": "ACTUAL"
+   },
+   "studyFirstSubmitDate": "2020-12-18",
+   "studyFirstSubmitQcDate": "2020-12-22",
+   "studyFirstPostDateStruct": {
+    "date": "2020-12-24",
+    "type": "ACTUAL"
+   },
+   "resultsFirstSubmitDate": "2023-02-02",
+   "resultsFirstSubmitQcDate": "2023-02-02",
+   "resultsFirstPostDateStruct": {
+    "date": "2023-03-03",
+    "type": "ACTUAL"
+   },
+   "lastUpdateSubmitDate": "2023-10-27",
+   "lastUpdatePostDateStruct": {
+    "date": "2023-11-18",
+    "type": "ACTUAL"
+   }
+  },
+  "sponsorCollaboratorsModule": {
+   "responsibleParty": {
+    "type": "PRINCIPAL_INVESTIGATOR",
+    "investigatorFullName": "Jonathan Koff",
+    "investigatorTitle": "Director, Adult Cystic Fibrosis Program",
+    "investigatorAffiliation": "Yale University"
+   },
+   "leadSponsor": {
+    "name": "Yale University",
+    "class": "OTHER"
+   }
+  },
+  "oversightModule": {
+   "oversightHasDmc": true,
+   "isFdaRegulatedDrug": true,
+   "isFdaRegulatedDevice": false
+  },
+  "descriptionModule": {
+   "briefSummary": "This is a Phase 2 study with primary objective of looking whether YPT-01 phage therapy reduces sputum bacterial load in cystic fibrosis subjects with Pseudomonas aeruginosa.\n\nIn addition, study evaluates the safety profile of phage therapy in this patient population.",
+   "detailedDescription": "This is a prospective, randomized, placebo-controlled, double-blinded, single-site study of Yale Phage Therapy (YPT) 01 in cystic fibrosis subjects with chronic Pseudomonas aeruginosa airway infections. The study has 2 parallel arms of phage therapy and placebo, with all study materials GMP-manufactured. The purpose of this study is to demonstrate efficacy and safety of inhaled (nebulized) phage therapy YPT-01. Clinically stable subjects who have confirmed diagnosis of CF with PsA in sputum cultures on at least two occasions within past year, and in sputum at screening visit, will be recruited into this study.\n\nAn open-label extension is available for subjects in the placebo group to receive YPT-01 following completion of blinded portion of the study.\n\nNov 2022 study ended enrollment after 8 subjects. The Double-Blind Randomized portion of the study was closed and the Open-Label Extension was opened."
+  },
+  "conditionsModule": {
+   "conditions": [
+    "Cystic Fibrosis"
+   ],
+   "keywords": [
+    "Pseudomonas",
+    "bacteriophage",
+    "phage"
+   ]
+  },
+  "designModule": {
+   "studyType": "INTERVENTIONAL",
+   "phases": [
+    "PHASE1",
+    "PHASE2"
+   ],
+   "designInfo": {
+    "allocation": "RANDOMIZED",
+    "interventionModel": "PARALLEL",
+    "primaryPurpose": "TREATMENT",
+    "maskingInfo": {
+     "masking": "QUADRUPLE",
+     "whoMasked": [
+      "PARTICIPANT",
+      "CARE_PROVIDER",
+      "INVESTIGATOR",
+      "OUTCOMES_ASSESSOR"
+     ]
+    }
+   },
+   "enrollmentInfo": {
+    "count": 8,
+    "type": "ACTUAL"
+   }
+  },
+  "armsInterventionsModule": {
+   "armGroups": [
+    {
+     "label": "Phage therapy",
+     "type": "EXPERIMENTAL",
+     "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.",
+     "interventionNames": [
+      "Drug: Standard Dose YPT-01"
+     ]
+    },
+    {
+     "label": "Placebo",
+     "type": "ACTIVE_COMPARATOR",
+     "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.",
+     "interventionNames": [
+      "Other: Placebo"
+     ]
+    }
+   ],
+   "interventions": [
+    {
+     "type": "DRUG",
+     "name": "Standard Dose YPT-01",
+     "description": "Participants will be randomized to receive the standard dose of phage therapy YPT-01.",
+     "armGroupLabels": [
+      "Phage therapy"
+     ],
+     "otherNames": [
+      "Phage Therapy"
+     ]
+    },
+    {
+     "type": "OTHER",
+     "name": "Placebo",
+     "description": "Participants will be randomized to receive the placebo.",
+     "armGroupLabels": [
+      "Placebo"
+     ]
+    }
+   ]
+  },
+  "outcomesModule": {
+   "primaryOutcomes": [
+    {
+     "measure": "Change in Sputum Bacterial Culture",
+     "description": "Change in sputum bacterial culture titers of Pseudomonas as measured by colony forming units/mL at day 14",
+     "timeFrame": "Day 14"
+    }
+   ],
+   "secondaryOutcomes": [
+    {
+     "measure": "Change in Lung Function",
+     "description": "Change in lung function \\[percent predicted forced expiratory volume in 1 second (FEV1pp)\\] in subjects randomized to phage therapy and placebo from screening to day 14, 21, 28, and 56",
+     "timeFrame": "Screening, day 14, day 21, day 28, and day 56"
+    },
+    {
+     "measure": "Difference in the Rate of Pulmonary Exacerbations",
+     "description": "Compare the rates of pulmonary exacerbations between subjects randomized to phage therapy versus placebo during the first 56 days of the study",
+     "timeFrame": "Baseline, day 56"
+    },
+    {
+     "measure": "Difference in the Rate of Hospitalization",
+     "description": "Compare the rates of hospitalizations between subjects randomized to phage therapy versus placebo during the first 56 days of the study",
+     "timeFrame": "Baseline, day 56"
+    },
+    {
+     "measure": "Difference in the Rate of Acute Antibiotic Use",
+     "description": "Compare the rates of acute antibiotic use between subjects randomized to phage therapy versus placebo during the first 56 days of the study",
+     "timeFrame": "Baseline, day 56"
+    },
+    {
+     "measure": "Patient's Quality of Life",
+     "description": "Changes in subject-reported quality of life, using the Cystic Fibrosis Questionnaire Revised (CFQ-R) Teen/Adult, from baseline to Day 56. This survey consists of 50 questions that relate to a subjects clinical condition and mental health. Scores for each domain range from 0 to 100, with higher scores indicating a higher patient-reported quality of life with regard to the domain being evaluated.",
+     "timeFrame": "Baseline, day 56"
+    }
+   ]
+  },
+  "eligibilityModule": {
+   "eligibilityCriteria": "Inclusion Criteria:\n\n1. Capable of giving signed informed consent;\n2. Stated willingness to comply with all study procedures and availability for the duration of the study;\n3. Age ≥18;\n4. CF diagnosis based upon genetics, sweat chloride testing, or clinical manifestations;\n5. Able to provide repeated induced sputum samples;\n6. Able to use a nebulizer;\n7. PsA culture positive on one occasions within past 2 years and in sputum at screening visit;\n8. FEV1 \\>40%;\n9. Clinically stable lung disease, defined as no decrease in FEV1 \\>10% or pulmonary exacerbations in the 4 weeks prior to screening;\n10. If on CF modulator therapy (e.g., ivacaftor, ivacaftor/elexacaftor/tezacaftor), then subject remains on the same modulator therapy for at least 2 months prior to enrollment;\n11. For females of reproductive potential: use of effective contraception for at least 1 month prior to screening and agreement to use 2 methods of effective contraception during study participation and for an additional 6 weeks after the end of YPT-01 administration;\n12. Males of non-reproductive potential (e.g., documented congenital bilateral absence of vas deferens) or males of reproductive potential (e.g., non-vasectomized males or males vasectomized less than 120 days prior to study start) that agree to use condoms with spermicide while engaging in sexual activity or be sexually abstinent.\n\nExclusion Criteria:\n\n1. History of solid organ transplant (e.g., lung or liver);\n2. Severe neutropenia, as defined by absolute neutrophil count (ANC) of \\< 500 per microliter;\n3. No YPT-01 phage identified that effectively targets sputum PsA;\n4. Treatment for pulmonary exacerbation within the prior 4 weeks;\n5. Change in pulmonary medications within the prior 4 weeks;\n6. Subjects who are pregnant, who intend to become pregnant, or who do not wish to use contraception;\n7. Subjects who are breastfeeding;\n8. Participation in another clinical research study concurrently or within the prior 2 months;\n9. Known allergy to soy, egg, yeast, or meat.\n10. Any genetic or acquired (including medication-induced) immunocompromised condition, beyond the level of immunocompromise typically associated with CF and its management.",
+   "healthyVolunteers": false,
+   "sex": "ALL",
+   "minimumAge": "18 Years",
+   "stdAges": [
+    "ADULT",
+    "OLDER_ADULT"
+   ]
+  },
+  "contactsLocationsModule": {
+   "overallOfficials": [
+    {
+     "name": "Jonathan Koff, MD",
+     "affiliation": "Yale University",
+     "role": "STUDY_DIRECTOR"
+    },
+    {
+     "name": "Benjamin Chan, PhD",
+     "affiliation": "Yale University",
+     "role": "PRINCIPAL_INVESTIGATOR"
+    }
+   ],
+   "locations": [
+    {
+     "facility": "Yale New Haven Hospital",
+     "city": "New Haven",
+     "state": "Connecticut",
+     "zip": "06520",
+     "country": "United States",
+     "geoPoint": {
+      "lat": 41.30815,
+      "lon": -72.92816
+     }
+    }
+   ]
+  }
+ },
+ "resultsSection": {
+  "participantFlowModule": {
+   "groups": [
+    {
+     "id": "FG000",
+     "title": "Phage Therapy",
+     "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+    },
+    {
+     "id": "FG001",
+     "title": "Placebo",
+     "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+    }
+   ],
+   "periods": [
+    {
+     "title": "Overall Study",
+     "milestones": [
+      {
+       "type": "STARTED",
+       "achievements": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "4"
+        },
+        {
+         "groupId": "FG001",
+         "numSubjects": "4"
+        }
+       ]
+      },
+      {
+       "type": "COMPLETED",
+       "achievements": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "4"
+        },
+        {
+         "groupId": "FG001",
+         "numSubjects": "2"
+        }
+       ]
+      },
+      {
+       "type": "NOT COMPLETED",
+       "achievements": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "0"
+        },
+        {
+         "groupId": "FG001",
+         "numSubjects": "2"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "baselineCharacteristicsModule": {
+   "groups": [
+    {
+     "id": "BG000",
+     "title": "Phage Therapy",
+     "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+    },
+    {
+     "id": "BG001",
+     "title": "Placebo",
+     "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+    },
+    {
+     "id": "BG002",
+     "title": "Total",
+     "description": "Total of all reporting groups"
+    }
+   ],
+   "denoms": [
+    {
+     "units": "Participants",
+     "counts": [
+      {
+       "groupId": "BG000",
+       "value": "4"
+      },
+      {
+       "groupId": "BG001",
+       "value": "4"
+      },
+      {
+       "groupId": "BG002",
+       "value": "8"
+      }
+     ]
+    }
+   ],
+   "measures": [
+    {
+     "title": "Age, Categorical",
+     "paramType": "COUNT_OF_PARTICIPANTS",
+     "unitOfMeasure": "Participants",
+     "classes": [
+      {
+       "categories": [
+        {
+         "title": "<=18 years",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Between 18 and 65 years",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "2"
+          },
+          {
+           "groupId": "BG001",
+           "value": "3"
+          },
+          {
+           "groupId": "BG002",
+           "value": "5"
+          }
+         ]
+        },
+        {
+         "title": ">=65 years",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "2"
+          },
+          {
+           "groupId": "BG001",
+           "value": "1"
+          },
+          {
+           "groupId": "BG002",
+           "value": "3"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Age, Continuous",
+     "paramType": "MEAN",
+     "dispersionType": "STANDARD_DEVIATION",
+     "unitOfMeasure": "Years",
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "50.50",
+           "spread": "24.96"
+          },
+          {
+           "groupId": "BG001",
+           "value": "49.50",
+           "spread": "18.27"
+          },
+          {
+           "groupId": "BG002",
+           "value": "50.00",
+           "spread": "20.26"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Sex: Female, Male",
+     "paramType": "COUNT_OF_PARTICIPANTS",
+     "unitOfMeasure": "Participants",
+     "classes": [
+      {
+       "categories": [
+        {
+         "title": "Female",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "3"
+          },
+          {
+           "groupId": "BG001",
+           "value": "4"
+          },
+          {
+           "groupId": "BG002",
+           "value": "7"
+          }
+         ]
+        },
+        {
+         "title": "Male",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "1"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "1"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Ethnicity (NIH/OMB)",
+     "paramType": "COUNT_OF_PARTICIPANTS",
+     "unitOfMeasure": "Participants",
+     "classes": [
+      {
+       "categories": [
+        {
+         "title": "Hispanic or Latino",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Not Hispanic or Latino",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "4"
+          },
+          {
+           "groupId": "BG001",
+           "value": "4"
+          },
+          {
+           "groupId": "BG002",
+           "value": "8"
+          }
+         ]
+        },
+        {
+         "title": "Unknown or Not Reported",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Race (NIH/OMB)",
+     "paramType": "COUNT_OF_PARTICIPANTS",
+     "unitOfMeasure": "Participants",
+     "classes": [
+      {
+       "categories": [
+        {
+         "title": "American Indian or Alaska Native",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Asian",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Native Hawaiian or Other Pacific Islander",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Black or African American",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "White",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "4"
+          },
+          {
+           "groupId": "BG001",
+           "value": "4"
+          },
+          {
+           "groupId": "BG002",
+           "value": "8"
+          }
+         ]
+        },
+        {
+         "title": "More than one race",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Unknown or Not Reported",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          },
+          {
+           "groupId": "BG001",
+           "value": "0"
+          },
+          {
+           "groupId": "BG002",
+           "value": "0"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Region of Enrollment",
+     "paramType": "NUMBER",
+     "unitOfMeasure": "participants",
+     "classes": [
+      {
+       "title": "United States",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "4"
+          },
+          {
+           "groupId": "BG001",
+           "value": "4"
+          },
+          {
+           "groupId": "BG002",
+           "value": "8"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "outcomeMeasuresModule": {
+   "outcomeMeasures": [
+    {
+     "type": "PRIMARY",
+     "title": "Change in Sputum Bacterial Culture",
+     "description": "Change in sputum bacterial culture titers of Pseudomonas as measured by colony forming units/mL at day 14",
+     "reportingStatus": "POSTED",
+     "paramType": "MEAN",
+     "dispersionType": "Standard Deviation",
+     "unitOfMeasure": "CFU/mL",
+     "timeFrame": "Day 14",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Phage Therapy",
+       "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+      },
+      {
+       "id": "OG001",
+       "title": "Placebo",
+       "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "4"
+        },
+        {
+         "groupId": "OG001",
+         "value": "4"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-0.59",
+           "spread": "1.62"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-0.89",
+           "spread": "1.77"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "SECONDARY",
+     "title": "Change in Lung Function",
+     "description": "Change in lung function \\[percent predicted forced expiratory volume in 1 second (FEV1pp)\\] in subjects randomized to phage therapy and placebo from screening to day 14, 21, 28, and 56",
+     "reportingStatus": "POSTED",
+     "paramType": "MEAN",
+     "dispersionType": "Standard Deviation",
+     "unitOfMeasure": "FEV1pp",
+     "timeFrame": "Screening, day 14, day 21, day 28, and day 56",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Phage Therapy",
+       "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+      },
+      {
+       "id": "OG001",
+       "title": "Placebo",
+       "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "4"
+        },
+        {
+         "groupId": "OG001",
+         "value": "4"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "title": "Change in FEV1pp from Screening to Day 14",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-1.25",
+           "spread": "4.65"
+          },
+          {
+           "groupId": "OG001",
+           "value": "0.50",
+           "spread": "1.29"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Change in FEV1pp from Screening to Day 21",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-3.25",
+           "spread": "3.50"
+          },
+          {
+           "groupId": "OG001",
+           "value": "0.00",
+           "spread": "4.36"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Change in FEV1pp from Screening to Day 28",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-1.50",
+           "spread": "4.20"
+          },
+          {
+           "groupId": "OG001",
+           "value": "0.25",
+           "spread": "4.11"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Change in FEV1pp from Screening to Day 56",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-1.00",
+           "spread": "2.65"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-1.00",
+           "spread": "9.90"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "SECONDARY",
+     "title": "Difference in the Rate of Pulmonary Exacerbations",
+     "description": "Compare the rates of pulmonary exacerbations between subjects randomized to phage therapy versus placebo during the first 56 days of the study",
+     "reportingStatus": "POSTED",
+     "paramType": "NUMBER",
+     "unitOfMeasure": "Count of Pulmonary Exacerbation(s)",
+     "timeFrame": "Baseline, day 56",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Phage Therapy",
+       "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+      },
+      {
+       "id": "OG001",
+       "title": "Placebo",
+       "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "4"
+        },
+        {
+         "groupId": "OG001",
+         "value": "4"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "1"
+          },
+          {
+           "groupId": "OG001",
+           "value": "1"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "SECONDARY",
+     "title": "Difference in the Rate of Hospitalization",
+     "description": "Compare the rates of hospitalizations between subjects randomized to phage therapy versus placebo during the first 56 days of the study",
+     "reportingStatus": "POSTED",
+     "paramType": "NUMBER",
+     "unitOfMeasure": "Count of Hospitalization(s)",
+     "timeFrame": "Baseline, day 56",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Phage Therapy",
+       "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+      },
+      {
+       "id": "OG001",
+       "title": "Placebo",
+       "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "4"
+        },
+        {
+         "groupId": "OG001",
+         "value": "4"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "0"
+          },
+          {
+           "groupId": "OG001",
+           "value": "1"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "SECONDARY",
+     "title": "Difference in the Rate of Acute Antibiotic Use",
+     "description": "Compare the rates of acute antibiotic use between subjects randomized to phage therapy versus placebo during the first 56 days of the study",
+     "reportingStatus": "POSTED",
+     "paramType": "NUMBER",
+     "unitOfMeasure": "Instance(s) of acute antibiotic use",
+     "timeFrame": "Baseline, day 56",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Phage Therapy",
+       "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+      },
+      {
+       "id": "OG001",
+       "title": "Placebo",
+       "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "4"
+        },
+        {
+         "groupId": "OG001",
+         "value": "4"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "1"
+          },
+          {
+           "groupId": "OG001",
+           "value": "1"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "SECONDARY",
+     "title": "Patient's Quality of Life",
+     "description": "Changes in subject-reported quality of life, using the Cystic Fibrosis Questionnaire Revised (CFQ-R) Teen/Adult, from baseline to Day 56. This survey consists of 50 questions that relate to a subjects clinical condition and mental health. Scores for each domain range from 0 to 100, with higher scores indicating a higher patient-reported quality of life with regard to the domain being evaluated.",
+     "reportingStatus": "POSTED",
+     "paramType": "MEAN",
+     "dispersionType": "Standard Deviation",
+     "unitOfMeasure": "Change in CFQR score from baseline",
+     "timeFrame": "Baseline, day 56",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Phage Therapy",
+       "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01."
+      },
+      {
+       "id": "OG001",
+       "title": "Placebo",
+       "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "4"
+        },
+        {
+         "groupId": "OG001",
+         "value": "4"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "title": "Physical",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-6.25",
+           "spread": "12.95"
+          },
+          {
+           "groupId": "OG001",
+           "value": "0.00",
+           "spread": "22.82"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Vitality",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-12.50",
+           "spread": "17.35"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-2.08",
+           "spread": "21.92"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Emotion",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-8.33",
+           "spread": "3.33"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-10.00",
+           "spread": "20.00"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Eat",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "2.78",
+           "spread": "5.56"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-16.67",
+           "spread": "26.45"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Treatment Burden",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-2.78",
+           "spread": "16.67"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-8.33",
+           "spread": "31.91"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Health Perceptions",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-8.33",
+           "spread": "5.56"
+          },
+          {
+           "groupId": "OG001",
+           "value": "11.11",
+           "spread": "24.00"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Social",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "1.39",
+           "spread": "9.49"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-2.78",
+           "spread": "7.17"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Body",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "0.00",
+           "spread": "9.07"
+          },
+          {
+           "groupId": "OG001",
+           "value": "0.00",
+           "spread": "0.00"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Role",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-8.33",
+           "spread": "11.79"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-4.17",
+           "spread": "4.81"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Weight",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "0.00",
+           "spread": "0.00"
+          },
+          {
+           "groupId": "OG001",
+           "value": "0.00",
+           "spread": "0.00"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Respiratory",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-5.56",
+           "spread": "16.36"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-4.17",
+           "spread": "13.89"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "title": "Digestion",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "0.00",
+           "spread": "0"
+          },
+          {
+           "groupId": "OG001",
+           "value": "-8.33",
+           "spread": "16.66666667"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "adverseEventsModule": {
+   "frequencyThreshold": "0",
+   "timeFrame": "6 months",
+   "description": "In addition to events spontaneously reported by subjects during visits or in their AE diary, at each visit subjects will be specifically asked whether they have experienced increased sputum production, shortness of breath, hemoptysis, chest pain, cough, and fever or chills since their last visit.",
+   "eventGroups": [
+    {
+     "id": "EG000",
+     "title": "Phage Therapy",
+     "description": "Participants will be randomized to receive 3mL phage therapy, nebulized daily for 7 days.\n\nStandard Dose YPT-01: Participants will be randomized to receive the standard dose of phage therapy YPT-01.",
+     "deathsNumAffected": 0,
+     "deathsNumAtRisk": 4,
+     "seriousNumAffected": 1,
+     "seriousNumAtRisk": 4,
+     "otherNumAffected": 4,
+     "otherNumAtRisk": 4
+    },
+    {
+     "id": "EG001",
+     "title": "Placebo",
+     "description": "Participants will be randomized to receive the 3mL placebo, nebulized daily for 7 days.\n\nPlacebo: Participants will be randomized to receive the placebo.",
+     "deathsNumAffected": 0,
+     "deathsNumAtRisk": 4,
+     "seriousNumAffected": 1,
+     "seriousNumAtRisk": 4,
+     "otherNumAffected": 4,
+     "otherNumAtRisk": 4
+    }
+   ],
+   "seriousEvents": [
+    {
+     "term": "CF-Related Pulmonary Exacerbation",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "sourceVocabulary": "CF, Cystic Fibrosis",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "notes": "Hospitalization for expected Cystic Fibrosis related pulmonary exacerbation.",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Constipation",
+     "organSystem": "Gastrointestinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "notes": "Hospitalization for the treatment of chronic constipation",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    }
+   ],
+   "otherEvents": [
+    {
+     "term": "Back Pain",
+     "organSystem": "Musculoskeletal and connective tissue disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 2,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Bell's Palsy",
+     "organSystem": "Nervous system disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Blurred vision",
+     "organSystem": "Nervous system disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Bruised Toe",
+     "organSystem": "Musculoskeletal and connective tissue disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "notes": "Confirmed not broken via X-ray.",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Bruising and swelling at blood draw site",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "CF-Related Pulmonary Exacerbation",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "sourceVocabulary": "CF, Cystic Fibrosis",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "notes": "Expected AE",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 2,
+       "numAffected": 2,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Cough",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "COVID-19 Positive",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Dermatitis",
+     "organSystem": "Skin and subcutaneous tissue disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Dizziness",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 2,
+       "numAffected": 2,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Epistaxis",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Fatigue",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 3,
+       "numAffected": 3,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Feeling Cold",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "notes": "Denied chills/fever",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Flushing",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 3,
+       "numAffected": 3,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Headache",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 3,
+       "numAffected": 3,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Hemoptysis",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 2,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Hoarseness",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Increased sputum production",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Kidney Stones",
+     "organSystem": "Renal and urinary disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Myalgia",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 2,
+       "numAffected": 2,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Nasal Congestion",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 2,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Nightmares",
+     "organSystem": "Psychiatric disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Non-cardiac chest pain",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "notes": "Described by participants as lung pain or \"Lung achy feel\"",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 2,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Productive cough",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 3,
+       "numAffected": 2,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Shortness of Breath",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 2,
+       "numAffected": 2,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Sinus infection",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Sore throat",
+     "organSystem": "Respiratory, thoracic and mediastinal disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Sweaty",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 2,
+       "numAffected": 1,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Vomiting",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 2,
+       "numAffected": 2,
+       "numAtRisk": 4
+      }
+     ]
+    },
+    {
+     "term": "Weight gain",
+     "organSystem": "General disorders",
+     "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+     "notes": "Accompanied by general and face edema",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 4
+      },
+      {
+       "groupId": "EG001",
+       "numEvents": 0,
+       "numAffected": 0,
+       "numAtRisk": 4
+      }
+     ]
+    }
+   ]
+  },
+  "moreInfoModule": {
+   "certainAgreement": {
+    "piSponsorEmployee": false,
+    "restrictiveAgreement": false
+   },
+   "pointOfContact": {
+    "title": "Dr. Jonathan Koff",
+    "organization": "Yale University",
+    "email": "jon.koff@yale.edu",
+    "phone": "475-224-8167"
+   }
+  }
+ },
+ "hasResults": true
+}

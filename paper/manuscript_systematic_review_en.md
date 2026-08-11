@@ -131,7 +131,7 @@ Exclusion reasons at title screening were laboratory or preclinical work (4 062)
 
 Full text was obtained for **62 of the 125 retrievable studies (49.6 %)** through legitimate open-access routes. The remaining 63 require interlibrary loan, institutional access or a request to the authors.
 
-The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 17 of the 24 comparative studies, **70.8 %**, and reports more patients than the retrieved fraction. Among those unread comparative studies are the four most-cited randomised trials in the field [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @Stanley2025_themicrobe_cyphy; @Onallah2023_med].
+The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 17 of the 24 comparative studies, **70.8 %**, and reports more patients than the retrieved fraction. Among those unread comparative studies are the field's four landmark randomised trials [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy]; one of them, the Yale trial, has no full journal article, only a conference abstract and results deposited in the register.
 
 The asymmetry is itself a finding. Full-text accessibility covaries with region of publication and with study design, and it pushes in the same direction as the language restriction: both tilt the corpus towards the anglophone open-access literature. A review that declares neither transforms the question without saying so.
 

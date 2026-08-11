@@ -127,7 +127,7 @@ Los motivos de exclusión por título fueron trabajo de laboratorio o preclínic
 
 Se obtuvo el texto completo de **62 de los 125 estudios recuperables (49,6 %)** por vías de acceso abierto legítimas. Los 63 restantes requieren préstamo interbibliotecario, acceso institucional o solicitud a los autores.
 
-La fracción no obtenida **no es una muestra aleatoria del conjunto** (Tabla 3). Contiene 17 de los 24 estudios comparativos, el **70,8 %**, y declara más pacientes que la fracción obtenida. Entre esos comparativos aún no leídos figuran los cuatro ensayos aleatorizados más citados del campo [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @Stanley2025_themicrobe_cyphy; @Onallah2023_med].
+La fracción no obtenida **no es una muestra aleatoria del conjunto** (Tabla 3). Contiene 17 de los 24 estudios comparativos, el **70,8 %**, y declara más pacientes que la fracción obtenida. Entre esos comparativos aún no leídos figuran los cuatro ensayos aleatorizados de referencia del campo [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy]; de uno de ellos, el ensayo de Yale, no existe artículo completo publicado, sino un resumen de congreso y los resultados depositados en el registro.
 
 La asimetría es en sí misma un resultado. La accesibilidad del texto completo covaría con la región de publicación y con el diseño del estudio, y se suma a la restricción de idioma en la misma dirección: ambas empujan el corpus hacia la literatura anglosajona de acceso abierto. Una revisión que no declare ninguna de las dos transforma la pregunta sin decirlo.
 
