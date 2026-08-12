@@ -23,10 +23,10 @@ suppressPackageStartupMessages({
   library(stringr)
 })
 
-out_dir <- here::here("metaanalisis", "scripts_R", "output")
+out_dir <- here::here("quality_reports")
 
 raw <- readr::read_csv(
-  here::here("metaanalisis", "datos", "phage_therapy_extraction_dataset.csv"),
+  here::here("revision_sistematica", "corpus_previo", "phage_therapy_extraction_dataset.csv"),
   show_col_types = FALSE
 )
 bib <- paste(readLines(here::here("Bibliography_base.bib"), warn = FALSE),

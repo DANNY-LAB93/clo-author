@@ -507,7 +507,7 @@ def main():
     # 159 veces son 102 juicios repetidos (74 revistas aparecen una sola vez) y
     # una fuente segura de desacuerdos que no miden nada sobre la extracción.
     # Se decide una vez por revista, aquí.
-    corpus_niveles = niveles_del_corpus(ROOT / "metaanalisis" / "datos" /
+    corpus_niveles = niveles_del_corpus(ROOT / "revision_sistematica" / "corpus_previo" /
                                         "phage_therapy_extraction_dataset.csv")
     revistas = {}
     for g in fuentes:

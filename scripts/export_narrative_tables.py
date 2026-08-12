@@ -28,7 +28,7 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SRC = ROOT / "metaanalisis" / "datos" / "phage_therapy_extraction_dataset.csv"
+SRC = ROOT / "revision_sistematica" / "corpus_previo" / "phage_therapy_extraction_dataset.csv"
 SCALARS = ROOT / "paper" / "generated_scalars.tex"
 OUT = ROOT / "paper" / "narrative_tables.md"
 

@@ -88,7 +88,7 @@ def normaliza(campo, valor):
 # CAPA DE TRADUCCIÓN
 #
 # El formulario se rellena en español; el dato canónico sigue en inglés. No es
-# capricho: `metaanalisis/datos/phage_therapy_extraction_dataset.csv`, los scripts de
+# capricho: `revision_sistematica/corpus_previo/phage_therapy_extraction_dataset.csv`, los scripts de
 # análisis y el manuscrito usan esos nombres, y traducir el almacén rompería
 # todo lo que hay aguas abajo. Se traduce en la entrada y en la salida, y el
 # comparador acepta indistintamente un formulario en español o en inglés.

@@ -1,14 +1,19 @@
 # CLAUDE.MD -- Empirical Research with Claude Code
 
-<!-- HOW TO USE: Replace [BRACKETED PLACEHOLDERS] with your project info.
-     Customize Beamer environments for your talk preamble.
-     Keep this file under ~150 lines — Claude loads it every session.
-     See the guide at https://hugosantanna.github.io/clo-author/ for full documentation. -->
+<!-- Keep this file under ~150 lines — Claude loads it every session. -->
 
-**Project:** Phage Therapy for MDR *Pseudomonas aeruginosa*: A Systematic Review and Meta-Analysis
+**Project:** Phage Therapy for MDR *Pseudomonas aeruginosa*: A Systematic Review
 **Institution:** Universidad Católica de Cuenca
-**Field:** Clinical Microbiology / Infectious Disease — Systematic Review & Meta-Analysis (adapted from the economics-default template; see `.claude/references/domain-profile.md`)
+**Field:** Clinical Microbiology / Infectious Disease — Systematic Review (adapted from the economics-default template; see `.claude/references/domain-profile.md`)
 **Branch:** main
+**Language:** the manuscript, the decision records and the working files are in Spanish; there is a parallel English manuscript for submission.
+
+> **Scope, since 2026-08-12.** This repository holds **the systematic review only**.
+> The meta-analysis was parked on 2026-08-10 and its pipeline deleted on 2026-08-12:
+> the manuscript's own argument is that this body of evidence does not admit a
+> quantitative synthesis. Recover it with `git checkout b797339 -- metaanalisis/`
+> if that ever changes. What survives of it is documented in
+> `revision_sistematica/corpus_previo/LEEME.md`.
 
 ---
 
@@ -16,65 +21,64 @@
 
 - **Plan first** -- enter plan mode before non-trivial tasks; save plans to `quality_reports/plans/`
 - **Verify after** -- compile and confirm output at the end of every task
-- **Single source of truth** -- Paper `main.tex` is authoritative; talks and supplements derive from it
+- **Single source of truth** -- `paper/manuscrito_revision_sistematica.md` is authoritative; the English version and the `.docx` package derive from it
+- **No number is typed by hand** -- every quantity in the manuscript is cited by name from `quality_reports/synthesis_scalars.json`, produced by `scripts/build_synthesis_scalars.py`
 - **Quality gates** -- weighted aggregate score; nothing ships below 80/100; see `quality.md`
 - **Worker-critic pairs** -- every creator has a paired critic; critics never edit files
 - **Auto-memory** -- corrections and preferences are saved automatically via Claude Code's built-in memory system
 
 ---
 
-## Getting Started
-
-1. Fill in the `[BRACKETED PLACEHOLDERS]` in this file
-2. Run `/discover interview [topic]` to build your research specification
-3. Or run `/new-project [topic]` for the full orchestrated pipeline
-
----
-
 ## Folder Structure
 
 ```
-[YOUR-PROJECT]/
-├── CLAUDE.MD                    # This file
-├── .claude/                     # Rules, skills, agents, hooks
-├── Bibliography_base.bib        # Centralized bibliography
-├── paper/                       # Main LaTeX manuscript (source of truth)
-│   ├── main.tex                 # Primary paper file
-│   ├── sections/                # Section-level .tex files
-│   ├── figures/                 # Generated figures (.pdf, .png)
-│   ├── tables/                  # Generated tables (.tex)
-│   ├── talks/                   # Beamer presentations
-│   ├── quarto/                  # Quarto RevealJS presentations
-│   ├── preambles/               # LaTeX headers / shared preamble
-│   ├── supplementary/           # Online appendix and supplements
-│   └── replication/             # Replication package for deposit
-├── data/                        # Project data
-│   ├── raw/                     # Original untouched data (often gitignored)
-│   └── cleaned/                 # Processed datasets ready for analysis
-├── scripts/                     # Analysis code (R, Python, Julia)
-├── quality_reports/             # Plans, session logs, reviews, scores
-├── explorations/                # Research sandbox (see rules)
-├── templates/                   # Session log, quality report templates
-└── master_supporting_docs/      # Reference papers and data docs
+clo-author/
+├── CLAUDE.MD                       # This file
+├── .claude/                        # Rules, skills, agents, hooks
+├── Bibliography_base.bib           # Centralized bibliography
+├── paper/                          # The manuscript (source of truth)
+│   ├── manuscrito_revision_sistematica.md   # Authoritative, Spanish
+│   ├── manuscript_systematic_review_en.md   # Derived, for submission
+│   ├── figuras/                    # figura_1_prisma, figura_2_composicion (.pdf/.png)
+│   └── tablas/                     # tabla_1 .. tabla_4 (.csv/.md)
+├── revision_sistematica/           # The review itself — the bulk of the work
+│   ├── busqueda/                   # Search exports, per source
+│   ├── cribado/                    # Screening decisions by stage, study groups
+│   ├── textos_completos/           # Retrieved PDFs and HTML text
+│   ├── extraccion/                 # Both reviewers' workbooks + conflicts
+│   └── corpus_previo/              # Pre-PRISMA extraction — read its LEEME first
+├── scripts/                        # The pipeline (Python + some R)
+├── quality_reports/                # Decisions, plans, scalars, agreement, journal
+├── templates/                      # Decision record, claim-source map, session log
+└── verificables revisión sistemática/   # Submission package: S0–S10 + .docx
 ```
+
+**Not here on purpose:** no `data/`, no LaTeX build. The review's data lives inside
+`revision_sistematica/`, and the manuscript is Markdown → `.docx`.
 
 ---
 
 ## Commands
 
 ```bash
-# Paper compilation (latexmk handles multi-pass + biber automatically)
-cd paper && latexmk main.tex
+# Recompute every figure the manuscript cites, from the current corpus
+python scripts/build_synthesis_scalars.py
 
-# Talk compilation
-cd paper/talks && latexmk talk.tex
+# Rebuild the manuscript's tables 1-4
+python scripts/build_manuscript_tables.py
 
-# Clean auxiliary files
-cd paper && latexmk -c
+# Compare the two independent extractions -> agreement report + conflicts file
+python scripts/compare_extractions.py --a revision_sistematica/extraccion/recibido/danny.xlsx --b revision_sistematica/extraccion/recibido/nataly.xlsx
+
+# Regenerate both extraction workbooks without losing what is already filled in
+python scripts/make_extraction_forms.py
+
+# Rebuild the S0-S10 submission package
+python scripts/build_verifiables_package.py
 ```
 
-> **Note:** `paper/latexmkrc` configures XeLaTeX, TEXINPUTS, and BIBINPUTS.
-> On Overleaf, set compiler to XeLaTeX via Menu > Compiler — Overleaf reads `latexmkrc` automatically.
+> **Order matters.** `build_synthesis_scalars.py` runs first: the tables, the figures
+> and the manuscript all read the scalars it writes. Never edit a number downstream.
 
 ---
 
@@ -109,32 +113,32 @@ See `quality.md` for weighted aggregation formula.
 
 ---
 
-<!-- CUSTOMIZE: Replace the example entries below with your own
-     Beamer environments for talks. -->
-
-## Beamer Custom Environments (Talks)
-
-| Environment       | Effect        | Use Case       |
-|-------------------|---------------|----------------|
-| `[your-env]`      | [Description] | [When to use]  |
-
----
-
 ## Output Organization
 
-<!-- Options: by-script (default) or by-purpose -->
-Output organization: by-script
-
-<!-- by-script:  paper/figures/main_regression/figure1.pdf, paper/tables/main_regression/table1.tex -->
-<!-- by-purpose: paper/figures/estimation/coefplot_main.pdf, paper/tables/robustness/alt_controls.tex -->
+Figures go to `paper/figuras/`, tables to `paper/tablas/`, both named by what they
+show (`figura_1_prisma`, `tabla_3_sesgo_recuperacion`) and not by the script that
+made them. Reports and decisions go to `quality_reports/`.
 
 ---
 
 ## Current Project State
 
+As of 2026-08-12.
+
 | Component | File | Status | Description |
 |-----------|------|--------|-------------|
-| Paper | `paper/main.tex` | not started | Systematic review / meta-analysis of phage therapy outcomes in MDR *P. aeruginosa* infections |
-| Data | `scripts/R/` | not started | Literature not yet extracted — pending `/discover` (literature + data discovery) |
-| Replication | `paper/replication/` | not started | -- |
-| Job Market Talk | `paper/talks/job_market_talk.tex` | -- | Not applicable yet |
+| Manuscript | `paper/manuscrito_revision_sistematica.md` | drafted | 3,898 words. Missing only CRediT contributions and acknowledgements before submission |
+| Search & screening | `revision_sistematica/` | done | 23,057 records → 17,129 unique → 233 reports → 184 studies, 124 extractable |
+| Full-text retrieval | `revision_sistematica/textos_completos/` | 65 / 124 (52.4%) | Biased: 13 of the 23 comparative studies are missing. Requests drafted, **not yet sent** |
+| Extraction | `revision_sistematica/extraccion/` | 17 / 124 | **Blocked.** See below |
+| Submission package | `verificables revisión sistemática/` | built | S0–S10 + both `.docx`, regenerated by `build_verifiables_package.py` |
+
+**What blocks the extraction, in order:**
+
+1. `quality_reports/decisions/2026-08-11_definicion-erradicacion-y-exito.md` is still
+   marked PROPUESTA. Both reviewers must confirm it before extracting further —
+   otherwise the remaining 107 studies inherit the same divergence.
+2. `revision_sistematica/extraccion/extraction_conflicts.csv` holds 169 value
+   conflicts, none resolved. Median agreement 70%, median informative kappa 0.38.
+   Fill `resolucion` / `resuelto_por` / `fecha` — that trail is what licenses the
+   Methods claim that disagreements were settled by consensus.

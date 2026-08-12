@@ -38,7 +38,7 @@ from extraction_schema import (CAMPO_DE_ETIQUETA, CATEGORICOS, NUMERICOS,
                                TEXTO, normaliza)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CORPUS = ROOT / "metaanalisis" / "datos" / "phage_therapy_extraction_dataset.csv"
+CORPUS = ROOT / "revision_sistematica" / "corpus_previo" / "phage_therapy_extraction_dataset.csv"
 INFORME = ROOT / "quality_reports" / "extraction_agreement.md"
 CONFLICTOS = ROOT / "revision_sistematica" / "extraccion" / "extraction_conflicts.csv"
 
