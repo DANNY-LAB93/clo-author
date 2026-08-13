@@ -52,8 +52,10 @@ def main():
            leer(RS / "extraccion" / "pre_extraccion_desde_resumen.csv")}
     man = json.loads((RS / "busqueda" / "sources.json").read_text(encoding="utf-8"))
 # El texto completo no siempre llega en PDF: el manuscrito de autor de
-# PhagoBurn esta depositado en ORBi como .docx. Contar solo *.pdf lo
-# dejaba fuera del recuento aunque estuviera en disco y fuera legible.
+# PhagoBurn (EST-021) estuvo depositado en ORBi como .docx y contar solo *.pdf
+# lo dejaba fuera del recuento aunque estuviera en disco y fuera legible. Desde
+# el 2026-08-12 hay ademas el PDF del editor, pero la regla se mantiene: el
+# recuento es por identificador, y otros estudios siguen llegando en .docx.
     # El texto completo puede llegar como PDF, como manuscrito de autor en
     # .docx o como el texto integro de la pagina del editor cuando este
     # sirve el articulo en HTML y bloquea la descarga automatica del PDF.
