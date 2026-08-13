@@ -19,7 +19,7 @@
 
 **Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron nueve fuentes sin restricción de fecha, incluidas BVS y SciELO. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni la clase de resistencia en el 70,2 %. Se obtuvo el texto completo de 65 estudios (52,4 %); la fracción restante concentra el 56,5 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni la clase de resistencia en el 70,2 %. Se obtuvo el texto completo de 67 estudios (54,0 %); la fracción restante concentra el 56,5 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos.
 
 **Conclusiones.** El cuerpo de evidencia es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de éxito publicadas descansan sobre supuestos que estos datos no sostienen.
 
@@ -89,7 +89,7 @@ Antes de iniciar el cribado se fijó un conjunto de 40 estudios conocidos a prio
 
 El formulario de extracción, con 31 variables y vocabularios controlados, se piloteó sobre cinco estudios antes de su uso. La extracción está planificada **por duplicado e independiente** entre los dos revisores, con resolución de discrepancias por consenso y cálculo de la concordancia (kappa de Cohen) variable a variable.
 
-**Estado en el momento de este informe.** La extracción por duplicado está en curso y **no ha concluido**. Los datos que se reportan aquí proceden de una pre-extracción sistemática desde el resumen de los 159 estudios con publicación recuperable, realizada con el mismo esquema de variables y marcada de forma explícita como parcial en cada registro. En consecuencia, **este informe no presenta estimaciones de eficacia**: presenta la estructura del cuerpo de evidencia y su completitud de reporte, que es lo que la pre-extracción sí sostiene. Las variables de desenlace se reportarán cuando la extracción por duplicado concluya.
+**Estado en el momento de este informe.** La extracción por duplicado está en curso y **no ha concluido**. Los datos que se reportan aquí proceden de una pre-extracción sistemática desde el resumen de los 124 estudios con publicación recuperable, realizada con el mismo esquema de variables y marcada de forma explícita como parcial en cada registro. En consecuencia, **este informe no presenta estimaciones de eficacia**: presenta la estructura del cuerpo de evidencia y su completitud de reporte, que es lo que la pre-extracción sí sostiene. Las variables de desenlace se reportarán cuando la extracción por duplicado concluya.
 
 ### 2.7 Riesgo de sesgo y certeza
 
@@ -125,7 +125,7 @@ Los motivos de exclusión por título fueron trabajo de laboratorio o preclínic
 
 ### 3.2 Recuperación del texto completo y su sesgo
 
-Se obtuvo el texto completo de **65 de los 124 estudios recuperables (52,4 %)** por vías de acceso abierto legítimas. Los 59 restantes requieren préstamo interbibliotecario, acceso institucional o solicitud a los autores.
+Se obtuvo el texto completo de **67 de los 124 estudios recuperables (54,0 %)** por vías de acceso abierto legítimas. Los 57 restantes requieren préstamo interbibliotecario, acceso institucional o solicitud a los autores.
 
 La fracción no obtenida **no es una muestra aleatoria del conjunto** (Tabla 3). Contiene 13 de los 23 estudios comparativos, el **56,5 %**, y declara más pacientes que la fracción obtenida. Entre esos comparativos aún no leídos figuran los cuatro ensayos aleatorizados de referencia del campo [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy]; de uno de ellos, el ensayo de Yale, no existe artículo completo publicado, sino un resumen de congreso y los resultados depositados en el registro.
 
@@ -190,7 +190,7 @@ Nuestra delimitación sugiere además que aquellas síntesis trabajaron sobre un
 
 **Fortalezas.** La búsqueda abarcó nueve fuentes en dos corrientes separadas, sin restringir el idioma. La selección usó un vocabulario cerrado fijado de antemano y se auditó contra un conjunto de controles positivos definido antes de empezar, lo que permite afirmar, y no solo confiar, que el cribado no perdió estudios elegibles conocidos. Todo el canal es código reejecutable con claves derivadas del contenido, y una comprobación automática cuadra cada eslabón con el siguiente.
 
-**Limitaciones.** Son cinco y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 52,4 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado lo realizó un solo revisor asistido por reglas explícitas, con auditoría de controles positivos pero sin duplicación independiente. La duplicación está prevista para la fase de extracción. **Quinta:** la restricción a inglés y español se adoptó cuando el cribado ya había terminado, y eliminó 35 estudios, 18 de ellos comparativos y uno perteneciente al conjunto de control positivo. Empuja el corpus en la misma dirección que el sesgo de recuperación y reduce lo que esta revisión puede decir sobre la literatura de Europa del Este, que es donde se concentran los diseños con comparador.
+**Limitaciones.** Son cinco y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 54,0 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado lo realizó un solo revisor asistido por reglas explícitas, con auditoría de controles positivos pero sin duplicación independiente. La duplicación está prevista para la fase de extracción. **Quinta:** la restricción a inglés y español se adoptó cuando el cribado ya había terminado, y eliminó 35 estudios, 18 de ellos comparativos y uno perteneciente al conjunto de control positivo. Empuja el corpus en la misma dirección que el sesgo de recuperación y reduce lo que esta revisión puede decir sobre la literatura de Europa del Este, que es donde se concentran los diseños con comparador.
 
 ---
 
@@ -220,7 +220,7 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 Las cuatro tablas se aportan como archivos independientes (`paper/tablas/`), cada una con su nota al pie. Las dos figuras se aportan en PDF vectorial (`paper/figuras/`).
 
-**Tabla 1.** Características del cuerpo de evidencia recuperable (n = 159 estudios).
+**Tabla 1.** Características del cuerpo de evidencia recuperable (n = 124 estudios).
 **Tabla 2.** Completitud del reporte en las variables críticas para la estratificación.
 **Tabla 3.** Comparación entre los estudios con y sin texto completo obtenido.
 **Tabla 4.** Motivos de exclusión por etapa, con el vocabulario cerrado.
@@ -228,8 +228,8 @@ Las cuatro tablas se aportan como archivos independientes (`paper/tablas/`), cad
 **Figura 1. Diagrama de flujo PRISMA 2020.**
 *Qué muestra.* El paso de los registros identificados a los estudios incluidos, con las dos corrientes de identificación —bases bibliográficas y registros de ensayos— contabilizadas por separado, como exige la declaración PRISMA 2020. *Cómo leerla.* La columna izquierda es el flujo principal; las cajas grises de la derecha recogen lo excluido en cada paso, con el desglose por el vocabulario cerrado de seis códigos (ORG, REV, SEC, LAB, VET, OFF; definidos en la Tabla 4). La corriente de registros entra por el lateral y no atraviesa la deduplicación bibliográfica, porque una ficha de registro no tiene DOI con el que colisionar contra un artículo. La caja final de la derecha no forma parte del flujo de selección: informa de cuántos de los estudios incluidos se han podido leer a texto completo hasta la fecha. *Fuente.* Canal de cribado del proyecto; última ejecución de la búsqueda, 10 de agosto de 2026.
 
-**Figura 2. Composición del cuerpo de evidencia recuperable (n = 159 estudios).**
-*Qué muestra.* El Panel A ordena los estudios por diseño; el Panel B los distribuye por año de publicación, separando en cada año los diseños comparativos del resto. *Cómo leerla.* En ambos paneles el color oscuro marca los diseños comparativos —ensayos aleatorizados y no aleatorizados—, que son los únicos capaces de sostener una afirmación de eficacia relativa. «No declarado» en el Panel A significa que el resumen no permite reconocer el diseño, no que el estudio carezca de él. El año 2026 está incompleto: la búsqueda se cerró en agosto. *Fuente.* Pre-extracción sistemática desde el resumen de los 159 estudios con publicación recuperable.
+**Figura 2. Composición del cuerpo de evidencia recuperable (n = 124 estudios).**
+*Qué muestra.* El Panel A ordena los estudios por diseño; el Panel B los distribuye por año de publicación, separando en cada año los diseños comparativos del resto. *Cómo leerla.* En ambos paneles el color oscuro marca los diseños comparativos —ensayos aleatorizados y no aleatorizados—, que son los únicos capaces de sostener una afirmación de eficacia relativa. «No declarado» en el Panel A significa que el resumen no permite reconocer el diseño, no que el estudio carezca de él. El año 2026 está incompleto: la búsqueda se cerró en agosto. *Fuente.* Pre-extracción sistemática desde el resumen de los 124 estudios con publicación recuperable.
 
 ## Material suplementario
 

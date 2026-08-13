@@ -31,9 +31,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `estudios_multiinforme` | 30 |
 | `informes_del_estudio_mayor` | 11 |
 | `estudios_extraibles` | 124 |
-| `texto_completo_obtenido` | 65 |
-| `texto_completo_no_obtenido` | 59 |
-| `texto_completo_pct` | 52.4 |
+| `texto_completo_obtenido` | 67 |
+| `texto_completo_no_obtenido` | 57 |
+| `texto_completo_pct` | 54.0 |
 | `disenos` | case report: 49; case series: 19; no declarado: 16; RCT: 16; prospective cohort: 13; non-randomised trial: 7; retrospective cohort: 4 |
 | `estudios_comparativos` | 23 |
 | `estudios_comparativos_pct` | 18.5 |
@@ -42,9 +42,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `casos_unicos_pct` | 39.5 |
 | `comparativos_sin_texto` | 13 |
 | `comparativos_sin_texto_pct` | 56.5 |
-| `pacientes_declarados_con_texto` | 737 |
-| `pacientes_declarados_sin_texto` | 794 |
-| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Francia: 3; Estados Unidos: 3; Iran: 2; España: 2; Belgica: 2 |
+| `pacientes_declarados_con_texto` | 738 |
+| `pacientes_declarados_sin_texto` | 793 |
+| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Francia: 3; Estados Unidos: 3; India: 2; Israel: 2; España: 2 |
 | `procedencia_no_declarada` | 76 |
 | `procedencia_no_declarada_pct` | 61.3 |
 | `anio_min` | 2016 |

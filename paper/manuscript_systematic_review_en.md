@@ -19,7 +19,7 @@
 
 **Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Nine sources were searched without date restriction, including the regional databases BVS and SciELO. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class is not stated in 70.2 %. Full text was obtained for 65 studies (52.4 %); the remaining fraction concentrates 56.5 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
+**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class is not stated in 70.2 %. Full text was obtained for 67 studies (54.0 %); the remaining fraction concentrates 56.5 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
 
 **Conclusions.** This evidence base is simultaneously large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
 
@@ -91,7 +91,7 @@ Before screening began, a set of 40 studies known a priori to be eligible was fi
 
 The extraction form, with 31 variables and controlled vocabularies, was piloted on five studies before use. Extraction is planned to be **independent and in duplicate** between the two reviewers, with disagreements resolved by consensus and agreement quantified variable by variable (Cohen's kappa).
 
-**Status at the time of this report.** Duplicate extraction is under way and **has not concluded**. The data reported here come from a systematic pre-extraction from the abstracts of the 159 studies with a retrievable publication, performed with the same variable schema and explicitly flagged as partial in every record. Accordingly, **this report presents no efficacy estimates**. It presents the structure of the evidence base and its reporting completeness, which is what the pre-extraction does support. Outcome variables will be reported once duplicate extraction is complete.
+**Status at the time of this report.** Duplicate extraction is under way and **has not concluded**. The data reported here come from a systematic pre-extraction from the abstracts of the 124 studies with a retrievable publication, performed with the same variable schema and explicitly flagged as partial in every record. Accordingly, **this report presents no efficacy estimates**. It presents the structure of the evidence base and its reporting completeness, which is what the pre-extraction does support. Outcome variables will be reported once duplicate extraction is complete.
 
 ### 2.7 Risk of bias and certainty
 
@@ -129,7 +129,7 @@ Exclusion reasons at title screening were laboratory or preclinical work (4 062)
 
 ### 3.2 Full-text retrieval and its bias
 
-Full text was obtained for **65 of the 124 retrievable studies (52.4 %)** through legitimate open-access routes. The remaining 59 require interlibrary loan, institutional access or a request to the authors.
+Full text was obtained for **67 of the 124 retrievable studies (54.0 %)** through legitimate open-access routes. The remaining 57 require interlibrary loan, institutional access or a request to the authors.
 
 The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 13 of the 23 comparative studies, **56.5 %**, and reports more patients than the retrieved fraction. Among those unread comparative studies are the field's four landmark randomised trials [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy]; one of them, the Yale trial, has no full journal article, only a conference abstract and results deposited in the register.
 
@@ -194,7 +194,7 @@ Our delimitation further suggests that those syntheses worked on a fraction of t
 
 **Strengths.** The search covered nine sources across two separate streams, with no language restriction. Selection used a closed vocabulary fixed in advance and was audited against a positive-control set defined before screening began, which allows us to state, rather than merely hope, that screening lost no known eligible study. The whole pipeline is re-runnable code with content-derived keys, and an automated check reconciles each link with the next.
 
-**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 52.4 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, screening was performed by a single reviewer supported by explicit rules, with a positive-control audit but without independent duplication. Duplication is planned for the extraction stage. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 35 studies, 18 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
+**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 54.0 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, screening was performed by a single reviewer supported by explicit rules, with a positive-control audit but without independent duplication. Duplication is planned for the extraction stage. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 35 studies, 18 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
 
 ---
 
@@ -224,7 +224,7 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 
 The four tables are supplied as separate files (`paper/tablas/`), each with its own footnote. Both figures are supplied as vector PDF (`paper/figuras/`).
 
-**Table 1.** Characteristics of the retrievable evidence base (n = 159 studies).
+**Table 1.** Characteristics of the retrievable evidence base (n = 124 studies).
 **Table 2.** Reporting completeness for variables critical to stratification.
 **Table 3.** Comparison of studies with and without full text obtained.
 **Table 4.** Exclusion reasons by stage, using the closed vocabulary.
@@ -232,8 +232,8 @@ The four tables are supplied as separate files (`paper/tablas/`), each with its 
 **Figure 1. PRISMA 2020 flow diagram.**
 *What it shows.* The passage from identified records to included studies, with the two identification streams — bibliographic databases and trial registers — counted separately, as the PRISMA 2020 statement requires. *How to read it.* The left column is the main flow; the grey boxes on the right hold what was excluded at each step, broken down by the closed six-code vocabulary (ORG, REV, SEC, LAB, VET, OFF; defined in Table 4). The register stream enters from the side and does not pass through bibliographic deduplication, because a registry entry has no DOI with which to collide against an article. The final grey box is not part of the selection flow: it reports how many included studies have been read in full text to date. *Source.* Project screening pipeline; final search run, 10 August 2026.
 
-**Figure 2. Composition of the retrievable evidence base (n = 159 studies).**
-*What it shows.* Panel A orders studies by design; Panel B distributes them by year of publication, separating comparative designs from the rest within each year. *How to read it.* In both panels the dark colour marks comparative designs — randomised and non-randomised trials — the only ones able to sustain a claim of relative efficacy. "Not stated" in Panel A means the abstract does not allow the design to be recognised, not that the study lacks one. The year 2026 is incomplete: the search closed in August. *Source.* Systematic pre-extraction from the abstracts of the 159 studies with a retrievable publication.
+**Figure 2. Composition of the retrievable evidence base (n = 124 studies).**
+*What it shows.* Panel A orders studies by design; Panel B distributes them by year of publication, separating comparative designs from the rest within each year. *How to read it.* In both panels the dark colour marks comparative designs — randomised and non-randomised trials — the only ones able to sustain a claim of relative efficacy. "Not stated" in Panel A means the abstract does not allow the design to be recognised, not that the study lacks one. The year 2026 is incomplete: the search closed in August. *Source.* Systematic pre-extraction from the abstracts of the 124 studies with a retrievable publication.
 
 ## Supplementary material
 
