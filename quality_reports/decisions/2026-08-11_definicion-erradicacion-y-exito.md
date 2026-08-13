@@ -2,7 +2,19 @@
 
 **Fecha:** 2026-08-11
 **Deciden:** Danny Valdiviezo y Nataly Trelles
-**Estado:** PROPUESTA — pendiente de que ambos revisores la confirmen antes de seguir extrayendo
+**Estado:** SUPERSEDIDO EN SU REGLA 1 por
+`2026-08-12_erradicacion-regla-corregida.md`
+
+> **Aviso del 2026-08-12.** La regla 1 de este documento se escribió mirando la
+> tabla de discrepancias, y al aplicarla contra los artículos se rompió en cuatro
+> sitios: no decía qué organismo cuenta, tomaba el primer cultivo sin mirar si el
+> paciente recaía, no fijaba si manda la declaración del autor o la deducción del
+> lector, y no contemplaba la terapia supresiva indefinida. Faltaba además el
+> denominador. **Use la versión corregida.**
+>
+> Las reglas 2 (definición de éxito clínico) y 3 (blanco ≠ NA ≠ 0) de este
+> documento siguen vigentes tal cual. El documento se conserva entero porque el
+> registro de decisiones es solo-anexar: la corrección forma parte del rastro.
 
 ---
 

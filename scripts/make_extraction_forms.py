@@ -470,7 +470,8 @@ def main():
     # el "éxito clínico = 9 de 1 paciente" que apareció al probar el comparador.
     col_n = get_column_letter(campos_col.index("n_arm") + 1)
     for campo in ("clinical_success_n", "adverse_event_n", "microbio_eradication_n",
-                  "mortality_n", "resistance_emergence_n"):
+                  "microbio_eradication_denom", "mortality_n",
+                  "resistance_emergence_n"):
         col = get_column_letter(campos_col.index(campo) + 1)
         dv = DataValidation(
             type="custom",

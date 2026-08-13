@@ -32,13 +32,19 @@ CATEGORICOS = {
     "study_design": ["RCT", "case report", "case series", "retrospective cohort",
                      "prospective cohort", "non-randomised trial", "other"],
     "extraction_status": ["COMPLETE", "PARTIAL", "EXTRACTION_INCOMPLETE"],
+    # Añadido el 2026-08-12. Un primer cultivo negativo no dice si el paciente
+    # recayó después. EST-016 negativizó, volvió a crecer MDR en el recambio de
+    # cadera y otra vez en el DAIR, y con la regla anterior contaba como
+    # erradicado. Ver 2026-08-12_erradicacion-regla-corregida.md
+    "microbio_eradication_sustained": ["sustained", "relapse", "not-assessable"],
 }
 
 # Numéricos -> concordancia exacta y diferencia absoluta. "NA" es un valor
 # legítimo: significa "no notificado", que es distinto de cero y no debe
 # convertirse en cero al comparar.
 NUMERICOS = ["n_arm", "clinical_success_n", "adverse_event_n",
-             "microbio_eradication_n", "mortality_n", "los_days",
+             "microbio_eradication_n", "microbio_eradication_denom",
+             "mortality_n", "los_days",
              "resistance_emergence_n", "publication_year"]
 
 # Texto libre -> no se puntúa; se lista para revisión visual. Son justamente los
@@ -46,7 +52,18 @@ NUMERICOS = ["n_arm", "clinical_success_n", "adverse_event_n",
 TEXTO = ["clinical_success_definition", "journal_tier", "geographic_source",
          "extraction_citation", "incomplete_reason"]
 
-CAMPOS = CLAVE + list(CATEGORICOS) + NUMERICOS + TEXTO
+# El orden de las columnas es el orden en que se contesta. Los tres campos de
+# erradicación -- cuántos, sobre cuántos, y si aguantó -- son una sola pregunta
+# en tres casillas, y separarlos por media hoja invita a dejar dos en blanco.
+# Por eso `microbio_eradication_sustained` sale de su bloque de categóricos y se
+# coloca junto a los otros dos. Todo lo demás mantiene su sitio de siempre: los
+# revisores ya tienen 17 estudios extraídos y no toca moverles el formulario
+# entero a mitad de camino.
+_CATEGORICOS_EN_SU_SITIO = [c for c in CATEGORICOS
+                            if c != "microbio_eradication_sustained"]
+CAMPOS = CLAVE + _CATEGORICOS_EN_SU_SITIO + NUMERICOS + TEXTO
+CAMPOS.insert(CAMPOS.index("microbio_eradication_denom") + 1,
+              "microbio_eradication_sustained")
 
 
 def normaliza(campo, valor):
@@ -111,6 +128,8 @@ ETIQUETAS = {
     "clinical_success_n": "Éxito clínico (nº pacientes)",
     "adverse_event_n": "Eventos adversos (nº)",
     "microbio_eradication_n": "Erradicación microbiológica (nº)",
+    "microbio_eradication_denom": "¿A cuántos se les hizo cultivo de control?",
+    "microbio_eradication_sustained": "¿La erradicación se sostuvo?",
     "mortality_n": "Fallecidos (nº)",
     "los_days": "Estancia hospitalaria (días)",
     "resistance_emergence_n": "Aparición de resistencia al fago (nº)",
@@ -148,7 +167,9 @@ PREGUNTA = {
     "extraction_status": "COMPLETA si sacaste todo lo que el artículo daba. PARCIAL o INCOMPLETA si te faltó algo, y explícalo en la última columna.",
     "clinical_success_n": 'Pacientes de este brazo que mejoraron según la definición del PROPIO autor.\n\n   · un número = el artículo lo dice o permite contarlo\n   · 0 = el artículo dice que ninguno mejoró\n   · NA = no lo reporta ni permite deducirlo\n\nSi el autor no define el éxito pero dice «los tres pacientes se curaron»,\nla cifra SÍ se extrae: pon 3, y escribe SIN DEFINICIÓN OPERATIVA en la\ncolumna de definición.',
     "adverse_event_n": "Cuántos pacientes tuvieron algún evento adverso. Cero notificados se escribe 0, no NA.",
-    "microbio_eradication_n": 'Pacientes con CULTIVO DE CONTROL NEGATIVO para P. aeruginosa, del mismo\nsitio de infección, DESPUÉS de terminar la fagoterapia. Se toma el primer\ncultivo posterior al fin del tratamiento; anota el día en observaciones.\n\nLos tres valores NO son intercambiables:\n   · un número = se hizo cultivo y salió negativo en esos pacientes\n   · 0 = se hizo cultivo y SIGUIÓ POSITIVO en todos\n   · NA = no se hizo, o no se reporta, cultivo de control\n\nFIBROSIS QUÍSTICA Y BRONQUIECTASIAS: un solo cultivo negativo NO cuenta\ncomo erradicación. En colonización crónica la carga fluctúa y un cultivo\naislado no demuestra eliminación. Anota NA y explícalo, salvo que el\nartículo declare erradicación sostenida con cultivos seriados.\n\nRegla completa y por qué:\nquality_reports/decisions/2026-08-11_definicion-erradicacion-y-exito.md',
+    "microbio_eradication_n": 'Pacientes con CULTIVO DE CONTROL NEGATIVO para el ORGANISMO DIANA, del\nmismo sitio de infección, DESPUÉS de terminar la fagoterapia.\n\n1. QUÉ ORGANISMO. El diana es el aislado RESISTENTE que motivó el\n   tratamiento, no la especie. Si desaparece la cepa resistente pero sigue\n   creciendo una sensible, ESO ES ERRADICACIÓN: anótalo en observaciones.\n   (EST-014: se fue la CRPA, quedó una P. aeruginosa sensible que los\n   autores llaman colonizador. Cuenta como erradicado.)\n\n2. CUÁNDO SE MIDE. El primer cultivo posterior al fin del tratamiento;\n   anota el día. Si el tratamiento es SUPRESIVO INDEFINIDO y no termina,\n   usa el cultivo del cierre del seguimiento y dilo en observaciones.\n\n3. MANDA EL AUTOR. Si el artículo DECLARA el resultado microbiológico, esa\n   declaración gana sobre lo que tú deduzcas de los cultivos. Solo deduces\n   cuando el artículo calla. (EST-006: los autores escriben que no hubo\n   éxito microbiológico. Es 0, aunque el desenlace clínico fuera bueno.)\n\nLos tres valores NO son intercambiables:\n   · un número = se hizo cultivo y salió negativo en esos pacientes\n   · 0 = se hizo cultivo y SIGUIÓ POSITIVO en todos\n   · NA = no se hizo, o no se reporta, cultivo de control\n\nCOLONIZACIÓN CRÓNICA DE VÍA AÉREA: un solo cultivo negativo NO cuenta como\nerradicación, porque la carga fluctúa. Anota NA y explícalo, salvo que el\nartículo declare erradicación sostenida con cultivos seriados.\nLa lista es CERRADA, y son estas cinco: fibrosis quística, bronquiectasias,\nEPOC, colonización postrasplante pulmonar y traqueostomía o ventilación\nprolongada. Cualquier otro cuadro respiratorio va por la regla general.\n\nRegla completa y por qué:\nquality_reports/decisions/2026-08-12_erradicacion-regla-corregida.md',
+    "microbio_eradication_denom": 'En cuántos pacientes de este brazo SE HIZO cultivo de control. Es el\ndenominador de la casilla anterior, y sin él la cifra no es interpretable.\n\nSi el brazo tiene 10 pacientes pero solo a 6 se les hizo cultivo y 4\nnegativizaron, aquí va 6, no 10. La proporción es 4/6.\n\n   · un número = a esos se les hizo cultivo de control\n   · NA = el artículo no permite saber a cuántos se les hizo\n\nEn casos clínicos de un paciente esto es 1 o NA, y se contesta solo.\nAgregar proporciones sin comprobar el denominador es exactamente lo que\neste manuscrito le reprocha a las síntesis publicadas.',
+    "microbio_eradication_sustained": 'Si hubo erradicación, ¿aguantó? Se mira si vuelve a crecer el organismo\ndiana en los 30 DÍAS siguientes al primer cultivo negativo.\n\n   · sostenida = ningún cultivo positivo del diana en esos 30 días\n   · recaida = volvió a crecer el diana dentro de los 30 días\n   · no evaluable = no hubo erradicación, o no hay cultivos de seguimiento\n\nEST-016 es el caso que obligó a añadir esta columna: negativizó, y después\nvolvió a crecer P. aeruginosa MDR en el recambio de cadera y otra vez en el\nDAIR. Con la regla anterior contaba como erradicado sin más.\n\nUna recaída NO borra la erradicación inicial: la casilla anterior sigue\nllevando su número. Son dos datos distintos y los dos hacen falta.',
     "mortality_n": "Cuántos fallecieron durante el seguimiento.",
     "los_days": "Días de hospitalización. Casi ningún caso clínico lo reporta: NA es lo normal aquí.",
     "resistance_emergence_n": "En cuántos apareció resistencia al fago durante el tratamiento.",
@@ -184,6 +205,8 @@ VALORES_ES = {
     "non-randomised trial": "ensayo no aleatorizado",
     "COMPLETE": "COMPLETA", "PARTIAL": "PARCIAL",
     "EXTRACTION_INCOMPLETE": "INCOMPLETA",
+    "sustained": "sostenida", "relapse": "recaida",
+    "not-assessable": "no evaluable",
 }
 # `other` traduce a "otra" en via_administracion y a "otro" en diseno_estudio;
 # ambas formas tienen que volver a la misma categoría canónica.
