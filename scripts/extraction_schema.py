@@ -155,12 +155,19 @@ PREGUNTA = {
         "betalactámicos, fluoroquinolonas). Los de RESERVA -- colistina, aminoglucósidos, "
         "tigeciclina -- y los posteriores a 2018 -- ceftazidima-avibactam, cefiderocol -- NO "
         "cuentan: son aquello a lo que el DTR obliga a recurrir.\n"
-        "SÍ: el artículo documenta sensibilidad SOLO a agentes de reserva.\n"
+        "SÍ: toda la primera línea es no sensible. Se ve de dos formas:\n"
+        "   · el artículo documenta actividad SOLO de agentes fuera de primera línea;\n"
+        "   · el aislado es PDR (panresistente), que no es sensible a nada, ni de\n"
+        "     reserva. Cumple DTR por definición aunque no encaje en la frase\n"
+        "     'sensible solo a reserva'. Es el caso MÁS claro de DTR y la redacción\n"
+        "     anterior lo dejaba fuera.\n"
         "NO: basta UN agente de primera línea sensible documentado.\n"
         "NO DERIVABLE: el resto.\n"
         "Ojo: esta revisión ya definió mal este campo una vez (exigía 'todos los "
         "betalactámicos', más estricto que Kadri) y fabricó no-derivabilidad. Si duda entre "
-        "'no' y 'no derivable', mire si hay UN solo agente de primera línea sensible."),
+        "'no' y 'no derivable', mire si hay UN solo agente de primera línea sensible.\n"
+        "Criterio completo, su corrección y sus dos salvedades:\n"
+        "quality_reports/decisions/2026-08-13_criterio-dtr.md"),
     "route": "Por dónde se administró el fago. Si fueron varias vías, elige 'otra' y explica en el paréntesis.",
     "modality": "¿El fago fue solo, o junto con antibióticos?",
     "study_design": "Lo que el artículo ES, no lo que dice ser. Un 'estudio' de un paciente es un caso clínico.",
