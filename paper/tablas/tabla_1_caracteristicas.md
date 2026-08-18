@@ -8,8 +8,8 @@
 | **Diseño** |  |  |
 | Reporte de caso único | 49 | 39.5 |
 | Serie de casos | 19 | 15.3 |
-| No declarado en el resumen | 16 | 12.9 |
 | Ensayo aleatorizado | 16 | 12.9 |
+| No declarado en el resumen | 16 | 12.9 |
 | Cohorte prospectiva | 13 | 10.5 |
 | Ensayo no aleatorizado | 7 | 5.6 |
 | Cohorte retrospectiva | 4 | 3.2 |
@@ -21,8 +21,8 @@
 | Polonia | 6 | 4.8 |
 | Georgia | 6 | 4.8 |
 | Alemania | 4 | 3.2 |
-| Francia | 3 | 2.4 |
 | Estados Unidos | 3 | 2.4 |
+| Francia | 3 | 2.4 |
 | India | 2 | 1.6 |
 | No declarada en el resumen | 76 | 61.3 |
 

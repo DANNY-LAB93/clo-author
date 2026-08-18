@@ -28,6 +28,7 @@ except Exception:
 # lista habria que relajar el criterio y entonces dejaria de detectar nada.
 EXCEPCIONES = {
     "2020": "PRISMA 2020, ano de la declaracion",
+    "102": "TP-102, nombre del producto en el ensayo de Nir-Paz; no es una cifra",
     "2012": "Magiorakos et al. 2012",
     "2018": "citas y ano de publicacion de fuentes",
     "2019": "citas",

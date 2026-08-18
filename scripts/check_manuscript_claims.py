@@ -49,6 +49,8 @@ AFIRMACIONES = [
     (ES, "Los {texto_completo_no_obtenido} restantes requieren préstamo interbibliotecario"),
     (ES, "el texto completo se obtuvo para el {texto_completo_pct} % de los estudios recuperables"),
     (ES, "El criterio de idioma eliminó {estudios_eliminados_por_idioma} estudios"),
+    (ES, "la fracción restante concentra el {comparativos_sin_texto_pct} % de los diseños comparativos"),
+    (ES, "Contiene {comparativos_sin_texto} de los {estudios_comparativos} estudios comparativos, el **{comparativos_sin_texto_pct} %**"),
     # La n aparece en dos leyendas, Tabla 1 y Figura 2. Se declaran las dos
     # apariciones a propósito: si un día solo se actualiza una, esto salta.
     (ES, "recuperable (n = {estudios_extraibles} estudios)", 2),
@@ -60,6 +62,8 @@ AFIRMACIONES = [
     (EN, "The remaining {texto_completo_no_obtenido} require interlibrary loan"),
     (EN, "full text was obtained for {texto_completo_pct} % of the retrievable studies"),
     (EN, "The language criterion removed {estudios_eliminados_por_idioma} studies"),
+    (EN, "the remaining fraction concentrates {comparativos_sin_texto_pct} % of the comparative designs"),
+    (EN, "It contains {comparativos_sin_texto} of the {estudios_comparativos} comparative studies, **{comparativos_sin_texto_pct} %**"),
     (EN, "base (n = {estudios_extraibles} studies)", 2),
 ]
 
