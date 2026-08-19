@@ -54,6 +54,8 @@ AFIRMACIONES = [
     # La n aparece en dos leyendas, Tabla 1 y Figura 2. Se declaran las dos
     # apariciones a propósito: si un día solo se actualiza una, esto salta.
     (ES, "recuperable (n = {estudios_extraibles} estudios)", 2),
+    (ES, "resumen {palabras_resumen_es};"),
+    (ES, "texto principal {palabras_cuerpo_es}."),
 
     (EN, "From {registros_identificados} records, {informes_unicos} unique reports remained."),
     (EN, "Full-text assessment covered {informes_a_texto_completo} reports, which grouped into {estudios} studies; {estudios_extraibles} of these have a retrievable publication."),
@@ -65,6 +67,8 @@ AFIRMACIONES = [
     (EN, "the remaining fraction concentrates {comparativos_sin_texto_pct} % of the comparative designs"),
     (EN, "It contains {comparativos_sin_texto} of the {estudios_comparativos} comparative studies, **{comparativos_sin_texto_pct} %**"),
     (EN, "base (n = {estudios_extraibles} studies)", 2),
+    (EN, "abstract {palabras_resumen_en};"),
+    (EN, "main text {palabras_cuerpo_en}."),
 ]
 
 

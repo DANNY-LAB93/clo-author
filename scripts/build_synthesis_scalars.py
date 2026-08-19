@@ -18,6 +18,7 @@ SALIDA
 """
 import collections
 import csv
+import re
 import json
 import pathlib
 import sys
@@ -273,6 +274,36 @@ def main():
         S["exclusiones_%s" % etapa] = {k: c[k] for k in CODES if c[k]}
         if c["SIN CODIGO"]:
             S["exclusiones_%s_sin_codigo" % etapa] = c["SIN CODIGO"]
+
+    # ---- recuento de palabras ----------------------------------------------
+    # La portada declara cuantas palabras tiene el resumen y el cuerpo, y las
+    # revistas lo comprueban. Se declaraba a mano y envejecio en cuanto se
+    # reescribio un parrafo: el 2026-08-13 decia 3 898 cuando ya eran 3 935.
+    # Al calcularse aqui, el sincronizador del manuscrito lo mantiene solo.
+    # Regla de conteo: se excluyen la portada, las claves de cita, las marcas de
+    # Markdown, y todo lo que va desde Declaraciones en adelante (declaraciones,
+    # tablas, figuras y suplementos no cuentan como texto principal).
+    def palabras(texto):
+        t = re.sub(r"\[@[^\]]+\]", " ", texto)
+        t = re.sub(r"[*_`#|]", " ", t)
+        return len([w for w in re.split(r"\s+", t) if w.strip(" .,;:()-")])
+
+    for cod, ruta, corte_ini, corte_fin in (
+            ("es", ROOT / "paper" / "manuscrito_revision_sistematica.md",
+             "## Resumen", "## 1. Introducci"),
+            ("en", ROOT / "paper" / "manuscript_systematic_review_en.md",
+             "## Abstract", "## 1. Introduction")):
+        if not ruta.exists():
+            continue
+        doc = ruta.read_text(encoding="utf-8")
+        try:
+            resumen = doc.split(corte_ini)[1].split(corte_fin)[0]
+            cuerpo = doc.split(corte_fin)[1].split("## Declaraci")[0].split(
+                "## Declarations")[0]
+        except IndexError:
+            continue
+        S["palabras_resumen_%s" % cod] = palabras(resumen)
+        S["palabras_cuerpo_%s" % cod] = palabras(cuerpo)
 
     # ---- salida -------------------------------------------------------------
     sal = ROOT / "quality_reports" / "synthesis_scalars.json"

@@ -58,10 +58,15 @@ def main():
         esperado = plantilla.format(**{c: formatea(esc[c], ingles) for c in claves})
 
         # molde con los números convertidos en comodines
+        # El separador de millares del manuscrito no siempre es el mismo
+        # caracter: hay espacio fino (U+2009), fino sin salto (U+202F), duro
+        # (U+00A0) y normal, segun quien tecleara la frase. El comodin los cubre
+        # todos; olvidar uno hace que la frase "no aparezca" y el arreglador
+        # calle en vez de arreglar.
         molde = re.escape(esperado)
         for c in claves:
             molde = molde.replace(re.escape(formatea(esc[c], ingles)),
-                                  r"[\d\u00a0\u202f .,]+", 1)
+                                  r"[\d\u00a0\u2009\u202f .,]+", 1)
         halladas = [m.group(0) for m in re.finditer(molde, textos[archivo])]
 
         if not halladas:
@@ -74,7 +79,7 @@ def main():
         # Los millares se escriben con espacio fino, duro o normal segun quien
         # tecleara la frase. Comparar sin normalizar marcaria como obsoleta una
         # cifra correcta escrita con otro espacio.
-        igual = lambda s: re.sub(r"[   ]", " ", s)
+        igual = lambda s: re.sub("[    ]", " ", s)
         for h in halladas:
             if igual(h) != igual(esperado):
                 textos[archivo] = textos[archivo].replace(h, esperado)
