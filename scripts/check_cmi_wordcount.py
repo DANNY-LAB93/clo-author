@@ -1,51 +1,103 @@
-"""Word-count the CMI submission version against the journal's 3,500 limit.
+"""Mide el manuscrito contra el limite de Clinical Microbiology and Infection.
 
-Counts the main text only -- Introduction through Discussion -- excluding the
-title block, abstract, keywords, references and all LaTeX comments, which is
-what CMI counts. Macro calls count as one word each, which is what they
-typeset as.
+LIMITES, leidos de la guia de autores de CMI el 2026-08-03 y conservados desde
+entonces en el repositorio:
+
+    revision sistematica, texto principal   3 500 palabras
+    resumen estructurado                      300 palabras
+    lista PRISMA 2020                         obligatoria al enviar
+
+POR QUE ESTE SCRIPT SE REESCRIBIO
+
+La version anterior contaba `paper/main_cmi.tex`, que se elimino con la ruta
+LaTeX el 2026-08-12. Desde entonces fallaba al abrirlo, es decir, llevaba dias
+sin comprobar nada mientras aparentaba ser el guardian del limite. Un limite
+duro que nadie mide es un rechazo editorial esperando su turno.
+
+QUE CUENTA Y QUE NO
+
+CMI cuenta el texto principal: de la Introduccion al final de las Conclusiones.
+Quedan fuera la portada, el resumen, las palabras clave, las declaraciones, las
+referencias, y las tablas y figuras con sus leyendas. Las claves de cita
+(`[@Autor2020]`) no son palabras del texto y tampoco cuentan; en el PDF final
+son un superindice.
+
+Ademas del total, informa el reparto por seccion. Saber que sobran cuatrocientas
+palabras no ayuda; saber en que seccion estan, si.
+
+Uso:
+    python scripts/check_cmi_wordcount.py
 """
 import pathlib
 import re
+import sys
 
-BS = chr(92)
-p = pathlib.Path(r"C:\Users\Equipo\Desktop\claude code tesisi\clo-author\paper\main_cmi.tex")
-s = p.read_text(encoding="utf-8")
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+ES = ROOT / "paper" / "manuscrito_revision_sistematica.md"
+EN = ROOT / "paper" / "manuscript_systematic_review_en.md"
 
-# main text runs from \section{Introduction} to \printbibliography
-i = s.find(BS + "section{Introduction}")
-j = s.find(BS + "printbibliography")
-body = s[i:j]
+LIMITE_CUERPO = 3500
+LIMITE_RESUMEN = 300
 
-# strip comments, then LaTeX control sequences and braces
-body = re.sub(r"(?m)^%.*$", "", body)
-body = re.sub(r"(?<!" + re.escape(BS) + r")%.*$", "", body, flags=re.M)
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
-sections = {}
-for m in re.finditer(re.escape(BS) + r"section\*?\{([^}]+)\}", body):
-    sections[m.start()] = m.group(1)
 
-def wc(chunk):
-    t = re.sub(re.escape(BS) + r"[a-zA-Z]+\*?", " X ", chunk)   # macro -> one token
-    t = re.sub(r"[{}$~\\]", " ", t)
-    t = re.sub(r"\s+", " ", t)
-    return len([w for w in t.split() if re.search(r"[A-Za-z0-9]", w)])
+def palabras(texto):
+    t = re.sub(r"\[@[^\]]+\]", " ", texto)          # claves de cita
+    t = re.sub(r"[*_`#|>]", " ", t)                 # marcas de Markdown
+    return len([w for w in re.split(r"\s+", t) if w.strip(" .,;:()-")])
 
-keys = sorted(sections)
-total = 0
-for n, k in enumerate(keys):
-    end = keys[n + 1] if n + 1 < len(keys) else len(body)
-    c = wc(body[k:end])
-    total += c
-    print("  %-46s %5d" % (sections[k][:46], c))
 
-print("  " + "-" * 52)
-print("  %-46s %5d" % ("TOTAL main text", total))
-print("  %-46s %5d" % ("CMI limit", 3500))
-print("  %-46s %5d" % ("margin", 3500 - total))
+def secciones(cuerpo):
+    """Reparto por seccion de nivel 2, en orden de aparicion."""
+    cortes = [(m.start(), m.group(1).strip())
+              for m in re.finditer(r"(?m)^##\s+(.+)$", cuerpo)]
+    fuera = []
+    for n, (ini, titulo) in enumerate(cortes):
+        fin = cortes[n + 1][0] if n + 1 < len(cortes) else len(cuerpo)
+        fuera.append((titulo, palabras(cuerpo[ini:fin])))
+    return fuera
 
-# abstract
-a = re.search(re.escape(BS) + r"begin\{abstract\}(.*?)" + re.escape(BS) + r"end\{abstract\}", s, re.S)
-if a:
+
+def mide(ruta, ini_resumen, ini_cuerpo, fin_cuerpo):
+    doc = ruta.read_text(encoding="utf-8")
+    resumen = doc.split(ini_resumen)[1].split(ini_cuerpo)[0]
+    cuerpo = doc.split(ini_cuerpo)[1]
+    for corte in fin_cuerpo:
+        cuerpo = cuerpo.split(corte)[0]
+    return palabras(resumen), palabras(cuerpo), secciones(ini_cuerpo + cuerpo)
+
+
+def informe(nombre, res, cue, secs):
+    print(f"--- {nombre} ---")
+    estado_r = "cabe" if res <= LIMITE_RESUMEN else f"SE PASA en {res - LIMITE_RESUMEN}"
+    estado_c = "cabe" if cue <= LIMITE_CUERPO else f"SE PASA en {cue - LIMITE_CUERPO}"
+    print(f"  resumen        {res:5} / {LIMITE_RESUMEN}   {estado_r}")
+    print(f"  texto principal{cue:5} / {LIMITE_CUERPO}   {estado_c}")
+    if cue > LIMITE_CUERPO:
+        print("  reparto por seccion, de mayor a menor:")
+        for titulo, n in sorted(secs, key=lambda x: -x[1]):
+            print(f"     {n:5}  {titulo[:56]}")
     print()
-    print("  %-46s %5d  (limit 300)" % ("structured abstract", wc(a.group(1))))
+    return cue <= LIMITE_CUERPO and res <= LIMITE_RESUMEN
+
+
+def main():
+    ok = True
+    ok &= informe("español", *mide(ES, "## Resumen", "## 1. Introducci",
+                                   ("## Declaraciones",)))
+    if EN.exists():
+        ok &= informe("inglés", *mide(EN, "## Abstract", "## 1. Introduction",
+                                      ("## Declarations", "## Declaraciones")))
+    if ok:
+        print("dentro de los limites de CMI")
+        return 0
+    print("FUERA DE LIMITE: CMI devuelve el manuscrito sin mandarlo a revision.")
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
