@@ -110,8 +110,11 @@ def v1_prisma(S):
         ("8", "Proceso de selección", "Cuántos revisores, cómo trabajaron", "PARCIAL",
          "§2.4; la etapa 1 aplica reglas deterministas y las etapas 2 y 3 las "
          "emitió un modelo de lenguaje (Claude Opus 5) como revisor único, sin "
-         "duplicación independiente y sin adjudicación humana de decisiones "
-         "individuales. Declarado en §2.4 y como limitación en §4.4; el registro "
+         "duplicación independiente, aplicando criterios y un vocabulario "
+         "cerrado fijados de antemano por los autores. Los informes que "
+         "superaron el cribado los revisaron los autores uno a uno antes de "
+         "agruparlos en estudios (S5). Lo no revisado es lo que el modelo "
+         "excluyó. Declarado en §2.4 y como limitación en §4.4; el registro "
          "completo, con modelo y marca de tiempo por decisión, está en S3"),
         ("9", "Proceso de extracción", "Cuántos revisores, herramientas", "PARCIAL",
          "§2.6; extracción por duplicado en curso, no concluida"),
