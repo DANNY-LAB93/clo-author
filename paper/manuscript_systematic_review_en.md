@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 299; main text 4 136.
+**Word count:** abstract 299; main text 4 284.
 **Tables:** 4. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
@@ -19,7 +19,7 @@
 
 **Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Nine sources were searched without date restriction, including the regional databases BVS and SciELO. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report. **Title and abstract screening was performed by a large language model acting as sole reviewer, without independent duplication**; data extraction is done by hand and in duplicate.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 90 studies (72.6 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
+**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 91 studies (73.4 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
 
 **Conclusions.** This evidence base is simultaneously large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
 
@@ -135,7 +135,7 @@ Exclusion reasons at title screening were laboratory or preclinical work (4 062)
 
 ### 3.2 Full-text retrieval and its bias
 
-Full text was obtained for **90 of the 124 retrievable studies (72.6 %)** through legitimate open-access routes. The remaining 34 require interlibrary loan, institutional access or a request to the authors.
+Full text was obtained for **91 of the 124 retrievable studies (73.4 %)** through legitimate open-access routes. The remaining 33 require interlibrary loan, institutional access or a request to the authors.
 
 The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 11 of the 23 comparative studies, **47.8 %**, and, although it reports fewer patients overall, it concentrates the designs that can sustain a comparison. Of the field's four landmark randomised trials [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy], two remain unread: the intravesical phage trial and TP-102. The PhagoBurn article was obtained. The Yale trial has no full journal article, only a conference abstract and results deposited in the register; what was obtained is the trial protocol, which documents the design but not the outcomes.
 
@@ -166,7 +166,11 @@ A meta-analysis of proportions requires interpretable denominators, an outcome t
 
 **Denominators.** Almost four studies in ten are single cases, in which the success proportion can only take the values 0 or 1 and its binomial variance is maximal. Pooling forty-nine denominators of one with a handful of larger series produces a weighted mean whose weights are set by series size rather than by evidential quality.
 
-**Outcome.** In this literature "clinical success" ranges from resolution of a fistula at two years to absence of fever at three days. Without a shared definition, the pooled proportion adds numerators that do not count the same events.
+**Outcome.** Among the studies whose full text has been read, "clinical success" neither names the same thing nor measures on the same scale. At one end, composite long-term clinical cure: no implant loosening and walking without pain at 21 months [@Ferry2022_natcomms]. At the other, discharge criteria: patient discharged, de-cannulated and rehabilitated [@Aslam2019_ajt]. In between, the label without a criterion: "good clinical outcome" declared by the authors as binary, without stating what had to be observed [@Onallah2023_med].
+
+The problem is not only heterogeneity. **Two of the landmark randomised trials report no binary success proportion at all**: the primary endpoint of PhagoBurn is the *time* to a sustained reduction in bacterial burden [@Jault2019_phagoburn], and that of BX004-A is a *continuous* variable, the mean log-scale CFU reduction at day 15 [@Weiner2025_natcomms]. A meta-analysis of proportions cannot include them without binarising what their authors measured otherwise, and that conversion would be made by the synthesiser, not by the study.
+
+These definitions come from the full texts already retrieved, not from the pre-extraction from abstracts: **no abstract in the corpus states a definition of clinical success**, which is itself a datum about how the field reports.
 
 **Intervention.** The products range from fixed-composition commercial polyvalent preparations to cocktails tailored to a patient's own isolate, and in most cases they are co-administered with active antimicrobials. The heterogeneity is conceptual rather than statistical, and no random-effects model resolves it: averaging different interventions yields a number that corresponds to no real intervention.
 
@@ -200,7 +204,7 @@ Our delimitation further suggests that those syntheses worked on a fraction of t
 
 **Strengths.** The search covered nine sources across two separate streams, with no language restriction. Selection used a closed vocabulary fixed in advance and was audited against a positive-control set defined before screening began, which allows us to state, rather than merely hope, that screening lost no known eligible study. The whole pipeline is re-runnable code with content-derived keys, and an automated check reconciles each link with the next.
 
-**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 72.6 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, title and abstract screening was issued by a large language model as sole reviewer, without independent duplication and without any human reviewer adjudicating individual decisions (section 2.4). Agreement between the model and a human reader was not measured, so it cannot be quantified how many eligible studies were missed or how many ineligible ones advanced. The positive-control audit bounds the former only over the 40 studies known in advance. It is the most serious limitation of this review and it affects how the corpus was delimited, not merely how it is described; data extraction is done in duplicate and by hand. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 35 studies, 18 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
+**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 73.4 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, title and abstract screening was issued by a large language model as sole reviewer, without independent duplication and without any human reviewer adjudicating individual decisions (section 2.4). Agreement between the model and a human reader was not measured, so it cannot be quantified how many eligible studies were missed or how many ineligible ones advanced. The positive-control audit bounds the former only over the 40 studies known in advance. It is the most serious limitation of this review and it affects how the corpus was delimited, not merely how it is described; data extraction is done in duplicate and by hand. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 35 studies, 18 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
 
 ---
 

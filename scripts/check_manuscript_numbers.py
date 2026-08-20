@@ -30,6 +30,7 @@ EXCEPCIONES = {
     "2020": "PRISMA 2020, ano de la declaracion",
     "102": "TP-102, nombre del producto en el ensayo de Nir-Paz; no es una cifra",
     "2017": "ano de la lista de patogenos prioritarios de la OMS que la de 2024 sustituye",
+    "15": "dia 15, momento de medida del desenlace continuo de BX004-A (Weiner 2025)",
     "14": "numero de anexos del paquete suplementario (S0-S13), contado del propio paquete",
     "2012": "Magiorakos et al. 2012",
     "2018": "citas y ano de publicacion de fuentes",
