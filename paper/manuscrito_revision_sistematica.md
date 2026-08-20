@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 269; texto principal 3 941.
+**Recuento de palabras:** resumen 296; texto principal 4 304.
 **Tablas:** 4. **Figuras:** 2. **Material suplementario:** 6 archivos.
 
 ---
@@ -17,7 +17,7 @@
 
 **Objetivos.** Delimitar de forma reproducible la literatura clínica sobre fagoterapia en *P. aeruginosa* resistente y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
 
-**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron nueve fuentes sin restricción de fecha, incluidas BVS y SciELO. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe.
+**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron nueve fuentes sin restricción de fecha, incluidas BVS y SciELO. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe. **El cribado de títulos y resúmenes lo emitió un modelo de lenguaje como revisor único, sin duplicación independiente**; la extracción se realiza a mano y por duplicado.
 
 **Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni la clase de resistencia en el 70,2 %. Se obtuvo el texto completo de 89 estudios (71,8 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos.
 
@@ -77,7 +77,13 @@ Las ecuaciones completas se aportan como suplemento, con la sintaxis literal de 
 
 La deduplicación cruzó DOI, PMID y NCT de forma transitiva mediante *union-find*. Los identificadores se leyeron **solo** de campos identificadores, nunca del texto libre. La razón es concreta: al rastrear los resúmenes en una prueba, cuatro artículos sin relación entre sí quedaron fusionados porque los cuatro citaban el mismo trabajo previo. Los registros sin identificador se compararon por título normalizado y año, sin coincidencia difusa.
 
-La selección se hizo en tres etapas. La **etapa 1** aplicó reglas explícitas y auditables: sin título, tipo documental sin datos primarios, ámbito animal declarado en MeSH, y fago empleado como herramienta de laboratorio. La **etapa 2** cribó títulos y la **etapa 3**, resúmenes. Ambas usaron un **vocabulario cerrado de seis códigos** (ORG, REV, SEC, LAB, VET, OFF) fijado antes de empezar. Un motivo que no encaje en uno de los seis no recibe un séptimo código improvisado sobre la marcha: el registro avanza a la etapa siguiente para que lo lea una persona.
+La selección se hizo en tres etapas. La **etapa 1** aplicó reglas explícitas y auditables: sin título, tipo documental sin datos primarios, ámbito animal declarado en MeSH, y fago empleado como herramienta de laboratorio. La **etapa 2** cribó títulos y la **etapa 3**, resúmenes. Ambas usaron un **vocabulario cerrado de seis códigos** (ORG, REV, SEC, LAB, VET, OFF) fijado antes de empezar. Un motivo que no encaje en uno de los seis no recibe un séptimo código improvisado sobre la marcha: el registro avanza a la etapa siguiente en lugar de excluirse.
+
+**Quién tomó cada decisión.** La etapa 1 es determinista: la ejecuta un script y cada exclusión nombra la regla que disparó, de modo que cualquiera puede reejecutarla y obtener el mismo resultado. Las etapas 2 y 3, que son las que exigen juicio, **las realizó un modelo de lenguaje —Claude Opus 5, de Anthropic— actuando como revisor único y sin duplicación independiente**:13 917 decisiones sobre títulos entre el 4 y el 10 de agosto de 2026 y 460 sobre resúmenes el 5 de agosto. El modelo recibió el título, el resumen y los metadatos de cada registro, y solo pudo elegir entre los seis códigos del vocabulario cerrado. Cada decisión quedó registrada con su motivo, el modelo que la emitió y su marca de tiempo, en un registro solo-anexar que se aporta íntegro (S3).
+
+**Ningún revisor humano adjudicó decisiones de cribado individuales, y la concordancia entre el modelo y un lector humano no se midió.** Esa comprobación es la que un cribado por duplicado aporta y aquí no existe. Lo que sí existe, y es lo que sostiene la afirmación de que el cribado no perdió estudios elegibles, es la auditoría de control positivo de la sección 2.5: se comprobó tras cada etapa que ninguno de los 40 estudios conocidos de antemano perdiera todos sus informes. Una auditoría de controles positivos acota el falso negativo sobre estudios conocidos; no lo acota sobre los desconocidos, ni dice nada sobre el falso positivo. El lector debe calibrar la selección con esa salvedad, y la sección 4.4 la recoge como limitación.
+
+La extracción de datos, en cambio, la realizan los dos autores por duplicado e independiente, sin intervención del modelo (sección 2.6).
 
 Los registros de decisión son **solo-anexar**. Una corrección es una fila nueva que sustituye a la anterior; ambas permanecen. Esta revisión tuvo que corregir una exclusión errónea, y esa corrección solo es auditable porque la fila original sobrevivió.
 
@@ -190,7 +196,7 @@ Nuestra delimitación sugiere además que aquellas síntesis trabajaron sobre un
 
 **Fortalezas.** La búsqueda abarcó nueve fuentes en dos corrientes separadas, sin restringir el idioma. La selección usó un vocabulario cerrado fijado de antemano y se auditó contra un conjunto de controles positivos definido antes de empezar, lo que permite afirmar, y no solo confiar, que el cribado no perdió estudios elegibles conocidos. Todo el canal es código reejecutable con claves derivadas del contenido, y una comprobación automática cuadra cada eslabón con el siguiente.
 
-**Limitaciones.** Son cinco y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 71,8 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado lo realizó un solo revisor asistido por reglas explícitas, con auditoría de controles positivos pero sin duplicación independiente. La duplicación está prevista para la fase de extracción. **Quinta:** la restricción a inglés y español se adoptó cuando el cribado ya había terminado, y eliminó 35 estudios, 18 de ellos comparativos y uno perteneciente al conjunto de control positivo. Empuja el corpus en la misma dirección que el sesgo de recuperación y reduce lo que esta revisión puede decir sobre la literatura de Europa del Este, que es donde se concentran los diseños con comparador.
+**Limitaciones.** Son cinco y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 71,8 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado de títulos y resúmenes lo emitió un modelo de lenguaje como revisor único, sin duplicación independiente y sin que ningún revisor humano adjudicara decisiones individuales (sección 2.4). La concordancia entre el modelo y un lector humano no se midió, de modo que no puede cuantificarse cuántos estudios elegibles se perdieron ni cuántos no elegibles avanzaron. La auditoría de controles positivos acota lo primero solo sobre los 40 estudios conocidos de antemano. Es la limitación más seria de esta revisión y afecta a la delimitación del corpus, no solo a su descripción; la extracción de datos sí se realiza por duplicado y a mano. **Quinta:** la restricción a inglés y español se adoptó cuando el cribado ya había terminado, y eliminó 35 estudios, 18 de ellos comparativos y uno perteneciente al conjunto de control positivo. Empuja el corpus en la misma dirección que el sesgo de recuperación y reduce lo que esta revisión puede decir sobre la literatura de Europa del Este, que es donde se concentran los diseños con comparador.
 
 ---
 
@@ -210,7 +216,13 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 **Disponibilidad de datos y código.** El corpus de cribado, los registros de decisión completos, el formulario de extracción y todo el código del canal están disponibles en el repositorio del proyecto. Los registros de decisión son solo-anexar y conservan cada corrección.
 
-**Uso de inteligencia artificial.** En la preparación de este trabajo se emplearon herramientas de inteligencia artificial generativa (Claude, Anthropic) para la asistencia en la programación del canal de cribado, la pre-extracción desde resúmenes y la redacción de borradores. Los autores revisaron y verificaron todo el contenido y asumen la responsabilidad íntegra por su exactitud e integridad. Ninguna herramienta de IA figura como autora, conforme a las recomendaciones del ICMJE.
+**Uso de inteligencia artificial.** Se empleó un modelo de lenguaje generativo (Claude Opus 5, Anthropic) en cuatro tareas, y conviene distinguirlas porque no comprometen al trabajo por igual.
+
+*Emitiendo juicios que determinan el corpus:* el modelo cribó títulos y resúmenes como **revisor único y sin duplicación independiente** —13 917 decisiones de título y 460 de resumen— y realizó la pre-extracción desde resúmenes. Estas decisiones **no fueron adjudicadas individualmente por un revisor humano**. Están registradas una a una, con su motivo, el modelo y su marca de tiempo, y se aportan íntegras (S3, S4). El detalle y sus consecuencias figuran en las secciones 2.4 y 4.4.
+
+*Sin emitir juicios:* asistencia en la programación del canal y en la redacción de borradores.
+
+Los autores diseñaron la revisión, fijaron los criterios y el vocabulario de exclusión antes de empezar, realizan la extracción de datos por duplicado sin intervención del modelo, y asumen la responsabilidad íntegra por la exactitud e integridad del trabajo. Ninguna herramienta de IA figura como autora, conforme a las recomendaciones del ICMJE.
 
 **Agradecimientos.** [Pendiente.]
 

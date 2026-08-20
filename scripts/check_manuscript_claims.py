@@ -58,6 +58,10 @@ AFIRMACIONES = [
     # imprimia el desglose del conjunto sin restringir mientras su total salia
     # del conjunto restringido: sumaban 13 456 bajo un total de 13 434.
     (ES, "trabajo de laboratorio o preclínico ({excluidos_titulo_LAB}), organismo distinto sin subgrupo separable ({excluidos_titulo_ORG}), revisión o comentario sin datos primarios ({excluidos_titulo_REV}), no evalúa fagoterapia en pacientes ({excluidos_titulo_OFF}), ámbito veterinario ({excluidos_titulo_VET}) y síntesis secundaria ({excluidos_titulo_SEC})"),
+    # Las decisiones que emitio el modelo. Se anclan porque al escribirlas a
+    # mano se colo un recuento que duplicaba las filas de la enmienda.
+    (ES, "{decisiones_titulo} decisiones sobre títulos entre el 4 y el 10 de agosto de 2026 y {decisiones_resumen} sobre resúmenes"),
+    (ES, "{decisiones_titulo} decisiones de título y {decisiones_resumen} de resumen"),
     (ES, "resumen {palabras_resumen_es};"),
     (ES, "texto principal {palabras_cuerpo_es}."),
 
@@ -71,6 +75,8 @@ AFIRMACIONES = [
     (EN, "the remaining fraction concentrates {comparativos_sin_texto_pct} % of the comparative designs"),
     (EN, "It contains {comparativos_sin_texto} of the {estudios_comparativos} comparative studies, **{comparativos_sin_texto_pct} %**"),
     (EN, "base (n = {estudios_extraibles} studies)", 2),
+    (EN, "{decisiones_titulo} title decisions between 4 and 10 August 2026 and {decisiones_resumen} abstract decisions"),
+    (EN, "{decisiones_titulo} title decisions and {decisiones_resumen} abstract decisions"),
     (EN, "abstract {palabras_resumen_en};"),
     (EN, "main text {palabras_cuerpo_en}."),
 ]

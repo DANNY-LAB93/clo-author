@@ -299,6 +299,17 @@ def main():
         if c["SIN CODIGO"]:
             S["exclusiones_%s_sin_codigo" % etapa] = c["SIN CODIGO"]
 
+    # ---- quien emitio cada decision de cribado ------------------------------
+    # El manuscrito declara que las etapas 2 y 3 las emitio un modelo de
+    # lenguaje. Esas cifras tienen que salir del registro, no de la memoria de
+    # quien redacta: al escribirlas a mano se colo un "495 mas 34" que duplicaba
+    # las filas de la enmienda, ya contenidas en las 495.
+    # Ambos diccionarios estan indexados por registro, asi que cuentan la
+    # decision VIVA de cada uno, no las filas del registro solo-anexar (que
+    # incluye las correcciones superpuestas).
+    S["decisiones_titulo"] = len(d2)
+    S["decisiones_resumen"] = len(d3)
+
     # ---- recuento de palabras ----------------------------------------------
     # La portada declara cuantas palabras tiene el resumen y el cuerpo, y las
     # revistas lo comprueban. Se declaraba a mano y envejecio en cuanto se
