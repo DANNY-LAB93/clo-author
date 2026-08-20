@@ -31,9 +31,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `estudios_multiinforme` | 30 |
 | `informes_del_estudio_mayor` | 11 |
 | `estudios_extraibles` | 124 |
-| `texto_completo_obtenido` | 89 |
-| `texto_completo_no_obtenido` | 35 |
-| `texto_completo_pct` | 71.8 |
+| `texto_completo_obtenido` | 90 |
+| `texto_completo_no_obtenido` | 34 |
+| `texto_completo_pct` | 72.6 |
 | `disenos` | case report: 49; case series: 19; RCT: 16; no declarado: 16; prospective cohort: 13; non-randomised trial: 7; retrospective cohort: 4 |
 | `estudios_comparativos` | 23 |
 | `estudios_comparativos_pct` | 18.5 |
@@ -42,15 +42,16 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `casos_unicos_pct` | 39.5 |
 | `comparativos_sin_texto` | 11 |
 | `comparativos_sin_texto_pct` | 47.8 |
-| `pacientes_declarados_con_texto` | 1028 |
-| `pacientes_declarados_sin_texto` | 503 |
-| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; España: 2; Israel: 2; India: 2 |
+| `pacientes_declarados_con_texto` | 1032 |
+| `pacientes_declarados_sin_texto` | 499 |
+| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Israel: 2; Belgica: 2; Ucrania: 2 |
 | `procedencia_no_declarada` | 76 |
 | `procedencia_no_declarada_pct` | 61.3 |
 | `anio_min` | 2016 |
 | `anio_max` | 2026 |
 | `publicados_desde_2020` | 103 |
 | `publicados_desde_2020_pct` | 83.1 |
+| `clase_mencionada_no_clasificable` | 13 |
 | `sin_ambito_de_patogeno` | 65 |
 | `sin_ambito_de_patogeno_pct` | 52.4 |
 | `sin_clase_de_resistencia` | 87 |
@@ -61,6 +62,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `sin_modalidad_pct` | 70.2 |
 | `sin_criterio_dtr` | 122 |
 | `sin_criterio_dtr_pct` | 98.4 |
+| `sin_clase_util` | 100 |
+| `sin_clase_util_pct` | 80.6 |
+| `clase_mencionada_no_clasificable_pct` | 10.5 |
 | `enmienda_idioma_informes_excluidos` | 35 |
 | `informes_a_texto_completo_antes` | 268 |
 | `estudios_eliminados_por_idioma` | 35 |
@@ -96,7 +100,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `excluidos_resumen_IDI` | 35 |
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
-| `palabras_resumen_es` | 296 |
-| `palabras_cuerpo_es` | 4359 |
-| `palabras_resumen_en` | 284 |
-| `palabras_cuerpo_en` | 4045 |
+| `palabras_resumen_es` | 315 |
+| `palabras_cuerpo_es` | 4451 |
+| `palabras_resumen_en` | 299 |
+| `palabras_cuerpo_en` | 4136 |

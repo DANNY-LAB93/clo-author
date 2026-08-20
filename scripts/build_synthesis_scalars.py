@@ -186,6 +186,17 @@ def main():
     # ---- lo que el cuerpo de evidencia NO declara --------------------------
     def sin(campo):
         return sum(1 for k in extraibles if not (pre.get(k, {}).get(campo) or ""))
+    # `not-classifiable` no es una clase de resistencia: significa que el
+    # informe menciona resistencia pero no permite asignar MDR, XDR ni PDR. Para
+    # la afirmacion "no consta la clase" cuenta igual que el silencio, y
+    # separarlos importa: 87 no la mencionan y 13 mas la mencionan sin poder
+    # clasificarla. El manuscrito reportaba solo los 87 y decia 70,2 % cuando el
+    # dato relevante para estratificar es el 80,6 %.
+    no_clasificable = sum(
+        1 for k in extraibles
+        if (pre.get(k, {}).get("resistance_class") or "") == "not-classifiable")
+    S["clase_mencionada_no_clasificable"] = no_clasificable
+
     for campo, nombre in (("pathogen_scope", "sin_ambito_de_patogeno"),
                           ("resistance_class", "sin_clase_de_resistencia"),
                           ("route", "sin_via_de_administracion"),
@@ -193,6 +204,11 @@ def main():
                           ("dtr_status", "sin_criterio_dtr")):
         S[nombre] = sin(campo)
         S[nombre + "_pct"] = round(100.0 * sin(campo) / len(extraibles), 1)
+    S["sin_clase_util"] = S["sin_clase_de_resistencia"] + no_clasificable
+    S["sin_clase_util_pct"] = round(
+        100.0 * S["sin_clase_util"] / len(extraibles), 1)
+    S["clase_mencionada_no_clasificable_pct"] = round(
+        100.0 * no_clasificable / len(extraibles), 1)
 
     # ---- efecto de la enmienda de idioma -----------------------------------
     # El registro de decisiones es solo-anexar, asi que el estado ANTERIOR a la

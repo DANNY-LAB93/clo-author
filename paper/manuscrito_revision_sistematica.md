@@ -6,20 +6,20 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 296; texto principal 4 359.
-**Tablas:** 4. **Figuras:** 2. **Material suplementario:** 6 archivos.
+**Recuento de palabras:** resumen 315; texto principal 4 451.
+**Tablas:** 4. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
 
 ---
 
 ## Resumen
 
-**Antecedentes.** *Pseudomonas aeruginosa* multirresistente es un patógeno de prioridad crítica de la OMS. Varias síntesis recientes han agregado los desenlaces de la fagoterapia en proporciones globales de éxito. Hacerlo da por supuesto que este cuerpo de evidencia admite agregación, y nadie ha examinado ese supuesto.
+**Antecedentes.** *Pseudomonas aeruginosa* resistente a carbapenémicos figura como patógeno de prioridad **alta** en la lista de la OMS de 2024, tras haber sido de prioridad crítica en la de 2017. Varias síntesis recientes han agregado los desenlaces de la fagoterapia en proporciones globales de éxito. Hacerlo da por supuesto que este cuerpo de evidencia admite agregación, y nadie ha examinado ese supuesto.
 
 **Objetivos.** Delimitar de forma reproducible la literatura clínica sobre fagoterapia en *P. aeruginosa* resistente y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
 
 **Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron nueve fuentes sin restricción de fecha, incluidas BVS y SciELO. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe. **El cribado de títulos y resúmenes lo emitió un modelo de lenguaje como revisor único, sin duplicación independiente**; la extracción se realiza a mano y por duplicado.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni la clase de resistencia en el 70,2 %. Se obtuvo el texto completo de 89 estudios (71,8 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni puede asignarse la clase de resistencia en el 80,6 %. Se obtuvo el texto completo de 90 estudios (72,6 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos.
 
 **Conclusiones.** El cuerpo de evidencia es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de éxito publicadas descansan sobre supuestos que estos datos no sostienen.
 
@@ -29,13 +29,13 @@
 
 ## 1. Introducción
 
-*Pseudomonas aeruginosa* suma a su resistencia intrínseca una facilidad notable para adquirir determinantes nuevos. Por eso ocupa un lugar estable entre los patógenos prioritarios de la Organización Mundial de la Salud [@Tacconelli2018_who; @WHO2024_bppl]. Cuando un aislado acumula resistencia a carbapenémicos, cefalosporinas antipseudomónicas, fluoroquinolonas y aminoglucósidos, las opciones del clínico se cuentan con los dedos de una mano. A veces no queda ninguna que sea a la vez activa y tolerable. El problema se concentra en infecciones asociadas a dispositivos, quemaduras extensas, fibrosis quística y bronquiectasias.
+*Pseudomonas aeruginosa* suma a su resistencia intrínseca una facilidad notable para adquirir determinantes nuevos. Por eso figura entre los patógenos prioritarios de la Organización Mundial de la Salud, aunque su posición ha cambiado: la lista de 2017 lo situaba en prioridad crítica [@Tacconelli2018_who] y la actualización de 2024 rebajó la forma resistente a carbapenémicos a prioridad alta [@WHO2024_bppl]. La rebaja no reduce el problema clínico que plantea un aislado sin opciones, pero sí obliga a no apoyar la urgencia en una clasificación superada. Cuando un aislado acumula resistencia a carbapenémicos, cefalosporinas antipseudomónicas, fluoroquinolonas y aminoglucósidos, las opciones del clínico se cuentan con los dedos de una mano. A veces no queda ninguna que sea a la vez activa y tolerable. El problema se concentra en infecciones asociadas a dispositivos, quemaduras extensas, fibrosis quística y bronquiectasias.
 
 En ese estrechamiento ha reaparecido la fagoterapia. Los bacteriófagos líticos actúan por un mecanismo ajeno a las dianas antibióticas, respetan la microbiota acompañante y admiten adaptarse al aislado del propio paciente [@Pirnay2024_natmicrobiol]. Pero la literatura clínica que los respalda no creció como crece la evidencia de un fármaco en desarrollo. Creció como una acumulación de casos de rescate publicados de uno en uno, casi siempre después de que el paciente mejorara.
 
 Esa forma de crecer tiene consecuencias que no se disuelven añadiendo casos. Un reporte publicado es, por construcción, un evento condicionado al desenlace. Una serie de uso compasivo recluta pacientes en quienes ya fracasaron los antibióticos y a quienes el equipo tratante juzgó razonable ofrecer algo más [@Aslam2019_ajt]. Y cuando el fago se administra junto con antimicrobianos activos, ningún resultado favorable permite atribuir el mérito a uno u otro [@Chan2018_omko1_emph].
 
-Pese a ello, las síntesis publicadas han tendido a agregar esta literatura en proporciones globales de éxito clínico [@Uyttebroek2022_lancetid; @Liu2025_ijaa; @Krakhotkin2025_currurol]. Hacerlo exige dar por buenas tres cosas que rara vez se comprueban. La primera, que la categoría de resistencia con la que se estratifica resiste el contraste con los criterios que dice aplicar. La segunda, que el desenlace agregado nombra lo mismo en todos los estudios. La tercera, que la intervención es bastante homogénea para que una proporción común signifique algo.
+Pese a ello, las síntesis publicadas han tendido a agregar esta literatura en proporciones globales de éxito clínico [@Uyttebroek2022_lancetid; @Liu2025_ijaa]. Hacerlo exige dar por buenas tres cosas que rara vez se comprueban. La primera, que la categoría de resistencia con la que se estratifica resiste el contraste con los criterios que dice aplicar. La segunda, que el desenlace agregado nombra lo mismo en todos los estudios. La tercera, que la intervención es bastante homogénea para que una proporción común signifique algo.
 
 Hay entonces una pregunta previa a cualquier estimación, y es la que aborda esta revisión: ¿tiene este cuerpo de evidencia la estructura y la completitud de reporte que una síntesis cuantitativa requiere? Responderla obliga a delimitarlo antes por completo, incluidas la literatura regional y los registros de ensayos que las revisiones previas han cubierto de forma desigual, y a caracterizar después lo que ese conjunto declara y lo que calla.
 
@@ -131,7 +131,7 @@ Los motivos de exclusión por título fueron trabajo de laboratorio o preclínic
 
 ### 3.2 Recuperación del texto completo y su sesgo
 
-Se obtuvo el texto completo de **89 de los 124 estudios recuperables (71,8 %)** por vías de acceso abierto legítimas. Los 35 restantes requieren préstamo interbibliotecario, acceso institucional o solicitud a los autores.
+Se obtuvo el texto completo de **90 de los 124 estudios recuperables (72,6 %)** por vías de acceso abierto legítimas. Los 34 restantes requieren préstamo interbibliotecario, acceso institucional o solicitud a los autores.
 
 La fracción no obtenida **no es una muestra aleatoria del conjunto** (Tabla 3). Contiene 11 de los 23 estudios comparativos, el **47,8 %**, y, aunque declara menos pacientes en total, concentra los diseños que sostienen una comparación. De los cuatro ensayos aleatorizados de referencia del campo [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy], dos siguen sin leerse: el de fagos intravesicales y el de TP-102. De PhagoBurn se obtuvo el artículo. Del ensayo de Yale no existe artículo completo publicado, sino un resumen de congreso y los resultados depositados en el registro; lo que se obtuvo es el protocolo del ensayo, que documenta el diseño pero no los desenlaces.
 
@@ -149,7 +149,7 @@ La procedencia geográfica, cuando consta, se reparte entre Rusia (7 estudios), 
 
 La completitud de reporte, medida sobre lo que los resúmenes hacen explícito, es baja precisamente en las variables de las que depende cualquier estratificación (Tabla 2):
 
-- La **clase de resistencia** (MDR, XDR o PDR) no consta en el **70,2 %** de los estudios.
+- La **clase de resistencia** (MDR, XDR o PDR) no puede asignarse en el **80,6 %** de los estudios: el 70,2 % no la menciona en absoluto y un 10,5 % adicional la menciona en términos que no permiten clasificarla. Para estratificar por resistencia, que es lo que hacen las síntesis publicadas, ambos casos son igual de inservibles.
 - La **vía de administración** no consta en el **57,3 %**.
 - El **ámbito de patógeno**, esto es, si el estudio trata solo *P. aeruginosa* o es mixto con subgrupo separable, no consta en el **52,4 %**.
 - El cumplimiento del criterio **DTR** (*difficult-to-treat resistance*) no consta en el **98,4 %**.
@@ -176,11 +176,11 @@ A ello se añade el sesgo de recuperación documentado en la sección 3.2, que e
 
 Esta revisión delimita el cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente con más amplitud que las síntesis previas: nueve fuentes, sin restricción de idioma, con literatura regional y registros de ensayos incluidos. El resultado son 184 estudios frente a las decenas que manejan las revisiones publicadas, y habrían sido 219 sin la restricción de idioma que se adoptó al final. Ese aumento no habla bien de la madurez del campo. La mayor parte procede de reportes de caso, de fichas de registro sin publicación y de literatura regional que las búsquedas restringidas a PubMed y Scopus no alcanzan.
 
-El resultado central es negativo y conviene enunciarlo sin rodeos: **la amplitud del cuerpo de evidencia no se traduce en capacidad de síntesis**. Casi cuatro de cada diez estudios recuperables son un caso único. Menos de uno de cada cinco es comparativo. Siete de cada diez no declaran la categoría de resistencia con la que se pretende estratificar. Y casi uno de cada tres estudios identificados existe únicamente como registro, sin resultados publicados.
+El resultado central es negativo y conviene enunciarlo sin rodeos: **la amplitud del cuerpo de evidencia no se traduce en capacidad de síntesis**. Casi cuatro de cada diez estudios recuperables son un caso único. Menos de uno de cada cinco es comparativo. En cuatro de cada cinco no puede asignarse la categoría de resistencia con la que se pretende estratificar. Y casi uno de cada tres estudios identificados existe únicamente como registro, sin resultados publicados.
 
 ### 4.2 Comparación con la literatura previa
 
-Las revisiones recientes han reportado proporciones globales de éxito clínico que superan sistemáticamente el 80 % [@Uyttebroek2022_lancetid; @Liu2025_ijaa; @Krakhotkin2025_currurol]. Esos resultados no contradicen los nuestros; los explican. Una literatura compuesta en su mayoría por casos que se publican tras un desenlace favorable produce, al agregarse, una proporción alta por construcción. Lo que esa proporción mide es la propensión a publicar éxitos, no la eficacia de la intervención.
+Las revisiones recientes han reportado proporciones globales de éxito clínico que superan sistemáticamente el 80 % [@Uyttebroek2022_lancetid; @Liu2025_ijaa]. Esos resultados no contradicen los nuestros; los explican. Una literatura compuesta en su mayoría por casos que se publican tras un desenlace favorable produce, al agregarse, una proporción alta por construcción. Lo que esa proporción mide es la propensión a publicar éxitos, no la eficacia de la intervención.
 
 Nuestra delimitación sugiere además que aquellas síntesis trabajaron sobre una fracción del campo. La búsqueda sin restricción de idioma recuperó 34 estudios rusos y 3 ucranianos, y ahí es justamente donde se concentran los diseños con comparador. La enmienda de idioma nos obliga a dejarlos fuera, de modo que esta revisión documenta la existencia de ese cuerpo de literatura pero no puede pronunciarse sobre su contenido. Esa es una deuda explícita con la próxima revisión que cuente con capacidad de traducción.
 
@@ -196,7 +196,7 @@ Nuestra delimitación sugiere además que aquellas síntesis trabajaron sobre un
 
 **Fortalezas.** La búsqueda abarcó nueve fuentes en dos corrientes separadas, sin restringir el idioma. La selección usó un vocabulario cerrado fijado de antemano y se auditó contra un conjunto de controles positivos definido antes de empezar, lo que permite afirmar, y no solo confiar, que el cribado no perdió estudios elegibles conocidos. Todo el canal es código reejecutable con claves derivadas del contenido, y una comprobación automática cuadra cada eslabón con el siguiente.
 
-**Limitaciones.** Son cinco y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 71,8 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado de títulos y resúmenes lo emitió un modelo de lenguaje como revisor único, sin duplicación independiente y sin que ningún revisor humano adjudicara decisiones individuales (sección 2.4). La concordancia entre el modelo y un lector humano no se midió, de modo que no puede cuantificarse cuántos estudios elegibles se perdieron ni cuántos no elegibles avanzaron. La auditoría de controles positivos acota lo primero solo sobre los 40 estudios conocidos de antemano. Es la limitación más seria de esta revisión y afecta a la delimitación del corpus, no solo a su descripción; la extracción de datos sí se realiza por duplicado y a mano. **Quinta:** la restricción a inglés y español se adoptó cuando el cribado ya había terminado, y eliminó 35 estudios, 18 de ellos comparativos y uno perteneciente al conjunto de control positivo. Empuja el corpus en la misma dirección que el sesgo de recuperación y reduce lo que esta revisión puede decir sobre la literatura de Europa del Este, que es donde se concentran los diseños con comparador.
+**Limitaciones.** Son cinco y todas materiales. **Primera:** la revisión no está registrada prospectivamente. **Segunda:** la extracción por duplicado no ha concluido, de modo que este informe no presenta desenlaces, ni riesgo de sesgo, ni certeza GRADE. Es una caracterización del cuerpo de evidencia, no una síntesis de sus resultados. **Tercera:** el texto completo se obtuvo para el 72,6 % de los estudios recuperables, y la fracción faltante está enriquecida en diseños comparativos, de manera que lo descrito aquí subrepresenta la parte comparativa del campo. **Cuarta:** el cribado de títulos y resúmenes lo emitió un modelo de lenguaje como revisor único, sin duplicación independiente y sin que ningún revisor humano adjudicara decisiones individuales (sección 2.4). La concordancia entre el modelo y un lector humano no se midió, de modo que no puede cuantificarse cuántos estudios elegibles se perdieron ni cuántos no elegibles avanzaron. La auditoría de controles positivos acota lo primero solo sobre los 40 estudios conocidos de antemano. Es la limitación más seria de esta revisión y afecta a la delimitación del corpus, no solo a su descripción; la extracción de datos sí se realiza por duplicado y a mano. **Quinta:** la restricción a inglés y español se adoptó cuando el cribado ya había terminado, y eliminó 35 estudios, 18 de ellos comparativos y uno perteneciente al conjunto de control positivo. Empuja el corpus en la misma dirección que el sesgo de recuperación y reduce lo que esta revisión puede decir sobre la literatura de Europa del Este, que es donde se concentran los diseños con comparador.
 
 ---
 
@@ -210,11 +210,13 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 **Financiación.** Esta revisión no recibió financiación específica de agencias públicas, comerciales o sin ánimo de lucro.
 
+**Aprobación ética y consentimiento.** No procede. Esta revisión sintetiza literatura ya publicada y datos agregados de registros públicos de ensayos; no involucra pacientes, muestras ni datos individuales identificables, de modo que no requirió aprobación de un comité de ética ni consentimiento informado. No se solicitó exención formal porque la institución no la exige para estudios sin datos primarios.
+
 **Conflictos de interés.** Los autores declaran no tener conflictos de interés.
 
 **Contribución de los autores.** [Pendiente de completar conforme a CRediT antes del envío.]
 
-**Disponibilidad de datos y código.** El corpus de cribado, los registros de decisión completos, el formulario de extracción y todo el código del canal están disponibles en el repositorio del proyecto. Los registros de decisión son solo-anexar y conservan cada corrección.
+**Disponibilidad de datos y código.** Todo el material que sostiene esta revisión se deposita en un repositorio público y citable: el corpus de búsqueda con las exportaciones crudas de las nueve fuentes, los registros solo-anexar de decisión de las tres etapas de cribado, los cuadernos de extracción de ambos revisores, los registros de decisión metodológica con sus fechas, y el código completo del canal, que es reejecutable de la búsqueda a las cifras del manuscrito. ‹‹DOI DEL DEPÓSITO — PENDIENTE DE COMPLETAR ANTES DEL ENVÍO››. Los registros de decisión son solo-anexar y conservan cada corrección junto a la fila que sustituyen.
 
 **Uso de inteligencia artificial.** Se empleó un modelo de lenguaje generativo (Claude Opus 5, Anthropic) en cuatro tareas, y conviene distinguirlas porque no comprometen al trabajo por igual.
 
@@ -247,9 +249,19 @@ Las cuatro tablas se aportan como archivos independientes (`paper/tablas/`), cad
 
 ## Material suplementario
 
-- S1. Lista de comprobación PRISMA 2020.
-- S2. Ecuaciones de búsqueda literales por base, con fecha y número de resultados.
-- S3. Registro completo de decisiones de cribado (etapas 1 a 3).
-- S4. Formulario de extracción y libro de códigos.
-- S5. Listado de los 219 estudios con su situación y sus informes.
-- S6. Auditoría de controles positivos.
+- **S0.** Informe editorial: qué se decidió, cuándo y con qué fundamento.
+- **S1.** Lista de comprobación PRISMA 2020.
+- **S2.** Ecuaciones de búsqueda literales por fuente, con fecha y número de resultados.
+- **S3.** Registro completo de decisiones de cribado, en dos ficheros: etapa 2 (título) y etapa 3 (resumen). Cada fila lleva su motivo codificado, quién la emitió y su marca de tiempo.
+- **S4.** Pre-extracción desde el resumen, marcada como parcial en cada registro.
+- **S5.** Listado de los 184 estudios con su situación y sus informes agrupados.
+- **S6.** Auditoría de controles positivos.
+- **S7.** Declaraciones ICMJE.
+- **S8.** Registro de recuperación de texto completo: qué se intentó por cada estudio y con qué resultado.
+- **S9.** Idioma por informe, con la clase de evidencia que aportaba.
+- **S10.** Verificación del idioma sobre el texto completo del PDF, no sobre los metadatos.
+- **S11.** Concordancia entre las dos extracciones independientes, antes de resolver los desacuerdos.
+- **S12.** Resolución de conflictos de extracción, incluidos los que no pueden dirimirse todavía.
+- **S13.** Reglas de extracción de desenlaces, con su corrección documentada.
+
+Los acompaña una guía que explica, fichero a fichero, qué contiene y qué pregunta permite contestar.

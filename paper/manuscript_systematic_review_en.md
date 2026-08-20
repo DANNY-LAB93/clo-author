@@ -6,20 +6,20 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 284; main text 4 045.
-**Tables:** 4. **Figures:** 2. **Supplementary files:** 6.
+**Word count:** abstract 299; main text 4 136.
+**Tables:** 4. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
 
 ## Abstract
 
-**Background.** Multidrug-resistant *Pseudomonas aeruginosa* is a WHO critical-priority pathogen. Several recent syntheses have pooled phage therapy outcomes into overall success proportions. Doing so assumes this evidence base can be aggregated, and that assumption has never been examined.
+**Background.** Carbapenem-resistant *Pseudomonas aeruginosa* is listed as a **high**-priority pathogen in the WHO 2024 list, having been critical priority in the 2017 list. Several recent syntheses have pooled phage therapy outcomes into overall success proportions. Doing so assumes this evidence base can be aggregated, and that assumption has never been examined.
 
 **Objectives.** To delimit the clinical literature on phage therapy for resistant *P. aeruginosa* reproducibly, and to determine whether its structure and reporting completeness permit a quantitative synthesis of efficacy.
 
 **Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Nine sources were searched without date restriction, including the regional databases BVS and SciELO. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report. **Title and abstract screening was performed by a large language model acting as sole reviewer, without independent duplication**; data extraction is done by hand and in duplicate.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class is not stated in 70.2 %. Full text was obtained for 89 studies (71.8 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
+**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 90 studies (72.6 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
 
 **Conclusions.** This evidence base is simultaneously large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
 
@@ -29,13 +29,13 @@
 
 ## 1. Introduction
 
-*Pseudomonas aeruginosa* adds to its intrinsic resistance an unusual facility for acquiring new determinants. That combination keeps it among the World Health Organization's priority pathogens [@Tacconelli2018_who; @WHO2024_bppl]. Once an isolate accumulates resistance to carbapenems, antipseudomonal cephalosporins, fluoroquinolones and aminoglycosides, the clinician's options can be counted on one hand. Sometimes none is both active and tolerable. The problem concentrates in device-associated infections, extensive burns, cystic fibrosis and bronchiectasis.
+*Pseudomonas aeruginosa* adds to its intrinsic resistance an unusual facility for acquiring new determinants. That combination keeps it among the World Health Organization's priority pathogens, though its position has moved: the 2017 list placed it in the critical tier [@Tacconelli2018_who] and the 2024 update downgraded the carbapenem-resistant form to high priority [@WHO2024_bppl]. The downgrade does not lessen the clinical problem an isolate with no options poses, but it does mean urgency should not be argued from a superseded classification. Once an isolate accumulates resistance to carbapenems, antipseudomonal cephalosporins, fluoroquinolones and aminoglycosides, the clinician's options can be counted on one hand. Sometimes none is both active and tolerable. The problem concentrates in device-associated infections, extensive burns, cystic fibrosis and bronchiectasis.
 
 Phage therapy has re-emerged into that gap. Lytic bacteriophages act through a mechanism unrelated to antibiotic targets, spare the surrounding microbiota, and can be tailored to a patient's own isolate [@Pirnay2024_natmicrobiol]. But the clinical literature supporting them did not grow the way evidence for a drug in development grows. It grew as an accumulation of rescue cases published one at a time, almost always after the patient improved.
 
 That growth pattern carries consequences that adding more cases does not dissolve. A published case report is, by construction, an event conditioned on its outcome. A compassionate-use series recruits patients in whom antibiotics have already failed and to whom the treating team judged it reasonable to offer something further [@Aslam2019_ajt]. And when phage is given alongside active antimicrobials, no favourable result can assign the credit to one or the other [@Chan2018_omko1_emph].
 
-Published syntheses have nonetheless tended to pool this literature into overall clinical success proportions [@Uyttebroek2022_lancetid; @Liu2025_ijaa; @Krakhotkin2025_currurol]. That step requires taking three things on trust that are rarely checked. First, that the resistance category used for stratification survives comparison with the criteria it claims to apply. Second, that the pooled outcome names the same thing across studies. Third, that the intervention is homogeneous enough for a common proportion to mean anything.
+Published syntheses have nonetheless tended to pool this literature into overall clinical success proportions [@Uyttebroek2022_lancetid; @Liu2025_ijaa]. That step requires taking three things on trust that are rarely checked. First, that the resistance category used for stratification survives comparison with the criteria it claims to apply. Second, that the pooled outcome names the same thing across studies. Third, that the intervention is homogeneous enough for a common proportion to mean anything.
 
 A prior question therefore precedes any estimate, and it is the one this review addresses: does this evidence base have the structure and reporting completeness that a quantitative synthesis requires? Answering it requires first delimiting the literature completely, including the regional literature and the trial registers that previous reviews have covered unevenly, and then characterising what that body of work states and what it leaves unsaid.
 
@@ -135,7 +135,7 @@ Exclusion reasons at title screening were laboratory or preclinical work (4 062)
 
 ### 3.2 Full-text retrieval and its bias
 
-Full text was obtained for **89 of the 124 retrievable studies (71.8 %)** through legitimate open-access routes. The remaining 35 require interlibrary loan, institutional access or a request to the authors.
+Full text was obtained for **90 of the 124 retrievable studies (72.6 %)** through legitimate open-access routes. The remaining 34 require interlibrary loan, institutional access or a request to the authors.
 
 The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 11 of the 23 comparative studies, **47.8 %**, and, although it reports fewer patients overall, it concentrates the designs that can sustain a comparison. Of the field's four landmark randomised trials [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy], two remain unread: the intravesical phage trial and TP-102. The PhagoBurn article was obtained. The Yale trial has no full journal article, only a conference abstract and results deposited in the register; what was obtained is the trial protocol, which documents the design but not the outcomes.
 
@@ -153,7 +153,7 @@ Where stated, geographic origin is spread across Russia (7 studies), Poland and 
 
 Reporting completeness, measured on what abstracts make explicit, is lowest precisely in the variables on which any stratification depends (Table 2):
 
-- **Resistance class** (MDR, XDR or PDR) is not stated in **70.2 %** of studies.
+- **Resistance class** (MDR, XDR or PDR) cannot be assigned in **80.6 %** of studies: 70.2 % do not mention it at all and a further 10.5 % mention it in terms that do not allow classification. For stratifying by resistance, which is what published syntheses do, both cases are equally unusable.
 - **Route of administration** is not stated in **57.3 %**.
 - **Pathogen scope**, that is, whether the study covers only *P. aeruginosa* or is mixed with a separable subgroup, is not stated in **52.4 %**.
 - Fulfilment of the **DTR** criterion (difficult-to-treat resistance) is not stated in **98.4 %**.
@@ -180,11 +180,11 @@ Added to this is the retrieval bias documented in section 3.2, which as things s
 
 This review delimits the clinical evidence base for phage therapy in resistant *P. aeruginosa* more broadly than previous syntheses: nine sources, no language restriction, regional literature and trial registers included. The result is 184 studies against the dozens handled by published reviews, and would have been 219 without the language restriction adopted at the end. That increase does not speak well of the field's maturity. Most of it comes from case reports, from registry entries without publication, and from regional literature that searches confined to PubMed and Scopus do not reach.
 
-The central result is negative and worth stating plainly: **the breadth of this evidence base does not translate into capacity for synthesis**. Almost four retrievable studies in ten are a single case. Fewer than one in five is comparative. Seven in ten do not state the resistance category by which stratification is attempted. And almost one identified study in three exists only as a registry entry, with no published results.
+The central result is negative and worth stating plainly: **the breadth of this evidence base does not translate into capacity for synthesis**. Almost four retrievable studies in ten are a single case. Fewer than one in five is comparative. In four out of five, the resistance category by which stratification is attempted cannot be assigned. And almost one identified study in three exists only as a registry entry, with no published results.
 
 ### 4.2 Comparison with previous literature
 
-Recent reviews have reported overall clinical success proportions consistently above 80 % [@Uyttebroek2022_lancetid; @Liu2025_ijaa; @Krakhotkin2025_currurol]. Those results do not contradict ours; they explain them. A literature composed largely of cases published after a favourable outcome yields, when pooled, a high proportion by construction. What that proportion measures is the propensity to publish successes, not the efficacy of the intervention.
+Recent reviews have reported overall clinical success proportions consistently above 80 % [@Uyttebroek2022_lancetid; @Liu2025_ijaa]. Those results do not contradict ours; they explain them. A literature composed largely of cases published after a favourable outcome yields, when pooled, a high proportion by construction. What that proportion measures is the propensity to publish successes, not the efficacy of the intervention.
 
 Our delimitation further suggests that those syntheses worked on a fraction of the field. The unrestricted search retrieved 34 Russian and 3 Ukrainian studies, and that is precisely where comparative designs concentrate. The language amendment obliges us to set them aside, so this review documents that body of literature and where it sits but cannot speak to its content. That is an explicit debt to the next review with translation capacity.
 
@@ -200,7 +200,7 @@ Our delimitation further suggests that those syntheses worked on a fraction of t
 
 **Strengths.** The search covered nine sources across two separate streams, with no language restriction. Selection used a closed vocabulary fixed in advance and was audited against a positive-control set defined before screening began, which allows us to state, rather than merely hope, that screening lost no known eligible study. The whole pipeline is re-runnable code with content-derived keys, and an automated check reconciles each link with the next.
 
-**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 71.8 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, title and abstract screening was issued by a large language model as sole reviewer, without independent duplication and without any human reviewer adjudicating individual decisions (section 2.4). Agreement between the model and a human reader was not measured, so it cannot be quantified how many eligible studies were missed or how many ineligible ones advanced. The positive-control audit bounds the former only over the 40 studies known in advance. It is the most serious limitation of this review and it affects how the corpus was delimited, not merely how it is described; data extraction is done in duplicate and by hand. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 35 studies, 18 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
+**Limitations.** There are five, and all are material. **First**, the review is not prospectively registered. **Second**, duplicate extraction has not concluded, so this report presents no outcomes, no risk-of-bias assessment and no GRADE certainty. It is a characterisation of the evidence base, not a synthesis of its results. **Third**, full text was obtained for 72.6 % of the retrievable studies, and the missing fraction is enriched in comparative designs, so what is described here under-represents the comparative part of the field. **Fourth**, title and abstract screening was issued by a large language model as sole reviewer, without independent duplication and without any human reviewer adjudicating individual decisions (section 2.4). Agreement between the model and a human reader was not measured, so it cannot be quantified how many eligible studies were missed or how many ineligible ones advanced. The positive-control audit bounds the former only over the 40 studies known in advance. It is the most serious limitation of this review and it affects how the corpus was delimited, not merely how it is described; data extraction is done in duplicate and by hand. **Fifth**, the restriction to English and Spanish was adopted once screening had closed, and removed 35 studies, 18 of them comparative and one belonging to the positive-control set. It pushes the corpus in the same direction as the retrieval bias and narrows what this review can say about the literature of Eastern Europe, which is where comparative designs concentrate.
 
 ---
 
@@ -214,11 +214,13 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 
 **Funding.** This review received no specific funding from public, commercial or not-for-profit agencies.
 
+**Ethics approval and consent.** Not applicable. This review synthesises already-published literature and aggregate data from public trial registers; it involves no patients, no specimens and no identifiable individual data, and therefore required neither ethics committee approval nor informed consent. No formal waiver was sought because the institution does not require one for studies without primary data.
+
 **Competing interests.** The authors declare no competing interests.
 
 **Author contributions.** [To be completed under CRediT before submission.]
 
-**Data and code availability.** The screening corpus, the complete decision logs, the extraction form and all pipeline code are available in the project repository. Decision logs are append-only and retain every correction.
+**Data and code availability.** All material supporting this review is deposited in a public, citable repository: the search corpus with the raw exports of all nine sources, the append-only decision logs of the three screening stages, both reviewers' extraction workbooks, the methodological decision records with their dates, and the complete pipeline code, which is re-executable from search to the figures in the manuscript. ‹‹DEPOSIT DOI — TO BE COMPLETED BEFORE SUBMISSION››. The decision logs are append-only and preserve every correction alongside the row it supersedes.
 
 **Use of artificial intelligence.** A generative language model (Claude Opus 5, Anthropic) was used in four tasks, and they must be distinguished because they do not commit the work equally. *Issuing judgements that determine the corpus:* the model screened titles and abstracts as **sole reviewer, without independent duplication** --13 917 title decisions and 460 abstract decisions -- and performed the pre-extraction from abstracts. These decisions **were not individually adjudicated by a human reviewer**. Each is logged with its reason, the model and its timestamp, and the logs are supplied in full (S3, S4); the detail and its consequences are in sections 2.4 and 4.4. *Without issuing judgements:* assistance in programming the pipeline and in drafting. *Without any involvement of the model:* the design and execution of the searches, carried out by D.V. querying each interface (section 2.3); the eligibility criteria and the exclusion vocabulary, fixed before screening; and data extraction, performed by the two authors in duplicate. The authors designed the review, fixed the criteria and the exclusion vocabulary before starting, perform data extraction in duplicate without the model, and take full responsibility for the accuracy and integrity of the work. No AI tool is listed as an author, per ICMJE recommendations.
 
@@ -243,11 +245,19 @@ The four tables are supplied as separate files (`paper/tablas/`), each with its 
 
 ## Supplementary material
 
-- S1. Completed PRISMA 2020 checklist.
-- S2. Literal search strings by database, with date and number of hits.
-- S3. Complete screening decision log (stages 1 to 3).
-- S4. Extraction form and codebook.
-- S5. List of the 219 studies with their status and reports.
-- S6. Positive-control audit.
-- S9. Language assignment for every report, with evidence class and proof.
-- S10. Full-text language verification of every retrieved PDF.
+- **S0.** Informe editorial: qué se decidió, cuándo y con qué fundamento.
+- **S1.** Lista de comprobación PRISMA 2020.
+- **S2.** Ecuaciones de búsqueda literales por fuente, con fecha y número de resultados.
+- **S3.** Registro completo de decisiones de cribado, en dos ficheros: etapa 2 (título) y etapa 3 (resumen). Cada fila lleva su motivo codificado, quién la emitió y su marca de tiempo.
+- **S4.** Pre-extracción desde el resumen, marcada como parcial en cada registro.
+- **S5.** Listado de los 184 estudios con su situación y sus informes agrupados.
+- **S6.** Auditoría de controles positivos.
+- **S7.** Declaraciones ICMJE.
+- **S8.** Registro de recuperación de texto completo: qué se intentó por cada estudio y con qué resultado.
+- **S9.** Idioma por informe, con la clase de evidencia que aportaba.
+- **S10.** Verificación del idioma sobre el texto completo del PDF, no sobre los metadatos.
+- **S11.** Concordancia entre las dos extracciones independientes, antes de resolver los desacuerdos.
+- **S12.** Resolución de conflictos de extracción, incluidos los que no pueden dirimirse todavía.
+- **S13.** Reglas de extracción de desenlaces, con su corrección documentada.
+
+Los acompaña una guía que explica, fichero a fichero, qué contiene y qué pregunta permite contestar.

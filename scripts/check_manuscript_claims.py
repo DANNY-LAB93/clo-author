@@ -62,6 +62,7 @@ AFIRMACIONES = [
     # mano se colo un recuento que duplicaba las filas de la enmienda.
     (ES, "{decisiones_titulo} decisiones sobre títulos entre el 4 y el 10 de agosto de 2026 y {decisiones_resumen} sobre resúmenes"),
     (ES, "{decisiones_titulo} decisiones de título y {decisiones_resumen} de resumen"),
+    (ES, "no puede asignarse en el **{sin_clase_util_pct} %** de los estudios: el {sin_clase_de_resistencia_pct} % no la menciona en absoluto y un {clase_mencionada_no_clasificable_pct} % adicional"),
     (ES, "resumen {palabras_resumen_es};"),
     (ES, "texto principal {palabras_cuerpo_es}."),
 
@@ -77,6 +78,7 @@ AFIRMACIONES = [
     (EN, "base (n = {estudios_extraibles} studies)", 2),
     (EN, "{decisiones_titulo} title decisions between 4 and 10 August 2026 and {decisiones_resumen} abstract decisions"),
     (EN, "{decisiones_titulo} title decisions and {decisiones_resumen} abstract decisions"),
+    (EN, "cannot be assigned in **{sin_clase_util_pct} %** of studies: {sin_clase_de_resistencia_pct} % do not mention it at all and a further {clase_mencionada_no_clasificable_pct} %"),
     (EN, "abstract {palabras_resumen_en};"),
     (EN, "main text {palabras_cuerpo_en}."),
 ]
