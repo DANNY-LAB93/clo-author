@@ -108,11 +108,17 @@ def v1_prisma(S):
         ("6", "Fuentes de información", "Todas, con fecha de la última búsqueda", "CUMPLE", "§2.3"),
         ("7", "Estrategia de búsqueda", "Literal, para cada base y registro", "CUMPLE", "§2.3 y S2"),
         ("8", "Proceso de selección", "Cuántos revisores, cómo trabajaron", "PARCIAL",
-         "§2.4; cribado por un solo revisor con reglas explícitas y auditoría "
-         "de controles positivos. Declarado como limitación en §4.4"),
+         "§2.4; la etapa 1 aplica reglas deterministas y las etapas 2 y 3 las "
+         "emitió un modelo de lenguaje (Claude Opus 5) como revisor único, sin "
+         "duplicación independiente y sin adjudicación humana de decisiones "
+         "individuales. Declarado en §2.4 y como limitación en §4.4; el registro "
+         "completo, con modelo y marca de tiempo por decisión, está en S3"),
         ("9", "Proceso de extracción", "Cuántos revisores, herramientas", "PARCIAL",
          "§2.6; extracción por duplicado en curso, no concluida"),
-        ("10a", "Variables de desenlace", "Lista y definiciones", "CUMPLE", "§2.2 y S4"),
+        ("10a", "Variables de desenlace", "Lista y definiciones", "PARCIAL",
+         "§2.2 las lista; S4 no contiene definiciones de desenlace porque "
+         "ningún resumen del corpus las declara. Las definiciones de los "
+         "textos completos leídos se discuten en §3.5"),
         ("10b", "Otras variables", "Lista y definiciones", "CUMPLE", "S4"),
         ("11", "Riesgo de sesgo", "Herramienta, cuántos revisores", "NO CUMPLE",
          "§2.7; depende del texto completo. Se reportará con la extracción "
@@ -122,7 +128,8 @@ def v1_prisma(S):
         ("13a-f", "Métodos de síntesis", "Incluida la decisión de no agrupar", "CUMPLE",
          "§2.8 y §3.5, con la justificación de por qué no se agrupa"),
         ("14", "Sesgo de publicación", "Métodos de evaluación", "PARCIAL",
-         "§4.3 documenta 60 de 219 estudios registrados sin publicación; no se "
+         "§4.3 documenta %d de %d estudios registrados sin publicación; no se "
+         % (S["estudios_solo_registro"], S["estudios"]) +
          "aplicaron pruebas estadísticas por no haber síntesis cuantitativa"),
         ("15", "Certeza de la evidencia", "GRADE u otro", "NO CUMPLE",
          "§2.7; pendiente de la extracción definitiva"),
@@ -145,7 +152,8 @@ def v1_prisma(S):
          "Repositorio del proyecto; no depositado en registro público"),
         ("24c", "Enmiendas", "", "CUMPLE (una enmienda declarada)",
          "§2.9 declara la restricción de idioma adoptada el 11-08-2026, con el "
-         "cribado ya cerrado, y mide su impacto: 34 estudios eliminados, 17 de "
+         "cribado ya cerrado, y mide su impacto: %d estudios eliminados, %d de "
+         % (S["estudios_eliminados_por_idioma"], S["comparativos_perdidos_por_idioma"]) +
          "ellos comparativos y uno del conjunto de control positivo. El registro "
          "de decisiones es solo-anexar y permite reconstruir el corpus previo"),
         ("25", "Apoyo económico", "", "CUMPLE", "Declaraciones"),
@@ -212,7 +220,7 @@ def v2_busquedas(S):
 
 
 def v5_listado(S):
-    """Listado de los 219 estudios. En Excel porque se filtra y se ordena."""
+    """Listado de los estudios incluidos. En Excel porque se filtra y se ordena."""
     grupos = leer(RS / "cribado" / "study_groups.csv")
     pre = {p["id_provisional"]: p for p in
            leer(RS / "extraccion" / "pre_extraccion_desde_resumen.csv")}
@@ -376,6 +384,31 @@ def main():
         p = RS / origen
         if p.exists():
             shutil.copy2(p, OUT / destino)
+
+    # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
+    # filas -- el corpus anterior a la enmienda de idioma -- mientras la tabla
+    # usa 124, y su columna `study_id` esta vacia en las 159, de modo que no hay
+    # forma de saber que fila pertenece al corpus actual. No se borran las 35
+    # filas sobrantes, que son rastro de la enmienda: se anade la columna que
+    # permite filtrarlas, y se retira la columna vacia que solo confunde.
+    s4 = OUT / "S4_pre_extraccion_desde_resumen.csv"
+    if s4.exists():
+        filas = leer(s4)
+        # el fichero lleva BOM, asi que la primera clave sale como "﻿id"
+        with open(ROOT / "quality_reports" / "orden_de_extraccion.csv",
+                  encoding="utf-8-sig", newline="") as fh:
+            vivos = {r["id"] for r in csv.DictReader(fh)}
+        campos = [c for c in filas[0] if c != "study_id"] + ["en_corpus_actual"]
+        for f in filas:
+            f.pop("study_id", None)
+            f["en_corpus_actual"] = "si" if f.get("id_provisional") in vivos else "no"
+        with open(s4, "w", encoding="utf-8", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=campos)
+            w.writeheader()
+            w.writerows(filas)
+        n = sum(1 for f in filas if f["en_corpus_actual"] == "si")
+        print("  S4  %d filas, %d en el corpus actual (Tabla 2 se reproduce "
+              "filtrando en_corpus_actual = si)" % (len(filas), n))
     print("  S3  registros de decision (etapas 2 y 3)")
     print("  S4  pre-extraccion desde resumen")
     n = v5_listado(S)

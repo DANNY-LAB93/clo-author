@@ -109,13 +109,17 @@ def informe_editorial(S):
         "La sección 3.5 argumenta explícitamente por qué NO se agrupa. Es lo "
         "contrario de lo habitual, y es lo correcto cuando los requisitos del "
         "diseño no se cumplen.",
-        "La declaración de uso de IA cumple las recomendaciones del ICMJE.",
+        "La declaración de uso de IA nombra el modelo, la versión y el número "
+        "de decisiones que emitió, y separa las tareas en que el modelo juzgó "
+        "de aquellas en que no. Declara además que ningún revisor humano "
+        "adjudicó decisiones de cribado individuales, que es la parte que casi "
+        "ninguna revisión declara por su cuenta.",
         "El criterio de idioma no se da por supuesto en ningún informe. Se "
-        "verificó contra el campo de idioma de la fuente y, en los 62 estudios "
+        "verificó contra el campo de idioma de la fuente y, en los %d estudios " % S["texto_completo_verificado"] +
         "con PDF, contra el texto completo. Esa comprobación detectó dos "
         "estudios cuyos metadatos declaraban inglés y cuyo artículo está en "
         "ruso, que se excluyeron: sin abrir el PDF se habrían quedado dentro. "
-        "Los 234 informes incluidos quedan con evidencia nombrada y ninguno "
+        "Los %d informes incluidos quedan con evidencia nombrada y ninguno " % S["informes_agrupados"] +
         "sin prueba (S9 y S10).",
     ]:
         d.add_paragraph(t, style="List Bullet")
@@ -134,13 +138,20 @@ def informe_editorial(S):
         "poder pronunciarse sobre su contenido -- es defendible. Debe "
         "mantenerse en Discusión y no diluirse.")
     tabla(d, ["Efecto del criterio", "Antes", "Después"],
-          [("Estudios", 219, 185),
-           ("Con publicación recuperable", 159, 125),
-           ("Diseños comparativos", 41, 24),
-           ("Ensayos aleatorizados", 21, 16),
-           ("Estudios de procedencia rusa", 34, 8)],
+          # Todas del canal. Estaban escritas a mano y envejecieron: el informe
+          # llegó a decir 185 estudios donde el manuscrito decía 184, y así en
+          # casi todas. Un anexo que contradice al manuscrito lo hunde.
+          [("Estudios", S["estudios_antes_de_la_enmienda"], S["estudios"]),
+           ("Con publicación recuperable", S["extraibles_antes_de_la_enmienda"],
+            S["estudios_extraibles"]),
+           ("Diseños comparativos", S["comparativos_antes_de_la_enmienda"],
+            S["estudios_comparativos"]),
+           ("Ensayos aleatorizados", S["ecas_antes_de_la_enmienda"], S["ecas"]),
+           ("Estudios de procedencia rusa", S["rusos_antes_de_la_enmienda"],
+            S["procedencia"].get("Rusia", 0))],
           [7.0, 4.4, 4.4])
-    nota(d, "De los 34 estudios eliminados, dos se detectaron solo al leer el "
+    nota(d, "De los %d estudios eliminados, dos se detectaron solo al leer el "
+            % S["estudios_eliminados_por_idioma"] +
             "PDF: sus metadatos declaraban inglés y el artículo está en ruso. "
             "Se pierde además Ronit 2024, del conjunto de control positivo.")
 
@@ -227,7 +238,7 @@ def informe_editorial(S):
           [("A. Completar la extracción",
             "Revisión sistemática completa, con desenlaces, riesgo de sesgo y "
             "GRADE",
-            "La correcta. No es alcanzable en 24 horas con 159 estudios y dos "
+            "La correcta. No es alcanzable en 24 horas con %d estudios y dos " % S["estudios_extraibles"] +
             "revisores."),
            ("B. Enviar como está, reencuadrado",
             "Revisión sistemática de la estructura y verificabilidad del "
@@ -316,10 +327,10 @@ def indice(S):
             "Ídem para el cribado por resumen, con la corriente PRISMA",
             "PRISMA 2020, ítems 8 y 16"),
            ("S4_pre_extraccion_desde_resumen.csv",
-            "Pre-extracción de los 159 estudios, marcada como parcial",
+            "Pre-extracción de los %d estudios, marcada como parcial" % S["estudios_extraibles"],
             "PRISMA 2020, ítems 9 y 10"),
            (nombre_s5(),
-            "Los 219 estudios con situación, diseño, procedencia y si se "
+            "Los %d estudios con situación, diseño, procedencia y si se " % S["estudios"] +
             "obtuvo el texto completo", "PRISMA 2020, ítem 17"),
            ("S6_auditoria_controles_positivos.docx",
             "Prueba de que el cribado no perdió estudios elegibles conocidos",
@@ -344,11 +355,12 @@ def indice(S):
     d.add_heading("Estado del envío", level=1)
     tabla(d, ["Elemento", "Estado"],
           [("Búsqueda en nueve fuentes", "COMPLETA"),
-           ("Cribado por título y resumen", "COMPLETO — 185 estudios"),
+           ("Cribado por título y resumen", "COMPLETO — %d estudios" % S["estudios"]),
            ("Verificación del criterio de idioma",
-            "COMPLETA — 234 informes, ninguno sin prueba"),
+            "COMPLETA — %d informes, ninguno sin prueba" % S["informes_agrupados"]),
            ("Agrupación de informes en estudios", "COMPLETA"),
-           ("Pre-extracción desde resumen", "COMPLETA — 159 de 159"),
+           ("Pre-extracción desde resumen", "COMPLETA — %d de %d"
+            % (S["estudios_extraibles"], S["estudios_extraibles"])),
            ("Recuperación de texto completo", "PARCIAL — %d de %d (%.1f %%)"
             % (S["texto_completo_obtenido"], S["estudios_extraibles"],
                S["texto_completo_pct"])),

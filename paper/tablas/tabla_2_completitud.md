@@ -8,4 +8,4 @@
 | Modalidad (monoterapia o combinada) | 37 | 29.8 | 87 | 70.2 |
 | Criterio DTR (*difficult-to-treat resistance*) | 2 | 1.6 | 122 | 98.4 |
 
-*Nota.* Medido sobre el resumen indexado, que es lo que alimenta las bases bibliográficas y las revisiones automatizadas. Una variable puede constar en el texto completo y no en el resumen; esa distinción se resolverá con la extracción por duplicado en curso.
+*Nota.* Medido sobre el resumen indexado, que es lo que alimenta las bases bibliográficas y las revisiones automatizadas. Una variable puede constar en el texto completo y no en el resumen; esa distinción se resolverá con la extracción por duplicado en curso. Esta tabla se reproduce desde el anexo S4 filtrando en_corpus_actual = sí: el anexo conserva además las filas que la enmienda de idioma dejó fuera, para que la enmienda pueda auditarse.

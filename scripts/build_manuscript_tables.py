@@ -137,7 +137,10 @@ def main():
             "Medido sobre el resumen indexado, que es lo que alimenta las bases "
             "bibliográficas y las revisiones automatizadas. Una variable puede "
             "constar en el texto completo y no en el resumen; esa distinción se "
-            "resolverá con la extracción por duplicado en curso.")
+            "resolverá con la extracción por duplicado en curso. Esta tabla se "
+            "reproduce desde el anexo S4 filtrando en_corpus_actual = sí: el "
+            "anexo conserva además las filas que la enmienda de idioma dejó "
+            "fuera, para que la enmienda pueda auditarse.")
 
     # ---- Tabla 3: sesgo de recuperacion ------------------------------------
     con, sin_ = extr & pdfs, extr - pdfs

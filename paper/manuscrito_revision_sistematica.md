@@ -218,7 +218,7 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 **Conflictos de interés.** Los autores declaran no tener conflictos de interés.
 
-**Contribución de los autores.** [Pendiente de completar conforme a CRediT antes del envío.]
+**Contribución de los autores (CRediT).** **D. Valdiviezo:** conceptualización, metodología, investigación (diseño y ejecución de las búsquedas en las nueve fuentes), software (canal de cribado, agrupación y cálculo de cifras), curación de datos, extracción de datos, redacción del borrador original, visualización, administración del proyecto. **N. Trelles:** metodología (definiciones de desenlace), investigación, extracción de datos independiente, validación, revisión y edición del manuscrito. Ambos autores resolvieron las discrepancias de extracción por consenso y aprobaron la versión final.
 
 **Disponibilidad de datos y código.** Todo el material que sostiene esta revisión se deposita en un repositorio público y citable: el corpus de búsqueda con las exportaciones crudas de las nueve fuentes, los registros solo-anexar de decisión de las tres etapas de cribado, los cuadernos de extracción de ambos revisores, los registros de decisión metodológica con sus fechas, y el código completo del canal, que es reejecutable de la búsqueda a las cifras del manuscrito. ‹‹DOI DEL DEPÓSITO — PENDIENTE DE COMPLETAR ANTES DEL ENVÍO››. Los registros de decisión son solo-anexar y conservan cada corrección junto a la fila que sustituyen.
 
@@ -232,7 +232,7 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 Los autores diseñaron la revisión, fijaron los criterios y el vocabulario de exclusión antes de empezar, realizan la extracción de datos por duplicado sin intervención del modelo, y asumen la responsabilidad íntegra por la exactitud e integridad del trabajo. Ninguna herramienta de IA figura como autora, conforme a las recomendaciones del ICMJE.
 
-**Agradecimientos.** [Pendiente.]
+**Agradecimientos.** Los autores agradecen al personal de la biblioteca de la Universidad Católica de Cuenca la gestión de las solicitudes de préstamo interbibliotecario, y a los autores de los estudios que respondieron a las peticiones de texto completo.
 
 ---
 

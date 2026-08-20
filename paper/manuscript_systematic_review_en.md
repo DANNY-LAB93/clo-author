@@ -222,13 +222,13 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 
 **Competing interests.** The authors declare no competing interests.
 
-**Author contributions.** [To be completed under CRediT before submission.]
+**Author contributions (CRediT).** **D. Valdiviezo:** conceptualisation, methodology, investigation (design and execution of the searches across the nine sources), software (screening, grouping and figure-computation pipeline), data curation, data extraction, writing — original draft, visualisation, project administration. **N. Trelles:** methodology (outcome definitions), investigation, independent data extraction, validation, writing — review and editing. Both authors resolved extraction discrepancies by consensus and approved the final version.
 
 **Data and code availability.** All material supporting this review is deposited in a public, citable repository: the search corpus with the raw exports of all nine sources, the append-only decision logs of the three screening stages, both reviewers' extraction workbooks, the methodological decision records with their dates, and the complete pipeline code, which is re-executable from search to the figures in the manuscript. ‹‹DEPOSIT DOI — TO BE COMPLETED BEFORE SUBMISSION››. The decision logs are append-only and preserve every correction alongside the row it supersedes.
 
 **Use of artificial intelligence.** A generative language model (Claude Opus 5, Anthropic) was used in four tasks, and they must be distinguished because they do not commit the work equally. *Issuing judgements that determine the corpus:* the model screened titles and abstracts as **sole reviewer, without independent duplication** --13 917 title decisions and 460 abstract decisions -- and performed the pre-extraction from abstracts. These decisions **were not individually adjudicated by a human reviewer**. Each is logged with its reason, the model and its timestamp, and the logs are supplied in full (S3, S4); the detail and its consequences are in sections 2.4 and 4.4. *Without issuing judgements:* assistance in programming the pipeline and in drafting. *Without any involvement of the model:* the design and execution of the searches, carried out by D.V. querying each interface (section 2.3); the eligibility criteria and the exclusion vocabulary, fixed before screening; and data extraction, performed by the two authors in duplicate. The authors designed the review, fixed the criteria and the exclusion vocabulary before starting, perform data extraction in duplicate without the model, and take full responsibility for the accuracy and integrity of the work. No AI tool is listed as an author, per ICMJE recommendations.
 
-**Acknowledgements.** [To be completed.]
+**Acknowledgements.** The authors thank the library staff of Universidad Católica de Cuenca for handling the interlibrary loan requests, and the authors of the studies who responded to full-text requests.
 
 ---
 
