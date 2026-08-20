@@ -45,14 +45,14 @@
   "estudios_multiinforme": 30,
   "informes_del_estudio_mayor": 11,
   "estudios_extraibles": 124,
-  "texto_completo_obtenido": 88,
-  "texto_completo_no_obtenido": 36,
-  "texto_completo_pct": 71.0,
+  "texto_completo_obtenido": 89,
+  "texto_completo_no_obtenido": 35,
+  "texto_completo_pct": 71.8,
   "disenos": {
     "case report": 49,
     "case series": 19,
-    "RCT": 16,
     "no declarado": 16,
+    "RCT": 16,
     "prospective cohort": 13,
     "non-randomised trial": 7,
     "retrospective cohort": 4
@@ -75,8 +75,8 @@
     "Estados Unidos": 3,
     "Francia": 3,
     "India": 2,
-    "Iran": 2,
-    "Israel": 2
+    "Israel": 2,
+    "España": 2
   },
   "procedencia_no_declarada": 76,
   "procedencia_no_declarada_pct": 61.3,
@@ -126,6 +126,12 @@
     "VET": 834,
     "OFF": 2631
   },
+  "excluidos_titulo_ORG": 3022,
+  "excluidos_titulo_REV": 2803,
+  "excluidos_titulo_SEC": 84,
+  "excluidos_titulo_LAB": 4060,
+  "excluidos_titulo_VET": 834,
+  "excluidos_titulo_OFF": 2631,
   "exclusiones_resumen": {
     "ORG": 65,
     "REV": 64,
@@ -134,8 +140,14 @@
     "OFF": 40,
     "IDI": 35
   },
+  "excluidos_resumen_ORG": 65,
+  "excluidos_resumen_REV": 64,
+  "excluidos_resumen_SEC": 5,
+  "excluidos_resumen_LAB": 18,
+  "excluidos_resumen_OFF": 40,
+  "excluidos_resumen_IDI": 35,
   "palabras_resumen_es": 269,
-  "palabras_cuerpo_es": 3935,
+  "palabras_cuerpo_es": 3941,
   "palabras_resumen_en": 257,
-  "palabras_cuerpo_en": 3643
+  "palabras_cuerpo_en": 3651
 }

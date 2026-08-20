@@ -281,6 +281,13 @@ def main():
                 cod = code_for(r["reason"])
                 c[cod or "SIN CODIGO"] += 1
         S["exclusiones_%s" % etapa] = {k: c[k] for k in CODES if c[k]}
+        # Cada codigo tambien como escalar suelto, para poder anclar la frase
+        # del manuscrito que los enumera. Un diccionario no se puede interpolar
+        # en una afirmacion, y sin anclaje esa frase envejecio sin que nadie lo
+        # viera: seguia imprimiendo el desglose del conjunto sin restringir.
+        for k in CODES:
+            if c[k]:
+                S["excluidos_%s_%s" % (etapa, k)] = c[k]
         # invariante: el desglose suma su total
         total = S.get("excluidos_titulo" if etapa == "titulo" else "excluidos_resumen")
         suma = sum(S["exclusiones_%s" % etapa].values())

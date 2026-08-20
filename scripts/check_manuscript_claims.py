@@ -54,6 +54,10 @@ AFIRMACIONES = [
     # La n aparece en dos leyendas, Tabla 1 y Figura 2. Se declaran las dos
     # apariciones a propósito: si un día solo se actualiza una, esto salta.
     (ES, "recuperable (n = {estudios_extraibles} estudios)", 2),
+    # Los seis motivos de exclusion por titulo. Se anclan porque esta frase
+    # imprimia el desglose del conjunto sin restringir mientras su total salia
+    # del conjunto restringido: sumaban 13 456 bajo un total de 13 434.
+    (ES, "trabajo de laboratorio o preclínico ({excluidos_titulo_LAB}), organismo distinto sin subgrupo separable ({excluidos_titulo_ORG}), revisión o comentario sin datos primarios ({excluidos_titulo_REV}), no evalúa fagoterapia en pacientes ({excluidos_titulo_OFF}), ámbito veterinario ({excluidos_titulo_VET}) y síntesis secundaria ({excluidos_titulo_SEC})"),
     (ES, "resumen {palabras_resumen_es};"),
     (ES, "texto principal {palabras_cuerpo_es}."),
 
