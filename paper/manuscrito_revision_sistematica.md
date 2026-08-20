@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 296; texto principal 4 304.
+**Recuento de palabras:** resumen 296; texto principal 4 359.
 **Tablas:** 4. **Figuras:** 2. **Material suplementario:** 6 archivos.
 
 ---
@@ -71,7 +71,7 @@ El idioma no se dedujo del nombre de la revista, que falla en ambos sentidos: *P
 
 Se interrogaron nueve fuentes en las dos corrientes que PRISMA 2020 exige separar. Como **bases bibliográficas**: PubMed, Scopus en dos brazos (uno con el organismo primero y otro con la intervención primero), Cochrane CENTRAL, BVS con LILACS, CUMED, BINACIS y MedCarib, y SciELO. Como **registros de ensayos**: ClinicalTrials.gov, EudraCT y CTIS. No se restringió el idioma, la fecha ni el tipo de publicación. La última ejecución fue el 10 de agosto de 2026.
 
-Las ecuaciones completas se aportan como suplemento, con la sintaxis literal de cada interfaz, el número de resultados y la fecha en que se corrió. Incluir BVS y SciELO fue una decisión deliberada. La experiencia clínica con fagos publicada en Europa del Este e Iberoamérica está sistemáticamente subrepresentada en PubMed y Scopus, y dejarla fuera habría inclinado la revisión hacia la literatura anglosajona sin decirlo.
+**Las ecuaciones de búsqueda las diseñó y ejecutó D.V.**, autor de esta revisión, interrogando cada interfaz directamente. No las generó ni las ejecutó el modelo de lenguaje cuya intervención se declara en la sección 2.4: qué buscar, en qué fuentes y con qué sintaxis fue una decisión de los autores, tomada antes de cribar y fijada por escrito. Las ecuaciones completas se aportan como suplemento, con la sintaxis literal de cada interfaz, el número de resultados y la fecha en que se corrió, de modo que cualquiera puede repetirlas. Incluir BVS y SciELO fue una decisión deliberada. La experiencia clínica con fagos publicada en Europa del Este e Iberoamérica está sistemáticamente subrepresentada en PubMed y Scopus, y dejarla fuera habría inclinado la revisión hacia la literatura anglosajona sin decirlo.
 
 ### 2.4 Selección de los estudios
 
@@ -221,6 +221,8 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 *Emitiendo juicios que determinan el corpus:* el modelo cribó títulos y resúmenes como **revisor único y sin duplicación independiente** —13 917 decisiones de título y 460 de resumen— y realizó la pre-extracción desde resúmenes. Estas decisiones **no fueron adjudicadas individualmente por un revisor humano**. Están registradas una a una, con su motivo, el modelo y su marca de tiempo, y se aportan íntegras (S3, S4). El detalle y sus consecuencias figuran en las secciones 2.4 y 4.4.
 
 *Sin emitir juicios:* asistencia en la programación del canal y en la redacción de borradores.
+
+*Sin intervención del modelo:* el diseño y la ejecución de las búsquedas, que realizó D.V. interrogando cada interfaz (sección 2.3); la fijación de los criterios de elegibilidad y del vocabulario de exclusión, anteriores al cribado; y la extracción de datos, que realizan los dos autores por duplicado.
 
 Los autores diseñaron la revisión, fijaron los criterios y el vocabulario de exclusión antes de empezar, realizan la extracción de datos por duplicado sin intervención del modelo, y asumen la responsabilidad íntegra por la exactitud e integridad del trabajo. Ninguna herramienta de IA figura como autora, conforme a las recomendaciones del ICMJE.
 

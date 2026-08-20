@@ -44,7 +44,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `comparativos_sin_texto_pct` | 47.8 |
 | `pacientes_declarados_con_texto` | 1028 |
 | `pacientes_declarados_sin_texto` | 503 |
-| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Francia: 3; Estados Unidos: 3; Belgica: 2; Ucrania: 2; España: 2 |
+| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; España: 2; Israel: 2; India: 2 |
 | `procedencia_no_declarada` | 76 |
 | `procedencia_no_declarada_pct` | 61.3 |
 | `anio_min` | 2016 |
@@ -97,6 +97,6 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
 | `palabras_resumen_es` | 296 |
-| `palabras_cuerpo_es` | 4304 |
+| `palabras_cuerpo_es` | 4359 |
 | `palabras_resumen_en` | 284 |
-| `palabras_cuerpo_en` | 3991 |
+| `palabras_cuerpo_en` | 4045 |

@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 284; main text 3 991.
+**Word count:** abstract 284; main text 4 045.
 **Tables:** 4. **Figures:** 2. **Supplementary files:** 6.
 
 ---
@@ -73,7 +73,7 @@ Verification did not stop at metadata. For the studies with a retrieved full tex
 
 Nine sources were searched across the two streams PRISMA 2020 requires to be kept separate. As **bibliographic databases**: PubMed, Scopus in two arms (one organism-first, one intervention-first), Cochrane CENTRAL, BVS including LILACS, CUMED, BINACIS and MedCarib, and SciELO. As **trial registers**: ClinicalTrials.gov, EudraCT and CTIS. No language, date or publication-type restriction was applied. The final run was on 10 August 2026.
 
-Full search strings are supplied as supplementary material, with the literal syntax of each interface, the number of hits and the date each was run. Including BVS and SciELO was a deliberate choice. Clinical experience with phages published in Eastern Europe and Latin America is systematically under-represented in PubMed and Scopus, and leaving it out would have tilted the review towards the anglophone literature without saying so.
+**The search strings were designed and run by D.V.**, an author of this review, querying each interface directly. They were neither generated nor executed by the language model whose involvement is declared in section 2.4: what to search for, in which sources and with what syntax was an author decision, taken before screening and fixed in writing. Full search strings are supplied as supplementary material, with the literal syntax of each interface, the number of hits and the date each was run, so that anyone can repeat them. Including BVS and SciELO was a deliberate choice. Clinical experience with phages published in Eastern Europe and Latin America is systematically under-represented in PubMed and Scopus, and leaving it out would have tilted the review towards the anglophone literature without saying so.
 
 ### 2.4 Study selection
 
@@ -220,7 +220,7 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 
 **Data and code availability.** The screening corpus, the complete decision logs, the extraction form and all pipeline code are available in the project repository. Decision logs are append-only and retain every correction.
 
-**Use of artificial intelligence.** A generative language model (Claude Opus 5, Anthropic) was used in four tasks, and they must be distinguished because they do not commit the work equally. *Issuing judgements that determine the corpus:* the model screened titles and abstracts as **sole reviewer, without independent duplication** --13 917 title decisions and 460 abstract decisions -- and performed the pre-extraction from abstracts. These decisions **were not individually adjudicated by a human reviewer**. Each is logged with its reason, the model and its timestamp, and the logs are supplied in full (S3, S4); the detail and its consequences are in sections 2.4 and 4.4. *Without issuing judgements:* assistance in programming the pipeline and in drafting. The authors designed the review, fixed the criteria and the exclusion vocabulary before starting, perform data extraction in duplicate without the model, and take full responsibility for the accuracy and integrity of the work. No AI tool is listed as an author, per ICMJE recommendations.
+**Use of artificial intelligence.** A generative language model (Claude Opus 5, Anthropic) was used in four tasks, and they must be distinguished because they do not commit the work equally. *Issuing judgements that determine the corpus:* the model screened titles and abstracts as **sole reviewer, without independent duplication** --13 917 title decisions and 460 abstract decisions -- and performed the pre-extraction from abstracts. These decisions **were not individually adjudicated by a human reviewer**. Each is logged with its reason, the model and its timestamp, and the logs are supplied in full (S3, S4); the detail and its consequences are in sections 2.4 and 4.4. *Without issuing judgements:* assistance in programming the pipeline and in drafting. *Without any involvement of the model:* the design and execution of the searches, carried out by D.V. querying each interface (section 2.3); the eligibility criteria and the exclusion vocabulary, fixed before screening; and data extraction, performed by the two authors in duplicate. The authors designed the review, fixed the criteria and the exclusion vocabulary before starting, perform data extraction in duplicate without the model, and take full responsibility for the accuracy and integrity of the work. No AI tool is listed as an author, per ICMJE recommendations.
 
 **Acknowledgements.** [To be completed.]
 

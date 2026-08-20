@@ -172,6 +172,15 @@ def v2_busquedas(S):
     d = doc_nuevo("S2. Estrategias de búsqueda",
                   "Sintaxis literal por fuente, con fecha de ejecución y "
                   "número de resultados. Última ejecución: 10 de agosto de 2026.")
+    # La autoría de la búsqueda se declara aquí y no solo en el manuscrito:
+    # este anexo es el que un revisor abre para comprobar la reproducibilidad,
+    # y es donde la pregunta "¿quién la hizo?" se plantea de forma natural.
+    nota(d, "Estas ecuaciones las diseñó y ejecutó D. Valdiviezo, autor de la "
+            "revisión, interrogando cada interfaz directamente. No las generó ni "
+            "las ejecutó el modelo de lenguaje que sí emitió las decisiones de "
+            "cribado por título y resumen, cuya intervención se declara en la "
+            "sección 2.4 del manuscrito y en la declaración de uso de "
+            "inteligencia artificial.")
     man = json.loads((RS / "busqueda" / "sources.json").read_text(encoding="utf-8"))
     REG = {"ClinicalTrials.gov", "EudraCT", "CTIS"}
     d.add_heading("Corriente 1. Bases bibliográficas", level=2)

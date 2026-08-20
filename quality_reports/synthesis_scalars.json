@@ -72,11 +72,11 @@
     "Polonia": 6,
     "Georgia": 6,
     "Alemania": 4,
-    "Francia": 3,
     "Estados Unidos": 3,
-    "Belgica": 2,
-    "Ucrania": 2,
-    "España": 2
+    "Francia": 3,
+    "España": 2,
+    "Israel": 2,
+    "India": 2
   },
   "procedencia_no_declarada": 76,
   "procedencia_no_declarada_pct": 61.3,
@@ -149,7 +149,7 @@
   "decisiones_titulo": 13917,
   "decisiones_resumen": 460,
   "palabras_resumen_es": 296,
-  "palabras_cuerpo_es": 4304,
+  "palabras_cuerpo_es": 4359,
   "palabras_resumen_en": 284,
-  "palabras_cuerpo_en": 3991
+  "palabras_cuerpo_en": 4045
 }
