@@ -265,13 +265,30 @@ def main():
     # ---- motivos de exclusion, para el diagrama PRISMA ---------------------
     sys.path.insert(0, str(ROOT / "scripts"))
     from exclusion_codes import CODES, code_for
-    for etapa, dec in (("titulo", d2), ("resumen", d3)):
+    # El desglose tiene que contarse sobre EL MISMO conjunto de filas que su
+    # total, o la frase del manuscrito no suma. El total de la etapa de titulo
+    # se calcula sobre `d2_pozo` -- las decisiones que caen dentro del pozo de
+    # la etapa 1 -- mientras que el desglose se contaba sobre `d2` entero, que
+    # incluye 23 decisiones sobre registros de una version anterior del corpus.
+    # Resultado: el manuscrito imprimia seis codigos que sumaban 13 456 bajo un
+    # total de 13 434. Lo detecto un arbitro; ningun comprobador podia verlo,
+    # porque ambas cifras existian como escalares y cada una era correcta en su
+    # propio conjunto.
+    for etapa, dec in (("titulo", d2_pozo), ("resumen", d3)):
         c = collections.Counter()
         for r in dec.values():
             if r["verdict"] in ("EXCLUDE",):
                 cod = code_for(r["reason"])
                 c[cod or "SIN CODIGO"] += 1
         S["exclusiones_%s" % etapa] = {k: c[k] for k in CODES if c[k]}
+        # invariante: el desglose suma su total
+        total = S.get("excluidos_titulo" if etapa == "titulo" else "excluidos_resumen")
+        suma = sum(S["exclusiones_%s" % etapa].values())
+        if total is not None and suma != total:
+            raise SystemExit(
+                "FALLO: el desglose de exclusiones de %s suma %d y su total "
+                "declara %d. No se escriben escalares incoherentes."
+                % (etapa, suma, total))
         if c["SIN CODIGO"]:
             S["exclusiones_%s_sin_codigo" % etapa] = c["SIN CODIGO"]
 

@@ -167,10 +167,21 @@ def main():
             ["", "Con texto completo", "Sin texto completo"], filas,
             "Tabla 3. Comparación entre los estudios con y sin texto completo "
             "obtenido.",
+            # La nota se DERIVA de la tabla. Antes afirmaba que la fracción no
+            # obtenida declaraba más pacientes que la obtenida: cuando el
+            # corpus crecio la direccion se invirtio y la nota siguio diciendo
+            # lo mismo, contradiciendo a la tabla que encabeza. Una nota que
+            # asegura una direccion sin mirarla es una cifra tecleada a mano
+            # disfrazada de prosa.
             "La fracción no obtenida no es una muestra aleatoria: concentra el "
-            "%.1f %% de los estudios comparativos y más pacientes declarados que "
-            "la obtenida. Cualquier síntesis limitada a lo descargable heredaría "
-            "esa asimetría." % S["comparativos_sin_texto_pct"])
+            "%.1f %% de los estudios comparativos (%.1f %% de esa fracción, "
+            "frente al %.1f %% de la obtenida) y declara %s pacientes que la "
+            "obtenida (%d frente a %d). Cualquier síntesis limitada a lo "
+            "descargable heredaría esa asimetría."
+            % (S["comparativos_sin_texto_pct"],
+               100.0 * cs / max(1, len(sin_)),
+               100.0 * cc / max(1, len(con)),
+               "más" if psn > pcn else "menos", psn, pcn))
 
     # ---- Tabla 4: motivos de exclusion -------------------------------------
     filas = []

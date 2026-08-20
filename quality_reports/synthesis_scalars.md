@@ -31,10 +31,10 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `estudios_multiinforme` | 30 |
 | `informes_del_estudio_mayor` | 11 |
 | `estudios_extraibles` | 124 |
-| `texto_completo_obtenido` | 80 |
-| `texto_completo_no_obtenido` | 44 |
-| `texto_completo_pct` | 64.5 |
-| `disenos` | case report: 49; case series: 19; no declarado: 16; RCT: 16; prospective cohort: 13; non-randomised trial: 7; retrospective cohort: 4 |
+| `texto_completo_obtenido` | 88 |
+| `texto_completo_no_obtenido` | 36 |
+| `texto_completo_pct` | 71.0 |
+| `disenos` | case report: 49; case series: 19; RCT: 16; no declarado: 16; prospective cohort: 13; non-randomised trial: 7; retrospective cohort: 4 |
 | `estudios_comparativos` | 23 |
 | `estudios_comparativos_pct` | 18.5 |
 | `ecas` | 16 |
@@ -42,9 +42,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `casos_unicos_pct` | 39.5 |
 | `comparativos_sin_texto` | 11 |
 | `comparativos_sin_texto_pct` | 47.8 |
-| `pacientes_declarados_con_texto` | 974 |
-| `pacientes_declarados_sin_texto` | 557 |
-| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; España: 2; Ucrania: 2; Israel: 2 |
+| `pacientes_declarados_con_texto` | 1028 |
+| `pacientes_declarados_sin_texto` | 503 |
+| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; India: 2; Iran: 2; Israel: 2 |
 | `procedencia_no_declarada` | 76 |
 | `procedencia_no_declarada_pct` | 61.3 |
 | `anio_min` | 2016 |
@@ -80,7 +80,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `texto_completo_verificado` | 67 |
 | `texto_completo_verificado_ingles` | 67 |
 | `excluidos_por_texto_completo` | 2 |
-| `exclusiones_titulo` | ORG: 3031; REV: 2807; SEC: 84; LAB: 4062; VET: 838; OFF: 2634 |
+| `exclusiones_titulo` | ORG: 3022; REV: 2803; SEC: 84; LAB: 4060; VET: 834; OFF: 2631 |
 | `exclusiones_resumen` | ORG: 65; REV: 64; SEC: 5; LAB: 18; OFF: 40; IDI: 35 |
 | `palabras_resumen_es` | 269 |
 | `palabras_cuerpo_es` | 3935 |
