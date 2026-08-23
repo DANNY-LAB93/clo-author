@@ -79,6 +79,17 @@ def cargar(ruta):
     return out
 
 
+def extraidos(D):
+    """Estudios con al menos un campo de datos relleno.
+
+    El formulario se reparte con los identificadores ya escritos, uno por fila.
+    Contar filas mide quien abrio el fichero, no quien extrajo.
+    """
+    campos = list(CATEGORICOS) + NUMERICOS + list(TEXTO)
+    return {k[0] for k, fila in D.items()
+            if any((fila.get(c) or "").strip() for c in campos)}
+
+
 def kappa(pares):
     """Kappa de Cohen. Devuelve (valor|None, motivo si es None)."""
     n = len(pares)
@@ -259,6 +270,40 @@ def main():
             "3. Volcar los valores acordados al dataset de extracción y volver a ejecutar",
             "   este script para dejar constancia de la concordancia previa a la resolución.", ""]
     INFORME.write_text("\n".join(lin), encoding="utf-8")
+
+    # Las mismas cifras, en forma legible por maquina. El manuscrito NO teclea
+    # ningun numero: los toma de synthesis_scalars.json, que lee este fichero.
+    # Un dato de concordancia copiado a mano al manuscrito se queda desfasado en
+    # cuanto se vuelve a correr el comparador, y nadie se entera.
+    import json as _json
+    (ROOT / "quality_reports" / "extraction_agreement.json").write_text(
+        _json.dumps({
+            "filas_comparadas": len(comunes),
+            "conflictos_valor": len(filas_conf),
+            "celdas_sin_pareja": sum(cobertura.values()),
+            "acuerdo_mediano_pct": (sorted(acuerdos)[len(acuerdos) // 2]
+                                    if acuerdos else None),
+            "kappa_mediana": (sorted(kappas)[len(kappas) // 2]
+                              if kappas else None),
+            "kappas_informativas": len(kappas),
+            "categoricos_total": sum(1 for r in resumen if r[1] == "categórico"),
+            "acuerdo_min_pct": min(acuerdos) if acuerdos else None,
+            "acuerdo_max_pct": max(acuerdos) if acuerdos else None,
+            "revisor_a": args.nombre_a, "revisor_b": args.nombre_b,
+            "filas_a": len(A), "filas_b": len(B),
+            # Un estudio cuenta como extraido cuando tiene ALGUN dato. El
+            # formulario llega con los 124 identificadores ya puestos, asi que
+            # contar filas daria 124 para cualquiera que lo hubiera abierto sin
+            # escribir nada.
+            "estudios_a": len(extraidos(A)),
+            "estudios_b": len(extraidos(B)),
+            "estudios_ambos": len(extraidos(A) & extraidos(B)),
+            "estudios_solo_b": len(extraidos(B) - extraidos(A)),
+            # Cuantas estan adjudicadas NO se anota aqui: este script acaba de
+            # reescribir el fichero de conflictos con las tres columnas de
+            # resolucion en blanco, asi que siempre daria cero. El recuento
+            # vivo se lee del CSV, que es donde se firman.
+        }, ensure_ascii=False, indent=1), encoding="utf-8")
 
     print("filas comparadas: %d | conflictos: %d | solo en A: %d | solo en B: %d"
           % (len(comunes), len(filas_conf), len(solo_a), len(solo_b)))

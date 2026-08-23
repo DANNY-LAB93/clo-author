@@ -1,0 +1,19 @@
+{
+ "filas_comparadas": 128,
+ "conflictos_valor": 724,
+ "celdas_sin_pareja": 1064,
+ "acuerdo_mediano_pct": 69.04761904761905,
+ "kappa_mediana": 0.3,
+ "kappas_informativas": 7,
+ "categoricos_total": 9,
+ "acuerdo_min_pct": 38.095238095238095,
+ "acuerdo_max_pct": 95.23809523809524,
+ "revisor_a": "Danny_Valdiviezo",
+ "revisor_b": "Nataly_Trelles",
+ "filas_a": 132,
+ "filas_b": 129,
+ "estudios_a": 124,
+ "estudios_b": 98,
+ "estudios_ambos": 98,
+ "estudios_solo_b": 0
+}

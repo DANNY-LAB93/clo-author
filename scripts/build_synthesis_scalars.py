@@ -356,6 +356,41 @@ def main():
         S["palabras_resumen_%s" % cod] = palabras(resumen)
         S["palabras_cuerpo_%s" % cod] = palabras(cuerpo)
 
+    # ---- concordancia entre las dos extracciones ----------------------------
+    # La segunda revisora se retiro el 2026-08-22 dejando la doble extraccion
+    # sin reconciliar. El manuscrito tiene que declarar cuanto se solapan las
+    # dos y cuanto discrepan, y esas cifras no se teclean: las produce
+    # compare_extractions.py y se leen de aqui.
+    conc = ROOT / "quality_reports" / "extraction_agreement.json"
+    if conc.exists():
+        C = json.loads(conc.read_text(encoding="utf-8"))
+        S["extraccion_estudios_r1"] = C["estudios_a"]
+        S["extraccion_estudios_r2"] = C["estudios_b"]
+        S["extraccion_estudios_ambos"] = C["estudios_ambos"]
+        S["extraccion_estudios_solo_r2"] = C["estudios_solo_b"]
+        S["extraccion_filas_comparadas"] = C["filas_comparadas"]
+        S["extraccion_desacuerdos"] = C["conflictos_valor"]
+        S["extraccion_celdas_sin_pareja"] = C["celdas_sin_pareja"]
+        S["extraccion_acuerdo_mediano_pct"] = round(C["acuerdo_mediano_pct"])
+        S["extraccion_acuerdo_min_pct"] = round(C["acuerdo_min_pct"])
+        S["extraccion_acuerdo_max_pct"] = round(C["acuerdo_max_pct"])
+        S["extraccion_kappa_mediana"] = "%.2f" % C["kappa_mediana"]
+        S["extraccion_kappas_informativas"] = C["kappas_informativas"]
+        S["extraccion_categoricos_total"] = C["categoricos_total"]
+        pct = 100.0 * C["estudios_ambos"] / max(1, C["estudios_a"])
+        S["extraccion_doble_pct"] = "%.0f" % pct
+
+    # Cuantos desacuerdos llegaron a firmarse. Se lee del CSV y no del JSON de
+    # concordancia: el comparador reescribe ese fichero con las columnas de
+    # resolucion en blanco, asi que solo el CSV sabe lo que hay firmado.
+    conf = RS / "extraccion" / "extraction_conflicts.csv"
+    if conf.exists():
+        filas = leer(conf)
+        S["extraccion_conflictos_firmados"] = sum(
+            1 for r in filas if (r.get("resolucion") or "").strip())
+        S["extraccion_conflictos_sin_firmar"] = (
+            len(filas) - S["extraccion_conflictos_firmados"])
+
     # ---- salida -------------------------------------------------------------
     sal = ROOT / "quality_reports" / "synthesis_scalars.json"
     sal.write_text(json.dumps(S, indent=2, ensure_ascii=False) + "\n",
