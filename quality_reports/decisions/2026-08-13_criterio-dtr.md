@@ -90,6 +90,13 @@ construcción y no es todavía una afirmación sobre el reporte del campo. Se
 convertirá en una cuando la extracción por duplicado lea los antibiogramas del
 texto completo.
 
+> **Nota del 23 de agosto de 2026.** Ese paso no va a darse como estaba previsto:
+> no hay extracción por duplicado desde que N. Trelles se retiró el 22 de agosto
+> de 2026. La lectura de antibiogramas contra el texto completo depende ahora de
+> un solo revisor y de los textos que estén en mano, que no son todos. La cifra
+> sigue siendo un límite de la fuente, y así hay que leerla.
+
+
 Los dos únicos casos derivables lo son porque su título o su resumen declaran el
 único agente activo, y los dos están bien derivados:
 

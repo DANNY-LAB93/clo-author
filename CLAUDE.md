@@ -68,7 +68,7 @@ python scripts/build_synthesis_scalars.py
 python scripts/build_manuscript_tables.py
 
 # Compare the two independent extractions -> agreement report + conflicts file
-python scripts/compare_extractions.py --a revision_sistematica/extraccion/recibido/danny.xlsx --b revision_sistematica/extraccion/recibido/nataly.xlsx
+python scripts/compare_extractions.py --a revision_sistematica/extraccion/extraccion_danny_valdiviezo.xlsx --b revision_sistematica/extraccion/extraccion_nataly_trelles.xlsx --nombre-a Danny_Valdiviezo --nombre-b Nataly_Trelles
 
 # Regenerate both extraction workbooks without losing what is already filled in
 python scripts/make_extraction_forms.py
@@ -123,24 +123,33 @@ made them. Reports and decisions go to `quality_reports/`.
 
 ## Current Project State
 
-As of 2026-08-13. Every figure here is produced by the pipeline, not typed:
+As of 2026-08-23. Every figure here is produced by the pipeline, not typed:
 re-derive with `build_synthesis_scalars.py` and check with `check_manuscript_claims.py`.
 
 | Component | File | Status | Description |
 |-----------|------|--------|-------------|
-| Manuscript | `paper/manuscrito_revision_sistematica.md` | drafted | 3,898 words. Missing only CRediT contributions and acknowledgements before submission |
+| Manuscript | `paper/manuscrito_revision_sistematica.md` | drafted | 5122 words of main text. **Over the CMI 3,500 limit** — the overage is the honesty declarations. N.T.'s ICMJE authorship is unresolved |
 | Manuscript PDF | `paper/pdf/` | built | Typeset by `build_manuscript_pdf.py`, 21 citations resolved from the `.bib` |
 | Search & screening | `revision_sistematica/` | done | 23,057 records → 17,129 unique → 233 reports → 184 studies, 124 extractable |
-| Full-text retrieval | `revision_sistematica/textos_completos/` | 67 / 124 (54.0%) | Biased: 13 of the 23 comparative studies are missing. Requests drafted, **not yet sent** |
-| Extraction | `revision_sistematica/extraccion/` | 14 double, 27 touched | Danny 24 studies, Nataly 17. `ya_extraido` in `orden_de_extraccion.csv` is a snapshot and goes stale — count from the workbooks |
+| Full-text retrieval | `revision_sistematica/textos_completos/` | 91 / 124 (73.4%) | Biased: the missing fraction holds 47.8% of the comparative designs. Requests drafted, **not yet sent** |
+| Extraction | `revision_sistematica/extraccion/` | 124 by D.V., 98 also by N.T. | D.V. extracted all 124 retrievable studies, complete on the thirteen core fields. N.T. extracted 98 of them and **withdrew from the project on 2026-08-22**. `ya_extraido` in `orden_de_extraccion.csv` is a snapshot and goes stale — count from the workbooks |
 | Submission package | `verificables revisión sistemática/` | built | S0–S13 + guide + both manuscripts in PDF and `.docx` |
 
-**What blocks the extraction, in order:**
+**Where the extraction actually stands, as of 2026-08-23:**
 
-1. `quality_reports/decisions/2026-08-11_definicion-erradicacion-y-exito.md` is still
-   marked PROPUESTA. Both reviewers must confirm it before extracting further —
-   otherwise the remaining 107 studies inherit the same divergence.
-2. `revision_sistematica/extraccion/extraction_conflicts.csv` holds 169 value
-   conflicts, none resolved. Median agreement 70%, median informative kappa 0.38.
-   Fill `resolucion` / `resuelto_por` / `fecha` — that trail is what licenses the
-   Methods claim that disagreements were settled by consensus.
+1. **There is no second reviewer.** Nataly Trelles withdrew on 2026-08-22. See
+   `quality_reports/decisions/2026-08-23_retirada-segunda-revisora.md`. Nothing
+   in the manuscript may claim duplicate extraction was completed, or that
+   disagreements were settled by consensus. They were not.
+2. `revision_sistematica/extraccion/extraction_conflicts.csv` holds 724 real value
+   conflicts over 128 compared arm rows: median agreement 69%, median informative
+   kappa 0.30 (7 of 9 categorical fields). 2 are adjudicated and signed; 722 are
+   not, and will not be. These figures live in `synthesis_scalars.json` as
+   `extraccion_*` — never retype them.
+3. Do NOT trust an older conflict count. Until 2026-08-23 the comparator scored a
+   cell one reviewer had filled and the other had not as a disagreement, which
+   turned D.V.'s lead into measured discordance: 1,063 of the 1,788 it reported
+   were coverage gaps, not conflicts. Fixed in `ca12d6a`.
+4. `quality_reports/decisions/2026-08-12_erradicacion-regla-corregida.md` is the
+   record still marked PROPUESTA. It cannot be confirmed by both reviewers any
+   more; D.V. extracted all 124 studies under it.

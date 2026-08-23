@@ -3,6 +3,15 @@
 **Fecha:** 2026-08-12
 **Deciden:** Danny Valdiviezo y Nataly Trelles
 **Estado:** PROPUESTA — pendiente de que ambos revisores la confirmen
+
+> **Nota del 23 de agosto de 2026.** Esta regla se emitió como PROPUESTA pendiente
+> de que ambos revisores la confirmaran. Esa confirmación no llegó y ya no puede
+> llegar: N. Trelles se retiró del proyecto el 22 de agosto de 2026. D. Valdiviezo
+> extrajo los 124 estudios aplicándola, de modo que rige de hecho aunque nunca se
+> ratificara por los dos. Se declara así en lugar de cambiarle el estado a
+> APROBADA, que sería afirmar un acuerdo que no existió. Ver
+> `quality_reports/decisions/2026-08-23_retirada-segunda-revisora.md`.
+
 **Sustituye a:** `2026-08-11_definicion-erradicacion-y-exito.md`, que queda como
 antecedente. Las reglas 2 (definición de éxito clínico) y 3 (blanco ≠ NA ≠ 0) de
 aquel documento siguen vigentes tal cual y no se repiten aquí.

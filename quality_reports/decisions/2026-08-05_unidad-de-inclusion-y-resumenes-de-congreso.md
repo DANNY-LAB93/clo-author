@@ -110,6 +110,15 @@ limitación se monta doble extracción con resolución de conflictos documentada
    dejando quién resolvió y cuándo. **La concordancia se informa ANTES de la
    resolución**: la kappa posterior al consenso siempre es 1 y no dice nada.
 
+> **Nota del 23 de agosto de 2026.** Lo que sigue quedó superado por la retirada
+> de la segunda revisora el 22 de agosto de 2026. No hubo reunión de consenso y
+> no la habrá: de los 724 desacuerdos entre las dos extracciones, 2 están
+> firmados y 722 no. Se conserva el texto original porque el registro es
+> solo-anexar y borrar lo que se decidió entonces falsearía la historia de la
+> revisión. Lo que rige ahora está en
+> `quality_reports/decisions/2026-08-23_retirada-segunda-revisora.md`.
+
+
 **Si el segundo revisor solo puede hacer una muestra**, `--muestra N --semilla S`
 genera un subconjunto aleatorio reproducible; se declara el porcentaje verificado
 y la concordancia observada en ese subconjunto.

@@ -63,10 +63,22 @@ def main():
         # (U+00A0) y normal, segun quien tecleara la frase. El comodin los cubre
         # todos; olvidar uno hace que la frase "no aparezca" y el arreglador
         # calle en vez de arreglar.
-        molde = re.escape(esperado)
-        for c in claves:
-            molde = molde.replace(re.escape(formatea(esc[c], ingles)),
-                                  r"[\d\u00a0\u2009\u202f .,]+", 1)
+        # El molde se arma desde la PLANTILLA, partiendo por los huecos, y no
+        # buscando los valores dentro del texto ya escapado.
+        #
+        # Por que importa: el comodin se escribia como r"[\d\u00a0\u2009...]+",
+        # con los escapes literales dentro del patron. Un escalar de UN SOLO
+        # DIGITO \u2014por ejemplo 9\u2014 encontraba su "9" dentro de "\u2009", que forma
+        # parte del comodin ya insertado, y lo partia en "\u200". El patron
+        # quedaba corrupto y `re` fallaba con "incomplete escape". Cualquier
+        # escalar de un digito rompia el sincronizador entero.
+        #
+        # Partiendo la plantilla no se toca ningun valor, y el comodin lleva los
+        # espacios como caracteres de verdad y no como escapes con digitos.
+        comodin = "[\\d\u00a0\u2009\u202f .,]+"
+        partes = re.split(r"\{(\w+)\}", plantilla)
+        molde = "".join(re.escape(p) if i % 2 == 0 else comodin
+                        for i, p in enumerate(partes))
         halladas = [m.group(0) for m in re.finditer(molde, textos[archivo])]
 
         if not halladas:
