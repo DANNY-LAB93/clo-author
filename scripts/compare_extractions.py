@@ -118,14 +118,25 @@ def main():
     comunes = sorted(set(A) & set(B))
     solo_a, solo_b = sorted(set(A) - set(B)), sorted(set(B) - set(A))
 
-    filas_conf, resumen = [], []
+    filas_conf, resumen, cobertura = [], [], collections.Counter()
     for campo in list(CATEGORICOS) + NUMERICOS:
         pares, difs = [], []
         for k in comunes:
             va, vb = normaliza(campo, A[k].get(campo)), normaliza(campo, B[k].get(campo))
-            if va is None and vb is None:
+            # UNA CELDA QUE UN REVISOR NO LLEGÓ A TOCAR NO ES UN DESACUERDO.
+            # Esta funcion ya lo decia de las filas ("es un desacuerdo de
+            # cobertura, no de valor") pero no lo aplicaba a las celdas: si
+            # faltaba UNA de las dos, metia "(vacío)" como si fuera una
+            # categoria mas y la kappa la puntuaba como discrepancia. Con un
+            # revisor mas adelantado que el otro eso convierte su ventaja en
+            # desacuerdo medido, y hunde la kappa sin que nadie haya discrepado
+            # de nada. `normaliza` devuelve None para vacio justamente para
+            # poder distinguir "no contestado" de "contestado NA".
+            if va is None or vb is None:
+                if va is not None or vb is not None:
+                    cobertura[campo] += 1
                 continue
-            pares.append((va or "(vacío)", vb or "(vacío)"))
+            pares.append((va, vb))
             if va != vb:
                 filas_conf.append({
                     "study_id": k[0], "arm_id": k[1], "campo": campo,
@@ -165,7 +176,11 @@ def main():
     for campo in TEXTO:
         for k in comunes:
             va, vb = normaliza(campo, A[k].get(campo)), normaliza(campo, B[k].get(campo))
-            if va != vb and (va or vb):
+            if va is None or vb is None:      # mismo criterio: falta ≠ discrepa
+                if va is not None or vb is not None:
+                    cobertura[campo] += 1
+                continue
+            if va != vb:
                 filas_conf.append({
                     "study_id": k[0], "arm_id": k[1], "campo": campo,
                     "valor_%s" % args.nombre_a.replace(" ", "_"): (A[k].get(campo) or "").strip()[:300],
@@ -212,6 +227,19 @@ def main():
             "|---|---|---:|---:|---:|---|"]
     for c, t, n, ac, pc, extra in resumen:
         lin.append("| `%s` | %s | %d | %d | %s | %s |" % (c, t, n, ac, pc, extra))
+
+    if cobertura:
+        tc = sum(cobertura.values())
+        lin += ["", "## Celdas que solo un revisor llegó a rellenar", "",
+                "Son **%d** celdas. No entran en el acuerdo ni en la kappa, y no son"
+                % tc,
+                "conflictos: nadie ha discrepado de nada, simplemente un revisor iba por",
+                "delante del otro. Contarlas como desacuerdo convertiría la ventaja de un",
+                "revisor en discordancia medida y hundiría la kappa sin que hubiera",
+                "discrepancia alguna.", "",
+                "| variable | celdas sin pareja |", "|---|---:|"]
+        for c, n in cobertura.most_common():
+            lin.append("| `%s` | %d |" % (c, n))
 
     if solo_a or solo_b:
         lin += ["", "## Diferencias de cobertura, no de valor", "",
