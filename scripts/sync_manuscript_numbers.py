@@ -55,7 +55,7 @@ def main():
         veces = entrada[2] if len(entrada) > 2 else 1
         ingles = archivo is EN
         claves = re.findall(r"\{(\w+)\}", plantilla)
-        esperado = plantilla.format(**{c: formatea(esc[c], ingles) for c in claves})
+        esperado = plantilla.format(**{c: formatea(esc[c], ingles, c) for c in claves})
 
         # molde con los números convertidos en comodines
         # El separador de millares del manuscrito no siempre es el mismo

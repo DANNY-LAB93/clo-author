@@ -34,7 +34,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `texto_completo_obtenido` | 91 |
 | `texto_completo_no_obtenido` | 33 |
 | `texto_completo_pct` | 73.4 |
-| `disenos` | case report: 49; case series: 19; no declarado: 16; RCT: 16; prospective cohort: 13; non-randomised trial: 7; retrospective cohort: 4 |
+| `disenos` | case report: 49; case series: 19; RCT: 16; no declarado: 16; prospective cohort: 13; non-randomised trial: 7; retrospective cohort: 4 |
 | `estudios_comparativos` | 23 |
 | `estudios_comparativos_pct` | 18.5 |
 | `ecas` | 16 |
@@ -44,7 +44,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `comparativos_sin_texto_pct` | 47.8 |
 | `pacientes_declarados_con_texto` | 1042 |
 | `pacientes_declarados_sin_texto` | 489 |
-| `procedencia` | no declarada: 76; Rusia: 7; Georgia: 6; Polonia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; India: 2; Iran: 2; Belgica: 2 |
+| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Francia: 3; Estados Unidos: 3; Belgica: 2; España: 2; Iran: 2 |
 | `procedencia_no_declarada` | 76 |
 | `procedencia_no_declarada_pct` | 61.3 |
 | `anio_min` | 2016 |
@@ -100,10 +100,10 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `excluidos_resumen_IDI` | 35 |
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
-| `palabras_resumen_es` | 366 |
-| `palabras_cuerpo_es` | 5122 |
-| `palabras_resumen_en` | 347 |
-| `palabras_cuerpo_en` | 4752 |
+| `palabras_resumen_es` | 314 |
+| `palabras_cuerpo_es` | 4297 |
+| `palabras_resumen_en` | 296 |
+| `palabras_cuerpo_en` | 4038 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 98 |
 | `extraccion_estudios_ambos` | 98 |

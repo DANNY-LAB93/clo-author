@@ -42,34 +42,10 @@ except Exception:
 
 # Frases que deben estar, con el escalar que manda en cada hueco.
 AFIRMACIONES = [
-    # ---- estado de la doble extraccion tras la retirada de la segunda
-    # revisora (2026-08-22). Se anclan TODAS las cifras porque es la parte del
-    # manuscrito que mas facil se queda desfasada: el comparador se vuelve a
-    # correr cada vez que alguien extrae, y estos numeros cambian con el.
-    (ES, "extrajo 98 de esos mismos estudios —el {extraccion_doble_pct} % del corpus"),
-    (ES, "Se midió sobre las {extraccion_filas_comparadas} filas de brazo comparables"),
-    (ES, "Hubo {extraccion_desacuerdos} desacuerdos de valor."),
-    (ES, "El acuerdo mediano fue del {extraccion_acuerdo_mediano_pct} %, con un recorrido del {extraccion_acuerdo_min_pct} % al {extraccion_acuerdo_max_pct} % según la variable, y la kappa mediana de {extraccion_kappa_mediana} sobre los {extraccion_kappas_informativas} campos categóricos de los {extraccion_categoricos_total}"),
-    (ES, "De esos {extraccion_desacuerdos} desacuerdos se adjudicaron y firmaron {extraccion_conflictos_firmados}; los {extraccion_conflictos_sin_firmar} restantes"),
-    (ES, "Las celdas que solo un revisor llegó a rellenar —{extraccion_celdas_sin_pareja}—"),
-    (ES, "tras extraer {extraccion_estudios_r2} de los {extraccion_estudios_r1} estudios"),
-    (ES, "De los {extraccion_desacuerdos} desacuerdos entre las dos extracciones, {extraccion_conflictos_sin_firmar} siguen sin dirimir."),
-    (ES, "acuerdo mediano del {extraccion_acuerdo_mediano_pct} %, kappa mediana de {extraccion_kappa_mediana}"),
-    (ES, "segunda extracción independiente de {extraccion_estudios_r2} de los {extraccion_estudios_r1} estudios"),
-    (ES, "{extraccion_conflictos_sin_firmar} de los {extraccion_desacuerdos} desacuerdos quedaron sin dirimir"),
-    (EN, "extracted 98 of those same studies — {extraccion_doble_pct} % of the corpus"),
-    (EN, "measured over the {extraccion_filas_comparadas} comparable arm rows"),
-    (EN, "There were {extraccion_desacuerdos} value disagreements."),
-    (EN, "Median agreement was {extraccion_acuerdo_mediano_pct} %, ranging from {extraccion_acuerdo_min_pct} % to {extraccion_acuerdo_max_pct} % across variables, and the median kappa was {extraccion_kappa_mediana} over the {extraccion_kappas_informativas} of {extraccion_categoricos_total} categorical fields"),
-    (EN, "Of those {extraccion_desacuerdos} disagreements, {extraccion_conflictos_firmados} were adjudicated and signed; the remaining {extraccion_conflictos_sin_firmar}"),
-    (EN, "only one reviewer had filled in — {extraccion_celdas_sin_pareja} of them"),
-    (EN, "after extracting {extraccion_estudios_r2} of the {extraccion_estudios_r1} studies"),
-    (EN, "Of the {extraccion_desacuerdos} disagreements between the two extractions, {extraccion_conflictos_sin_firmar} remain unresolved."),
-    (EN, "median agreement {extraccion_acuerdo_mediano_pct} %, median kappa {extraccion_kappa_mediana}"),
-    (EN, "independent second extraction of {extraccion_estudios_r2} of the {extraccion_estudios_r1} studies"),
-    (EN, "{extraccion_conflictos_sin_firmar} of the {extraccion_desacuerdos} disagreements were left unresolved"),
+    # ---- periodo del corpus. No hubo filtro de fecha en la busqueda: el
+    # rango es el resultado, no una restriccion, y por eso se ancla.
 
-    (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos."),
+    (ES, "De {registros_identificados} registros, publicados entre {anio_min} y {anio_max}, quedaron {informes_unicos} informes únicos."),
     (ES, "Pasaron a texto completo {informes_a_texto_completo}, agrupados en {estudios} estudios; {estudios_extraibles} de ellos tienen publicación recuperable."),
     (ES, "Se obtuvo el texto completo de {texto_completo_obtenido} estudios ({texto_completo_pct} %)"),
     (ES, "**{texto_completo_obtenido} de los {estudios_extraibles} estudios recuperables ({texto_completo_pct} %)**"),
@@ -87,13 +63,12 @@ AFIRMACIONES = [
     (ES, "trabajo de laboratorio o preclínico ({excluidos_titulo_LAB}), organismo distinto sin subgrupo separable ({excluidos_titulo_ORG}), revisión o comentario sin datos primarios ({excluidos_titulo_REV}), no evalúa fagoterapia en pacientes ({excluidos_titulo_OFF}), ámbito veterinario ({excluidos_titulo_VET}) y síntesis secundaria ({excluidos_titulo_SEC})"),
     # Las decisiones que emitio el modelo. Se anclan porque al escribirlas a
     # mano se colo un recuento que duplicaba las filas de la enmienda.
-    (ES, "{decisiones_titulo} decisiones sobre títulos entre el 4 y el 10 de agosto de 2026 y {decisiones_resumen} sobre resúmenes"),
     (ES, "{decisiones_titulo} decisiones de título y {decisiones_resumen} de resumen"),
     (ES, "no puede asignarse en el **{sin_clase_util_pct} %** de los estudios: el {sin_clase_de_resistencia_pct} % no la menciona en absoluto y un {clase_mencionada_no_clasificable_pct} % adicional"),
     (ES, "resumen {palabras_resumen_es};"),
     (ES, "texto principal {palabras_cuerpo_es}."),
 
-    (EN, "From {registros_identificados} records, {informes_unicos} unique reports remained."),
+    (EN, "From {registros_identificados} records, published between {anio_min} and {anio_max}, {informes_unicos} unique reports remained."),
     (EN, "Full-text assessment covered {informes_a_texto_completo} reports, which grouped into {estudios} studies; {estudios_extraibles} of these have a retrievable publication."),
     (EN, "Full text was obtained for {texto_completo_obtenido} studies ({texto_completo_pct} %)"),
     (EN, "**{texto_completo_obtenido} of the {estudios_extraibles} retrievable studies ({texto_completo_pct} %)**"),
@@ -103,7 +78,7 @@ AFIRMACIONES = [
     (EN, "the remaining fraction concentrates {comparativos_sin_texto_pct} % of the comparative designs"),
     (EN, "It contains {comparativos_sin_texto} of the {estudios_comparativos} comparative studies, **{comparativos_sin_texto_pct} %**"),
     (EN, "base (n = {estudios_extraibles} studies)", 2),
-    (EN, "{decisiones_titulo} title decisions between 4 and 10 August 2026 and {decisiones_resumen} abstract decisions"),
+    (EN, "{decisiones_titulo} title decisions and {decisiones_resumen} abstract decisions"),
     (EN, "{decisiones_titulo} title decisions and {decisiones_resumen} abstract decisions"),
     (EN, "cannot be assigned in **{sin_clase_util_pct} %** of studies: {sin_clase_de_resistencia_pct} % do not mention it at all and a further {clase_mencionada_no_clasificable_pct} %"),
     (EN, "abstract {palabras_resumen_en};"),
@@ -111,11 +86,18 @@ AFIRMACIONES = [
 ]
 
 
-def formatea(valor, ingles):
+SIN_MILLAR = {"anio_min", "anio_max"}
+
+
+def formatea(valor, ingles, clave=None):
     """Como los escribe el manuscrito: miles con espacio, decimal con coma o punto."""
     if isinstance(valor, float):
         s = f"{valor:.1f}"
         return s if ingles else s.replace(".", ",")
+    if clave in SIN_MILLAR:
+        # Un anio no lleva separador de millar: «2 016» no es un anio, es una
+        # cantidad. Agruparlo convierte 2016 en algo que ningun lector reconoce.
+        return str(valor)
     if isinstance(valor, str):
         # Escalares ya formateados en origen, como la kappa ("0.30"), que
         # lleva dos decimales por convencion y no uno. Solo se ajusta el
@@ -141,7 +123,7 @@ def main():
         if faltan:
             fallos.append(f"{archivo.name}: escalar inexistente {faltan} en «{plantilla[:56]}…»")
             continue
-        esperado = plantilla.format(**{c: formatea(esc[c], ingles) for c in claves})
+        esperado = plantilla.format(**{c: formatea(esc[c], ingles, c) for c in claves})
         esperado_n = re.sub(r"[   ]", " ", esperado)
         n = normal[archivo].count(esperado_n)
         if n == veces:
@@ -151,7 +133,7 @@ def main():
             # ¿está la frase con otro número? Se localiza para poder decirlo.
             molde = re.escape(esperado_n)
             for c in claves:
-                molde = molde.replace(re.escape(formatea(esc[c], ingles)),
+                molde = molde.replace(re.escape(formatea(esc[c], ingles, c)),
                                       r"([\d  .,]+)")
             hallado = re.search(molde, normal[archivo])
             detalle = (f" -- el manuscrito dice «{hallado.group(0)[:80]}»"
