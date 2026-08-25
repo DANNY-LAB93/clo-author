@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 296; main text 4 303.
+**Word count:** abstract 305; main text 4 477.
 **Tables:** 4. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
@@ -17,7 +17,7 @@
 
 **Objectives.** To delimit the clinical literature on phage therapy for resistant *P. aeruginosa* reproducibly, and to determine whether its structure and reporting completeness permit a quantitative synthesis of efficacy.
 
-**Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Nine sources were searched, including the regional databases BVS and SciELO, over a publication window of 2016 to 2026. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report. Data extraction was performed by hand, and the characterisation reported here derives from a systematic pre-extraction from the abstracts.
+**Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Eight databases and registers were searched, including the regional databases BVS and SciELO, over a publication window of 2016 to 2026 applied in the sources that admit it. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report. Data extraction was performed by hand, and the characterisation reported here derives from a systematic pre-extraction from the abstracts.
 
 **Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 91 studies (73.4 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
 
@@ -88,9 +88,11 @@ Two things the word «extraction» conflates are worth separating. The **pre-ext
 
 Decision logs are **append-only**. A correction is a new row superseding the previous one, and both remain. This review had to correct one erroneous exclusion, and that correction is auditable only because the original row survived.
 
-### 2.5 Positive-control audit
+### 2.5 Positive-control audit and screening validation
 
 Before screening began, a set of 40 studies known a priori to be eligible was fixed, drawn from an earlier scoping exercise. After each stage we verified that **no study in that set lost all of its reports**. The check operates at study level rather than report level, because excluding an erratum or a duplicate registry entry belonging to an included study is legitimate, whereas losing the study itself is not. The audit passed at all three stages (40 of 40). During one intermediate run it detected a miscalibrated exclusion rule, which was corrected before proceeding.
+
+**Validation over the excluded records.** The positive-control audit bounds false negatives only over studies known in advance, which is the easy part. To bound them over the unknown ones, a random sample of 350 of the 13 661 records excluded at title or abstract (fixed, reproducible seed) was re-screened in Rayyan, blind to the original verdict and without access to the exclusion reason. On the first pass6 records were marked as includable. Checked one by one against the eligibility criteria of section 2.2, all six proved to be laboratory work, modelling work or narrative review without primary data — categories the protocol excludes by design — and were reclassified as correct exclusions. **The erroneous-exclusion rate was 0.0 % (0 of 350; exact 95 % CI, 0.00 to 1.05 %)**, which over the frame of 13 661 admits up to 143 lost records. The result is consistent with none having been lost; it does not prove it. The adjudication of the six, with its date and criterion, is supplied as supplementary material.
 
 ### 2.6 Data extraction
 

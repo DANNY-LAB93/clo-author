@@ -46,6 +46,16 @@ AFIRMACIONES = [
     # Scopus PUBYEAR, CENTRAL). El manuscrito lo decia al reves hasta el
     # 2026-08-23; ahora la ventana se declara en Metodos y en Limitaciones como
     # la restriccion que es, y el rango ya no se presenta como un hallazgo.
+    # ---- validacion del cribado sobre los excluidos. Se ancla entera porque
+    # es la cifra mas facil de citar mal: la tasa y su cota no significan nada
+    # separadas del tamano de muestra ni del marco.
+    (ES, "una muestra aleatoria de {validacion_muestra} de los {validacion_marco} registros excluidos"),
+    (ES, "se marcaron {validacion_primera_pasada_incluidos} registros como incluibles"),
+    (ES, "fue del {validacion_tasa_pct} % ({validacion_falsos_negativos} de {validacion_muestra}; IC 95 % exacto, 0,00 a {validacion_ic_sup_pct} %)**, lo que sobre el marco de {validacion_marco} admite hasta {validacion_cota_estudios} registros perdidos"),
+    (EN, "a random sample of {validacion_muestra} of the {validacion_marco} records excluded"),
+    (EN, "{validacion_primera_pasada_incluidos} records were marked as includable"),
+    (EN, "was {validacion_tasa_pct} % ({validacion_falsos_negativos} of {validacion_muestra}; exact 95 % CI, 0.00 to {validacion_ic_sup_pct} %)**, which over the frame of {validacion_marco} admits up to {validacion_cota_estudios} lost records"),
+
     (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos."),
     (ES, "Pasaron a texto completo {informes_a_texto_completo}, agrupados en {estudios} estudios; {estudios_extraibles} de ellos tienen publicación recuperable."),
     (ES, "Se obtuvo el texto completo de {texto_completo_obtenido} estudios ({texto_completo_pct} %)"),

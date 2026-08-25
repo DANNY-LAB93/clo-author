@@ -1,0 +1,51 @@
+{
+  "fecha": "2026-08-25",
+  "herramienta": "Rayyan (new.rayyan.ai), revisión 2264548, modo ciego activado",
+  "revisor": "D. Valdiviezo",
+  "marco_de_muestreo": 13661,
+  "marco_descripcion": "registros excluidos en el cribado de título o resumen que siguen en el corpus actual de 17 129",
+  "muestra": 350,
+  "semilla": 20260823,
+  "tiempo_registrado_min": 36,
+  "sesiones": 3,
+
+  "primera_pasada": {
+    "incluidos": 6,
+    "tal_vez": 0,
+    "excluidos": 344,
+    "nota": "cribado a ciegas del veredicto original, sin los criterios de elegibilidad a la vista"
+  },
+
+  "adjudicacion": {
+    "fecha": "2026-08-25",
+    "quien": "D. Valdiviezo",
+    "criterio": "sección 2.2 del protocolo: se admite todo diseño con pacientes tratados; se excluyen trabajos de laboratorio, preclínicos y de modelización, y revisiones sin datos primarios propios",
+    "revisados": 6,
+    "reclasificados_a_excluido": 6,
+    "detalle": [
+      "Bacteriophage Ps1.JH ... Diabetic Foot Ulcer Origin — fago aislado de aguas residuales, inhibición in vitro 24 h; sin pacientes",
+      "Isolation and characterization of a bacteriophage ... P. aeruginosa-2995 — aislamiento y caracterización sobre células planctónicas y biopelícula",
+      "Characterization and Comparative Genomic Analyses of Phage PaoP5 — caracterización genómica sobre PAO1",
+      "Phage embedded gelatin, alginate ... hydrogels — formulación tópica, sin pacientes",
+      "Relevance of the bacteriophage mucus adherence model — modelo experimental",
+      "Pseudomonas aeruginosa Bacteriophages and Their Clinical Applications — revisión narrativa sin datos primarios"
+    ]
+  },
+
+  "resultado_final": {
+    "falsos_negativos": 0,
+    "n": 350,
+    "tasa_pct": 0.0,
+    "ic95_inferior_pct": 0.0,
+    "ic95_superior_pct": 1.05,
+    "metodo_ic": "binomial exacto de Clopper-Pearson",
+    "extrapolacion_marco_punto": 0,
+    "extrapolacion_marco_cota_superior": 143
+  },
+
+  "que_NO_demuestra": [
+    "No es una doble revisión: hubo un solo revisor humano recribando lo que el modelo excluyó.",
+    "Acota el falso negativo del cribado de título y resumen, no el de la etapa 1 determinista ni el de la recuperación de texto completo.",
+    "La cota superior del 1,05 % sobre un marco de 13 661 admite hasta 143 registros perdidos; el resultado es compatible con cero, no lo prueba."
+  ]
+}

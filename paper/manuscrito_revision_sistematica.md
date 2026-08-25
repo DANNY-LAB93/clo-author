@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 314; texto principal 4 930.
+**Recuento de palabras:** resumen 323; texto principal 5 114.
 **Tablas:** 4. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
 
 ---
@@ -17,7 +17,7 @@
 
 **Objetivos.** Delimitar de forma reproducible la literatura clínica sobre fagoterapia en *P. aeruginosa* resistente y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
 
-**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron nueve fuentes, incluidas BVS y SciELO, con una ventana de publicación de 2016 a 2026. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe. La extracción se realizó a mano, y la caracterización que aquí se reporta procede de una pre-extracción sistemática desde el resumen.
+**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron ocho bases y registros, incluidos BVS y SciELO, con una ventana de publicación de 2016 a 2026 aplicada en las fuentes que la admiten. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe. La extracción se realizó a mano, y la caracterización que aquí se reporta procede de una pre-extracción sistemática desde el resumen.
 
 **Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni puede asignarse la clase de resistencia en el 80,6 %. Se obtuvo el texto completo de 91 estudios (73,4 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos.
 
@@ -90,9 +90,11 @@ Conviene distinguir dos cosas que el término «extracción» confunde. La **pre
 
 Los registros de decisión son **solo-anexar**. Una corrección es una fila nueva que sustituye a la anterior; ambas permanecen. Esta revisión tuvo que corregir una exclusión errónea, y esa corrección solo es auditable porque la fila original sobrevivió.
 
-### 2.5 Auditoría de control positivo
+### 2.5 Auditoría de control positivo y validación del cribado
 
 Antes de iniciar el cribado se fijó un conjunto de 40 estudios conocidos a priori como elegibles, identificados en una revisión exploratoria previa. Tras cada etapa se comprobó que **ningún estudio de ese conjunto perdiera todos sus informes**. La comprobación se hace a nivel de estudio y no de informe, porque excluir una fe de erratas o una ficha duplicada de un estudio incluido es legítimo, mientras que perder el estudio entero no lo es. La auditoría se superó en las tres etapas (40 de 40). En una ejecución intermedia detectó una regla de exclusión mal calibrada, que se corrigió antes de continuar.
+
+**Validación sobre los registros excluidos.** La auditoría de control positivo acota el falso negativo solo sobre estudios conocidos de antemano, que es la parte fácil. Para acotarlo sobre los desconocidos se extrajo una muestra aleatoria de 350 de los 13 661 registros excluidos por título o resumen (semilla fija, reproducible) y se recribó en Rayyan, en modo ciego respecto del veredicto original y sin acceso al motivo de exclusión. En la primera pasada se marcaron 6 registros como incluibles. Contrastados uno a uno con los criterios de elegibilidad de la sección 2.2, los seis resultaron ser trabajo de laboratorio, de modelización o revisión narrativa sin datos primarios —categorías que el protocolo excluye por diseño— y se reclasificaron como exclusiones correctas. **La tasa de exclusión errónea fue del 0,0 % (0 de 350; IC 95 % exacto, 0,00 a 1,05 %)**, lo que sobre el marco de 13 661 admite hasta 143 registros perdidos. El resultado es compatible con no haber perdido ninguno; no lo demuestra. La adjudicación de los seis, con su fecha y su criterio, se aporta como suplemento.
 
 ### 2.6 Extracción de datos
 

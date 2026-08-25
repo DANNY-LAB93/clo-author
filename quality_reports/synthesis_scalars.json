@@ -51,8 +51,8 @@
   "disenos": {
     "case report": 49,
     "case series": 19,
-    "RCT": 16,
     "no declarado": 16,
+    "RCT": 16,
     "prospective cohort": 13,
     "non-randomised trial": 7,
     "retrospective cohort": 4
@@ -69,14 +69,14 @@
   "procedencia": {
     "no declarada": 76,
     "Rusia": 7,
-    "Georgia": 6,
     "Polonia": 6,
+    "Georgia": 6,
     "Alemania": 4,
-    "Francia": 3,
     "Estados Unidos": 3,
+    "Francia": 3,
     "India": 2,
-    "Ucrania": 2,
-    "España": 2
+    "España": 2,
+    "Ucrania": 2
   },
   "procedencia_no_declarada": 76,
   "procedencia_no_declarada_pct": 61.3,
@@ -152,10 +152,10 @@
   "excluidos_resumen_IDI": 35,
   "decisiones_titulo": 13917,
   "decisiones_resumen": 460,
-  "palabras_resumen_es": 314,
-  "palabras_cuerpo_es": 4930,
-  "palabras_resumen_en": 296,
-  "palabras_cuerpo_en": 4303,
+  "palabras_resumen_es": 323,
+  "palabras_cuerpo_es": 5114,
+  "palabras_resumen_en": 305,
+  "palabras_cuerpo_en": 4477,
   "extraccion_estudios_r1": 124,
   "extraccion_estudios_r2": 98,
   "extraccion_estudios_ambos": 98,
@@ -171,5 +171,12 @@
   "extraccion_categoricos_total": 9,
   "extraccion_doble_pct": "79",
   "extraccion_conflictos_firmados": 2,
-  "extraccion_conflictos_sin_firmar": 722
+  "extraccion_conflictos_sin_firmar": 722,
+  "validacion_marco": 13661,
+  "validacion_muestra": 350,
+  "validacion_falsos_negativos": 0,
+  "validacion_tasa_pct": "0.0",
+  "validacion_ic_sup_pct": "1.05",
+  "validacion_cota_estudios": 143,
+  "validacion_primera_pasada_incluidos": 6
 }

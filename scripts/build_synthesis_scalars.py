@@ -391,6 +391,23 @@ def main():
         S["extraccion_conflictos_sin_firmar"] = (
             len(filas) - S["extraccion_conflictos_firmados"])
 
+    # ---- validacion del cribado por recribado en Rayyan ---------------------
+    # El falso negativo del cribado no estaba medido: lo que el modelo excluyo
+    # no volvia a leerlo nadie, y la auditoria de controles positivos solo lo
+    # acotaba sobre los 40 estudios ya conocidos. Una muestra aleatoria de los
+    # excluidos, recribada a ciegas, lo convierte en una cifra con intervalo.
+    val = ROOT / "revision_sistematica" / "validacion_rayyan" / "resultado.json"
+    if val.exists():
+        V = json.loads(val.read_text(encoding="utf-8"))
+        R = V["resultado_final"]
+        S["validacion_marco"] = V["marco_de_muestreo"]
+        S["validacion_muestra"] = V["muestra"]
+        S["validacion_falsos_negativos"] = R["falsos_negativos"]
+        S["validacion_tasa_pct"] = "%.1f" % R["tasa_pct"]
+        S["validacion_ic_sup_pct"] = "%.2f" % R["ic95_superior_pct"]
+        S["validacion_cota_estudios"] = R["extrapolacion_marco_cota_superior"]
+        S["validacion_primera_pasada_incluidos"] = V["primera_pasada"]["incluidos"]
+
     # ---- salida -------------------------------------------------------------
     sal = ROOT / "quality_reports" / "synthesis_scalars.json"
     sal.write_text(json.dumps(S, indent=2, ensure_ascii=False) + "\n",
