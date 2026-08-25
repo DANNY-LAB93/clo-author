@@ -56,6 +56,10 @@ AFIRMACIONES = [
     (EN, "{validacion_primera_pasada_incluidos} records were marked as includable"),
     (EN, "was {validacion_tasa_pct} % ({validacion_falsos_negativos} of {validacion_muestra}; exact 95 % CI, 0.00 to {validacion_ic_sup_pct} %)**, which over the frame of {validacion_marco} admits up to {validacion_cota_estudios} lost records"),
 
+    # Se ancla porque esta frase se escribio desde un diccionario truncado y
+    # afirmaba 35 donde son 48.
+    (ES, "de los {procedencia_declarada} estudios que declaran procedencia, {procedencia_europa_este} son de Rusia, Polonia, Georgia o Ucrania"),
+
     (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos."),
     (ES, "Pasaron a texto completo {informes_a_texto_completo}, agrupados en {estudios} estudios; {estudios_extraibles} de ellos tienen publicación recuperable."),
     (ES, "Se obtuvo el texto completo de {texto_completo_obtenido} estudios ({texto_completo_pct} %)"),

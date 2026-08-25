@@ -110,10 +110,17 @@ def main():
     # los ocho dejaba fuera a India e Israel, empatados a 2 con Ucrania, que si
     # aparecia: el desempate lo decidia el orden del diccionario y no un
     # criterio, y la tabla no avisaba de que faltaba nada.
-    for k, v in sorted(((k, v) for k, v in S["procedencia"].items()
-                        if k != "no declarada"),
-                       key=lambda x: (-x[1], x[0])):
+    # Los paises con dos o mas estudios, uno por fila; los que aparecen una
+    # sola vez se agrupan y se DICE cuantos son. Listar veinte filas de las que
+    # once valen 1 no informa, y callarse esas once seria truncar otra vez.
+    decl = sorted(((k, v) for k, v in S["procedencia"].items()
+                   if k != "no declarada"), key=lambda x: (-x[1], x[0]))
+    for k, v in [x for x in decl if x[1] >= 2]:
         filas.append([k, v, pc(v)])
+    sueltos = [x for x in decl if x[1] < 2]
+    if sueltos:
+        filas.append(["Otros %d países, un estudio cada uno" % len(sueltos),
+                      len(sueltos), pc(len(sueltos))])
     filas.append(["No declarada en el resumen", S["procedencia_no_declarada"],
                   S["procedencia_no_declarada_pct"]])
     escribe("tabla_1_caracteristicas", ["Característica", "n", "%"], filas,

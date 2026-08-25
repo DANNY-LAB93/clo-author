@@ -170,7 +170,23 @@ def main():
     paises = collections.Counter(
         (pre.get(k, {}).get("geographic_source") or "no declarada")
         for k in extraibles)
-    S["procedencia"] = dict(paises.most_common(10))
+    # TODOS los paises, no los diez primeros. El truncamiento hacia que el
+    # diccionario sumara 111 sobre un corpus de 124, y de ahi salieron dos
+    # errores encadenados: la Tabla 1 perdia paises, y una frase del manuscrito
+    # afirmaba que 35 estudios declaran procedencia cuando son 48 (124 menos los
+    # 76 que no la declaran). Un escalar truncado no avisa de que lo esta.
+    S["procedencia"] = dict(paises.most_common())
+    S["procedencia_declarada"] = sum(v for k, v in paises.items()
+                                     if k != "no declarada")
+    # Europa del Este agrupada: el manuscrito sostiene que el hueco de la
+    # busqueda esta ahi, y la cifra que lo respalda no se teclea.
+    S["procedencia_europa_este"] = sum(
+        paises.get(k, 0) for k in ("Rusia", "Polonia", "Georgia", "Ucrania"))
+    # Invariante: el desglose tiene que sumar el corpus. Si no suma, algo se
+    # esta perdiendo por el camino y es mejor fallar que publicar la diferencia.
+    if sum(paises.values()) != len(extraibles):
+        raise SystemExit("procedencia suma %d y el corpus es %d"
+                         % (sum(paises.values()), len(extraibles)))
     S["procedencia_no_declarada"] = paises.get("no declarada", 0)
     S["procedencia_no_declarada_pct"] = round(
         100.0 * paises.get("no declarada", 0) / len(extraibles), 1)

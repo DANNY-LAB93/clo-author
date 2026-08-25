@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 323; texto principal 5 114.
+**Recuento de palabras:** resumen 323; texto principal 5 204.
 **Tablas:** 4. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
 
 ---
@@ -37,7 +37,7 @@ Esa forma de crecer tiene consecuencias que no se disuelven añadiendo casos. Un
 
 Pese a ello, las síntesis publicadas han tendido a agregar esta literatura en proporciones globales de éxito clínico [@Uyttebroek2022_lancetid; @Liu2025_ijaa]. Hacerlo exige dar por buenas tres cosas que rara vez se comprueban. La primera, que la categoría de resistencia con la que se estratifica resiste el contraste con los criterios que dice aplicar. La segunda, que el desenlace agregado nombra lo mismo en todos los estudios. La tercera, que la intervención es bastante homogénea para que una proporción común signifique algo.
 
-Hay entonces una pregunta previa a cualquier estimación, y es la que aborda esta revisión: ¿tiene este cuerpo de evidencia la estructura y la completitud de reporte que una síntesis cuantitativa requiere? Responderla obliga a delimitarlo antes por completo, incluidas la literatura regional y los registros de ensayos que las revisiones previas han cubierto de forma desigual, y a caracterizar después lo que ese conjunto declara y lo que calla.
+Hay entonces una pregunta previa a cualquier estimación, y es la que aborda esta revisión: ¿tiene este cuerpo de evidencia la estructura y la verificabilidad —entendida como la posibilidad de comprobar, con lo publicado, si un estudio es recuperable como informe, de qué población trata y qué desenlace midió— que una síntesis cuantitativa requiere? Responderla obliga a delimitarlo antes por completo, incluidas la literatura regional y los registros de ensayos que las revisiones previas han cubierto de forma desigual, y a caracterizar después lo que ese conjunto declara y lo que calla.
 
 ---
 
@@ -74,7 +74,7 @@ Se interrogaron **ocho bases de datos y registros** en las dos corrientes que PR
 
 **Embase no se interrogó**, por no estar disponible en la suscripción institucional. Es la ausencia material de esta búsqueda. Queda mitigada solo en parte, y solo para ensayos controlados, porque CENTRAL indexa registros de Embase; no lo está para series de casos ni para resúmenes de congreso, que es donde se concentra buena parte de la experiencia clínica con fagos. Tampoco se interrogó el ICTRP de la OMS, el meta-registro que agrega los registros nacionales: la corriente de registros de este trabajo cubre Estados Unidos y la Unión Europea y no alcanza a los registros de Europa del Este. Ambas ausencias se recogen en las limitaciones.
 
-**Las ecuaciones de búsqueda las diseñó y ejecutó D.V.**, autor de esta revisión, interrogando cada interfaz directamente. No las generó ni las ejecutó el modelo de lenguaje cuya intervención se declara en la sección 2.4: qué buscar, en qué fuentes y con qué sintaxis fue una decisión de los autores, tomada antes de cribar y fijada por escrito. Las ecuaciones completas se aportan como suplemento, con la sintaxis literal de cada interfaz, el número de resultados y la fecha en que se corrió, de modo que cualquiera puede repetirlas. Incluir BVS y SciELO fue una decisión deliberada, tomada para no inclinar la revisión hacia la literatura anglosajona sin decirlo. **Conviene reportar que rindió poco.** Entre las dos aportaron 2 de los 233 informes que llegaron a texto completo, y el corpus final no contiene ni un estudio de procedencia iberoamericana. La razón es que esas dos fuentes cubren Iberoamérica, y el desequilibrio que este cuerpo de evidencia presenta no está ahí: de los 35 estudios que declaran procedencia, 21 son de Rusia, Polonia, Georgia o Ucrania. La literatura que falta es la de Europa del Este, y ninguna de las fuentes interrogadas la indexa de forma sistemática. Es un hueco real de esta búsqueda, no una propiedad del campo.
+**Las ecuaciones de búsqueda las diseñó y ejecutó D.V.**, autor de esta revisión, interrogando cada interfaz directamente. No las generó ni las ejecutó el modelo de lenguaje cuya intervención se declara en la sección 2.4: qué buscar, en qué fuentes y con qué sintaxis fue una decisión de los autores, tomada antes de cribar y fijada por escrito. Las ecuaciones completas se aportan como suplemento, con la sintaxis literal de cada interfaz, el número de resultados y la fecha en que se corrió, de modo que cualquiera puede repetirlas. Incluir BVS y SciELO fue una decisión deliberada, tomada para no inclinar la revisión hacia la literatura anglosajona sin decirlo. **Conviene reportar que rindió poco.** Entre las dos aportaron 2 de los 233 informes que llegaron a texto completo, y el corpus final no contiene ningún estudio de procedencia latinoamericana; los dos de España habrían llegado igualmente por PubMed o Scopus. La razón es que esas dos fuentes cubren Iberoamérica, y el desequilibrio que este cuerpo de evidencia presenta no está ahí: de los 48 estudios que declaran procedencia, 21 son de Rusia, Polonia, Georgia o Ucrania. La literatura que falta es la de Europa del Este, y ninguna de las fuentes interrogadas la indexa de forma sistemática. Es un hueco real de esta búsqueda, no una propiedad del campo.
 
 ### 2.4 Selección de los estudios
 
@@ -102,7 +102,7 @@ El formulario de extracción, con 31 variables y vocabularios controlados, se pi
 
 Un revisor extrajo los 124 estudios con publicación recuperable; un segundo revisor extrajo de forma independiente 98 de ellos.
 
-Los datos que se reportan proceden de una pre-extracción sistemática desde el resumen de los 124 estudios, realizada con el mismo esquema de variables y marcada como parcial en cada registro. Este informe no presenta estimaciones de eficacia: caracteriza la estructura del cuerpo de evidencia y su completitud de reporte.
+Los datos que se reportan proceden de una pre-extracción sistemática desde el resumen de los 124 estudios, realizada con el mismo esquema de variables y marcada como parcial en cada registro. Este informe no presenta estimaciones de eficacia: caracteriza la estructura del cuerpo de evidencia y su **verificabilidad**, que aquí tiene dos componentes medidos. La **recuperabilidad** del informe —si el estudio existe como publicación localizable y si su texto completo se obtiene— se reporta en las secciones 3.1 y 3.2. La **completitud de reporte** —si lo publicado permite asignar la clase de resistencia, situar los casos y saber qué desenlace se midió— se reporta en la sección 3.4.
 
 ### 2.7 Riesgo de sesgo y certeza
 

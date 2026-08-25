@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 305; main text 4 477.
+**Word count:** abstract 305; main text 4 569.
 **Tables:** 4. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
@@ -37,7 +37,7 @@ That growth pattern carries consequences that adding more cases does not dissolv
 
 Published syntheses have nonetheless tended to pool this literature into overall clinical success proportions [@Uyttebroek2022_lancetid; @Liu2025_ijaa]. That step requires taking three things on trust that are rarely checked. First, that the resistance category used for stratification survives comparison with the criteria it claims to apply. Second, that the pooled outcome names the same thing across studies. Third, that the intervention is homogeneous enough for a common proportion to mean anything.
 
-A prior question therefore precedes any estimate, and it is the one this review addresses: does this evidence base have the structure and reporting completeness that a quantitative synthesis requires? Answering it requires first delimiting the literature completely, including the regional literature and the trial registers that previous reviews have covered unevenly, and then characterising what that body of work states and what it leaves unsaid.
+A prior question therefore precedes any estimate, and it is the one this review addresses: does this evidence base have the structure and the verifiability — the possibility of establishing, from what is published, whether a study is retrievable as a report, what population it concerns and what outcome it measured — that a quantitative synthesis requires? Answering it requires first delimiting the literature completely, including the regional literature and the trial registers that previous reviews have covered unevenly, and then characterising what that body of work states and what it leaves unsaid.
 
 ---
 
@@ -102,7 +102,7 @@ The extraction form, with 31 variables and controlled vocabularies, was piloted 
 
 One reviewer extracted all 124 studies with a retrievable publication; a second reviewer independently extracted 98 of them.
 
-The data reported here derive from a systematic pre-extraction from the abstracts of the 124 studies, performed with the same variable schema and flagged as partial in every record. This report presents no efficacy estimates: it characterises the structure of the evidence base and its reporting completeness.
+The data reported here derive from a systematic pre-extraction from the abstracts of the 124 studies, performed with the same variable schema and flagged as partial in every record. This report presents no efficacy estimates: it characterises the structure of the evidence base and its **verifiability**, which here has two measured components. **Retrievability** of the report — whether the study exists as a locatable publication and whether its full text is obtained — is reported in sections 3.1 and 3.2. **Reporting completeness** — whether what is published allows the resistance class to be assigned, the cases to be located and the measured outcome to be known — is reported in section 3.4.
 
 ### 2.7 Risk of bias and certainty
 

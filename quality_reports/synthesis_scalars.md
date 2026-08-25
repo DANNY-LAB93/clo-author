@@ -44,7 +44,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `comparativos_sin_texto_pct` | 47.8 |
 | `pacientes_declarados_con_texto` | 1042 |
 | `pacientes_declarados_sin_texto` | 489 |
-| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; India: 2; España: 2; Ucrania: 2 |
+| `procedencia` | no declarada: 76; Rusia: 7; Polonia: 6; Georgia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Belgica: 2; Ucrania: 2; Israel: 2; Iran: 2; España: 2; India: 2; Australia: 1; Japon: 1; Italia: 1; China: 1; Francia y Belgica: 1; multicentrico (internacional): 1; Reino Unido: 1 |
+| `procedencia_declarada` | 48 |
+| `procedencia_europa_este` | 21 |
 | `procedencia_no_declarada` | 76 |
 | `procedencia_no_declarada_pct` | 61.3 |
 | `anio_min` | 2016 |
@@ -101,9 +103,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
 | `palabras_resumen_es` | 323 |
-| `palabras_cuerpo_es` | 5114 |
+| `palabras_cuerpo_es` | 5204 |
 | `palabras_resumen_en` | 305 |
-| `palabras_cuerpo_en` | 4477 |
+| `palabras_cuerpo_en` | 4569 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 98 |
 | `extraccion_estudios_ambos` | 98 |
