@@ -50,10 +50,10 @@ AFIRMACIONES = [
     # es la cifra mas facil de citar mal: la tasa y su cota no significan nada
     # separadas del tamano de muestra ni del marco.
     (ES, "una muestra aleatoria de {validacion_muestra} de los {validacion_marco} registros excluidos"),
-    (ES, "se marcaron {validacion_primera_pasada_incluidos} registros como incluibles"),
+    (ES, "Los {validacion_primera_pasada_incluidos} registros marcados como incluibles en la primera pasada"),
     (ES, "fue del {validacion_tasa_pct} % ({validacion_falsos_negativos} de {validacion_muestra}; IC 95 % exacto, 0,00 a {validacion_ic_sup_pct} %)**, lo que sobre el marco de {validacion_marco} admite hasta {validacion_cota_estudios} registros perdidos"),
     (EN, "a random sample of {validacion_muestra} of the {validacion_marco} records excluded"),
-    (EN, "{validacion_primera_pasada_incluidos} records were marked as includable"),
+    (EN, "The {validacion_primera_pasada_incluidos} records marked as includable on the first pass"),
     (EN, "was {validacion_tasa_pct} % ({validacion_falsos_negativos} of {validacion_muestra}; exact 95 % CI, 0.00 to {validacion_ic_sup_pct} %)**, which over the frame of {validacion_marco} admits up to {validacion_cota_estudios} lost records"),
 
     # Se ancla porque esta frase se escribio desde un diccionario truncado y
@@ -126,13 +126,39 @@ def formatea(valor, ingles, clave=None):
     return s
 
 
+SECCIONES = {
+    "es": ["## Resumen", "## 1. Introducción", "## 2. Métodos", "## 3. Resultados",
+           "## 4. Discusión", "## 5. Conclusiones", "## Declaraciones"],
+    "en": ["## Abstract", "## 1. Introduction", "## 2. Methods", "## 3. Results",
+           "## 4. Discussion", "## 5. Conclusions", "## Declarations"],
+}
+
+
+def comprueba_secciones(textos):
+    """Falla si un manuscrito ha perdido una seccion de primer nivel.
+
+    Existe porque un reemplazo anclado en una frase que aparecia dos veces se
+    llevo por delante el resumen a medias, la introduccion entera y dos
+    subsecciones de metodos del manuscrito ingles, y NADA aviso: las cifras
+    seguian cuadrando, porque las cifras que quedaban eran correctas. Un
+    comprobador que solo mira numeros no ve un agujero.
+    """
+    fallos = []
+    for arch, txt in textos.items():
+        cod = "en" if arch is EN else "es"
+        for s in SECCIONES[cod]:
+            if s not in txt:
+                fallos.append("%s: falta la sección «%s»" % (arch.name, s))
+    return fallos
+
+
 def main():
     esc = json.load(open(ESCALARES, encoding="utf-8"))
     textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8")}
     # el manuscrito usa espacio normal o fino indistintamente; se normaliza
     normal = {k: re.sub(r"[   ]", " ", v) for k, v in textos.items()}
 
-    fallos, ok = [], 0
+    fallos, ok = comprueba_secciones(textos), 0
     for entrada in AFIRMACIONES:
         archivo, plantilla = entrada[0], entrada[1]
         veces = entrada[2] if len(entrada) > 2 else 1
