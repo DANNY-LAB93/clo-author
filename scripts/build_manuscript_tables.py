@@ -106,9 +106,14 @@ def main():
                S["estudios_comparativos_pct"]],
               ["", "", ""],
               ["**Procedencia declarada**", "", ""]]
-    for k, v in list(S["procedencia"].items())[:8]:
-        if k != "no declarada":
-            filas.append([k, v, pc(v)])
+    # Se listan TODOS los paises declarados, no los ocho primeros. Cortar por
+    # los ocho dejaba fuera a India e Israel, empatados a 2 con Ucrania, que si
+    # aparecia: el desempate lo decidia el orden del diccionario y no un
+    # criterio, y la tabla no avisaba de que faltaba nada.
+    for k, v in sorted(((k, v) for k, v in S["procedencia"].items()
+                        if k != "no declarada"),
+                       key=lambda x: (-x[1], x[0])):
+        filas.append([k, v, pc(v)])
     filas.append(["No declarada en el resumen", S["procedencia_no_declarada"],
                   S["procedencia_no_declarada_pct"]])
     escribe("tabla_1_caracteristicas", ["Característica", "n", "%"], filas,

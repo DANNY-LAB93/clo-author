@@ -42,10 +42,11 @@ except Exception:
 
 # Frases que deben estar, con el escalar que manda en cada hueco.
 AFIRMACIONES = [
-    # ---- periodo del corpus. No hubo filtro de fecha en la busqueda: el
-    # rango es el resultado, no una restriccion, y por eso se ancla.
-
-    (ES, "De {registros_identificados} registros, publicados entre {anio_min} y {anio_max}, quedaron {informes_unicos} informes únicos."),
+    # ---- La busqueda SI llevo ventana 2016-2026 (PubMed "2016"[dp]:"2026"[dp],
+    # Scopus PUBYEAR, CENTRAL). El manuscrito lo decia al reves hasta el
+    # 2026-08-23; ahora la ventana se declara en Metodos y en Limitaciones como
+    # la restriccion que es, y el rango ya no se presenta como un hallazgo.
+    (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos."),
     (ES, "Pasaron a texto completo {informes_a_texto_completo}, agrupados en {estudios} estudios; {estudios_extraibles} de ellos tienen publicación recuperable."),
     (ES, "Se obtuvo el texto completo de {texto_completo_obtenido} estudios ({texto_completo_pct} %)"),
     (ES, "**{texto_completo_obtenido} de los {estudios_extraibles} estudios recuperables ({texto_completo_pct} %)**"),
@@ -61,6 +62,11 @@ AFIRMACIONES = [
     # imprimia el desglose del conjunto sin restringir mientras su total salia
     # del conjunto restringido: sumaban 13 456 bajo un total de 13 434.
     (ES, "trabajo de laboratorio o preclínico ({excluidos_titulo_LAB}), organismo distinto sin subgrupo separable ({excluidos_titulo_ORG}), revisión o comentario sin datos primarios ({excluidos_titulo_REV}), no evalúa fagoterapia en pacientes ({excluidos_titulo_OFF}), ámbito veterinario ({excluidos_titulo_VET}) y síntesis secundaria ({excluidos_titulo_SEC})"),
+    # El mismo desglose en ingles. NO estaba anclado, y por eso derivo:
+    # sumaba 13 456 bajo un total de 13 434, con cinco de las seis cifras
+    # equivocadas. Una frase sin ancla en un solo idioma se desincroniza
+    # en silencio.
+    (EN, "laboratory or preclinical work ({excluidos_titulo_LAB}), other organism without a separable subgroup ({excluidos_titulo_ORG}), review or commentary without primary data ({excluidos_titulo_REV}), does not evaluate phage therapy in patients ({excluidos_titulo_OFF}), veterinary scope ({excluidos_titulo_VET}) and secondary synthesis ({excluidos_titulo_SEC})"),
     # Las decisiones que emitio el modelo. Se anclan porque al escribirlas a
     # mano se colo un recuento que duplicaba las filas de la enmienda.
     (ES, "{decisiones_titulo} decisiones de título y {decisiones_resumen} de resumen"),
@@ -68,7 +74,7 @@ AFIRMACIONES = [
     (ES, "resumen {palabras_resumen_es};"),
     (ES, "texto principal {palabras_cuerpo_es}."),
 
-    (EN, "From {registros_identificados} records, published between {anio_min} and {anio_max}, {informes_unicos} unique reports remained."),
+    (EN, "From {registros_identificados} records, {informes_unicos} unique reports remained."),
     (EN, "Full-text assessment covered {informes_a_texto_completo} reports, which grouped into {estudios} studies; {estudios_extraibles} of these have a retrievable publication."),
     (EN, "Full text was obtained for {texto_completo_obtenido} studies ({texto_completo_pct} %)"),
     (EN, "**{texto_completo_obtenido} of the {estudios_extraibles} retrievable studies ({texto_completo_pct} %)**"),
@@ -78,7 +84,6 @@ AFIRMACIONES = [
     (EN, "the remaining fraction concentrates {comparativos_sin_texto_pct} % of the comparative designs"),
     (EN, "It contains {comparativos_sin_texto} of the {estudios_comparativos} comparative studies, **{comparativos_sin_texto_pct} %**"),
     (EN, "base (n = {estudios_extraibles} studies)", 2),
-    (EN, "{decisiones_titulo} title decisions and {decisiones_resumen} abstract decisions"),
     (EN, "{decisiones_titulo} title decisions and {decisiones_resumen} abstract decisions"),
     (EN, "cannot be assigned in **{sin_clase_util_pct} %** of studies: {sin_clase_de_resistencia_pct} % do not mention it at all and a further {clase_mencionada_no_clasificable_pct} %"),
     (EN, "abstract {palabras_resumen_en};"),

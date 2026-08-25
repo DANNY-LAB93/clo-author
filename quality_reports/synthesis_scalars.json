@@ -51,8 +51,8 @@
   "disenos": {
     "case report": 49,
     "case series": 19,
-    "RCT": 16,
     "no declarado": 16,
+    "RCT": 16,
     "prospective cohort": 13,
     "non-randomised trial": 7,
     "retrospective cohort": 4
@@ -74,9 +74,9 @@
     "Alemania": 4,
     "Francia": 3,
     "Estados Unidos": 3,
-    "Belgica": 2,
-    "España": 2,
-    "Iran": 2
+    "India": 2,
+    "Ucrania": 2,
+    "Israel": 2
   },
   "procedencia_no_declarada": 76,
   "procedencia_no_declarada_pct": 61.3,
@@ -153,9 +153,9 @@
   "decisiones_titulo": 13917,
   "decisiones_resumen": 460,
   "palabras_resumen_es": 314,
-  "palabras_cuerpo_es": 4297,
+  "palabras_cuerpo_es": 4574,
   "palabras_resumen_en": 296,
-  "palabras_cuerpo_en": 4038,
+  "palabras_cuerpo_en": 4303,
   "extraccion_estudios_r1": 124,
   "extraccion_estudios_r2": 98,
   "extraccion_estudios_ambos": 98,
