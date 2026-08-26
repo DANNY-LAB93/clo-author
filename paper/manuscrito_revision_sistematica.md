@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 323; texto principal 4 724.
+**Recuento de palabras:** resumen 323; texto principal 4 811.
 **Tablas:** 4. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
 
 ---
@@ -96,9 +96,7 @@ Antes de iniciar el cribado se fijó un conjunto de 40 estudios conocidos a prio
 
 ### 2.6 Extracción de datos
 
-El formulario de extracción, con 31 variables y vocabularios controlados, se piloteó sobre cinco estudios antes de su uso. La extracción estaba prevista por duplicado e independiente entre los dos revisores, con resolución de discrepancias por consenso y cálculo de la concordancia variable a variable.
-
-Un revisor extrajo los 124 estudios con publicación recuperable; un segundo revisor extrajo de forma independiente 98 de ellos.
+El formulario de extracción, con 31 variables y vocabularios controlados, se piloteó sobre cinco estudios antes de su uso. La extracción se hizo **por duplicado e independiente** entre los dos revisores. Un revisor extrajo los 124 estudios con publicación recuperable y el segundo extrajo 122 de ellos, de modo que el 98 % del corpus tiene doble extracción. Sobre las 130 filas de brazo comparables se registraron 575 desacuerdos de valor; la concordancia, medida antes de resolverlos, fue del 78 % de acuerdo mediano y una kappa de Cohen mediana de 0,57 sobre los 8 de 9 campos categóricos en que resulta informativa, con un recorrido del 55 % al 100 % según la variable. Las discrepancias se resuelven por consenso entre los dos revisores, con registro de quién resolvió y cuándo; en el momento de este informe hay 2 de 575 adjudicadas y el registro completo se aporta como suplemento.
 
 Los datos que se reportan proceden de una pre-extracción sistemática desde el resumen de los 124 estudios, realizada con el mismo esquema de variables y marcada como parcial en cada registro. Este informe no presenta estimaciones de eficacia: caracteriza la estructura del cuerpo de evidencia y su **verificabilidad**, con dos componentes medidos —la recuperabilidad del informe (secciones 3.1 y 3.2) y la completitud de reporte (sección 3.4)—.
 
@@ -223,7 +221,7 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 **Conflictos de interés.** Los autores declaran no tener conflictos de interés.
 
-**Contribución de los autores (CRediT).** **D. Valdiviezo:** conceptualización, metodología, investigación (diseño y ejecución de las búsquedas en las nueve fuentes), software (canal de cribado, agrupación y cálculo de cifras), curación de datos, extracción de datos, redacción del borrador original, visualización, administración del proyecto. **N. Trelles:** metodología (definiciones de desenlace), investigación, extracción de datos independiente.
+**Contribución de los autores (CRediT).** **D. Valdiviezo:** conceptualización, metodología, investigación (diseño y ejecución de las búsquedas en las nueve fuentes), software (canal de cribado, agrupación y cálculo de cifras), curación de datos, extracción de datos, redacción del borrador original, visualización, administración del proyecto. **N. Trelles:** metodología (definiciones de desenlace), investigación, extracción de datos independiente (122 de los 124 estudios), validación, revisión y edición del manuscrito.
 
 **Disponibilidad de datos y código.** Todo el material que sostiene esta revisión se deposita en un repositorio público y citable: el corpus de búsqueda con las exportaciones crudas de las nueve fuentes, los registros solo-anexar de decisión de las tres etapas de cribado, los cuadernos de extracción de ambos revisores, los registros de decisión metodológica con sus fechas, y el código completo del canal, que es reejecutable de la búsqueda a las cifras del manuscrito. ‹‹DOI DEL DEPÓSITO — PENDIENTE DE COMPLETAR ANTES DEL ENVÍO››. Los registros de decisión son solo-anexar y conservan cada corrección junto a la fila que sustituyen.
 

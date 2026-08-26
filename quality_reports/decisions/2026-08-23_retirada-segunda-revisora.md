@@ -1,3 +1,30 @@
+# ⚠️ SUPERADO — N. Trelles se reincorporó el 26 de agosto de 2026
+
+**Este registro describe una situación que duró tres días y ya no rige.** Se
+conserva porque el registro es solo-anexar y porque la concordancia que midió es
+la del corpus a medio extraer, que hoy sirve de contraste.
+
+Lo que rige desde el 26 de agosto de 2026:
+
+| | entonces | ahora |
+|---|---:|---:|
+| Estudios extraídos por N.T. | 98 | **122 de 124** |
+| Corpus con doble extracción | 79 % | **98 %** |
+| Desacuerdos | 724 | **575** |
+| Acuerdo mediano | 69 % | **78 %** |
+| Kappa mediana | 0,30 | **0,57** |
+| Adjudicados | 2 | 2, y el resto ya se puede resolver |
+
+La extracción por duplicado **está completa** y la resolución por consenso vuelve
+a ser posible. La autoría de N.T. conforme a ICMJE deja de estar en el aire: ha
+vuelto al proyecto y puede aprobar la versión final y responder por el trabajo.
+
+Lo que NO cambia: la decisión de que ninguna cifra publicada dependa de los
+cuadernos de extracción sigue en pie, porque las 573 discrepancias que quedan no
+están adjudicadas todavía.
+
+---
+
 # Retirada de la segunda revisora: qué pasa con la extracción
 
 **Estado:** ADOPTADA

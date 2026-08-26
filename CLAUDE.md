@@ -123,33 +123,36 @@ made them. Reports and decisions go to `quality_reports/`.
 
 ## Current Project State
 
-As of 2026-08-23. Every figure here is produced by the pipeline, not typed:
+As of 2026-08-26. Every figure here is produced by the pipeline, not typed:
 re-derive with `build_synthesis_scalars.py` and check with `check_manuscript_claims.py`.
 
 | Component | File | Status | Description |
 |-----------|------|--------|-------------|
-| Manuscript | `paper/manuscrito_revision_sistematica.md` | drafted | 5122 words of main text. **Over the CMI 3,500 limit** — the overage is the honesty declarations. N.T.'s ICMJE authorship is unresolved |
+| Manuscript | `paper/manuscrito_revision_sistematica.md` | drafted | 4811 words of main text. Fits JSR; over the CMI 3,500 limit. N.T. is back, so her ICMJE authorship is no longer blocked |
 | Manuscript PDF | `paper/pdf/` | built | Typeset by `build_manuscript_pdf.py`, 21 citations resolved from the `.bib` |
 | Search & screening | `revision_sistematica/` | done | 23,057 records → 17,129 unique → 233 reports → 184 studies, 124 extractable |
 | Full-text retrieval | `revision_sistematica/textos_completos/` | 91 / 124 (73.4%) | Biased: the missing fraction holds 47.8% of the comparative designs. Requests drafted, **not yet sent** |
-| Extraction | `revision_sistematica/extraccion/` | 124 by D.V., 98 also by N.T. | D.V. extracted all 124 retrievable studies, complete on the thirteen core fields. N.T. extracted 98 of them and **withdrew from the project on 2026-08-22**. `ya_extraido` in `orden_de_extraccion.csv` is a snapshot and goes stale — count from the workbooks |
+| Extraction | `revision_sistematica/extraccion/` | **complete, 98% double** | D.V. extracted all 124; N.T. extracted 122. Median agreement 78%, median kappa 0.57. 573 of 575 disagreements still to adjudicate by consensus |
 | Submission package | `verificables revisión sistemática/` | built | S0–S13 + guide + both manuscripts in PDF and `.docx` |
 
-**Where the extraction actually stands, as of 2026-08-23:**
+**Where the extraction actually stands, as of 2026-08-26:**
 
-1. **There is no second reviewer.** Nataly Trelles withdrew on 2026-08-22. See
-   `quality_reports/decisions/2026-08-23_retirada-segunda-revisora.md`. Nothing
-   in the manuscript may claim duplicate extraction was completed, or that
-   disagreements were settled by consensus. They were not.
-2. `revision_sistematica/extraccion/extraction_conflicts.csv` holds 724 real value
-   conflicts over 128 compared arm rows: median agreement 69%, median informative
-   kappa 0.30 (7 of 9 categorical fields). 2 are adjudicated and signed; 722 are
-   not, and will not be. These figures live in `synthesis_scalars.json` as
-   `extraccion_*` — never retype them.
-3. Do NOT trust an older conflict count. Until 2026-08-23 the comparator scored a
-   cell one reviewer had filled and the other had not as a disagreement, which
-   turned D.V.'s lead into measured discordance: 1,063 of the 1,788 it reported
-   were coverage gaps, not conflicts. Fixed in `ca12d6a`.
-4. `quality_reports/decisions/2026-08-12_erradicacion-regla-corregida.md` is the
-   record still marked PROPUESTA. It cannot be confirmed by both reviewers any
-   more; D.V. extracted all 124 studies under it.
+1. **Duplicate extraction is COMPLETE.** N. Trelles withdrew on 2026-08-22 and
+   **returned on 2026-08-26 with her extraction finished**: 122 of the 124
+   studies, so 98% of the corpus is double-extracted. The withdrawal record
+   `quality_reports/decisions/2026-08-23_retirada-segunda-revisora.md` is marked
+   SUPERSEDED at its head; read that header before trusting anything in it.
+2. `revision_sistematica/extraccion/extraction_conflicts.csv` holds 575 value
+   conflicts over 130 compared arm rows: median agreement 78%, median informative
+   kappa 0.57 (8 of 9 categorical fields). 2 are adjudicated; 573 are not, but
+   consensus resolution is possible again. These figures live in
+   `synthesis_scalars.json` as `extraccion_*` — never retype them.
+3. Still true: **no published figure depends on the extraction workbooks.** All
+   come from `cribado/` and `pre_extraccion_desde_resumen.csv`. That holds until
+   the 573 are adjudicated.
+4. Screening false-negative rate is now measured: 0 of 350 excluded records
+   re-screened blind in Rayyan (exact 95% CI 0.00–1.05%). See
+   `revision_sistematica/validacion_rayyan/resultado.json`.
+5. Do NOT trust an older conflict count. Until 2026-08-23 the comparator scored a
+   cell one reviewer had filled and the other had not as a disagreement. Fixed in
+   `ca12d6a`.

@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 305; main text 4 447.
+**Word count:** abstract 305; main text 4 528.
 **Tables:** 4. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
@@ -100,9 +100,7 @@ Before screening began, a set of 40 studies known a priori to be eligible was fi
 
 The extraction form, with 31 variables and controlled vocabularies, was piloted on five studies before use. Extraction is planned to be **independent and in duplicate** between the two reviewers, with disagreements resolved by consensus and agreement quantified variable by variable (Cohen's kappa).
 
-The extraction form, with 31 variables and controlled vocabularies, was piloted on five studies before use. Extraction was planned in duplicate and independently between the two reviewers, with disagreements resolved by consensus and agreement computed variable by variable.
-
-One reviewer extracted all 124 studies with a retrievable publication; a second reviewer independently extracted 98 of them.
+The extraction form, with 31 variables and controlled vocabularies, was piloted on five studies before use. Extraction was carried out **in duplicate and independently** between the two reviewers. One reviewer extracted all 124 studies with a retrievable publication and the second extracted 122 of them, so 98 % of the corpus is double-extracted. Over the 130 comparable arm rows, 575 value disagreements were recorded; agreement, measured before resolving them, was 78 % median agreement and a median Cohen's kappa of 0.57 over the 8 of 9 categorical fields where it is informative, ranging from 55 % to 100 % across variables. Disagreements are resolved by consensus between the two reviewers, with a record of who resolved and when; at the time of this report2 of 575 are adjudicated, and the complete record is supplied as supplementary material.
 
 The data reported here derive from a systematic pre-extraction from the abstracts of the 124 studies, performed with the same variable schema and flagged as partial in every record. This report presents no efficacy estimates: it characterises the structure of the evidence base and its **verifiability**, with two measured components — retrievability of the report (sections 3.1 and 3.2) and reporting completeness (section 3.4).
 
@@ -229,7 +227,7 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 
 **Competing interests.** The authors declare no competing interests.
 
-**Author contributions (CRediT).** **D. Valdiviezo:** conceptualisation, methodology, investigation (design and execution of the searches across the nine sources), software (screening, grouping and figure-computation pipeline), data curation, data extraction, writing — original draft, visualisation, project administration. **N. Trelles:** methodology (outcome definitions), investigation, independent data extraction.
+**Author contributions (CRediT).** **D. Valdiviezo:** conceptualisation, methodology, investigation (design and execution of the searches across the nine sources), software (screening, grouping and figure-computation pipeline), data curation, data extraction, writing — original draft, visualisation, project administration. **N. Trelles:** methodology (outcome definitions), investigation, independent data extraction (122 of the 124 studies), validation, writing — review and editing.
 
 **Data and code availability.** All material supporting this review is deposited in a public, citable repository: the search corpus with the raw exports of all nine sources, the append-only decision logs of the three screening stages, both reviewers' extraction workbooks, the methodological decision records with their dates, and the complete pipeline code, which is re-executable from search to the figures in the manuscript. ‹‹DEPOSIT DOI — TO BE COMPLETED BEFORE SUBMISSION››. The decision logs are append-only and preserve every correction alongside the row it supersedes.
 

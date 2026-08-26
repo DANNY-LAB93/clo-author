@@ -60,6 +60,21 @@ AFIRMACIONES = [
     # afirmaba 35 donde son 48.
     (ES, "de los {procedencia_declarada} estudios que declaran procedencia, {procedencia_europa_este} son de Rusia, Polonia, Georgia o Ucrania"),
 
+    # ---- doble extraccion. Se ancla entera porque el "98" anterior estaba
+    # tecleado y sobrevivio sin avisar a que la segunda revisora pasara de 98 a
+    # 122 estudios: el comprobador daba 37 de 37 con una cifra obsoleta dentro.
+    (ES, "el segundo extrajo {extraccion_estudios_r2} de ellos, de modo que el {extraccion_doble_pct} % del corpus tiene doble extracción"),
+    (ES, "Sobre las {extraccion_filas_comparadas} filas de brazo comparables se registraron {extraccion_desacuerdos} desacuerdos de valor"),
+    (ES, "fue del {extraccion_acuerdo_mediano_pct} % de acuerdo mediano y una kappa de Cohen mediana de {extraccion_kappa_mediana} sobre los {extraccion_kappas_informativas} de {extraccion_categoricos_total} campos categóricos en que resulta informativa, con un recorrido del {extraccion_acuerdo_min_pct} % al {extraccion_acuerdo_max_pct} %"),
+    (EN, "the second extracted {extraccion_estudios_r2} of them, so {extraccion_doble_pct} % of the corpus is double-extracted"),
+    (EN, "Over the {extraccion_filas_comparadas} comparable arm rows, {extraccion_desacuerdos} value disagreements were recorded"),
+    (EN, "was {extraccion_acuerdo_mediano_pct} % median agreement and a median Cohen's kappa of {extraccion_kappa_mediana} over the {extraccion_kappas_informativas} of {extraccion_categoricos_total} categorical fields where it is informative, ranging from {extraccion_acuerdo_min_pct} % to {extraccion_acuerdo_max_pct} %"),
+
+    (ES, "hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} adjudicadas"),
+    (ES, "extracción de datos independiente ({extraccion_estudios_r2} de los {extraccion_estudios_r1} estudios)"),
+    (EN, "{extraccion_conflictos_firmados} of {extraccion_desacuerdos} are adjudicated"),
+    (EN, "independent data extraction ({extraccion_estudios_r2} of the {extraccion_estudios_r1} studies)"),
+
     (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos."),
     (ES, "Pasaron a texto completo {informes_a_texto_completo}, agrupados en {estudios} estudios; {estudios_extraibles} de ellos tienen publicación recuperable."),
     (ES, "Se obtuvo el texto completo de {texto_completo_obtenido} estudios ({texto_completo_pct} %)"),
