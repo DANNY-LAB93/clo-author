@@ -51,8 +51,8 @@
   "disenos": {
     "case report": 49,
     "case series": 19,
-    "no declarado": 16,
     "RCT": 16,
+    "no declarado": 16,
     "prospective cohort": 13,
     "non-randomised trial": 7,
     "retrospective cohort": 4
@@ -69,24 +69,24 @@
   "procedencia": {
     "no declarada": 76,
     "Rusia": 7,
-    "Polonia": 6,
     "Georgia": 6,
+    "Polonia": 6,
     "Alemania": 4,
-    "Francia": 3,
     "Estados Unidos": 3,
+    "Francia": 3,
     "Belgica": 2,
-    "Ucrania": 2,
-    "Iran": 2,
-    "Israel": 2,
     "España": 2,
     "India": 2,
+    "Iran": 2,
+    "Israel": 2,
+    "Ucrania": 2,
+    "Australia": 1,
     "China": 1,
     "Francia y Belgica": 1,
-    "multicentrico (internacional)": 1,
-    "Reino Unido": 1,
-    "Australia": 1,
+    "Italia": 1,
     "Japon": 1,
-    "Italia": 1
+    "Reino Unido": 1,
+    "multicentrico (internacional)": 1
   },
   "procedencia_declarada": 48,
   "procedencia_europa_este": 21,
@@ -116,8 +116,8 @@
   "estudios_antes_de_la_enmienda": 219,
   "informes_excluidos_por_idioma_detalle": {
     "rus": 29,
-    "dut": 1,
     "dan": 1,
+    "dut": 1,
     "jpn": 1
   },
   "informes_excluidos_en_ruso": 29,

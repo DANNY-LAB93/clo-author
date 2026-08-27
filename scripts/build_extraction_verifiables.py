@@ -22,6 +22,7 @@ Uso:
 """
 import csv
 import collections
+import json
 import pathlib
 import re
 import sys
@@ -40,10 +41,16 @@ OUT = ROOT / "verificables revisión sistemática"
 HOJA = ROOT / "revision_sistematica" / "extraccion" / "hoja_de_consenso.csv"
 CONFLICTOS = ROOT / "revision_sistematica" / "extraccion" / "extraction_conflicts.csv"
 ACUERDO = ROOT / "quality_reports" / "extraction_agreement.md"
+ACUERDO_JSON = ROOT / "quality_reports" / "extraction_agreement.json"
 REGLA_NUEVA = ROOT / "quality_reports" / "decisions" / "2026-08-12_erradicacion-regla-corregida.md"
 REGLA_VIEJA = ROOT / "quality_reports" / "decisions" / "2026-08-11_definicion-erradicacion-y-exito.md"
 
 ANCHO = A4[0] - 4.4 * cm
+
+# Los campos que deciden si el articulo puede reportar desenlaces. Se toma
+# del cuaderno de adjudicacion para que no existan dos listas que digan lo
+# mismo y puedan divergir.
+from build_adjudication_workbook import PRIORITARIOS  # noqa: E402
 SIN_CITAS = lambda clave: 0          # noqa: E731  estos anexos no llevan citas
 
 try:
@@ -144,98 +151,156 @@ def s11(st):
 
 # ------------------------------------------------------------------- S12
 def s12(st):
+    """Como se resuelve cada desacuerdo, con el estado de HOY.
+
+    Este anexo se rehizo el 26 de agosto de 2026. La version anterior describia
+    un triaje en tres bloques construido sobre una comparacion que despues
+    quedo superada por dos motivos: el comparador contaba como desacuerdo toda
+    casilla que un revisor habia rellenado y el otro no, y la segunda revisora
+    aun no habia terminado. Presentar aquel reparto como si siguiera vigente
+    seria describir un trabajo que ya no corresponde a los ficheros.
+    """
     dest = OUT / "S12_resolucion_de_conflictos.pdf"
-    filas = list(csv.DictReader(open(HOJA, encoding="utf-8")))
     todos = list(csv.DictReader(open(CONFLICTOS, encoding="utf-8")))
-    por_regla = [r for r in todos if r.get("resolucion", "").strip()]
-    bloques = collections.Counter(r["bloque"] for r in filas)
-    refutadas = [r for r in filas if r["verificacion"].startswith("REFUTADA")]
-    sin_resolver = [r for r in filas
-                    if "REQUIERE CONSENSO" in r["resolucion_propuesta"].upper()]
-    con_propuesta = [r for r in filas if r["resolucion_propuesta"].strip()]
+    comparadas = json.loads(ACUERDO_JSON.read_text(encoding="utf-8"))["filas_comparadas"]
+    firmados = [r for r in todos if (r.get("resolucion") or "").strip()]
+    pend = [r for r in todos if not (r.get("resolucion") or "").strip()]
+    estudios = {r["study_id"] for r in pend}
+    n_pri = sum(1 for r in pend if r["campo"] in PRIORITARIOS)
 
-    c = [Paragraph("S12. Cómo se resolvió cada desacuerdo", st["titulo"])]
+    # Con el articulo en mano se resuelve leyendo; sin el, no se resuelve
+    # discutiendo. La distincion la marca el listado de estudios, no una
+    # etiqueta escrita a mano en la hoja de conflictos.
+    s5 = list(csv.DictReader(open(OUT / "S5_listado_184_estudios.csv",
+                                  encoding="utf-8-sig")))
+    tiene = {r["id"]: r["texto_completo"].strip().lower().startswith(("s", "y"))
+             for r in s5}
+    faltan = [i for i in estudios if i not in tiene]
+    if faltan:
+        raise SystemExit("S12: %d estudios del fichero de conflictos no estan "
+                         "en S5 (%s). Regenera S5 antes." % (len(faltan), faltan[:3]))
+    con_texto = [r for r in pend if tiene[r["study_id"]]]
+    sin_texto = [r for r in pend if not tiene[r["study_id"]]]
+
+    c = [Paragraph("S12. C\u00f3mo se resuelve cada desacuerdo", st["titulo"])]
     c.append(Paragraph(
-        "La comparación de las dos extracciones devolvió <b>%d desacuerdos</b>. No "
-        "todos son de la misma naturaleza, y tratarlos igual habría sido un error: "
-        "unos se resuelven por regla, otros exigen leer el artículo, y otros no se "
-        "pueden resolver todavía porque el artículo no está en nuestras manos. Este "
-        "anexo documenta los tres caminos y deja el rastro completo en "
-        "<font face='Courier' size='8.5'>hoja_de_consenso.csv</font>."
-        % len(todos), st["cuerpo"]))
+        "La comparaci\u00f3n de las dos extracciones independientes devolvi\u00f3 "
+        "<b>%d desacuerdos</b>. Se reparten en %d de las %d filas de brazo "
+        "comparadas, sobre %d estudios. "
+        "De ellos, %d est\u00e1n firmados por los dos revisores y <b>%d siguen "
+        "pendientes</b>. Este anexo dice d\u00f3nde est\u00e1 cada uno, con qu\u00e9 instrumento "
+        "se resuelven y qu\u00e9 no se puede resolver todav\u00eda. El fichero completo, "
+        "desacuerdo a desacuerdo, es "
+        "<font face='Courier' size='8.5'>extraction_conflicts.csv</font>."
+        % (len(todos), len({(r["study_id"], r["arm_id"]) for r in todos}),
+           comparadas, len({r["study_id"] for r in todos}),
+           len(firmados), len(pend)),
+        st["cuerpo"]))
 
-    c.append(Paragraph("Reparto de los desacuerdos", st["h1"]))
+    c.append(Paragraph("D\u00f3nde est\u00e1 cada desacuerdo", st["h1"]))
     c.append(cuadro(st, [
-        ["Resueltos por regla, sin consenso", str(len(por_regla)),
-         "Error de tecleo confirmado por el otro revisor, y casillas en blanco en "
-         "metadatos del registro bibliográfico, que se comprueban fuera del artículo"],
-        ["Bloque C · dirimibles leyendo", str(bloques["C"]),
-         "Hay texto completo y la definición no está en disputa"],
-        ["Bloque B · bloqueados por definición", str(bloques["B"]),
-         "Tocan erradicación microbiológica o éxito clínico, cuya regla se corrigió "
-         "(anexo S13); se resuelven al aplicarla"],
-        ["Bloque A · sin artículo", str(bloques["A"]),
-         "El estudio no tiene texto completo recuperado. No son dirimibles por "
-         "nadie hasta conseguirlo"],
-    ], ["Vía", "n", "Qué significa"], [6.2 * cm, 1.3 * cm, ANCHO - 7.5 * cm]))
+        ["Firmados por los dos revisores", str(len(firmados)),
+         "Resueltos y con fecha. Son los \u00fanicos que se pueden dar por cerrados"],
+        ["Pendientes, con el art\u00edculo en mano", str(len(con_texto)),
+         "En %d estudios cuyo texto completo est\u00e1 recuperado. Se dirimen "
+         "abriendo el art\u00edculo" % len({r["study_id"] for r in con_texto})],
+        ["Pendientes, sin texto completo", str(len(sin_texto)),
+         "En %d estudios que no tenemos. No los resuelve nadie discutiendo: se "
+         "resuelven consiguiendo el art\u00edculo"
+         % len({r["study_id"] for r in sin_texto})],
+    ], ["Situaci\u00f3n", "n", "Qu\u00e9 significa"],
+        [6.2 * cm, 1.3 * cm, ANCHO - 7.5 * cm]))
 
-    c.append(Paragraph("Qué NO se resolvió por regla, y por qué", st["h1"]))
+    c.append(Paragraph("Con qu\u00e9 se resuelven", st["h1"]))
+    c.append(Paragraph(
+        "Los %d pendientes se trabajan sobre "
+        "<font face='Courier' size='8.5'>ADJUDICACION_conflictos.xlsx</font>, que "
+        "presenta el mismo contenido ordenado <b>por estudio</b> y no por variable: "
+        "quien adjudica abre un art\u00edculo y resuelve todo lo suyo antes de pasar al "
+        "siguiente, en vez de saltar de un PDF a otro. Cada fila muestra la pregunta "
+        "literal que se le hizo al revisor junto a las dos respuestas, y las "
+        "variables categ\u00f3ricas llevan desplegable con su vocabulario cerrado, de modo "
+        "que el consenso no puede escribir un valor que el esquema no admite."
+        % len(pend), st["cuerpo"]))
+    c.append(Paragraph(
+        "%d de los %d est\u00e1n marcados como prioritarios: son los campos que deciden "
+        "si el art\u00edculo puede llegar a reportar desenlaces. El resto no cambia "
+        "ninguna cifra de las que el manuscrito publica hoy."
+        % (n_pri, len(pend)), st["cuerpo"]))
+    c.append(Paragraph(
+        "Las tres columnas que cierran cada fila \u2014valor acordado, qui\u00e9n lo resolvi\u00f3 y "
+        "fecha\u2014 van vac\u00edas y las firman los dos revisores. El cuaderno no propone "
+        "resoluciones: un documento que sugiere la respuesta y luego pide "
+        "confirmarla no produce un consenso, produce un asentimiento.", st["nota"]))
+
+    c.append(Paragraph("Qu\u00e9 se resolvi\u00f3 por regla, y por qu\u00e9 solo eso", st["h1"]))
+    c.append(Paragraph(
+        "Los %d desacuerdos firmados son casillas en blanco en "
+        "<font face='Courier' size='8.5'>journal_tier</font>, un metadato del "
+        "registro bibliogr\u00e1fico que se comprueba fuera del art\u00edculo y no admite "
+        "lectura discrepante. Se resolvieron con el valor del revisor que lo "
+        "cumpliment\u00f3, y consta as\u00ed en el fichero. Ning\u00fan desacuerdo sobre el "
+        "contenido de un art\u00edculo se ha resuelto por regla." % len(firmados),
+        st["cuerpo"]))
+
+    c.append(Paragraph("Qu\u00e9 NO se resuelve por regla", st["h1"]))
     c.append(Paragraph(
         "Una casilla en blanco en un campo de desenlace no se rellena con el valor "
-        "del otro revisor. El esquema de extracción distingue tres estados que no son "
-        "intercambiables: vacío significa que no se contestó, <b>NA</b> que el artículo "
-        "no lo notifica, y <b>0</b> que el artículo dice que fueron cero. Dar por bueno "
-        "el número del único que contestó convertiría la doble extracción en simple, "
-        "que es justamente lo que este diseño quiere evitar.", st["cuerpo"]))
+        "del otro revisor. El esquema de extracci\u00f3n distingue tres estados que no son "
+        "intercambiables: vac\u00edo significa que no se contest\u00f3, <b>NA</b> que el art\u00edculo "
+        "no lo notifica, y <b>0</b> que el art\u00edculo dice que fueron cero. Dar por bueno "
+        "el n\u00famero del \u00fanico que contest\u00f3 convertir\u00eda la doble extracci\u00f3n en simple, "
+        "que es justamente lo que este dise\u00f1o quiere evitar.", st["cuerpo"]))
     c.append(Paragraph(
-        "Dos valores que parecían erratas tampoco se corrigieron solos: "
-        "<font face='Courier' size='8.5'>'2 meses'</font> en días de estancia es un "
+        "Dos valores que parec\u00edan erratas tampoco se corrigieron solos: "
+        "<font face='Courier' size='8.5'>'2 meses'</font> en d\u00edas de estancia es un "
         "problema de unidad, y <font face='Courier' size='8.5'>'Si'</font> en un campo "
         "que pide un recuento es una respuesta a otra pregunta. Ambos se enviaron a "
         "consenso y ambos motivaron cerrar el vocabulario del formulario.", st["cuerpo"]))
 
-    c.append(Paragraph("Adjudicación contra el texto completo", st["h1"]))
+    c.append(Paragraph("Desacuerdos pendientes por variable", st["h1"]))
+    porc = collections.Counter(r["campo"] for r in pend)
+    c.append(cuadro(st, [[k, str(v), "S\u00ed" if k in PRIORITARIOS else ""]
+                         for k, v in porc.most_common(14)],
+                    ["Variable", "Pendientes", "Prioritaria"],
+                    [ANCHO - 6.4 * cm, 3.2 * cm, 3.2 * cm]))
     c.append(Paragraph(
-        "Los %d desacuerdos del bloque C se dirimieron abriendo el artículo. Cada "
-        "propuesta se acompaña de la cita literal que la sostiene y de su "
-        "localización exacta, y después pasó por un segundo lector cuyo encargo "
-        "explícito era refutarla, no confirmarla. De las %d propuestas, <b>%d fueron "
-        "refutadas</b> y %d quedaron sin resolver porque el artículo no contiene el "
-        "dato." % (bloques["C"], len(con_propuesta), len(refutadas),
-                   len(sin_resolver)), st["cuerpo"]))
+        "La lista completa de %d variables est\u00e1 en el fichero de conflictos; aqu\u00ed van "
+        "las %d que m\u00e1s acumulan." % (len(porc), min(14, len(porc))), st["nota"]))
+
+    c.append(Paragraph("Lo que todav\u00eda no se puede resolver", st["h1"]))
+    sinart = collections.Counter(r["study_id"] for r in sin_texto)
     c.append(Paragraph(
-        "Ninguna de estas propuestas es una resolución. Las columnas "
-        "<font face='Courier' size='8.5'>resolucion</font>, "
-        "<font face='Courier' size='8.5'>resuelto_por</font> y "
-        "<font face='Courier' size='8.5'>fecha</font> siguen vacías, y las firman los "
-        "dos revisores. Lo que este anexo aporta es el material con el que llegan a "
-        "esa reunión.", st["nota"]))
-
-    if refutadas:
-        c.append(Paragraph("Propuestas refutadas por el segundo lector", st["h2"]))
-        c.append(cuadro(st, [
-            [f"{r['study_id']}", r["campo"], r["resolucion_propuesta"][:40],
-             re.sub(r"\s+", " ", r["verificacion"].replace("REFUTADA:", ""))[:210] + "…"]
-            for r in refutadas],
-            ["Estudio", "Campo", "Propuesta", "Motivo de la refutación"],
-            [1.9 * cm, 3.0 * cm, 3.0 * cm, ANCHO - 7.9 * cm]))
-
-    c.append(Paragraph("Desacuerdos por variable", st["h1"]))
-    porc = collections.Counter(r["campo"] for r in filas)
-    c.append(cuadro(st, [[k, str(v)] for k, v in porc.most_common(12)],
-                    ["Variable", "Desacuerdos"], [ANCHO - 3.2 * cm, 3.2 * cm]))
-
-    c.append(Paragraph("Lo que todavía no se puede resolver", st["h1"]))
-    sinart = collections.Counter(r["study_id"] for r in filas if r["bloque"] == "A")
-    c.append(Paragraph(
-        "El bloque A concentra %d desacuerdos en %d estudios sin texto completo. Dos "
-        "de ellos explican la mayor parte, y ninguno se resuelve discutiendo: se "
-        "resuelve consiguiendo el artículo."
-        % (bloques["A"], len(sinart)), st["cuerpo"]))
+        "%d desacuerdos se concentran en %d estudios sin texto completo recuperado. "
+        "Ninguno se dirime leyendo, porque no hay qu\u00e9 leer. Figuran aqu\u00ed para que el "
+        "lector pueda separar lo que queda por trabajar de lo que queda por conseguir."
+        % (len(sin_texto), len(sinart)), st["cuerpo"]))
     c.append(cuadro(st, [[k, str(v)] for k, v in sinart.most_common()],
                     ["Estudio sin texto completo", "Desacuerdos"],
                     [ANCHO - 3.2 * cm, 3.2 * cm]))
-    documento(dest, "S12 · Resolución de conflictos").build(c)
+
+    c.append(Paragraph("El rastro anterior, y por qu\u00e9 no se presenta como vigente",
+                       st["h1"]))
+    hoja = list(csv.DictReader(open(HOJA, encoding="utf-8")))
+    vivos = {(r["study_id"], r["arm_id"], r["campo"]) for r in todos}
+    siguen = sum(1 for r in hoja
+                 if (r["study_id"], r["arm_id"], r["campo"]) in vivos)
+    c.append(Paragraph(
+        "<font face='Courier' size='8.5'>hoja_de_consenso.csv</font> conserva un "
+        "triaje anterior de %d filas, con citas literales del art\u00edculo, su "
+        "localizaci\u00f3n exacta y una segunda lectura encargada de refutar cada "
+        "propuesta. Ese trabajo se hizo sobre una comparaci\u00f3n que despu\u00e9s qued\u00f3 "
+        "superada: el comparador contaba como desacuerdo toda casilla que un revisor "
+        "hab\u00eda rellenado y el otro no, y la segunda extracci\u00f3n a\u00fan estaba a medias. "
+        "Hoy <b>%d de aquellas %d filas siguen siendo desacuerdos</b> y %d ya no lo "
+        "son." % (len(hoja), siguen, len(hoja), len(hoja) - siguen), st["cuerpo"]))
+    c.append(Paragraph(
+        "El fichero se conserva porque el registro es solo-anexar y porque sus citas "
+        "siguen sirviendo para adjudicar las filas que s\u00ed contin\u00faan abiertas. Lo que "
+        "no es, es una tabla de resoluciones del conjunto actual, y este anexo no lo "
+        "presenta como tal.", st["nota"]))
+
+    documento(dest, "S12 \u00b7 Resoluci\u00f3n de conflictos").build(c)
     return dest
 
 

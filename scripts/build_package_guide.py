@@ -15,6 +15,7 @@ Uso:
     python scripts/build_package_guide.py
 """
 import csv
+import json
 import pathlib
 import sys
 
@@ -57,32 +58,32 @@ CATALOGO = [
          "Si la búsqueda es reproducible: se copia y se reejecuta."),
     ]),
     ("Cribado", [
-        ("S3_decisiones_etapa2_titulo.csv", "Decisión de cribado por título para "
+        ("S3_decisiones_etapa2_titulo.xlsx + .csv", "Decisión de cribado por título para "
          "cada registro, con su motivo codificado.",
          "Por qué se excluyó cualquier registro concreto."),
-        ("S3_decisiones_etapa3_resumen.csv", "Lo mismo en la lectura de resumen.",
+        ("S3_decisiones_etapa3_resumen.xlsx + .csv", "Lo mismo en la lectura de resumen.",
          "Por qué un estudio no llegó a texto completo."),
         ("S6_auditoria_controles_positivos.docx", "Auditoría contra 40 estudios "
          "conocidos de antemano como elegibles, tras cada etapa.",
          "Si el cribado perdió estudios que debía capturar."),
     ]),
     ("Idioma", [
-        ("S9_idioma_por_informe_y_clase_de_evidencia.csv", "Idioma de cada informe y "
+        ("S9_idioma_por_informe_y_clase_de_evidencia.xlsx + .csv", "Idioma de cada informe y "
          "clase de evidencia que aportaba.",
          "Qué se perdió al restringir a inglés y español."),
-        ("S10_idioma_verificado_sobre_texto_completo.csv", "Verificación del idioma "
+        ("S10_idioma_verificado_sobre_texto_completo.xlsx + .csv", "Verificación del idioma "
          "sobre el texto completo del PDF, no sobre los metadatos.",
          "Si la clasificación de idioma se comprobó o se dio por buena."),
     ]),
     ("Corpus y recuperación", [
-        ("S5_listado_184_estudios.csv", "Los 184 estudios incluidos, con sus informes "
+        ("S5_listado_184_estudios.xlsx + .csv", "Los 184 estudios incluidos, con sus informes "
          "agrupados.", "Qué estudios componen el cuerpo de evidencia."),
-        ("S8_recuperacion_texto_completo.csv", "Qué se intentó para conseguir cada "
+        ("S8_recuperacion_texto_completo.xlsx + .csv", "Qué se intentó para conseguir cada "
          "texto completo y con qué resultado.",
          "Si el sesgo de recuperación se documentó o se ocultó."),
     ]),
     ("Extracción", [
-        ("S4_pre_extraccion_desde_resumen.csv", "Pre-extracción desde el resumen, "
+        ("S4_pre_extraccion_desde_resumen.xlsx + .csv", "Pre-extracción desde el resumen, "
          "marcada como parcial en cada registro.",
          "De dónde salen las cifras de estructura del corpus."),
         ("S11_concordancia_entre_extractores.pdf", "Concordancia entre las dos "
@@ -122,6 +123,8 @@ def tamano(p):
 
 def main():
     st = estilos()
+    S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                   .read_text(encoding="utf-8"))
     dest = OUT / "00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf"
 
     c = [Paragraph("Guía del material suplementario", st["titulo"])]
@@ -147,12 +150,27 @@ def main():
     for seccion, entradas in CATALOGO:
         filas = []
         for nombre, que_es, para_que in entradas:
-            p = OUT / nombre
-            descritos.add(nombre)
-            if not p.exists():
-                filas.append([f"<b>{nombre}</b>", "NO ENCONTRADO", "—", "—"])
+            # Un anexo de datos son DOS ficheros: el .xlsx que se lee y el .csv
+            # reproducible. La entrada los nombra juntos, asi que hay que
+            # resolver los dos y marcar los dos como descritos; si no, la
+            # comprobacion de cobertura los da por huerfanos y la guia acaba
+            # avisando de que no describe ficheros que si describe.
+            partes = [x.strip() for x in nombre.split("+")]
+            raiz = partes[0].rsplit(".", 1)[0]
+            reales = []
+            for x in partes:
+                # "S3_algo.xlsx" ya es un nombre; ".csv" es solo la extension
+                # del mismo anexo y hay que pegarla a la raiz.
+                reales.append(x if not x.startswith(".") else raiz + x)
+            for x in reales:
+                descritos.add(x)
+            faltan = [x for x in reales if not (OUT / x).exists()]
+            if faltan:
+                filas.append([f"<b>{nombre}</b>", "NO ENCONTRADO: %s" % ", ".join(faltan),
+                              "—", "—"])
                 continue
-            filas.append([nombre, que_es, para_que, tamano(p)])
+            tam = tamano(OUT / reales[0])
+            filas.append([nombre, que_es, para_que, tam])
         c.append(Paragraph(seccion, st["h1"]))
         c.append(cuadro(st, filas,
                         ["Fichero", "Qué contiene", "Qué permite comprobar", "Tamaño"],
@@ -169,16 +187,29 @@ def main():
             + ", ".join(huerfanos) + ".", st["nota"]))
 
     c.append(Paragraph("Advertencia sobre el alcance de esta revisión", st["h1"]))
+    # Lo que falta es la adjudicacion, no la extraccion. Decir «la extraccion no
+    # ha concluido» era cierto hasta el 26 de agosto y dejo de serlo cuando la
+    # segunda revisora entrego sus 122 estudios. Las dos cifras salen de los
+    # escalares, para que la frase no pueda volver a quedarse vieja.
     c.append(Paragraph(
-        "La extracción por duplicado <b>no ha concluido</b>. Este informe no presenta "
-        "estimaciones de eficacia, ni riesgo de sesgo, ni certeza GRADE: presenta la "
-        "estructura del cuerpo de evidencia y su completitud de reporte, que es lo que "
-        "la pre-extracción sostiene. Los anexos S11 a S13 documentan el estado de la "
-        "extracción en curso, incluidos los desacuerdos que siguen abiertos y los "
-        "estudios cuyo texto completo no se ha conseguido. Se incluyen precisamente "
-        "porque el estado real de una revisión en marcha es información que el lector "
-        "necesita, y no algo que deba esperar a estar resuelto para poder auditarse.",
+        "La extracción por duplicado <b>está completa</b>: %d de los %d estudios "
+        "fueron extraídos por dos revisores de forma independiente. Lo que no ha "
+        "concluido es la <b>adjudicación por consenso</b> de los desacuerdos: %d de "
+        "los %d siguen sin firmar. Por eso este informe no presenta estimaciones de "
+        "eficacia, ni riesgo de sesgo, ni certeza GRADE: presenta la estructura del "
+        "cuerpo de evidencia y su completitud de reporte, que es lo que la "
+        "pre-extracción sostiene, y ninguna cifra publicada depende de los cuadernos "
+        "de extracción."
+        % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+           S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]),
         st["cuerpo"]))
+    c.append(Paragraph(
+        "Los anexos S11 a S13 documentan ese estado sin suavizarlo: cuánto "
+        "coincidieron los dos revisores antes de resolver nada, dónde está hoy cada "
+        "desacuerdo, y qué estudios no se pueden adjudicar todavía porque no se ha "
+        "conseguido su texto completo. Se incluyen precisamente porque el estado real "
+        "de una revisión en marcha es información que el lector necesita, y no algo "
+        "que deba esperar a estar resuelto para poder auditarse.", st["cuerpo"]))
 
     documento(dest, "Guía del material suplementario").build(c)
     print(f"  {dest.name:52} {dest.stat().st_size // 1024} KB")

@@ -298,7 +298,9 @@ def md_a_docx(origen, destino, titulo):
 def nombre_s5():
     """El listado lleva el recuento en el nombre, asi que se busca en disco."""
     hit = sorted(OUT.glob("S5_listado_*_estudios.csv"))
-    return hit[0].name if hit else "S5_listado_estudios.csv"
+    # Como el resto de anexos de datos, se entrega en dos formatos: el .xlsx
+    # para leer y el .csv para reejecutar el canal.
+    return (hit[0].stem + ".xlsx + .csv") if hit else "S5_listado_estudios.xlsx + .csv"
 
 
 def indice(S):
@@ -320,13 +322,13 @@ def indice(S):
            ("S2_estrategias_de_busqueda.docx",
             "Sintaxis literal por fuente, fecha y número de resultados",
             "PRISMA 2020, ítems 6 y 7"),
-           ("S3_decisiones_etapa2_titulo.csv",
+           ("S3_decisiones_etapa2_titulo.xlsx + .csv",
             "Registro solo-anexar de toda decisión de cribado por título",
             "PRISMA 2020, ítem 8"),
-           ("S3_decisiones_etapa3_resumen.csv",
+           ("S3_decisiones_etapa3_resumen.xlsx + .csv",
             "Ídem para el cribado por resumen, con la corriente PRISMA",
             "PRISMA 2020, ítems 8 y 16"),
-           ("S4_pre_extraccion_desde_resumen.csv",
+           ("S4_pre_extraccion_desde_resumen.xlsx + .csv",
             "Pre-extracción de los %d estudios, marcada como parcial" % S["estudios_extraibles"],
             "PRISMA 2020, ítems 9 y 10"),
            (nombre_s5(),
@@ -338,15 +340,27 @@ def indice(S):
            ("S7_declaraciones_ICMJE.docx",
             "Financiación, conflictos, CRediT, registro, datos y uso de IA",
             "ICMJE; PRISMA ítems 24 a 27"),
-           ("S8_recuperacion_texto_completo.csv",
+           ("S8_recuperacion_texto_completo.xlsx + .csv",
             "Vía de recuperación resuelta para cada informe sin DOI editorial",
             "Justifica el 46,5 % de §3.2"),
-           ("S9_idioma_por_informe_y_clase_de_evidencia.csv",
+           ("S9_idioma_por_informe_y_clase_de_evidencia.xlsx + .csv",
             "Idioma de cada informe incluido, con la clase de evidencia y la "
             "prueba concreta", "PRISMA 2020, ítem 5"),
-           ("S10_idioma_verificado_sobre_texto_completo.csv",
+           ("S10_idioma_verificado_sobre_texto_completo.xlsx + .csv",
             "Idioma determinado sobre el texto completo de cada PDF recuperado",
             "PRISMA 2020, ítem 5"),
+           ("S11_concordancia_entre_extractores.pdf",
+            "Concordancia entre las dos extracciones independientes, variable a "
+            "variable, antes de resolver nada", "PRISMA 2020, ítem 10a"),
+           ("S12_resolucion_de_conflictos.pdf",
+            "Dónde está hoy cada desacuerdo y con qué se resuelve",
+            "PRISMA 2020, ítem 10a"),
+           ("S13_reglas_de_extraccion_de_desenlaces.pdf",
+            "Definición de erradicación y de éxito clínico, con su corrección "
+            "documentada", "PRISMA 2020, ítems 10a y 13"),
+           ("00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf",
+            "Guía en lengua llana: qué pregunta contesta cada fichero",
+            "Orientación para el revisor"),
            ("figuras y tablas/",
             "Figuras 1 y 2 en PDF vectorial; tablas 1 a 4 en CSV",
             "PRISMA 2020, ítem 16a")],
@@ -364,8 +378,16 @@ def indice(S):
            ("Recuperación de texto completo", "PARCIAL — %d de %d (%.1f %%)"
             % (S["texto_completo_obtenido"], S["estudios_extraibles"],
                S["texto_completo_pct"])),
-           ("Extracción por duplicado", "PENDIENTE — bloquea la publicación"),
-           ("Riesgo de sesgo y GRADE", "PENDIENTE — depende de la extracción"),
+           ("Extracción por duplicado", "COMPLETA — %d de %d estudios (%s %%)"
+            % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+               S["extraccion_doble_pct"])),
+           ("Adjudicación de los desacuerdos",
+            "PENDIENTE — %d de %d sin firmar; bloquea reportar desenlaces"
+            % (S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"])),
+           ("Validación del cribado en Rayyan",
+            "COMPLETA — %d falsos negativos en %d registros recribados a ciegas"
+            % (S["validacion_falsos_negativos"], S["validacion_muestra"])),
+           ("Riesgo de sesgo y GRADE", "PENDIENTE — depende de la adjudicación"),
            ("Registro en PROSPERO", "PENDIENTE — declarado como ausente"),
            ("Manuscrito y figuras", "COMPLETOS")],
           [8.0, 8.6])
@@ -382,7 +404,16 @@ def indice(S):
             n = fila.cells[0].text.strip()
             if n and "." in n:
                 citados.add(n)
-    faltan = sorted(n for n in citados if not (OUT / n).exists())
+    # Una entrada como «S3_x.xlsx + .csv» nombra dos ficheros. Comprobarla como
+    # si fuera un nombre literal hace que el aviso salte sobre anexos que si
+    # estan, y un aviso que siempre miente se deja de leer.
+    def existe(nombre):
+        partes = [x.strip() for x in nombre.split("+")]
+        raiz = partes[0].rsplit(".", 1)[0]
+        reales = [x if not x.startswith(".") else raiz + x for x in partes]
+        return all((OUT / r).exists() for r in reales)
+
+    faltan = sorted(n for n in citados if not existe(n))
     if faltan:
         print("  AVISO: el indice cita ficheros que no existen: %s"
               % ", ".join(faltan))

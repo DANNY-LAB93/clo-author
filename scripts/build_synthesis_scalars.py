@@ -36,6 +36,17 @@ UN_SOLO_BRAZO = {"case report", "case series", "prospective cohort",
                  "retrospective cohort"}
 
 
+
+def por_frecuencia(cuenta):
+    """Ordena un Counter de mayor a menor, desempatando por nombre.
+
+    `most_common()` deja los empates en el orden de insercion, asi que dos
+    categorias con el mismo recuento pueden intercambiarse entre ejecuciones y
+    el canal produce ficheros distintos con los mismos datos. Un `git diff` que
+    se ensucia solo acaba haciendo que nadie mire los diffs.
+    """
+    return dict(sorted(cuenta.items(), key=lambda kv: (-kv[1], kv[0])))
+
 def leer(p):
     with open(p, encoding="utf-8", newline="") as fh:
         return list(csv.DictReader(fh))
@@ -93,7 +104,7 @@ def main():
     S["fuentes_registros_n"] = len(set(man) & REGISTROS)
     S["fuentes_n"] = len(man)
     S["fuentes_nombres"] = sorted(man)
-    S["registros_por_fuente"] = dict(por_fuente.most_common())
+    S["registros_por_fuente"] = por_frecuencia(por_fuente)
     S["informes_unicos"] = len(corpus)
 
     # ---- cribado ------------------------------------------------------------
@@ -148,7 +159,7 @@ def main():
     disenos = collections.Counter(
         (pre.get(k, {}).get("study_design") or "no declarado")
         for k in extraibles)
-    S["disenos"] = dict(disenos.most_common())
+    S["disenos"] = por_frecuencia(disenos)
     comp = {k for k in extraibles
             if pre.get(k, {}).get("study_design") in COMPARATIVOS}
     S["estudios_comparativos"] = len(comp)
@@ -175,7 +186,7 @@ def main():
     # errores encadenados: la Tabla 1 perdia paises, y una frase del manuscrito
     # afirmaba que 35 estudios declaran procedencia cuando son 48 (124 menos los
     # 76 que no la declaran). Un escalar truncado no avisa de que lo esta.
-    S["procedencia"] = dict(paises.most_common())
+    S["procedencia"] = por_frecuencia(paises)
     S["procedencia_declarada"] = sum(v for k, v in paises.items()
                                      if k != "no declarada")
     # Europa del Este agrupada: el manuscrito sostiene que el hueco de la
@@ -261,7 +272,7 @@ def main():
         idioma = {r["record_id"]: r for r in leer(idi_path)}
         fuera = collections.Counter(
             r["idioma"] for r in idioma.values() if r["veredicto"] == "excluir")
-        S["informes_excluidos_por_idioma_detalle"] = dict(fuera.most_common())
+        S["informes_excluidos_por_idioma_detalle"] = por_frecuencia(fuera)
         S["informes_excluidos_en_ruso"] = fuera.get("rus", 0)
     todos_pre = set(pre)
     S["extraibles_antes_de_la_enmienda"] = len(todos_pre)

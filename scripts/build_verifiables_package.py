@@ -431,6 +431,15 @@ def main():
     for p in (ROOT / "paper" / "tablas").glob("*.csv"):
         shutil.copy2(p, fig / p.name)
     print("  figuras (PDF vectorial) y tablas (CSV)")
+
+    # S11-S13 se construyen aqui y no aparte. Vivieron cinco dias como fichero
+    # suelto y se quedaron viejos: el paquete anunciaba 169 desacuerdos y una
+    # kappa de 0,38 cuando el manuscrito ya decia 575 y 0,57. Un anexo que hay
+    # que acordarse de regenerar acaba contradiciendo al articulo que acompana.
+    # Van despues de S5 porque S12 lo lee para saber que estudios tienen texto.
+    import build_extraction_verifiables
+    build_extraction_verifiables.main()
+
     print("\nescrito en %s" % OUT)
     return 0
 
