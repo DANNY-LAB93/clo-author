@@ -24,6 +24,7 @@ Uso:
 """
 import csv
 import datetime
+import json
 import pathlib
 import re
 import shutil
@@ -34,6 +35,14 @@ ES = ROOT / "paper" / "manuscrito_revision_sistematica.md"
 EN = ROOT / "paper" / "manuscript_systematic_review_en.md"
 BIB = ROOT / "Bibliography_base.bib"
 DESTINO_POR_DEFECTO = pathlib.Path.home() / "Desktop" / "Envio_JSR_Fagoterapia_Pseudomonas"
+SUPLEMENTOS = ROOT / "verificables revisión sistemática"
+
+# Lista blanca de anexos: todo fichero cuyo nombre empiece por S<digito>_ o por 00_.
+# Se elige inclusion por patron y no exclusion por lista para que un anexo nuevo
+# entre solo en el paquete. Quedan fuera por construccion los cuatro renderizados
+# del manuscrito y la subcarpeta «figuras y tablas», que no son suplementos y que
+# ya viajan por su propio camino.
+PATRON_ANEXO = re.compile(r"^(S\d{1,2}_|00_)")
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -268,6 +277,238 @@ def escribe_docx(destino, bloques, meta, refs, tablas, figuras):
 
 
 # --------------------------------------------------------------------------
+
+
+
+def mil(n):
+    """Separador de millar fino, el mismo que el manuscrito: 23 057, no 23,057."""
+    return "{:,}".format(n).replace(",", "\u202f")
+
+def escribe_carta(destino, S, meta, n_anexos):
+    """Carta al Comite Editorial, con las cifras del canal.
+
+    Se genera por lo mismo que el resto: la version escrita a mano decia «sin
+    restriccion de fecha» cuando hay ventana declarada, y daba por retirada a
+    la segunda revisora tres dias despues de que volviera.
+    """
+    import docx
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.shared import Pt, Inches
+
+    d = docx.Document()
+    s = d.sections[0]
+    s.page_width, s.page_height = Inches(8.5), Inches(11)
+    for lado in ("left_margin", "right_margin", "top_margin", "bottom_margin"):
+        setattr(s, lado, Inches(1))
+    n = d.styles["Normal"]
+    n.font.name = "Times New Roman"
+    n.font.size = Pt(12)
+    n.paragraph_format.space_after = Pt(10)
+    n.paragraph_format.line_spacing = 1.15
+
+    def par(txt, alin=None):
+        pr = d.add_paragraph(txt)
+        if alin is not None:
+            pr.alignment = alin
+        return pr
+
+    par("Cuenca, Ecuador", WD_ALIGN_PARAGRAPH.RIGHT)
+    for ln in ("Se\u00f1ores", "Comit\u00e9 Editorial", "Journal of Science and Research",
+               "Universidad T\u00e9cnica de Babahoyo"):
+        pr = d.add_paragraph(ln)
+        pr.paragraph_format.space_after = Pt(0)
+    d.add_paragraph("")
+    par("Estimado Comit\u00e9 Editorial:")
+
+    par("Someto a su consideraci\u00f3n el manuscrito \u00ab%s\u00bb, como art\u00edculo original de "
+        "revisi\u00f3n sistem\u00e1tica." % meta["titulo_es"], WD_ALIGN_PARAGRAPH.JUSTIFY)
+
+    par("El trabajo delimita de forma reproducible la literatura cl\u00ednica sobre "
+        "fagoterapia en %s resistente y examina una pregunta que las s\u00edntesis "
+        "publicadas han dado por resuelta sin comprobarla: si este cuerpo de "
+        "evidencia admite una s\u00edntesis cuantitativa de eficacia. Se interrogaron %d "
+        "consultas sobre ocho bases de datos y registros, incluidos BVS y SciELO, "
+        "que las revisiones previas han cubierto de "
+        "forma desigual, con una ventana de publicaci\u00f3n de %d a %d aplicada en las "
+        "que la admiten. De %s registros quedaron %s informes \u00fanicos, %d estudios y "
+        "%d con publicaci\u00f3n recuperable."
+        % ("Pseudomonas aeruginosa", S["fuentes_n"], S["anio_min"], S["anio_max"],
+           mil(S["registros_identificados"]), mil(S["informes_unicos"]),
+           S["estudios"], S["estudios_extraibles"]), WD_ALIGN_PARAGRAPH.JUSTIFY)
+
+    par("La conclusi\u00f3n es que el cuerpo de evidencia es amplio y a la vez "
+        "estructuralmente inadecuado para agregarse en proporciones globales de "
+        "\u00e9xito, que es precisamente lo que la literatura reciente viene haciendo.",
+        WD_ALIGN_PARAGRAPH.JUSTIFY)
+
+    # Lo que el comite va a preguntar, dicho antes de que lo pregunte. Cada
+    # cifra sale de los escalares: si el canal cambia, la carta cambia con el.
+    par("Declaro lo siguiente, por si el Comit\u00e9 lo considera al evaluar el trabajo. "
+        "La revisi\u00f3n no est\u00e1 registrada en PROSPERO ni en ning\u00fan otro registro "
+        "prospectivo, y as\u00ed se declara en el manuscrito. El cribado de t\u00edtulos y "
+        "res\u00famenes lo emiti\u00f3 un modelo de lenguaje aplicando criterios y un "
+        "vocabulario cerrado que los autores fijamos de antemano, como revisor \u00fanico "
+        "y sin duplicaci\u00f3n independiente; los %d informes que lo superaron los "
+        "revisamos uno a uno, y una submuestra de %d registros excluidos se recribó "
+        "a ciegas en Rayyan sin encontrar ning\u00fan falso negativo. La extracci\u00f3n de "
+        "datos se hizo por duplicado y de forma independiente sobre %d de los %d "
+        "estudios, pero la adjudicaci\u00f3n por consenso de los desacuerdos no ha "
+        "concluido: %d de %d siguen sin firmar. Por eso ninguna cifra del art\u00edculo "
+        "procede de esos cuadernos; todas salen del cribado y de la pre-extracci\u00f3n "
+        "desde res\u00famenes. Todo ello consta en M\u00e9todos y en Limitaciones, con la "
+        "concordancia medida. Preferimos declararlo antes que omitirlo."
+        % (S["informes_agrupados"], S["validacion_muestra"],
+           S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+           S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]),
+        WD_ALIGN_PARAGRAPH.JUSTIFY)
+
+    par("El manuscrito es original, no ha sido publicado ni est\u00e1 sometido a "
+        "consideraci\u00f3n en otra revista. El canal de b\u00fasqueda, cribado y c\u00e1lculo est\u00e1 "
+        "escrito en c\u00f3digo versionado y es reejecutable; queda a disposici\u00f3n de los "
+        "revisores, junto con los %d anexos del material suplementario."
+        % n_anexos, WD_ALIGN_PARAGRAPH.JUSTIFY)
+
+    par("Agradezco de antemano su consideraci\u00f3n.", WD_ALIGN_PARAGRAPH.JUSTIFY)
+    d.add_paragraph("")
+    for ln in ("Atentamente,", "", "Danny Valdiviezo",
+               "Facultad de Medicina, Universidad Cat\u00f3lica de Cuenca",
+               "Cuenca, Ecuador \u00b7 %s" % meta["correo"]):
+        pr = d.add_paragraph(ln)
+        pr.paragraph_format.space_after = Pt(0)
+
+    ruta = destino / "carta_de_presentacion.docx"
+    d.save(ruta)
+    return ruta
+
+def escribe_leeme(destino, S, anexos):
+    """La hoja de instrucciones del envio, con las cifras del canal.
+
+    Se genera y no se escribe a mano por lo de siempre: la version manual del
+    23 de agosto seguia diciendo 724 desacuerdos y dando por retirada a la
+    segunda revisora tres dias despues de que volviera.
+    """
+    pendientes = [
+        "**ORCID de los dos autores.** La revista los pone en la nota al pie de "
+        "cada autor, junto a las credenciales. En el articulo modelo se ve el "
+        "formato: grado academico, filiacion, ciudad, pais, correo y ORCID.",
+        "**La nota al pie de credenciales de cada autor**, con el mismo patron "
+        "del modelo.",
+        "**La autoria de N. Trelles conforme a ICMJE.** Cubre el criterio de "
+        "contribucion sustancial: extrajo %d de los %d estudios de forma "
+        "independiente, el %s %% del corpus, y sigue en el proyecto. Faltan los "
+        "otros tres criterios, que son actos suyos y nadie puede firmar por "
+        "ella: aprobar la version final, revisarla criticamente y aceptar "
+        "responder por el trabajo. Recabadlo por escrito y quitad el marcador "
+        "del .docx."
+        % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+           S["extraccion_doble_pct"]),
+        "**El DOI del deposito** de datos y codigo, si vais a depositarlo. El "
+        "marcador esta en las declaraciones.",
+        "**Fechas de recepcion y aceptacion.** Van en blanco a proposito: las "
+        "pone la revista.",
+        "**Exportar a PDF si lo piden.** En esta maquina no hay conversor: "
+        "abridlo en Word y guardad como PDF.",
+    ]
+
+    md = []
+    md.append("# Envio a *Journal of Science and Research* \u2014 que hay aqui y que falta")
+    md.append("")
+    md.append("**Revista destino:** Journal of Science and Research, E-ISSN 2528-8083  ")
+    md.append("(Universidad Tecnica de Babahoyo, Ecuador)  ")
+    md.append("**Formato tomado de:** el articulo de Torres Vinueza y Prieto Fuenmayor, "
+              "Vol. 9 N.\u00ba 2, abril\u2013junio 2024.  ")
+    md.append("**Generado:** %s por `scripts/build_jsr_submission.py`. No lo edites a "
+              "mano: se reescribe entero en cada ejecucion."
+              % datetime.date.today().isoformat())
+    md.append("")
+    md.append("## Por que este envio existe")
+    md.append("")
+    md.append("Es una desviacion deliberada. El manuscrito estaba preparado para "
+              "*Clinical Microbiology and Infection*, y ahi no cabe: **%s palabras de "
+              "texto principal contra un limite de 3 500**, y el exceso son justamente "
+              "las declaraciones de honestidad, que no se recortan. En JSR el problema "
+              "desaparece: el articulo que sirvio de modelo ocupa 19 paginas. El "
+              "manuscrito de CMI sigue vivo en el repositorio; esto no lo sustituye."
+              % mil(S["palabras_cuerpo_es"]))
+    md.append("")
+    md.append("## Que hay en la carpeta")
+    md.append("")
+    md.append("| Fichero | Que es |")
+    md.append("|---|---|")
+    md.append("| `manuscrito_JSR.docx` | **El articulo.** Times New Roman 12, carta, "
+              "RESUMEN / ABSTRACT / INTRODUCCION / DESARROLLO / METODOLOGIA / RESULTADOS "
+              "/ DISCUSION Y CONCLUSIONES / DECLARACIONES / REFERENCIAS. Citas Vancouver "
+              "numeradas. Las 4 tablas y las 2 figuras van incrustadas al final |")
+    md.append("| `carta_de_presentacion.docx` | Carta al Comite Editorial. Declara por "
+              "adelantado lo que un revisor va a preguntar |")
+    md.append("| `suplementos/` | Los 14 anexos (S0 a S13), el indice y la guia, en %d "
+              "ficheros: los de datos van en `.xlsx` y en `.csv`. Empieza por "
+              "`00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf`, que dice que pregunta contesta "
+              "cada uno |" % len(anexos))
+    md.append("| `figuras/`, `tablas/` | Las mismas figuras y tablas sueltas, por si las "
+              "piden aparte |")
+    md.append("")
+    md.append("Los anexos de datos viajan por partida doble: el `.xlsx` trae una hoja "
+              "\u00abLeeme\u00bb y las columnas en castellano, y el `.csv` es la copia con los "
+              "nombres internos que permite reejecutar el canal.")
+    md.append("")
+    md.append("## Lo que TIENES que rellenar antes de mandarlo")
+    md.append("")
+    md.append("Son datos que no puedo inventar. Estan marcados en el `.docx`.")
+    md.append("")
+    for i, t in enumerate(pendientes, start=1):
+        md.append("%d. %s" % (i, t))
+        md.append("")
+    md.append("## Lo que NO hay que tocar")
+    md.append("")
+    md.append("Las declaraciones. Viajaron enteras desde el manuscrito autoritativo:")
+    md.append("")
+    md.append("- la revision **no esta registrada** en PROSPERO ni en ningun registro "
+              "prospectivo;")
+    md.append("- el cribado de titulos y resumenes lo emitio **un modelo de lenguaje "
+              "como revisor unico**, con criterios y vocabulario cerrado fijados de "
+              "antemano por los autores;")
+    md.append("- la extraccion por duplicado **esta completa** (%d de %d estudios) pero "
+              "**la adjudicacion no**: %d de los %d desacuerdos siguen sin firmar;"
+              % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+                 S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]))
+    md.append("- **ninguna cifra del articulo procede de los cuadernos de extraccion**: "
+              "todas salen del cribado y de la pre-extraccion desde resumenes.")
+    md.append("")
+    md.append("Quitar cualquiera de estas frases para que el articulo \u00abpase mejor\u00bb "
+              "convierte un trabajo honesto en uno que no lo es. Si un revisor objeta "
+              "alguna, se le contesta con los datos, que estan todos en `suplementos/`.")
+    md.append("")
+    md.append("## Como se regenera")
+    md.append("")
+    md.append("Desde `clo-author/`:")
+    md.append("")
+    md.append("```bash")
+    md.append("python scripts/build_jsr_submission.py")
+    md.append("```")
+    md.append("")
+    md.append("Reescribe el manuscrito, las figuras, las tablas, los suplementos y este "
+              "fichero. Si tocas el manuscrito autoritativo "
+              "(`paper/manuscrito_revision_sistematica.md`) o cualquier anexo, vuelve a "
+              "correrlo. No edites el `.docx` a mano salvo para los datos de autor.")
+    md.append("")
+    md.append("## Antes de darle a enviar")
+    md.append("")
+    for t in ("ORCID y credenciales de los dos autores",
+              "Autoria de N. Trelles resuelta, marcador eliminado",
+              "DOI del deposito, o marcador retirado si no hay deposito",
+              "Leido entero una vez en Word, buscando saltos de formato",
+              "Comprobado que las 4 tablas y las 2 figuras se ven bien",
+              "Confirmado en el portal OJS de la revista que ficheros pide y en que "
+              "orden (busca la URL en el sitio de la Universidad Tecnica de Babahoyo "
+              "y verificala; no la doy de memoria)"):
+        md.append("- [ ] %s" % t)
+    md.append("")
+
+    ruta = destino / "LEEME_ANTES_DE_ENVIAR.md"
+    ruta.write_text("\n".join(md), encoding="utf-8")
+    return ruta
+
 def main():
     destino = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else DESTINO_POR_DEFECTO
     destino.mkdir(parents=True, exist_ok=True)
@@ -338,6 +579,8 @@ def main():
     refs = [referencia(bib[c]) for c, _ in sorted(orden.items(), key=lambda x: x[1])
             if c in bib]
 
+    S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                   .read_text(encoding="utf-8"))
     meta = {
         "titulo_es": "Fagoterapia en infecciones por Pseudomonas aeruginosa "
                      "multirresistente: revisión sistemática de la estructura y "
@@ -354,11 +597,20 @@ def main():
             "2 Nataly Trelles. ‹‹GRADO ACADÉMICO — COMPLETAR››, Facultad de "
             "Medicina, Universidad Católica de Cuenca. Azuay, Cuenca, Ecuador. "
             "‹‹CORREO — COMPLETAR››: ‹‹ORCID — COMPLETAR››",
+            # N. Trelles se retiro el 22 de agosto y volvio el 26 con su
+            # extraccion terminada. El marcador anterior decia que no podia
+            # responder por el trabajo: dejo de ser cierto. Lo que sigue
+            # abierto es distinto y mas pequeno, y son actos que solo ella
+            # puede realizar. Las cifras salen de los escalares.
             "‹‹RESOLVER ANTES DE ENVIAR: la autoría de N. Trelles conforme a "
-            "ICMJE. Cumple el criterio de contribución sustancial (extrajo 98 de "
-            "los 124 estudios de forma independiente) pero no ha aprobado esta "
-            "versión ni puede responder por ella, al haberse retirado el 22 de "
-            "agosto de 2026. Ver LEEME_ANTES_DE_ENVIAR.md››",
+            "ICMJE. Cubre el criterio de contribución sustancial —extrajo %d de "
+            "los %d estudios de forma independiente, el %s %% del corpus— y sigue "
+            "en el proyecto. Faltan los otros tres criterios, que son actos "
+            "suyos: aprobar esta versión final, revisarla críticamente y aceptar "
+            "responder por el trabajo. Recabadlo por escrito antes de enviar y "
+            "quitad este marcador. Ver LEEME_ANTES_DE_ENVIAR.md››"
+            % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+               S["extraccion_doble_pct"]),
         ],
     }
 
@@ -408,6 +660,45 @@ def main():
                 shutil.copy2(f, dst / f.name)
                 n += 1
         print("  %-42s %d ficheros" % (sub + "/", n))
+
+    # Material suplementario. Este paso no existia: el script escribia manuscrito,
+    # figuras y tablas, y nada mas. Los tres anexos que aparecian en la carpeta de
+    # envio habian entrado por una copia a mano, asi que el manuscrito citaba
+    # catorce anexos y viajaban tres. Reejecutar el script no lo arreglaba: se
+    # limitaba a rehacer lo que ya estaba.
+    n_anexos = 0
+    if not SUPLEMENTOS.is_dir():
+        print("  AVISO: no existe %s; el paquete sale sin anexos" % SUPLEMENTOS.name)
+    else:
+        dst = destino / "suplementos"
+        dst.mkdir(exist_ok=True)
+        copiados = []
+        for f in sorted(SUPLEMENTOS.iterdir()):
+            if f.is_file() and PATRON_ANEXO.match(f.name):
+                shutil.copy2(f, dst / f.name)
+                copiados.append(f.name)
+        print("  %-42s %d ficheros" % ("suplementos/", len(copiados)))
+
+        # Cobertura: cada anexo que el manuscrito cita tiene que viajar. Se
+        # contrasta contra el texto autoritativo y no contra una lista fija, para
+        # que la comprobacion siga valiendo si el manuscrito cambia de anexos.
+        citados = set(re.findall(r"\bS(\d{1,2})\b", ES.read_text(encoding="utf-8")))
+        presentes = {m.group(1) for m in
+                     (re.match(r"^S(\d{1,2})_", n) for n in copiados) if m}
+        faltan = sorted(citados - presentes, key=int)
+        if faltan:
+            print("  AVISO: el manuscrito cita anexos que no se copiaron: %s"
+                  % ", ".join("S" + s for s in faltan))
+        else:
+            print("  cobertura: viajan los %d anexos que el manuscrito cita"
+                  % len(citados))
+
+        n_anexos = len(presentes)
+        leeme = escribe_leeme(destino, S, copiados)
+        print("  %-42s instrucciones del envio" % leeme.name)
+
+    carta = escribe_carta(destino, S, meta, n_anexos)
+    print("  %-42s carta al comite" % carta.name)
 
     print("\nescrito en %s" % destino)
     return 0
