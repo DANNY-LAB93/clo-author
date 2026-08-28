@@ -95,6 +95,8 @@ ETIQUETA = {
     "modality": "¿Fago solo o con antibiótico?", "study_design": "Diseño del estudio",
     "extraction_status": "Estado de la extracción", "n_arm": "Pacientes en el brazo",
     "en_corpus_actual": "¿Sigue en el corpus?", "study_id": "Estudio",
+    "estado_final": "¿Quedó incluido al final?",
+    "motivo_de_la_exclusion": "Por qué se excluyó",
     "campo": "Variable", "resolucion": "Valor acordado",
     "resuelto_por": "Quién lo resolvió", "fecha": "Fecha",
 }
@@ -125,6 +127,8 @@ VALOR = {
     "IV": "intravenosa", "oral": "oral", "intravenous": "intravenosa",
     "other": "otra", "unknown": "no consta", "none": "ninguno",
     "no-latino": "no latino",
+    "INCLUIDO": "incluido", "EXCLUIDO DESPUES": "excluido después",
+    "ADMITIDO": "admitido",
 }
 
 
@@ -195,7 +199,7 @@ def main():
         h.auto_filter.ref = "A1:%s%d" % (get_column_letter(len(cab)), h.max_row)
         for i, col in enumerate(cab, start=1):
             ancho = 46 if col in ("titulo", "reason", "evidencia", "nota",
-                                  "titulo_alternativo", "via") else 20
+                                  "titulo_alternativo", "via", "motivo_de_la_exclusion") else 20
             h.column_dimensions[get_column_letter(i)].width = ancho
 
         sal = PAQ / (clave + ".xlsx")

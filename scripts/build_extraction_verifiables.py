@@ -171,8 +171,15 @@ def s12(st):
     # Con el articulo en mano se resuelve leyendo; sin el, no se resuelve
     # discutiendo. La distincion la marca el listado de estudios, no una
     # etiqueta escrita a mano en la hoja de conflictos.
-    s5 = list(csv.DictReader(open(OUT / "S5_listado_184_estudios.csv",
-                                  encoding="utf-8-sig")))
+    # El nombre de S5 lleva el recuento dentro y lo calcula quien lo escribe
+    # (build_verifiables_package.v5_listado). Teclear aqui el 184 hace que este
+    # anexo reviente en cuanto el corpus cambie de tamano, justo en la
+    # ejecucion en que mas falta hace que salga bien.
+    s5f = sorted(OUT.glob("S5_listado_*_estudios.csv"))
+    if not s5f:
+        raise SystemExit("S12: no encuentro S5_listado_*_estudios.csv en %s. "
+                         "Corre build_verifiables_package.py antes." % OUT.name)
+    s5 = list(csv.DictReader(open(s5f[0], encoding="utf-8-sig")))
     tiene = {r["id"]: r["texto_completo"].strip().lower().startswith(("s", "y"))
              for r in s5}
     faltan = [i for i in estudios if i not in tiene]
@@ -233,15 +240,46 @@ def s12(st):
         "resoluciones: un documento que sugiere la respuesta y luego pide "
         "confirmarla no produce un consenso, produce un asentimiento.", st["nota"]))
 
-    c.append(Paragraph("Qu\u00e9 se resolvi\u00f3 por regla, y por qu\u00e9 solo eso", st["h1"]))
+    # Este parrafo decia que los desacuerdos firmados eran \u00abcasillas en blanco
+    # resueltas con el valor del revisor que la cumplimento\u00bb. Es falso: en las
+    # dos filas los dos revisores escribieron, y escribieron cosas distintas.
+    # La regla R2 se aplico cuando la comparacion mostraba una casilla vacia; al
+    # arreglar el comparador (ca12d6a) los valores cambiaron y la resolucion
+    # quedo arrastrada. Ahora el texto se construye leyendo las filas, y la
+    # guarda de abajo impide que vuelva a afirmar algo que el fichero no dice.
+    c.append(Paragraph("Qu\u00e9 se cerr\u00f3 antes de la adjudicaci\u00f3n, y c\u00f3mo", st["h1"]))
+    # Los nombres de las dos columnas de valor llevan dentro el nombre del
+    # revisor, asi que se descubren en vez de teclearse.
+    col_a, col_b = [k for k in todos[0] if k.startswith("valor_")]
+    ambas_llenas = [r for r in firmados
+                    if (r[col_a] or "").strip() and (r[col_b] or "").strip()
+                    and (r[col_a] or "").strip() != (r[col_b] or "").strip()]
+    if firmados and len(ambas_llenas) != len(firmados):
+        raise SystemExit(
+            "S12: %d de %d filas firmadas no son discrepancias de valor con las "
+            "dos casillas llenas. El parrafo que describe como se cerraron ya no "
+            "vale para esas filas; reescribelo antes de publicar el anexo."
+            % (len(firmados) - len(ambas_llenas), len(firmados)))
+    detalle = "; ".join(
+        "%s %s, \u00ab%s\u00bb frente a \u00ab%s\u00bb, cerrado como \u00ab%s\u00bb"
+        % (r["study_id"], r["campo"], r[col_a], r[col_b], r["resolucion"])
+        for r in firmados)
     c.append(Paragraph(
-        "Los %d desacuerdos firmados son casillas en blanco en "
+        "Los %d desacuerdos que constan firmados est\u00e1n los dos en "
         "<font face='Courier' size='8.5'>journal_tier</font>, un metadato del "
-        "registro bibliogr\u00e1fico que se comprueba fuera del art\u00edculo y no admite "
-        "lectura discrepante. Se resolvieron con el valor del revisor que lo "
-        "cumpliment\u00f3, y consta as\u00ed en el fichero. Ning\u00fan desacuerdo sobre el "
-        "contenido de un art\u00edculo se ha resuelto por regla." % len(firmados),
-        st["cuerpo"]))
+        "registro bibliogr\u00e1fico que se comprueba fuera del art\u00edculo. <b>No son "
+        "casillas en blanco:</b> los dos revisores rellenaron el campo y "
+        "escribieron valores distintos (%s), y ambos se cerraron con el valor de "
+        "la segunda revisora." % (len(firmados), detalle), st["cuerpo"]))
+    c.append(Paragraph(
+        "Se cerraron aplicando una regla mec\u00e1nica \u2014casilla vac\u00eda en un metadato "
+        "objetivo\u2014 sobre una comparaci\u00f3n que despu\u00e9s qued\u00f3 superada. Al rehacer "
+        "la comparaci\u00f3n, la casilla dej\u00f3 de estar vac\u00eda y la regla dej\u00f3 de "
+        "corresponder, pero la resoluci\u00f3n qued\u00f3 escrita. Constan aqu\u00ed como lo "
+        "que son: <b>dos discrepancias de valor cerradas sin firma conjunta de "
+        "los dos revisores</b>, pendientes de pasar por el mismo consenso que "
+        "las dem\u00e1s. Ning\u00fan desacuerdo sobre el contenido de un art\u00edculo se ha "
+        "resuelto por regla.", st["nota"]))
 
     c.append(Paragraph("Qu\u00e9 NO se resuelve por regla", st["h1"]))
     c.append(Paragraph(

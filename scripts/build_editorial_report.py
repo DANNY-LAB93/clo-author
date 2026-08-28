@@ -88,9 +88,14 @@ def informe_editorial(S):
         "El trabajo metodológico que sostiene este manuscrito está por encima "
         "de lo habitual en el campo, y su hallazgo central es relevante y "
         "publicable. No puede, sin embargo, entrar en revisión por pares como "
-        "revisión sistemática completa mientras la extracción de datos no haya "
-        "concluido. Lo que sigue distingue lo que impide publicar de lo que "
-        "solo mejora el manuscrito.")
+        "revisión sistemática completa mientras los desacuerdos de la extracción "
+        "no estén adjudicados: la extracción por duplicado sí está hecha "
+        "(%d de %d estudios), pero %d de los %d desacuerdos siguen sin firmar, "
+        "y hasta entonces ninguna cifra de desenlace puede apoyarse en los "
+        "cuadernos. Lo que sigue distingue lo que impide publicar de lo que "
+        "solo mejora el manuscrito."
+        % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+           S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]))
 
     d.add_heading("Lo que este manuscrito hace bien", level=1)
     for t in [
@@ -158,11 +163,20 @@ def informe_editorial(S):
     d.add_heading("Condiciones para publicar (bloqueantes)", level=1)
     tabla(d,
           ["#", "Qué falta", "Por qué bloquea", "Quién lo resuelve"],
-          [("B1", "Extracción de datos por duplicado e independiente",
-            "Sin ella no hay desenlaces, ni riesgo de sesgo, ni GRADE. Una "
-            "revisión sistemática sin extracción es un protocolo con "
-            "resultados de cribado.",
-            "Los dos revisores; el formulario y el libro de códigos ya existen"),
+          # B1 daba por pendiente la extraccion cuando esta hecha al 98 %. Lo
+          # que bloquea hoy es la adjudicacion de los desacuerdos, que es otra
+          # cosa y la resuelven otras personas. Las cifras salen de los
+          # escalares para que esta fila no se vuelva a quedar vieja.
+          [("B1", "Adjudicación por consenso de los desacuerdos",
+            "La extracción por duplicado está completa (%d de %d estudios, "
+            "%s %%), pero %d de los %d desacuerdos siguen sin firmar. Hasta "
+            "que se firmen no hay desenlaces, ni riesgo de sesgo, ni GRADE, "
+            "porque ninguna cifra puede apoyarse todavía en los cuadernos."
+            % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+               S["extraccion_doble_pct"],
+               S["extraccion_conflictos_sin_firmar"],
+               S["extraccion_desacuerdos"]),
+            "Los dos revisores, sobre ADJUDICACION_conflictos.xlsx"),
            ("B2", "Registro del protocolo",
             "PROSPERO admite registro aunque la revisión esté en marcha, "
             "declarando la fecha de inicio. Sin registro ni declaración, "
@@ -170,11 +184,13 @@ def informe_editorial(S):
             "manuscrito SÍ declara la ausencia, que es la vía honesta, pero "
             "el registro sigue siendo preferible.",
             "Autor de correspondencia; 1–2 días de trámite"),
+           # El 46,5 % y el 63,4 % eran de una version anterior del corpus.
            ("B3", "Recuperación del texto completo",
-            "El 46,5 % obtenido es insuficiente y, sobre todo, sesgado: la "
-            "fracción faltante concentra el 63,4 % de los diseños "
+            "El %s %% obtenido sigue siendo insuficiente y, sobre todo, "
+            "sesgado: la fracción faltante concentra el %s %% de los diseños "
             "comparativos. Un revisor objetará que las características "
-            "descritas no representan al campo.",
+            "descritas no representan al campo."
+            % (coma(S["texto_completo_pct"]), coma(S["comparativos_sin_texto_pct"])),
             "Biblioteca de la universidad; petición interbibliotecaria"),
            ("B4", "Evaluación del riesgo de sesgo",
             "PRISMA 2020 ítems 11 y 18. Depende de B1 y B3.",
@@ -188,13 +204,16 @@ def informe_editorial(S):
           [1.2, 4.6, 6.4, 4.4])
 
     d.add_heading("Prioridad dentro de B3, si el tiempo es limitado", level=1)
+    # Eran «85 textos» y «26 comparativos» cuando se escribio; hoy son 33 y 23.
     d.add_paragraph(
-        "No hacen falta los 85 textos completos para que el manuscrito resista "
-        "la revisión. Los 26 estudios comparativos son los que deciden, y "
-        "dentro de ellos los cuatro ensayos aleatorizados de referencia del "
-        "campo. Recuperar solo esos cuatro cambia la objeción de «no ha leído "
-        "los ensayos principales» a «no ha leído parte de la literatura "
-        "regional», que es una limitación declarable.")
+        "No hacen falta los %d textos completos que faltan para que el "
+        "manuscrito resista la revisión. Los %d estudios comparativos son los "
+        "que deciden, y dentro de ellos los cuatro ensayos aleatorizados de "
+        "referencia del campo. Recuperar solo esos cuatro cambia la objeción "
+        "de «no ha leído los ensayos principales» a «no ha leído parte de la "
+        "literatura regional», que es una limitación declarable."
+        % (S["estudios_extraibles"] - S["texto_completo_obtenido"],
+           S["estudios_comparativos"]))
     tabla(d, ["Estudio", "Publicación", "Identificador", "Por qué es prioritario"],
           [("EST-021", "Lancet Infect Dis 2019", "PMID 30292481",
             "PhagoBurn: único ensayo aleatorizado en quemados por P. aeruginosa"),
@@ -295,6 +314,11 @@ def md_a_docx(origen, destino, titulo):
     d.save(destino)
 
 
+
+def coma(x):
+    """73.4 -> «73,4». El documento esta en castellano y el manuscrito usa coma."""
+    return ("%s" % x).replace(".", ",")
+
 def nombre_s5():
     """El listado lleva el recuento en el nombre, asi que se busca en disco."""
     hit = sorted(OUT.glob("S5_listado_*_estudios.csv"))
@@ -309,9 +333,13 @@ def indice(S):
                   "Índice del paquete. Cada archivo responde a un ítem de "
                   "PRISMA 2020 o a un requisito del ICMJE.")
     tabla(d, ["Archivo", "Qué contiene", "Responde a"],
+          # Decia «Uso interno», y el paquete lo manda a la revista. El
+          # manuscrito declara S0 como anexo del material suplementario, asi
+          # que lo que estaba mal era la etiqueta, no que viaje: se adjunta a
+          # proposito, para que el comite vea que carencias reconocemos solos.
           [("S0_informe_editorial.docx",
-            "Evaluación editorial: qué bloquea la publicación y qué solo la "
-            "mejora", "Uso interno"),
+            "Evaluación editorial previa: qué bloquea la publicación y qué "
+            "solo la mejora", "Se adjunta a propósito; PRISMA ítem 27"),
            ("manuscrito_es.docx",
             "Manuscrito completo en español", "Envío"),
            ("manuscript_en.docx",

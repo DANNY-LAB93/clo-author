@@ -313,6 +313,81 @@ def v6_auditoria(S):
     d.save(OUT / "S6_auditoria_controles_positivos.docx")
 
 
+def v9_idioma(S):
+    """S9 sellado con el estado final de cada informe, no con el intermedio.
+
+    `idioma_verificacion.csv` es la salida del comprobador de idioma, que juzga
+    sobre el resumen. Un informe puede pasar esa prueba y quedar excluido
+    despues al leer el texto completo. Aqui se cruza con el corpus final y con
+    las decisiones de cribado, para que el anexo diga en que quedo cada uno.
+    """
+    fuente = RS / "cribado" / "idioma_verificacion.csv"
+    if not fuente.exists():
+        return
+    filas = list(csv.DictReader(open(fuente, encoding="utf-8-sig")))
+    incluidos = {r["record_id"] for r in csv.DictReader(
+        open(RS / "cribado" / "study_groups.csv", encoding="utf-8-sig"))}
+
+    # El motivo de la exclusion se toma de la ultima decision que la nombre, no
+    # se redacta aqui: el registro de cribado es la fuente y es solo-anexar.
+    motivo = {}
+    for etapa in ("screening_stage3_pool_decisions.csv",
+                  "screening_stage2_pool_decisions.csv"):
+        p = RS / "cribado" / etapa
+        if not p.exists():
+            continue
+        for r in csv.DictReader(open(p, encoding="utf-8-sig")):
+            if r.get("verdict") == "EXCLUDE":
+                motivo[r["record_id"]] = r.get("reason", "")
+
+    cab = list(filas[0]) + ["estado_final", "motivo_de_la_exclusion"]
+    fuera = 0
+    for r in filas:
+        dentro = r["record_id"] in incluidos
+        r["estado_final"] = "INCLUIDO" if dentro else "EXCLUIDO DESPUES"
+        r["motivo_de_la_exclusion"] = "" if dentro else motivo.get(
+            r["record_id"], "excluido en el cribado; ver S3")
+        fuera += 0 if dentro else 1
+
+    destino = OUT / "S9_idioma_por_informe_y_clase_de_evidencia.csv"
+    with open(destino, "w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=cab)
+        w.writeheader()
+        w.writerows(filas)
+
+    n = len(filas) - fuera
+    if n != S["informes_agrupados"]:
+        raise SystemExit(
+            "S9: quedan %d informes INCLUIDO y el corpus tiene %d. El anexo "
+            "que prueba el criterio de idioma no cuadra con el manuscrito."
+            % (n, S["informes_agrupados"]))
+    print("  S9  %d informes incluidos + %d excluidos despues, con su motivo"
+          % (n, fuera))
+
+
+def declaracion_ia():
+    """La declaración de uso de IA, tomada literal del manuscrito autoritativo.
+
+    Se lee en vez de reescribirse porque las dos versiones que existían habían
+    divergido, y la del anexo era la suave: decía que el modelo dio «asistencia
+    en la programación» del cribado cuando fue él quien emitió las decisiones,
+    y que los autores «verificaron todo el contenido» cuando el manuscrito dice
+    que los registros excluidos no los releyó nadie.
+    """
+    md = (ROOT / "paper" / "manuscrito_revision_sistematica.md").read_text(
+        encoding="utf-8")
+    marca = "**Uso de inteligencia artificial.**"
+    i = md.find(marca)
+    if i < 0:
+        raise SystemExit(
+            "S7: no encuentro «%s» en el manuscrito. La declaración de uso de "
+            "IA sale de ahí y no se redacta en este script; si la sección se "
+            "renombró, actualiza la marca." % marca)
+    texto = md[i + len(marca):].split("\n\n")[0].strip()
+    # El .docx no lleva marcado Markdown: los asteriscos quedarian a la vista.
+    return texto.replace("**", "")
+
+
 def v7_declaraciones(S):
     d = doc_nuevo("S7. Declaraciones y requisitos del ICMJE",
                   "Documento de acompañamiento al envío.")
@@ -341,14 +416,15 @@ def v7_declaraciones(S):
          "en el repositorio del proyecto. Los registros de decisión son "
          "solo-anexar y conservan cada corrección junto con la decisión "
          "original."),
-        ("Uso de inteligencia artificial",
-         "En la preparación de este trabajo se emplearon herramientas de "
-         "inteligencia artificial generativa (Claude, Anthropic) para la "
-         "asistencia en la programación del canal de cribado, la pre-extracción "
-         "desde resúmenes y la redacción de borradores. Los autores revisaron y "
-         "verificaron todo el contenido y asumen la responsabilidad íntegra por "
-         "su exactitud e integridad. Ninguna herramienta de IA figura como "
-         "autora, conforme a las recomendaciones del ICMJE."),
+        # Esta declaracion NO se redacta aqui: se copia literal del manuscrito.
+        # La version que habia decia «asistencia en la programacion del canal de
+        # cribado» y «los autores revisaron y verificaron todo el contenido».
+        # Las dos cosas suavizaban lo que el manuscrito declara: que el modelo
+        # emitio las decisiones como revisor unico, y que los registros que
+        # excluyo no los releyo ningun humano. Es justo la declaracion que un
+        # comite mira primero, y tener dos versiones distintas de ella en el
+        # mismo envio es peor que no adjuntarla.
+        ("Uso de inteligencia artificial", declaracion_ia()),
         ("Ética y consentimiento",
          "No aplica: la revisión se basa en literatura publicada y en registros "
          "públicos de ensayos, sin datos individuales de pacientes."),
@@ -377,16 +453,25 @@ def main():
              "S4_pre_extraccion_desde_resumen.csv"),
             ("textos_completos/fulltext_identifiers.csv",
              "S8_recuperacion_texto_completo.csv"),
-            # La prueba del criterio de idioma. Va tal cual, informe por
-            # informe: un criterio de elegibilidad que el lector no puede
-            # recomprobar no es un criterio, es una afirmacion.
-            ("cribado/idioma_verificacion.csv",
-             "S9_idioma_por_informe_y_clase_de_evidencia.csv"),
             ("cribado/idioma_texto_completo.csv",
              "S10_idioma_verificado_sobre_texto_completo.csv")):
         p = RS / origen
         if p.exists():
             shutil.copy2(p, OUT / destino)
+
+    # S9: la prueba del criterio de idioma, informe por informe. Se copiaba tal
+    # cual y salia con 234 filas, todas ADMITIDO, cuando los informes incluidos
+    # son 233. La fila de mas es R56334c0408: el comprobador leyo su resumen,
+    # que esta en ingles, y lo admitio; el cuerpo del articulo esta en ruso y se
+    # excluyo despues, al abrir la web del editor. El fichero se escribio antes
+    # de esa exclusion y nunca se actualizo.
+    #
+    # No se borra la fila. Es el caso que el manuscrito usa para argumentar que
+    # el idioma no se puede dar por sabido desde los metadatos ni desde el
+    # resumen, y borrarla escondería precisamente eso. Se sella con el estado
+    # final y su motivo, de modo que S9 cuadre con los 233 del manuscrito y el
+    # lector vea por que hay una fila mas.
+    v9_idioma(S)
 
     # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
     # filas -- el corpus anterior a la enmienda de idioma -- mientras la tabla
