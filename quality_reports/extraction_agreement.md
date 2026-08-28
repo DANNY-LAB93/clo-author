@@ -1,6 +1,6 @@
 # Concordancia entre extracciones independientes
 
-Generado el 2026-08-26 por `scripts/compare_extractions.py`.
+Generado el 2026-08-28 por `scripts/compare_extractions.py`.
 
 | | |
 |---|---:|

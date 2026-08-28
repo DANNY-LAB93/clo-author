@@ -413,10 +413,17 @@ def main():
     conf = RS / "extraccion" / "extraction_conflicts.csv"
     if conf.exists():
         filas = leer(conf)
-        S["extraccion_conflictos_firmados"] = sum(
-            1 for r in filas if (r.get("resolucion") or "").strip())
-        S["extraccion_conflictos_sin_firmar"] = (
-            len(filas) - S["extraccion_conflictos_firmados"])
+        cerrados = [r for r in filas if (r.get("resolucion") or "").strip()]
+        # No todo lo cerrado se cerro por consenso. Dos filas de journal_tier
+        # se cerraron aplicando una regla mecanica sobre una comparacion que
+        # despues quedo superada, y su procedencia lo dice. Contarlas como
+        # adjudicadas inflaria en dos la cifra que el manuscrito publica.
+        SIN_FIRMA = "SIN firma conjunta"
+        consenso = [r for r in cerrados
+                    if SIN_FIRMA not in (r.get("resuelto_por") or "")]
+        S["extraccion_conflictos_firmados"] = len(consenso)
+        S["extraccion_cerrados_por_regla"] = len(cerrados) - len(consenso)
+        S["extraccion_conflictos_sin_firmar"] = len(filas) - len(cerrados)
 
     # ---- validacion del cribado por recribado en Rayyan ---------------------
     # El falso negativo del cribado no estaba medido: lo que el modelo excluyo

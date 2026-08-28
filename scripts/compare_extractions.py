@@ -199,6 +199,34 @@ def main():
                     "tipo": "texto (no puntuado)", "resolucion": "", "resuelto_por": "", "fecha": "",
                 })
 
+    # Las resoluciones firmadas SOBREVIVEN a una recomparacion. Este script
+    # reescribe el fichero de conflictos entero, y hasta ahora lo hacia con las
+    # tres columnas de resolucion en blanco: volver a correrlo --que es el
+    # comando documentado en CLAUDE.md-- borraba de un plumazo las 561
+    # adjudicaciones que los dos revisores firmaron a mano. Se recuperan por
+    # clave (estudio, brazo, campo) antes de escribir.
+    #
+    # Solo se recupera la resolucion cuando el desacuerdo sigue existiendo. Si
+    # una recomparacion hace desaparecer la fila, su resolucion desaparece con
+    # ella: firmaron sobre unos valores concretos, no en abstracto.
+    firmadas = {}
+    if CONFLICTOS.exists():
+        for r in csv.DictReader(open(CONFLICTOS, encoding="utf-8")):
+            if (r.get("resolucion") or "").strip():
+                firmadas[(r["study_id"], r["arm_id"], r["campo"])] = (
+                    r["resolucion"], r.get("resuelto_por", ""), r.get("fecha", ""))
+    recuperadas = 0
+    for f in filas_conf:
+        clave = (f["study_id"], f["arm_id"], f["campo"])
+        if clave in firmadas:
+            f["resolucion"], f["resuelto_por"], f["fecha"] = firmadas[clave]
+            recuperadas += 1
+    perdidas = len(firmadas) - recuperadas
+    if firmadas:
+        print("resoluciones firmadas: %d conservadas%s"
+              % (recuperadas,
+                 ", %d cuyo desacuerdo ya no existe" % perdidas if perdidas else ""))
+
     if filas_conf:
         with open(CONFLICTOS, "w", encoding="utf-8", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=list(filas_conf[0].keys()))

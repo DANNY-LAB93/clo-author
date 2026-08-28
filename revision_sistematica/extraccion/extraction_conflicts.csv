@@ -1,576 +1,577 @@
 study_id,arm_id,campo,valor_Danny_Valdiviezo,valor_Nataly_Trelles,tipo,resolucion,resuelto_por,fecha
-EST-002,A,dtr_status,no,si,categórico,,,
-EST-004,B,dtr_status,si,no,categórico,,,
-EST-010,A,dtr_status,no,si,categórico,,,
-EST-011,A,dtr_status,no,si,categórico,,,
-EST-012,A,dtr_status,no,si,categórico,,,
-EST-014,A,dtr_status,no,si,categórico,,,
-EST-016,A,dtr_status,SI,no,categórico,,,
-EST-017,A,dtr_status,si,no,categórico,,,
-EST-018,A,dtr_status,no,no derivable,categórico,,,
-EST-020,A,dtr_status,no,no derivable,categórico,,,
-EST-028,A,dtr_status,SI,no,categórico,,,
-EST-034,A,dtr_status,no,si,categórico,,,
-EST-043,A,dtr_status,NO,si,categórico,,,
-EST-046,A,dtr_status,no,si,categórico,,,
-EST-047,A,dtr_status,no,si,categórico,,,
-EST-049,A,dtr_status,NO,si,categórico,,,
-EST-051,A,dtr_status,no,si,categórico,,,
-EST-055,A,dtr_status,no,si,categórico,,,
-EST-060,A,dtr_status,NO,no derivable,categórico,,,
-EST-061,A,dtr_status,no,si,categórico,,,
-EST-070,A,dtr_status,no,si,categórico,,,
-EST-074,A,dtr_status,no,si,categórico,,,
-EST-075,A,dtr_status,no,si,categórico,,,
-EST-077,A,dtr_status,no,si,categórico,,,
-EST-096,A,dtr_status,no,si,categórico,,,
-EST-098,A,dtr_status,no,no derivable,categórico,,,
-EST-105,A,dtr_status,NO,si,categórico,,,
-EST-124,A,dtr_status,no,si,categórico,,,
-EST-131,A,dtr_status,SI,no,categórico,,,
-EST-164,A,dtr_status,si,no,categórico,,,
-EST-170,A,dtr_status,NO,si,categórico,,,
-EST-001,A,route,intraarticular,local/topica,categórico,,,
-EST-002,A,route,otra,intravenosa,categórico,,,
-EST-003,A,route,NA,otra,categórico,,,
-EST-003,E,route,IV,NA,categórico,,,
-EST-005,A,route,inhalada/nebulizada,IV,categórico,,,
-EST-006,A,route,IV,inhalada/nebulizada,categórico,,,
-EST-010,A,route,intraarticular,local/topica,categórico,,,
-EST-012,A,route,NA,local/topica,categórico,,,
-EST-016,A,route,topica/local,IV,categórico,,,
-EST-017,A,route,otra,oral,categórico,,,
-EST-018,A,route,na,IV,categórico,,,
-EST-020,A,route,otra,IV,categórico,,,
-EST-021,A,route,topica/local,local/topica,categórico,,,
-EST-030,A,route,IV,intravenosa,categórico,,,
-EST-031,A,route,topica/local,local/topica,categórico,,,
-EST-034,A,route,iv,intravenosa,categórico,,,
-EST-038,A,route,inhalada/nebulizada,otra,categórico,,,
-EST-040,A,route,otra,inhalada/nebulizada,categórico,,,
-EST-042,A,route,otra,local/topica,categórico,,,
-EST-044,A,route,otra,intravenosa,categórico,,,
-EST-046,A,route,IV,intravenosa,categórico,,,
-EST-047,A,route,topica/local,local/topica,categórico,,,
-EST-048,A,route,topica/local,local/topica,categórico,,,
-EST-050,A,route,topica/local,otra,categórico,,,
-EST-051,A,route,topica/local,local/topica,categórico,,,
-EST-053,A,route,IV,intravenosa,categórico,,,
-EST-057,A,route,otra,intravenosa,categórico,,,
-EST-059,A,route,NA,oral,categórico,,,
-EST-061,A,route,iv,intravenosa,categórico,,,
-EST-062,A,route,IV,intravenosa,categórico,,,
-EST-075,A,route,NA,otra,categórico,,,
-EST-076,A,route,iv,local/topica,categórico,,,
-EST-077,A,route,IV,intravenosa,categórico,,,
-EST-080,A,route,oral,local/topica,categórico,,,
-EST-088,A,route,IV,otra,categórico,,,
-EST-094,A,route,otra,intravenosa,categórico,,,
-EST-095,A,route,IV,intravenosa,categórico,,,
-EST-096,A,route,intravesical,local/topica,categórico,,,
-EST-105,A,route,otra,local/topica,categórico,,,
-EST-106,A,route,topica/local,local/topica,categórico,,,
-EST-115,A,route,NA,otra,categórico,,,
-EST-117,A,route,oral,otra,categórico,,,
-EST-124,A,route,IV,intravenosa,categórico,,,
-EST-131,A,route,topica/local,otra,categórico,,,
-EST-132,A,route,topica/local,local/topica,categórico,,,
-EST-133,A,route,NA,intravesical,categórico,,,
-EST-134,A,route,intravesical,local/topica,categórico,,,
-EST-135,A,route,topica/local,local/topica,categórico,,,
-EST-157,A,route,otra,topica/local,categórico,,,
-EST-159,A,route,topica/local,local/topica,categórico,,,
-EST-164,A,route,otra,local/topica,categórico,,,
-EST-165,A,route,NA,topica/local,categórico,,,
-EST-167,A,route,NA,topica/local,categórico,,,
-EST-169,A,route,IV,inhalada/nebulizada,categórico,,,
-EST-170,A,route,topica/local,otra,categórico,,,
-EST-181,A,route,otra,local/topica,categórico,,,
-EST-199,A,route,NA,otra,categórico,,,
-EST-212,A,route,topica/local,local/topica,categórico,,,
-EST-219,A,route,NA,otra,categórico,,,
-EST-003,A,modality,NA,fago + antibiotico,categórico,,,
-EST-003,E,modality,fago + antibiotico,NA,categórico,,,
-EST-005,A,modality,fago + antibiotico,fago en monoterapia,categórico,,,
-EST-011,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-012,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-013,A,modality,fago en monoterapia,fago + antibiotico,categórico,,,
-EST-017,A,modality,NA,fago solo,categórico,,,
-EST-018,A,modality,na,fago + antibiotico,categórico,,,
-EST-019,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-021,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-028,A,modality,fago + antibiotico,NA,categórico,,,
-EST-029,A,modality,fago en monoterapia,fago + antibiotico,categórico,,,
-EST-031,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-038,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-039,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-043,A,modality,NA,fago + antibiotico,categórico,,,
-EST-046,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-055,A,modality,fago en monoterapia,fago + antibiotico,categórico,,,
-EST-059,A,modality,NA,fago en monoterapia,categórico,,,
-EST-073,A,modality,fago + antibiotico,fago en monoterapia,categórico,,,
-EST-080,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-085,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-086,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-091,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-096,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-101,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-115,A,modality,NA,fago en monoterapia,categórico,,,
-EST-117,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-129,A,modality,fago + otro,fago + antibiotico,categórico,,,
-EST-130,A,modality,fago + otro,fago + antibiotico,categórico,,,
-EST-131,A,modality,fago + antibiotico,fago solo,categórico,,,
-EST-133,A,modality,NA,fago en monoterapia,categórico,,,
-EST-134,A,modality,NA,fago solo,categórico,,,
-EST-152,A,modality,NA,fago solo,categórico,,,
-EST-157,A,modality,NA,fago + antibiotico,categórico,,,
-EST-165,A,modality,NA,fago en monoterapia,categórico,,,
-EST-167,A,modality,NA,fago + antibiotico,categórico,,,
-EST-178,A,modality,fago en monoterapia,fago solo,categórico,,,
-EST-199,A,modality,NA,fago solo,categórico,,,
-EST-219,A,modality,NA,fago + antibiotico,categórico,,,
-EST-004,A,study_design,cohorte prospectiva,serie de casos,categórico,,,
-EST-016,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-017,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-018,A,study_design,na,caso clinico,categórico,,,
+EST-002,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-004,B,dtr_status,si,no,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-010,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-011,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-012,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-014,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-016,A,dtr_status,SI,no,categórico,no,NATALY TRELLES,2026-08-26
+EST-017,A,dtr_status,si,no,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-018,A,dtr_status,no,no derivable,categórico,not-derivable,DANNY VALDIVIEZO,2026-08-26
+EST-020,A,dtr_status,no,no derivable,categórico,not-derivable,DANNY VALDIVIEZO,2026-08-26
+EST-028,A,dtr_status,SI,no,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-034,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-043,A,dtr_status,NO,si,categórico,yes,DANNY VALDIVIEZO,2026-08-26
+EST-046,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-047,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-049,A,dtr_status,NO,si,categórico,yes,DANNY VALDIVIEZO,2026-08-26
+EST-051,A,dtr_status,no,si,categórico,yes,DANNY VALDIVIEZO,2026-08-26
+EST-055,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-060,A,dtr_status,NO,no derivable,categórico,not-derivable,NATALY TRELLES,2026-08-26
+EST-061,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-070,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-074,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-075,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-077,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-096,A,dtr_status,no,si,categórico,no,NATALY TRELLES,2026-08-26
+EST-098,A,dtr_status,no,no derivable,categórico,not-derivable,DANNY VALDIVIEZO,2026-08-26
+EST-105,A,dtr_status,NO,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-124,A,dtr_status,no,si,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-131,A,dtr_status,SI,no,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-164,A,dtr_status,si,no,categórico,no,DANNY VALDIVIEZO,2026-08-26
+EST-170,A,dtr_status,NO,si,categórico,no,NATALY TRELLES,2026-08-26
+EST-001,A,route,intraarticular,local/topica,categórico,intra-articular,DANNY VALDIVIEZO,2026-08-26
+EST-002,A,route,otra,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-003,A,route,NA,otra,categórico,IV,NATALY TRELLES,2026-08-26
+EST-003,E,route,IV,NA,categórico,IV,NATALY TRELLES,2026-08-26
+EST-005,A,route,inhalada/nebulizada,IV,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-006,A,route,IV,inhalada/nebulizada,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-010,A,route,intraarticular,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-012,A,route,NA,local/topica,categórico,IV,NATALY TRELLES,2026-08-26
+EST-016,A,route,topica/local,IV,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-017,A,route,otra,oral,categórico,oral,NATALY TRELLES,2026-08-26
+EST-018,A,route,na,IV,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-020,A,route,otra,IV,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-021,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-030,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-031,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-034,A,route,iv,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-038,A,route,inhalada/nebulizada,otra,categórico,IV,NATALY TRELLES,2026-08-26
+EST-040,A,route,otra,inhalada/nebulizada,categórico,inhaled/nebulized,DANNY VALDIVIEZO,2026-08-26
+EST-042,A,route,otra,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-044,A,route,otra,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-046,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-047,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-048,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-050,A,route,topica/local,otra,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-051,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-053,A,route,IV,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
+EST-057,A,route,otra,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
+EST-059,A,route,NA,oral,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-061,A,route,iv,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-062,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-075,A,route,NA,otra,categórico,NA,NATALY TRELLES,2026-08-26
+EST-076,A,route,iv,local/topica,categórico,IV,NATALY TRELLES,2026-08-26
+EST-077,A,route,IV,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
+EST-080,A,route,oral,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-088,A,route,IV,otra,categórico,IV,NATALY TRELLES,2026-08-26
+EST-094,A,route,otra,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
+EST-095,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
+EST-096,A,route,intravesical,local/topica,categórico,intravesical,NATALY TRELLES,2026-08-26
+EST-105,A,route,otra,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-106,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-115,A,route,NA,otra,categórico,NA,NATALY TRELLES,2026-08-26
+EST-117,A,route,oral,otra,categórico,oral,DANNY VALDIVIEZO,2026-08-26
+EST-124,A,route,IV,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
+EST-131,A,route,topica/local,otra,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-132,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-133,A,route,NA,intravesical,categórico,NA,NATALY TRELLES,2026-08-26
+EST-134,A,route,intravesical,local/topica,categórico,intravesical,NATALY TRELLES,2026-08-26
+EST-135,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-157,A,route,otra,topica/local,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-159,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-164,A,route,otra,local/topica,categórico,other,DANNY VALDIVIEZO,2026-08-26
+EST-165,A,route,NA,topica/local,categórico,NA,NATALY TRELLES,2026-08-26
+EST-167,A,route,NA,topica/local,categórico,NA,NATALY TRELLES,2026-08-26
+EST-169,A,route,IV,inhalada/nebulizada,categórico,inhaled/nebulized,DANNY VALDIVIEZO,2026-08-26
+EST-170,A,route,topica/local,otra,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-181,A,route,otra,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
+EST-199,A,route,NA,otra,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-212,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
+EST-219,A,route,NA,otra,categórico,NA,NATALY TRELLES,2026-08-26
+EST-003,A,modality,NA,fago + antibiotico,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-003,E,modality,fago + antibiotico,NA,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-005,A,modality,fago + antibiotico,fago en monoterapia,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
+EST-011,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
+EST-012,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
+EST-013,A,modality,fago en monoterapia,fago + antibiotico,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
+EST-017,A,modality,NA,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
+EST-018,A,modality,na,fago + antibiotico,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-019,A,modality,fago + antibiotico,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
+EST-021,A,modality,fago + antibiotico,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-028,A,modality,fago + antibiotico,NA,categórico,NA,NATALY TRELLES,2026-08-26
+EST-029,A,modality,fago en monoterapia,fago + antibiotico,categórico,NA,NATALY TRELLES,2026-08-26
+EST-031,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-038,A,modality,fago + antibiotico,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-039,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
+EST-043,A,modality,NA,fago + antibiotico,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
+EST-046,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
+EST-055,A,modality,fago en monoterapia,fago + antibiotico,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-059,A,modality,NA,fago en monoterapia,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-073,A,modality,fago + antibiotico,fago en monoterapia,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-080,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
+EST-085,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
+EST-086,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
+EST-091,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-096,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-101,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-115,A,modality,NA,fago en monoterapia,categórico,NA,NATALY TRELLES,2026-08-26
+EST-117,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-129,A,modality,fago + otro,fago + antibiotico,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
+EST-130,A,modality,fago + otro,fago + antibiotico,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-131,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
+EST-133,A,modality,NA,fago en monoterapia,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-134,A,modality,NA,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-152,A,modality,NA,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-157,A,modality,NA,fago + antibiotico,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-165,A,modality,NA,fago en monoterapia,categórico,NA,NATALY TRELLES,2026-08-26
+EST-167,A,modality,NA,fago + antibiotico,categórico,NA,NATALY TRELLES,2026-08-26
+EST-178,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
+EST-199,A,modality,NA,fago solo,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-219,A,modality,NA,fago + antibiotico,categórico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-004,A,study_design,cohorte prospectiva,serie de casos,categórico,case series,NATALY TRELLES,2026-08-26
+EST-016,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
+EST-017,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
+EST-018,A,study_design,na,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
 EST-020,A,study_design,otra,caso clinico,categórico,,,
-EST-024,A,study_design,caso clinico,serie de casos,categórico,,,
-EST-027,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-028,A,study_design,otra,estudio observacional,categórico,,,
-EST-030,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-034,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
-EST-038,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
-EST-040,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-042,A,study_design,caso clinico,serie de casos,categórico,,,
-EST-046,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-047,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-048,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-050,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
+EST-024,A,study_design,caso clinico,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
+EST-027,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
+EST-028,A,study_design,otra,estudio observacional,categórico,other,DANNY VALDIVIEZO,2026-08-26
+EST-030,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
+EST-034,A,study_design,cohorte retrospectiva,serie de casos,categórico,case series,NATALY TRELLES,2026-08-26
+EST-038,A,study_design,cohorte retrospectiva,serie de casos,categórico,case series,NATALY TRELLES,2026-08-26
+EST-040,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
+EST-042,A,study_design,caso clinico,serie de casos,categórico,case report,NATALY TRELLES,2026-08-26
+EST-046,A,study_design,serie de casos,caso clinico,categórico,case report,NATALY TRELLES,2026-08-26
+EST-047,A,study_design,serie de casos,caso clinico,categórico,case report,NATALY TRELLES,2026-08-26
+EST-048,A,study_design,serie de casos,caso clinico,categórico,case report,NATALY TRELLES,2026-08-26
+EST-050,A,study_design,cohorte retrospectiva,serie de casos,categórico,case report,NATALY TRELLES,2026-08-26
 EST-051,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-053,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-055,A,study_design,cohorte prospectiva,estudio observacional,categórico,,,
-EST-057,A,study_design,serie de casos,caso clinico,categórico,,,
-EST-058,A,study_design,serie de casos,caso clinico,categórico,,,
+EST-053,A,study_design,serie de casos,caso clinico,categórico,case report,NATALY TRELLES,2026-08-26
+EST-055,A,study_design,cohorte prospectiva,estudio observacional,categórico,retrospective cohort,NATALY TRELLES,2026-08-26
+EST-057,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
+EST-058,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
 EST-059,A,study_design,NA,serie de casos,categórico,,,
-EST-060,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
-EST-070,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
+EST-060,A,study_design,cohorte retrospectiva,serie de casos,categórico,retrospective cohort,NATALY TRELLES,2026-08-26
+EST-070,A,study_design,cohorte retrospectiva,serie de casos,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
 EST-073,A,study_design,otra,serie de casos,categórico,,,
-EST-075,A,study_design,ECA,serie de casos,categórico,,,
-EST-077,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
-EST-080,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
-EST-091,A,study_design,otra,estudio observacional,categórico,,,
-EST-096,A,study_design,serie de casos,estudio observacional,categórico,,,
+EST-075,A,study_design,ECA,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
+EST-077,A,study_design,cohorte retrospectiva,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
+EST-080,A,study_design,cohorte retrospectiva,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
+EST-091,A,study_design,otra,estudio observacional,categórico,case series,NATALY TRELLES,2026-08-26
+EST-096,A,study_design,serie de casos,estudio observacional,categórico,non-randomised trial,NATALY TRELLES,2026-08-26
 EST-098,A,study_design,NA,serie de casos,categórico,,,
-EST-105,A,study_design,otra,caso clinico,categórico,,,
+EST-105,A,study_design,otra,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
 EST-115,A,study_design,NA,serie de casos,categórico,,,
-EST-117,A,study_design,serie de casos,estudio observacional,categórico,,,
+EST-117,A,study_design,serie de casos,estudio observacional,categórico,case series,DANNY VALDIVIEZO,2026-08-26
 EST-133,A,study_design,NA,serie de casos,categórico,,,
-EST-134,A,study_design,cohorte prospectiva,serie de casos,categórico,,,
-EST-146,A,study_design,cohorte retrospectiva,serie de casos,categórico,,,
-EST-152,A,study_design,cohorte retrospectiva,estudio observacional,categórico,,,
+EST-134,A,study_design,cohorte prospectiva,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
+EST-146,A,study_design,cohorte retrospectiva,serie de casos,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
+EST-152,A,study_design,cohorte retrospectiva,estudio observacional,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
 EST-157,A,study_design,NA,ECA,categórico,,,
 EST-165,A,study_design,NA,serie de casos,categórico,,,
-EST-167,A,study_design,NA,serie de casos,categórico,,,
-EST-178,A,study_design,ECA,estudio observacional,categórico,,,
-EST-181,A,study_design,ensayo no aleatorizado,serie de casos,categórico,,,
+EST-167,A,study_design,NA,serie de casos,categórico,other,NATALY TRELLES,2026-08-26
+EST-178,A,study_design,ECA,estudio observacional,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
+EST-181,A,study_design,ensayo no aleatorizado,serie de casos,categórico,case report,NATALY TRELLES,2026-08-26
 EST-219,A,study_design,NA,serie de casos,categórico,,,
 EST-001,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
-EST-008,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
-EST-012,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
-EST-014,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
-EST-018,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-019,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-020,A,extraction_status,COMPLETA,PARCIAL,categórico,,,
-EST-021,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
-EST-028,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-029,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-034,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-044,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-049,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-050,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
-EST-055,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-059,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-060,A,extraction_status,COMPLETA,PARCIAL,categórico,,,
-EST-073,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-074,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-075,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-094,A,extraction_status,INCOMPLETA,COMPLETA,categórico,,,
-EST-096,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
-EST-098,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-115,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-133,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-157,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-165,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
+EST-008,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-012,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
+EST-014,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
+EST-018,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,NATALY TRELLES,2026-08-26
+EST-019,A,extraction_status,INCOMPLETA,COMPLETA,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-020,A,extraction_status,COMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-021,A,extraction_status,PARCIAL,COMPLETA,categórico,PARTIAL,NATALY TRELLES,2026-08-26
+EST-028,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-029,A,extraction_status,INCOMPLETA,PARCIAL,categórico,PARTIAL,NATALY TRELLES,2026-08-26
+EST-034,A,extraction_status,INCOMPLETA,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
+EST-044,A,extraction_status,INCOMPLETA,COMPLETA,categórico,COMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-049,A,extraction_status,INCOMPLETA,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
+EST-050,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
+EST-055,A,extraction_status,INCOMPLETA,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
+EST-059,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-060,A,extraction_status,COMPLETA,PARCIAL,categórico,COMPLETE,NATALY TRELLES,2026-08-26
+EST-073,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,NATALY TRELLES,2026-08-26
+EST-074,A,extraction_status,INCOMPLETA,COMPLETA,categórico,COMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-075,A,extraction_status,INCOMPLETA,COMPLETA,categórico,COMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-094,A,extraction_status,INCOMPLETA,COMPLETA,categórico,COMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-096,A,extraction_status,PARCIAL,COMPLETA,categórico,PARTIAL,NATALY TRELLES,2026-08-26
+EST-098,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-115,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,NATALY TRELLES,2026-08-26
+EST-133,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-157,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,NATALY TRELLES,2026-08-26
+EST-165,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,NATALY TRELLES,2026-08-26
 EST-167,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-219,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
-EST-003,A,n_arm,1,15,numérico,,,
-EST-003,C,n_arm,5,4,numérico,,,
-EST-003,D,n_arm,4,1,numérico,,,
-EST-004,A,n_arm,7,9,numérico,,,
-EST-008,A,n_arm,9,7,numérico,,,
-EST-018,A,n_arm,na,1,numérico,,,
-EST-020,A,n_arm,NA,1,numérico,,,
-EST-021,A,n_arm,27,12,numérico,,,
-EST-029,A,n_arm,19,13,numérico,,,
-EST-031,A,n_arm,1,3,numérico,,,
-EST-038,A,n_arm,2,3,numérico,,,
-EST-055,A,n_arm,45,178,numérico,,,
-EST-059,A,n_arm,NA,42,numérico,,,
-EST-060,A,n_arm,1,10,numérico,,,
-EST-061,A,n_arm,2,3,numérico,,,
-EST-080,A,n_arm,1,4,numérico,,,
-EST-096,A,n_arm,NA,15,numérico,,,
-EST-105,A,n_arm,NA,1,numérico,,,
-EST-115,A,n_arm,NA,62,numérico,,,
-EST-117,A,n_arm,1,25,numérico,,,
-EST-118,A,n_arm,27,28,numérico,,,
-EST-126,A,n_arm,105,212,numérico,,,
-EST-132,A,n_arm,38,34,numérico,,,
-EST-133,A,n_arm,NA,9,numérico,,,
-EST-152,A,n_arm,NA,27,numérico,,,
-EST-157,A,n_arm,NA,30,numérico,,,
-EST-164,A,n_arm,2,4,numérico,,,
-EST-165,A,n_arm,NA,48,numérico,,,
-EST-167,A,n_arm,NA,27,numérico,,,
-EST-219,A,n_arm,NA,111,numérico,,,
-EST-003,A,clinical_success_n,Na,13,numérico,,,
-EST-003,B,clinical_success_n,5,4,numérico,,,
-EST-003,C,clinical_success_n,4,3,numérico,,,
-EST-003,D,clinical_success_n,3,1,numérico,,,
-EST-003,E,clinical_success_n,1,0,numérico,,,
-EST-004,A,clinical_success_n,7,9,numérico,,,
-EST-013,A,clinical_success_n,0,1,numérico,,,
-EST-016,A,clinical_success_n,0,1,numérico,,,
-EST-018,A,clinical_success_n,na,0,numérico,,,
-EST-019,A,clinical_success_n,1,2,numérico,,,
-EST-021,A,clinical_success_n,17,NA,numérico,,,
-EST-031,A,clinical_success_n,1,3,numérico,,,
-EST-042,A,clinical_success_n,2,1,numérico,,,
-EST-044,A,clinical_success_n,NA,1,numérico,,,
-EST-049,A,clinical_success_n,NA,1,numérico,,,
-EST-060,A,clinical_success_n,1,7,numérico,,,
-EST-076,A,clinical_success_n,0,10,numérico,,,
-EST-080,A,clinical_success_n,1,4,numérico,,,
-EST-086,A,clinical_success_n,28,NA,numérico,,,
-EST-091,A,clinical_success_n,4,NA,numérico,,,
-EST-101,A,clinical_success_n,23,NA,numérico,,,
-EST-105,A,clinical_success_n,NA,1,numérico,,,
-EST-117,A,clinical_success_n,1,NA,numérico,,,
-EST-132,A,clinical_success_n,30,NA,numérico,,,
-EST-135,A,clinical_success_n,0,NA,numérico,,,
-EST-164,A,clinical_success_n,2,4,numérico,,,
-EST-170,A,clinical_success_n,0,1,numérico,,,
-EST-181,A,clinical_success_n,21,22,numérico,,,
-EST-003,A,adverse_event_n,Na,0,numérico,,,
-EST-003,B,adverse_event_n,0,3,numérico,,,
-EST-003,D,adverse_event_n,2,0,numérico,,,
-EST-013,A,adverse_event_n,0,1,numérico,,,
-EST-018,A,adverse_event_n,na,0,numérico,,,
-EST-021,A,adverse_event_n,0,3,numérico,,,
-EST-024,A,adverse_event_n,1,0,numérico,,,
-EST-028,A,adverse_event_n,Na,0,numérico,,,
-EST-029,A,adverse_event_n,Na,0,numérico,,,
+EST-219,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
+EST-003,A,n_arm,1,15,numérico,1,NATALY TRELLES,2026-08-26
+EST-003,C,n_arm,5,4,numérico,5,NATALY TRELLES,2026-08-26
+EST-003,D,n_arm,4,1,numérico,4,NATALY TRELLES,2026-08-26
+EST-004,A,n_arm,7,9,numérico,7,DANNY VALDIVIEZO,2026-08-26
+EST-008,A,n_arm,9,7,numérico,9,DANNY VALDIVIEZO,2026-08-26
+EST-018,A,n_arm,na,1,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-020,A,n_arm,NA,1,numérico,1,NATALY TRELLES,2026-08-26
+EST-021,A,n_arm,27,12,numérico,27,DANNY VALDIVIEZO,2026-08-26
+EST-029,A,n_arm,19,13,numérico,19,NATALY TRELLES,2026-08-26
+EST-031,A,n_arm,1,3,numérico,3,NATALY TRELLES,2026-08-26
+EST-038,A,n_arm,2,3,numérico,3,NATALY TRELLES,2026-08-26
+EST-055,A,n_arm,45,178,numérico,178,NATALY TRELLES,2026-08-26
+EST-059,A,n_arm,NA,42,numérico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-060,A,n_arm,1,10,numérico,10,NATALY TRELLES,2026-08-26
+EST-061,A,n_arm,2,3,numérico,2,NATALY TRELLES,2026-08-26
+EST-080,A,n_arm,1,4,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-096,A,n_arm,NA,15,numérico,NA,DANNY VALDIVIEZO,2026-08-26
+EST-105,A,n_arm,NA,1,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-115,A,n_arm,NA,62,numérico,62,NATALY TRELLES,2026-08-26
+EST-117,A,n_arm,1,25,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-118,A,n_arm,27,28,numérico,27,DANNY VALDIVIEZO,2026-08-26
+EST-126,A,n_arm,105,212,numérico,105,DANNY VALDIVIEZO,2026-08-26
+EST-132,A,n_arm,38,34,numérico,38,DANNY VALDIVIEZO,2026-08-26
+EST-133,A,n_arm,NA,9,numérico,9,DANNY VALDIVIEZO,2026-08-26
+EST-152,A,n_arm,NA,27,numérico,27,NATALY TRELLES,2026-08-26
+EST-157,A,n_arm,NA,30,numérico,30,DANNY VALDIVIEZO,2026-08-26
+EST-164,A,n_arm,2,4,numérico,2,DANNY VALDIVIEZO,2026-08-26
+EST-165,A,n_arm,NA,48,numérico,48,DANNY VALDIVIEZO,2026-08-26
+EST-167,A,n_arm,NA,27,numérico,27,NATALY TRELLES,2026-08-26
+EST-219,A,n_arm,NA,111,numérico,111,NATALY TRELLES,2026-08-26
+EST-003,A,clinical_success_n,Na,13,numérico,13,NATALY TRELLES,2026-08-26
+EST-003,B,clinical_success_n,5,4,numérico,5,DANNY VALDIVIEZO,2026-08-26
+EST-003,C,clinical_success_n,4,3,numérico,4,DANNY VALDIVIEZO,2026-08-26
+EST-003,D,clinical_success_n,3,1,numérico,3,DANNY VALDIVIEZO,2026-08-26
+EST-003,E,clinical_success_n,1,0,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-004,A,clinical_success_n,7,9,numérico,7,DANNY VALDIVIEZO,2026-08-26
+EST-013,A,clinical_success_n,0,1,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-016,A,clinical_success_n,0,1,numérico,1,NATALY TRELLES,2026-08-26
+EST-018,A,clinical_success_n,na,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-019,A,clinical_success_n,1,2,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-021,A,clinical_success_n,17,NA,numérico,6,NATALY TRELLES,2026-08-26
+EST-031,A,clinical_success_n,1,3,numérico,3,DANNY VALDIVIEZO,2026-08-26
+EST-042,A,clinical_success_n,2,1,numérico,2,DANNY VALDIVIEZO,2026-08-26
+EST-044,A,clinical_success_n,NA,1,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-049,A,clinical_success_n,NA,1,numérico,1,NATALY TRELLES,2026-08-26
+EST-060,A,clinical_success_n,1,7,numérico,4,NATALY TRELLES,2026-08-26
+EST-076,A,clinical_success_n,0,10,numérico,10,DANNY VALDIVIEZO,2026-08-26
+EST-080,A,clinical_success_n,1,4,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-086,A,clinical_success_n,28,NA,numérico,28,DANNY VALDIVIEZO,2026-08-26
+EST-091,A,clinical_success_n,4,NA,numérico,4,NATALY TRELLES,2026-08-26
+EST-101,A,clinical_success_n,23,NA,numérico,23,NATALY TRELLES,2026-08-26
+EST-105,A,clinical_success_n,NA,1,numérico,1,NATALY TRELLES,2026-08-26
+EST-117,A,clinical_success_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-132,A,clinical_success_n,30,NA,numérico,30,DANNY VALDIVIEZO,2026-08-26
+EST-135,A,clinical_success_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-164,A,clinical_success_n,2,4,numérico,2,NATALY TRELLES,2026-08-26
+EST-170,A,clinical_success_n,0,1,numérico,1,NATALY TRELLES,2026-08-26
+EST-181,A,clinical_success_n,21,22,numérico,21,DANNY VALDIVIEZO,2026-08-26
+EST-003,A,adverse_event_n,Na,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-003,B,adverse_event_n,0,3,numérico,0,NATALY TRELLES,2026-08-26
+EST-003,D,adverse_event_n,2,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-013,A,adverse_event_n,0,1,numérico,1,NATALY TRELLES,2026-08-26
+EST-018,A,adverse_event_n,na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-021,A,adverse_event_n,0,3,numérico,3,NATALY TRELLES,2026-08-26
+EST-024,A,adverse_event_n,1,0,numérico,1,NATALY TRELLES,2026-08-26
+EST-028,A,adverse_event_n,Na,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-029,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
 EST-043,A,adverse_event_n,NA,0,numérico,,,
-EST-044,A,adverse_event_n,NA,0,numérico,,,
-EST-049,A,adverse_event_n,NA,0,numérico,,,
-EST-050,A,adverse_event_n,Na,0,numérico,,,
-EST-059,A,adverse_event_n,Na,0,numérico,,,
-EST-060,A,adverse_event_n,NA,0,numérico,,,
-EST-070,A,adverse_event_n,Na,0,numérico,,,
-EST-073,A,adverse_event_n,Na,0,numérico,,,
-EST-075,A,adverse_event_n,NA,0,numérico,,,
-EST-076,A,adverse_event_n,Na,0,numérico,,,
-EST-077,A,adverse_event_n,3,0,numérico,,,
-EST-085,A,adverse_event_n,1,0,numérico,,,
-EST-095,A,adverse_event_n,1,0,numérico,,,
-EST-096,A,adverse_event_n,Na,0,numérico,,,
-EST-098,A,adverse_event_n,Na,0,numérico,,,
-EST-105,A,adverse_event_n,NA,0,numérico,,,
-EST-115,A,adverse_event_n,Na,0,numérico,,,
-EST-117,A,adverse_event_n,Na,0,numérico,,,
-EST-118,A,adverse_event_n,Na,6,numérico,,,
-EST-126,A,adverse_event_n,Na,0,numérico,,,
-EST-133,A,adverse_event_n,Na,0,numérico,,,
-EST-135,A,adverse_event_n,1,0,numérico,,,
-EST-152,A,adverse_event_n,Na,0,numérico,,,
-EST-157,A,adverse_event_n,Na,0,numérico,,,
-EST-165,A,adverse_event_n,Na,0,numérico,,,
-EST-167,A,adverse_event_n,Na,0,numérico,,,
-EST-219,A,adverse_event_n,Na,0,numérico,,,
-EST-001,A,microbio_eradication_n,1,NA,numérico,,,
-EST-002,A,microbio_eradication_n,0,NA,numérico,,,
-EST-003,B,microbio_eradication_n,5,1,numérico,,,
-EST-003,C,microbio_eradication_n,4,1,numérico,,,
-EST-003,D,microbio_eradication_n,3,0,numérico,,,
-EST-003,E,microbio_eradication_n,1,0,numérico,,,
-EST-004,A,microbio_eradication_n,7,0,numérico,,,
-EST-005,A,microbio_eradication_n,1,0,numérico,,,
-EST-006,A,microbio_eradication_n,1,NA,numérico,,,
-EST-007,A,microbio_eradication_n,1,0,numérico,,,
-EST-008,A,microbio_eradication_n,0,NA,numérico,,,
-EST-010,A,microbio_eradication_n,1,NA,numérico,,,
-EST-011,A,microbio_eradication_n,1,NA,numérico,,,
-EST-013,A,microbio_eradication_n,0,1,numérico,,,
-EST-016,A,microbio_eradication_n,0,1,numérico,,,
-EST-017,A,microbio_eradication_n,1,NA,numérico,,,
-EST-019,A,microbio_eradication_n,0,NA,numérico,,,
-EST-031,A,microbio_eradication_n,1,NA,numérico,,,
-EST-038,A,microbio_eradication_n,0,NA,numérico,,,
-EST-040,A,microbio_eradication_n,0,1,numérico,,,
-EST-048,A,microbio_eradication_n,1,NA,numérico,,,
-EST-050,A,microbio_eradication_n,18,NA,numérico,,,
+EST-044,A,adverse_event_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-049,A,adverse_event_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-050,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-059,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-060,A,adverse_event_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-070,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-073,A,adverse_event_n,Na,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-075,A,adverse_event_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-076,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-077,A,adverse_event_n,3,0,numérico,5,NATALY TRELLES,2026-08-26
+EST-085,A,adverse_event_n,1,0,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-095,A,adverse_event_n,1,0,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-096,A,adverse_event_n,Na,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-098,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-105,A,adverse_event_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-115,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-117,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-118,A,adverse_event_n,Na,6,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-126,A,adverse_event_n,Na,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-133,A,adverse_event_n,Na,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-135,A,adverse_event_n,1,0,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-152,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-157,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-165,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-167,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-219,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-001,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-002,A,microbio_eradication_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-003,B,microbio_eradication_n,5,1,numérico,5,NATALY TRELLES,2026-08-26
+EST-003,C,microbio_eradication_n,4,1,numérico,4,NATALY TRELLES,2026-08-26
+EST-003,D,microbio_eradication_n,3,0,numérico,3,NATALY TRELLES,2026-08-26
+EST-003,E,microbio_eradication_n,1,0,numérico,1,NATALY TRELLES,2026-08-26
+EST-004,A,microbio_eradication_n,7,0,numérico,7,DANNY VALDIVIEZO,2026-08-26
+EST-005,A,microbio_eradication_n,1,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-006,A,microbio_eradication_n,1,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-007,A,microbio_eradication_n,1,0,numérico,1,NATALY TRELLES,2026-08-26
+EST-008,A,microbio_eradication_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-010,A,microbio_eradication_n,1,NA,numérico,1,NATALY TRELLES,2026-08-26
+EST-011,A,microbio_eradication_n,1,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-013,A,microbio_eradication_n,0,1,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-016,A,microbio_eradication_n,0,1,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-017,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-019,A,microbio_eradication_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-031,A,microbio_eradication_n,1,NA,numérico,3,DANNY VALDIVIEZO,2026-08-26
+EST-038,A,microbio_eradication_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-040,A,microbio_eradication_n,0,1,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-048,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-050,A,microbio_eradication_n,18,NA,numérico,18,DANNY VALDIVIEZO,2026-08-26
 EST-051,A,microbio_eradication_n,1,NA,numérico,,,
-EST-053,A,microbio_eradication_n,1,NA,numérico,,,
-EST-057,A,microbio_eradication_n,1,NA,numérico,,,
-EST-058,A,microbio_eradication_n,0,NA,numérico,,,
-EST-075,A,microbio_eradication_n,19,NA,numérico,,,
-EST-086,A,microbio_eradication_n,26,NA,numérico,,,
-EST-088,A,microbio_eradication_n,1,NA,numérico,,,
-EST-094,A,microbio_eradication_n,0,NA,numérico,,,
-EST-095,A,microbio_eradication_n,0,NA,numérico,,,
-EST-106,A,microbio_eradication_n,1,NA,numérico,,,
-EST-118,A,microbio_eradication_n,NA,5,numérico,,,
-EST-124,A,microbio_eradication_n,1,NA,numérico,,,
-EST-129,A,microbio_eradication_n,0,NA,numérico,,,
-EST-130,A,microbio_eradication_n,1,NA,numérico,,,
-EST-131,A,microbio_eradication_n,1,NA,numérico,,,
-EST-134,A,microbio_eradication_n,6,NA,numérico,,,
-EST-152,A,microbio_eradication_n,0,NA,numérico,,,
-EST-164,A,microbio_eradication_n,2,NA,numérico,,,
-EST-170,A,microbio_eradication_n,0,NA,numérico,,,
-EST-181,A,microbio_eradication_n,22,NA,numérico,,,
-EST-212,A,microbio_eradication_n,1,NA,numérico,,,
-EST-002,A,mortality_n,0,1,numérico,,,
-EST-003,A,mortality_n,Na,0,numérico,,,
-EST-003,B,mortality_n,0,1,numérico,,,
-EST-003,D,mortality_n,1,0,numérico,,,
-EST-020,A,mortality_n,NA,0,numérico,,,
-EST-024,A,mortality_n,1,0,numérico,,,
-EST-029,A,mortality_n,NA,0,numérico,,,
-EST-034,A,mortality_n,NA,0,numérico,,,
-EST-044,A,mortality_n,NA,0,numérico,,,
-EST-049,A,mortality_n,NA,0,numérico,,,
-EST-050,A,mortality_n,NA,0,numérico,,,
-EST-061,A,mortality_n,0,1,numérico,,,
-EST-070,A,mortality_n,NA,0,numérico,,,
-EST-074,A,mortality_n,3,1,numérico,,,
-EST-075,A,mortality_n,NA,0,numérico,,,
-EST-076,A,mortality_n,NA,0,numérico,,,
-EST-077,A,mortality_n,2,4,numérico,,,
-EST-085,A,mortality_n,0,1,numérico,,,
-EST-086,A,mortality_n,1,0,numérico,,,
-EST-096,A,mortality_n,NA,0,numérico,,,
-EST-101,A,mortality_n,11,0,numérico,,,
-EST-105,A,mortality_n,NA,0,numérico,,,
-EST-118,A,mortality_n,NA,0,numérico,,,
-EST-131,A,mortality_n,1,0,numérico,,,
-EST-132,A,mortality_n,4,0,numérico,,,
-EST-152,A,mortality_n,NA,0,numérico,,,
-EST-157,A,mortality_n,NA,0,numérico,,,
-EST-178,A,mortality_n,NA,0,numérico,,,
-EST-006,A,los_days,2 meses,NA,numérico,,,
-EST-039,A,los_days,28,NA,numérico,,,
-EST-055,A,los_days,0,NA,numérico,,,
-EST-086,A,los_days,6,NA,numérico,,,
-EST-091,A,los_days,29,NA,numérico,,,
-EST-101,A,los_days,51,NA,numérico,,,
-EST-126,A,los_days,0,NA,numérico,,,
-EST-132,A,los_days,28,NA,numérico,,,
-EST-181,A,los_days,31,NA,numérico,,,
-EST-007,A,resistance_emergence_n,Na,FA,numérico,,,
-EST-013,A,resistance_emergence_n,1,Si,numérico,,,
-EST-015,A,resistance_emergence_n,0,Na,numérico,,,
-EST-016,A,resistance_emergence_n,0,Na,numérico,,,
-EST-017,A,resistance_emergence_n,0,NA,numérico,,,
-EST-039,A,resistance_emergence_n,0,NA,numérico,,,
-EST-051,A,resistance_emergence_n,0,NA,numérico,,,
-EST-055,A,resistance_emergence_n,0,NA,numérico,,,
-EST-074,A,resistance_emergence_n,0,NA,numérico,,,
-EST-080,A,resistance_emergence_n,0,NA,numérico,,,
-EST-091,A,resistance_emergence_n,0,NA,numérico,,,
-EST-131,A,resistance_emergence_n,0,NA,numérico,,,
-EST-170,A,resistance_emergence_n,0,NA,numérico,,,
-EST-018,A,publication_year,2026,2023,numérico,,,
-EST-020,A,publication_year,2025,2023,numérico,,,
-EST-049,A,publication_year,2026,2023,numérico,,,
-EST-060,A,publication_year,2023,2020,numérico,,,
-EST-105,A,publication_year,2021,2018,numérico,,,
-EST-115,A,publication_year,2016,2017,numérico,,,
-EST-118,A,publication_year,2017,2021,numérico,,,
-EST-131,A,publication_year,2018,2025,numérico,,,
-EST-133,A,publication_year,na,2018,numérico,,,
-EST-165,A,publication_year,2019,2021,numérico,,,
-EST-167,A,publication_year,2022,2024,numérico,,,
-EST-170,A,publication_year,2025,2024,numérico,,,
-EST-219,A,publication_year,na,2023,numérico,,,
-EST-001,A,clinical_success_definition,"Los datos actuales sugieren que el procedimiento PhagoDAIR por artroscopia tiene el potencial de ser utilizado como terapia de rescate para pacientes con P. aeruginosa PJI recidivante, en combinación con terapia antimicrobiana supresora. Un estudio clínico de fase II merece ser realizado para confir",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-002,A,clinical_success_definition,"En conclusión, en las infecciones complejas por P. aeruginosa, la elección de la terapia antibiótica y su duración son cruciales para minimizar la presión antibiótica y el desarrollo de la resistencia. Aunque no hemos demostrado que el tratamiento con fagos haya sido efectivo en este caso, el estudi",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-003,A,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-003,B,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),,,
-EST-003,C,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),,,
-EST-003,D,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),,,
-EST-003,E,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),,,
-EST-004,A,clinical_success_definition,"Reducción de la carga bacteriana de Pseudomonas aeruginosa en esputo y mejora clínica en la función pulmonar (ppFEV1), respaldadas por compensaciones evolutivas (trade-offs) que redujeron la resistencia a los antibióticos o la virulencia bacteriana.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-004,B,clinical_success_definition,"Reducción de la carga bacteriana de Pseudomonas aeruginosa en esputo y mejora clínica en la función pulmonar (ppFEV1), respaldadas por compensaciones evolutivas (trade-offs) que redujeron la resistencia a los antibióticos o la virulencia bacteriana.","Estos resultados demuestran que una estrategia de terapia fágica nebulizada personalizada puede afectar a los resultados clínicos y microbiológicos, que deben evaluarse en ensayos clínicos más amplios.",texto (no puntuado),,,
-EST-005,A,clinical_success_definition,"Dada la preocupación por las infecciones por MDR P. aeruginosa en pacientes con FQ, BT puede ofrecer un complemento antiinfeccioso viable a la terapia antibiótica tradicional.","Dada la preocupación por las infecciones por P. aeruginosa multirresistente en pacientes con fibrosis quística, la BT podría ofrecer un complemento antiinfeccioso viable a la terapia antibiótica tradicional.",texto (no puntuado),,,
-EST-006,A,clinical_success_definition,"En este caso, el efecto sinérgico de la administración de fagos y las dosis más bajas de antibióticos podrían haber sido la razón del resultado positivo. Los fagos permitieron dosis más bajas de antibióticos y redujeron sus toxicidades, que eran graves y no controlaban la colonización respiratoria. ",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-007,A,clinical_success_definition,"La experiencia con la terapia con fagos está creciendo, y la mayoría de los casos no han reportado efectos secundarios adversos graves, como en el caso presentado aquí [14]. La personalización de la terapia con fagos, que combina múltiples vías de administración, es necesaria para lograr una exposic","La administración de fagos en múltiples sitios es una estrategia de tratamiento personalizada que puede prevenir la recaída o la aparición de resistencia antimicrobiana adicional en casos complejos, como la osteítis recurrente por P. aeruginosa multirresistente",texto (no puntuado),,,
-EST-008,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-010,A,clinical_success_definition,"En el presente caso, un factor limitante fue el tiempo para examinar, producir y purificar los bacteriófagos (en total 3 meses) antes de que se pudiera administrar al paciente un cóctel de fagos premontado, personalizado y dirigido como adyuvante para la cirugía y los antibióticos. En consecuencia, ",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-011,A,clinical_success_definition,"En general, el paciente estaba infectado con P. aeruginosa multirresistente, lo que resultó en síntomas potencialmente mortales. Después de la terapia con fagos personalizada, la infección del paciente mejoró significativamente, con la normalización de los marcadores inflamatorios y la mejora de las",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-012,A,clinical_success_definition,"El tratamiento con terapia intermitente con bacteriófagos solo sin antibióticos durante un período de 2 años resultó en la resolución clínica de la infección, pero no en la erradicación microbiológica. La terapia con bacteriófagos estableció este control, en parte, alterando la virulencia definida p",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-013,A,clinical_success_definition,"Después de que el paciente se sometiera al curso inicial de la terapia con cóctel de fagos dsDNA, se observó la aparición de mutantes de P.aeruginosa totalmente resistentes a los fagos. Estos mutantes se caracterizaron por varias mutaciones que resultan en mutaciones de antígeno O, que pueden contri","este estudio de caso corrobora la seguridad de la terapia con fagos para las infecciones bacterianas y su capacidad para aliviar los síntomas de la infección, abriendo así nuevas vías en los enfoques terapéuticos. Para las infecciones crónicas y complejas, los bacteriófagos ofrecen una alternativa e",texto (no puntuado),,,
-EST-014,A,clinical_success_definition,ACLARAMIENTO DEL PATOGENO Y MEJORIA CLINICA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-015,A,clinical_success_definition,Mejoría local sostenida + estabilidad hemodinámica + libre >12 meses,"Este informe se suma a la creciente bibliografía que indica que la terapia con fagos puede ser un enfoque seguro y eficaz para complementar la terapia antibiótica en pacientes infectados con patógenos resistentes a los medicamentos. Además, resalta la importancia de la familia de β-lactamasas GES en",texto (no puntuado),,,
-EST-016,A,clinical_success_definition,Erradicación en segmento proximal,"En este caso, el desbridamiento de la herida combinado con antibióticos y bacteriófagos resultó en la erradicación bacteriana del segmento femoral proximal, evitando la amputación de la pierna, pero no logró tratar la osteomielitis en el segmento óseo distal. Se realizó una evaluación in vitro de la",texto (no puntuado),,,
-EST-017,A,clinical_success_definition,Éxito a largo plazo,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-018,A,clinical_success_definition,na,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-019,A,clinical_success_definition,Reducción de carga bacteriana + mejoría de calidad de vida,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-020,A,clinical_success_definition,Mejoría clínica más rápida,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-021,A,clinical_success_definition,como el tiempo mediano hasta lograr una reducción sostenida de la carga bacteriana,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-024,A,clinical_success_definition,"Disminución de la densidad bacteriana en el esputo y mejoría clínica a corto plazo (energía, menor tos productiva y mejoría temporal de los requerimientos de oxígeno).",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-027,A,clinical_success_definition,Mejoría clínica significativa,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-028,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-029,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-030,A,clinical_success_definition,Resolución clínica y microbiológica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-031,A,clinical_success_definition,Cicatrización completa de la herida + resolución de la infección + retención de la prótesis,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-034,A,clinical_success_definition,Resolución o control de la infección recalcitrante,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-038,A,clinical_success_definition,Mejoría de la enfermedad a pesar de la persistencia bacteriana,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-039,A,clinical_success_definition,"La eliminación de microorganismos multirresistentes del lavado broncoalveolar, dinámicas positivas en las tomografías computarizadas de pulmón, mejora en el puntaje CPIS (Clinical Pulmonary Infection Score) y reducción significativa de los marcadores inflamatorios como la proteína C reactiva (PCR) y",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-040,A,clinical_success_definition,Control de la infección,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-042,A,clinical_success_definition,"Erradicación completa de la bacteria patógena (cultivos negativos en heridas y orina), resolución clínica de la infección, cierre completo del tracto sinusal o fístula, reducción significativa de las áreas hipoecoicas/inflamatorias en estudios de imagen y mantenimiento de un estado clínico estable c",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-043,A,clinical_success_definition,Describe infección MDR secundaria en Darier; no menciona fagos,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-044,A,clinical_success_definition,Primera experiencia con cefepime-zidebactam + fago en USA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-046,A,clinical_success_definition,Control de sepsis + recuperación neurológica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-047,A,clinical_success_definition,Erradicación completa de la infección,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-048,A,clinical_success_definition,Sin recidiva clínica a 2 años,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-049,A,clinical_success_definition,Uso exitoso de terapia fágica tras fallo de antibióticos,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-050,A,clinical_success_definition,Evolución clínica favorable,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-051,A,clinical_success_definition,Sin recidiva a 1 año + consolidación ósea,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-053,A,clinical_success_definition,Sin recidiva a 10 meses de seguimiento,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-055,A,clinical_success_definition,"Como la reducción y mejoría estadísticamente significativa en los niveles de dolor medidos por la escala VAS y en las puntuaciones de los dominios (típicos, diferenciales y de calidad de vida) del cuestionario ACSS tras 14 días de tratamiento.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-057,A,clinical_success_definition,Resolución de la endocarditis e infección de prótesis,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-058,A,clinical_success_definition,Resolución del rechazo agudo + mejora función pulmonar,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-059,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-060,A,clinical_success_definition,Tratamiento considerado éxito clínico a pesar del desarrollo de respuesta inmune anti-fago,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-061,A,clinical_success_definition,Respuesta clínica + alta hospitalaria sin soporte ventilatorio,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-062,A,clinical_success_definition,Resolución completa + retrasplante + supervivencia >2 años,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-070,A,clinical_success_definition,Remisión o recuperación,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-073,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-074,A,clinical_success_definition,"Como la ausencia de detección de las bacterias objetivo en los cultivos de control (sangre, hisopados, lavados bronquiales o drenajes) junto con la curación de heridas y ausencia de signos inflamatorios en imágenes de seguimiento por PET-CT.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-075,A,clinical_success_definition,Como la sanación de las vías respiratorias (airway sanitation) junto con la superación de la linfopenia y el aumento de la cantidad y actividad funcional de los linfocitos de sangre periférica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-076,A,clinical_success_definition,Control de infección + salvamento de extremidad / retención de prótesis,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-077,A,clinical_success_definition,"El autor no lista criterios estandarizados de éxito, pero enmarca el fracaso clínico por la presencia de bacteriemia intercurrente, la imposibilidad de curar la infección sin retirar el dispositivo de asistencia ventricular (LVAD) y la muerte por la infección subyacente",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-080,A,clinical_success_definition,"Curación completa de la herida, cierre del tejido, regeneración con formación de tejido de granulación, desaparición del eritema de la piel y mejora del estado general.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-085,A,clinical_success_definition,Mejoría síntomas + reducción carga + permite trasplante pulmonar,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-086,A,clinical_success_definition,"e define como la recuperación dentro de los primeros 10 días de iniciado el tratamiento, caracterizada por un O2Sat ≥ 95%, y la ausencia de fiebre, disnea, tos, fatiga o recurrencias de infección pulmonar bacteriana secundaria",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-088,A,clinical_success_definition,Recuperación completa sin AE,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-091,A,clinical_success_definition,Escala clínica A–G de Międzybrodzki,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-094,A,clinical_success_definition,Mejoría radiológica PET/CT + sin bacteremia a 1 año,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-095,A,clinical_success_definition,Efecto terapéutico significativo en 2 semanas,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-096,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-098,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-101,A,clinical_success_definition,cura clinica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-105,A,clinical_success_definition,Implementación de task force multidisciplinar para terapia fágica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-106,A,clinical_success_definition,Resolución sin signos de recurrencia,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-115,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-117,A,clinical_success_definition,A–C = positivo (A = erradicación/recuperación; B = buen resultado clínico; C = mejoría clínica),SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-118,A,clinical_success_definition,"omo el éxito del tratamiento intravesical, definido por la normalización del urocultivo (ausencia de evidencia de bacterias, es decir, < 10^4 unidades formadoras de colonias/mL) después de 7 días de tratamiento",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-124,A,clinical_success_definition,Cura clínica + erradicación; libre >21 meses,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-126,A,clinical_success_definition,"Mediante criterios subjetivos (escala WADN de bienestar de 5 puntos evaluando sueño, apetito, estado de ánimo, dolor de cabeza, deglución, dolor de garganta y sequedad) y objetivos (reducción de signos de intoxicación, hiperemia e inflamación amigdalar, tamaño de ganglios linfáticos cervicales, recu",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-129,A,clinical_success_definition,Cicatrización + CRP normal (caso 1); libre de infección 6 meses (caso 3),SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-130,A,clinical_success_definition,Remisión completa 6 meses + mejora QoL,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-131,A,clinical_success_definition,Aspecto macroscópico favorable + cultivo negativo en reconstrucción,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-132,A,clinical_success_definition,"A través de la curación evaluada mediante la herramienta PUSH (Pressure Ulcer Scale for Healing), la reducción del tamaño de la úlcera, el tipo de tejido de cicatrización y la disminución en la cantidad de exudado",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-133,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-134,A,clinical_success_definition,Disminución del título bacteriano,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-135,A,clinical_success_definition,Aspecto local favorable post-cirugía,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-146,A,clinical_success_definition,Erradicación bacteriana + mejora clínica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-152,A,clinical_success_definition,Erradicación bacteriana + mejora clínica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-157,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-159,A,clinical_success_definition,Disminución significativa SUVmax PET-CT a 3 meses,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-164,A,clinical_success_definition,Ausencia de recurrencia de la infección con las cepas causantes,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-165,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-167,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-169,A,clinical_success_definition,Mejora de FEV1 % + erradicación microbiológica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-170,A,clinical_success_definition,Seguridad y tolerabilidad; mejoría inicial seguida de recaída; cura sostenida con ertapenem post-fago,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-178,A,clinical_success_definition,"A través de la evaluación de la reducción en la severidad de los síntomas mediante la escala MSS (Main Symptoms Severity score) en cada visita, la mejora en los niveles inmunológicos (IgA y sIgA) y la disminución en la frecuencia de prescripción de antibióticos",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-181,A,clinical_success_definition,Como la ausencia de recaídas de la infección articular periprotésica (PJI) dentro del seguimiento de 12 meses tras la cirugía en una sola etapa.,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-199,A,clinical_success_definition,Eliminación de E. faecalis + abatimiento de síntomas,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-212,A,clinical_success_definition,Tratamiento exitoso evitando recambio total de LVAD,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-219,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),,,
-EST-011,A,journal_tier,alto,medio,texto (no puntuado),,,
-EST-017,A,journal_tier,alto,bajo,texto (no puntuado),bajo,R2 casilla en blanco en metadato del registro; valor del revisor que lo cumplimentó,2026-08-12
-EST-034,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-047,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-048,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-050,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-058,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-062,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-070,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-074,A,journal_tier,alto,medio,texto (no puntuado),,,
-EST-077,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-080,A,journal_tier,alto,medio,texto (no puntuado),,,
-EST-086,A,journal_tier,alto,medio,texto (no puntuado),,,
-EST-088,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-091,A,journal_tier,alto,medio,texto (no puntuado),,,
-EST-094,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-095,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-105,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-106,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-126,A,journal_tier,alto,bajo,texto (no puntuado),,,
-EST-131,A,journal_tier,alto,medio,texto (no puntuado),,,
-EST-134,A,journal_tier,alto,medio,texto (no puntuado),,,
-EST-135,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-164,A,journal_tier,medio,alto,texto (no puntuado),,,
-EST-170,A,journal_tier,alto,medio,texto (no puntuado),medio,R2 casilla en blanco en metadato del registro; valor del revisor que lo cumplimentó,2026-08-12
-EST-178,A,journal_tier,medio,bajo,texto (no puntuado),,,
-EST-003,A,geographic_source,Israel,Israel/global,texto (no puntuado),,,
-EST-004,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-004,B,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-005,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-008,A,geographic_source,multicéntrico (internacional),Israel,texto (no puntuado),,,
-EST-012,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),,,
-EST-015,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-016,A,geographic_source,Letonia,Francia,texto (no puntuado),,,
-EST-017,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-018,A,geographic_source,na,España,texto (no puntuado),,,
-EST-020,A,geographic_source,Alemania,España,texto (no puntuado),,,
-EST-021,A,geographic_source,multicéntrico (Europa),Francia/Belgica,texto (no puntuado),,,
-EST-024,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-030,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-034,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-038,A,geographic_source,Estados Unidos,Georgia,texto (no puntuado),,,
-EST-043,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-044,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-046,A,geographic_source,Bélgica,Belgica,texto (no puntuado),,,
-EST-049,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-060,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-061,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),,,
-EST-062,A,geographic_source,Bélgica,Belgica,texto (no puntuado),,,
-EST-073,A,geographic_source,NA,India,texto (no puntuado),,,
-EST-076,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),,,
-EST-077,A,geographic_source,multicéntrico (internacional),EEUU/Israel,texto (no puntuado),,,
-EST-080,A,geographic_source,Estados unidos,Georgia,texto (no puntuado),,,
-EST-086,A,geographic_source,Irán,Iran,texto (no puntuado),,,
-EST-088,A,geographic_source,Bélgica,Belgica,texto (no puntuado),,,
-EST-098,A,geographic_source,NA,Alemania,texto (no puntuado),,,
-EST-101,A,geographic_source,Irán,Iran,texto (no puntuado),,,
-EST-105,A,geographic_source,Bélgica,Francia,texto (no puntuado),,,
-EST-106,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),,,
-EST-115,A,geographic_source,NA,Polonia,texto (no puntuado),,,
-EST-118,A,geographic_source,Estados unidos,Georgia,texto (no puntuado),,,
-EST-126,A,geographic_source,otro,Uzbekistan,texto (no puntuado),,,
-EST-129,A,geographic_source,Reino Unido,UK,texto (no puntuado),,,
-EST-130,A,geographic_source,Bélgica,Belgica,texto (no puntuado),,,
-EST-131,A,geographic_source,Francia,Canada,texto (no puntuado),,,
-EST-133,A,geographic_source,NA,Georgia/Suiza,texto (no puntuado),,,
-EST-134,A,geographic_source,Suiza,Georgia,texto (no puntuado),,,
-EST-146,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),,,
-EST-157,A,geographic_source,NA,India,texto (no puntuado),,,
-EST-165,A,geographic_source,NA,India,texto (no puntuado),,,
-EST-167,A,geographic_source,NA,India,texto (no puntuado),,,
-EST-170,A,geographic_source,Canadá,EEUU,texto (no puntuado),,,
-EST-178,A,geographic_source,otro,Ucrania,texto (no puntuado),,,
-EST-199,A,geographic_source,Estados unidos,USA,texto (no puntuado),,,
-EST-219,A,geographic_source,NA,Rusia,texto (no puntuado),,,
+EST-053,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-057,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-058,A,microbio_eradication_n,0,NA,numérico,1,NATALY TRELLES,2026-08-26
+EST-075,A,microbio_eradication_n,19,NA,numérico,19,DANNY VALDIVIEZO,2026-08-26
+EST-086,A,microbio_eradication_n,26,NA,numérico,26,DANNY VALDIVIEZO,2026-08-26
+EST-088,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-094,A,microbio_eradication_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-095,A,microbio_eradication_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-106,A,microbio_eradication_n,1,NA,numérico,1,NATALY TRELLES,2026-08-26
+EST-118,A,microbio_eradication_n,NA,5,numérico,5,NATALY TRELLES,2026-08-26
+EST-124,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-129,A,microbio_eradication_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-130,A,microbio_eradication_n,1,NA,numérico,1,NATALY TRELLES,2026-08-26
+EST-131,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-134,A,microbio_eradication_n,6,NA,numérico,6,DANNY VALDIVIEZO,2026-08-26
+EST-152,A,microbio_eradication_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-164,A,microbio_eradication_n,2,NA,numérico,2,NATALY TRELLES,2026-08-26
+EST-170,A,microbio_eradication_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-181,A,microbio_eradication_n,22,NA,numérico,22,DANNY VALDIVIEZO,2026-08-26
+EST-212,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-002,A,mortality_n,0,1,numérico,0,NATALY TRELLES,2026-08-26
+EST-003,A,mortality_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-003,B,mortality_n,0,1,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-003,D,mortality_n,1,0,numérico,1,NATALY TRELLES,2026-08-26
+EST-020,A,mortality_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-024,A,mortality_n,1,0,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-029,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-034,A,mortality_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-044,A,mortality_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-049,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-050,A,mortality_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-061,A,mortality_n,0,1,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-070,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-074,A,mortality_n,3,1,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-075,A,mortality_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-076,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-077,A,mortality_n,2,4,numérico,2,NATALY TRELLES,2026-08-26
+EST-085,A,mortality_n,0,1,numérico,0,NATALY TRELLES,2026-08-26
+EST-086,A,mortality_n,1,0,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-096,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-101,A,mortality_n,11,0,numérico,11,DANNY VALDIVIEZO,2026-08-26
+EST-105,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-118,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-131,A,mortality_n,1,0,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-132,A,mortality_n,4,0,numérico,4,DANNY VALDIVIEZO,2026-08-26
+EST-152,A,mortality_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
+EST-157,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-178,A,mortality_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-006,A,los_days,2 meses,NA,numérico,203,NATALY TRELLES,2026-08-26
+EST-039,A,los_days,28,NA,numérico,28,NATALY TRELLES,2026-08-26
+EST-055,A,los_days,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-086,A,los_days,6,NA,numérico,6,DANNY VALDIVIEZO,2026-08-26
+EST-091,A,los_days,29,NA,numérico,29,DANNY VALDIVIEZO,2026-08-26
+EST-101,A,los_days,51,NA,numérico,51,DANNY VALDIVIEZO,2026-08-26
+EST-126,A,los_days,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-132,A,los_days,28,NA,numérico,28,DANNY VALDIVIEZO,2026-08-26
+EST-181,A,los_days,31,NA,numérico,31,DANNY VALDIVIEZO,2026-08-26
+EST-007,A,resistance_emergence_n,Na,FA,numérico,0,NATALY TRELLES,2026-08-26
+EST-013,A,resistance_emergence_n,1,Si,numérico,1,DANNY VALDIVIEZO,2026-08-26
+EST-015,A,resistance_emergence_n,0,Na,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-016,A,resistance_emergence_n,0,Na,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-017,A,resistance_emergence_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-039,A,resistance_emergence_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-051,A,resistance_emergence_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-055,A,resistance_emergence_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-074,A,resistance_emergence_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-080,A,resistance_emergence_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-091,A,resistance_emergence_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-131,A,resistance_emergence_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
+EST-170,A,resistance_emergence_n,0,NA,numérico,0,DANNY VALDIVIEZO,2026-08-26
+EST-018,A,publication_year,2026,2023,numérico,2026,NATALY TRELLES,2026-08-26
+EST-020,A,publication_year,2025,2023,numérico,2025,NATALY TRELLES,2026-08-26
+EST-049,A,publication_year,2026,2023,numérico,2023,NATALY TRELLES,2026-08-26
+EST-060,A,publication_year,2023,2020,numérico,2025,DANNY VALDIVIEZO,2026-08-26
+EST-105,A,publication_year,2021,2018,numérico,2021,NATALY TRELLES,2026-08-26
+EST-115,A,publication_year,2016,2017,numérico,2017,NATALY TRELLES,2026-08-26
+EST-118,A,publication_year,2017,2021,numérico,2021,NATALY TRELLES,2026-08-26
+EST-131,A,publication_year,2018,2025,numérico,2025,NATALY TRELLES,2026-08-26
+EST-133,A,publication_year,na,2018,numérico,2018,DANNY VALDIVIEZO,2026-08-26
+EST-165,A,publication_year,2019,2021,numérico,2021,DANNY VALDIVIEZO,2026-08-26
+EST-167,A,publication_year,2022,2024,numérico,2024,NATALY TRELLES,2026-08-26
+EST-170,A,publication_year,2025,2024,numérico,2025,DANNY VALDIVIEZO,2026-08-26
+EST-219,A,publication_year,na,2023,numérico,2023,DANNY VALDIVIEZO,2026-08-26
+EST-001,A,clinical_success_definition,"Los datos actuales sugieren que el procedimiento PhagoDAIR por artroscopia tiene el potencial de ser utilizado como terapia de rescate para pacientes con P. aeruginosa PJI recidivante, en combinación con terapia antimicrobiana supresora. Un estudio clínico de fase II merece ser realizado para confir",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"The patient rapidly improved with disappearance of signs of heart failure and pain of the left knee. The CRP reached normal values quickly.
+At 6 months, the local status of the left knee was normal (Figure 1G) and its motion and walking were unpainful  One year after the phage administration, the patient unfortunately died from lithiasic pancreatitis, without any clinical signs of prosthetic joint infection (PJI).""",NATALY TRELLES,2026-08-26
+EST-002,A,clinical_success_definition,"En conclusión, en las infecciones complejas por P. aeruginosa, la elección de la terapia antibiótica y su duración son cruciales para minimizar la presión antibiótica y el desarrollo de la resistencia. Aunque no hemos demostrado que el tratamiento con fagos haya sido efectivo en este caso, el estudi",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-003,A,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"""Significant reductions of P. aeruginosa colony forming units (CFU) in sputum occurred in the treatment arm compared to placebo, on days 4 (1.9 log10 CFU per gram of sputum difference between groups, p =0.035) and 15 (2.7 log10 CFU per gram of sputum difference between groups, p = 0.029)... Taken together, these data demonstrate the favorable safety profile, feasibility of lower respiratory tract delivery, and preliminary indications of antimicrobial efficacy of the BX004-A phage cocktail.""",DANNY VALDIVIEZO,2026-08-26
+EST-003,B,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),"""Significant reductions of P. aeruginosa colony forming units (CFU) in sputum occurred in the treatment arm compared to placebo, on days 4 (1.9 log10 CFU per gram of sputum difference between groups, p =0.035) and 15 (2.7 log10 CFU per gram of sputum difference between groups, p = 0.029)... Taken together, these data demonstrate the favorable safety profile, feasibility of lower respiratory tract delivery, and preliminary indications of antimicrobial efficacy of the BX004-A phage cocktail.""",DANNY VALDIVIEZO,2026-08-26
+EST-003,C,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),"""Significant reductions of P. aeruginosa colony forming units (CFU) in sputum occurred in the treatment arm compared to placebo, on days 4 (1.9 log10 CFU per gram of sputum difference between groups, p =0.035) and 15 (2.7 log10 CFU per gram of sputum difference between groups, p = 0.029)... Taken together, these data demonstrate the favorable safety profile, feasibility of lower respiratory tract delivery, and preliminary indications of antimicrobial efficacy of the BX004-A phage cocktail.""",DANNY VALDIVIEZO,2026-08-26
+EST-003,D,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),"""Significant reductions of P. aeruginosa colony forming units (CFU) in sputum occurred in the treatment arm compared to placebo, on days 4 (1.9 log10 CFU per gram of sputum difference between groups, p =0.035) and 15 (2.7 log10 CFU per gram of sputum difference between groups, p = 0.029)... Taken together, these data demonstrate the favorable safety profile, feasibility of lower respiratory tract delivery, and preliminary indications of antimicrobial efficacy of the BX004-A phage cocktail.""",DANNY VALDIVIEZO,2026-08-26
+EST-003,E,clinical_success_definition,"En conclusión, parece que para los pacientes con infecciones persistentes por P. aeruginosa para los que la terapia convencional previa ha fracasado, el bacteriófago PASA16 puede ofrecer una opción de tratamiento razonable y segura, aunque se necesitan estudios prospectivos más amplios para definir ",Se ha observado que el tratamiento con PASA16 y antibióticos resulta relativamente eficaz en pacientes en los que los tratamientos tradicionales habían fracasado previamente. Estas cohortes previas a la fase 1 pueden servir de base para posibles protocolos clínicos y facilitar el diseño de futuros e,texto (no puntuado),"""Significant reductions of P. aeruginosa colony forming units (CFU) in sputum occurred in the treatment arm compared to placebo, on days 4 (1.9 log10 CFU per gram of sputum difference between groups, p =0.035) and 15 (2.7 log10 CFU per gram of sputum difference between groups, p = 0.029)... Taken together, these data demonstrate the favorable safety profile, feasibility of lower respiratory tract delivery, and preliminary indications of antimicrobial efficacy of the BX004-A phage cocktail.""",DANNY VALDIVIEZO,2026-08-26
+EST-004,A,clinical_success_definition,"Reducción de la carga bacteriana de Pseudomonas aeruginosa en esputo y mejora clínica en la función pulmonar (ppFEV1), respaldadas por compensaciones evolutivas (trade-offs) que redujeron la resistencia a los antibióticos o la virulencia bacteriana.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-004,B,clinical_success_definition,"Reducción de la carga bacteriana de Pseudomonas aeruginosa en esputo y mejora clínica en la función pulmonar (ppFEV1), respaldadas por compensaciones evolutivas (trade-offs) que redujeron la resistencia a los antibióticos o la virulencia bacteriana.","Estos resultados demuestran que una estrategia de terapia fágica nebulizada personalizada puede afectar a los resultados clínicos y microbiológicos, que deben evaluarse en ensayos clínicos más amplios.",texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-005,A,clinical_success_definition,"Dada la preocupación por las infecciones por MDR P. aeruginosa en pacientes con FQ, BT puede ofrecer un complemento antiinfeccioso viable a la terapia antibiótica tradicional.","Dada la preocupación por las infecciones por P. aeruginosa multirresistente en pacientes con fibrosis quística, la BT podría ofrecer un complemento antiinfeccioso viable a la terapia antibiótica tradicional.",texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-006,A,clinical_success_definition,"En este caso, el efecto sinérgico de la administración de fagos y las dosis más bajas de antibióticos podrían haber sido la razón del resultado positivo. Los fagos permitieron dosis más bajas de antibióticos y redujeron sus toxicidades, que eran graves y no controlaban la colonización respiratoria. ",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"""By the addition of phages, we saw positive cutaneous graft evolution and respiratory improvement. By the second phage administration, the cutaneous graft status kept on improving and we were able to extubate the patient. Between the previous failure and the clinical improvement, the only therapeutic change was the administration of phages, so we could conclude that the association was beneficial and led to our therapeutic success.""",DANNY VALDIVIEZO,2026-08-26
+EST-007,A,clinical_success_definition,"La experiencia con la terapia con fagos está creciendo, y la mayoría de los casos no han reportado efectos secundarios adversos graves, como en el caso presentado aquí [14]. La personalización de la terapia con fagos, que combina múltiples vías de administración, es necesaria para lograr una exposic","La administración de fagos en múltiples sitios es una estrategia de tratamiento personalizada que puede prevenir la recaída o la aparición de resistencia antimicrobiana adicional en casos complejos, como la osteítis recurrente por P. aeruginosa multirresistente",texto (no puntuado),"""This personalized multisite administration, which was specifically set up for this case, combined with medico-surgical treatment, probably participated to the clinical success with no relapse at 2-years follow-up without any suppressive antimicrobial therapy.",DANNY VALDIVIEZO,2026-08-26
+EST-008,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-010,A,clinical_success_definition,"En el presente caso, un factor limitante fue el tiempo para examinar, producir y purificar los bacteriófagos (en total 3 meses) antes de que se pudiera administrar al paciente un cóctel de fagos premontado, personalizado y dirigido como adyuvante para la cirugía y los antibióticos. En consecuencia, ",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"""The outcome was favorable during the follow-up (21 months), without implant loosening nor clinical signs of infection (Fig. 2C, D), and the patient was walking without pain (Supplementary Movie 1).",DANNY VALDIVIEZO,2026-08-26
+EST-011,A,clinical_success_definition,"En general, el paciente estaba infectado con P. aeruginosa multirresistente, lo que resultó en síntomas potencialmente mortales. Después de la terapia con fagos personalizada, la infección del paciente mejoró significativamente, con la normalización de los marcadores inflamatorios y la mejora de las",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"""After 8 weeks of treatment with P. aeruginosa phages, the patient’s sputum bacterial load decreased, overall inflammatory markers decreased, and lung effusion significantly reduced despite isolation of phage-resistant strains. ... Following personalized phage therapy, the patient’s infection significantly improved, with normalization of inflammatory markers and improvement in lung lesions despite isolation of phage-resistant strains. While complete eradication of P. aeruginosa may not always be achievable, the reduced virulence of phage-resistant strains contributed to a marked improvement in the patient’s clinical condition. This research emphasizes the importance of understanding the complex interactions between phages and bacteria to optimize phage therapy strategies.""",DANNY VALDIVIEZO,2026-08-26
+EST-012,A,clinical_success_definition,"El tratamiento con terapia intermitente con bacteriófagos solo sin antibióticos durante un período de 2 años resultó en la resolución clínica de la infección, pero no en la erradicación microbiológica. La terapia con bacteriófagos estableció este control, en parte, alterando la virulencia definida p",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"When bacteriophage therapy was used as the sole antimicrobial agent, a phenotypic decrease in P. aeruginosa virulence resulted in clinical control of the infection without its eradication. This was defined as the complete or significant reduction of infection-related symptoms, relative normalization of laboratory markers, and the absence of a need for further antimicrobial or surgical interventions.",DANNY VALDIVIEZO,2026-08-26
+EST-013,A,clinical_success_definition,"Después de que el paciente se sometiera al curso inicial de la terapia con cóctel de fagos dsDNA, se observó la aparición de mutantes de P.aeruginosa totalmente resistentes a los fagos. Estos mutantes se caracterizaron por varias mutaciones que resultan en mutaciones de antígeno O, que pueden contri","este estudio de caso corrobora la seguridad de la terapia con fagos para las infecciones bacterianas y su capacidad para aliviar los síntomas de la infección, abriendo así nuevas vías en los enfoques terapéuticos. Para las infecciones crónicas y complejas, los bacteriófagos ofrecen una alternativa e",texto (no puntuado),"This treatment led to the resolution of abdominal signs and symptoms of infection, along with a reduction in bacterial load.",DANNY VALDIVIEZO,2026-08-26
+EST-014,A,clinical_success_definition,ACLARAMIENTO DEL PATOGENO Y MEJORIA CLINICA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"The treatment was well-tolerated, resulting in clearance of the pathogen and improvement of the clinical outcome.",DANNY VALDIVIEZO,2026-08-26
+EST-015,A,clinical_success_definition,Mejoría local sostenida + estabilidad hemodinámica + libre >12 meses,"Este informe se suma a la creciente bibliografía que indica que la terapia con fagos puede ser un enfoque seguro y eficaz para complementar la terapia antibiótica en pacientes infectados con patógenos resistentes a los medicamentos. Además, resalta la importancia de la familia de β-lactamasas GES en",texto (no puntuado),"Despite the heavy burden of disease with a DTR-P. aeruginosa isolate, our patient achieved clinical cure of his infection, and in the absence of any treatment-related adverse events.",DANNY VALDIVIEZO,2026-08-26
+EST-016,A,clinical_success_definition,Erradicación en segmento proximal,"En este caso, el desbridamiento de la herida combinado con antibióticos y bacteriófagos resultó en la erradicación bacteriana del segmento femoral proximal, evitando la amputación de la pierna, pero no logró tratar la osteomielitis en el segmento óseo distal. Se realizó una evaluación in vitro de la",texto (no puntuado),"Nine months after the intervention, the patient did not show any clinical, radiological, or laboratory signs of inflammation; therefore, hip replacement was performed.",NATALY TRELLES,2026-08-26
+EST-017,A,clinical_success_definition,Éxito a largo plazo,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-018,A,clinical_success_definition,na,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-019,A,clinical_success_definition,Reducción de carga bacteriana + mejoría de calidad de vida,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"Nebulized phage therapy reduced bacterial load, improving quality of life even without bacterial eradication",NATALY TRELLES,2026-08-26
+EST-020,A,clinical_success_definition,Mejoría clínica más rápida,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-021,A,clinical_success_definition,como el tiempo mediano hasta lograr una reducción sostenida de la carga bacteriana,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"The primary endpoint was the time taken for a sustained reduction in bacterial burden by at least two quadrants via a four-quadrant method, assessed by use of daily swabs",DANNY VALDIVIEZO,2026-08-26
+EST-024,A,clinical_success_definition,"Disminución de la densidad bacteriana en el esputo y mejoría clínica a corto plazo (energía, menor tos productiva y mejoría temporal de los requerimientos de oxígeno).",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-027,A,clinical_success_definition,Mejoría clínica significativa,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),These results demonstrate that clinically significant improvement is achievable by personalized phage therapy even in the absence of complete eradication of P. aeruginosa lung colonization,NATALY TRELLES,2026-08-26
+EST-028,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-029,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-030,A,clinical_success_definition,Resolución clínica y microbiológica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-031,A,clinical_success_definition,Cicatrización completa de la herida + resolución de la infección + retención de la prótesis,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),complete wound healing and resolution of infection while retaining their prostheses,NATALY TRELLES,2026-08-26
+EST-034,A,clinical_success_definition,Resolución o control de la infección recalcitrante,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-038,A,clinical_success_definition,Mejoría de la enfermedad a pesar de la persistencia bacteriana,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-039,A,clinical_success_definition,"La eliminación de microorganismos multirresistentes del lavado broncoalveolar, dinámicas positivas en las tomografías computarizadas de pulmón, mejora en el puntaje CPIS (Clinical Pulmonary Infection Score) y reducción significativa de los marcadores inflamatorios como la proteína C reactiva (PCR) y",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-040,A,clinical_success_definition,Control de la infección,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-042,A,clinical_success_definition,"Erradicación completa de la bacteria patógena (cultivos negativos en heridas y orina), resolución clínica de la infección, cierre completo del tracto sinusal o fístula, reducción significativa de las áreas hipoecoicas/inflamatorias en estudios de imagen y mantenimiento de un estado clínico estable c",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-043,A,clinical_success_definition,Describe infección MDR secundaria en Darier; no menciona fagos,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-044,A,clinical_success_definition,Primera experiencia con cefepime-zidebactam + fago en USA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-046,A,clinical_success_definition,Control de sepsis + recuperación neurológica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-047,A,clinical_success_definition,Erradicación completa de la infección,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-048,A,clinical_success_definition,Sin recidiva clínica a 2 años,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-049,A,clinical_success_definition,Uso exitoso de terapia fágica tras fallo de antibióticos,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"We defined success in the first treatment episode as progress from sedation and ventilation to an ambulatory condition (albeit without microbiological cure), and success in the subsequent treatment episode as the absence of pneumonia and microbiological cure",DANNY VALDIVIEZO,2026-08-26
+EST-050,A,clinical_success_definition,Evolución clínica favorable,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-051,A,clinical_success_definition,Sin recidiva a 1 año + consolidación ósea,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-053,A,clinical_success_definition,Sin recidiva a 10 meses de seguimiento,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-055,A,clinical_success_definition,"Como la reducción y mejoría estadísticamente significativa en los niveles de dolor medidos por la escala VAS y en las puntuaciones de los dominios (típicos, diferenciales y de calidad de vida) del cuestionario ACSS tras 14 días de tratamiento.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-057,A,clinical_success_definition,Resolución de la endocarditis e infección de prótesis,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-058,A,clinical_success_definition,Resolución del rechazo agudo + mejora función pulmonar,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-059,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-060,A,clinical_success_definition,Tratamiento considerado éxito clínico a pesar del desarrollo de respuesta inmune anti-fago,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-061,A,clinical_success_definition,Respuesta clínica + alta hospitalaria sin soporte ventilatorio,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-062,A,clinical_success_definition,Resolución completa + retrasplante + supervivencia >2 años,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-070,A,clinical_success_definition,Remisión o recuperación,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-073,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-074,A,clinical_success_definition,"Como la ausencia de detección de las bacterias objetivo en los cultivos de control (sangre, hisopados, lavados bronquiales o drenajes) junto con la curación de heridas y ausencia de signos inflamatorios en imágenes de seguimiento por PET-CT.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-075,A,clinical_success_definition,Como la sanación de las vías respiratorias (airway sanitation) junto con la superación de la linfopenia y el aumento de la cantidad y actividad funcional de los linfocitos de sangre periférica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-076,A,clinical_success_definition,Control de infección + salvamento de extremidad / retención de prótesis,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-077,A,clinical_success_definition,"El autor no lista criterios estandarizados de éxito, pero enmarca el fracaso clínico por la presencia de bacteriemia intercurrente, la imposibilidad de curar la infección sin retirar el dispositivo de asistencia ventricular (LVAD) y la muerte por la infección subyacente",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-080,A,clinical_success_definition,"Curación completa de la herida, cierre del tejido, regeneración con formación de tejido de granulación, desaparición del eritema de la piel y mejora del estado general.",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-085,A,clinical_success_definition,Mejoría síntomas + reducción carga + permite trasplante pulmonar,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-086,A,clinical_success_definition,"e define como la recuperación dentro de los primeros 10 días de iniciado el tratamiento, caracterizada por un O2Sat ≥ 95%, y la ausencia de fiebre, disnea, tos, fatiga o recurrencias de infección pulmonar bacteriana secundaria",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-088,A,clinical_success_definition,Recuperación completa sin AE,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-091,A,clinical_success_definition,Escala clínica A–G de Międzybrodzki,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-094,A,clinical_success_definition,Mejoría radiológica PET/CT + sin bacteremia a 1 año,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-095,A,clinical_success_definition,Efecto terapéutico significativo en 2 semanas,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-096,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"C—clinical improvement (discernible reduction in the intensity of some infection symptoms after completion of PT to a degree not observed before PT, when no treatment was used",NATALY TRELLES,2026-08-26
+EST-098,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-101,A,clinical_success_definition,cura clinica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"A patient was considered to have a clinical cure if these signs [new or progressive infiltrates on chest X-ray, fever or hypothermia, leukocytosis or leukopenia, purulent tracheal secretions, deterioration of oxygenation, and changes in respiratory status] were absent or resolved without evidence of VAP during the observation period",NATALY TRELLES,2026-08-26
+EST-105,A,clinical_success_definition,Implementación de task force multidisciplinar para terapia fágica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-106,A,clinical_success_definition,Resolución sin signos de recurrencia,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-115,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-117,A,clinical_success_definition,A–C = positivo (A = erradicación/recuperación; B = buen resultado clínico; C = mejoría clínica),SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-118,A,clinical_success_definition,"omo el éxito del tratamiento intravesical, definido por la normalización del urocultivo (ausencia de evidencia de bacterias, es decir, < 10^4 unidades formadoras de colonias/mL) después de 7 días de tratamiento",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"omo el éxito del tratamiento intravesical, definido por la normalización del urocultivo (ausencia de evidencia de bacterias, es decir, < 10^4 unidades formadoras de colonias/mL) después de 7 días de tratamiento",NATALY TRELLES,2026-08-26
+EST-124,A,clinical_success_definition,Cura clínica + erradicación; libre >21 meses,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-126,A,clinical_success_definition,"Mediante criterios subjetivos (escala WADN de bienestar de 5 puntos evaluando sueño, apetito, estado de ánimo, dolor de cabeza, deglución, dolor de garganta y sequedad) y objetivos (reducción de signos de intoxicación, hiperemia e inflamación amigdalar, tamaño de ganglios linfáticos cervicales, recu",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-129,A,clinical_success_definition,Cicatrización + CRP normal (caso 1); libre de infección 6 meses (caso 3),SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-130,A,clinical_success_definition,Remisión completa 6 meses + mejora QoL,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-131,A,clinical_success_definition,Aspecto macroscópico favorable + cultivo negativo en reconstrucción,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-132,A,clinical_success_definition,"A través de la curación evaluada mediante la herramienta PUSH (Pressure Ulcer Scale for Healing), la reducción del tamaño de la úlcera, el tipo de tejido de cicatrización y la disminución en la cantidad de exudado",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-133,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-134,A,clinical_success_definition,Disminución del título bacteriano,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),Potential efficacy was assessed using clinical/microbiological parameters and defined as no clinical signs for infection and a reduction in CFU/Ml,DANNY VALDIVIEZO,2026-08-26
+EST-135,A,clinical_success_definition,Aspecto local favorable post-cirugía,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-146,A,clinical_success_definition,Erradicación bacteriana + mejora clínica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"A favorable clinical response is defined as relief of clinical symptoms, regardless of whether the bacteria was detected",DANNY VALDIVIEZO,2026-08-26
+EST-152,A,clinical_success_definition,Erradicación bacteriana + mejora clínica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),"Clinical improvement (discernible reduction in the intensity of some infection symptoms after completion of PT to a degree not observed before PT, when no treatment was used)",DANNY VALDIVIEZO,2026-08-26
+EST-157,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-159,A,clinical_success_definition,Disminución significativa SUVmax PET-CT a 3 meses,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-164,A,clinical_success_definition,Ausencia de recurrencia de la infección con las cepas causantes,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-165,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-167,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-169,A,clinical_success_definition,Mejora de FEV1 % + erradicación microbiológica,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-170,A,clinical_success_definition,Seguridad y tolerabilidad; mejoría inicial seguida de recaída; cura sostenida con ertapenem post-fago,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-178,A,clinical_success_definition,"A través de la evaluación de la reducción en la severidad de los síntomas mediante la escala MSS (Main Symptoms Severity score) en cada visita, la mejora en los niveles inmunológicos (IgA y sIgA) y la disminución en la frecuencia de prescripción de antibióticos",SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-181,A,clinical_success_definition,Como la ausencia de recaídas de la infección articular periprotésica (PJI) dentro del seguimiento de 12 meses tras la cirugía en una sola etapa.,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),Como la ausencia de recaídas de la infección articular periprotésica (PJI) dentro del seguimiento de 12 meses tras la cirugía en una sola etapa.,DANNY VALDIVIEZO,2026-08-26
+EST-199,A,clinical_success_definition,Eliminación de E. faecalis + abatimiento de síntomas,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-212,A,clinical_success_definition,Tratamiento exitoso evitando recambio total de LVAD,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,NATALY TRELLES,2026-08-26
+EST-219,A,clinical_success_definition,NA,SIN DEFINICIÓN OPERATIVA,texto (no puntuado),SIN DEFINICION OPERATIVA,DANNY VALDIVIEZO,2026-08-26
+EST-011,A,journal_tier,alto,medio,texto (no puntuado),ALTO,DANNY VALDIVIEZO,2026-08-26
+EST-017,A,journal_tier,alto,bajo,texto (no puntuado),bajo,cerrado por regla mecánica sobre una comparación superada; SIN firma conjunta de los dos revisores,2026-08-12
+EST-034,A,journal_tier,medio,alto,texto (no puntuado),ALTO,DANNY VALDIVIEZO,2026-08-26
+EST-047,A,journal_tier,medio,alto,texto (no puntuado),ALTO,DANNY VALDIVIEZO,2026-08-26
+EST-048,A,journal_tier,medio,alto,texto (no puntuado),ALTO,NATALY TRELLES,2026-08-26
+EST-050,A,journal_tier,medio,alto,texto (no puntuado),ALTO,DANNY VALDIVIEZO,2026-08-26
+EST-058,A,journal_tier,medio,alto,texto (no puntuado),ALTO,DANNY VALDIVIEZO,2026-08-26
+EST-062,A,journal_tier,medio,alto,texto (no puntuado),ALTO,DANNY VALDIVIEZO,2026-08-26
+EST-070,A,journal_tier,medio,alto,texto (no puntuado),ALTO,NATALY TRELLES,2026-08-26
+EST-074,A,journal_tier,alto,medio,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-077,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-080,A,journal_tier,alto,medio,texto (no puntuado),MEDIO,NATALY TRELLES,2026-08-26
+EST-086,A,journal_tier,alto,medio,texto (no puntuado),MEDIO,NATALY TRELLES,2026-08-26
+EST-088,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-091,A,journal_tier,alto,medio,texto (no puntuado),MEDIO,NATALY TRELLES,2026-08-26
+EST-094,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,NATALY TRELLES,2026-08-26
+EST-095,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-105,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,NATALY TRELLES,2026-08-26
+EST-106,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-126,A,journal_tier,alto,bajo,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-131,A,journal_tier,alto,medio,texto (no puntuado),MEDIO,NATALY TRELLES,2026-08-26
+EST-134,A,journal_tier,alto,medio,texto (no puntuado),MEDIO,NATALY TRELLES,2026-08-26
+EST-135,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-164,A,journal_tier,medio,alto,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-170,A,journal_tier,alto,medio,texto (no puntuado),medio,cerrado por regla mecánica sobre una comparación superada; SIN firma conjunta de los dos revisores,2026-08-12
+EST-178,A,journal_tier,medio,bajo,texto (no puntuado),MEDIO,DANNY VALDIVIEZO,2026-08-26
+EST-003,A,geographic_source,Israel,Israel/global,texto (no puntuado),ISRAEL,DANNY VALDIVIEZO,2026-08-26
+EST-004,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-004,B,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-005,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-008,A,geographic_source,multicéntrico (internacional),Israel,texto (no puntuado),MULTICENTRICO,DANNY VALDIVIEZO,2026-08-26
+EST-012,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-015,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-016,A,geographic_source,Letonia,Francia,texto (no puntuado),LETONIA,DANNY VALDIVIEZO,2026-08-26
+EST-017,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-018,A,geographic_source,na,España,texto (no puntuado),ESPAÑA,DANNY VALDIVIEZO,2026-08-26
+EST-020,A,geographic_source,Alemania,España,texto (no puntuado),ALEMANIA,DANNY VALDIVIEZO,2026-08-26
+EST-021,A,geographic_source,multicéntrico (Europa),Francia/Belgica,texto (no puntuado),multicéntrico (Europa),DANNY VALDIVIEZO,2026-08-26
+EST-024,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,NATALY TRELLES,2026-08-26
+EST-030,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-034,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-038,A,geographic_source,Estados Unidos,Georgia,texto (no puntuado),ESTADOS UNIDOS,NATALY TRELLES,2026-08-26
+EST-043,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-044,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,NATALY TRELLES,2026-08-26
+EST-046,A,geographic_source,Bélgica,Belgica,texto (no puntuado),Bélgica,NATALY TRELLES,2026-08-26
+EST-049,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,NATALY TRELLES,2026-08-26
+EST-060,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-061,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-062,A,geographic_source,Bélgica,Belgica,texto (no puntuado),Bélgica,NATALY TRELLES,2026-08-26
+EST-073,A,geographic_source,NA,India,texto (no puntuado),INDIA,NATALY TRELLES,2026-08-26
+EST-076,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,NATALY TRELLES,2026-08-26
+EST-077,A,geographic_source,multicéntrico (internacional),EEUU/Israel,texto (no puntuado),multicéntrico (internacional),DANNY VALDIVIEZO,2026-08-26
+EST-080,A,geographic_source,Estados unidos,Georgia,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-086,A,geographic_source,Irán,Iran,texto (no puntuado),Irán,NATALY TRELLES,2026-08-26
+EST-088,A,geographic_source,Bélgica,Belgica,texto (no puntuado),Bélgica,NATALY TRELLES,2026-08-26
+EST-098,A,geographic_source,NA,Alemania,texto (no puntuado),ALEMANIA,DANNY VALDIVIEZO,2026-08-26
+EST-101,A,geographic_source,Irán,Iran,texto (no puntuado),Irán,NATALY TRELLES,2026-08-26
+EST-105,A,geographic_source,Bélgica,Francia,texto (no puntuado),Bélgica,NATALY TRELLES,2026-08-26
+EST-106,A,geographic_source,Estados unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-115,A,geographic_source,NA,Polonia,texto (no puntuado),no derivable,DANNY VALDIVIEZO,2026-08-26
+EST-118,A,geographic_source,Estados unidos,Georgia,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-126,A,geographic_source,otro,Uzbekistan,texto (no puntuado),Uzbekistan,DANNY VALDIVIEZO,2026-08-26
+EST-129,A,geographic_source,Reino Unido,UK,texto (no puntuado),REINO UNIDO,DANNY VALDIVIEZO,2026-08-26
+EST-130,A,geographic_source,Bélgica,Belgica,texto (no puntuado),Bélgica,NATALY TRELLES,2026-08-26
+EST-131,A,geographic_source,Francia,Canada,texto (no puntuado),FRANCIA,NATALY TRELLES,2026-08-26
+EST-133,A,geographic_source,NA,Georgia/Suiza,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-134,A,geographic_source,Suiza,Georgia,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-146,A,geographic_source,Estados Unidos,EEUU,texto (no puntuado),ESTADOS UNIDOS,NATALY TRELLES,2026-08-26
+EST-157,A,geographic_source,NA,India,texto (no puntuado),INDIA,NATALY TRELLES,2026-08-26
+EST-165,A,geographic_source,NA,India,texto (no puntuado),INDIA,DANNY VALDIVIEZO,2026-08-26
+EST-167,A,geographic_source,NA,India,texto (no puntuado),INDIA,NATALY TRELLES,2026-08-26
+EST-170,A,geographic_source,Canadá,EEUU,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-178,A,geographic_source,otro,Ucrania,texto (no puntuado),other,DANNY VALDIVIEZO,2026-08-26
+EST-199,A,geographic_source,Estados unidos,USA,texto (no puntuado),ESTADOS UNIDOS,DANNY VALDIVIEZO,2026-08-26
+EST-219,A,geographic_source,NA,Rusia,texto (no puntuado),RUSIA,NATALY TRELLES,2026-08-26

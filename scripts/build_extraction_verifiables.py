@@ -163,7 +163,16 @@ def s12(st):
     dest = OUT / "S12_resolucion_de_conflictos.pdf"
     todos = list(csv.DictReader(open(CONFLICTOS, encoding="utf-8")))
     comparadas = json.loads(ACUERDO_JSON.read_text(encoding="utf-8"))["filas_comparadas"]
-    firmados = [r for r in todos if (r.get("resolucion") or "").strip()]
+    # Cerrado no es lo mismo que firmado. Dos filas de journal_tier se cerraron
+    # por una regla mecanica sobre una comparacion superada y su procedencia lo
+    # declara; meterlas en el mismo saco que las 559 que los dos revisores
+    # firmaron infla la cifra en dos y es justo lo que este anexo existe para
+    # no hacer. El mismo corte que usa build_synthesis_scalars.
+    SIN_FIRMA = "SIN firma conjunta"
+    cerrados = [r for r in todos if (r.get("resolucion") or "").strip()]
+    firmados = [r for r in cerrados
+                if SIN_FIRMA not in (r.get("resuelto_por") or "")]
+    por_regla = [r for r in cerrados if r not in firmados]
     pend = [r for r in todos if not (r.get("resolucion") or "").strip()]
     estudios = {r["study_id"] for r in pend}
     n_pri = sum(1 for r in pend if r["campo"] in PRIORITARIOS)
@@ -194,20 +203,23 @@ def s12(st):
         "La comparaci\u00f3n de las dos extracciones independientes devolvi\u00f3 "
         "<b>%d desacuerdos</b>. Se reparten en %d de las %d filas de brazo "
         "comparadas, sobre %d estudios. "
-        "De ellos, %d est\u00e1n firmados por los dos revisores y <b>%d siguen "
-        "pendientes</b>. Este anexo dice d\u00f3nde est\u00e1 cada uno, con qu\u00e9 instrumento "
+        "De ellos, <b>%d est\u00e1n firmados por los dos revisores</b>, %d se cerraron "
+        "por una regla y sin firma conjunta, y %d siguen pendientes. "
+        "Este anexo dice d\u00f3nde est\u00e1 cada uno, con qu\u00e9 instrumento "
         "se resuelven y qu\u00e9 no se puede resolver todav\u00eda. El fichero completo, "
         "desacuerdo a desacuerdo, es "
         "<font face='Courier' size='8.5'>extraction_conflicts.csv</font>."
         % (len(todos), len({(r["study_id"], r["arm_id"]) for r in todos}),
            comparadas, len({r["study_id"] for r in todos}),
-           len(firmados), len(pend)),
+           len(firmados), len(por_regla), len(pend)),
         st["cuerpo"]))
 
     c.append(Paragraph("D\u00f3nde est\u00e1 cada desacuerdo", st["h1"]))
     c.append(cuadro(st, [
         ["Firmados por los dos revisores", str(len(firmados)),
-         "Resueltos y con fecha. Son los \u00fanicos que se pueden dar por cerrados"],
+         "Resueltos por consenso, con qui\u00e9n lo resolvi\u00f3 y cu\u00e1ndo"],
+        ["Cerrados por regla, sin firma conjunta", str(len(por_regla)),
+         "Ver m\u00e1s abajo. No cuentan como adjudicados"],
         ["Pendientes, con el art\u00edculo en mano", str(len(con_texto)),
          "En %d estudios cuyo texto completo est\u00e1 recuperado. Se dirimen "
          "abriendo el art\u00edculo" % len({r["study_id"] for r in con_texto})],
@@ -251,26 +263,26 @@ def s12(st):
     # Los nombres de las dos columnas de valor llevan dentro el nombre del
     # revisor, asi que se descubren en vez de teclearse.
     col_a, col_b = [k for k in todos[0] if k.startswith("valor_")]
-    ambas_llenas = [r for r in firmados
+    ambas_llenas = [r for r in por_regla
                     if (r[col_a] or "").strip() and (r[col_b] or "").strip()
                     and (r[col_a] or "").strip() != (r[col_b] or "").strip()]
-    if firmados and len(ambas_llenas) != len(firmados):
+    if por_regla and len(ambas_llenas) != len(por_regla):
         raise SystemExit(
-            "S12: %d de %d filas firmadas no son discrepancias de valor con las "
-            "dos casillas llenas. El parrafo que describe como se cerraron ya no "
-            "vale para esas filas; reescribelo antes de publicar el anexo."
-            % (len(firmados) - len(ambas_llenas), len(firmados)))
+            "S12: %d de %d filas cerradas por regla no son discrepancias de valor "
+            "con las dos casillas llenas. El parrafo que describe como se cerraron "
+            "ya no vale para esas filas; reescribelo antes de publicar el anexo."
+            % (len(por_regla) - len(ambas_llenas), len(por_regla)))
     detalle = "; ".join(
         "%s %s, \u00ab%s\u00bb frente a \u00ab%s\u00bb, cerrado como \u00ab%s\u00bb"
         % (r["study_id"], r["campo"], r[col_a], r[col_b], r["resolucion"])
-        for r in firmados)
+        for r in por_regla)
     c.append(Paragraph(
-        "Los %d desacuerdos que constan firmados est\u00e1n los dos en "
+        "Los %d desacuerdos cerrados sin firma conjunta est\u00e1n los dos en "
         "<font face='Courier' size='8.5'>journal_tier</font>, un metadato del "
         "registro bibliogr\u00e1fico que se comprueba fuera del art\u00edculo. <b>No son "
         "casillas en blanco:</b> los dos revisores rellenaron el campo y "
         "escribieron valores distintos (%s), y ambos se cerraron con el valor de "
-        "la segunda revisora." % (len(firmados), detalle), st["cuerpo"]))
+        "la segunda revisora." % (len(por_regla), detalle), st["cuerpo"]))
     c.append(Paragraph(
         "Se cerraron aplicando una regla mec\u00e1nica \u2014casilla vac\u00eda en un metadato "
         "objetivo\u2014 sobre una comparaci\u00f3n que despu\u00e9s qued\u00f3 superada. Al rehacer "

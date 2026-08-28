@@ -31,9 +31,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `estudios_multiinforme` | 30 |
 | `informes_del_estudio_mayor` | 11 |
 | `estudios_extraibles` | 124 |
-| `texto_completo_obtenido` | 91 |
-| `texto_completo_no_obtenido` | 33 |
-| `texto_completo_pct` | 73.4 |
+| `texto_completo_obtenido` | 93 |
+| `texto_completo_no_obtenido` | 31 |
+| `texto_completo_pct` | 75.0 |
 | `disenos` | case report: 49; case series: 19; RCT: 16; no declarado: 16; prospective cohort: 13; non-randomised trial: 7; retrospective cohort: 4 |
 | `estudios_comparativos` | 23 |
 | `estudios_comparativos_pct` | 18.5 |
@@ -42,8 +42,8 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `casos_unicos_pct` | 39.5 |
 | `comparativos_sin_texto` | 11 |
 | `comparativos_sin_texto_pct` | 47.8 |
-| `pacientes_declarados_con_texto` | 1042 |
-| `pacientes_declarados_sin_texto` | 489 |
+| `pacientes_declarados_con_texto` | 1044 |
+| `pacientes_declarados_sin_texto` | 487 |
 | `procedencia` | no declarada: 76; Rusia: 7; Georgia: 6; Polonia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Belgica: 2; España: 2; India: 2; Iran: 2; Israel: 2; Ucrania: 2; Australia: 1; China: 1; Francia y Belgica: 1; Italia: 1; Japon: 1; Reino Unido: 1; multicentrico (internacional): 1 |
 | `procedencia_declarada` | 48 |
 | `procedencia_europa_este` | 21 |
@@ -103,9 +103,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
 | `palabras_resumen_es` | 323 |
-| `palabras_cuerpo_es` | 4811 |
+| `palabras_cuerpo_es` | 4861 |
 | `palabras_resumen_en` | 305 |
-| `palabras_cuerpo_en` | 4528 |
+| `palabras_cuerpo_en` | 4581 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 122 |
 | `extraccion_estudios_ambos` | 122 |
@@ -120,8 +120,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `extraccion_kappas_informativas` | 8 |
 | `extraccion_categoricos_total` | 9 |
 | `extraccion_doble_pct` | 98 |
-| `extraccion_conflictos_firmados` | 2 |
-| `extraccion_conflictos_sin_firmar` | 573 |
+| `extraccion_conflictos_firmados` | 559 |
+| `extraccion_cerrados_por_regla` | 2 |
+| `extraccion_conflictos_sin_firmar` | 14 |
 | `validacion_marco` | 13661 |
 | `validacion_muestra` | 350 |
 | `validacion_falsos_negativos` | 0 |
