@@ -9,11 +9,11 @@ Generado el 2026-08-28 por `scripts/compare_extractions.py`.
 | Filas comparadas (brazos en ambos) | 130 |
 | Solo en Danny_Valdiviezo | 2 |
 | Solo en Nataly_Trelles | 0 |
-| Conflictos de valor | 575 |
+| Conflictos de valor | 547 |
 
 Acuerdo mediano entre las dos extracciones: **78 %**.
 
-Kappa mediana de los campos donde la kappa es informativa (8 de 9 categóricos): **0.57**. Los demás se excluyen porque su distribución está tan sesgada que la kappa mide el sesgo y no la concordancia.
+Kappa mediana de los campos donde la kappa es informativa (8 de 9 categóricos): **0.62**. Los demás se excluyen porque su distribución está tan sesgada que la kappa mide el sesgo y no la concordancia.
 
 ## Por variable
 
@@ -23,8 +23,8 @@ Kappa mediana de los campos donde la kappa es informativa (8 de 9 categóricos):
 | `resistance_class` | categórico | 130 | 130 | 100% | 1.00 (casi perfecta) |
 | `resistance_class_source` | categórico | 130 | 130 | 100% | 1.00 (casi perfecta) |
 | `dtr_status` | categórico | 130 | 99 | 76% | 0.52 (moderada) |
-| `route` | categórico | 130 | 71 | 55% | 0.47 (moderada) |
-| `modality` | categórico | 130 | 90 | 69% | 0.48 (moderada) |
+| `route` | categórico | 130 | 90 | 69% | 0.62 (sustancial) |
+| `modality` | categórico | 130 | 99 | 76% | 0.59 (moderada) |
 | `study_design` | categórico | 130 | 85 | 65% | 0.57 (moderada) |
 | `extraction_status` | categórico | 130 | 101 | 78% | 0.55 (moderada) |
 | `microbio_eradication_sustained` | categórico | 0 | 0 | — | sin filas comparables |

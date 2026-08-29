@@ -75,6 +75,18 @@ AFIRMACIONES = [
     (EN, "{extraccion_conflictos_firmados} of {extraccion_desacuerdos} are adjudicated"),
     (EN, "independent data extraction ({extraccion_estudios_r2} of the {extraccion_estudios_r1} studies)"),
 
+    # --- desenlaces, sobre la extraccion adjudicada (seccion 3.5 y tabla 5) ---
+    (ES, "Los eventos adversos son lo que más se reporta con denominador ({desenlace_adverse_event_n_pct_de_los_brazos} %"),
+    (ES, "la emergencia de resistencia al fago lo que menos ({desenlace_resistance_emergence_n_pct_de_los_brazos} %)"),
+    (ES, "consta con numerador y denominador en el {desenlace_clinical_success_n_pct_de_los_brazos} % de los brazos"),
+    (ES, "En {definicion_sin_definicion_operativa} de los {desenlace_brazos} brazos ({definicion_sin_definicion_pct} %)"),
+    (ES, "el corpus deja **{desenlace_brazos_agregables_exito_clinico} brazos de los {desenlace_brazos}**"),
+    (EN, "reported with a denominator ({desenlace_adverse_event_n_pct_de_los_brazos} % of arms)"),
+    (EN, "emergence of phage resistance the least ({desenlace_resistance_emergence_n_pct_de_los_brazos} %)"),
+    (EN, "numerator and denominator in {desenlace_clinical_success_n_pct_de_los_brazos} % of arms"),
+    (EN, "In {definicion_sin_definicion_operativa} of the {desenlace_brazos} arms ({definicion_sin_definicion_pct} %)"),
+    (EN, "leaves **{desenlace_brazos_agregables_exito_clinico} of the {desenlace_brazos} arms**"),
+
     (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos."),
     (ES, "Pasaron a texto completo {informes_a_texto_completo}, agrupados en {estudios} estudios; {estudios_extraibles} de ellos tienen publicación recuperable."),
     (ES, "Se obtuvo el texto completo de {texto_completo_obtenido} estudios ({texto_completo_pct} %)"),
@@ -169,6 +181,19 @@ def comprueba_secciones(textos):
 
 def main():
     esc = json.load(open(ESCALARES, encoding="utf-8"))
+    # Los desenlaces salen de la extraccion adjudicada y viven aparte. Se
+    # aplanan aqui con prefijo para poder anclarlos por nombre como los demas.
+    oc = ESCALARES.parent / "outcome_scalars.json"
+    if oc.exists():
+        O = json.load(open(oc, encoding="utf-8"))
+        for k, v in O.items():
+            if not isinstance(v, dict):
+                esc["desenlace_" + k] = v
+        for campo, d in O["desenlaces"].items():
+            for k, v in d.items():
+                esc["desenlace_%s_%s" % (campo, k)] = v
+        for k, v in O["definicion_exito"].items():
+            esc["definicion_" + k] = v
     textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8")}
     # el manuscrito usa espacio normal o fino indistintamente; se normaliza
     normal = {k: re.sub(r"[   ]", " ", v) for k, v in textos.items()}

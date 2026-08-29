@@ -1,0 +1,14 @@
+{
+  "filas": 132,
+  "estudios": 124,
+  "campos": 29,
+  "casillas_totales": 3828,
+  "casillas_con_dato": 3826,
+  "por_acuerdo": 3106,
+  "por_consenso": 531,
+  "sin_segunda_lectura": 172,
+  "abiertas": 17,
+  "doble_lectura": 3637,
+  "doble_lectura_pct": 95.1,
+  "fuera_de_vocabulario": 87
+}

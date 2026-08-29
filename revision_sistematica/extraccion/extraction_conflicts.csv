@@ -42,44 +42,26 @@ EST-016,A,route,topica/local,IV,categórico,topical/local,NATALY TRELLES,2026-08
 EST-017,A,route,otra,oral,categórico,oral,NATALY TRELLES,2026-08-26
 EST-018,A,route,na,IV,categórico,NA,DANNY VALDIVIEZO,2026-08-26
 EST-020,A,route,otra,IV,categórico,IV,DANNY VALDIVIEZO,2026-08-26
-EST-021,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
-EST-030,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
-EST-031,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
-EST-034,A,route,iv,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
 EST-038,A,route,inhalada/nebulizada,otra,categórico,IV,NATALY TRELLES,2026-08-26
 EST-040,A,route,otra,inhalada/nebulizada,categórico,inhaled/nebulized,DANNY VALDIVIEZO,2026-08-26
 EST-042,A,route,otra,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
 EST-044,A,route,otra,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
-EST-046,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
-EST-047,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
-EST-048,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
 EST-050,A,route,topica/local,otra,categórico,IV,DANNY VALDIVIEZO,2026-08-26
-EST-051,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
-EST-053,A,route,IV,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
 EST-057,A,route,otra,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
 EST-059,A,route,NA,oral,categórico,NA,DANNY VALDIVIEZO,2026-08-26
-EST-061,A,route,iv,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
-EST-062,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
 EST-075,A,route,NA,otra,categórico,NA,NATALY TRELLES,2026-08-26
 EST-076,A,route,iv,local/topica,categórico,IV,NATALY TRELLES,2026-08-26
-EST-077,A,route,IV,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
 EST-080,A,route,oral,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
 EST-088,A,route,IV,otra,categórico,IV,NATALY TRELLES,2026-08-26
 EST-094,A,route,otra,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
-EST-095,A,route,IV,intravenosa,categórico,IV,DANNY VALDIVIEZO,2026-08-26
 EST-096,A,route,intravesical,local/topica,categórico,intravesical,NATALY TRELLES,2026-08-26
 EST-105,A,route,otra,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
-EST-106,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
 EST-115,A,route,NA,otra,categórico,NA,NATALY TRELLES,2026-08-26
 EST-117,A,route,oral,otra,categórico,oral,DANNY VALDIVIEZO,2026-08-26
-EST-124,A,route,IV,intravenosa,categórico,IV,NATALY TRELLES,2026-08-26
 EST-131,A,route,topica/local,otra,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
-EST-132,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
 EST-133,A,route,NA,intravesical,categórico,NA,NATALY TRELLES,2026-08-26
 EST-134,A,route,intravesical,local/topica,categórico,intravesical,NATALY TRELLES,2026-08-26
-EST-135,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
 EST-157,A,route,otra,topica/local,categórico,NA,DANNY VALDIVIEZO,2026-08-26
-EST-159,A,route,topica/local,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
 EST-164,A,route,otra,local/topica,categórico,other,DANNY VALDIVIEZO,2026-08-26
 EST-165,A,route,NA,topica/local,categórico,NA,NATALY TRELLES,2026-08-26
 EST-167,A,route,NA,topica/local,categórico,NA,NATALY TRELLES,2026-08-26
@@ -87,13 +69,11 @@ EST-169,A,route,IV,inhalada/nebulizada,categórico,inhaled/nebulized,DANNY VALDI
 EST-170,A,route,topica/local,otra,categórico,topical/local,NATALY TRELLES,2026-08-26
 EST-181,A,route,otra,local/topica,categórico,topical/local,DANNY VALDIVIEZO,2026-08-26
 EST-199,A,route,NA,otra,categórico,NA,DANNY VALDIVIEZO,2026-08-26
-EST-212,A,route,topica/local,local/topica,categórico,topical/local,NATALY TRELLES,2026-08-26
 EST-219,A,route,NA,otra,categórico,NA,NATALY TRELLES,2026-08-26
 EST-003,A,modality,NA,fago + antibiotico,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
 EST-003,E,modality,fago + antibiotico,NA,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
 EST-005,A,modality,fago + antibiotico,fago en monoterapia,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
 EST-011,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
-EST-012,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
 EST-013,A,modality,fago en monoterapia,fago + antibiotico,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
 EST-017,A,modality,NA,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
 EST-018,A,modality,na,fago + antibiotico,categórico,NA,DANNY VALDIVIEZO,2026-08-26
@@ -101,22 +81,15 @@ EST-019,A,modality,fago + antibiotico,fago solo,categórico,phage monotherapy,DA
 EST-021,A,modality,fago + antibiotico,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
 EST-028,A,modality,fago + antibiotico,NA,categórico,NA,NATALY TRELLES,2026-08-26
 EST-029,A,modality,fago en monoterapia,fago + antibiotico,categórico,NA,NATALY TRELLES,2026-08-26
-EST-031,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
 EST-038,A,modality,fago + antibiotico,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
-EST-039,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
 EST-043,A,modality,NA,fago + antibiotico,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
-EST-046,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
 EST-055,A,modality,fago en monoterapia,fago + antibiotico,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
 EST-059,A,modality,NA,fago en monoterapia,categórico,NA,DANNY VALDIVIEZO,2026-08-26
 EST-073,A,modality,fago + antibiotico,fago en monoterapia,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
-EST-080,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
-EST-085,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,DANNY VALDIVIEZO,2026-08-26
 EST-086,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
-EST-091,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
 EST-096,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
 EST-101,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
 EST-115,A,modality,NA,fago en monoterapia,categórico,NA,NATALY TRELLES,2026-08-26
-EST-117,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
 EST-129,A,modality,fago + otro,fago + antibiotico,categórico,phage+antibiotic combination,NATALY TRELLES,2026-08-26
 EST-130,A,modality,fago + otro,fago + antibiotico,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
 EST-131,A,modality,fago + antibiotico,fago solo,categórico,phage+antibiotic combination,DANNY VALDIVIEZO,2026-08-26
@@ -126,7 +99,6 @@ EST-152,A,modality,NA,fago solo,categórico,phage monotherapy,NATALY TRELLES,202
 EST-157,A,modality,NA,fago + antibiotico,categórico,NA,DANNY VALDIVIEZO,2026-08-26
 EST-165,A,modality,NA,fago en monoterapia,categórico,NA,NATALY TRELLES,2026-08-26
 EST-167,A,modality,NA,fago + antibiotico,categórico,NA,NATALY TRELLES,2026-08-26
-EST-178,A,modality,fago en monoterapia,fago solo,categórico,phage monotherapy,NATALY TRELLES,2026-08-26
 EST-199,A,modality,NA,fago solo,categórico,NA,DANNY VALDIVIEZO,2026-08-26
 EST-219,A,modality,NA,fago + antibiotico,categórico,NA,DANNY VALDIVIEZO,2026-08-26
 EST-004,A,study_design,cohorte prospectiva,serie de casos,categórico,case series,NATALY TRELLES,2026-08-26

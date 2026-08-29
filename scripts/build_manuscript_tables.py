@@ -218,6 +218,40 @@ def main():
             "registro de decisiones es solo-anexar y conserva el texto literal "
             "escrito al decidir, del que se deriva el código.")
 
+    # ---- Tabla 5: que reporta el corpus en cada desenlace -------------------
+    # Primera tabla del manuscrito que sale de los cuadernos de extraccion y no
+    # del cribado. Puede hacerse porque la adjudicacion esta firmada; hasta el
+    # 26 de agosto no habia un valor unico por casilla que citar.
+    oc = ROOT / "quality_reports" / "outcome_scalars.json"
+    if oc.exists():
+        O = json.loads(oc.read_text(encoding="utf-8"))
+        filas = []
+        for campo, d in O["desenlaces"].items():
+            filas.append([
+                d["nombre"].capitalize(),
+                d["brazos_que_lo_reportan"],
+                d["con_numerador_y_denominador"],
+                "%.1f" % d["pct_de_los_brazos"],
+                "%.1f" % d["doble_lectura_pct"],
+            ])
+        escribe("tabla_5_desenlaces",
+                ["Desenlace", "Brazos que lo reportan",
+                 "Con numerador y denominador", "% de los brazos",
+                 "% con doble lectura"], filas,
+                "Tabla 5. Completitud de reporte de los cinco desenlaces "
+                "declarados, sobre los %d brazos de la extracción adjudicada."
+                % O["brazos"],
+                "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador "
+                "sin denominador no es una proporción. «Con doble lectura» es el "
+                "porcentaje de esas casillas en que los dos revisores "
+                "coincidieron o resolvieron por consenso; el resto lo leyó un "
+                "solo revisor. De los %d brazos, %d son de diseño comparativo y "
+                "solo %d reúnen a la vez diseño comparativo, numerador, "
+                "denominador y una definición operativa del éxito clínico, que "
+                "es el mínimo que una proporción agrupada exigiría."
+                % (O["brazos"], O["brazos_comparativos"],
+                   O["brazos_agregables_exito_clinico"]))
+
     print("escritas en %s" % OUT)
     return 0
 

@@ -6,8 +6,8 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 323; texto principal 4 861.
-**Tablas:** 4. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
+**Recuento de palabras:** resumen 373; texto principal 5 310.
+**Tablas:** 5. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
 
 ---
 
@@ -17,9 +17,9 @@
 
 **Objetivos.** Delimitar de forma reproducible la literatura clínica sobre fagoterapia en *P. aeruginosa* resistente y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
 
-**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron ocho bases y registros, incluidos BVS y SciELO, con una ventana de publicación de 2016 a 2026 aplicada en las fuentes que la admiten. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe. La extracción se realizó a mano, y la caracterización que aquí se reporta procede de una pre-extracción sistemática desde el resumen.
+**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron ocho bases y registros, incluidos BVS y SciELO, con una ventana de publicación de 2016 a 2026 aplicada en las fuentes que la admiten. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe. La extracción se realizó a mano, por duplicado e independiente, y sus desacuerdos se resolvieron por consenso. La caracterización estructural procede de una pre-extracción sistemática desde el resumen; la completitud de reporte por desenlace, de la extracción adjudicada.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni puede asignarse la clase de resistencia en el 80,6 %. Se obtuvo el texto completo de 93 estudios (75,0 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni puede asignarse la clase de resistencia en el 80,6 %. Se obtuvo el texto completo de 93 estudios (75,0 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos. En el 52,3 % de los 132 brazos extraídos el estudio no define de forma operativa el éxito clínico, y solo 3 brazos reúnen a la vez diseño comparativo, numerador, denominador y definición.
 
 **Conclusiones.** El cuerpo de evidencia es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de éxito publicadas descansan sobre supuestos que estos datos no sostienen.
 
@@ -96,13 +96,15 @@ Antes de iniciar el cribado se fijó un conjunto de 40 estudios conocidos a prio
 
 ### 2.6 Extracción de datos
 
-El formulario de extracción, con 31 variables y vocabularios controlados, se piloteó sobre cinco estudios antes de su uso. La extracción se hizo **por duplicado e independiente** entre los dos revisores. Un revisor extrajo los 124 estudios con publicación recuperable y el segundo extrajo 122 de ellos, de modo que el 98 % del corpus tiene doble extracción. Sobre las 130 filas de brazo comparables se registraron 575 desacuerdos de valor; la concordancia, medida antes de resolverlos, fue del 78 % de acuerdo mediano y una kappa de Cohen mediana de 0,57 sobre los 8 de 9 campos categóricos en que resulta informativa, con un recorrido del 55 % al 100 % según la variable. Las discrepancias se resolvieron por consenso entre los dos revisores, con registro de quién resolvió y cuándo: hay 559 de 575 adjudicadas. De las 16 restantes, 2 se habían cerrado antes aplicando una regla mecánica sobre una comparación posteriormente rehecha y no llevan firma conjunta, y 14 siguen abiertas: 10 porque el formulario no ofrecía la opción «no derivable» en los campos donde los revisores la necesitaban, y 4 por datos que exigen releer el artículo. El registro completo, resuelto a resuelto, se aporta como suplemento.
+El formulario de extracción, con 31 variables y vocabularios controlados, se piloteó sobre cinco estudios antes de su uso. La extracción se hizo **por duplicado e independiente** entre los dos revisores. Un revisor extrajo los 124 estudios con publicación recuperable y el segundo extrajo 122 de ellos, de modo que el 98 % del corpus tiene doble extracción. Sobre las 130 filas de brazo comparables se registraron 547 desacuerdos de valor; la concordancia, medida antes de resolverlos, fue del 78 % de acuerdo mediano y una kappa de Cohen mediana de 0,62 sobre los 8 de 9 campos categóricos en que resulta informativa, con un recorrido del 64 % al 100 % según la variable. Las discrepancias se resolvieron por consenso entre los dos revisores, con registro de quién resolvió y cuándo: hay 531 de 547 adjudicadas. De las 16 restantes, 2 se habían cerrado antes aplicando una regla mecánica sobre una comparación posteriormente rehecha y no llevan firma conjunta, y 14 siguen abiertas: 10 porque el formulario no ofrecía la opción «no derivable» en los campos donde los revisores la necesitaban, y 4 por datos que exigen releer el artículo. El registro completo, resuelto a resuelto, se aporta como suplemento.
 
-Los datos que se reportan proceden de una pre-extracción sistemática desde el resumen de los 124 estudios, realizada con el mismo esquema de variables y marcada como parcial en cada registro. Este informe no presenta estimaciones de eficacia: caracteriza la estructura del cuerpo de evidencia y su **verificabilidad**, con dos componentes medidos —la recuperabilidad del informe (secciones 3.1 y 3.2) y la completitud de reporte (sección 3.4)—.
+La caracterización estructural del corpus (secciones 3.1 a 3.4, tablas 1 a 4) procede de una pre-extracción sistemática desde el resumen de los 124 estudios, realizada con el mismo esquema de variables y marcada como parcial en cada registro. La completitud de reporte por desenlace (sección 3.5, tabla 5) procede en cambio de la extracción adjudicada, y se identifica como tal en cada cifra. Este informe no presenta estimaciones de eficacia: caracteriza la estructura del cuerpo de evidencia y su **verificabilidad**, con tres componentes medidos —la recuperabilidad del informe (secciones 3.1 y 3.2), la completitud de reporte estructural (sección 3.4) y la completitud de reporte de desenlaces (sección 3.5)—.
 
 ### 2.7 Riesgo de sesgo y certeza
 
-Se preveía evaluar el riesgo de sesgo con RoB 2 para ensayos aleatorizados [@Sterne2019_rob2], ROBINS-I para estudios no aleatorizados [@Sterne2016_robinsi] y los dominios de Murad para reportes y series de casos [@Murad2018_casereports; @Munn2020_jbicaseseries], y la certeza con GRADE [@Guyatt2011_grade]. Estas evaluaciones dependen del texto completo y se reportarán con la extracción definitiva.
+Se preveía evaluar el riesgo de sesgo con RoB 2 para ensayos aleatorizados [@Sterne2019_rob2], ROBINS-I para estudios no aleatorizados [@Sterne2016_robinsi] y los dominios de Murad para reportes y series de casos [@Murad2018_casereports; @Munn2020_jbicaseseries], y la certeza con GRADE [@Guyatt2011_grade].
+
+**Ninguna de las dos evaluaciones se ha realizado, y esta revisión no las reporta.** Los motivos son concretos y conviene declararlos por separado. El riesgo de sesgo exige que los dos revisores lean cada artículo y emitan un juicio por dominio; queda pendiente y no se sustituye por ningún indicador derivado del diseño, que no es lo mismo. Además, 31 de los 124 estudios con publicación recuperable siguen sin texto completo (sección 3.2), de modo que una evaluación hecha hoy dejaría fuera a una fracción no aleatoria del corpus. En cuanto a GRADE, evalúa la certeza de una estimación agrupada, y esta revisión no presenta ninguna: la sección 3.5 muestra que solo 3 de los 132 brazos reúnen los requisitos mínimos para agregar. Calificar la certeza de un resultado que no existe sería un trámite, no una evaluación.
 
 ### 2.8 Métodos de síntesis y reproducibilidad
 
@@ -159,7 +161,17 @@ La completitud de reporte, medida sobre lo que los resúmenes hacen explícito, 
 
 Estas cifras describen el reporte en el resumen, no forzosamente en el artículo completo, y la distinción importa porque parte de la información puede estar en el texto. Ahora bien, el resumen es lo que indexan las bases y lo que alimenta las revisiones automatizadas. Que tres de cada cuatro estudios no declaren allí su categoría de resistencia implica que ninguna estratificación por MDR/XDR/PDR construida a partir de resúmenes puede ser correcta.
 
-### 3.5 Viabilidad de la síntesis cuantitativa
+### 3.5 Lo que el corpus reporta en cada desenlace
+
+La extracción por duplicado, ya adjudicada, permite medir por primera vez qué reporta este cuerpo de evidencia en los cinco desenlaces declarados en los criterios de elegibilidad. La tabla 5 lo resume sobre los 132 brazos extraídos.
+
+La completitud es desigual y, en el mejor de los casos, parcial. Los eventos adversos son lo que más se reporta con denominador (73,5 % de los brazos) y la emergencia de resistencia al fago lo que menos (24,2 %), pese a ser el desenlace que decide si la intervención conserva su utilidad. El éxito clínico, que es el que las síntesis publicadas agregan, consta con numerador y denominador en el 62,9 % de los brazos.
+
+Ese 62,9 % es, sin embargo, engañoso si se lee como disponibilidad para agregar. **En 69 de los 132 brazos (52,3 %) los dos revisores concluyeron, por consenso, que el estudio no ofrece una definición operativa de éxito clínico**: el artículo declara un número de pacientes con «buen resultado» sin decir qué había que observar para contarlo. Un numerador así no nombra nada comparable con el numerador de otro estudio.
+
+Al cruzar los cuatro requisitos que una proporción agrupada exigiría —diseño comparativo, numerador, denominador y definición operativa del desenlace— el corpus deja **3 brazos de los 132**. Los tres, además, miden cosas distintas: uno toma como desenlace principal el *tiempo* hasta una reducción sostenida de la carga bacteriana medida por hisopo; otro, la ausencia o resolución de un síndrome clínico de seis signos sin neumonía asociada a ventilación; el tercero, el alivio de los síntomas «con independencia de si la bacteria se detectaba». No hay dos que definan lo mismo.
+
+### 3.6 Viabilidad de la síntesis cuantitativa
 
 Un metaanálisis de proporciones exige denominadores interpretables, un desenlace que nombre lo mismo en todos los estudios y una intervención suficientemente homogénea. El cuerpo delimitado aquí falla en los tres requisitos.
 
@@ -233,12 +245,14 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 ## Tablas y figuras
 
-Las cuatro tablas se aportan como archivos independientes (`paper/tablas/`), cada una con su nota al pie. Las dos figuras se aportan en PDF vectorial (`paper/figuras/`).
+Las cinco tablas se aportan como archivos independientes (`paper/tablas/`), cada una con su nota al pie. Las dos figuras se aportan en PDF vectorial (`paper/figuras/`).
 
 **Tabla 1.** Características del cuerpo de evidencia recuperable (n = 124 estudios).
 **Tabla 2.** Completitud del reporte en las variables críticas para la estratificación.
 **Tabla 3.** Comparación entre los estudios con y sin texto completo obtenido.
 **Tabla 4.** Motivos de exclusión por etapa, con el vocabulario cerrado.
+
+**Tabla 5.** Completitud de reporte de los cinco desenlaces declarados, sobre la extracción adjudicada (n = 132 brazos).
 
 **Figura 1. Diagrama de flujo PRISMA 2020.**
 *Qué muestra.* El paso de los registros identificados a los estudios incluidos, con las dos corrientes de identificación —bases bibliográficas y registros de ensayos— contabilizadas por separado, como exige la declaración PRISMA 2020. *Cómo leerla.* La columna izquierda es el flujo principal; las cajas grises de la derecha recogen lo excluido en cada paso, con el desglose por el vocabulario cerrado de seis códigos (ORG, REV, SEC, LAB, VET, OFF; definidos en la Tabla 4). La corriente de registros entra por el lateral y no atraviesa la deduplicación bibliográfica, porque una ficha de registro no tiene DOI con el que colisionar contra un artículo. La caja final de la derecha no forma parte del flujo de selección: informa de cuántos de los estudios incluidos se han podido leer a texto completo hasta la fecha. *Fuente.* Canal de cribado del proyecto; última ejecución de la búsqueda, 10 de agosto de 2026.

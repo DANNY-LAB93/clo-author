@@ -221,6 +221,24 @@ VALOR_DE_ES = {v.lower(): k for k, v in VALORES_ES.items()}
 VALOR_DE_ES["otro"] = "other"
 VALOR_DE_ES["sí"] = "yes"
 
+# Variantes que los revisores escribieron de verdad y que el diccionario no
+# recogia. No son valores nuevos: son la MISMA respuesta con las palabras en
+# otro orden o en el otro idioma, y el comparador las estaba puntuando como
+# discrepancia. Se detectaron al construir el conjunto adjudicado: 28 de los
+# 575 «desacuerdos» eran esto, y en los 28 el consenso resolvio exactamente al
+# valor que los dos ya habian escrito, cada uno a su manera.
+#
+# Solo entra aqui lo que es sinonimo exacto. «estudio observacional» NO entra:
+# puede ser cohorte prospectiva, retrospectiva o serie de casos, y elegir una
+# seria decidir por el revisor. «NA» en study_design tampoco: ese campo no
+# admite «no lo se», y eso es un hueco del esquema, no un problema de idioma.
+VALOR_DE_ES["local/topica"] = "topical/local"
+VALOR_DE_ES["local/tópica"] = "topical/local"
+VALOR_DE_ES["topica/local"] = "topical/local"
+VALOR_DE_ES["tópica/local"] = "topical/local"
+VALOR_DE_ES["intravenosa"] = "IV"
+VALOR_DE_ES["fago solo"] = "phage monotherapy"
+
 
 def valores_es(campo):
     """Vocabulario cerrado del campo, en español, para el desplegable."""

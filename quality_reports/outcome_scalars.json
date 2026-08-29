@@ -1,0 +1,67 @@
+{
+  "brazos": 132,
+  "estudios_extraidos": 124,
+  "brazos_con_denominador": 105,
+  "desenlaces": {
+    "clinical_success_n": {
+      "nombre": "éxito clínico",
+      "brazos_que_lo_reportan": 84,
+      "con_numerador_y_denominador": 83,
+      "pct_de_los_brazos": 62.9,
+      "de_esos_con_doble_lectura": 81,
+      "doble_lectura_pct": 97.6
+    },
+    "microbio_eradication_n": {
+      "nombre": "erradicación microbiológica",
+      "brazos_que_lo_reportan": 67,
+      "con_numerador_y_denominador": 66,
+      "pct_de_los_brazos": 50.0,
+      "de_esos_con_doble_lectura": 64,
+      "doble_lectura_pct": 97.0
+    },
+    "mortality_n": {
+      "nombre": "mortalidad",
+      "brazos_que_lo_reportan": 91,
+      "con_numerador_y_denominador": 90,
+      "pct_de_los_brazos": 68.2,
+      "de_esos_con_doble_lectura": 87,
+      "doble_lectura_pct": 96.7
+    },
+    "adverse_event_n": {
+      "nombre": "eventos adversos",
+      "brazos_que_lo_reportan": 101,
+      "con_numerador_y_denominador": 97,
+      "pct_de_los_brazos": 73.5,
+      "de_esos_con_doble_lectura": 95,
+      "doble_lectura_pct": 97.9
+    },
+    "resistance_emergence_n": {
+      "nombre": "emergencia de resistencia al fago",
+      "brazos_que_lo_reportan": 32,
+      "con_numerador_y_denominador": 32,
+      "pct_de_los_brazos": 24.2,
+      "de_esos_con_doble_lectura": 19,
+      "doble_lectura_pct": 59.4
+    }
+  },
+  "definicion_exito": {
+    "brazos_con_campo_relleno": 132,
+    "con_definicion_operativa": 63,
+    "sin_definicion_operativa": 69,
+    "sin_definicion_pct": 52.3
+  },
+  "disenos": {
+    "case report": 48,
+    "no clasificable": 30,
+    "case series": 25,
+    "retrospective cohort": 10,
+    "RCT": 9,
+    "other": 5,
+    "non-randomised trial": 4,
+    "prospective cohort": 1
+  },
+  "brazos_comparativos": 24,
+  "estudios_comparativos_extraidos": 21,
+  "brazos_agregables_exito_clinico": 3,
+  "estudios_agregables_exito_clinico": 3
+}

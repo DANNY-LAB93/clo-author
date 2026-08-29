@@ -6,8 +6,8 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 305; main text 4 581.
-**Tables:** 4. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
+**Word count:** abstract 350; main text 4 954.
+**Tables:** 5. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
 
@@ -17,9 +17,9 @@
 
 **Objectives.** To delimit the clinical literature on phage therapy for resistant *P. aeruginosa* reproducibly, and to determine whether its structure and reporting completeness permit a quantitative synthesis of efficacy.
 
-**Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Eight databases and registers were searched, including the regional databases BVS and SciELO, over a publication window of 2016 to 2026 applied in the sources that admit it. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report. Data extraction was performed by hand, and the characterisation reported here derives from a systematic pre-extraction from the abstracts.
+**Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Eight databases and registers were searched, including the regional databases BVS and SciELO, over a publication window of 2016 to 2026 applied in the sources that admit it. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report. Data extraction was performed by hand, in duplicate and independently, with disagreements resolved by consensus. The structural characterisation derives from a systematic pre-extraction from the abstracts; the reporting completeness per outcome, from the adjudicated extraction.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 93 studies (75.0 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative.
+**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 93 studies (75.0 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative. In 52.3 % of the 132 extracted arms the study gives no operational definition of clinical success, and only 3 arms combine comparative design, numerator, denominator and a definition.
 
 **Conclusions.** This evidence base is simultaneously large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
 
@@ -100,13 +100,15 @@ Before screening began, a set of 40 studies known a priori to be eligible was fi
 
 The extraction form, with 31 variables and controlled vocabularies, was piloted on five studies before use. Extraction is planned to be **independent and in duplicate** between the two reviewers, with disagreements resolved by consensus and agreement quantified variable by variable (Cohen's kappa).
 
-The extraction form, with 31 variables and controlled vocabularies, was piloted on five studies before use. Extraction was carried out **in duplicate and independently** between the two reviewers. One reviewer extracted all 124 studies with a retrievable publication and the second extracted 122 of them, so 98 % of the corpus is double-extracted. Over the 130 comparable arm rows, 575 value disagreements were recorded; agreement, measured before resolving them, was 78 % median agreement and a median Cohen's kappa of 0.57 over the 8 of 9 categorical fields where it is informative, ranging from 55 % to 100 % across variables. Disagreements were resolved by consensus between the two reviewers, with a record of who resolved and when:559 of 575 are adjudicated. Of the remaining 16, 2 had been closed earlier by a mechanical rule applied to a comparison that was subsequently redone and carry no joint signature, and 14 remain open: 10 because the form offered no "not derivable" option in the fields where the reviewers needed one, and 4 for data requiring the article to be re-read. The complete record, resolution by resolution, is supplied as supplementary material.
+The extraction form, with 31 variables and controlled vocabularies, was piloted on five studies before use. Extraction was carried out **in duplicate and independently** between the two reviewers. One reviewer extracted all 124 studies with a retrievable publication and the second extracted 122 of them, so 98 % of the corpus is double-extracted. Over the 130 comparable arm rows, 547 value disagreements were recorded; agreement, measured before resolving them, was 78 % median agreement and a median Cohen's kappa of 0.62 over the 8 of 9 categorical fields where it is informative, ranging from 64 % to 100 % across variables. Disagreements were resolved by consensus between the two reviewers, with a record of who resolved and when:531 of 547 are adjudicated. Of the remaining 16, 2 had been closed earlier by a mechanical rule applied to a comparison that was subsequently redone and carry no joint signature, and 14 remain open: 10 because the form offered no "not derivable" option in the fields where the reviewers needed one, and 4 for data requiring the article to be re-read. The complete record, resolution by resolution, is supplied as supplementary material.
 
 The data reported here derive from a systematic pre-extraction from the abstracts of the 124 studies, performed with the same variable schema and flagged as partial in every record. This report presents no efficacy estimates: it characterises the structure of the evidence base and its **verifiability**, with two measured components — retrievability of the report (sections 3.1 and 3.2) and reporting completeness (section 3.4).
 
 ### 2.7 Risk of bias and certainty
 
-Risk of bias was to be assessed with RoB 2 for randomised trials [@Sterne2019_rob2], ROBINS-I for non-randomised studies [@Sterne2016_robinsi] and the Murad domains for case reports and series [@Murad2018_casereports; @Munn2020_jbicaseseries], and certainty with GRADE [@Guyatt2011_grade]. These assessments depend on full text and will be reported with the definitive extraction.
+Risk of bias was to be assessed with RoB 2 for randomised trials [@Sterne2019_rob2], ROBINS-I for non-randomised studies [@Sterne2016_robinsi] and the Murad domains for case reports and series [@Murad2018_casereports; @Munn2020_jbicaseseries], and certainty with GRADE [@Guyatt2011_grade].
+
+**Neither assessment was carried out, and this review does not report them.** The reasons are specific and worth stating separately. Risk of bias requires both reviewers to read each article and issue a domain-by-domain judgement; it remains outstanding and is not substituted by any design-derived indicator, which is not the same thing. In addition, 31 of the 124 studies with a retrievable publication still lack full text (section 3.2), so an assessment made today would omit a non-random fraction of the corpus. As for GRADE, it rates the certainty of a pooled estimate, and this review presents none: section 3.5 shows that only 3 of the 132 arms meet the minimum requirements for pooling. Rating the certainty of a result that does not exist would be a formality, not an assessment.
 
 ### 2.8 Synthesis methods and reproducibility
 
@@ -165,7 +167,17 @@ Reporting completeness, measured on what abstracts make explicit, is lowest prec
 
 These figures describe reporting in the abstract, not necessarily in the full article, and the distinction matters because some of the information may sit in the body of the text. That said, the abstract is what databases index and what automated reviews consume. Three studies in four failing to state their resistance category there means that no MDR/XDR/PDR stratification built from abstracts can be correct.
 
-### 3.5 Feasibility of quantitative synthesis
+### 3.5 What the corpus reports for each outcome
+
+Duplicate extraction, now adjudicated, makes it possible for the first time to measure what this evidence base reports for the five outcomes declared in the eligibility criteria. Table 5 summarises it over the 132 extracted arms.
+
+Completeness is uneven and, at best, partial. Adverse events are the outcome most often reported with a denominator (73.5 % of arms) and emergence of phage resistance the least (24.2 %), despite being the outcome that determines whether the intervention retains its usefulness. Clinical success, the outcome that published syntheses pool, is reported with numerator and denominator in 62.9 % of arms.
+
+That 62.9 % is misleading, however, if read as availability for pooling. **In 69 of the 132 arms (52.3 %) the two reviewers concluded, by consensus, that the study offers no operational definition of clinical success**: the article states a number of patients with a "good outcome" without saying what had to be observed to count one. Such a numerator names nothing comparable to another study's numerator.
+
+Crossing the four requirements a pooled proportion would demand — comparative design, numerator, denominator and an operational definition of the outcome — leaves **3 of the 132 arms**. Those three, moreover, measure different things: one takes as its primary outcome the *time* to a sustained reduction in bacterial burden measured by swab; another, the absence or resolution of a six-sign clinical syndrome without ventilator-associated pneumonia; the third, relief of symptoms "regardless of whether the bacteria was detected". No two define the same thing.
+
+### 3.6 Feasibility of quantitative synthesis
 
 A meta-analysis of proportions requires interpretable denominators, an outcome that names the same thing across studies, and a sufficiently homogeneous intervention. The body of evidence delimited here fails all three requirements.
 
@@ -239,7 +251,7 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 
 ## Tables and figures
 
-The four tables are supplied as separate files (`paper/tablas/`), each with its own footnote. Both figures are supplied as vector PDF (`paper/figuras/`).
+The five tables are supplied as separate files (`paper/tablas/`), each with its own footnote. Both figures are supplied as vector PDF (`paper/figuras/`).
 
 **Table 1.** Characteristics of the retrievable evidence base (n = 124 studies).
 **Table 2.** Reporting completeness for variables critical to stratification.
