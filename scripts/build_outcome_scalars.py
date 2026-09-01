@@ -271,8 +271,21 @@ def main():
         for r in csv.DictReader(open(s5f[0], encoding="utf-8-sig")):
             s5t[r["id"]] = r.get("titulo", "")
 
+    # La nota «el articulo no separa los datos de P. aeruginosa» la escribieron
+    # los revisores y no es uniformemente exacta: EST-091, por ejemplo, SI da el
+    # patogeno paciente a paciente en su tabla. Lo que el filtro necesita saber
+    # no es si el articulo separa, sino si el numerador extraido es atribuible a
+    # P. aeruginosa, que es otra cosa.
+    #
+    # En EST-146 --el unico de los tres finalistas al que afecta-- se comprobo
+    # en el PDF: son 12 casos «for a diverse range of bacterial infections», el
+    # 7/12 extraido es la serie entera, y el subgrupo de P. aeruginosa es UN
+    # paciente. El numerador no es una proporcion de P. aeruginosa.
+    NO_ATRIBUIBLE = {"EST-146"}
+
     def separable(r):
-        return "no separa" not in (r.get("incomplete_reason") or "").lower()
+        return (r["study_id"] not in NO_ATRIBUIBLE
+                and "no separa" not in (r.get("incomplete_reason") or "").lower())
 
     def terapeutica(r):
         return not _re.search(r"\bprevent|\bprophyla|\bprofilax",
