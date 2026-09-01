@@ -148,8 +148,9 @@ def main():
             "estratificación (n = %d estudios)." % n,
             "Medido sobre el resumen indexado, que es lo que alimenta las bases "
             "bibliográficas y las revisiones automatizadas. Una variable puede "
-            "constar en el texto completo y no en el resumen; esa distinción se "
-            "resolverá con la extracción por duplicado en curso. Esta tabla se "
+            "constar en el texto completo y no en el resumen; la extracción por "
+            "duplicado, ya adjudicada, mide esa distinción para los desenlaces "
+            "en la Tabla 5. Esta tabla se "
             "reproduce desde el anexo S4 filtrando en_corpus_actual = sí: el "
             "anexo conserva además las filas que la enmienda de idioma dejó "
             "fuera, para que la enmienda pueda auditarse.")
@@ -177,7 +178,11 @@ def main():
               "%.1f" % (100.0 * cc / len(con)), "%.1f" % (100.0 * cs / len(sin_))],
              ["Reportes de caso único", dc["case report"], ds["case report"]],
              ["Ensayos aleatorizados", dc["RCT"], ds["RCT"]],
-             ["Pacientes declarados (suma de n por brazo)", pcn, psn]]
+             # Millar fino, como el resto del manuscrito: escribia «1044»
+             # en una tabla donde arriba pone «17 129».
+             ["Pacientes declarados (suma de n por brazo)",
+              f"{pcn:,}".replace(",", " "),
+              f"{psn:,}".replace(",", " ")]]
     escribe("tabla_3_sesgo_recuperacion",
             ["", "Con texto completo", "Sin texto completo"], filas,
             "Tabla 3. Comparación entre los estudios con y sin texto completo "
@@ -191,12 +196,12 @@ def main():
             "La fracción no obtenida no es una muestra aleatoria: concentra el "
             "%.1f %% de los estudios comparativos (%.1f %% de esa fracción, "
             "frente al %.1f %% de la obtenida) y declara %s pacientes que la "
-            "obtenida (%d frente a %d). Cualquier síntesis limitada a lo "
+            "obtenida (%s frente a %s). Cualquier síntesis limitada a lo "
             "descargable heredaría esa asimetría."
             % (S["comparativos_sin_texto_pct"],
                100.0 * cs / max(1, len(sin_)),
                100.0 * cc / max(1, len(con)),
-               "más" if psn > pcn else "menos", psn, pcn))
+               "más" if f"{psn:,}".replace(",", " ") > f"{pcn:,}".replace(",", " ") else "menos", f"{psn:,}".replace(",", " "), f"{pcn:,}".replace(",", " ")))
 
     # ---- Tabla 4: motivos de exclusion -------------------------------------
     filas = []

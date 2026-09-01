@@ -178,9 +178,23 @@ def main():
     S["pacientes_declarados_con_texto"] = sum(n_de(k) for k in con)
     S["pacientes_declarados_sin_texto"] = sum(n_de(k) for k in extraibles - con)
 
+    # La pre-extraccion escribio cuatro paises sin tilde --«Belgica», «Iran»,
+    # «Japon», «multicentrico»-- junto a otros bien acentuados. La Tabla 1 se
+    # publica en castellano y los cuatro salian asi. Se corrige la ortografia
+    # AQUI y no en el fichero de pre-extraccion, que es el registro de lo que
+    # el modelo escribio y se aporta como anexo S4.
+    #
+    # Solo ortografia. «Francia y Belgica» NO se toca: es un estudio de dos
+    # paises y repartirlo, agruparlo bajo «multicentrico» o contarlo dos veces
+    # son tres decisiones de clasificacion distintas, y ninguna la toma un
+    # script.
+    TILDES = {"Belgica": "Bélgica", "Iran": "Irán", "Japon": "Japón",
+              "multicentrico (internacional)": "multicéntrico (internacional)",
+              "Francia y Belgica": "Francia y Bélgica"}
     paises = collections.Counter(
-        (pre.get(k, {}).get("geographic_source") or "no declarada")
-        for k in extraibles)
+        TILDES.get(v, v) for v in
+        ((pre.get(k, {}).get("geographic_source") or "no declarada")
+         for k in extraibles))
     # TODOS los paises, no los diez primeros. El truncamiento hacia que el
     # diccionario sumara 111 sobre un corpus de 124, y de ahi salieron dos
     # errores encadenados: la Tabla 1 perdia paises, y una frase del manuscrito

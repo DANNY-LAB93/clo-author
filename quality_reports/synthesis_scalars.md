@@ -44,7 +44,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `comparativos_sin_texto_pct` | 47.8 |
 | `pacientes_declarados_con_texto` | 1044 |
 | `pacientes_declarados_sin_texto` | 487 |
-| `procedencia` | no declarada: 76; Rusia: 7; Georgia: 6; Polonia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Belgica: 2; España: 2; India: 2; Iran: 2; Israel: 2; Ucrania: 2; Australia: 1; China: 1; Francia y Belgica: 1; Italia: 1; Japon: 1; Reino Unido: 1; multicentrico (internacional): 1 |
+| `procedencia` | no declarada: 76; Rusia: 7; Georgia: 6; Polonia: 6; Alemania: 4; Estados Unidos: 3; Francia: 3; Bélgica: 2; España: 2; India: 2; Irán: 2; Israel: 2; Ucrania: 2; Australia: 1; China: 1; Francia y Bélgica: 1; Italia: 1; Japón: 1; Reino Unido: 1; multicéntrico (internacional): 1 |
 | `procedencia_declarada` | 48 |
 | `procedencia_europa_este` | 21 |
 | `procedencia_no_declarada` | 76 |
