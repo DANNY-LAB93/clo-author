@@ -102,9 +102,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `excluidos_resumen_IDI` | 35 |
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
-| `palabras_resumen_es` | 379 |
+| `palabras_resumen_es` | 298 |
 | `palabras_cuerpo_es` | 5597 |
-| `palabras_resumen_en` | 359 |
+| `palabras_resumen_en` | 287 |
 | `palabras_cuerpo_en` | 5226 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 122 |

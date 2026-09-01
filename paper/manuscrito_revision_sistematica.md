@@ -6,22 +6,22 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 379; texto principal 5 597.
+**Recuento de palabras:** resumen 298; texto principal 5 597.
 **Tablas:** 5. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
 
 ---
 
 ## Resumen
 
-**Antecedentes.** *Pseudomonas aeruginosa* resistente a carbapenémicos figura como patógeno de prioridad **alta** en la lista de la OMS de 2024, tras haber sido de prioridad crítica en la de 2017. Varias síntesis recientes han agregado los desenlaces de la fagoterapia en proporciones globales de éxito. Hacerlo da por supuesto que este cuerpo de evidencia admite agregación, y nadie ha examinado ese supuesto.
+**Antecedentes.** *Pseudomonas aeruginosa* resistente a carbapenémicos es patógeno de prioridad **alta** para la OMS. Varias síntesis recientes agregan los desenlaces de la fagoterapia en proporciones globales de éxito, lo que presupone que este cuerpo de evidencia admite agregación. Nadie ha examinado ese supuesto.
 
-**Objetivos.** Delimitar de forma reproducible la literatura clínica sobre fagoterapia en *P. aeruginosa* resistente y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
+**Objetivos.** Delimitar de forma reproducible esa literatura y determinar si su estructura y su reporte permiten una síntesis cuantitativa de eficacia.
 
-**Métodos.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases y registros de ensayos. Se interrogaron ocho bases y registros, incluidos BVS y SciELO, con una ventana de publicación de 2016 a 2026 aplicada en las fuentes que la admiten. Solo se admitieron informes en inglés o español, criterio incorporado como enmienda posterior al cribado y verificado informe a informe, también sobre el texto completo de cada PDF. La unidad de inclusión fue el estudio, no el informe. La extracción se realizó a mano, por duplicado e independiente, y sus desacuerdos se resolvieron por consenso. La caracterización estructural procede de una pre-extracción sistemática desde el resumen; la completitud de reporte por desenlace, de la extracción adjudicada.
+**Métodos.** Revisión conforme a PRISMA 2020, con corrientes separadas para bases y registros. Ocho fuentes, incluidas BVS y SciELO, ventana de 2016 a 2026 donde la admiten. Solo inglés o español, criterio incorporado como **enmienda posterior al cribado** y verificado sobre el texto completo. La unidad fue el estudio. Extracción manual, por duplicado e independiente, con los desacuerdos resueltos por consenso; la caracterización estructural procede de una pre-extracción desde el resumen y la completitud por desenlace, de la extracción adjudicada.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y solo el 18,5 % son comparativos. No consta la procedencia geográfica en el 61,3 % ni puede asignarse la clase de resistencia en el 80,6 %. Se obtuvo el texto completo de 93 estudios (75,0 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 de ellos comparativos. En 89 de los 132 brazos extraídos (67,4 %) no consta una definición operativa del éxito clínico, y solo 3 reúnen a la vez diseño comparativo, numerador, denominador y definición; uno de esos 3 mide tiempo, no una proporción.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos. Pasaron a texto completo 233, agrupados en 184 estudios; 124 de ellos tienen publicación recuperable. El 39,5 % son casos únicos y el 18,5 % comparativos; no consta la procedencia en el 61,3 % ni la clase de resistencia en el 80,6 %. Se obtuvo el texto completo de 93 estudios (75,0 %); la fracción restante concentra el 47,8 % de los diseños comparativos. El criterio de idioma eliminó 35 estudios, 18 comparativos. En 89 de los 132 brazos extraídos (67,4 %) no consta definición operativa del éxito clínico, y solo 3 reúnen diseño comparativo, numerador, denominador y definición; uno mide tiempo, no proporción.
 
-**Conclusiones.** El cuerpo de evidencia es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de éxito publicadas descansan sobre supuestos que estos datos no sostienen.
+**Conclusiones.** Este cuerpo de evidencia es amplio y a la vez estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones publicadas descansan sobre supuestos que estos datos no sostienen.
 
 **Palabras clave:** bacteriófagos; fagoterapia; *Pseudomonas aeruginosa*; multirresistencia; revisión sistemática; PRISMA.
 

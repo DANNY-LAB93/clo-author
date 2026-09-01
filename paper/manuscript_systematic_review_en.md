@@ -6,22 +6,22 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 359; main text 5 226.
+**Word count:** abstract 287; main text 5 226.
 **Tables:** 5. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
 
 ## Abstract
 
-**Background.** Carbapenem-resistant *Pseudomonas aeruginosa* is listed as a **high**-priority pathogen in the WHO 2024 list, having been critical priority in the 2017 list. Several recent syntheses have pooled phage therapy outcomes into overall success proportions. Doing so assumes this evidence base can be aggregated, and that assumption has never been examined.
+**Background.** Carbapenem-resistant *Pseudomonas aeruginosa* is a **high**-priority WHO pathogen. Several recent syntheses pool phage therapy outcomes into overall success proportions, which assumes this evidence base can be aggregated. That assumption has never been examined.
 
-**Objectives.** To delimit the clinical literature on phage therapy for resistant *P. aeruginosa* reproducibly, and to determine whether its structure and reporting completeness permit a quantitative synthesis of efficacy.
+**Objectives.** To delimit that literature reproducibly and determine whether its structure and reporting completeness permit a quantitative synthesis of efficacy.
 
-**Methods.** Systematic review following PRISMA 2020, with separate streams for databases and trial registers. Eight databases and registers were searched, including the regional databases BVS and SciELO, over a publication window of 2016 to 2026 applied in the sources that admit it. Only reports in English or Spanish were eligible, a criterion adopted after screening closed and verified report by report, including against the full text of every retrieved PDF. The unit of inclusion was the study, not the report. Data extraction was performed by hand, in duplicate and independently, with disagreements resolved by consensus. The structural characterisation derives from a systematic pre-extraction from the abstracts; the reporting completeness per outcome, from the adjudicated extraction.
+**Methods.** Review following PRISMA 2020, with separate streams for databases and registers. Eight sources, including BVS and SciELO, over a 2016–2026 window where admitted. English or Spanish only, a criterion adopted **after screening closed** and verified against full text. The unit of inclusion was the study. Extraction was manual, in duplicate and independent, with disagreements resolved by consensus; the structural characterisation derives from a pre-extraction from abstracts and the per-outcome completeness from the adjudicated extraction.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and only 18.5 % are comparative designs. Geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 93 studies (75.0 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 of them comparative. In 89 of the 132 extracted arms (67.4 %) no operational definition of clinical success is on record, and only 3 combine comparative design, numerator, denominator and a definition; one of those 3 measures time, not a proportion.
+**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and 18.5 % are comparative; geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 93 studies (75.0 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 comparative. In 89 of the 132 extracted arms (67.4 %) no operational definition of clinical success is on record, and only 3 combine comparative design, numerator, denominator and a definition; one measures time, not a proportion.
 
-**Conclusions.** This evidence base is simultaneously large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
+**Conclusions.** This evidence base is at once large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
 
 **Keywords:** bacteriophages; phage therapy; *Pseudomonas aeruginosa*; multidrug resistance; systematic review; PRISMA.
 
