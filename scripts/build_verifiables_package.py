@@ -116,38 +116,54 @@ def v1_prisma(S):
          "agruparlos en estudios (S5). Lo no revisado es lo que el modelo "
          "excluyó. Declarado en §2.4 y como limitación en §4.4; el registro "
          "completo, con modelo y marca de tiempo por decisión, está en S3"),
-        ("9", "Proceso de extracción", "Cuántos revisores, herramientas", "PARCIAL",
-         "§2.6; extracción por duplicado en curso, no concluida"),
+        ("9", "Proceso de extracción", "Cuántos revisores, herramientas", "CUMPLE",
+         "§2.6; extracción por duplicado e independiente completa (%d de %d "
+         % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"]) +
+         "estudios), con la concordancia medida antes de resolver y %d de %d "
+         % (S["extraccion_conflictos_firmados"], S["extraccion_desacuerdos"]) +
+         "desacuerdos adjudicados por consenso. S11 y S12 aportan el rastro"),
         ("10a", "Variables de desenlace", "Lista y definiciones", "PARCIAL",
          "§2.2 las lista; S4 no contiene definiciones de desenlace porque "
          "ningún resumen del corpus las declara. Las definiciones de los "
-         "textos completos leídos se discuten en §3.5"),
+         "textos completos leídos se discuten en §3.5 y §3.6"),
         ("10b", "Otras variables", "Lista y definiciones", "CUMPLE", "S4"),
         ("11", "Riesgo de sesgo", "Herramienta, cuántos revisores", "NO CUMPLE",
-         "§2.7; depende del texto completo. Se reportará con la extracción "
-         "definitiva. Declarado en §4.4"),
+         "§2.7 declara que NO se ha evaluado y por qué: exige lectura por "
+         "dominio de los dos revisores, y 31 de los 124 estudios siguen sin "
+         "texto completo. No se promete para una versión futura de este "
+         "informe. Declarado también en §4.4"),
         ("12", "Medidas del efecto", "Para cada desenlace", "NO APLICA",
-         "Este informe no presenta estimaciones de efecto; ver §2.6 y §3.5"),
+         "Este informe no presenta estimaciones de efecto. §3.5 mide la completitud con que se reportan los desenlaces; §3.6 explica por qué no se agregan"),
         ("13a-f", "Métodos de síntesis", "Incluida la decisión de no agrupar", "CUMPLE",
-         "§2.8 y §3.5, con la justificación de por qué no se agrupa"),
+         "§2.8 y §3.6, con la justificación de por qué no se agrupa"),
         ("14", "Sesgo de publicación", "Métodos de evaluación", "PARCIAL",
          "§4.3 documenta %d de %d estudios registrados sin publicación; no se "
          % (S["estudios_solo_registro"], S["estudios"]) +
          "aplicaron pruebas estadísticas por no haber síntesis cuantitativa"),
-        ("15", "Certeza de la evidencia", "GRADE u otro", "NO CUMPLE",
-         "§2.7; pendiente de la extracción definitiva"),
+        ("15", "Certeza de la evidencia", "GRADE u otro", "NO APLICA",
+         "§2.7: GRADE califica la certeza de una estimación agrupada y este "
+         "informe no presenta ninguna. §3.5 muestra que solo 3 de los 132 "
+         "brazos reúnen los requisitos mínimos para agregar, y uno de ellos "
+         "mide tiempo y no una proporción"),
         ("16a", "Selección de estudios", "Flujo con números", "CUMPLE", "§3.1 y Figura 1"),
         ("16b", "Excluidos en texto completo", "Con motivos", "PARCIAL",
          "S3 recoge los motivos de las etapas 1 a 3 con vocabulario cerrado; "
          "la exclusión en texto completo se producirá con la extracción"),
         ("17", "Características de los estudios", "De cada uno", "CUMPLE",
          "Tabla 1, y listado completo en S5"),
-        ("18", "Riesgo de sesgo por estudio", "", "NO CUMPLE", "Pendiente; §4.4"),
-        ("19", "Resultados de los estudios", "", "NO APLICA", "Ver §2.6"),
+        ("18", "Riesgo de sesgo por estudio", "", "NO CUMPLE",
+         "No se ha realizado. El motivo está en §2.7 y la limitación en §4.4; "
+         "no se promete para una versión futura de este informe"),
+        ("19", "Resultados de los estudios", "", "PARCIAL",
+         "§3.5 y Tabla 5 reportan la COMPLETITUD con que cada estudio declara "
+         "los cinco desenlaces, no sus estimaciones de efecto. El dato por "
+         "estudio está en la extracción adjudicada que acompaña al depósito"),
         ("20a-d", "Resultados de la síntesis", "", "CUMPLE",
-         "§3.3 a §3.5; la síntesis es de estructura y reporte, no de eficacia"),
+         "§3.3 a §3.6; la síntesis es de estructura y de completitud de "
+         "reporte, no de eficacia, y §3.6 razona por qué no puede ser otra"),
         ("21", "Sesgos de publicación", "", "PARCIAL", "§4.3"),
-        ("22", "Certeza de la evidencia", "", "NO CUMPLE", "Pendiente"),
+        ("22", "Certeza de la evidencia", "", "NO APLICA",
+         "No hay estimación agrupada cuya certeza calificar; ver §2.7 y §3.5"),
         ("23a-d", "Discusión", "Interpretación, limitaciones, implicaciones", "CUMPLE", "§4"),
         ("24a", "Registro", "Número o declaración de no registro", "CUMPLE (declarado)",
          "§2.1 declara explícitamente que NO está registrada"),

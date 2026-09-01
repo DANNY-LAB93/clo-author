@@ -245,11 +245,15 @@ def main():
                 "sin denominador no es una proporción. «Con doble lectura» es el "
                 "porcentaje de esas casillas en que los dos revisores "
                 "coincidieron o resolvieron por consenso; el resto lo leyó un "
-                "solo revisor. De los %d brazos, %d son de diseño comparativo y "
-                "solo %d reúnen a la vez diseño comparativo, numerador, "
-                "denominador y una definición operativa del éxito clínico, que "
-                "es el mínimo que una proporción agrupada exigiría."
-                % (O["brazos"], O["brazos_comparativos"],
+                "solo revisor. El diseño solo puede clasificarse en %d de los %d "
+                "brazos, de modo que los recuentos por diseño son suelos: de esos "
+                "%d, %d son comparativos, y solo %d reúnen a la vez diseño "
+                "comparativo, numerador, denominador y una definición operativa "
+                "del éxito clínico, que es el mínimo que una proporción agrupada "
+                "exigiría. Dos brazos reportan un numerador mayor que su "
+                "denominador y se señalan como error de reporte."
+                % (O["brazos_con_diseno"], O["brazos"], O["brazos_con_diseno"],
+                   O["brazos_comparativos"],
                    O["brazos_agregables_exito_clinico"]))
 
     print("escritas en %s" % OUT)

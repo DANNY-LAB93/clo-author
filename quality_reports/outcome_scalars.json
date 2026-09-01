@@ -45,11 +45,21 @@
     }
   },
   "definicion_exito": {
-    "brazos_con_campo_relleno": 132,
-    "con_definicion_operativa": 63,
-    "sin_definicion_operativa": 69,
-    "sin_definicion_pct": 52.3
+    "brazos": 132,
+    "con_definicion_operativa": 43,
+    "sin_definicion_declarada": 58,
+    "campo_ausente": 2,
+    "extraccion_incompleta": 29,
+    "sin_definicion_operativa": 89,
+    "sin_definicion_pct": 67.4,
+    "establecido_que_no_define": 60,
+    "establecido_pct": 45.5
   },
+  "aritmetica_imposible": 2,
+  "aritmetica_imposible_detalle": [
+    "EST-003 clinical_success_n=13 sobre n=1",
+    "EST-077 adverse_event_n=5 sobre n=4"
+  ],
   "disenos": {
     "case report": 48,
     "no clasificable": 30,
@@ -60,8 +70,36 @@
     "non-randomised trial": 4,
     "prospective cohort": 1
   },
+  "diseno_no_clasificable": 30,
+  "brazos_con_diseno": 102,
   "brazos_comparativos": 24,
   "estudios_comparativos_extraidos": 21,
   "brazos_agregables_exito_clinico": 3,
-  "estudios_agregables_exito_clinico": 3
+  "estudios_agregables_exito_clinico": 3,
+  "agregables_detalle": [
+    {
+      "study_id": "EST-021",
+      "arm_id": "A",
+      "diseno": "RCT",
+      "n": "6",
+      "N": "27",
+      "definicion": "The primary endpoint was the time taken for a sustained reduction in bacterial burden by at least two quadrants via a four-quadrant method, assessed by use of d"
+    },
+    {
+      "study_id": "EST-101",
+      "arm_id": "A",
+      "diseno": "RCT",
+      "n": "23",
+      "N": "30",
+      "definicion": "A patient was considered to have a clinical cure if these signs [new or progressive infiltrates on chest X-ray, fever or hypothermia, leukocytosis or leukopenia"
+    },
+    {
+      "study_id": "EST-146",
+      "arm_id": "A",
+      "diseno": "retrospective cohort",
+      "n": "7",
+      "N": "12",
+      "definicion": "A favorable clinical response is defined as relief of clinical symptoms, regardless of whether the bacteria was detected"
+    }
+  ]
 }

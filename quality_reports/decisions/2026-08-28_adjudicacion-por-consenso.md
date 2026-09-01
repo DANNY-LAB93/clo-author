@@ -169,3 +169,72 @@ Esto queda declarado en §2.7, no omitido.
 - 2 filas de `journal_tier` cerradas sin firma conjunta
 - 31 textos completos sin recuperar
 - riesgo de sesgo por estudio, cuando se decida acometerlo
+
+---
+
+# SEGUNDO ANEXO — 29 de agosto de 2026
+
+## La revisión adversarial encontró que el hallazgo estaba mal por dos sitios
+
+Un concejo de cuatro lentes sobre el análisis de desenlaces devolvió 37
+hallazgos. Seis de sus refutadores murieron por límite de sesión, así que los
+materiales se verificaron a mano. Dos afectaban a la cifra publicada, y los dos
+iban en la dirección que **ablanda** el hallazgo, que es la que obliga a mirar
+con más dureza.
+
+### 1. «na» contaba como definición operativa: 52,3 % → 67,4 %
+
+`build_outcome_scalars.py` solo descartaba el texto literal
+«SIN DEFINICIÓN OPERATIVA». En 20 brazos el campo valía `na`, que es el token
+de dato ausente que declara el propio esquema, y los dos revisores lo
+escribieron por separado. El script los sumaba a «con definición».
+
+Corregido, y desglosado, porque no todo el que no define lo hace por lo mismo:
+
+| | n | % de 132 |
+|---|---:|---:|
+| Con definición operativa | 43 | 32,6 |
+| El artículo no la da (declarado por los revisores) | 58 | 43,9 |
+| Campo sin dato (`na`) | 2 | 1,5 |
+| Extracción incompleta: no consta ni lo uno ni lo otro | 29 | 22,0 |
+| **Sin definición operativa** | **89** | **67,4** |
+
+La distinción del último bloque importa: en 29 brazos **no se puede afirmar que
+los revisores concluyeran nada**, porque no terminaron de leer el artículo. La
+redacción anterior decía «los dos revisores concluyeron, por consenso», y de 69
+brazos eso solo era cierto en 60. Corregido en los dos manuscritos.
+
+### 2. Uno de los «3 brazos» es PhagoBurn, y §3.6 dice que no reporta proporción
+
+§3.5 contaba EST-021 entre los 3 brazos que reúnen numerador, denominador,
+diseño comparativo y definición. §3.6, doce líneas más abajo, dice que el
+desenlace principal de PhagoBurn es el **tiempo** hasta una reducción sostenida
+de la carga bacteriana y que por eso no entra en un metaanálisis de
+proporciones. Las dos cosas no pueden ser ciertas.
+
+Lo son las dos por separado: PhagoBurn cumple los cuatro requisitos formales
+**y** su desenlace no es una proporción. Así que el embudo tiene un paso más, y
+el manuscrito ahora lo dice: de los 3 que cumplen los cuatro requisitos, **queda
+2** que reporten algo agregable como proporción. Y los dos definen el éxito de
+forma distinta.
+
+### 3. Tres defectos menores, corregidos también
+
+- **Dos brazos con numerador mayor que su denominador** (13 éxitos sobre 1
+  paciente en EST-003; 5 eventos adversos sobre 4 en EST-077). Entraban en la
+  completitud como proporciones válidas. Ahora se señalan como error de reporte
+  y quedan fuera del cruce de agregables.
+- **30 de los 132 brazos no tienen diseño clasificable** (20 con «NA» acordado,
+  10 abiertos). «24 comparativos» es un suelo sobre 102, no un total sobre 132,
+  y la tabla 5 y §3.5 lo dicen.
+- **Seis contradicciones de texto** que el commit anterior dejó sueltas: §2.4
+  seguía diciendo que la pre-extracción es «la fuente de toda cifra»; §4.4 que
+  «este informe no presenta desenlaces»; §2.8 remitía a §3.5 tras renumerarla;
+  el manuscrito inglés no tenía actualizada §2.6 ni el pie de la tabla 5; y S1
+  conservaba en los ítems 9, 11, 15, 18, 19, 20 y 22 promesas que §2.7 ya había
+  retirado.
+
+## Lo que NO cambia
+
+La conclusión, que sale reforzada: el corpus no admite una síntesis cuantitativa
+de eficacia, y ahora la cifra que lo demuestra es 2 brazos de 132, no 3.

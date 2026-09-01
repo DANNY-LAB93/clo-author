@@ -110,21 +110,61 @@ def main():
     # El desenlace que las sintesis publicadas agregan es «exito clinico». Si
     # el estudio no lo define, el numerador no nombra nada comparable, y
     # promediarlo con los demas produce una cifra sin referente.
-    SIN = ("SIN DEFINICION OPERATIVA", "SIN DEFINICIÓN OPERATIVA")
-    definidos = con_texto = 0
+    #
+    # «na» NO es una definicion: es el token de dato ausente que declara
+    # extraction_schema, y los dos revisores lo escribieron por separado en 20
+    # brazos. Contarlo como definicion rebajaba la cifra publicada del 67,4 %
+    # al 52,3 %, o sea en la direccion que ablanda el hallazgo.
+    SIN = ("SIN DEFINICION OPERATIVA", "SIN DEFINICI\u00d3N OPERATIVA")
+    AUSENTE = {"NA", "N/A", "NR", "ND", "-"}
+
+    def sin_definicion(v):
+        t = (v or "").strip()
+        return (not t) or t.upper() in AUSENTE or any(x in t.upper() for x in SIN)
+
+    # Un brazo cuya extraccion quedo incompleta no permite afirmar que el
+    # articulo no define nada: permite afirmar que no se establecio. Son cosas
+    # distintas y el manuscrito no puede confundirlas.
+    declarada = ausente = incompleta = definidos = 0
     for r in filas:
         t = (r.get("clinical_success_definition") or "").strip()
-        if not t:
-            continue
-        con_texto += 1
-        if not any(x in t.upper() for x in SIN):
+        inc = (r.get("extraction_status") or "").strip().upper() == "EXTRACTION_INCOMPLETE"
+        if not sin_definicion(t):
             definidos += 1
+        elif inc:
+            incompleta += 1
+        elif t and any(x in t.upper() for x in SIN):
+            declarada += 1
+        else:
+            ausente += 1
+    sin_def = declarada + ausente + incompleta
     S["definicion_exito"] = {
-        "brazos_con_campo_relleno": con_texto,
+        "brazos": len(filas),
         "con_definicion_operativa": definidos,
-        "sin_definicion_operativa": con_texto - definidos,
-        "sin_definicion_pct": round(100.0 * (con_texto - definidos) / max(1, con_texto), 1),
+        "sin_definicion_declarada": declarada,
+        "campo_ausente": ausente,
+        "extraccion_incompleta": incompleta,
+        "sin_definicion_operativa": sin_def,
+        "sin_definicion_pct": round(100.0 * sin_def / max(1, len(filas)), 1),
+        "establecido_que_no_define": declarada + ausente,
+        "establecido_pct": round(100.0 * (declarada + ausente) / max(1, len(filas)), 1),
     }
+
+    # ---- aritmetica imposible ----------------------------------------------
+    # Un numerador mayor que su denominador no es un dato: es un error que
+    # exige volver al articulo. Se cuenta y se nombra en vez de sumarlo a la
+    # completitud como si fuera una proporcion valida.
+    imposibles = []
+    for r in filas:
+        N = r.get("n_arm")
+        if not es_numero(N):
+            continue
+        for campo, _ in DESENLACES:
+            if es_numero(r.get(campo)) and float(r[campo]) > float(N):
+                imposibles.append("%s %s=%s sobre n=%s"
+                                  % (r["study_id"], campo, r[campo], N))
+    S["aritmetica_imposible"] = len(imposibles)
+    S["aritmetica_imposible_detalle"] = imposibles
 
     # ---- disenos, sobre la extraccion adjudicada ---------------------------
     dis = collections.Counter()
@@ -132,20 +172,30 @@ def main():
         v = normaliza("study_design", r.get("study_design"))
         dis[v if v in CATEGORICOS["study_design"] else "no clasificable"] += 1
     S["disenos"] = dict(sorted(dis.items(), key=lambda kv: (-kv[1], kv[0])))
+    S["diseno_no_clasificable"] = dis["no clasificable"]
+    S["brazos_con_diseno"] = len(filas) - dis["no clasificable"]
     comp = [r for r in filas
             if normaliza("study_design", r.get("study_design")) in COMPARATIVOS]
     S["brazos_comparativos"] = len(comp)
     S["estudios_comparativos_extraidos"] = len({r["study_id"] for r in comp})
 
     # El cruce que decide si se puede agregar algo: brazos que a la vez son
-    # comparativos, traen numerador y denominador, y definen el desenlace.
+    # comparativos, traen numerador y denominador coherentes, y definen el
+    # desenlace. Usa el MISMO predicado que arriba; antes solo acertaba por
+    # accidente, porque los brazos con «na» no traian numerador.
     agregables = [
         r for r in comp
         if es_numero(r.get("clinical_success_n")) and es_numero(r.get("n_arm"))
-        and (r.get("clinical_success_definition") or "").strip()
-        and not any(x in r["clinical_success_definition"].upper() for x in SIN)]
+        and float(r["clinical_success_n"]) <= float(r["n_arm"])
+        and not sin_definicion(r.get("clinical_success_definition"))]
     S["brazos_agregables_exito_clinico"] = len(agregables)
     S["estudios_agregables_exito_clinico"] = len({r["study_id"] for r in agregables})
+    S["agregables_detalle"] = [
+        {"study_id": r["study_id"], "arm_id": r["arm_id"],
+         "diseno": normaliza("study_design", r.get("study_design")),
+         "n": r["clinical_success_n"], "N": r["n_arm"],
+         "definicion": (r.get("clinical_success_definition") or "")[:160]}
+        for r in agregables]
 
     SALIDA.write_text(json.dumps(S, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -161,17 +211,31 @@ def main():
                  d["pct_de_los_brazos"], d["doble_lectura_pct"]))
     e = S["definicion_exito"]
     print()
-    print("  definición de éxito clínico: %d de %d brazos NO la dan (%.1f %%)"
-          % (e["sin_definicion_operativa"], e["brazos_con_campo_relleno"],
-             e["sin_definicion_pct"]))
+    print("  definición de éxito clínico, sobre %d brazos:" % e["brazos"])
+    print("    con definición operativa            %3d" % e["con_definicion_operativa"])
+    print("    el artículo no la da                %3d" % e["sin_definicion_declarada"])
+    print("    el campo salió ausente («na»)       %3d" % e["campo_ausente"])
+    print("    extracción incompleta, no consta    %3d" % e["extraccion_incompleta"])
+    print("    -> SIN definición operativa         %3d  (%.1f %%)"
+          % (e["sin_definicion_operativa"], e["sin_definicion_pct"]))
+    if S["aritmetica_imposible"]:
+        print()
+        print("  ARITMÉTICA IMPOSIBLE (numerador > denominador): %d"
+              % S["aritmetica_imposible"])
+        for x in S["aritmetica_imposible_detalle"]:
+            print("    %s" % x)
     print()
     print("  diseños:", ", ".join("%s %d" % (k, v) for k, v in S["disenos"].items()))
+    print("  %d brazos con diseño clasificable; %d sin él"
+          % (S["brazos_con_diseno"], S["diseno_no_clasificable"]))
     print("  brazos comparativos: %d, en %d estudios"
           % (S["brazos_comparativos"], S["estudios_comparativos_extraidos"]))
     print()
-    print("  BRAZOS QUE PERMITIRÍAN AGREGAR ÉXITO CLÍNICO")
-    print("  (comparativos + numerador + denominador + definición operativa): %d"
+    print("  BRAZOS QUE REÚNEN LOS CUATRO REQUISITOS: %d"
           % S["brazos_agregables_exito_clinico"])
+    for a in S["agregables_detalle"]:
+        print("    %-9s %-22s %s/%s  %s"
+              % (a["study_id"], a["diseno"], a["n"], a["N"], a["definicion"][:52]))
     return 0
 
 
