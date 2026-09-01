@@ -341,3 +341,95 @@ Dicho en la nota.
   salían canónicas: la misma respuesta aparecía de dos formas en la columna.
 - El docstring del fusionador decía «las 14 casillas»; el script produce las que
   produce y ahora lo dice al terminar.
+
+---
+
+# CUARTO ANEXO — 29 de agosto de 2026, el concejo de dos árbitros
+
+Dos árbitros —uno de dominio clínico, otro de PRISMA— leyeron el manuscrito
+entero. **Los dos: revisión mayor.** Verifiqué a mano cada objeción material.
+
+## Lo que tumbaron: el titular descansaba en dos brazos inelegibles
+
+El artículo decía «quedan 2». Los dos incumplen los criterios que la propia
+§2.2 declara:
+
+| | por qué no es elegible |
+|---|---|
+| **EST-101** | «…to **Prevent** Ventilator-Associated Pneumonia in Children». Es profilaxis, y §2.2 exige administración **terapéutica**. Su desenlace —ausencia de NAV incidente— no mide lo mismo que curar una infección establecida. |
+| **EST-146** | su propia fila anota «el artículo no separa los datos de *P. aeruginosa*», que es exactamente la condición que §2.2 pone para admitir un estudio mixto. Su numerador cuenta pacientes de varias especies. |
+
+Ninguna de las dos es una interpretación mía: la primera está en el título del
+artículo, la segunda la escribieron los revisores en la extracción.
+
+**El embudo, con §2.2 aplicada:**
+
+| requisito acumulado | quedan |
+|---|---:|
+| brazos extraídos | 132 |
+| diseño comparativo | 24 |
+| numerador y denominador coherentes | 8 |
+| definición operativa del éxito | 3 |
+| desenlace atribuible a *P. aeruginosa* | 2 |
+| administración terapéutica, no profiláctica | 1 |
+| reporta una proporción, no un tiempo | **0** |
+
+**Ningún brazo del corpus** reúne a la vez las condiciones aritméticas y los
+criterios de elegibilidad. Es un resultado más fuerte que «quedan 2», no más
+débil. Nueva tabla 6.
+
+## Lo que queda en manos de los dos revisores
+
+Si EST-101, EST-039 y EST-086 —los tres estudios de profilaxis extraídos— y los
+**22 brazos** cuya extracción anota «el artículo no separa los datos de
+*P. aeruginosa*» debieron entrar en el corpus es una **decisión de cribado**,
+no de un script: cambiaría los 184 estudios y el diagrama PRISMA. Aquí solo se
+aplica §2.2 al cruce que decide si algo es agregable, que es donde la pregunta
+se vuelve aritmética.
+
+Nótese la distinción: `incomplete_reason` es una nota de extracción («no pude
+sacar este desenlace»), no necesariamente un juicio de elegibilidad («este
+estudio no debió entrar»). Un estudio puede tener población separable y aun así
+no reportar los desenlaces por patógeno.
+
+## «Comparativo» significaba dos cosas
+
+§3.3 y la Tabla 1 llaman comparativos solo a los ensayos: **23 estudios**.
+§3.5 y la Tabla 5 incluían además las cohortes: **24 brazos**. Un lector que ve
+23 y 24 supone que son el mismo conjunto. No lo son: 13 ensayos y 11 cohortes.
+Ahora los dos sentidos se nombran y se publican por separado.
+
+## Dos huecos del paquete
+
+- **S3 entregaba 13 917 decisiones de título** contra las 13 894 que declara el
+  manuscrito. Las 23 de más son decisiones sobre registros de una versión
+  anterior del corpus; el registro es solo-anexar y se conservan, pero iban sin
+  marcar y un árbitro las contó. Ahora llevan `en_corpus_actual`, igual que S9.
+  El «huérfano» Rd069723093 —avanzó de título y nunca tuvo decisión de resumen—
+  es una de esas 23.
+- **La extracción adjudicada no viajaba.** §3.5 y las tablas 5 y 6 salen de un
+  fichero que el paquete no contenía: solo iba S4, la pre-extracción. Un árbitro
+  no podía comprobar ni el 89/132 ni el embudo. Ahora son **S14** (un valor por
+  casilla) y **S15** (la procedencia de cada casilla).
+
+## Y una cifra que faltaba
+
+El 67,4 % sin definición operativa no llevaba doble denominador, siendo la que
+sostiene el hallazgo, mientras las otras cinco filas de la Tabla 5 sí lo llevan.
+Sobre los 101 brazos legibles es **58,4 %**. Añadido.
+
+## Lo que los árbitros NO objetaron
+
+El árbitro de dominio comprobó S5 y no echa en falta ningún ensayo ni serie
+emblemática: están PhagoBurn, Leitner, CYPHY, BX004, TP-102, PASA16, la serie
+del Eliava, el centro israelí y los 100 casos de Pirnay. Y considera la
+conclusión general justificada. Lo que no se sostenía era la cadena numérica.
+
+## Sigue pendiente, del informe de métodos
+
+- La validación de Rayyan no nombra quién recribó ni quién adjudicó los 6
+  discrepantes, y no separa por etapa (solo ~6 de los 350 vienen del resumen).
+- La incoherencia RoB / Tabla 5 sigue en pie a juicio del árbitro: si hacen
+  falta dos lectores y faltan 31 textos para el riesgo de sesgo, valdría igual
+  para la Tabla 5, que sí se publica.
+- Una segunda enmienda no declarada, en S13.

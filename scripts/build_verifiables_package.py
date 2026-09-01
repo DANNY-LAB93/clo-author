@@ -142,12 +142,14 @@ def v1_prisma(S):
          "aplicaron pruebas estadísticas por no haber síntesis cuantitativa"),
         ("15", "Certeza de la evidencia", "GRADE u otro", "NO APLICA",
          "§2.7: GRADE califica la certeza de una estimación agrupada y este "
-         "informe no presenta ninguna. §3.5 muestra que solo 3 de los 132 "
-         "brazos reúnen los requisitos mínimos para agregar, y uno de ellos "
-         "mide tiempo y no una proporción"),
+         "informe no presenta ninguna. §3.5 y la Tabla 6 muestran que, tras "
+         "aplicar los criterios de elegibilidad de §2.2, NINGÚN brazo del "
+         "corpus podría entrar en una proporción agrupada de éxito clínico"),
         ("16a", "Selección de estudios", "Flujo con números", "CUMPLE", "§3.1 y Figura 1"),
         ("16b", "Excluidos en texto completo", "Con motivos", "PARCIAL",
-         "S3 recoge los motivos de las etapas 1 a 3 con vocabulario cerrado; "
+         "S3 recoge los motivos de las etapas 1 a 3 con vocabulario cerrado y "
+         "marca con en_corpus_actual las 23 decisiones sobre registros de "
+         "una versión anterior, para que el recuento cuadre con §3.1; "
          "la exclusión en texto completo se producirá con la extracción"),
         ("17", "Características de los estudios", "De cada uno", "CUMPLE",
          "Tabla 1, y listado completo en S5"),
@@ -155,9 +157,10 @@ def v1_prisma(S):
          "No se ha realizado. El motivo está en §2.7 y la limitación en §4.4; "
          "no se promete para una versión futura de este informe"),
         ("19", "Resultados de los estudios", "", "PARCIAL",
-         "§3.5 y Tabla 5 reportan la COMPLETITUD con que cada estudio declara "
-         "los cinco desenlaces, no sus estimaciones de efecto. El dato por "
-         "estudio está en la extracción adjudicada que acompaña al depósito"),
+         "§3.5 y las Tablas 5 y 6 reportan la COMPLETITUD con que cada estudio "
+         "declara los cinco desenlaces, no sus estimaciones de efecto. El "
+         "dato brazo a brazo se aporta en S14, y la procedencia de cada "
+         "casilla en S15"),
         ("20a-d", "Resultados de la síntesis", "", "CUMPLE",
          "§3.3 a §3.6; la síntesis es de estructura y de completitud de "
          "reporte, no de eficacia, y §3.6 razona por qué no puede ser otra"),
@@ -487,6 +490,20 @@ def main():
     # resumen, y borrarla escondería precisamente eso. Se sella con el estado
     # final y su motivo, de modo que S9 cuadre con los 233 del manuscrito y el
     # lector vea por que hay una fila mas.
+    # S14 y S15. Un arbitro no podia comprobar NADA de la seccion 3.5 ni de las
+    # tablas 5 y 6: el paquete solo llevaba la pre-extraccion desde resumenes
+    # (S4), y esas cifras salen de la extraccion adjudicada, que no viajaba.
+    # Publicar una cifra cuyo fichero no se aporta es pedir que se crea.
+    for origen, destino in (
+            ("extraccion/extraccion_adjudicada.csv",
+             "S14_extraccion_adjudicada.csv"),
+            ("extraccion/extraccion_adjudicada_procedencia.csv",
+             "S15_procedencia_de_cada_casilla.csv")):
+        q = RS / origen
+        if q.exists():
+            shutil.copy2(q, OUT / destino)
+            print("  %-4s %s" % (destino[:3], destino))
+
     v9_idioma(S)
 
     # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
@@ -513,7 +530,33 @@ def main():
         n = sum(1 for f in filas if f["en_corpus_actual"] == "si")
         print("  S4  %d filas, %d en el corpus actual (Tabla 2 se reproduce "
               "filtrando en_corpus_actual = si)" % (len(filas), n))
-    print("  S3  registros de decision (etapas 2 y 3)")
+    # S3 se copiaba tal cual y sale con 13 917 decisiones de titulo mientras el
+    # manuscrito declara 13 894. Las 23 de mas son decisiones sobre registros de
+    # una version anterior del corpus, y el registro es solo-anexar, asi que se
+    # conservan. Pero sin marcarlas, un arbitro cuenta y encuentra una
+    # discrepancia que no puede explicar: es el mismo defecto que tenia S9.
+    corpus = {r["record_id"] for r in
+              leer(RS / "cribado" / "screening_corpus_all.csv")}
+    for nombre in ("S3_decisiones_etapa2_titulo.csv",
+                   "S3_decisiones_etapa3_resumen.csv"):
+        ruta = OUT / nombre
+        if not ruta.exists():
+            continue
+        filas = leer(ruta)
+        if not filas or "en_corpus_actual" in filas[0]:
+            continue
+        cab = list(filas[0]) + ["en_corpus_actual"]
+        fuera = 0
+        for r in filas:
+            dentro = r["record_id"] in corpus
+            r["en_corpus_actual"] = "si" if dentro else "no"
+            fuera += 0 if dentro else 1
+        with open(ruta, "w", encoding="utf-8", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=cab)
+            w.writeheader()
+            w.writerows(filas)
+        print("  S3  %-38s %5d decisiones, %d fuera del corpus actual"
+              % (nombre, len(filas), fuera))
     print("  S4  pre-extraccion desde resumen")
     n = v5_listado(S)
     print("  S5  listado de %d estudios" % n)

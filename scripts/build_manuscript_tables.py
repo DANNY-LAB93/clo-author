@@ -282,6 +282,31 @@ def main():
                 "declarados, sobre los %d brazos de la extracción adjudicada."
                 % O["brazos"], nota)
 
+    # ---- Tabla 6: el embudo -------------------------------------------------
+    # Cada fila quita brazos por una razon nombrada. Los dos ultimos filtros
+    # son los criterios de elegibilidad del propio articulo (§2.2), que hasta
+    # ahora no se aplicaban a este cruce: sin ellos el embudo paraba en 3.
+    if oc.exists():
+        filas = [[x["filtro"][:1].upper() + x["filtro"][1:], x["quedan"]]
+                 for x in O["embudo"]]
+        escribe("tabla_6_embudo", ["Requisito acumulado", "Brazos que quedan"],
+                filas,
+                "Tabla 6. Brazos que sobreviven a cada requisito de una "
+                "proporción agrupada de éxito clínico (n = %d brazos "
+                "extraídos)." % O["brazos"],
+                "Cada fila aplica el requisito de esa fila Y todos los "
+                "anteriores. Los cuatro primeros son aritméticos. Los dos "
+                "siguientes son los criterios de elegibilidad que la sección "
+                "2.2 declara: el desenlace tiene que poder atribuirse a "
+                "*P. aeruginosa* --la extracción anota cuándo el artículo no "
+                "separa los patógenos-- y la administración tiene que ser "
+                "terapéutica, no profiláctica. El último se lee en el artículo "
+                "y no en una casilla: PhagoBurn reporta el tiempo hasta una "
+                "reducción sostenida de carga bacteriana, no una proporción. "
+                "El resultado es que **ningún brazo del corpus** reúne a la vez "
+                "las condiciones aritméticas y los criterios de elegibilidad de "
+                "esta revisión.")
+
     print("escritas en %s" % OUT)
     return 0
 

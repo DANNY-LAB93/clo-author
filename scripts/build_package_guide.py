@@ -92,6 +92,13 @@ CATALOGO = [
         ("S12_resolucion_de_conflictos.pdf", "Cómo se trató cada desacuerdo: por "
          "regla, leyendo el artículo, o pendiente de conseguirlo.",
          "Si los desacuerdos se resolvieron o se taparon."),
+        ("S14_extraccion_adjudicada.csv", "La extracción definitiva: un valor por "
+         "casilla, brazo a brazo, tras resolver los desacuerdos por consenso.",
+         "Toda cifra de la sección 3.5 y de las tablas 5 y 6."),
+        ("S15_procedencia_de_cada_casilla.csv", "Para cada casilla de S14, si la "
+         "acordaron los dos revisores, la resolvieron por consenso, la escribió "
+         "uno solo, o sigue abierta.",
+         "Cuánta doble lectura hay detrás de cada cifra."),
         ("S13_reglas_de_extraccion_de_desenlaces.pdf", "Definición de erradicación "
          "microbiológica y de éxito clínico, con su corrección documentada.",
          "Si la definición de desenlace cambió, cuándo y por qué."),

@@ -65,7 +65,9 @@
     "sin_definicion_operativa": 89,
     "sin_definicion_pct": 67.4,
     "establecido_que_no_define": 60,
-    "establecido_pct": 45.5
+    "establecido_pct": 45.5,
+    "sin_definicion_en_legibles": 59,
+    "sin_definicion_legibles_pct": 58.4
   },
   "campos_del_esquema_no_extraidos": [
     "microbio_eradication_denom",
@@ -92,6 +94,40 @@
   "diseno_abierto": 10,
   "brazos_comparativos": 24,
   "estudios_comparativos_extraidos": 21,
+  "embudo": [
+    {
+      "filtro": "brazos extraídos",
+      "quedan": 132
+    },
+    {
+      "filtro": "diseño comparativo",
+      "quedan": 24
+    },
+    {
+      "filtro": "numerador y denominador coherentes",
+      "quedan": 8
+    },
+    {
+      "filtro": "definición operativa del éxito",
+      "quedan": 3
+    },
+    {
+      "filtro": "desenlace atribuible a P. aeruginosa",
+      "quedan": 2
+    },
+    {
+      "filtro": "administración terapéutica, no profiláctica",
+      "quedan": 1
+    },
+    {
+      "filtro": "reporta una proporción, no un tiempo",
+      "quedan": 0
+    }
+  ],
+  "brazos_agregables_final": 0,
+  "brazos_agregables_final_ids": [],
+  "brazos_ensayo": 13,
+  "brazos_cohorte": 11,
   "brazos_agregables_exito_clinico": 3,
   "estudios_agregables_exito_clinico": 3,
   "agregables_detalle": [

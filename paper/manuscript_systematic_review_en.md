@@ -6,8 +6,8 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 251; main text 5 226.
-**Tables:** 5. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
+**Word count:** abstract 262; main text 5 410.
+**Tables:** 6. **Figures:** 2. **Supplementary files:** 16 (S0–S15) plus a guide.
 
 ---
 
@@ -17,9 +17,9 @@
 
 **Objectives.** To delimit it reproducibly and determine whether its structure and reporting admit a quantitative synthesis of efficacy.
 
-**Methods.** PRISMA 2020, with separate streams for databases and registers. Eight sources — including BVS and SciELO — over a 2016–2026 window where admitted. English or Spanish only, a criterion adopted **after screening closed** and verified against full text. The unit was the study. Extraction was manual, in duplicate and independent, with consensus on disagreements; the structure comes from a pre-extraction from abstracts and the outcomes from the adjudicated extraction.
+**Methods.** PRISMA 2020, separate streams for databases and registers. Eight sources — BVS and SciELO included — over a 2016–2026 window where admitted. English or Spanish only, a criterion adopted **after screening closed** and verified against full text. The unit was the study. Extraction was manual, in duplicate and independent, with consensus on disagreements; the structure comes from a pre-extraction from abstracts and the outcomes from the adjudicated extraction.
 
-**Results.** From 23 057 records, 17 129 unique reports remained; 233 reports formed 184 studies, 124 with a retrievable publication. Single case reports, 39.5 %; comparative, 18.5 %; resistance class unassignable, 80.6 %. Full text was obtained for 93 (75.0 %) and what is missing concentrates 47.8 % of the comparative designs; the language criterion removed 35 studies, 18 comparative. In 89 of the 132 arms (67.4 %) no operational definition of clinical success is on record, and only 3 combine comparative design, numerator, denominator and a definition; one measures time, not a proportion.
+**Results.** From 23 057 records, 17 129 unique reports remained; 233 reports formed 184 studies, 124 with a retrievable publication. Single case reports, 39.5 %; comparative, 18.5 %; resistance class unassignable, 80.6 %. Full text was obtained for 93 (75.0 %) and what is missing concentrates 47.8 % of the comparative designs; the language criterion removed 35 studies, 18 comparative. In 89 of the 132 arms (67.4 %) no operational definition of clinical success is on record, and only 3 combine comparative design, numerator, denominator and a definition. Applying the review's own eligibility criteria and setting aside the one whose outcome is a time, **none remains**.
 
 **Conclusions.** This evidence base is at once large and structurally unsuited to a quantitative synthesis of efficacy: published success proportions rest on assumptions these data do not support.
 
@@ -171,11 +171,17 @@ Duplicate extraction, now adjudicated, makes it possible for the first time to m
 
 Completeness is uneven and, at best, partial. Adverse events are the outcome most often reported with a denominator (73.5 % of arms) and emergence of phage resistance the least (24.2 %), despite being the outcome that determines whether the intervention retains its usefulness. Those percentages are computed over all 132 arms and therefore include 31 from studies whose full text has not been retrieved: of an article one has not been able to read, one cannot assert that it is silent. Over the 101 readable arms the figures rise — from 73.5 % to 84.2 % for adverse events, from 24.2 % to 31.7 % for resistance — and Table 5 gives both columns so the reader can separate the literature's silence from this review's own documentary gap. Clinical success, the outcome that published syntheses pool, is reported with numerator and denominator in 62.9 % of arms. Two arms report a numerator larger than their denominator — thirteen clinical successes in one patient, and five adverse events in four — and are flagged as reporting errors, not read as proportions.
 
-That 62.9 % is misleading, however, if read as availability for pooling. **In 89 of the 132 arms (67.4 %) no operational definition of clinical success is on record.** In 60 of them the reviewers established this by reading the article: 58 state a number of patients with a "good outcome" without saying what had to be observed to count one, and 2 left the field empty. In the remaining 29 the extraction is incomplete, so neither the presence nor the absence of a definition is on record; they are counted among those that do not supply one because the datum is not available to a reader of this review, not because its absence was established. A numerator without a definition names nothing comparable to another study's numerator.
+That 62.9 % is misleading, however, if read as availability for pooling. **In 89 of the 132 arms (67.4 %) no operational definition of clinical success is on record**; over the 101 readable arms, in 59 (58.4 %). In 60 of them the reviewers established this by reading the article: 58 state a number of patients with a "good outcome" without saying what had to be observed to count one, and 2 left the field empty. In the remaining 29 the extraction is incomplete, so neither the presence nor the absence of a definition is on record; they are counted among those that do not supply one because the datum is not available to a reader of this review, not because its absence was established. A numerator without a definition names nothing comparable to another study's numerator.
 
-Study design is not always on record either: in 30 of the 132 arms it cannot be classified — 20 where both reviewers agreed on "NA" and 10 still open — so the design counts are floors over the remaining 102. Of those 102, 24 arms are comparative.
+Study design is not always on record either: in 30 of the 132 arms it cannot be classified — 20 where both reviewers agreed on "NA" and 10 still open — so the design counts are floors over the remaining 102. Of those 102, **13 arms are trials** (randomised or not) and **11 are cohorts**. Section 3.3 and Table 1 call only the trials comparative, which is why the figure there is 23 studies; when this section says comparative it also includes the cohorts, and there are 24 arms. They are not the same set.
 
-Crossing the four requirements a pooled proportion would demand — comparative design, numerator, denominator and an operational definition of the outcome — leaves **3 of the 132 arms**. And one of the three is PhagoBurn, whose primary outcome is the *time* to a sustained reduction in bacterial burden [@Jault2019_phagoburn]: not a proportion, and one that would enter a meta-analysis of proportions only if the synthesist converted it into one. **Two remain.** And the two define success differently: one as the absence or resolution of a six-sign clinical syndrome without ventilator-associated pneumonia; the other as relief of symptoms "regardless of whether the bacteria was detected". No two define the same thing because there are no two.
+Crossing the requirements a pooled proportion would demand empties the corpus step by step. Four of them are arithmetic — comparative design, numerator, denominator and an operational definition — and leave **3 of the 132 arms**. The next two are the eligibility criteria this review itself declares in section 2.2, and none of those 3 survives them.
+
+The first is that the outcome be attributable to *P. aeruginosa*. Section 2.2 admits multi-pathogen studies only when the subgroup is separable, and in one of the three the extraction records that the article does not separate the data: its numerator counts patients of several species. Two remain. The second is that administration be therapeutic. The next of the three is a trial *preventing* ventilator-associated pneumonia, and its outcome — absence of incident pneumonia — does not measure the same thing as cure of an established infection. One remains.
+
+That last one is PhagoBurn, whose primary outcome is the *time* to a sustained reduction in bacterial burden [@Jault2019_phagoburn]: not a proportion, and one that would enter a meta-analysis of proportions only if the synthesist converted it into one. **None remains.**
+
+Put another way: of the 132 arms extracted from this literature, **not one meets both the arithmetic conditions and the eligibility criteria that would make its clinical success a legitimate term in a pooled proportion**. It is not that the available studies are few: there are none. Table 6 sets out the funnel, step by step.
 
 ### 3.6 Feasibility of quantitative synthesis
 
@@ -251,7 +257,7 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 
 ## Tables and figures
 
-The five tables are supplied as separate files (`paper/tablas/`), each with its own footnote. Both figures are supplied as vector PDF (`paper/figuras/`).
+The six tables are supplied as separate files (`paper/tablas/`), each with its own footnote. Both figures are supplied as vector PDF (`paper/figuras/`).
 
 **Table 1.** Characteristics of the retrievable evidence base (n = 124 studies).
 **Table 2.** Reporting completeness for variables critical to stratification.
@@ -259,6 +265,8 @@ The five tables are supplied as separate files (`paper/tablas/`), each with its 
 **Table 4.** Exclusion reasons by stage, using the closed vocabulary.
 
 **Table 5.** Reporting completeness for the five declared outcomes, over the adjudicated extraction (n = 132 arms).
+
+**Table 6.** Arms surviving each requirement for a pooled proportion of clinical success (n = 132 extracted arms).
 
 **Figure 1. PRISMA 2020 flow diagram.**
 *What it shows.* The passage from identified records to included studies, with the two identification streams — bibliographic databases and trial registers — counted separately, as the PRISMA 2020 statement requires. *How to read it.* The left column is the main flow; the grey boxes on the right hold what was excluded at each step, broken down by the closed six-code vocabulary (ORG, REV, SEC, LAB, VET, OFF; defined in Table 4). The register stream enters from the side and does not pass through bibliographic deduplication, because a registry entry has no DOI with which to collide against an article. The final grey box is not part of the selection flow: it reports how many included studies have been read in full text to date. *Source.* Project screening pipeline; final search run, 10 August 2026.
@@ -281,6 +289,8 @@ The five tables are supplied as separate files (`paper/tablas/`), each with its 
 - **S10.** Verificación del idioma sobre el texto completo del PDF, no sobre los metadatos.
 - **S11.** Concordancia entre las dos extracciones independientes, antes de resolver los desacuerdos.
 - **S12.** Resolución de conflictos de extracción, incluidos los que no pueden dirimirse todavía.
+- **S14.** Adjudicated extraction: one value per cell, arm by arm, after consensus. Underpins section 3.5 and Tables 5 and 6.
+- **S15.** Provenance of every cell in S14: agreement, consensus, single reading, or still open.
 - **S13.** Reglas de extracción de desenlaces, con su corrección documentada.
 
 Los acompaña una guía que explica, fichero a fichero, qué contiene y qué pregunta permite contestar.

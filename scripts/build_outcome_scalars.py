@@ -73,8 +73,14 @@ DESENLACES = [
 # control--, pero no basta para nada que se llame «comparado con que». Se
 # declara en la nota de la tabla 5 en vez de dejar que la etiqueta prometa mas
 # de lo que el fichero contiene.
-COMPARATIVOS = {"RCT", "non-randomised trial",
-                "prospective cohort", "retrospective cohort"}
+# «Comparativo» significaba DOS cosas en el mismo articulo: la Tabla 1 y la
+# 3.3 contaban solo ensayos (23 estudios) y la Tabla 5 contaba ademas cohortes
+# (24 brazos). Un lector que ve 23 y 24 supone que son el mismo conjunto, y no
+# lo son: 13 son ensayos y 11 son cohortes. Se separan los dos sentidos y se
+# publican los dos, con su nombre.
+ENSAYOS = {"RCT", "non-randomised trial"}
+COHORTES = {"prospective cohort", "retrospective cohort"}
+COMPARATIVOS = ENSAYOS | COHORTES
 
 DOBLE = {"acuerdo", "consenso"}
 
@@ -175,6 +181,15 @@ def main():
         "sin_definicion_pct": round(100.0 * sin_def / max(1, len(filas)), 1),
         "establecido_que_no_define": declarada + ausente,
         "establecido_pct": round(100.0 * (declarada + ausente) / max(1, len(filas)), 1),
+        # Las otras cinco filas de la Tabla 5 llevan doble denominador y esta
+        # no lo llevaba, siendo la que sostiene el hallazgo. Sobre los brazos
+        # que si se pudieron leer la cifra baja del 67,4 % al 58,4 %.
+        "sin_definicion_en_legibles": sum(
+            1 for r in legibles if sin_definicion(r.get("clinical_success_definition"))),
+        "sin_definicion_legibles_pct": round(
+            100.0 * sum(1 for r in legibles
+                        if sin_definicion(r.get("clinical_success_definition")))
+            / max(1, len(legibles)), 1),
     }
 
     # ---- lo que el formulario nunca llego a preguntar -----------------------
@@ -243,6 +258,58 @@ def main():
         if es_numero(r.get("clinical_success_n")) and es_numero(r.get("n_arm"))
         and float(r["clinical_success_n"]) <= float(r["n_arm"])
         and not sin_definicion(r.get("clinical_success_definition"))]
+    # ---- EL EMBUDO, con los criterios de 2.2 --------------------------------
+    # Cada paso quita brazos por una razon nombrada, y el fichero guarda cuantos
+    # quedan tras cada uno. Los dos ultimos filtros los trajeron los arbitros:
+    # un desenlace que el articulo no separa por patogeno no es atribuible a
+    # P. aeruginosa, y un estudio de profilaxis no mide lo mismo que uno de
+    # tratamiento. Ninguno de los dos es un juicio de este script: el primero
+    # sale de lo que los revisores anotaron, el segundo del titulo del articulo.
+    import re as _re
+    s5t = {}
+    if s5f:
+        for r in csv.DictReader(open(s5f[0], encoding="utf-8-sig")):
+            s5t[r["id"]] = r.get("titulo", "")
+
+    def separable(r):
+        return "no separa" not in (r.get("incomplete_reason") or "").lower()
+
+    def terapeutica(r):
+        return not _re.search(r"\bprevent|\bprophyla|\bprofilax",
+                              s5t.get(r["study_id"], ""), _re.I)
+
+    paso = []
+    c = filas
+    paso.append(("brazos extraídos", len(c)))
+    c = [r for r in c if normaliza("study_design", r.get("study_design")) in COMPARATIVOS]
+    paso.append(("diseño comparativo", len(c)))
+    c = [r for r in c if es_numero(r.get("clinical_success_n"))
+         and es_numero(r.get("n_arm"))
+         and float(r["clinical_success_n"]) <= float(r["n_arm"])]
+    paso.append(("numerador y denominador coherentes", len(c)))
+    c = [r for r in c if not sin_definicion(r.get("clinical_success_definition"))]
+    paso.append(("definición operativa del éxito", len(c)))
+    c = [r for r in c if separable(r)]
+    paso.append(("desenlace atribuible a P. aeruginosa", len(c)))
+    c = [r for r in c if terapeutica(r)]
+    paso.append(("administración terapéutica, no profiláctica", len(c)))
+    # El ultimo paso no es automatico: que un desenlace principal sea un tiempo
+    # y no una proporcion se lee en el articulo, no en una casilla. PhagoBurn
+    # (EST-021) lo es, y esta citado en 3.6.
+    TIEMPO = {"EST-021"}
+    c = [r for r in c if r["study_id"] not in TIEMPO]
+    paso.append(("reporta una proporción, no un tiempo", len(c)))
+
+    S["embudo"] = [{"filtro": k, "quedan": v} for k, v in paso]
+    S["brazos_agregables_final"] = len(c)
+    S["brazos_agregables_final_ids"] = [r["study_id"] for r in c]
+    S["brazos_ensayo"] = sum(
+        1 for r in filas
+        if normaliza("study_design", r.get("study_design")) in ENSAYOS)
+    S["brazos_cohorte"] = sum(
+        1 for r in filas
+        if normaliza("study_design", r.get("study_design")) in COHORTES)
+
     S["brazos_agregables_exito_clinico"] = len(agregables)
     S["estudios_agregables_exito_clinico"] = len({r["study_id"] for r in agregables})
     S["agregables_detalle"] = [
@@ -295,6 +362,10 @@ def main():
              S["diseno_na_acordado"], S["diseno_abierto"]))
     print("  brazos comparativos: %d, en %d estudios"
           % (S["brazos_comparativos"], S["estudios_comparativos_extraidos"]))
+    print()
+    print("  EL EMBUDO, con los criterios de §2.2")
+    for x in S["embudo"]:
+        print("    %-44s %3d" % (x["filtro"], x["quedan"]))
     print()
     print("  BRAZOS QUE REÚNEN LOS CUATRO REQUISITOS: %d"
           % S["brazos_agregables_exito_clinico"])

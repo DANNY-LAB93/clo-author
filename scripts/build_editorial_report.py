@@ -386,6 +386,12 @@ def indice(S):
            ("S13_reglas_de_extraccion_de_desenlaces.pdf",
             "Definición de erradicación y de éxito clínico, con su corrección "
             "documentada", "PRISMA 2020, ítems 10a y 13"),
+           ("S14_extraccion_adjudicada.csv",
+            "Extracción definitiva, un valor por casilla tras el consenso",
+            "PRISMA 2020, ítems 10a y 19"),
+           ("S15_procedencia_de_cada_casilla.csv",
+            "Si cada casilla la acordaron los dos, la firmó el consenso, o la "
+            "leyó uno solo", "PRISMA 2020, ítem 9"),
            ("00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf",
             "Guía en lengua llana: qué pregunta contesta cada fichero",
             "Orientación para el revisor"),

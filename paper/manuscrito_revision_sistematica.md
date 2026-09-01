@@ -6,8 +6,8 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 251; texto principal 5 597.
-**Tablas:** 5. **Figuras:** 2. **Material suplementario:** 14 anexos (S0–S13) y su guía.
+**Recuento de palabras:** resumen 263; texto principal 5 782.
+**Tablas:** 6. **Figuras:** 2. **Material suplementario:** 16 anexos (S0–S15) y su guía.
 
 ---
 
@@ -17,9 +17,9 @@
 
 **Objetivos.** Delimitarla de forma reproducible y determinar si su estructura y su reporte admiten una síntesis cuantitativa de eficacia.
 
-**Métodos.** PRISMA 2020, con corrientes separadas para bases y registros. Ocho fuentes —incluidas BVS y SciELO—, ventana 2016–2026 donde la admiten. Solo inglés o español, criterio incorporado como **enmienda posterior al cribado** y verificado sobre el texto completo. La unidad fue el estudio. Extracción manual, por duplicado e independiente, con consenso en los desacuerdos; la estructura sale de una pre-extracción desde el resumen y los desenlaces, de la extracción adjudicada.
+**Métodos.** PRISMA 2020, corrientes separadas para bases y registros. Ocho fuentes —BVS y SciELO incluidas—, ventana 2016–2026 donde la admiten. Solo inglés o español, criterio incorporado como **enmienda posterior al cribado** y verificado sobre el texto completo. La unidad fue el estudio. Extracción manual, por duplicado e independiente, con consenso en los desacuerdos; la estructura sale de una pre-extracción desde el resumen y los desenlaces, de la extracción adjudicada.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos; 233 informes formaron 184 estudios, 124 con publicación recuperable. Casos únicos, 39,5 %; comparativos, 18,5 %; sin clase de resistencia asignable, 80,6 %. Se obtuvo el texto completo de 93 (75,0 %) y lo que falta concentra el 47,8 % de los comparativos; el criterio de idioma eliminó 35 estudios, 18 comparativos. En 89 de los 132 brazos (67,4 %) no consta definición operativa del éxito clínico, y solo 3 reúnen diseño comparativo, numerador, denominador y definición; uno mide tiempo, no proporción.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos; 233 informes formaron 184 estudios, 124 con publicación recuperable. Casos únicos, 39,5 %; comparativos, 18,5 %; sin clase de resistencia asignable, 80,6 %. Se obtuvo el texto completo de 93 (75,0 %) y lo que falta concentra el 47,8 % de los comparativos; el criterio de idioma eliminó 35 estudios, 18 comparativos. En 89 de los 132 brazos (67,4 %) no consta definición operativa del éxito clínico, y solo 3 reúnen diseño comparativo, numerador, denominador y definición. Al aplicarles los criterios de elegibilidad del propio artículo y descontar el que mide tiempo, **no queda ninguno**.
 
 **Conclusiones.** Este cuerpo de evidencia es amplio y estructuralmente inadecuado para una síntesis cuantitativa de eficacia: las proporciones publicadas descansan sobre supuestos que estos datos no sostienen.
 
@@ -167,11 +167,17 @@ La extracción por duplicado, ya adjudicada, permite medir por primera vez qué 
 
 La completitud es desigual y, en el mejor de los casos, parcial. Los eventos adversos son lo que más se reporta con denominador (73,5 % de los brazos) y la emergencia de resistencia al fago lo que menos (24,2 %), pese a ser el desenlace que decide si la intervención conserva su utilidad. Esos porcentajes se calculan sobre los 132 brazos, e incluyen por tanto 31 de estudios cuyo texto completo no se ha recuperado: de un artículo que no se ha podido leer no cabe afirmar que calle. Sobre los 101 brazos legibles las cifras suben —del 73,5 % al 84,2 % en eventos adversos, del 24,2 % al 31,7 % en resistencia—, y la tabla 5 da las dos columnas para que el lector distinga el silencio de la literatura del hueco documental de esta revisión. El éxito clínico, que es el que las síntesis publicadas agregan, consta con numerador y denominador en el 62,9 % de los brazos. Dos brazos reportan un numerador mayor que su denominador —trece éxitos clínicos sobre un paciente, y cinco eventos adversos sobre cuatro—; se señalan como error de reporte y no se leen como proporciones.
 
-Ese 62,9 % es, sin embargo, engañoso si se lee como disponibilidad para agregar. **En 89 de los 132 brazos (67,4 %) no consta una definición operativa de éxito clínico.** En 60 de ellos los revisores lo establecieron leyendo el artículo: 58 declaran un número de pacientes con «buen resultado» sin decir qué había que observar para contarlo, y 2 dejaron el campo sin dato. En los 29 restantes la extracción quedó incompleta, de modo que no consta ni que el artículo la dé ni que no la dé; se cuentan entre los que no la aportan porque el dato no está disponible para quien lea la revisión, no porque se haya establecido su ausencia. Un numerador sin definición no nombra nada comparable con el numerador de otro estudio.
+Ese 62,9 % es, sin embargo, engañoso si se lee como disponibilidad para agregar. **En 89 de los 132 brazos (67,4 %) no consta una definición operativa de éxito clínico**; sobre los 101 brazos legibles, en 59 (58,4 %). En 60 de ellos los revisores lo establecieron leyendo el artículo: 58 declaran un número de pacientes con «buen resultado» sin decir qué había que observar para contarlo, y 2 dejaron el campo sin dato. En los 29 restantes la extracción quedó incompleta, de modo que no consta ni que el artículo la dé ni que no la dé; se cuentan entre los que no la aportan porque el dato no está disponible para quien lea la revisión, no porque se haya establecido su ausencia. Un numerador sin definición no nombra nada comparable con el numerador de otro estudio.
 
-El diseño tampoco consta siempre: en 30 de los 132 brazos no puede clasificarse —20 en que los dos revisores acordaron «NA» y 10 que siguen abiertos—, de modo que los recuentos por diseño son suelos sobre los 102 restantes. De esos 102, 24 brazos son de diseño comparativo.
+El diseño tampoco consta siempre: en 30 de los 132 brazos no puede clasificarse —20 en que los dos revisores acordaron «NA» y 10 que siguen abiertos—, de modo que los recuentos por diseño son suelos sobre los 102 restantes. De esos 102, **13 brazos son ensayos** (aleatorizados o no) y **11 son cohortes**. La sección 3.3 y la tabla 1 llaman «comparativos» solo a los ensayos, y por eso allí la cifra es 23 estudios: cuando en esta sección se dice «comparativo» se incluyen también las cohortes, y son 24 brazos. No son el mismo conjunto.
 
-Al cruzar los cuatro requisitos que una proporción agrupada exigiría —diseño comparativo, numerador, denominador y definición operativa del desenlace— el corpus deja **3 brazos de los 132**. Y uno de los tres es PhagoBurn, cuyo desenlace principal es el *tiempo* hasta una reducción sostenida de la carga bacteriana [@Jault2019_phagoburn]: no es una proporción, y solo entraría en un metaanálisis de proporciones si el sintetizador la convirtiera en una. **Quedan 2.** Y los dos definen el éxito de forma distinta: uno como la ausencia o resolución de un síndrome clínico de seis signos sin neumonía asociada a ventilación; el otro, como el alivio de los síntomas «con independencia de si la bacteria se detectaba». No hay dos que definan lo mismo porque no hay dos.
+Cruzar los requisitos que una proporción agrupada exigiría vacía el corpus paso a paso. Cuatro de esos requisitos son aritméticos —diseño comparativo, numerador, denominador y definición operativa— y dejan **3 brazos de los 132**. Los dos siguientes son los criterios de elegibilidad que esta misma revisión declara en la sección 2.2, y ninguno de esos 3 los sobrevive.
+
+El primero es que el desenlace pueda atribuirse a *P. aeruginosa*. La sección 2.2 admite estudios con varios patógenos solo cuando el subgrupo es separable, y en uno de los tres la extracción anota que el artículo no separa los datos: su numerador cuenta pacientes de varias especies. Quedan 2. El segundo es que la administración sea terapéutica. El siguiente de los tres es un ensayo de *prevención* de neumonía asociada a ventilación, y su desenlace —ausencia de neumonía incidente— no mide lo mismo que la curación de una infección establecida. Queda 1.
+
+Ese último es PhagoBurn, cuyo desenlace principal es el *tiempo* hasta una reducción sostenida de la carga bacteriana [@Jault2019_phagoburn]: no es una proporción, y solo entraría en un metaanálisis de proporciones si el sintetizador la convirtiera en una. **No queda ninguno.**
+
+Dicho de otro modo: de los 132 brazos extraídos de esta literatura, **ninguno reúne a la vez las condiciones aritméticas y los criterios de elegibilidad que harían de su éxito clínico un sumando legítimo de una proporción agrupada**. No es que los estudios disponibles sean pocos: es que no hay ninguno. La tabla 6 recoge el embudo, paso a paso.
 
 ### 3.6 Viabilidad de la síntesis cuantitativa
 
@@ -247,7 +253,7 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 ## Tablas y figuras
 
-Las cinco tablas se aportan como archivos independientes (`paper/tablas/`), cada una con su nota al pie. Las dos figuras se aportan en PDF vectorial (`paper/figuras/`).
+Las seis tablas se aportan como archivos independientes (`paper/tablas/`), cada una con su nota al pie. Las dos figuras se aportan en PDF vectorial (`paper/figuras/`).
 
 **Tabla 1.** Características del cuerpo de evidencia recuperable (n = 124 estudios).
 **Tabla 2.** Completitud del reporte en las variables críticas para la estratificación.
@@ -255,6 +261,8 @@ Las cinco tablas se aportan como archivos independientes (`paper/tablas/`), cada
 **Tabla 4.** Motivos de exclusión por etapa, con el vocabulario cerrado.
 
 **Tabla 5.** Completitud de reporte de los cinco desenlaces declarados, sobre la extracción adjudicada (n = 132 brazos).
+
+**Tabla 6.** Brazos que sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = 132 brazos extraídos).
 
 **Figura 1. Diagrama de flujo PRISMA 2020.**
 *Qué muestra.* El paso de los registros identificados a los estudios incluidos, con las dos corrientes de identificación —bases bibliográficas y registros de ensayos— contabilizadas por separado, como exige la declaración PRISMA 2020. *Cómo leerla.* La columna izquierda es el flujo principal; las cajas grises de la derecha recogen lo excluido en cada paso, con el desglose por el vocabulario cerrado de seis códigos (ORG, REV, SEC, LAB, VET, OFF; definidos en la Tabla 4). La corriente de registros entra por el lateral y no atraviesa la deduplicación bibliográfica, porque una ficha de registro no tiene DOI con el que colisionar contra un artículo. La caja final de la derecha no forma parte del flujo de selección: informa de cuántos de los estudios incluidos se han podido leer a texto completo hasta la fecha. *Fuente.* Canal de cribado del proyecto; última ejecución de la búsqueda, 10 de agosto de 2026.
@@ -277,6 +285,8 @@ Las cinco tablas se aportan como archivos independientes (`paper/tablas/`), cada
 - **S10.** Verificación del idioma sobre el texto completo del PDF, no sobre los metadatos.
 - **S11.** Concordancia entre las dos extracciones independientes, antes de resolver los desacuerdos.
 - **S12.** Resolución de conflictos de extracción, incluidos los que no pueden dirimirse todavía.
+- **S14.** Extracción adjudicada: un valor por casilla, brazo a brazo, tras el consenso. Sostiene la sección 3.5 y las tablas 5 y 6.
+- **S15.** Procedencia de cada casilla de S14: acuerdo, consenso, una sola lectura o abierta.
 - **S13.** Reglas de extracción de desenlaces, con su corrección documentada.
 
 Los acompaña una guía que explica, fichero a fichero, qué contiene y qué pregunta permite contestar.
