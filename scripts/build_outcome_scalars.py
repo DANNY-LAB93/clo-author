@@ -63,8 +63,16 @@ DESENLACES = [
     ("resistance_emergence_n", "emergencia de resistencia al fago"),
 ]
 
-# Los diseños que permiten comparar. Sin uno de estos no hay grupo de control y
-# ningun desenlace agregado responde a «comparado con que».
+# Los diseños que, POR SU ETIQUETA, incluyen un grupo de comparacion. El filtro
+# mira lo que el estudio ES, no lo que hay en este conjunto: el formulario se
+# rellena por brazo y los revisores extrajeron el brazo de fago, asi que de los
+# 24 brazos comparativos solo 5 pertenecen a un estudio con mas de un brazo
+# extraido, y ninguno de los tres agregables tiene aqui su comparador.
+#
+# Para una proporcion de un solo brazo eso basta --una proporcion no necesita
+# control--, pero no basta para nada que se llame «comparado con que». Se
+# declara en la nota de la tabla 5 en vez de dejar que la etiqueta prometa mas
+# de lo que el fichero contiene.
 COMPARATIVOS = {"RCT", "non-randomised trial",
                 "prospective cohort", "retrospective cohort"}
 
@@ -84,8 +92,21 @@ def main():
     proc = {(r["study_id"], r["arm_id"]): r
             for r in csv.DictReader(open(PROCED, encoding="utf-8"))}
 
+    # Un brazo de un estudio sin texto completo no pudo extraerse. Contarlo
+    # como «no reporta el desenlace» confunde el silencio del articulo con
+    # nuestro propio hueco documental.
+    s5f = sorted((ROOT / "verificables revisión sistemática").glob(
+        "S5_listado_*_estudios.csv"))
+    tiene_texto = {}
+    if s5f:
+        for r in csv.DictReader(open(s5f[0], encoding="utf-8-sig")):
+            tiene_texto[r["id"]] = r["texto_completo"].strip().lower().startswith(("s", "y"))
+    legibles = [r for r in filas if tiene_texto.get(r["study_id"], False)]
+
     S = {}
     S["brazos"] = len(filas)
+    S["brazos_legibles"] = len(legibles)
+    S["brazos_sin_texto_completo"] = len(filas) - len(legibles)
     S["estudios_extraidos"] = len({r["study_id"] for r in filas})
     con_n = [r for r in filas if es_numero(r.get("n_arm"))]
     S["brazos_con_denominador"] = len(con_n)
@@ -97,11 +118,17 @@ def main():
         usable = [r for r in tiene if es_numero(r.get("n_arm"))]
         dobles = sum(1 for r in usable
                      if proc.get((r["study_id"], r["arm_id"]), {}).get(campo) in DOBLE)
+        leg = [r for r in usable if tiene_texto.get(r["study_id"], False)]
         S["desenlaces"][campo] = {
             "nombre": nombre,
             "brazos_que_lo_reportan": len(tiene),
             "con_numerador_y_denominador": len(usable),
             "pct_de_los_brazos": round(100.0 * len(usable) / max(1, len(filas)), 1),
+            # El mismo recuento sobre los brazos que SI se pudieron leer. La
+            # diferencia entre los dos porcentajes es el hueco documental, no
+            # el silencio de la literatura.
+            "en_brazos_legibles": len(leg),
+            "pct_de_los_legibles": round(100.0 * len(leg) / max(1, len(legibles)), 1),
             "de_esos_con_doble_lectura": dobles,
             "doble_lectura_pct": round(100.0 * dobles / max(1, len(usable)), 1),
         }
@@ -150,6 +177,19 @@ def main():
         "establecido_pct": round(100.0 * (declarada + ausente) / max(1, len(filas)), 1),
     }
 
+    # ---- lo que el formulario nunca llego a preguntar -----------------------
+    # `microbio_eradication_denom` y `microbio_eradication_sustained` estan en el
+    # esquema y NO en los cuadernos: se anadieron despues de repartirlos. Sin el
+    # primero, la fila de erradicacion usa n_arm como denominador, que
+    # sobreestima --no a todos los pacientes se les hace cultivo de control--.
+    # Se declara aqui para que la tabla pueda decirlo.
+    presentes = set()
+    for r in filas:
+        presentes |= {k for k, v in r.items() if (v or "").strip()}
+    S["campos_del_esquema_no_extraidos"] = sorted(
+        c for c in ("microbio_eradication_denom", "microbio_eradication_sustained")
+        if c not in presentes)
+
     # ---- aritmetica imposible ----------------------------------------------
     # Un numerador mayor que su denominador no es un dato: es un error que
     # exige volver al articulo. Se cuenta y se nombra en vez de sumarlo a la
@@ -174,6 +214,21 @@ def main():
     S["disenos"] = dict(sorted(dis.items(), key=lambda kv: (-kv[1], kv[0])))
     S["diseno_no_clasificable"] = dis["no clasificable"]
     S["brazos_con_diseno"] = len(filas) - dis["no clasificable"]
+    # «No clasificable» junta dos situaciones distintas: un «NA» que los dos
+    # revisores acordaron --el articulo no permite reconocer el diseño-- y una
+    # casilla que sigue abierta --no lo hemos resuelto--. La primera habla del
+    # articulo; la segunda, de nosotros.
+    acordado_na = abierto = 0
+    for r in filas:
+        v = normaliza("study_design", r.get("study_design"))
+        if v in CATEGORICOS["study_design"]:
+            continue
+        if proc.get((r["study_id"], r["arm_id"]), {}).get("study_design") == "ABIERTO":
+            abierto += 1
+        else:
+            acordado_na += 1
+    S["diseno_na_acordado"] = acordado_na
+    S["diseno_abierto"] = abierto
     comp = [r for r in filas
             if normaliza("study_design", r.get("study_design")) in COMPARATIVOS]
     S["brazos_comparativos"] = len(comp)
@@ -203,12 +258,20 @@ def main():
     print("  %d brazos, %d estudios, %d con denominador"
           % (S["brazos"], S["estudios_extraidos"], S["brazos_con_denominador"]))
     print()
-    print("  %-34s %6s %7s %9s" % ("desenlace", "n+N", "% brazos", "doble lect."))
+    print("  %-34s %6s %9s %11s %9s"
+          % ("desenlace", "n+N", "% de 132", "%% de %d leg." % len(legibles),
+             "doble lect."))
     for campo, _ in DESENLACES:
         d = S["desenlaces"][campo]
-        print("  %-34s %6d %6.1f %% %7.1f %%"
+        print("  %-34s %6d %8.1f %% %10.1f %% %7.1f %%"
               % (d["nombre"], d["con_numerador_y_denominador"],
-                 d["pct_de_los_brazos"], d["doble_lectura_pct"]))
+                 d["pct_de_los_brazos"], d["pct_de_los_legibles"],
+                 d["doble_lectura_pct"]))
+    if S["campos_del_esquema_no_extraidos"]:
+        print()
+        print("  CAMPOS DEL ESQUEMA QUE NUNCA SE EXTRAJERON: %s"
+              % ", ".join(S["campos_del_esquema_no_extraidos"]))
+        print("    -> la fila de erradicación usa n_arm como denominador")
     e = S["definicion_exito"]
     print()
     print("  definición de éxito clínico, sobre %d brazos:" % e["brazos"])
@@ -226,8 +289,10 @@ def main():
             print("    %s" % x)
     print()
     print("  diseños:", ", ".join("%s %d" % (k, v) for k, v in S["disenos"].items()))
-    print("  %d brazos con diseño clasificable; %d sin él"
-          % (S["brazos_con_diseno"], S["diseno_no_clasificable"]))
+    print("  %d brazos con diseño clasificable; %d sin él (%d «NA» acordado, "
+          "%d abiertos)"
+          % (S["brazos_con_diseno"], S["diseno_no_clasificable"],
+             S["diseno_na_acordado"], S["diseno_abierto"]))
     print("  brazos comparativos: %d, en %d estudios"
           % (S["brazos_comparativos"], S["estudios_comparativos_extraidos"]))
     print()

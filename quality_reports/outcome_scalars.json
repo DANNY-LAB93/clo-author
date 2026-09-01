@@ -1,5 +1,7 @@
 {
   "brazos": 132,
+  "brazos_legibles": 101,
+  "brazos_sin_texto_completo": 31,
   "estudios_extraidos": 124,
   "brazos_con_denominador": 105,
   "desenlaces": {
@@ -8,6 +10,8 @@
       "brazos_que_lo_reportan": 84,
       "con_numerador_y_denominador": 83,
       "pct_de_los_brazos": 62.9,
+      "en_brazos_legibles": 81,
+      "pct_de_los_legibles": 80.2,
       "de_esos_con_doble_lectura": 81,
       "doble_lectura_pct": 97.6
     },
@@ -16,6 +20,8 @@
       "brazos_que_lo_reportan": 67,
       "con_numerador_y_denominador": 66,
       "pct_de_los_brazos": 50.0,
+      "en_brazos_legibles": 64,
+      "pct_de_los_legibles": 63.4,
       "de_esos_con_doble_lectura": 64,
       "doble_lectura_pct": 97.0
     },
@@ -24,6 +30,8 @@
       "brazos_que_lo_reportan": 91,
       "con_numerador_y_denominador": 90,
       "pct_de_los_brazos": 68.2,
+      "en_brazos_legibles": 85,
+      "pct_de_los_legibles": 84.2,
       "de_esos_con_doble_lectura": 87,
       "doble_lectura_pct": 96.7
     },
@@ -32,6 +40,8 @@
       "brazos_que_lo_reportan": 101,
       "con_numerador_y_denominador": 97,
       "pct_de_los_brazos": 73.5,
+      "en_brazos_legibles": 85,
+      "pct_de_los_legibles": 84.2,
       "de_esos_con_doble_lectura": 95,
       "doble_lectura_pct": 97.9
     },
@@ -40,6 +50,8 @@
       "brazos_que_lo_reportan": 32,
       "con_numerador_y_denominador": 32,
       "pct_de_los_brazos": 24.2,
+      "en_brazos_legibles": 32,
+      "pct_de_los_legibles": 31.7,
       "de_esos_con_doble_lectura": 19,
       "doble_lectura_pct": 59.4
     }
@@ -55,6 +67,10 @@
     "establecido_que_no_define": 60,
     "establecido_pct": 45.5
   },
+  "campos_del_esquema_no_extraidos": [
+    "microbio_eradication_denom",
+    "microbio_eradication_sustained"
+  ],
   "aritmetica_imposible": 2,
   "aritmetica_imposible_detalle": [
     "EST-003 clinical_success_n=13 sobre n=1",
@@ -72,6 +88,8 @@
   },
   "diseno_no_clasificable": 30,
   "brazos_con_diseno": 102,
+  "diseno_na_acordado": 20,
+  "diseno_abierto": 10,
   "brazos_comparativos": 24,
   "estudios_comparativos_extraidos": 21,
   "brazos_agregables_exito_clinico": 3,

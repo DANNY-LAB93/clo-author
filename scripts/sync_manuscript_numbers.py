@@ -47,6 +47,20 @@ def main():
     args = ap.parse_args()
 
     esc = json.load(open(ESCALARES, encoding="utf-8"))
+    # Este script comparte la lista de afirmaciones con check_manuscript_claims,
+    # asi que tiene que aplanar los escalares de desenlace igual que aquel. Si
+    # no, revienta con KeyError en cuanto una afirmacion cita uno.
+    oc = ESCALARES.parent / "outcome_scalars.json"
+    if oc.exists():
+        O = json.load(open(oc, encoding="utf-8"))
+        for k, v in O.items():
+            if not isinstance(v, (dict, list)):
+                esc["desenlace_" + k] = v
+        for campo, d in O["desenlaces"].items():
+            for k, v in d.items():
+                esc["desenlace_%s_%s" % (campo, k)] = v
+        for k, v in O["definicion_exito"].items():
+            esc["definicion_" + k] = v
     textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8")}
 
     cambios, fallos = [], []

@@ -14,6 +14,7 @@ saldría hundida por un artefacto de redacción. La concordancia se mide sobre l
 categoría; el texto literal se conserva y se muestra en la lista de conflictos.
 """
 import re
+import unicodedata
 
 # Campos que identifican la fila. No se puntúan: son la clave de emparejamiento.
 CLAVE = ["study_id", "arm_id"]
@@ -98,7 +99,21 @@ def normaliza(campo, valor):
             return str(int(f)) if f == int(f) else str(f)
         except ValueError:
             return v.lower()
-    return v.lower()
+    # Campos de TEXTO. Se pliegan las tildes ademas de las mayusculas: los dos
+    # revisores escribieron «Belgica» y «Bélgica», «Iran» e «Irán», y el
+    # comparador los puntuaba como discrepancia. Son la misma respuesta con y
+    # sin acento, no dos lecturas distintas del articulo.
+    #
+    # Se pliega SOLO para comparar. El valor que se guarda sigue siendo el que
+    # escribio el revisor: esta funcion decide si dos celdas dicen lo mismo, no
+    # que se publica.
+    return _pliega(v)
+
+
+def _pliega(v):
+    """Minusculas sin tildes, para comparar texto libre."""
+    x = unicodedata.normalize("NFD", v)
+    return "".join(c for c in x if unicodedata.category(c) != "Mn").lower()
 
 
 # ---------------------------------------------------------------------------
@@ -221,8 +236,10 @@ VALOR_DE_ES = {v.lower(): k for k, v in VALORES_ES.items()}
 VALOR_DE_ES["otro"] = "other"
 VALOR_DE_ES["sí"] = "yes"
 
-# Variantes que los revisores escribieron de verdad y que el diccionario no
-# recogia. No son valores nuevos: son la MISMA respuesta con las palabras en
+# Variantes de la misma respuesta que el diccionario no recogia. Cuatro las
+# escribieron los revisores de verdad --«local/topica» 21 veces, «topica/local»
+# 23, «fago solo» 21 e «intravenosa» 13--; las dos con tilde van por si acaso y
+# nadie las ha usado todavia. No son valores nuevos: son la MISMA respuesta con las palabras en
 # otro orden o en el otro idioma, y el comparador las estaba puntuando como
 # discrepancia. Se detectaron al construir el conjunto adjudicado: 28 de los
 # 575 «desacuerdos» eran esto, y en los 28 el consenso resolvio exactamente al

@@ -229,32 +229,53 @@ def main():
         for campo, d in O["desenlaces"].items():
             filas.append([
                 d["nombre"].capitalize(),
-                d["brazos_que_lo_reportan"],
                 d["con_numerador_y_denominador"],
                 "%.1f" % d["pct_de_los_brazos"],
+                "%.1f" % d["pct_de_los_legibles"],
                 "%.1f" % d["doble_lectura_pct"],
             ])
+        nota = (
+            "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador sin "
+            "denominador no es una proporción. Se dan DOS denominadores porque "
+            "miden cosas distintas: sobre los %d brazos extraídos, y sobre los %d "
+            "cuyo estudio tiene texto completo recuperado. La diferencia entre "
+            "ambos no es silencio de la literatura sino hueco documental nuestro: "
+            "de un artículo que no se ha podido leer no se puede afirmar que "
+            "calle. «Con doble lectura» es el porcentaje de esas casillas en que "
+            "los dos revisores coincidieron o resolvieron por consenso; el resto "
+            "lo leyó un solo revisor, y en la fila de emergencia de resistencia "
+            "esas casillas las rellenó siempre el mismo. "
+            % (O["brazos"], O["brazos_legibles"]))
+        if O.get("campos_del_esquema_no_extraidos"):
+            nota += (
+                "La fila de erradicación usa el tamaño del brazo como denominador: "
+                "el esquema declara además %s, que se añadieron después de "
+                "repartir los formularios y nunca llegaron a extraerse, de modo "
+                "que no consta a cuántos pacientes se les hizo cultivo de control. "
+                "El denominador real es por tanto menor o igual que el usado. "
+                % " y ".join("`%s`" % c for c in O["campos_del_esquema_no_extraidos"]))
+        nota += (
+            "El diseño solo puede clasificarse en %d de los %d brazos (%d con un "
+            "«NA» que los dos revisores acordaron y %d con la casilla aún "
+            "abierta), de modo que los recuentos por diseño son suelos: de esos "
+            "%d, %d son comparativos, y solo %d reúnen a la vez diseño "
+            "comparativo, numerador, denominador y una definición operativa del "
+            "éxito clínico. Dos brazos reportan un numerador mayor que su "
+            "denominador y se señalan como error de reporte. «Comparativo» "
+            "describe lo que el estudio es, no lo que hay en este fichero: la "
+            "extracción se hizo por brazo y se extrajo el de fago, de modo que "
+            "el conjunto no contiene los brazos de control."
+            % (O["brazos_con_diseno"], O["brazos"], O["diseno_na_acordado"],
+               O["diseno_abierto"], O["brazos_con_diseno"],
+               O["brazos_comparativos"], O["brazos_agregables_exito_clinico"]))
         escribe("tabla_5_desenlaces",
-                ["Desenlace", "Brazos que lo reportan",
-                 "Con numerador y denominador", "% de los brazos",
+                ["Desenlace", "Con numerador y denominador",
+                 "%% de los %d brazos" % O["brazos"],
+                 "%% de los %d con texto completo" % O["brazos_legibles"],
                  "% con doble lectura"], filas,
                 "Tabla 5. Completitud de reporte de los cinco desenlaces "
                 "declarados, sobre los %d brazos de la extracción adjudicada."
-                % O["brazos"],
-                "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador "
-                "sin denominador no es una proporción. «Con doble lectura» es el "
-                "porcentaje de esas casillas en que los dos revisores "
-                "coincidieron o resolvieron por consenso; el resto lo leyó un "
-                "solo revisor. El diseño solo puede clasificarse en %d de los %d "
-                "brazos, de modo que los recuentos por diseño son suelos: de esos "
-                "%d, %d son comparativos, y solo %d reúnen a la vez diseño "
-                "comparativo, numerador, denominador y una definición operativa "
-                "del éxito clínico, que es el mínimo que una proporción agrupada "
-                "exigiría. Dos brazos reportan un numerador mayor que su "
-                "denominador y se señalan como error de reporte."
-                % (O["brazos_con_diseno"], O["brazos"], O["brazos_con_diseno"],
-                   O["brazos_comparativos"],
-                   O["brazos_agregables_exito_clinico"]))
+                % O["brazos"], nota)
 
     print("escritas en %s" % OUT)
     return 0

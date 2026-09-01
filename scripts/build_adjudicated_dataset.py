@@ -20,9 +20,9 @@ procedencia en una columna paralela. Quien reporte una cifra desde aquí puede
 
 QUÉ NO HACE
 
-No decide nada que los revisores no hayan decidido. Las 14 casillas sin
-consenso salen vacías, no rellenas con la respuesta más frecuente ni con la del
-revisor más completo. Y no evalúa riesgo de sesgo: eso exige leer los artículos
+No decide nada que los revisores no hayan decidido. Las casillas sin consenso
+salen vacías --el script dice cuántas al terminar-- y no se rellenan con la
+respuesta más frecuente ni con la del revisor más completo. Y no evalúa riesgo de sesgo: eso exige leer los artículos
 y es un juicio humano que este canal no puede emitir.
 
 Salida:
@@ -40,7 +40,7 @@ import pathlib
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from extraction_schema import CATEGORICOS, normaliza  # noqa: E402
+from extraction_schema import CAMPOS, CATEGORICOS, normaliza  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 EXTR = ROOT / "revision_sistematica" / "extraccion"
@@ -93,13 +93,20 @@ def main():
         else:
             abiertos.add(clave)
 
-    # study_id y arm_id son la clave, no un campo extraido: si entran en la
-    # lista, el bucle pisa las columnas de identificador del fichero de
-    # procedencia con la palabra «acuerdo» y las filas dejan de poder
-    # localizarse.
+    # Solo las variables del esquema. El formulario trae ademas ocho columnas
+    # de navegacion ya rellenas --Nº, Pos., titulo, revista, año, tipo, como
+    # encontrarlo, abrir articulo-- que nadie extrae: estan para que el revisor
+    # localice el articulo. Tratarlas como datos extraidos inflaba el recuento
+    # de casillas y el porcentaje de doble lectura, y producia una casilla
+    # «abierta» de mas que el fichero de conflictos no tiene.
+    #
+    # study_id y arm_id son la clave, no un campo: si entran en la lista, el
+    # bucle pisa las columnas de identificador del fichero de procedencia.
     CLAVE = {"study_id", "arm_id", "id_provisional"}
     campos = sorted({c for d in list(a.values()) + list(b.values())
-                     for c in d if c not in CLAVE})
+                     for c in d if c in CAMPOS and c not in CLAVE})
+    mobiliario = sorted({c for d in list(a.values()) + list(b.values())
+                         for c in d if c not in CAMPOS and c not in CLAVE})
     claves = sorted(set(a) | set(b))
 
     filas, procs = [], []
@@ -120,13 +127,27 @@ def main():
                 # vacias 64 casillas que si tienen dato.
                 na, nb = normaliza(campo, va), normaliza(campo, vb)
                 if na == nb:
-                    valor, origen = (na if na is not None else va), "acuerdo"
+                    # Se NORMALIZA PARA COMPARAR y se GUARDA lo que se debe
+                    # guardar, que no es lo mismo. En un categórico el valor
+                    # canónico es el dato: «fago solo» y «phage monotherapy»
+                    # tienen que salir iguales o la columna no se puede
+                    # agrupar. En texto libre y en números, normalizar
+                    # DESTRUYE: «Bélgica» salía como «belgica» en el fichero
+                    # que se entrega, y son 392 celdas.
+                    valor = na if campo in CATEGORICOS else va
+                    origen = "acuerdo"
                 elif ck in consenso:
                     valor, origen = consenso[ck], "consenso"
                 else:
                     valor, origen = "", "ABIERTO"
             elif va or vb:
-                valor, origen = (va or vb), "sin segunda lectura"
+                # Tambien se normaliza. Si no, la misma respuesta sale en
+                # ingles cuando la leyeron dos y en castellano cuando la leyo
+                # uno, y la columna deja de poder agruparse.
+                crudo = va or vb
+                nn = normaliza(campo, crudo)
+                valor = nn if (campo in CATEGORICOS and nn is not None) else crudo
+                origen = "sin segunda lectura"
             else:
                 valor, origen = "", "vacio"
             fila[campo], proc[campo] = valor, origen
@@ -148,10 +169,15 @@ def main():
     # una casilla fuera de vocabulario en el conjunto definitivo es un dato que
     # no se puede agregar, y callarlo lo haria parecer agregable.
     fuera = collections.defaultdict(collections.Counter)
+    proc_por_clave = {(r["study_id"], r["arm_id"]): r for r in procs}
     for f in filas:
+        pr = proc_por_clave[(f["study_id"], f["arm_id"])]
         for campo, ops in CATEGORICOS.items():
             v = (f.get(campo) or "").strip()
-            if v and v not in ops:
+            # El aviso dice «los dos coincidieron», asi que solo puede contar
+            # celdas que leyeron los dos. Una que leyo uno solo es otra cosa y
+            # se informa aparte.
+            if v and v not in ops and pr.get(campo) in ("acuerdo", "consenso"):
                 fuera[campo][v] += 1
     if fuera:
         print()
@@ -162,7 +188,9 @@ def main():
                 print("    %-24s %-24r %3d" % (campo, v, n))
 
     total = sum(cuenta.values())
-    llenas = total - cuenta["vacio"]
+    # Una casilla ABIERTA sale vacia del CSV igual que una «vacio»: contarla
+    # como rellena inflaba el denominador del porcentaje de doble lectura.
+    llenas = total - cuenta["vacio"] - cuenta["ABIERTO"]
     doble = cuenta["acuerdo"] + cuenta["consenso"]
     S = {
         "filas": len(filas),
@@ -177,12 +205,16 @@ def main():
         "doble_lectura": doble,
         "doble_lectura_pct": round(100.0 * doble / max(1, llenas), 1),
         "fuera_de_vocabulario": sum(sum(c.values()) for c in fuera.values()),
+        "columnas_de_navegacion_descartadas": len(mobiliario),
     }
     RESUMEN.write_text(json.dumps(S, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print("escrito %s" % SALIDA.name)
-    print("  %d filas de brazo sobre %d estudios, %d campos"
+    print("  %d filas de brazo sobre %d estudios, %d campos del esquema"
           % (S["filas"], S["estudios"], S["campos"]))
+    if mobiliario:
+        print("  %d columnas de navegación descartadas (no son datos extraídos): %s"
+              % (len(mobiliario), ", ".join(mobiliario)))
     print()
     print("  procedencia de las %s casillas con dato:" % f"{llenas:,}".replace(",", " "))
     print("    los dos coincidieron        %5d" % S["por_acuerdo"])

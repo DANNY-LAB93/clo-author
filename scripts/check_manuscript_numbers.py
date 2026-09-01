@@ -83,6 +83,13 @@ def main():
     ruta = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else POR_DEFECTO
     S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
                    .read_text(encoding="utf-8"))
+    # Los desenlaces salen de la extraccion adjudicada y viven en su propio
+    # fichero. Sin esto, las cifras de la seccion 3.5 aparecian como SIN
+    # RESPALDO en el guardian numerico aunque el canal las produce: un aviso
+    # que da falsos positivos se deja de leer, y entonces deja de avisar.
+    oc = ROOT / "quality_reports" / "outcome_scalars.json"
+    if oc.exists():
+        S["_desenlaces"] = json.loads(oc.read_text(encoding="utf-8"))
 
     # universo de valores respaldados por el canal
     respaldo = {}
@@ -95,14 +102,20 @@ def main():
             if isinstance(v, float) and v == int(v):
                 respaldo.setdefault(str(int(v)), []).append(nombre)
 
-    for k, v in S.items():
+    # Recorrido RECURSIVO. Bajaba un solo nivel, y los escalares de desenlace
+    # estan a tres (_desenlaces -> desenlaces -> campo -> cifra), asi que las
+    # cifras de la seccion 3.5 salian sin respaldo aunque el canal las produce.
+    def recorre(v, nombre):
         if isinstance(v, dict):
             for a, b in v.items():
-                anota(b, "%s[%s]" % (k, a))
+                recorre(b, "%s[%s]" % (nombre, a))
         elif isinstance(v, list):
-            continue
+            return
         else:
-            anota(v, k)
+            anota(v, nombre)
+
+    for k, v in S.items():
+        recorre(v, k)
     # derivadas legitimas que el manuscrito usa
     anota(S["estudios"] - S["estudios_multiinforme"], "estudios sin coinforme")
     anota(S["estudios_extraibles"] - S["texto_completo_obtenido"],

@@ -1,6 +1,6 @@
 # Concordancia entre extracciones independientes
 
-Generado el 2026-08-28 por `scripts/compare_extractions.py`.
+Generado el 2026-08-31 por `scripts/compare_extractions.py`.
 
 | | |
 |---|---:|
@@ -9,7 +9,7 @@ Generado el 2026-08-28 por `scripts/compare_extractions.py`.
 | Filas comparadas (brazos en ambos) | 130 |
 | Solo en Danny_Valdiviezo | 2 |
 | Solo en Nataly_Trelles | 0 |
-| Conflictos de valor | 547 |
+| Conflictos de valor | 541 |
 
 Acuerdo mediano entre las dos extracciones: **78 %**.
 

@@ -238,3 +238,106 @@ forma distinta.
 
 La conclusión, que sale reforzada: el corpus no admite una síntesis cuantitativa
 de eficacia, y ahora la cifra que lo demuestra es 2 brazos de 132, no 3.
+
+---
+
+# TERCER ANEXO — 29 de agosto de 2026, los 26 hallazgos restantes
+
+Los seis refutadores del concejo murieron por límite de sesión, así que sus 26
+hallazgos quedaron sin verificar. Verificados a mano uno a uno: **25 reales, 1
+falso**.
+
+## El falso
+
+El agente afirmó que §3.2 dice 31 estudios sin texto completo y la extracción
+marca 32. **S5 y el escalar coinciden en 31.** El agente contó mal.
+
+## Lo que había mal, por tronco
+
+### El fusionador trataba el mobiliario del formulario como datos
+
+Las ocho columnas de navegación que el formulario trae prerrellenadas —`Nº`,
+`Pos.`, título, revista, año, tipo, cómo encontrarlo, abrir artículo— entraban
+como variables extraídas. Consecuencias, todas medidas:
+
+| | antes | ahora |
+|---|---:|---:|
+| Campos en el conjunto | 29 | **21** (los del esquema) |
+| Casillas con dato | 3 826 | **2 754** |
+| Doble lectura | 95,1 % | **94,3 %** |
+| Casillas abiertas | 17 | **16** |
+
+Las 16 abiertas cuadran ahora exactamente con el fichero de conflictos (14 sin
+resolver + 2 cerradas por regla). La 17.ª era el título de EST-075.
+
+Además, `casillas_con_dato` restaba las «vacío» pero no las ABIERTO, que
+también salen vacías, y el aviso «FUERA DEL VOCABULARIO» decía «los dos
+coincidieron» contando 16 celdas que leyó uno solo.
+
+### El plegado para comparar se estaba publicando
+
+`normaliza` pasa el texto libre a minúsculas para poder compararlo. El
+fusionador guardaba **ese** valor, así que «Bélgica» salía como «belgica» en el
+fichero que se entrega: 392 celdas. Ahora los categóricos se guardan en su forma
+canónica —que es el dato— y el texto libre y los números conservan lo que
+escribió el revisor.
+
+### 6 desacuerdos más que eran solo una tilde
+
+`geographic_source`: «Bélgica»/«Belgica», «Irán»/«Iran». `normaliza` plegaba
+mayúsculas pero no tildes en los campos de TEXTO. Corregido:
+
+    desacuerdos 547 -> 541 | adjudicados 531 -> 525 | 525 + 2 + 14 = 541
+
+Es la segunda corrección que **sube** la concordancia. Declarada igual que la
+primera.
+
+### La tabla 5 confundía silencio con hueco documental
+
+Los porcentajes se calculaban sobre los 132 brazos, de los que 31 pertenecen a
+estudios sin texto completo: nadie pudo extraer nada de ellos. La tabla contaba
+ese hueco nuestro como si el artículo hubiera callado —y §2.7 declina el riesgo
+de sesgo por esos mismos 31 textos, así que el manuscrito se contradecía.
+
+Ahora la tabla da **dos denominadores**:
+
+| Desenlace | de 132 | de 101 legibles |
+|---|---:|---:|
+| Éxito clínico | 62,9 % | 80,2 % |
+| Erradicación | 50,0 % | 63,4 % |
+| Mortalidad | 68,2 % | 84,2 % |
+| Eventos adversos | 73,5 % | 84,2 % |
+| Resistencia al fago | 24,2 % | 31,7 % |
+
+### El denominador de la erradicación no es el del brazo
+
+El esquema declara `microbio_eradication_denom` (a cuántos se les hizo cultivo
+de control) y `microbio_eradication_sustained`. **Ninguno llegó a los
+cuadernos**: se añadieron el 12 de agosto, con los formularios ya repartidos.
+La fila usa por eso `n_arm`, que sobreestima el denominador. Declarado en la
+nota de la tabla en vez de callado.
+
+### «Comparativo» describe el estudio, no el fichero
+
+De los 24 brazos comparativos, solo 5 pertenecen a un estudio con más de un
+brazo extraído, y **ninguno de los 3 agregables tiene aquí su comparador**: la
+extracción se hizo por brazo y se extrajo el de fago. Para una proporción de un
+solo brazo basta; para cualquier cosa que se llame «comparado con qué», no.
+Dicho en la nota.
+
+### Cosas menores, todas corregidas
+
+- «El formulario, con 31 variables» → son **23**; las otras 8 son navegación.
+- `check_manuscript_numbers.py` no conocía `outcome_scalars.json` y su recorrido
+  bajaba un solo nivel: 12 cifras de §3.5 salían SIN RESPALDO. Ahora 4, y las 4
+  son anteriores a este trabajo.
+- `sync_manuscript_numbers.py` reventaba con KeyError al citar un escalar de
+  desenlace, porque comparte la lista de afirmaciones y no aplanaba el fichero.
+- Un párrafo fósil en el §2.6 inglés decía «Extraction **is planned to be**
+  independent and in duplicate» dos párrafos antes del mismo texto en pasado.
+- El comentario de `VALOR_DE_ES` decía que los revisores escribieron las seis
+  variantes; escribieron cuatro. Las dos con tilde van por si acaso.
+- Las celdas de una sola lectura entraban sin normalizar mientras las de acuerdo
+  salían canónicas: la misma respuesta aparecía de dos formas en la columna.
+- El docstring del fusionador decía «las 14 casillas»; el script produce las que
+  produce y ahora lo dice al terminar.
