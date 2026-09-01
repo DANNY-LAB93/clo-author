@@ -6,22 +6,22 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 287; main text 5 226.
+**Word count:** abstract 251; main text 5 226.
 **Tables:** 5. **Figures:** 2. **Supplementary files:** 14 (S0–S13) plus a guide.
 
 ---
 
 ## Abstract
 
-**Background.** Carbapenem-resistant *Pseudomonas aeruginosa* is a **high**-priority WHO pathogen. Several recent syntheses pool phage therapy outcomes into overall success proportions, which assumes this evidence base can be aggregated. That assumption has never been examined.
+**Background.** Several recent syntheses pool phage therapy outcomes for resistant *Pseudomonas aeruginosa* into overall success proportions. That assumes the evidence base can be aggregated, and no one has examined it.
 
-**Objectives.** To delimit that literature reproducibly and determine whether its structure and reporting completeness permit a quantitative synthesis of efficacy.
+**Objectives.** To delimit it reproducibly and determine whether its structure and reporting admit a quantitative synthesis of efficacy.
 
-**Methods.** Review following PRISMA 2020, with separate streams for databases and registers. Eight sources, including BVS and SciELO, over a 2016–2026 window where admitted. English or Spanish only, a criterion adopted **after screening closed** and verified against full text. The unit of inclusion was the study. Extraction was manual, in duplicate and independent, with disagreements resolved by consensus; the structural characterisation derives from a pre-extraction from abstracts and the per-outcome completeness from the adjudicated extraction.
+**Methods.** PRISMA 2020, with separate streams for databases and registers. Eight sources — including BVS and SciELO — over a 2016–2026 window where admitted. English or Spanish only, a criterion adopted **after screening closed** and verified against full text. The unit was the study. Extraction was manual, in duplicate and independent, with consensus on disagreements; the structure comes from a pre-extraction from abstracts and the outcomes from the adjudicated extraction.
 
-**Results.** From 23 057 records, 17 129 unique reports remained. Full-text assessment covered 233 reports, which grouped into 184 studies; 124 of these have a retrievable publication. Single case reports account for 39.5 % and 18.5 % are comparative; geographic origin is not stated in 61.3 % and resistance class cannot be assigned in 80.6 %. Full text was obtained for 93 studies (75.0 %); the remaining fraction concentrates 47.8 % of the comparative designs. The language criterion removed 35 studies, 18 comparative. In 89 of the 132 extracted arms (67.4 %) no operational definition of clinical success is on record, and only 3 combine comparative design, numerator, denominator and a definition; one measures time, not a proportion.
+**Results.** From 23 057 records, 17 129 unique reports remained; 233 reports formed 184 studies, 124 with a retrievable publication. Single case reports, 39.5 %; comparative, 18.5 %; resistance class unassignable, 80.6 %. Full text was obtained for 93 (75.0 %) and what is missing concentrates 47.8 % of the comparative designs; the language criterion removed 35 studies, 18 comparative. In 89 of the 132 arms (67.4 %) no operational definition of clinical success is on record, and only 3 combine comparative design, numerator, denominator and a definition; one measures time, not a proportion.
 
-**Conclusions.** This evidence base is at once large and structurally unsuited to a quantitative synthesis of efficacy. Published success proportions rest on assumptions these data do not support.
+**Conclusions.** This evidence base is at once large and structurally unsuited to a quantitative synthesis of efficacy: published success proportions rest on assumptions these data do not support.
 
 **Keywords:** bacteriophages; phage therapy; *Pseudomonas aeruginosa*; multidrug resistance; systematic review; PRISMA.
 
