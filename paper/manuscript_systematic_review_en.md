@@ -150,7 +150,7 @@ Exclusion reasons at title screening were laboratory or preclinical work (4 060
 
 ### 3.2 Full-text retrieval and its bias
 
-Full text was obtained for **71 of the 98 retrievable studies (72.4 %)** through legitimate open-access routes. The remaining 27 require interlibrary loan, institutional access or a request to the authors.
+Full text was obtained for **71 of the 98 retrievable studies (72.4 %)** through legitimate open-access routes. The remaining 27 have not been obtained. Their availability was re-checked on 2 September 2026 against three independent indexes — Europe PMC, OpenAlex and Semantic Scholar — and **none of the 27 has an open-access copy today**. They were not requested through interlibrary loan or from the authors: the documentary gap this review declares is not mitigated by any further route, which is why it is reported as a limit and not as something pending.
 
 The unretrieved fraction **is not a random sample of the whole** (Table 3). It contains 8 of the 13 comparative studies, **61.5 %**, and, although it reports fewer patients overall, it concentrates the designs that can sustain a comparison. Of the field's four landmark randomised trials [@Jault2019_phagoburn; @Leitner2021_lancetid_pyophage; @NirPaz2025_med_tp102; @Chan2023_jcf_cyphy], two remain unread: the intravesical phage trial and TP-102. The PhagoBurn article was obtained. The Yale trial has no full journal article, only a conference abstract and results deposited in the register; what was obtained is the trial protocol, which documents the design but not the outcomes.
 
@@ -260,8 +260,6 @@ The clinical evidence base for phage therapy in resistant *P. aeruginosa* is lar
 **Data and code availability.** All material supporting this review is deposited in a public, citable repository: the search corpus with the raw exports of all nine sources, the append-only decision logs of the three screening stages, both reviewers' extraction workbooks, the methodological decision records with their dates, and the complete pipeline code, which is re-executable from search to the figures in the manuscript. ‹‹DEPOSIT DOI — TO BE COMPLETED BEFORE SUBMISSION››. The decision logs are append-only and preserve every correction alongside the row it supersedes.
 
 **Use of artificial intelligence.** Screening was conducted by a single human reviewer, without duplication by a second reviewer. A generative language model (Claude Opus 5, Anthropic) was used to issue the record-by-record decisions of title and abstract screening and for the pre-extraction from abstracts, applying criteria and a closed vocabulary fixed in advance by the authors, and in programming and drafting assistance. Reports that survived screening were reviewed one by one by the authors; those the model excluded were not re-read by a human. The design and execution of the searches, the fixing of the eligibility criteria and the data extraction were carried out without the model. Every screening decision is logged with its reason and timestamp and is supplied in full (S3, S4). The authors take responsibility for the accuracy and integrity of the work. No AI tool is listed as an author, in line with ICMJE recommendations.
-
-**Acknowledgements.** The authors thank the library staff of Universidad Católica de Cuenca for handling the interlibrary loan requests, and the authors of the studies who responded to full-text requests.
 
 ---
 
