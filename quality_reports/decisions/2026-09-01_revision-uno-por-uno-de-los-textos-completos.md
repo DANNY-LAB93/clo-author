@@ -143,7 +143,78 @@ ejemplo medido vale más que una advertencia genérica.
 ## Qué hay que decidir
 
 Excluir estos estudios cambia los 184, los 124 y el diagrama PRISMA. Es
-decisión de cribado de D. Valdiviezo y N. Trelles. Y si se adopta el criterio
-«solo fagos», es un **cambio de los criterios de elegibilidad tomado después de
-ver los resultados**: PRISMA 2020 obliga a declararlo como tal, y el informe
-editorial S0 registra exactamente eso.
+decisión de cribado de D. Valdiviezo y N. Trelles.
+
+---
+
+# Adenda, 1 de septiembre de 2026: el criterio NO cambia
+
+**D. Valdiviezo decide mantener las dos modalidades**: fago solo y fago con
+antibiótico siguen siendo elegibles, como hasta ahora.
+
+Consecuencias, y son buenas:
+
+- **No hay cambio de criterios de elegibilidad.** No hay nada que declarar como
+  post hoc bajo PRISMA 2020, y las columnas del embudo «solo fago» de la tabla
+  de arriba quedan como lo que eran: un análisis de sensibilidad que muestra que
+  la conclusión no dependía de esa decisión.
+- **Ninguno de los 22 estudios marcados lo estaba por usar antibiótico
+  concomitante.** Los motivos son otros --no es un fago, no hay pacientes, es un
+  protocolo, el patógeno no está en el paciente--, así que la lista sigue
+  entera. La decisión de Danny no rescata a ninguno.
+
+## Verificación completa de `modality`, ya que se queda
+
+Como el campo se queda en el esquema y la extracción adjudicada **se publica
+entera como anexo S14**, se verificaron contra el texto **todos** los brazos con
+PDF legible, no solo los 19 de monoterapia:
+
+| grupo | brazos con texto | contradicciones |
+|---|---:|---:|
+| fago+antibiótico | 64 | **0** |
+| monoterapia | 18 | **4** |
+| NA | 2 | 0 |
+
+Los 64 de combinación cuadran: donde aparece «phage alone» es en una cita
+bibliográfica, en un ensayo in vitro, o en un «*antibiotics were stopped after
+N days*» que precisamente confirma que los había.
+
+Se comprobaron además dos que levantaron bandera y **aguantan**: EST-034 es una
+serie de casos real (*«First 10 Consecutive Cases… at a Single Center in the
+United States»*), no una propuesta preventiva; y EST-055 es un *«prospective,
+observational, comparative study»*, no un protocolo.
+
+`modality` **no alimenta ninguna cifra del manuscrito** --se comprobó: solo
+aparece en `sin_modalidad`, que se calcula desde la pre-extracción y no se cita
+en el texto--. Pero viaja en S14, así que un valor equivocado ahí es un dato
+publicado equivocado.
+
+## Las cinco correcciones quedan propuestas, sin firmar
+
+`scripts/proponer_correccion_modalidad.py` las añade a
+`hoja_de_consenso.csv` como **bloque D**, con la cita literal que las sostiene y
+las tres columnas de firma **vacías**. No se aplican desde un script: tres de
+ellas las escribieron **igual los dos revisores** y dos ya estaban **cerradas
+por consenso**. Cambiarlas sin firma sería sustituir una decisión de los
+revisores por la de una máquina, que es exactamente lo que este proyecto no
+hace.
+
+| estudio | de | a | confianza | la frase que lo decide |
+|---|---|---|---|---|
+| EST-019 | monoterapia | fago+antibiótico | alta | *«maintaining the standard-of-care antibiotics during the treatment»* |
+| EST-085 | monoterapia | fago+antibiótico | alta | *«the antibiotic was completely stopped at April 14»* |
+| EST-118 | monoterapia | **NA** | alta | no hay texto completo: se codificó desde el resumen, y es un ECA |
+| EST-038 | monoterapia | fago+antibiótico | media | *«targeted by antibiotics as well as by phages»* |
+| EST-178 | monoterapia | fago+antibiótico | media | *«**adding** of polyvalent bacteriophage»* a una prescripción diferida |
+
+Firmadas las cinco, la monoterapia verificada baja de 19 a 14 brazos y el
+reparto queda en **85 fago+antibiótico · 14 monoterapia · 33 NA**. Ninguna
+cifra del manuscrito se mueve.
+
+## Un apunte sobre EST-207
+
+El PDF en disco difiere del que hay en HEAD, pero **sigue siendo el artículo
+equivocado**: la página 597 de una revista japonesa de insuficiencia cardíaca.
+El artículo correcto también está en la **página 597** (Europace 22(4)), que es
+justo el error: se recuperó por número de página. Por eso hay que pedirlo por
+**DOI 10.1093/europace/euz319**.
