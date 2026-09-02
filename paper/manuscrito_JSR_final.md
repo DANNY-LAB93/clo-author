@@ -12,29 +12,29 @@
 
 ## RESUMEN
 
-**Introducción.** Varias síntesis recientes agregan los desenlaces de la fagoterapia en *Pseudomonas aeruginosa* resistente en proporciones globales de éxito. Esa operación presupone que la evidencia admite agregación, premisa que no se ha examinado.
+**Introducción.** Varias síntesis recientes agregan los desenlaces de la fagoterapia en *Pseudomonas aeruginosa* resistente en proporciones globales de éxito, presuponiendo una agregabilidad no examinada.
 
-**Objetivo.** Delimitar de forma reproducible la evidencia clínica disponible y determinar si su estructura y su reporte admiten una síntesis cuantitativa de eficacia.
+**Objetivo.** Delimitar la evidencia clínica disponible y determinar si su estructura y su reporte admiten una síntesis cuantitativa de eficacia.
 
-**Metodología.** Revisión sistemática conforme a PRISMA 2020, con corrientes separadas para bases bibliográficas y registros de ensayos. Se interrogaron ocho fuentes, con ventana 2016-2026 donde la interfaz la admite. La unidad de inclusión fue el estudio, no el informe. La extracción fue por duplicado e independiente, con los desacuerdos resueltos por consenso.
+**Metodología.** Revisión sistemática conforme a PRISMA 2020, en dos corrientes: bases bibliográficas y registros de ensayos. Ocho fuentes, con ventana 2016-2026 donde la interfaz la admite. La unidad de inclusión fue el estudio, no el informe. Extracción por duplicado e independiente, con 525 de 541 desacuerdos adjudicados por consenso. No se evaluó el riesgo de sesgo ni la certeza de la evidencia.
 
-**Resultados.** De 23 057 registros quedaron 17 129 informes únicos; 233 informes formaron 184 estudios evaluados para elegibilidad, de los que 29 se excluyeron al leer el artículo. El cuerpo de evidencia queda en 155 estudios: 95 con publicación recuperable y 71 con texto obtenido (74,7 %). El 44,2 % son reportes de caso único y el 11,6 % tiene diseño comparativo. La categoría de resistencia no puede asignarse en el 75,8 % de los estudios, y en 69 de los 103 brazos extraídos (67,0 %) no consta una definición operativa de éxito clínico. Ningún brazo reúne a la vez los requisitos aritméticos de una proporción agrupada y los de elegibilidad.
+**Resultados.** De 23 057 registros quedaron 17 129 informes únicos; 233 informes formaron 184 estudios evaluados para elegibilidad, de los que 29 se excluyeron: 22 al leer el artículo y 7 sin poder leerlo. Quedan 155 estudios, 95 con publicación recuperable y 71 con texto obtenido (74,7 %). De esos 95, el 44,2 % son reportes de caso único y el 11,6 % tiene diseño comparativo; la categoría de resistencia no puede asignarse en el 75,8 %. En 69 de los 103 brazos extraídos (67,0 %) no consta una definición operativa de éxito clínico. Ningún brazo reúne los requisitos aritméticos de una proporción agrupada y los de elegibilidad.
 
-**Conclusiones.** El cuerpo de evidencia sobre fagoterapia en *P. aeruginosa* resistente es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones globales publicadas descansan sobre supuestos que estos datos no verifican.
+**Conclusiones.** El cuerpo de evidencia es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de las síntesis previas descansan sobre supuestos que estos datos no verifican.
 
 **Palabras clave:** bacteriófagos; fagoterapia; *Pseudomonas aeruginosa*; farmacorresistencia bacteriana múltiple; revisión sistemática.
 
 ## ABSTRACT
 
-**Introduction.** Several recent syntheses pool phage therapy outcomes in resistant *Pseudomonas aeruginosa* into overall success proportions. That operation presupposes that the evidence admits aggregation, a premise that has not been examined.
+**Introduction.** Several recent syntheses pool phage therapy outcomes in resistant *Pseudomonas aeruginosa* into overall success proportions, presupposing an aggregability that has not been examined.
 
-**Objective.** To delimit the available clinical evidence reproducibly and to determine whether its structure and reporting admit a quantitative synthesis of efficacy.
+**Objective.** To delimit the available clinical evidence and to determine whether its structure and reporting admit a quantitative synthesis of efficacy.
 
-**Methodology.** Systematic review following PRISMA 2020, with separate streams for bibliographic databases and trial registries. Eight sources were queried, with a 2016-2026 window where the interface allows it. The unit of inclusion was the study, not the report. Data were extracted in duplicate and independently, with disagreements resolved by consensus.
+**Methodology.** Systematic review following PRISMA 2020, with separate streams for bibliographic databases and trial registries. Eight sources were queried with a 2016-2026 window where the interface allows it. The unit of inclusion was the study, not the report. Extraction was in duplicate and independent, with 525 of 541 disagreements adjudicated by consensus. Risk of bias and certainty of evidence were not assessed.
 
-**Results.** From 23 057 records, 17 129 unique reports remained; 233 reports formed 184 studies assessed for eligibility, of which 29 were excluded on reading the article. The evidence base stands at 155 studies: 95 with a retrievable publication and 71 with the text obtained (74.7 %). Single case reports account for 44.2 % and 11.6 % have a comparative design. Resistance category cannot be assigned in 75.8 % of studies, and in 69 of the 103 extracted arms (67.0 %) no operational definition of clinical success is on record. No arm meets both the arithmetic requirements of a pooled proportion and those of eligibility.
+**Results.** From 23 057 records, 17 129 unique reports remained; 233 reports formed 184 studies assessed for eligibility, of which 29 were excluded: 22 on reading the article and 7 without being able to read it. 155 studies remain, 95 with a retrievable publication and 71 with the text obtained (74.7 %). Of those 95, 44.2 % are single case reports and 11.6 % have a comparative design; resistance category cannot be assigned in 75.8 %. In 69 of the 103 extracted arms (67.0 %) no operational definition of clinical success is on record. No arm meets the arithmetic requirements of a pooled proportion together with those of eligibility.
 
-**Conclusions.** The evidence base for phage therapy in resistant *P. aeruginosa* is broad and, at the same time, structurally unsuited to a quantitative synthesis of efficacy. The published overall proportions rest on assumptions that these data do not verify.
+**Conclusions.** The evidence base is broad and, at the same time, structurally unsuited to a quantitative synthesis of efficacy. The overall proportions of previous syntheses rest on assumptions that these data do not verify.
 
 **Keywords:** bacteriophages; phage therapy; *Pseudomonas aeruginosa*; multiple bacterial drug resistance; systematic review.
 
@@ -128,7 +128,7 @@ Los 95 estudios recuperables se publicaron entre **2016 y 2026**, y el **80,0 %*
 
 Su composición por diseño es la que cabe esperar de una literatura de rescate, no la que una síntesis de eficacia necesita: **42 reportes de caso único (44,2 %)**, 18 series de casos, 13 cohortes prospectivas, 7 ensayos aleatorizados —entre ellos los de referencia del campo (11-14,17)—, 4 ensayos no aleatorizados y 3 cohortes retrospectivas. Otros 8 no declaran su diseño de forma reconocible en el resumen. Los comparativos suman **11 estudios, el 11,6 %** del total, y son los únicos capaces de sostener una afirmación de eficacia relativa.
 
-La procedencia geográfica, cuando consta, se reparte entre Rusia (7 estudios), Polonia y Georgia (6 cada una), Alemania (4), Francia y Estados Unidos (3 cada una), e India, Irán e Israel (2 cada una). No consta en 76 estudios.
+La procedencia geográfica, cuando consta, se reparte entre Georgia y Polonia (5 estudios cada una), Alemania, Estados Unidos, Francia y Rusia (3 cada una), y Bélgica, España, India e Israel (2 cada una). No consta en 58 de los 95 estudios.
 
 ### Lo que el cuerpo de evidencia no declara
 

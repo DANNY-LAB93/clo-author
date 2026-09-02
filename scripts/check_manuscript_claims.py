@@ -165,14 +165,24 @@ AFIRMACIONES = [
     (EN, "main text {palabras_cuerpo_en}."),
     # ---- El resumen del manuscrito de la revista. Es lo primero que lee un
     # editor y lo unico que leen muchos, y hasta hoy no lo cubria nada.
-    (JSR, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos; {informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios evaluados para elegibilidad, de los que {estudios_excluidos_tras_texto_completo} se excluyeron al leer el artículo"),
-    (JSR, "queda en {estudios} estudios: {estudios_extraibles} con publicación recuperable y {texto_completo_obtenido} con texto obtenido ({texto_completo_pct} %)"),
-    (JSR, "El {casos_unicos_pct} % son reportes de caso único y el {estudios_comparativos_pct} % tiene diseño comparativo"),
-    (JSR, "no puede asignarse en el {sin_clase_util_pct} % de los estudios, y en {definicion_sin_definicion_operativa} de los {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
-    (JSR, "From {registros_identificados} records, {informes_unicos} unique reports remained; {informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies assessed for eligibility, of which {estudios_excluidos_tras_texto_completo} were excluded on reading the article", 1, True),
-    (JSR, "stands at {estudios} studies: {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),
-    (JSR, "Single case reports account for {casos_unicos_pct} % and {estudios_comparativos_pct} % have a comparative design", 1, True),
-    (JSR, "cannot be assigned in {sin_clase_util_pct} % of studies, and in {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
+    (JSR, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos; {informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios evaluados para elegibilidad"),
+    (JSR, "de los que {estudios_excluidos_tras_texto_completo} se excluyeron: {excluidos_entre_los_leidos} al leer el artículo y {excluidos_sin_texto_completo} sin poder leerlo"),
+    (JSR, "Quedan {estudios} estudios, {estudios_extraibles} con publicación recuperable y {texto_completo_obtenido} con texto obtenido ({texto_completo_pct} %)"),
+    (JSR, "De esos {estudios_extraibles}, el {casos_unicos_pct} % son reportes de caso único y el {estudios_comparativos_pct} % tiene diseño comparativo"),
+    (JSR, "no puede asignarse en el {sin_clase_util_pct} %. En {definicion_sin_definicion_operativa} de los {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
+    (JSR, "con {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados por consenso"),
+    # ---- La procedencia geografica venia de un corpus anterior: decia Rusia 7,
+    # Polonia y Georgia 6, y "no consta en 76", cuando son 3, 5 y 58. Nombraba
+    # ademas a Iran, que no aparece en ningun estudio del corpus vigente. Las
+    # cuatro exclusiones por idioma (IDI) son justo las que bajaron Rusia de 7 a 3,
+    # y el parrafo no se recalculo. Se ancla el recuento que mas se cita.
+    (JSR, "No consta en {procedencia_no_declarada} de los {estudios_extraibles} estudios"),
+    (JSR, "From {registros_identificados} records, {informes_unicos} unique reports remained; {informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies assessed for eligibility", 1, True),
+    (JSR, "of which {estudios_excluidos_tras_texto_completo} were excluded: {excluidos_entre_los_leidos} on reading the article and {excluidos_sin_texto_completo} without being able to read it", 1, True),
+    (JSR, "{estudios} studies remain, {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),
+    (JSR, "Of those {estudios_extraibles}, {casos_unicos_pct} % are single case reports and {estudios_comparativos_pct} % have a comparative design", 1, True),
+    (JSR, "cannot be assigned in {sin_clase_util_pct} %. In {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
+    (JSR, "with {extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements adjudicated by consensus", 1, True),
 ]
 
 

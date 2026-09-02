@@ -7,8 +7,13 @@ y no hay que acordarse de tocarlo.
 
 Las normas de Journal of Science and Research (revistas.utb.edu.ec/index.php/sr,
 consultadas el 2026-09-02) fijan el resumen en 250 palabras como maximo y entre
-tres y cinco palabras clave, en español y en ingles. El script comprueba ambas
-cosas y falla si se pasa, en lugar de dejar que lo descubra el editor.
+tres y cinco palabras clave, en español y en ingles.
+
+CUIDADO CON EL RECUENTO. La primera version de este guion contaba 246 palabras
+donde Word cuenta 256, porque descartaba los tokens sin letras ni digitos: las
+cinco etiquetas ("Introduccion.", "Objetivo."...) y los cinco signos "%" sueltos.
+Word cuenta como palabra todo token separado por espacios, y es el recuento de
+Word el que mira la revista. Ahora se cuenta asi.
 
 La revista no exige que el resumen lleve etiquetas; pide que establezca objetivo,
 metodologia, resultados y conclusiones. Se generan las dos formas: la etiquetada
@@ -35,7 +40,7 @@ except Exception:
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MANUSCRITO = ROOT / "paper" / "manuscrito_JSR_final.md"
 SALIDA = ROOT / "paper" / "resumen_estructurado.md"
-TOPE = 250          # palabras, norma de la revista
+TOPE = 250          # palabras, norma de la revista, contadas como cuenta Word
 MIN_CLAVE, MAX_CLAVE = 3, 5
 
 
@@ -48,7 +53,7 @@ def escalares():
 
 def mil(n):
     """23057 -> '23 057'. Espacio fino, que es lo que pide la norma en español."""
-    return "{:,}".format(int(n)).replace(",", " ")
+    return "{:,}".format(int(n)).replace(",", " ")
 
 
 def dec_es(x):
@@ -67,14 +72,19 @@ def textos(S, O):
         informes=S["informes_a_texto_completo"],
         evaluados=S["estudios_antes_de_releer"],
         excluidos=S["estudios_excluidos_tras_texto_completo"],
+        leidos_fuera=S["excluidos_entre_los_leidos"],
+        sin_texto_fuera=S["excluidos_sin_texto_completo"],
         estudios=S["estudios"],
         extraibles=S["estudios_extraibles"],
         con_texto=S["texto_completo_obtenido"],
         anio_min=S["anio_min"],
         anio_max=S["anio_max"],
         fuentes="ocho",
+        fuentes_may="Ocho",
         brazos=O["brazos"],
         sin_def=D["sin_definicion_operativa"],
+        firmados=S["extraccion_conflictos_firmados"],
+        desacuerdos=S["extraccion_desacuerdos"],
     )
     es = dict(c, recuperacion=dec_es(S["texto_completo_pct"]),
               casos=dec_es(S["casos_unicos_pct"]),
@@ -87,103 +97,98 @@ def textos(S, O):
               sin_clase=dec_en(S["sin_clase_util_pct"]),
               sin_def_pct=dec_en(D["sin_definicion_pct"]))
 
+    # El tercer elemento, cuando esta, es la version para parrafo corrido: sin la
+    # etiqueta delante, "Delimitar..." y "Revision sistematica..." se quedan sin
+    # verbo principal y dejan de ser frases.
     ES = [
         ("Introducción",
          "Varias síntesis recientes agregan los desenlaces de la fagoterapia en "
-         "*Pseudomonas aeruginosa* resistente en proporciones globales de éxito. "
-         "Esa operación presupone que la evidencia admite agregación, premisa que "
-         "no se ha examinado."),
+         "*Pseudomonas aeruginosa* resistente en proporciones globales de éxito, "
+         "presuponiendo una agregabilidad no examinada."),
         ("Objetivo",
-         "Delimitar de forma reproducible la evidencia clínica disponible y "
-         "determinar si su estructura y su reporte admiten una síntesis "
-         "cuantitativa de eficacia.",
-         "Este trabajo delimita de forma reproducible la evidencia clínica "
-         "disponible y determina si su estructura y su reporte admiten una "
-         "síntesis cuantitativa de eficacia."),
+         "Delimitar la evidencia clínica disponible y determinar si su estructura "
+         "y su reporte admiten una síntesis cuantitativa de eficacia.",
+         "Este trabajo delimita la evidencia clínica disponible y determina si su "
+         "estructura y su reporte admiten una síntesis cuantitativa de eficacia."),
         ("Metodología",
-         "Revisión sistemática conforme a PRISMA 2020, con corrientes separadas "
-         "para bases bibliográficas y registros de ensayos. Se interrogaron {fuentes} "
-         "fuentes, con ventana {anio_min}-{anio_max} donde la interfaz la admite. La "
-         "unidad de inclusión fue el estudio, no el informe. La extracción fue por "
-         "duplicado e independiente, con los desacuerdos resueltos por consenso.",
-         "Se realizó una revisión sistemática conforme a PRISMA 2020, con "
-         "corrientes separadas para bases bibliográficas y registros de ensayos. "
-         "Se interrogaron {fuentes} fuentes, con ventana {anio_min}-{anio_max} "
-         "donde la interfaz la admite. La unidad de inclusión fue el estudio, no "
-         "el informe. La extracción fue por duplicado e independiente, con los "
-         "desacuerdos resueltos por consenso."),
+         "Revisión sistemática conforme a PRISMA 2020, en dos corrientes: bases "
+         "bibliográficas y registros de ensayos. {fuentes_may} fuentes, "
+         "con ventana {anio_min}-{anio_max} donde la interfaz la admite. La unidad "
+         "de inclusión fue el estudio, no el informe. Extracción por duplicado e "
+         "independiente, con {firmados} de {desacuerdos} desacuerdos adjudicados "
+         "por consenso. No se evaluó el riesgo de sesgo ni la certeza de la "
+         "evidencia.",
+         "Se realizó una revisión sistemática conforme a PRISMA 2020, en dos "
+         "corrientes: bases bibliográficas y registros de ensayos. Se interrogaron "
+         "{fuentes} fuentes, con ventana {anio_min}-{anio_max} donde la interfaz la "
+         "admite. La unidad de inclusión fue el estudio, no el informe. Extracción "
+         "por duplicado e independiente, con {firmados} de {desacuerdos} "
+         "desacuerdos adjudicados por consenso. No se evaluó el riesgo de sesgo ni "
+         "la certeza de la evidencia."),
         ("Resultados",
          "De {registros} registros quedaron {unicos} informes únicos; {informes} "
-         "informes formaron {evaluados} estudios evaluados para elegibilidad, de los "
-         "que {excluidos} se excluyeron al leer el artículo. El cuerpo de evidencia "
-         "queda en {estudios} estudios: {extraibles} con publicación recuperable y "
-         "{con_texto} con texto obtenido ({recuperacion} %). El {casos} % son reportes "
-         "de caso único y el {comparativos} % tiene diseño comparativo. La categoría "
-         "de resistencia no puede asignarse en el {sin_clase} % de los estudios, y en "
-         "{sin_def} de los {brazos} brazos extraídos ({sin_def_pct} %) no consta una "
-         "definición operativa de éxito clínico. Ningún brazo reúne a la vez los "
-         "requisitos aritméticos de una proporción agrupada y los de elegibilidad."),
+         "informes formaron {evaluados} estudios evaluados para elegibilidad, de "
+         "los que {excluidos} se excluyeron: {leidos_fuera} al leer el artículo y "
+         "{sin_texto_fuera} sin poder leerlo. Quedan {estudios} estudios, "
+         "{extraibles} con publicación recuperable y {con_texto} con texto "
+         "obtenido ({recuperacion} %). De esos {extraibles}, "
+         "el {casos} % son reportes de caso único y el {comparativos} % tiene "
+         "diseño comparativo; la categoría de resistencia no puede asignarse en el "
+         "{sin_clase} %. En {sin_def} de los {brazos} brazos extraídos "
+         "({sin_def_pct} %) no consta una definición operativa de éxito clínico. "
+         "Ningún brazo reúne los requisitos aritméticos de una proporción agrupada "
+         "y los de elegibilidad."),
         ("Conclusiones",
-         "El cuerpo de evidencia sobre fagoterapia en *P. aeruginosa* resistente es "
-         "amplio y, a la vez, estructuralmente inadecuado para una síntesis "
-         "cuantitativa de eficacia. Las proporciones globales publicadas descansan "
-         "sobre supuestos que estos datos no verifican.",
          "El cuerpo de evidencia es amplio y, a la vez, estructuralmente "
-         "inadecuado para una síntesis cuantitativa de eficacia. Las proporciones "
-         "globales publicadas descansan sobre supuestos que estos datos no "
-         "verifican."),
+         "inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de "
+         "las síntesis previas descansan sobre supuestos que estos "
+         "datos no verifican."),
     ]
     EN = [
         ("Introduction",
          "Several recent syntheses pool phage therapy outcomes in resistant "
-         "*Pseudomonas aeruginosa* into overall success proportions. That operation "
-         "presupposes that the evidence admits aggregation, a premise that has not "
-         "been examined."),
+         "*Pseudomonas aeruginosa* into overall success proportions, presupposing "
+         "an aggregability that has not been examined."),
         ("Objective",
-         "To delimit the available clinical evidence reproducibly and to determine "
-         "whether its structure and reporting admit a quantitative synthesis of "
-         "efficacy.",
-         "This work delimits the available clinical evidence reproducibly and "
-         "determines whether its structure and reporting admit a quantitative "
-         "synthesis of efficacy."),
+         "To delimit the available clinical evidence and to determine whether its "
+         "structure and reporting admit a quantitative synthesis of efficacy.",
+         "This work delimits the available clinical evidence and determines whether "
+         "its structure and reporting admit a quantitative synthesis of efficacy."),
         ("Methodology",
          "Systematic review following PRISMA 2020, with separate streams for "
-         "bibliographic databases and trial registries. Eight sources were queried, "
-         "with a {anio_min}-{anio_max} window where the interface allows it. The unit "
-         "of inclusion was the study, not the report. Data were extracted in duplicate "
-         "and independently, with disagreements resolved by consensus.",
+         "bibliographic databases and trial registries. Eight sources were queried "
+         "with a {anio_min}-{anio_max} window where the interface allows it. The "
+         "unit of inclusion was the study, not the report. Extraction was in "
+         "duplicate and independent, with {firmados} of {desacuerdos} disagreements "
+         "adjudicated by consensus. Risk of bias and certainty of evidence were "
+         "not assessed.",
          "A systematic review was conducted following PRISMA 2020, with separate "
          "streams for bibliographic databases and trial registries. Eight sources "
-         "were queried, with a {anio_min}-{anio_max} window where the interface "
-         "allows it. The unit of inclusion was the study, not the report. Data "
-         "were extracted in duplicate and independently, with disagreements "
-         "resolved by consensus."),
+         "were queried with a {anio_min}-{anio_max} window where the interface "
+         "allows it. The unit of inclusion was the study, not the report. Data were "
+         "extracted in duplicate and independently, with {firmados} of "
+         "{desacuerdos} disagreements adjudicated by consensus. Risk of bias and "
+         "certainty of evidence were not assessed."),
         ("Results",
          "From {registros} records, {unicos} unique reports remained; {informes} "
          "reports formed {evaluados} studies assessed for eligibility, of which "
-         "{excluidos} were excluded on reading the article. The evidence base stands "
-         "at {estudios} studies: {extraibles} with a retrievable publication and "
-         "{con_texto} with the text obtained ({recuperacion} %). Single case reports "
-         "account for {casos} % and {comparativos} % have a comparative design. "
-         "Resistance category cannot be assigned in {sin_clase} % of studies, and in "
-         "{sin_def} of the {brazos} extracted arms ({sin_def_pct} %) no operational "
-         "definition of clinical success is on record. No arm meets both the "
-         "arithmetic requirements of a pooled proportion and those of eligibility."),
+         "{excluidos} were excluded: {leidos_fuera} on reading the article and "
+         "{sin_texto_fuera} without being able to read it. {estudios} studies "
+         "remain, {extraibles} with a retrievable publication and {con_texto} with "
+         "the text obtained ({recuperacion} %). Of those {extraibles}, {casos} % are single case "
+         "reports and {comparativos} % have a comparative design; resistance "
+         "category cannot be assigned in {sin_clase} %. In {sin_def} of the "
+         "{brazos} extracted arms ({sin_def_pct} %) no operational definition of "
+         "clinical success is on record. No arm meets the arithmetic requirements "
+         "of a pooled proportion together with those of eligibility."),
         ("Conclusions",
-         "The evidence base for phage therapy in resistant *P. aeruginosa* is broad "
-         "and, at the same time, structurally unsuited to a quantitative synthesis of "
-         "efficacy. The published overall proportions rest on assumptions that these "
-         "data do not verify.",
          "The evidence base is broad and, at the same time, structurally unsuited "
-         "to a quantitative synthesis of efficacy. The published overall "
-         "proportions rest on assumptions that these data do not verify."),
+         "to a quantitative synthesis of efficacy. The overall proportions of "
+         "previous syntheses rest on assumptions that these data do not verify."),
     ]
 
-    def arma(bloques, c):
-        # El tercer elemento, cuando esta, es la version para parrafo corrido:
-        # sin la etiqueta delante, "Delimitar..." y "Revision sistematica..." se
-        # quedan sin verbo principal y dejan de ser frases.
-        return [(b[0], b[1].format(**c), (b[2] if len(b) > 2 else b[1]).format(**c))
+    def arma(bloques, ctx):
+        return [(b[0], b[1].format(**ctx), (b[2] if len(b) > 2 else b[1]).format(**ctx))
                 for b in bloques]
     return arma(ES, es), arma(EN, en)
 
@@ -195,10 +200,13 @@ CLAVE_EN = ["bacteriophages", "phage therapy", "*Pseudomonas aeruginosa*",
 
 
 def palabras(t):
-    """Cuenta como cuenta Word: '23 057' son dos palabras, la etiqueta no cuenta."""
-    t = re.sub(r"\*\*[^*]+\.\*\*", " ", t)
-    t = t.replace(" ", " ")
-    return len([w for w in t.split() if any(c.isalnum() for c in w)])
+    """Como cuenta Word: todo token separado por espacios.
+
+    Incluye las etiquetas ("Resultados.") y los signos "%" sueltos, que es
+    justamente lo que la primera version de este guion se dejaba fuera. El
+    marcado de negrita y cursiva no llega al .docx, asi que se quita antes.
+    """
+    return len(t.replace("**", "").replace("*", "").split())
 
 
 def etiquetado(bloques):
@@ -213,18 +221,21 @@ def main():
     S, O = escalares()
     es, en = textos(S, O)
     versiones = [
-        ("Resumen estructurado (español)", etiquetado(es)),
-        ("Structured abstract (English)", etiquetado(en)),
-        ("Resumen en párrafo corrido (español)", corrido(es)),
-        ("Abstract as a single paragraph (English)", corrido(en)),
+        ("Resumen estructurado (español)", etiquetado(es), es),
+        ("Structured abstract (English)", etiquetado(en), en),
+        ("Resumen en párrafo corrido (español)", corrido(es), es),
+        ("Abstract as a single paragraph (English)", corrido(en), en),
     ]
 
     fallos = []
-    for nombre, t in versiones:
+    for nombre, t, bloques in versiones:
         n = palabras(t)
         print("%-42s %3d palabras  %s" % (nombre, n, "OK" if n <= TOPE else "SE PASA"))
         if n > TOPE:
-            fallos.append("%s: %d palabras, el tope de la revista es %d" % (nombre, n, TOPE))
+            # Se dice donde esta el peso, para saber por donde recortar.
+            reparto = "  ".join("%s %d" % (b[0][:4], palabras(b[1])) for b in bloques)
+            fallos.append("%s: %d palabras, el tope es %d. Reparto: %s"
+                          % (nombre, n, TOPE, reparto))
     for nombre, cl in (("español", CLAVE_ES), ("inglés", CLAVE_EN)):
         if not MIN_CLAVE <= len(cl) <= MAX_CLAVE:
             fallos.append("palabras clave en %s: %d, la revista pide entre %d y %d"
@@ -236,10 +247,11 @@ def main():
               "Generado por `scripts/build_structured_abstract.py` desde los escalares.",
               "No editar a mano: se regenera y se pierde el cambio.", "",
               "Normas de la revista comprobadas aquí: resumen de %d palabras como "
-              "máximo, entre %d y %d palabras clave, en los dos idiomas."
+              "máximo —contadas como las cuenta Word, etiquetas y signos «%%» "
+              "incluidos—, entre %d y %d palabras clave, en los dos idiomas."
               % (TOPE, MIN_CLAVE, MAX_CLAVE), ""]
-    for nombre, t in versiones:
-        cl = CLAVE_EN if "English" in nombre or "Abstract" in nombre else CLAVE_ES
+    for nombre, t, _ in versiones:
+        cl = CLAVE_EN if ("English" in nombre or "Abstract" in nombre) else CLAVE_ES
         eti = "Keywords" if cl is CLAVE_EN else "Palabras clave"
         cuerpo += ["## %s — %d palabras" % (nombre, palabras(t)), "", t, "",
                    "**%s:** %s." % (eti, "; ".join(cl)), ""]
