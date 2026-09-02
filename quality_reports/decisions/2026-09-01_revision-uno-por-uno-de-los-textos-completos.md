@@ -299,3 +299,99 @@ de *Research letters* con dos cartas mezcladas. Se reescribió para contar
 eso, 93 de 93 coinciden y no queda ningún falso positivo. Se deja anotado
 porque es el mismo error que la ventana de 130 caracteres: un cotejo que se
 equivoca en lo que marca no informa de lo que no marca.
+
+---
+
+# Los 22 salen del corpus. PRISMA actualizado
+
+**D. Valdiviezo ordenó excluirlos el 1 de septiembre de 2026.** Hecho, y con
+todo el canal detrás.
+
+## Cómo se excluyen, y por qué no se borran
+
+`study_groups.csv` **no se toca**: sigue siendo el registro de lo que decidió
+el cribado, y falsificarlo para que cuadre sería exactamente lo contrario de
+lo que este paquete existe para permitir. La exclusión vive en su propia capa,
+`revision_sistematica/cribado/exclusiones_tras_texto_completo.csv`, con el
+código de motivo, la explicación, **la frase del artículo** que la sostiene y
+la firma de los dos revisores. El canal la aplica al calcular.
+
+Hicieron falta **dos códigos nuevos** en el vocabulario cerrado, declarados
+como tales con su fecha: **PRO** (protocolo de estudio, sin resultados) e
+**INT** (la intervención no es un bacteriófago). No son una enmienda a los
+criterios --§2.2 ya exigía pacientes tratados con fagos, y ni un protocolo ni
+una endolisina lo cumplen--: son motivos que hacían falta para **agrupar** las
+exclusiones como pide PRISMA. Meterlos con calzador en OFF («otra terapia»)
+habría escondido el hallazgo en una categoría cajón de sastre.
+
+| código | qué es | n |
+|---|---|---:|
+| ORG | *P. aeruginosa* no está en el paciente | 10 |
+| PRO | protocolo, sin resultados | 4 |
+| LAB | sin pacientes: laboratorio, preclínico | 3 |
+| INT | la intervención no es un bacteriófago | 2 |
+| OFF | no evalúa fagoterapia en pacientes | 2 |
+| REV | revisión narrativa, sin datos propios | 1 |
+
+## La cadena del corpus, entera
+
+| | estudios | extraíbles | comparativos | ECA |
+|---|---:|---:|---:|---:|
+| antes de la enmienda de idioma | 219 | 159 | 41 | 21 |
+| tras el idioma (−35) | 184 | 124 | 23 | 16 |
+| **tras releer los textos (−22)** | **162** | **102** | **16** | **11** |
+
+El diagrama PRISMA tiene ahora la casilla que le faltaba: **Estudios evaluados
+para elegibilidad (184, agrupando 233 informes) → Excluidos al releer el texto
+completo (22 estudios, 32 informes, con sus seis motivos) → Estudios incluidos
+(162, agrupando 201 informes)**. Sin esa casilla entraban 233 informes y salían
+201 sin que nada explicara los 32 que faltaban.
+
+## Un descuento que se había vuelto doble
+
+`comparativos_perdidos_por_idioma` se calculaba restando los comparativos de
+hoy a los de antes de la enmienda. En cuanto salieron los 22, esa resta empezó
+a **atribuirle al idioma pérdidas que no eran suyas**: 25 en vez de 18. Ahora
+cada pérdida se mide contra su propio antes, y hay dos escalares distintos.
+Lo mismo pasaba con `estudios_antes_de_la_enmienda`, que salía 197 en vez de
+219 porque partía del corpus de hoy.
+
+## Un anclaje que vigilaba una cifra y dejaba envejecer la de al lado
+
+El comprobador de afirmaciones tenía **el número 60 escrito a mano dentro del
+propio anclaje**: `"En 60 de ellos los revisores lo establecieron leyendo el
+artículo: {definicion_sin_definicion_declarada}"`. Vigilaba la segunda cifra y
+no la primera, así que la primera pudo quedarse vieja sin que nada saltara.
+Corregido en las dos lenguas, y el anclaje pasó de 71 afirmaciones a **79**.
+
+## Lo que el propio canal detuvo
+
+Tres guardas dispararon durante la reconstrucción, y las tres tenían razón:
+
+- **S9** declaraba 233 informes incluidos sobre un corpus de 201. Ahora
+  descuenta los 32 y a cada uno le pone su motivo real, no uno genérico.
+- **S12** citaba EST-020, que ya no está en S5. No era un fallo de generación
+  sino historia: los desacuerdos se resolvieron sobre el corpus de 184. Ahora
+  se admite y se distingue.
+- **La guía del paquete** avisó de dos ficheros sin describir. Su catálogo
+  tenía además `S5_listado_184_estudios` tecleado dentro --la misma trampa que
+  el propio S5 evita calculándolo--; ahora se resuelve por patrón. Y el
+  limpiador borraba el `.csv` viejo pero no el `.xlsx`, así que el paquete
+  llegó a tener dos S5 que decían cosas distintas.
+
+## Qué cambia en el manuscrito, y qué no
+
+**Cambia:** el diagrama, las seis tablas, §3.1 (con un apartado nuevo, 3.1.1,
+que reporta las 22 exclusiones con sus motivos), §3.3, §3.4, §3.5, §3.6, §2.6,
+§2.7, la discusión, el resumen, y el ítem **16b de PRISMA**, que pasa de
+PARCIAL a **CUMPLE**: ahora hay exclusiones en texto completo con motivo, y el
+anexo **S16** las lleva con su cita para que un revisor pueda discrepar.
+
+La recuperación de texto completo **baja del 75,0 % al 69,6 %**, y el sesgo de
+recuperación **empeora**: lo no recuperado concentra ahora el 68,8 % de los
+comparativos, antes el 47,8 %. Era de esperar --los 22 salieron precisamente de
+los que sí se pudieron leer-- y se reporta tal cual.
+
+**No cambia:** el hallazgo. El embudo sigue acabando en **cero**
+(110 → 17 → 5 → 2 → 1 → 1 → 0). Ninguna de las 79 afirmaciones ancladas quedó
+sin respaldo.

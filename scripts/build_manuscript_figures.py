@@ -184,6 +184,24 @@ def figura_prisma(S):
               "Excluidos por resumen — n = %d\n\n%s"
               % (S["excluidos_resumen"], motivos(S["exclusiones_resumen"])))
     y = y - HUECO - h_f
+
+    # Los informes se agrupan en estudios y AHI se evalua la elegibilidad. Este
+    # paso existe porque 22 estudios que el cribado habia admitido no cumplian
+    # §2.2, y se descubrio leyendo los articulos uno por uno durante la
+    # extraccion. Sin esta casilla, del diagrama entraban 233 informes y salian
+    # 201 sin que nada explicara los 32 que faltan.
+    t_el = ("Estudios evaluados para elegibilidad\nn = %d  (agrupando %d informes)"
+            % (S["estudios_antes_de_releer"], S["informes_a_texto_completo"]))
+    h_el = alto(t_el)
+    caja(ax, X_IZQ, y - HUECO - h_el, ANCHO_IZQ, h_el, t_el)
+    flecha(ax, (CENTRO, y), (CENTRO, y - HUECO))
+    excluidos(y - HUECO - h_el / 2,
+              "Excluidos al releer el texto completo\n"
+              "n = %d estudios (%d informes)\n\n%s"
+              % (S["estudios_excluidos_tras_texto_completo"],
+                 S["informes_excluidos_tras_texto_completo"],
+                 motivos(S["exclusiones_tras_texto_completo"])))
+    y = y - HUECO - h_el
     y_cribado_fin = y
 
     # --- Inclusion ----------------------------------------------------------

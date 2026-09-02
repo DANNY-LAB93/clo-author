@@ -191,10 +191,25 @@ def s12(st):
     s5 = list(csv.DictReader(open(s5f[0], encoding="utf-8-sig")))
     tiene = {r["id"]: r["texto_completo"].strip().lower().startswith(("s", "y"))
              for r in s5}
-    faltan = [i for i in estudios if i not in tiene]
+    # Un estudio del fichero de conflictos puede no estar ya en S5 sin que nada
+    # este roto: los desacuerdos se resolvieron sobre el corpus de 184, y el
+    # 2026-09-01 salieron 22 estudios al leer sus textos completos. Eso NO es
+    # un fallo de generacion, es historia. Lo que si seria un fallo es callarlo
+    # o dar por hecho que esos estudios tienen texto completo.
+    p_ex = ROOT / "revision_sistematica" / "cribado" / "exclusiones_tras_texto_completo.csv"
+    salidos = ({r["study_id"] for r in csv.DictReader(open(p_ex, encoding="utf-8"))}
+               if p_ex.exists() else set())
+    faltan = [i for i in estudios if i not in tiene and i not in salidos]
     if faltan:
         raise SystemExit("S12: %d estudios del fichero de conflictos no estan "
-                         "en S5 (%s). Regenera S5 antes." % (len(faltan), faltan[:3]))
+                         "en S5 ni entre los excluidos al releer (%s). "
+                         "Regenera S5 antes." % (len(faltan), faltan[:3]))
+    fuera_del_corpus = sorted({i for i in estudios if i in salidos})
+    # Los que salieron del corpus tenian texto completo --por eso se pudieron
+    # desmentir-- asi que su desacuerdo era dirimible; lo que ya no procede es
+    # dirimirlo.
+    for i in fuera_del_corpus:
+        tiene.setdefault(i, True)
     con_texto = [r for r in pend if tiene[r["study_id"]]]
     sin_texto = [r for r in pend if not tiene[r["study_id"]]]
 

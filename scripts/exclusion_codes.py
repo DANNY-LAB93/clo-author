@@ -7,10 +7,12 @@ counts then split across two rows that mean one thing. PRISMA asks for exclusion
 grouped by reason, so the grouping has to be stable or it has to be redone by
 hand at the end -- which is how transcription errors get in.
 
-SIX CODES, AND NO MORE. If a record does not fit one of these, it does not get a
-seventh code invented for it on the spot: it advances to stage 3, where a human
-reads the abstract. A new code is a change to the protocol and is added here
-deliberately, not mid-batch.
+NO CODE IS INVENTED MID-BATCH. If a record does not fit one of these, it does
+not get a new code made up for it on the spot: it advances to stage 3, where a
+human reads the abstract. A new code is a change to the protocol and is added
+here deliberately, with the date and the reason written next to it. The list
+started with six; the three that came later (IDI, PRO, INT) each carry that
+declaration below.
 
 THE ORIGINAL WORDING IS NOT DESTROYED. Normalisation adds a code alongside the
 text that was actually written at decision time; it never rewrites the log. A
@@ -36,6 +38,21 @@ CODES = {
     # `language` de Europe PMC, y los informes cuya revista publica una version
     # oficial en ingles se conservan. Ver scripts/classify_report_language.py.
     "IDI": "Informe no redactado en ingles ni en espanol (criterio de idioma, enmienda 2026-08-11)",
+    # OCTAVO Y NOVENO CODIGO, ANADIDOS EL 2026-09-01.
+    #
+    # No son una enmienda a los criterios: §2.2 ya exigia pacientes tratados
+    # con bacteriofagos, y ni un protocolo ni una endolisina lo cumplen. Son
+    # codigos que hicieron falta cuando la relectura de los textos completos
+    # encontro 22 estudios incluidos que no cumplian lo que ya estaba escrito.
+    # Podrian haberse metido con calzador en OFF --"otra terapia"-- pero PRISMA
+    # pide agrupar las exclusiones por su motivo, y "protocolo sin resultados"
+    # y "la intervencion no es un fago" son motivos distintos entre si y
+    # distintos del resto. Fundirlos habria escondido el hallazgo dentro de una
+    # categoria cajon de sastre.
+    #
+    # Ver quality_reports/decisions/2026-09-01_revision-uno-por-uno-de-los-textos-completos.md
+    "PRO": "Protocolo de estudio: declara lo que se hara, sin resultados",
+    "INT": "La intervencion no es un bacteriofago (endolisina u otro derivado)",
 }
 
 # Patrones que mapean el texto libre ya registrado a su codigo. Se evaluan en

@@ -6,4 +6,6 @@ LAB,"Trabajo de laboratorio, preclinico o de modelizacion; sin pacientes tratado
 VET,"Aislados o infeccion veterinaria, no humana",834,0,834
 OFF,"No evalua fagoterapia en pacientes (encuesta, epidemiologia, prensa, otra terapia)",2631,40,2671
 IDI,Informe no redactado en inglés ni en español (enmienda),0,35,35
+PRO,"Protocolo de estudio: declara lo que se hara, sin resultados",0,0,0
+INT,La intervencion no es un bacteriofago (endolisina u otro derivado),0,0,0
 ,**Total**,13434,227,13661

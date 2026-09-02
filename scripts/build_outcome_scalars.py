@@ -98,6 +98,22 @@ def main():
     proc = {(r["study_id"], r["arm_id"]): r
             for r in csv.DictReader(open(PROCED, encoding="utf-8"))}
 
+    # Los 22 estudios que salieron del corpus al releer los textos completos
+    # siguen en el fichero de extraccion --nadie borra lo que los revisores
+    # extrajeron-- pero no son parte del cuerpo de evidencia, asi que sus
+    # brazos no cuentan aqui. El embudo tiene que arrancar del corpus vigente,
+    # no del que habia antes de la relectura.
+    p_excl = (ROOT / "revision_sistematica" / "cribado"
+              / "exclusiones_tras_texto_completo.csv")
+    if p_excl.exists():
+        fuera = {r["study_id"] for r in
+                 csv.DictReader(open(p_excl, encoding="utf-8"))}
+        antes = len(filas)
+        filas = [r for r in filas if r["study_id"] not in fuera]
+        print("  %d brazos de %d estudios excluidos tras releer el texto: "
+              "%d -> %d brazos" % (antes - len(filas), len(fuera),
+                                   antes, len(filas)))
+
     # Un brazo de un estudio sin texto completo no pudo extraerse. Contarlo
     # como «no reporta el desenlace» confunde el silencio del articulo con
     # nuestro propio hueco documental.

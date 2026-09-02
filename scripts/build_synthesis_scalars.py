@@ -127,16 +127,53 @@ def main():
     S["corriente_registros"] = sum(1 for r in d3.values()
                                    if r["corriente"] == "registro")
 
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from exclusion_codes import CODES
+
+    # ---- exclusiones descubiertas al releer los textos completos ------------
+    # 22 estudios que ya estaban DENTRO y no cumplian §2.2: protocolos sin
+    # resultados, modelos in vitro y murinos, articulos donde P. aeruginosa
+    # solo aparece en el espectro del producto, y dos donde la intervencion no
+    # es un bacteriofago. Se descubrieron leyendo los articulos uno por uno,
+    # despues del cribado, porque el cribado de titulo y resumen lo emitio un
+    # modelo como revisor unico y un resumen de protocolo se parece mucho a uno
+    # elegible.
+    #
+    # NO se borran de study_groups: el fichero sigue siendo el registro de lo
+    # que el cribado decidio. La exclusion es una capa aparte, con su codigo,
+    # su cita y su firma, y el diagrama PRISMA la muestra como lo que es --una
+    # exclusion por elegibilidad-- en vez de disimularla en el total.
+    excl_ft = {}
+    p_excl = RS / "cribado" / "exclusiones_tras_texto_completo.csv"
+    if p_excl.exists():
+        excl_ft = {r["study_id"]: r for r in leer(p_excl)}
+    FUERA = set(excl_ft)
+    # `grupos` se conserva SIN filtrar: es la foto del corpus tal y como lo
+    # dejo el cribado, y el contrafactual de la enmienda de idioma se mide
+    # contra ella. Lo que se filtra es el corpus vigente.
+    dentro_g = [g for g in grupos if "EST-%03d" % int(g["estudio"]) not in FUERA]
+
     # ---- de informes a estudios (PRISMA 2020 los separa) --------------------
-    reps = {"EST-%03d" % int(g["estudio"]): g for g in grupos
+    reps = {"EST-%03d" % int(g["estudio"]): g for g in dentro_g
             if g["informe_para_extraer"] == "SI"}
     S["estudios"] = len(reps)
-    S["informes_agrupados"] = len(grupos)
+    S["informes_agrupados"] = len(dentro_g)
+    S["estudios_excluidos_tras_texto_completo"] = len(FUERA)
+    S["informes_excluidos_tras_texto_completo"] = len(grupos) - len(dentro_g)
+    S["estudios_antes_de_releer"] = S["estudios"] + len(FUERA)
+    cft = collections.Counter(r["codigo"] for r in excl_ft.values())
+    S["exclusiones_tras_texto_completo"] = {k: cft[k] for k in CODES if cft[k]}
+    for k in CODES:
+        if cft[k]:
+            S["excluidos_texto_completo_%s" % k] = cft[k]
+    if sum(cft.values()) != len(FUERA):
+        raise SystemExit("FALLO: el desglose de exclusiones por texto completo "
+                         "no suma su total.")
     sit = collections.Counter(g["situacion"] for g in reps.values())
     S["estudios_con_articulo"] = sit["extraible"]
     S["estudios_solo_resumen"] = sit["solo-resumen"]
     S["estudios_solo_registro"] = sit["solo-registro"]
-    multi = collections.Counter(g["estudio"] for g in grupos)
+    multi = collections.Counter(g["estudio"] for g in dentro_g)
     S["estudios_multiinforme"] = sum(1 for v in multi.values() if v > 1)
     S["informes_del_estudio_mayor"] = max(multi.values())
 
@@ -276,7 +313,13 @@ def main():
     S["informes_a_texto_completo_antes"] = len(ft_previo)
     S["estudios_eliminados_por_idioma"] = len(ft_previo) - len(
         {r for r in ft_previo if r in {g["record_id"] for g in grupos}})
-    S["estudios_antes_de_la_enmienda"] = (S["estudios"]
+    reps_antes = {"EST-%03d" % int(g["estudio"]): g for g in grupos
+                  if g["informe_para_extraer"] == "SI"}
+    # El «antes» del idioma es el corpus que habia ANTES DEL IDIOMA, no el
+    # de hoy mas los del idioma: sumarlo al de hoy le restaba tambien los 22
+    # que salieron al releer, y el corpus previo salia 197 en vez de 219.
+    S["estudios_antes_de_releer"] = len(reps_antes)
+    S["estudios_antes_de_la_enmienda"] = (len(reps_antes)
                                           + S["estudios_eliminados_por_idioma"])
 
     # El fichero de pre-extraccion se hizo sobre el corpus previo y sigue
@@ -294,9 +337,38 @@ def main():
         1 for k in todos_pre if pre[k].get("study_design") in COMPARATIVOS)
     S["ecas_antes_de_la_enmienda"] = sum(
         1 for k in todos_pre if pre[k].get("study_design") == "RCT")
+    # DOS PERDIDAS DISTINTAS, Y NO SE PUEDEN SUMAR EN UNA. Restar los
+    # comparativos de hoy a los de antes de la enmienda de idioma atribuia al
+    # idioma tambien los que salieron el 2026-09-01 al releer los textos
+    # completos: 25 en vez de 18. Cada perdida se mide contra su propio antes.
+    reps_antes = {"EST-%03d" % int(g["estudio"]): g for g in grupos
+                  if g["informe_para_extraer"] == "SI"}
+    extr_antes = {k for k, g in reps_antes.items()
+                  if g["situacion"] in ("extraible", "solo-resumen")}
+    dis_antes = collections.Counter(
+        (pre.get(k, {}).get("study_design") or "no declarado")
+        for k in extr_antes)
+    comp_antes = sum(1 for k in extr_antes
+                     if pre.get(k, {}).get("study_design") in COMPARATIVOS)
+    S["extraibles_antes_de_releer"] = len(extr_antes)
+    S["comparativos_antes_de_releer"] = comp_antes
+    S["ecas_antes_de_releer"] = dis_antes.get("RCT", 0)
+
+    # El denominador de la tasa de error del cribado NO es el corpus: es lo que
+    # se pudo leer. De los 22 excluidos al releer, todos salieron de los textos
+    # completos disponibles; de los que no tienen texto no se sabe nada, asi
+    # que la cifra es un suelo y el manuscrito la reporta como tal.
+    leidos = extr_antes & pdfs
+    S["estudios_leidos_a_texto_completo"] = len(leidos)
+    S["excluidos_tras_texto_completo_pct"] = round(
+        100.0 * len(FUERA) / max(1, len(leidos)), 1)
+
     S["comparativos_perdidos_por_idioma"] = (
-        S["comparativos_antes_de_la_enmienda"] - S["estudios_comparativos"])
-    S["ecas_perdidos_por_idioma"] = (S["ecas_antes_de_la_enmienda"] - S["ecas"])
+        S["comparativos_antes_de_la_enmienda"] - comp_antes)
+    S["ecas_perdidos_por_idioma"] = (S["ecas_antes_de_la_enmienda"]
+                                     - S["ecas_antes_de_releer"])
+    S["comparativos_perdidos_al_releer"] = comp_antes - S["estudios_comparativos"]
+    S["ecas_perdidos_al_releer"] = S["ecas_antes_de_releer"] - S["ecas"]
     paises_pre = collections.Counter(
         (pre[k].get("geographic_source") or "no declarada") for k in todos_pre)
     S["rusos_antes_de_la_enmienda"] = paises_pre.get("Rusia", 0)
@@ -312,7 +384,7 @@ def main():
         S["idioma_por_norma_del_registro"] = clases.get("D", 0)
     ftc = RS / "cribado" / "idioma_texto_completo.csv"
     if ftc.exists():
-        dentro = {"EST-%03d" % int(g["estudio"]) for g in grupos}
+        dentro = {"EST-%03d" % int(g["estudio"]) for g in dentro_g}
         filas_ft = [r for r in leer(ftc) if r["id"] in dentro]
         S["texto_completo_verificado"] = len(filas_ft)
         S["texto_completo_verificado_ingles"] = sum(

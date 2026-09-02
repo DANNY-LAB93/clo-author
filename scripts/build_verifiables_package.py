@@ -129,7 +129,8 @@ def v1_prisma(S):
         ("10b", "Otras variables", "Lista y definiciones", "CUMPLE", "S4"),
         ("11", "Riesgo de sesgo", "Herramienta, cuántos revisores", "NO CUMPLE",
          "§2.7 declara que NO se ha evaluado y por qué: exige lectura por "
-         "dominio de los dos revisores, y 31 de los 124 estudios siguen sin "
+         "dominio de los dos revisores, y %d de los %d estudios siguen sin "
+         % (S["texto_completo_no_obtenido"], S["estudios_extraibles"]) +
          "texto completo. No se promete para una versión futura de este "
          "informe. Declarado también en §4.4"),
         ("12", "Medidas del efecto", "Para cada desenlace", "NO APLICA",
@@ -146,11 +147,12 @@ def v1_prisma(S):
          "aplicar los criterios de elegibilidad de §2.2, NINGÚN brazo del "
          "corpus podría entrar en una proporción agrupada de éxito clínico"),
         ("16a", "Selección de estudios", "Flujo con números", "CUMPLE", "§3.1 y Figura 1"),
-        ("16b", "Excluidos en texto completo", "Con motivos", "PARCIAL",
-         "S3 recoge los motivos de las etapas 1 a 3 con vocabulario cerrado y "
-         "marca con en_corpus_actual las 23 decisiones sobre registros de "
-         "una versión anterior, para que el recuento cuadre con §3.1; "
-         "la exclusión en texto completo se producirá con la extracción"),
+        ("16b", "Excluidos en texto completo", "Con motivos", "CUMPLE",
+         "§3.1.1 y S16: %d estudios que el cribado había admitido se "
+         % S["estudios_excluidos_tras_texto_completo"] +
+         "excluyeron al leer su texto completo, cada uno con su código de "
+         "motivo y la frase del artículo que lo sostiene. S3 recoge además "
+         "los motivos de las etapas 1 a 3 con vocabulario cerrado"),
         ("17", "Características de los estudios", "De cada uno", "CUMPLE",
          "Tabla 1, y listado completo en S5"),
         ("18", "Riesgo de sesgo por estudio", "", "NO CUMPLE",
@@ -258,8 +260,14 @@ def v5_listado(S):
     web = RS / "textos_completos" / "texto_html"
     if web.exists():
         pdfs |= {q.stem for q in web.glob("*.txt")}
+    # Los 22 excluidos al releer el texto completo no van en S5: S5 es el
+    # cuerpo de evidencia. Van en S16, con su codigo, su motivo y la cita del
+    # articulo que los desmiente, que es lo que pide PRISMA 16b.
+    p_ex = RS / "cribado" / "exclusiones_tras_texto_completo.csv"
+    fuera_ft = ({r["study_id"] for r in leer(p_ex)} if p_ex.exists() else set())
     reps = {"EST-%03d" % int(g["estudio"]): g for g in grupos
-            if g["informe_para_extraer"] == "SI"}
+            if g["informe_para_extraer"] == "SI"
+            and "EST-%03d" % int(g["estudio"]) not in fuera_ft}
     filas = []
     for eid in sorted(reps):
         g, p = reps[eid], pre.get(eid, {})
@@ -270,7 +278,7 @@ def v5_listado(S):
                       "sí" if eid in pdfs else "no", g["clave"]])
     # El numero va en el nombre y por tanto SE CALCULA: dejarlo escrito hizo
     # que el fichero siguiera diciendo 219 cuando ya contenia 185.
-    for viejo in OUT.glob("S5_listado_*_estudios.csv"):
+    for viejo in OUT.glob("S5_listado_*_estudios.*"):
         viejo.unlink()
     with open(OUT / ("S5_listado_%d_estudios.csv" % len(filas)), "w",
               encoding="utf-8-sig", newline="") as fh:
@@ -332,6 +340,39 @@ def v6_auditoria(S):
     d.save(OUT / "S6_auditoria_controles_positivos.docx")
 
 
+
+def v16_exclusiones(S):
+    """S16: los estudios excluidos al leer el texto completo, con su motivo.
+
+    Es lo que pide PRISMA 16b, y es el anexo que permite a un revisor
+    discrepar: cada fila lleva el codigo de motivo, la explicacion y **la frase
+    del articulo** que sostiene la exclusion. Sin la cita, la lista seria una
+    afirmacion; con ella, es comprobable.
+    """
+    fuente = RS / "cribado" / "exclusiones_tras_texto_completo.csv"
+    if not fuente.exists():
+        return
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from exclusion_codes import CODES
+    filas = leer(fuente)
+    destino = OUT / "S16_excluidos_tras_leer_el_texto_completo.csv"
+    cab = ["study_id", "codigo", "que_significa_el_codigo", "motivo",
+           "cita_del_texto", "titulo", "decidido_por", "fecha"]
+    with open(destino, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=cab)
+        w.writeheader()
+        for r in filas:
+            r["que_significa_el_codigo"] = CODES.get(r["codigo"], "")
+            w.writerow({c: r.get(c, "") for c in cab})
+    if len(filas) != S["estudios_excluidos_tras_texto_completo"]:
+        raise SystemExit(
+            "S16: el anexo trae %d exclusiones y el manuscrito declara %d."
+            % (len(filas), S["estudios_excluidos_tras_texto_completo"]))
+    import collections as _c
+    c = _c.Counter(r["codigo"] for r in filas)
+    print("  S16 %d estudios excluidos al releer: %s"
+          % (len(filas), ", ".join("%s %d" % kv for kv in c.most_common())))
+
 def v9_idioma(S):
     """S9 sellado con el estado final de cada informe, no con el intermedio.
 
@@ -344,8 +385,23 @@ def v9_idioma(S):
     if not fuente.exists():
         return
     filas = list(csv.DictReader(open(fuente, encoding="utf-8-sig")))
-    incluidos = {r["record_id"] for r in csv.DictReader(
-        open(RS / "cribado" / "study_groups.csv", encoding="utf-8-sig"))}
+    grupos = list(csv.DictReader(
+        open(RS / "cribado" / "study_groups.csv", encoding="utf-8-sig")))
+
+    # `study_groups` es la foto que dejo el cribado y NO se filtra: sigue
+    # teniendo los 22 estudios que salieron despues, al leer los textos
+    # completos. Aqui hay que descontarlos, o S9 declara 233 informes incluidos
+    # sobre un corpus de 201. Cada uno se lleva su motivo real, no un generico.
+    p_ex = RS / "cribado" / "exclusiones_tras_texto_completo.csv"
+    excl_est, motivo_ft = set(), {}
+    if p_ex.exists():
+        for r in csv.DictReader(open(p_ex, encoding="utf-8")):
+            excl_est.add(r["study_id"])
+            motivo_ft[r["study_id"]] = "%s: %s" % (r["codigo"], r["motivo"])
+    fuera_ft = {g["record_id"]: motivo_ft["EST-%03d" % int(g["estudio"])]
+                for g in grupos if "EST-%03d" % int(g["estudio"]) in excl_est}
+    incluidos = {g["record_id"] for g in grupos
+                 if g["record_id"] not in fuera_ft}
 
     # El motivo de la exclusion se toma de la ultima decision que la nombre, no
     # se redacta aqui: el registro de cribado es la fuente y es solo-anexar.
@@ -364,8 +420,9 @@ def v9_idioma(S):
     for r in filas:
         dentro = r["record_id"] in incluidos
         r["estado_final"] = "INCLUIDO" if dentro else "EXCLUIDO DESPUES"
-        r["motivo_de_la_exclusion"] = "" if dentro else motivo.get(
-            r["record_id"], "excluido en el cribado; ver S3")
+        r["motivo_de_la_exclusion"] = "" if dentro else fuera_ft.get(
+            r["record_id"],
+            motivo.get(r["record_id"], "excluido en el cribado; ver S3"))
         fuera += 0 if dentro else 1
 
     destino = OUT / "S9_idioma_por_informe_y_clase_de_evidencia.csv"
@@ -505,6 +562,7 @@ def main():
             print("  %-4s %s" % (destino[:3], destino))
 
     v9_idioma(S)
+    v16_exclusiones(S)
 
     # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
     # filas -- el corpus anterior a la enmienda de idioma -- mientras la tabla
@@ -519,6 +577,9 @@ def main():
         with open(ROOT / "quality_reports" / "orden_de_extraccion.csv",
                   encoding="utf-8-sig", newline="") as fh:
             vivos = {r["id"] for r in csv.DictReader(fh)}
+        p_ex = RS / "cribado" / "exclusiones_tras_texto_completo.csv"
+        if p_ex.exists():
+            vivos -= {r["study_id"] for r in leer(p_ex)}
         campos = [c for c in filas[0] if c != "study_id"] + ["en_corpus_actual"]
         for f in filas:
             f.pop("study_id", None)

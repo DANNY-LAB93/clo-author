@@ -76,8 +76,12 @@ CATALOGO = [
          "Si la clasificación de idioma se comprobó o se dio por buena."),
     ]),
     ("Corpus y recuperación", [
-        ("S5_listado_184_estudios.xlsx + .csv", "Los 184 estudios incluidos, con sus informes "
+        ("S5_listado_*_estudios.xlsx + .csv", "Los estudios incluidos, con sus informes "
          "agrupados.", "Qué estudios componen el cuerpo de evidencia."),
+        ("S16_excluidos_tras_leer_el_texto_completo.xlsx + .csv",
+         "Los estudios que el cribado admitió y el texto completo desmintió, con "
+         "su código de motivo y la frase del artículo que lo sostiene.",
+         "Por qué salió cada uno, con la cita delante para poder discrepar (PRISMA 16b)."),
         ("S8_recuperacion_texto_completo.xlsx + .csv", "Qué se intentó para conseguir cada "
          "texto completo y con qué resultado.",
          "Si el sesgo de recuperación se documentó o se ocultó."),
@@ -163,6 +167,15 @@ def main():
             # comprobacion de cobertura los da por huerfanos y la guia acaba
             # avisando de que no describe ficheros que si describe.
             partes = [x.strip() for x in nombre.split("+")]
+            # Un anexo cuyo nombre lleva el recuento dentro --S5-- cambia de
+            # nombre cada vez que cambia el corpus. Teclearlo aqui es la misma
+            # trampa que el propio S5 evita calculandolo: se resuelve por
+            # patron, y si no aparece ninguno la guia lo dira como NO ENCONTRADO.
+            if "*" in partes[0]:
+                hallados = sorted(OUT.glob(partes[0]))
+                if hallados:
+                    partes[0] = hallados[0].name
+                    nombre = nombre.replace("S5_listado_*_estudios", hallados[0].stem)
             raiz = partes[0].rsplit(".", 1)[0]
             reales = []
             for x in partes:

@@ -1,12 +1,12 @@
-**Tabla 6. Brazos que sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = 132 brazos extraídos).**
+**Tabla 6. Brazos que sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = 110 brazos extraídos).**
 
 | Requisito acumulado | Brazos que quedan |
 |---|---|
-| Brazos extraídos | 132 |
-| Diseño comparativo | 24 |
-| Numerador y denominador coherentes | 8 |
-| Definición operativa del éxito | 3 |
-| Desenlace atribuible a P. aeruginosa | 2 |
+| Brazos extraídos | 110 |
+| Diseño comparativo | 17 |
+| Numerador y denominador coherentes | 5 |
+| Definición operativa del éxito | 2 |
+| Desenlace atribuible a P. aeruginosa | 1 |
 | Administración terapéutica, no profiláctica | 1 |
 | Reporta una proporción, no un tiempo | 0 |
 
