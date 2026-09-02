@@ -47,6 +47,15 @@ EXTR = ROOT / "revision_sistematica" / "extraccion"
 A = EXTR / "extraccion_danny_valdiviezo.xlsx"
 B = EXTR / "extraccion_nataly_trelles.xlsx"
 CONFLICTOS = EXTR / "extraction_conflicts.csv"
+# Correcciones posteriores a la adjudicacion. Son casillas YA CERRADAS --por
+# acuerdo de los dos o por consenso firmado-- que el texto completo contradice
+# literalmente. No se editan en el CSV de salida, que es un derivado: se
+# declaran aqui, con la cita que las sostiene y la firma de quien las asume, y
+# el constructor las aplica en la ultima capa. Asi los cuadernos siguen
+# diciendo lo que los revisores escribieron, y la columna de procedencia
+# distingue una correccion de un acuerdo. Ver
+# quality_reports/decisions/2026-09-01_revision-uno-por-uno-de-los-textos-completos.md
+CORRECCIONES = EXTR / "correcciones_tras_texto_completo.csv"
 SALIDA = EXTR / "extraccion_adjudicada.csv"
 PROCEDENCIA = EXTR / "extraccion_adjudicada_procedencia.csv"
 RESUMEN = ROOT / "quality_reports" / "extraccion_adjudicada.json"
@@ -102,6 +111,20 @@ def main():
     #
     # study_id y arm_id son la clave, no un campo: si entran en la lista, el
     # bucle pisa las columnas de identificador del fichero de procedencia.
+    # Las correcciones firmadas. Una fila sin firmante NO se aplica: la firma
+    # es lo que convierte una lectura en una decision, igual que en
+    # ingest_adjudications.py.
+    correcciones, sin_firma = {}, 0
+    if CORRECCIONES.exists():
+        for r in csv.DictReader(open(CORRECCIONES, encoding="utf-8")):
+            if not (r.get("firmado_por") or "").strip():
+                sin_firma += 1
+                continue
+            correcciones[(r["study_id"], r["arm_id"], r["campo"])] = \
+                (r.get("valor_corregido") or "").strip()
+    if sin_firma:
+        print(f"  aviso: {sin_firma} correcciones sin firmar, NO aplicadas")
+
     CLAVE = {"study_id", "arm_id", "id_provisional"}
     campos = sorted({c for d in list(a.values()) + list(b.values())
                      for c in d if c in CAMPOS and c not in CLAVE})
@@ -150,6 +173,12 @@ def main():
                 origen = "sin segunda lectura"
             else:
                 valor, origen = "", "vacio"
+            # Ultima capa: una correccion firmada pisa lo que hubiera. Se
+            # etiqueta aparte y NO cuenta como doble lectura, porque no lo es:
+            # la firma la pone un revisor, no los dos.
+            if ck in correcciones:
+                valor = correcciones[ck]
+                origen = "corregido contra el texto (una firma)"
             fila[campo], proc[campo] = valor, origen
             cuenta[origen] += 1
             por_campo[campo][origen] += 1

@@ -189,15 +189,31 @@ aparece en `sin_modalidad`, que se calcula desde la pre-extracción y no se cita
 en el texto--. Pero viaja en S14, así que un valor equivocado ahí es un dato
 publicado equivocado.
 
-## Las cinco correcciones quedan propuestas, sin firmar
+## Las cinco correcciones: APLICADAS, con una firma
 
-`scripts/proponer_correccion_modalidad.py` las añade a
-`hoja_de_consenso.csv` como **bloque D**, con la cita literal que las sostiene y
-las tres columnas de firma **vacías**. No se aplican desde un script: tres de
-ellas las escribieron **igual los dos revisores** y dos ya estaban **cerradas
-por consenso**. Cambiarlas sin firma sería sustituir una decisión de los
-revisores por la de una máquina, que es exactamente lo que este proyecto no
-hace.
+D. Valdiviezo las revisó y ordenó aplicarlas el 1 de septiembre de 2026. Están
+declaradas en `revision_sistematica/extraccion/correcciones_tras_texto_completo.csv`
+--cada una con su cita literal, su valor anterior, su procedencia anterior y su
+firmante-- y el constructor las aplica como **última capa**, después del acuerdo
+y del consenso. El cuaderno de cada revisor sigue diciendo lo que escribió: no
+se reescribe nada aguas arriba.
+
+**Llevan UNA firma, no dos, y el fichero lo dice.** Tres de estas casillas las
+escribieron igual los dos revisores y dos ya estaban cerradas por consenso, así
+que corregirlas es reabrir una decisión conjunta con la firma de uno solo. Por
+eso la columna de procedencia no las etiqueta «acuerdo» ni «consenso» sino
+**«corregido contra el texto (una firma)»**, y **no cuentan como doble
+lectura**. Quedan pendientes de la segunda revisora.
+
+El efecto en la cifra publicada de doble lectura es el que tiene que ser, y va
+en la dirección incómoda: **2 598 → 2 593 casillas, del 94,3 % al 94,2 %**.
+`extraccion_conflictos_firmados` sigue en 525 porque el fichero de conflictos no
+se toca; que ahora haya 523 casillas «por consenso» y 525 conflictos firmados no
+es una incoherencia, es exactamente el rastro de estas dos correcciones.
+
+Se comprobó qué más se movía: **nada**. El embudo sale idéntico
+(132→24→8→3→2→1→0), las seis tablas del manuscrito se reconstruyen sin un solo
+cambio, y las 71 afirmaciones ancladas siguen al día.
 
 | estudio | de | a | confianza | la frase que lo decide |
 |---|---|---|---|---|
@@ -207,14 +223,60 @@ hace.
 | EST-038 | monoterapia | fago+antibiótico | media | *«targeted by antibiotics as well as by phages»* |
 | EST-178 | monoterapia | fago+antibiótico | media | *«**adding** of polyvalent bacteriophage»* a una prescripción diferida |
 
-Firmadas las cinco, la monoterapia verificada baja de 19 a 14 brazos y el
-reparto queda en **85 fago+antibiótico · 14 monoterapia · 33 NA**. Ninguna
-cifra del manuscrito se mueve.
+Aplicadas, la monoterapia verificada baja de 19 a 14 brazos y el reparto queda
+en **85 fago+antibiótico · 33 NA · 14 monoterapia**.
 
-## Un apunte sobre EST-207
+---
 
-El PDF en disco difiere del que hay en HEAD, pero **sigue siendo el artículo
-equivocado**: la página 597 de una revista japonesa de insuficiencia cardíaca.
-El artículo correcto también está en la **página 597** (Europace 22(4)), que es
-justo el error: se recuperó por número de página. Por eso hay que pedirlo por
-**DOI 10.1093/europace/euz319**.
+# EST-207: conseguido, y dice algo peor de lo que se sospechaba
+
+D. Valdiviezo descargó el artículo por su DOI el 1 de septiembre. Ya está
+instalado y la caché reconstruida.
+
+**Exarchos V, Tkhilaishvili T, Potapov E, Starck C, Trampuz A, Schoenrath F.**
+*Successful bacteriophage treatment of infection involving cardiac implantable
+electronic device and aortic graft: a Trojan horse concept.* Europace
+2020;22(4):597. DOI 10.1093/europace/euz319. PMID 31740948.
+
+Es un **EP CASE EXPRESS de una página**, 2 766 caracteres. Varón de 41 años con
+síndrome de Marfan, infección de bolsillo de un DAI y fístula al *bypass*
+carotídeo-subclavio; se explantó el dispositivo, se trató con cierre asistido
+por vacío y antibióticos, y al no lograrse control se **añadió** fagoterapia
+local.
+
+**No nombra ningún microorganismo.** Ni *Pseudomonas*, ni *aeruginosa*, ni
+ningún otro: cero menciones en todo el artículo. No es que no separe el subgrupo
+--que es lo que decía el `incomplete_reason` extraído--, es que no hay patógeno
+documentado en ninguna parte. Y la versión completa del caso no está en la
+revista: remite a una página de e-learning de la ESC.
+
+Se añade a `hallazgos.csv` con esa categoría. Dos apuntes más: la fila la
+extrajo **un solo revisor** (toda ella «sin segunda lectura»), y la modalidad
+codificada --fago+antibiótico-- **sí es correcta**, como confirma la frase del
+artículo.
+
+## Por qué se había recuperado mal, y qué se hizo con eso
+
+El PDF anterior era la página 597 de una revista japonesa de insuficiencia
+cardíaca. El artículo correcto también está en la **página 597**: se recuperó
+por número de página en vez de por DOI.
+
+Lo grave no es el fallo, es que **el canal no lo detectaba**: daba por
+recuperado un texto completo con que existiera el fichero, así que S5 declaraba
+`texto_completo: sí` y EST-207 entraba en el recuento de 93/124. **El 93 estaba
+inflado en uno hasta hoy.**
+
+`scripts/verificar_pdf_corresponde.py` cierra ese hueco: coteja el título que
+S5 declara contra el texto de cada PDF. Resultado sobre los 93: **todos son el
+artículo que dicen ser.**
+
+Una nota sobre el propio comprobador, porque su primera versión era mala.
+Buscaba el título como cadena seguida y marcó cuatro --EST-049, EST-076,
+EST-105, EST-164--; **los cuatro eran falsos**. En un artículo a dos columnas la
+extracción entrelaza los bloques y parte el título («Development of Host Immune
+| *Observations suggest…* | Response to Bacteriophage»), y EST-105 es una página
+de *Research letters* con dos cartas mezcladas. Se reescribió para contar
+**cuántas palabras distintivas del título aparecen**, sin importar el orden. Con
+eso, 93 de 93 coinciden y no queda ningún falso positivo. Se deja anotado
+porque es el mismo error que la ventana de 130 caracteres: un cotejo que se
+equivoca en lo que marca no informa de lo que no marca.
