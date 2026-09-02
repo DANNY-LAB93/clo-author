@@ -105,10 +105,10 @@ AFIRMACIONES = [
     (EN, "leave **{desenlace_brazos_agregables_exito_clinico} of the {desenlace_brazos} arms**"),
 
     (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos"),
-    (ES, "{informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios y, al leer los textos completos, **{estudios_excluidos_tras_texto_completo} no cumplían los criterios**"),
+    (ES, "{informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios y, al leer los textos completos, **{estudios_excluidos_tras_texto_completo} salieron del corpus**"),
     (ES, "quedan **{estudios}**, {estudios_extraibles} con publicación recuperable."),
     (ES, "esos {informes_a_texto_completo} corresponden a **{estudios_antes_de_releer} estudios evaluados para elegibilidad**"),
-    (ES, "**{estudios_excluidos_tras_texto_completo} de ellos no cumplían los criterios de la sección 2.2**"),
+    (ES, "**{estudios_excluidos_tras_texto_completo} de ellos salieron del corpus**"),
     (ES, "queda en **{estudios} estudios**, que agrupan {informes_agrupados} informes: {estudios_un_solo_informe} con un solo informe y {estudios_multiinforme} con varios"),
     (ES, "el **{excluidos_tras_texto_completo_pct} %** de los {estudios_leidos_a_texto_completo} estudios cuyo texto completo se pudo leer"),
     (ES, "La **vía de administración** no consta en el **{sin_via_de_administracion_pct} %**"),
@@ -119,6 +119,10 @@ AFIRMACIONES = [
     (ES, "el texto completo se obtuvo para el {texto_completo_pct} % de los estudios recuperables"),
     (ES, "criterio de idioma eliminó {estudios_eliminados_por_idioma} estudios"),
     (ES, "concentra el {comparativos_sin_texto_pct} % de los comparativos"),
+    (ES, "el corpus pasaría de {estudios} a {corpus_si_se_excluye_lo_no_recuperado} estudios, los comparativos de {estudios_comparativos} a {comparativos_si_se_excluye_lo_no_recuperado} y los ensayos aleatorizados de {ecas} a {ecas_si_se_excluye_lo_no_recuperado}**"),
+    (ES, "**ninguno de los {texto_completo_no_obtenido} tiene hoy una copia de acceso abierto**"),
+    (EN, "the corpus would fall from {estudios} to {corpus_si_se_excluye_lo_no_recuperado} studies, comparative designs from {estudios_comparativos} to {comparativos_si_se_excluye_lo_no_recuperado} and randomised trials from {ecas} to {ecas_si_se_excluye_lo_no_recuperado}**"),
+    (EN, "**none of the {texto_completo_no_obtenido} has an open-access copy today**"),
     (ES, "Contiene {comparativos_sin_texto} de los {estudios_comparativos} estudios comparativos, el **{comparativos_sin_texto_pct} %**"),
     # La n aparece en dos leyendas, Tabla 1 y Figura 2. Se declaran las dos
     # apariciones a propósito: si un día solo se actualiza una, esto salta.
@@ -140,7 +144,7 @@ AFIRMACIONES = [
     (ES, "texto principal {palabras_cuerpo_es}."),
 
     (EN, "From {registros_identificados} records, {informes_unicos} unique reports remained"),
-    (EN, "{informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies and, on reading the full texts, **{estudios_excluidos_tras_texto_completo} did not meet the criteria**"),
+    (EN, "{informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies and, on reading the full texts, **{estudios_excluidos_tras_texto_completo} left the corpus**"),
     (EN, "leaving **{estudios}**, {estudios_extraibles} with a retrievable publication."),
     (EN, "Full text was obtained for {texto_completo_obtenido} ({texto_completo_pct} %)"),
     (EN, "**{texto_completo_obtenido} of the {estudios_extraibles} retrievable studies ({texto_completo_pct} %)**"),

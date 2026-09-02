@@ -373,6 +373,20 @@ def main():
         100.0 * len(de_los_leidos) / max(1, len(leidos)), 1)
     S["excluidos_sin_texto_completo"] = len(FUERA - leidos)
 
+    # EL CONTRAFACTUAL DE LA SEGUNDA ENMIENDA. El codigo NOREC excluye por no
+    # haber podido leer el articulo, y hoy se aplica a UN estudio. El
+    # manuscrito esta obligado a declarar que pasaria si se aplicara a todos,
+    # porque la respuesta es que la tasa de recuperacion seria del 100 % por
+    # construccion y el sesgo que §3.2 mide dejaria de existir. Se calcula
+    # aqui para que esa advertencia no envejezca al cambiar el corpus.
+    sin_texto = extraibles - con
+    S["corpus_si_se_excluye_lo_no_recuperado"] = S["estudios"] - len(sin_texto)
+    S["extraibles_si_se_excluye_lo_no_recuperado"] = len(extraibles) - len(sin_texto)
+    S["comparativos_si_se_excluye_lo_no_recuperado"] = len(comp - sin_texto)
+    S["ecas_si_se_excluye_lo_no_recuperado"] = sum(
+        1 for k in extraibles - sin_texto
+        if (pre.get(k, {}).get("study_design") or "") == "RCT")
+
     S["comparativos_perdidos_por_idioma"] = (
         S["comparativos_antes_de_la_enmienda"] - comp_antes)
     S["ecas_perdidos_por_idioma"] = (S["ecas_antes_de_la_enmienda"]

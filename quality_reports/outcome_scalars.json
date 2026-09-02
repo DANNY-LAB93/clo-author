@@ -1,15 +1,15 @@
 {
-  "brazos": 105,
+  "brazos": 103,
   "brazos_legibles": 79,
-  "brazos_sin_texto_completo": 26,
-  "estudios_extraidos": 97,
-  "brazos_con_denominador": 88,
+  "brazos_sin_texto_completo": 24,
+  "estudios_extraidos": 95,
+  "brazos_con_denominador": 87,
   "desenlaces": {
     "clinical_success_n": {
       "nombre": "éxito clínico",
       "brazos_que_lo_reportan": 70,
       "con_numerador_y_denominador": 70,
-      "pct_de_los_brazos": 66.7,
+      "pct_de_los_brazos": 68.0,
       "en_brazos_legibles": 68,
       "pct_de_los_legibles": 86.1,
       "de_esos_con_doble_lectura": 69,
@@ -17,39 +17,39 @@
     },
     "microbio_eradication_n": {
       "nombre": "erradicación microbiológica",
-      "brazos_que_lo_reportan": 57,
-      "con_numerador_y_denominador": 57,
-      "pct_de_los_brazos": 54.3,
+      "brazos_que_lo_reportan": 56,
+      "con_numerador_y_denominador": 56,
+      "pct_de_los_brazos": 54.4,
       "en_brazos_legibles": 55,
       "pct_de_los_legibles": 69.6,
-      "de_esos_con_doble_lectura": 56,
+      "de_esos_con_doble_lectura": 55,
       "doble_lectura_pct": 98.2
     },
     "mortality_n": {
       "nombre": "mortalidad",
-      "brazos_que_lo_reportan": 77,
-      "con_numerador_y_denominador": 76,
-      "pct_de_los_brazos": 72.4,
+      "brazos_que_lo_reportan": 76,
+      "con_numerador_y_denominador": 75,
+      "pct_de_los_brazos": 72.8,
       "en_brazos_legibles": 71,
       "pct_de_los_legibles": 89.9,
-      "de_esos_con_doble_lectura": 74,
-      "doble_lectura_pct": 97.4
+      "de_esos_con_doble_lectura": 73,
+      "doble_lectura_pct": 97.3
     },
     "adverse_event_n": {
       "nombre": "eventos adversos",
-      "brazos_que_lo_reportan": 84,
-      "con_numerador_y_denominador": 81,
-      "pct_de_los_brazos": 77.1,
+      "brazos_que_lo_reportan": 83,
+      "con_numerador_y_denominador": 80,
+      "pct_de_los_brazos": 77.7,
       "en_brazos_legibles": 70,
       "pct_de_los_legibles": 88.6,
-      "de_esos_con_doble_lectura": 80,
+      "de_esos_con_doble_lectura": 79,
       "doble_lectura_pct": 98.8
     },
     "resistance_emergence_n": {
       "nombre": "emergencia de resistencia al fago",
       "brazos_que_lo_reportan": 28,
       "con_numerador_y_denominador": 28,
-      "pct_de_los_brazos": 26.7,
+      "pct_de_los_brazos": 27.2,
       "en_brazos_legibles": 28,
       "pct_de_los_legibles": 35.4,
       "de_esos_con_doble_lectura": 16,
@@ -57,15 +57,15 @@
     }
   },
   "definicion_exito": {
-    "brazos": 105,
-    "con_definicion_operativa": 35,
+    "brazos": 103,
+    "con_definicion_operativa": 34,
     "sin_definicion_declarada": 47,
     "campo_ausente": 1,
-    "extraccion_incompleta": 22,
-    "sin_definicion_operativa": 70,
-    "sin_definicion_pct": 66.7,
+    "extraccion_incompleta": 21,
+    "sin_definicion_operativa": 69,
+    "sin_definicion_pct": 67.0,
     "establecido_que_no_define": 48,
-    "establecido_pct": 45.7,
+    "establecido_pct": 46.6,
     "sin_definicion_en_legibles": 45,
     "sin_definicion_legibles_pct": 57.0
   },
@@ -81,27 +81,27 @@
   "disenos": {
     "case report": 41,
     "case series": 23,
-    "no clasificable": 22,
+    "no clasificable": 21,
     "retrospective cohort": 8,
-    "RCT": 5,
+    "RCT": 4,
     "non-randomised trial": 3,
     "other": 2,
     "prospective cohort": 1
   },
-  "diseno_no_clasificable": 22,
-  "brazos_con_diseno": 83,
-  "diseno_na_acordado": 14,
+  "diseno_no_clasificable": 21,
+  "brazos_con_diseno": 82,
+  "diseno_na_acordado": 13,
   "diseno_abierto": 8,
-  "brazos_comparativos": 17,
-  "estudios_comparativos_extraidos": 14,
+  "brazos_comparativos": 16,
+  "estudios_comparativos_extraidos": 13,
   "embudo": [
     {
       "filtro": "brazos extraídos",
-      "quedan": 105
+      "quedan": 103
     },
     {
       "filtro": "diseño comparativo",
-      "quedan": 17
+      "quedan": 16
     },
     {
       "filtro": "numerador y denominador coherentes",
@@ -126,7 +126,7 @@
   ],
   "brazos_agregables_final": 0,
   "brazos_agregables_final_ids": [],
-  "brazos_ensayo": 8,
+  "brazos_ensayo": 7,
   "brazos_cohorte": 9,
   "brazos_agregables_exito_clinico": 2,
   "estudios_agregables_exito_clinico": 2,

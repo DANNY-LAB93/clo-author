@@ -53,6 +53,19 @@ CODES = {
     # Ver quality_reports/decisions/2026-09-01_revision-uno-por-uno-de-los-textos-completos.md
     "PRO": "Protocolo de estudio: declara lo que se hara, sin resultados",
     "INT": "La intervencion no es un bacteriofago (endolisina u otro derivado)",
+    # DECIMO CODIGO, ANADIDO EL 2026-09-02 POR DECISION DE D. VALDIVIEZO.
+    #
+    # ESTE SI ES UNA ENMIENDA A LOS CRITERIOS, y de las que cambian lo que el
+    # informe puede afirmar. Los nueve codigos anteriores excluyen por lo que
+    # el articulo DICE; este excluye por lo que la revision NO PUDO LEER, que
+    # es una propiedad de la revision y no del estudio.
+    #
+    # Consecuencia aritmetica, y hay que decirla: aplicado de forma
+    # consistente, saca del corpus a TODOS los no recuperados, la tasa de
+    # recuperacion pasa a ser 100 % por construccion, y el sesgo de
+    # recuperacion --uno de los tres componentes de verificabilidad que esta
+    # revision mide-- deja de poder medirse. Ver la decision del 2026-09-02.
+    "NOREC": "Texto completo no recuperado: no se pudo verificar contra el articulo",
 }
 
 # Patrones que mapean el texto libre ya registrado a su codigo. Se evaluan en
