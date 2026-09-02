@@ -58,7 +58,15 @@ copias de repositorios institucionales, para los 21 que tienen DOI o PMID.
   como cerrado; la discrepancia es del editor, no del registro.
 
 - **EST-118** —el ECA intravesical, de los más valiosos— **tiene copia en el
-  Zurich Open Repository**: <https://www.zora.uzh.ch/id/eprint/193520/>. No se
+  Zurich Open Repository**. La URL correcta es la canónica,
+  <https://www.zora.uzh.ch/id/eprint/193520/>, confirmada de forma
+  independiente por **OpenAIRE**; la forma corta que da OpenAlex
+  (`/193520`) devuelve 404 tras pasar la barrera.
+
+  **Ojo con lo que hay detrás:** OpenAlex la marca `version=submittedVersion`,
+  es decir el **manuscrito enviado**, previo a revisión por pares. No es el
+  artículo publicado en *Lancet Infectious Diseases*, y para extraer
+  desenlaces esa diferencia importa: hay que declarar qué versión se leyó. No se
   descargó: el repositorio está protegido por **Anubis**, una barrera anti-bots
   que la propia página declara puesta «contra el rastreo agresivo por parte de
   empresas de IA». Sortearla no procede. **Ábrela tú en el navegador**: es un
