@@ -84,8 +84,19 @@ def main():
     web = RS / "textos_completos" / "texto_html"
     if web.exists():
         pdfs |= {q.stem for q in web.glob("*.txt")}
+    # Los estudios excluidos al examinar el articulo no forman parte del
+    # corpus, y las tablas tienen que contarlos fuera igual que los
+    # escalares. Sin este filtro, las columnas de recuento sumaban 124 --el
+    # corpus anterior-- mientras los porcentajes, que vienen de los
+    # escalares, ya eran sobre 95: la tabla se contradecia a si misma.
+    p_ex = RS / "cribado" / "exclusiones_tras_texto_completo.csv"
+    fuera = set()
+    if p_ex.exists():
+        with open(p_ex, encoding="utf-8", newline="") as fh:
+            fuera = {r["study_id"] for r in csv.DictReader(fh)}
     reps = {"EST-%03d" % int(g["estudio"]): g for g in grupos
-            if g["informe_para_extraer"] == "SI"}
+            if g["informe_para_extraer"] == "SI"
+            and "EST-%03d" % int(g["estudio"]) not in fuera}
     extr = {k for k, g in reps.items()
             if g["situacion"] in ("extraible", "solo-resumen")}
     n = len(extr)
