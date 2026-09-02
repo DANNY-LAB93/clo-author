@@ -189,7 +189,7 @@ aparece en `sin_modalidad`, que se calcula desde la pre-extracción y no se cita
 en el texto--. Pero viaja en S14, así que un valor equivocado ahí es un dato
 publicado equivocado.
 
-## Las cinco correcciones: APLICADAS, con una firma
+## Las cinco correcciones: APLICADAS Y FIRMADAS POR LOS DOS
 
 D. Valdiviezo las revisó y ordenó aplicarlas el 1 de septiembre de 2026. Están
 declaradas en `revision_sistematica/extraccion/correcciones_tras_texto_completo.csv`
@@ -198,18 +198,37 @@ firmante-- y el constructor las aplica como **última capa**, después del acuer
 y del consenso. El cuaderno de cada revisor sigue diciendo lo que escribió: no
 se reescribe nada aguas arriba.
 
-**Llevan UNA firma, no dos, y el fichero lo dice.** Tres de estas casillas las
-escribieron igual los dos revisores y dos ya estaban cerradas por consenso, así
-que corregirlas es reabrir una decisión conjunta con la firma de uno solo. Por
-eso la columna de procedencia no las etiqueta «acuerdo» ni «consenso» sino
-**«corregido contra el texto (una firma)»**, y **no cuentan como doble
-lectura**. Quedan pendientes de la segunda revisora.
+### Las dos firmas, y por qué se pidió la segunda
 
-El efecto en la cifra publicada de doble lectura es el que tiene que ser, y va
-en la dirección incómoda: **2 598 → 2 593 casillas, del 94,3 % al 94,2 %**.
+Tres de estas casillas las escribieron **igual los dos revisores** y dos ya
+estaban **cerradas por consenso**. Corregirlas es reabrir una decisión conjunta,
+así que se aplicaron primero con **una sola firma** y así quedaron etiquetadas
+--«corregido contra el texto (una firma)», y sin contar como doble lectura--
+mientras se le mandaba a N. Trelles el paquete para revisarlas.
+
+El paquete (`revision_sistematica/extraccion/firma_nataly/`) no llevaba un
+resumen: llevaba **la misma prueba** que reabrió cada casilla --la cita literal
+y el PDF del artículo-- porque una firma sobre un resumen no verifica nada.
+EST-118 iba sin PDF a propósito: no tenerlo es justamente su problema.
+
+**N. Trelles firmó las cinco el 1 de septiembre de 2026**, las cinco con «sí» y
+sin objeciones. `scripts/ingest_firma_correcciones.py` las recogió tras
+comprobar, fila a fila, que el cuaderno devuelto seguía proponiendo lo mismo que
+el enviado --mismo estudio, mismo brazo, mismo campo, mismo valor, misma cita--;
+una fila alterada no se habría ingerido. Un «no» tampoco revierte nada solo:
+reabre la casilla.
+
+Con las dos firmas, la procedencia pasa a **«corregido por consenso contra el
+texto»** y **sí cuenta como doble lectura**, que es lo que es: dos personas
+mirando la misma casilla y firmándola. La cifra publicada vuelve a **2 598
+casillas, 94,3 %** --el mismo valor de antes de las correcciones, por el mismo
+número de casillas, no por casualidad.
+
 `extraccion_conflictos_firmados` sigue en 525 porque el fichero de conflictos no
-se toca; que ahora haya 523 casillas «por consenso» y 525 conflictos firmados no
-es una incoherencia, es exactamente el rastro de estas dos correcciones.
+se toca. Que haya 523 casillas «por consenso» más 5 corregidas y 525 conflictos
+firmados no es una incoherencia: es el rastro de que dos de esos consensos se
+corrigieron después contra el texto. El desglose que imprime el constructor
+declara las cinco por separado, para que la suma cuadre a la vista.
 
 Se comprobó qué más se movía: **nada**. El embudo sale idéntico
 (132→24→8→3→2→1→0), las seis tablas del manuscrito se reconstruyen sin un solo

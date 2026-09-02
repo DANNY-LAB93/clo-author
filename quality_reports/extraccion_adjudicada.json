@@ -7,9 +7,11 @@
   "por_acuerdo": 2070,
   "por_consenso": 523,
   "sin_segunda_lectura": 156,
+  "corregidas_contra_el_texto_dos_firmas": 5,
+  "corregidas_contra_el_texto_una_firma": 0,
   "abiertas": 16,
-  "doble_lectura": 2593,
-  "doble_lectura_pct": 94.2,
+  "doble_lectura": 2598,
+  "doble_lectura_pct": 94.3,
   "fuera_de_vocabulario": 71,
   "columnas_de_navegacion_descartadas": 8
 }

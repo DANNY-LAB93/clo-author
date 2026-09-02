@@ -102,15 +102,6 @@ def main():
         else:
             abiertos.add(clave)
 
-    # Solo las variables del esquema. El formulario trae ademas ocho columnas
-    # de navegacion ya rellenas --Nº, Pos., titulo, revista, año, tipo, como
-    # encontrarlo, abrir articulo-- que nadie extrae: estan para que el revisor
-    # localice el articulo. Tratarlas como datos extraidos inflaba el recuento
-    # de casillas y el porcentaje de doble lectura, y producia una casilla
-    # «abierta» de mas que el fichero de conflictos no tiene.
-    #
-    # study_id y arm_id son la clave, no un campo: si entran en la lista, el
-    # bucle pisa las columnas de identificador del fichero de procedencia.
     # Las correcciones firmadas. Una fila sin firmante NO se aplica: la firma
     # es lo que convierte una lectura en una decision, igual que en
     # ingest_adjudications.py.
@@ -120,11 +111,27 @@ def main():
             if not (r.get("firmado_por") or "").strip():
                 sin_firma += 1
                 continue
-            correcciones[(r["study_id"], r["arm_id"], r["campo"])] = \
-                (r.get("valor_corregido") or "").strip()
+            # Cuantas personas la firmaron decide la etiqueta, y con ella si la
+            # casilla cuenta como doble lectura. Con una firma NO cuenta: la
+            # corrigio uno solo. Con las dos si, porque es lo que es un
+            # consenso -- dos personas mirando la misma casilla y firmandola.
+            firmas = [x for x in (r.get("firmado_por") or "").split(";") if x.strip()]
+            correcciones[(r["study_id"], r["arm_id"], r["campo"])] = (
+                (r.get("valor_corregido") or "").strip(),
+                "corregido por consenso contra el texto" if len(firmas) > 1
+                else "corregido contra el texto (una firma)")
     if sin_firma:
         print(f"  aviso: {sin_firma} correcciones sin firmar, NO aplicadas")
 
+    # Solo las variables del esquema. El formulario trae ademas ocho columnas
+    # de navegacion ya rellenas --Nº, Pos., titulo, revista, año, tipo, como
+    # encontrarlo, abrir articulo-- que nadie extrae: estan para que el revisor
+    # localice el articulo. Tratarlas como datos extraidos inflaba el recuento
+    # de casillas y el porcentaje de doble lectura, y producia una casilla
+    # «abierta» de mas que el fichero de conflictos no tiene.
+    #
+    # study_id y arm_id son la clave, no un campo: si entran en la lista, el
+    # bucle pisa las columnas de identificador del fichero de procedencia.
     CLAVE = {"study_id", "arm_id", "id_provisional"}
     campos = sorted({c for d in list(a.values()) + list(b.values())
                      for c in d if c in CAMPOS and c not in CLAVE})
@@ -173,12 +180,11 @@ def main():
                 origen = "sin segunda lectura"
             else:
                 valor, origen = "", "vacio"
-            # Ultima capa: una correccion firmada pisa lo que hubiera. Se
-            # etiqueta aparte y NO cuenta como doble lectura, porque no lo es:
-            # la firma la pone un revisor, no los dos.
+            # Ultima capa: una correccion firmada pisa lo que hubiera, y se
+            # etiqueta aparte para que nunca se confunda con lo que los
+            # revisores escribieron en su cuaderno.
             if ck in correcciones:
-                valor = correcciones[ck]
-                origen = "corregido contra el texto (una firma)"
+                valor, origen = correcciones[ck]
             fila[campo], proc[campo] = valor, origen
             cuenta[origen] += 1
             por_campo[campo][origen] += 1
@@ -220,7 +226,10 @@ def main():
     # Una casilla ABIERTA sale vacia del CSV igual que una «vacio»: contarla
     # como rellena inflaba el denominador del porcentaje de doble lectura.
     llenas = total - cuenta["vacio"] - cuenta["ABIERTO"]
-    doble = cuenta["acuerdo"] + cuenta["consenso"]
+    # Una correccion que firmaron los DOS es doble lectura: dos personas
+    # miraron esa casilla y la firmaron. Una que firmo uno solo, no.
+    CORR_DOS = "corregido por consenso contra el texto"
+    doble = cuenta["acuerdo"] + cuenta["consenso"] + cuenta[CORR_DOS]
     S = {
         "filas": len(filas),
         "estudios": len({k[0] for k in claves}),
@@ -230,6 +239,9 @@ def main():
         "por_acuerdo": cuenta["acuerdo"],
         "por_consenso": cuenta["consenso"],
         "sin_segunda_lectura": cuenta["sin segunda lectura"],
+        "corregidas_contra_el_texto_dos_firmas": cuenta[CORR_DOS],
+        "corregidas_contra_el_texto_una_firma":
+            cuenta["corregido contra el texto (una firma)"],
         "abiertas": cuenta["ABIERTO"],
         "doble_lectura": doble,
         "doble_lectura_pct": round(100.0 * doble / max(1, llenas), 1),
@@ -250,14 +262,21 @@ def main():
     print("    resuelto por consenso       %5d" % S["por_consenso"])
     print("    solo lo leyó un revisor     %5d" % S["sin_segunda_lectura"])
     print("    abiertas (salen vacías)     %5d" % S["abiertas"])
+    if cuenta[CORR_DOS] or cuenta["corregido contra el texto (una firma)"]:
+        print("    corregido contra el texto   %5d  (%d con las dos firmas)"
+              % (cuenta[CORR_DOS]
+                 + cuenta["corregido contra el texto (una firma)"],
+                 cuenta[CORR_DOS]))
     print("    -> con doble lectura        %5d  (%.1f %%)"
           % (doble, S["doble_lectura_pct"]))
     print()
     print("  por campo, las que menos doble lectura tienen:")
-    orden = sorted(campos, key=lambda c: (por_campo[c]["acuerdo"] + por_campo[c]["consenso"]))
+    def dobles(c):
+        return c["acuerdo"] + c["consenso"] + c[CORR_DOS]
+    orden = sorted(campos, key=lambda c: dobles(por_campo[c]))
     for campo in orden[:8]:
         c = por_campo[campo]
-        con = c["acuerdo"] + c["consenso"]
+        con = dobles(c)
         print("    %-30s doble %3d | solo uno %3d | abiertas %2d"
               % (campo, con, c["sin segunda lectura"], c["ABIERTO"]))
     return 0
