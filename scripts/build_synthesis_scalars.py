@@ -175,6 +175,9 @@ def main():
     S["estudios_solo_registro"] = sit["solo-registro"]
     multi = collections.Counter(g["estudio"] for g in dentro_g)
     S["estudios_multiinforme"] = sum(1 for v in multi.values() if v > 1)
+    # El complemento tambien es una cifra que el manuscrito imprime, y estaba
+    # tecleada: seguia diciendo 138 con un corpus de 158.
+    S["estudios_un_solo_informe"] = sum(1 for v in multi.values() if v == 1)
     S["informes_del_estudio_mayor"] = max(multi.values())
 
     # ---- recuperacion de texto completo ------------------------------------
@@ -360,8 +363,15 @@ def main():
     # que la cifra es un suelo y el manuscrito la reporta como tal.
     leidos = extr_antes & pdfs
     S["estudios_leidos_a_texto_completo"] = len(leidos)
+    # SOLO los que salieron DE ESOS 93. Los cuatro excluidos por idioma no
+    # tenian texto completo: se detectaron mirando la pagina del editor, asi
+    # que meterlos en este numerador con los 93 de denominador mezcla dos
+    # comprobaciones distintas e infla la tasa.
+    de_los_leidos = FUERA & leidos
+    S["excluidos_entre_los_leidos"] = len(de_los_leidos)
     S["excluidos_tras_texto_completo_pct"] = round(
-        100.0 * len(FUERA) / max(1, len(leidos)), 1)
+        100.0 * len(de_los_leidos) / max(1, len(leidos)), 1)
+    S["excluidos_sin_texto_completo"] = len(FUERA - leidos)
 
     S["comparativos_perdidos_por_idioma"] = (
         S["comparativos_antes_de_la_enmienda"] - comp_antes)

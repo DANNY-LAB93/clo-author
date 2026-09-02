@@ -204,8 +204,27 @@ def main():
                    if x.strip()}
 
         # ---- clases de evidencia, de la mas fuerte a la mas debil ----
-        if confianza == "probado" and det in ADMITIDOS:
-            clase = "A. texto probado"
+        # DOS CORRECCIONES, 2026-09-01.
+        #
+        # (1) EL NOMBRE MENTIA. Lo que se analiza es el titulo y el RESUMEN
+        # indexado --lo dice el comentario de arriba-- y la clase se llamaba
+        # "A. texto probado". Para un estudio sin texto completo recuperado eso
+        # afirma mas de lo que se comprobo: 29 de los 102 extraibles llevaban
+        # esa etiqueta sin que nadie hubiera visto su cuerpo.
+        #
+        # (2) LA PRECEDENCIA ERA FALSA. Si la fuente declara una lengua NO
+        # admitida y el resumen esta en ingles, eso no prueba que el articulo
+        # se pueda leer en ingles: prueba que la revista publica resumen en
+        # ingles, que es la norma en Rusia, Polonia o Ucrania. Ese caso es
+        # exactamente la clase C, que ademas exige que el titulo principal no
+        # venga entre corchetes y que el resumen sea integro. Cuatro articulos
+        # de Хирургия entraron como clase A por esta puerta y su cuerpo es
+        # cirilico en un 78-94 %, comprobado sobre la pagina del editor.
+        #
+        # Ver quality_reports/decisions/2026-09-01_idioma-verificado-sobre-el-resumen-no-el-articulo.md
+        if (confianza == "probado" and det in ADMITIDOS
+                and not (dec and dec not in ADMITIDOS)):
+            clase = "A. título y resumen probados"
             prueba = evidencia
             elegible = True
         elif (confianza == "probado" and det not in ADMITIDOS

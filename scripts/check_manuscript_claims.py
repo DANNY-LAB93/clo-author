@@ -109,7 +109,7 @@ AFIRMACIONES = [
     (ES, "quedan **{estudios}**, {estudios_extraibles} con publicación recuperable."),
     (ES, "esos {informes_a_texto_completo} corresponden a **{estudios_antes_de_releer} estudios evaluados para elegibilidad**"),
     (ES, "**{estudios_excluidos_tras_texto_completo} de ellos no cumplían los criterios de la sección 2.2**"),
-    (ES, "queda en **{estudios} estudios**, que agrupan {informes_agrupados} informes"),
+    (ES, "queda en **{estudios} estudios**, que agrupan {informes_agrupados} informes: {estudios_un_solo_informe} con un solo informe y {estudios_multiinforme} con varios"),
     (ES, "el **{excluidos_tras_texto_completo_pct} %** de los {estudios_leidos_a_texto_completo} estudios cuyo texto completo se pudo leer"),
     (ES, "La **vía de administración** no consta en el **{sin_via_de_administracion_pct} %**"),
     (ES, "Sobre los {desenlace_brazos_legibles} brazos legibles las cifras suben —del {desenlace_adverse_event_n_pct_de_los_brazos} % al {desenlace_adverse_event_n_pct_de_los_legibles} % en eventos adversos, del {desenlace_resistance_emergence_n_pct_de_los_brazos} % al {desenlace_resistance_emergence_n_pct_de_los_legibles} % en resistencia—"),

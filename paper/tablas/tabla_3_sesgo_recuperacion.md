@@ -9,4 +9,4 @@
 | Ensayos aleatorizados | 8 | 8 |
 | Pacientes declarados (suma de n por brazo) | 1 044 | 487 |
 
-*Nota.* La fracción no obtenida no es una muestra aleatoria: concentra el 68.8 % de los estudios comparativos (35.5 % de esa fracción, frente al 12.9 % de la obtenida) y declara más pacientes que la obtenida (487 frente a 1 044). Cualquier síntesis limitada a lo descargable heredaría esa asimetría.
+*Nota.* La fracción no obtenida no es una muestra aleatoria: concentra el 61.5 % de los estudios comparativos (35.5 % de esa fracción, frente al 12.9 % de la obtenida) y declara más pacientes que la obtenida (487 frente a 1 044). Cualquier síntesis limitada a lo descargable heredaría esa asimetría.

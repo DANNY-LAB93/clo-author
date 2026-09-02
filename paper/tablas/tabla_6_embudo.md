@@ -1,8 +1,8 @@
-**Tabla 6. Brazos que sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = 110 brazos extraídos).**
+**Tabla 6. Brazos que sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = 106 brazos extraídos).**
 
 | Requisito acumulado | Brazos que quedan |
 |---|---|
-| Brazos extraídos | 110 |
+| Brazos extraídos | 106 |
 | Diseño comparativo | 17 |
 | Numerador y denominador coherentes | 5 |
 | Definición operativa del éxito | 2 |
