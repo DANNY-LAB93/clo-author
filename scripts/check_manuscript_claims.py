@@ -33,6 +33,11 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ES = ROOT / "paper" / "manuscrito_revision_sistematica.md"
 EN = ROOT / "paper" / "manuscript_systematic_review_en.md"
+# El manuscrito que se envia a la revista. Estuvo SIN vigilar hasta el
+# 2026-09-02: se edita a mano al reformatearlo, y sus cifras podian
+# desviarse de los escalares sin que nada avisara. Lleva los dos idiomas
+# dentro, asi que sus afirmaciones declaran el idioma una a una.
+JSR = ROOT / "paper" / "manuscrito_JSR_final.md"
 ESCALARES = ROOT / "quality_reports" / "synthesis_scalars.json"
 
 try:
@@ -158,6 +163,16 @@ AFIRMACIONES = [
     (EN, "cannot be assigned in **{sin_clase_util_pct} %** of studies: {sin_clase_de_resistencia_pct} % do not mention it at all and a further {clase_mencionada_no_clasificable_pct} %"),
     (EN, "abstract {palabras_resumen_en};"),
     (EN, "main text {palabras_cuerpo_en}."),
+    # ---- El resumen del manuscrito de la revista. Es lo primero que lee un
+    # editor y lo unico que leen muchos, y hasta hoy no lo cubria nada.
+    (JSR, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos; {informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios evaluados para elegibilidad, de los que {estudios_excluidos_tras_texto_completo} se excluyeron al leer el artículo"),
+    (JSR, "queda en {estudios} estudios: {estudios_extraibles} con publicación recuperable y {texto_completo_obtenido} con texto obtenido ({texto_completo_pct} %)"),
+    (JSR, "El {casos_unicos_pct} % son reportes de caso único y el {estudios_comparativos_pct} % tiene diseño comparativo"),
+    (JSR, "no puede asignarse en el {sin_clase_util_pct} % de los estudios, y en {definicion_sin_definicion_operativa} de los {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
+    (JSR, "From {registros_identificados} records, {informes_unicos} unique reports remained; {informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies assessed for eligibility, of which {estudios_excluidos_tras_texto_completo} were excluded on reading the article", 1, True),
+    (JSR, "stands at {estudios} studies: {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),
+    (JSR, "Single case reports account for {casos_unicos_pct} % and {estudios_comparativos_pct} % have a comparative design", 1, True),
+    (JSR, "cannot be assigned in {sin_clase_util_pct} % of studies, and in {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
 ]
 
 
@@ -187,6 +202,11 @@ SECCIONES = {
            "## 4. Discusión", "## 5. Conclusiones", "## Declaraciones"],
     "en": ["## Abstract", "## 1. Introduction", "## 2. Methods", "## 3. Results",
            "## 4. Discussion", "## 5. Conclusions", "## Declarations"],
+    # El de la revista no lleva numeracion y agrupa discusion y conclusiones,
+    # que es como estructura sus articulos Journal of Science and Research.
+    "jsr": ["## RESUMEN", "## ABSTRACT", "## INTRODUCCIÓN", "## DESARROLLO",
+            "## METODOLOGÍA", "## RESULTADOS", "## DISCUSIÓN Y CONCLUSIONES",
+            "## DECLARACIONES", "## REFERENCIAS", "## TABLAS Y FIGURAS"],
 }
 
 
@@ -201,7 +221,7 @@ def comprueba_secciones(textos):
     """
     fallos = []
     for arch, txt in textos.items():
-        cod = "en" if arch is EN else "es"
+        cod = "en" if arch is EN else ("jsr" if arch is JSR else "es")
         for s in SECCIONES[cod]:
             if s not in txt:
                 fallos.append("%s: falta la sección «%s»" % (arch.name, s))
@@ -223,7 +243,8 @@ def main():
                 esc["desenlace_%s_%s" % (campo, k)] = v
         for k, v in O["definicion_exito"].items():
             esc["definicion_" + k] = v
-    textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8")}
+    textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8"),
+              JSR: JSR.read_text(encoding="utf-8")}
     # el manuscrito usa espacio normal o fino indistintamente; se normaliza
     normal = {k: re.sub(r"[   ]", " ", v) for k, v in textos.items()}
 
@@ -231,7 +252,7 @@ def main():
     for entrada in AFIRMACIONES:
         archivo, plantilla = entrada[0], entrada[1]
         veces = entrada[2] if len(entrada) > 2 else 1
-        ingles = archivo is EN
+        ingles = entrada[3] if len(entrada) > 3 else (archivo is EN)
         claves = re.findall(r"\{(\w+)\}", plantilla)
         faltan = [c for c in claves if c not in esc]
         if faltan:

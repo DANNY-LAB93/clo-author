@@ -1,6 +1,6 @@
 """Convierte el manuscrito editado para JSR a .docx con el formato de la revista.
 
-Times New Roman 12, papel carta, márgenes de una pulgada, interlineado 1,5,
+Times New Roman 12, A4, márgenes de una pulgada, interlineado doble,
 texto justificado y cabecera con el ISSN. Los encabezados de sección van en
 versalitas y negrita; las tablas en markdown se convierten en tablas de Word.
 
@@ -20,7 +20,7 @@ import sys
 import docx
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.shared import Pt, Inches
+from docx.shared import Pt, Inches, Mm
 import csv as _csv
 
 try:
@@ -52,14 +52,16 @@ ADJUNTOS = {
 def documento():
     d = docx.Document()
     s = d.sections[0]
-    s.page_width, s.page_height = Inches(8.5), Inches(11)
+    # A4 y doble espacio: lo que piden las normas de la revista
+    # (revistas.utb.edu.ec/index.php/sr, consultadas el 2026-09-02).
+    s.page_width, s.page_height = Mm(210), Mm(297)
     for lado in ("left_margin", "right_margin", "top_margin", "bottom_margin"):
         setattr(s, lado, Inches(1))
     n = d.styles["Normal"]
     n.font.name = TNR
     n.font.size = Pt(12)
     n.paragraph_format.space_after = Pt(10)
-    n.paragraph_format.line_spacing = 1.5
+    n.paragraph_format.line_spacing = 2.0
     cab = s.header.paragraphs[0]
     cab.text = "JOURNAL OF SCIENCE AND RESEARCH E-ISSN: 2528-8083"
     cab.runs[0].font.size = Pt(10)
@@ -198,9 +200,17 @@ def main():
 
     DEST.mkdir(parents=True, exist_ok=True)
     salida = DEST / "manuscrito_JSR_final.docx"
-    d.save(salida)
+    try:
+        d.save(salida)
+    except PermissionError:
+        # Word bloquea el fichero mientras lo tiene abierto. Se escribe al lado
+        # y se dice, en vez de morir o de dejar creer que se guardo.
+        salida = DEST / "manuscrito_JSR_final_NUEVO.docx"
+        d.save(salida)
+        print("AVISO: el .docx estaba abierto en Word y no se pudo sobrescribir.")
+        print("       Cierra Word y renombra este fichero, o vuelve a ejecutar el guion.")
     print("escrito %s  (%d KB)" % (salida, salida.stat().st_size // 1024))
-    print("  Times New Roman 12, carta, márgenes 1\", interlineado 1,5, justificado")
+    print("  Times New Roman 12, A4, márgenes 1\", interlineado doble, justificado")
 
 
 if __name__ == "__main__":
