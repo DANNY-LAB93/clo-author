@@ -1,13 +1,13 @@
 | Criterios de inclusión | Criterios de exclusión |
 |---|---|
 | Artículos originales publicados entre 2016 y 2026, donde la interfaz de búsqueda permitió aplicar el filtro. | Artículos publicados fuera del período de estudio. |
-| Artículos redactados en español o en inglés. | Estudios publicados en un idioma diferente del español o el inglés. (IDI) |
-| Artículos nacionales e internacionales, incluida la literatura regional indexada en BVS y SciELO. | Estudios sobre un organismo distinto de *P. aeruginosa* cuando sus datos no pueden separarse del resto. (ORG) |
-| Artículos originales que reporten el uso terapéutico de bacteriófagos líticos en pacientes humanos con infección por *Pseudomonas aeruginosa* multirresistente (MDR), extremadamente resistente (XDR) o panresistente (PDR), según Magiorakos et al., o descrita en términos que impliquen esas categorías. | Estudios en animales o sobre aislados veterinarios. (VET) |
-| Artículos en los que el bacteriófago se administre solo o combinado con antimicrobianos, por cualquier vía. | Estudios de laboratorio, preclínicos o de modelización, sin pacientes tratados. (LAB) |
-| Artículos sobre varios patógenos, cuando los datos de *P. aeruginosa* pueden separarse del resto. | Artículos de revisión bibliográfica, editoriales y comentarios sin datos primarios propios. (REV) |
-| Ensayos clínicos aleatorizados y no aleatorizados, estudios de cohorte, series de casos y reportes de caso que describan pacientes tratados. | Revisiones sistemáticas y revisiones de alcance. (SEC) |
-| Artículos que informen al menos uno de los desenlaces de interés: éxito clínico, erradicación microbiológica, mortalidad, eventos adversos o emergencia de resistencia al fago. | Artículos que no evalúan fagoterapia en pacientes: encuestas, estudios epidemiológicos, notas de prensa u otra terapia. (OFF) |
-| Fichas de registro de ensayos clínicos y resúmenes de congreso que cumplan lo anterior, contabilizados como estudios identificados aunque no aporten resultados publicados. | Estudios en los que la intervención no es un bacteriófago, como endolisinas u otros derivados administrados sin la partícula viral. (INT) |
-|  | Artículos de protocolo publicados en revista, que declaran lo que se hará sin presentar resultados. (PRO) |
-|  | Estudios cuyo texto completo no se pudo recuperar, de modo que los criterios no pudieron verificarse contra el artículo. (NOREC) |
+| Artículos redactados en español o en inglés. | Estudios publicados en un idioma diferente del español o el inglés. |
+| Artículos nacionales e internacionales, incluida la literatura regional indexada en BVS y SciELO. | Estudios sobre un organismo distinto de *P. aeruginosa* cuando sus datos no pueden separarse del resto. |
+| Artículos originales que reporten el uso terapéutico de bacteriófagos líticos en pacientes humanos con infección por *Pseudomonas aeruginosa* multirresistente (MDR), extremadamente resistente (XDR) o panresistente (PDR), según Magiorakos et al., o descrita en términos que impliquen esas categorías. | Estudios en animales o sobre aislados veterinarios. |
+| Artículos en los que el bacteriófago se administre solo o combinado con antimicrobianos, por cualquier vía. | Estudios de laboratorio, preclínicos o de modelización, sin pacientes tratados. |
+| Artículos sobre varios patógenos, cuando los datos de *P. aeruginosa* pueden separarse del resto. | Artículos de revisión bibliográfica, editoriales y comentarios sin datos primarios propios. |
+| Ensayos clínicos aleatorizados y no aleatorizados, estudios de cohorte, series de casos y reportes de caso que describan pacientes tratados. | Revisiones sistemáticas y revisiones de alcance. |
+| Artículos que informen al menos uno de los desenlaces de interés: éxito clínico, erradicación microbiológica, mortalidad, eventos adversos o emergencia de resistencia al fago. | Artículos que no evalúan fagoterapia en pacientes: encuestas, estudios epidemiológicos, notas de prensa u otra terapia. |
+| Fichas de registro de ensayos clínicos y resúmenes de congreso que cumplan lo anterior, contabilizados como estudios identificados aunque no aporten resultados publicados. | Estudios en los que la intervención no es un bacteriófago, como endolisinas u otros derivados administrados sin la partícula viral. |
+|  | Artículos de protocolo publicados en revista, que declaran lo que se hará sin presentar resultados. |
+|  | Estudios cuyo texto completo no se pudo recuperar, de modo que los criterios no pudieron verificarse contra el artículo. |

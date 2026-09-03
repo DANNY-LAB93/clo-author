@@ -20,10 +20,13 @@ registros que PRISMA 2020 obliga a separar, y se contabiliza como estudio
 identificado aunque no aporte resultados. Las dos filas lo dicen expresamente,
 porque juntas parecen contradecirse.
 
-Cada fila de exclusion cierra con su codigo del vocabulario cerrado
-(`scripts/exclusion_codes.py`), el mismo con el que se cuentan las exclusiones en
-el diagrama PRISMA y en el anexo S16, para poder ir de un criterio a sus
-exclusiones sin cruzar tablas a ojo.
+LOS CODIGOS NO SE IMPRIMEN. Cada motivo de exclusion lleva en el codigo fuente su
+codigo del vocabulario cerrado (`scripts/exclusion_codes.py`) --ORG, VET, LAB...
+el mismo con el que se cuentan las exclusiones en el diagrama PRISMA y en el
+anexo S16--, pero la tabla sale sin ellos: D.V. los quito el 2026-09-03. Se
+conserva el par motivo-codigo aqui porque es lo unico que ata cada fila de esta
+tabla con su recuento; si alguien vuelve a quererlos visibles, basta con volver a
+concatenarlos en `filas()`.
 
 La ventana de publicacion no se teclea: sale de los escalares.
 
@@ -104,7 +107,11 @@ def filas():
         ("Estudios cuyo texto completo no se pudo recuperar, de modo que los "
          "criterios no pudieron verificarse contra el artículo.", "NOREC"),
     ]
-    exc = [t if c is None else "%s (%s)" % (t, c) for t, c in exclusion]
+    # El codigo NO se imprime: D.V. lo quito de la tabla el 2026-09-03. Se
+    # conserva junto a cada motivo porque es lo que ata esta fila con el recuento
+    # del diagrama PRISMA y con el anexo de exclusiones, y sin el par aqui esa
+    # correspondencia solo vive en la cabeza de quien escribio la tabla.
+    exc = [t for t, _ in exclusion]
     # Se enfrentan fila a fila; la columna corta se rellena en blanco, como en
     # la tabla que sirvio de modelo.
     n = max(len(inclusion), len(exc))
@@ -140,10 +147,7 @@ def main():
     fin = m.find("**Tabla 2.", ini)
     if fin < 0:
         raise SystemExit("no encuentro donde acaba la Tabla 1")
-    pie = ("**Tabla 1.** Criterios de inclusión y exclusión de los artículos. Entre "
-           "paréntesis, el código del vocabulario cerrado con el que cada motivo de "
-           "exclusión se contabiliza en el diagrama PRISMA (Figura 1) y en el anexo "
-           "de exclusiones.\n\n")
+    pie = "**Tabla 1.** Criterios de inclusión y exclusión de los artículos.\n\n"
     MANUSCRITO.write_text(m[:ini] + pie + "\n".join(md) + "\n\n" + m[fin:],
                           encoding="utf-8")
     print("Tabla 1 del manuscrito reemplazada por el formato a dos columnas")
