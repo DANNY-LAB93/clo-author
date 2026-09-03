@@ -243,18 +243,20 @@ El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente 
 
 ## TABLAS Y FIGURAS
 
-**Tabla 1.** Criterios de elegibilidad.
+**Tabla 1.** Criterios de inclusión y exclusión de los estudios. Las filas de inclusión llevan delante el dominio PICO al que responden; las de exclusión, el código del vocabulario cerrado con el que se contabilizan en el diagrama PRISMA (Figura 1) y en el anexo de exclusiones.
 
-| Dominio | Criterio |
+| Criterios de inclusión | Criterios de exclusión |
 |---|---|
-| **Población** | Pacientes humanos con infección por *P. aeruginosa* clasificada como MDR, XDR o PDR según Magiorakos et al., o descrita en términos que impliquen esas categorías. Se admiten estudios con varios patógenos cuando el subgrupo de *P. aeruginosa* es separable. |
-| **Intervención** | Administración terapéutica de bacteriófagos líticos, por cualquier vía, sola o combinada con antimicrobianos. Se excluyen endolisinas y otros derivados administrados sin la partícula viral. |
-| **Comparador** | Ninguno exigido. |
-| **Desenlaces** | Éxito clínico, erradicación microbiológica, mortalidad, eventos adversos y emergencia de resistencia al fago, según la definición de cada estudio. |
-| **Diseños incluidos** | Ensayos aleatorizados y no aleatorizados, cohortes, series y reportes de caso con pacientes tratados. |
-| **Diseños excluidos** | Trabajo de laboratorio, preclínico o de modelización; revisiones sin datos primarios propios; síntesis secundarias; infecciones veterinarias; estudios sobre organismos distintos sin subgrupo separable. |
-| **Idioma** | Informes redactados en inglés o español. |
-| **Ventana** | 2016-2026, donde la interfaz de búsqueda lo admite. |
+| **Población.** Pacientes humanos con infección por *Pseudomonas aeruginosa* clasificada como MDR, XDR o PDR según Magiorakos et al., o descrita en términos que impliquen esas categorías. | **ORG.** Organismo distinto de *P. aeruginosa*, sin subgrupo separable. |
+| **Población.** Estudios con varios patógenos, cuando el subgrupo de *P. aeruginosa* es separable. | **VET.** Aislados o infección veterinaria, no humana. |
+| **Intervención.** Administración terapéutica de bacteriófagos líticos, por cualquier vía. | **INT.** Endolisinas u otros derivados administrados sin la partícula viral. |
+| **Intervención.** Fagoterapia sola o combinada con antimicrobianos. | **OFF.** Estudios que no evalúan fagoterapia en pacientes: encuestas, epidemiología, prensa u otra terapia. |
+| **Comparador.** No se exigió comparador: se admitieron estudios de un solo brazo. | **LAB.** Trabajo de laboratorio, preclínico o de modelización, sin pacientes tratados. |
+| **Desenlaces.** Estudios que reporten éxito clínico, erradicación microbiológica, mortalidad, eventos adversos o emergencia de resistencia al fago, según la definición de cada estudio. | **REV.** Revisiones narrativas y comentarios, sin datos primarios propios. |
+| **Diseños.** Ensayos aleatorizados y no aleatorizados, cohortes, series de casos y reportes de caso, con pacientes tratados. | **SEC.** Síntesis secundarias: revisiones sistemáticas y revisiones de alcance. |
+| **Idioma.** Informes redactados en español o en inglés. | **PRO.** Protocolos de estudio: declaran lo que se hará, sin resultados. |
+| **Periodo.** Publicaciones de 2016 a 2026, donde la interfaz de búsqueda lo admite. | **IDI.** Informes redactados en un idioma distinto del español o el inglés. |
+|  | **NOREC.** Estudios cuyo texto completo no se pudo recuperar, de modo que los criterios no pudieron verificarse contra el artículo. |
 
 **Tabla 2.** Características del cuerpo de evidencia: diseño, año de publicación y procedencia geográfica de los 95 estudios con publicación recuperable.
 

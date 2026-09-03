@@ -1,0 +1,11 @@
+﻿Criterios de inclusión,Criterios de exclusión
+"Población. Pacientes humanos con infección por Pseudomonas aeruginosa clasificada como MDR, XDR o PDR según Magiorakos et al., o descrita en términos que impliquen esas categorías.","ORG. Organismo distinto de P. aeruginosa, sin subgrupo separable."
+"Población. Estudios con varios patógenos, cuando el subgrupo de P. aeruginosa es separable.","VET. Aislados o infección veterinaria, no humana."
+"Intervención. Administración terapéutica de bacteriófagos líticos, por cualquier vía.",INT. Endolisinas u otros derivados administrados sin la partícula viral.
+Intervención. Fagoterapia sola o combinada con antimicrobianos.,"OFF. Estudios que no evalúan fagoterapia en pacientes: encuestas, epidemiología, prensa u otra terapia."
+Comparador. No se exigió comparador: se admitieron estudios de un solo brazo.,"LAB. Trabajo de laboratorio, preclínico o de modelización, sin pacientes tratados."
+"Desenlaces. Estudios que reporten éxito clínico, erradicación microbiológica, mortalidad, eventos adversos o emergencia de resistencia al fago, según la definición de cada estudio.","REV. Revisiones narrativas y comentarios, sin datos primarios propios."
+"Diseños. Ensayos aleatorizados y no aleatorizados, cohortes, series de casos y reportes de caso, con pacientes tratados.",SEC. Síntesis secundarias: revisiones sistemáticas y revisiones de alcance.
+Idioma. Informes redactados en español o en inglés.,"PRO. Protocolos de estudio: declaran lo que se hará, sin resultados."
+"Periodo. Publicaciones de 2016 a 2026, donde la interfaz de búsqueda lo admite.",IDI. Informes redactados en un idioma distinto del español o el inglés.
+,"NOREC. Estudios cuyo texto completo no se pudo recuperar, de modo que los criterios no pudieron verificarse contra el artículo."
