@@ -33,6 +33,7 @@ La ventana de publicacion no se teclea: sale de los escalares.
 Salidas:
     paper/tablas/tabla_criterios_inclusion_exclusion.md
     paper/tablas/tabla_criterios_inclusion_exclusion.csv
+    ~/Desktop/Envio_JSR_Fagoterapia_Pseudomonas/tabla_criterios_inclusion_exclusion.docx  -- el cuadro suelto
     paper/manuscrito_JSR_final.md   -- se le reemplaza la Tabla 1
 
 Uso:
@@ -41,7 +42,13 @@ Uso:
 import csv
 import json
 import pathlib
+import re
 import sys
+
+import docx
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Mm, Pt
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -121,6 +128,64 @@ def filas():
 
 
 CABECERA = ("Criterios de inclusión", "Criterios de exclusión")
+PIE = "**Tabla 1.** Criterios de inclusión y exclusión de los artículos."
+TNR = "Times New Roman"
+ESCRITORIO = pathlib.Path.home() / "Desktop" / "Envio_JSR_Fagoterapia_Pseudomonas"
+
+
+def escribe(p, txt, size, negrita=False):
+    """Resuelve *cursiva* y **negrita** en linea; el marcado no llega al .docx."""
+    for trozo in re.split(r"(\*\*[^*]+\*\*|\*[^*]+\*)", txt):
+        if not trozo:
+            continue
+        neg = trozo.startswith("**")
+        r = p.add_run(trozo.strip("*"))
+        r.font.name = TNR
+        r.font.size = Pt(size)
+        r.bold = negrita or neg
+        r.italic = trozo.startswith("*") and not neg
+
+
+def docx_suelto(f, destino):
+    """El cuadro solo, en su propio .docx, para pegarlo donde haga falta."""
+    d = docx.Document()
+    s = d.sections[0]
+    s.page_width, s.page_height = Mm(210), Mm(297)
+    for lado in ("left_margin", "right_margin", "top_margin", "bottom_margin"):
+        setattr(s, lado, Mm(25.4))
+    n = d.styles["Normal"]
+    n.font.name, n.font.size = TNR, Pt(11)
+    n.paragraph_format.space_after = Pt(0)
+    n.paragraph_format.line_spacing = 1.0
+
+    t = d.add_table(rows=1, cols=2)
+    t.style = "Table Grid"
+    t.alignment = WD_TABLE_ALIGNMENT.CENTER
+    for i, c in enumerate(CABECERA):
+        cel = t.rows[0].cells[i]
+        cel.text = ""
+        cel.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+        escribe(cel.paragraphs[0], c, 11, negrita=True)
+    for inc, exc in f:
+        cs = t.add_row().cells
+        for cel, txt in zip(cs, (inc, exc)):
+            cel.text = ""
+            cel.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            escribe(cel.paragraphs[0], txt, 11)
+
+    p = d.add_paragraph()
+    p.paragraph_format.space_before = Pt(8)
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    escribe(p, PIE, 10)
+
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        d.save(destino)
+    except PermissionError:
+        destino = destino.with_name(destino.stem + "_NUEVO.docx")
+        d.save(destino)
+        print("AVISO: estaba abierto en Word; se escribe al lado.")
+    print("escrito %s" % destino)
 
 
 def main():
@@ -138,6 +203,8 @@ def main():
             w.writerow([i.replace("**", "").replace("*", ""),
                         e.replace("**", "").replace("*", "")])
     print("escritas %s.md y %s.csv  (%d filas)" % (BASE, BASE, len(f)))
+
+    docx_suelto(f, ESCRITORIO / (BASE + ".docx"))
 
     # Sustituye la Tabla 1 dentro del manuscrito, pie incluido.
     m = MANUSCRITO.read_text(encoding="utf-8")
