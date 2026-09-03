@@ -1,18 +1,29 @@
 """Construye la tabla de criterios de inclusion y exclusion, a dos columnas.
 
-D.V. pidio el formato de dos columnas enfrentadas --"Criterios de inclusion" /
-"Criterios de exclusion"-- en lugar de la tabla por dominios (Poblacion,
-Intervencion, Comparador...) que llevaba el manuscrito.
+D.V. pidio dos columnas enfrentadas --"Criterios de inclusion" y "Criterios de
+exclusion"-- en lugar de la tabla por dominios (Poblacion, Intervencion,
+Comparador...) que llevaba el manuscrito, y corrigio una primera version que
+encabezaba cada fila con su dominio PICO: los criterios describen QUE ARTICULOS
+entran y cuales no, no la pregunta PICO. Cada fila es ahora una frase sobre el
+documento.
 
-Se conserva la etiqueta PICO al principio de cada fila de inclusion. El formato
-de dos columnas por si solo pierde la estructura PICO que PRISMA 2020 espera ver
-en los criterios de elegibilidad, y perderla seria un motivo de comentario del
-revisor; con la etiqueta delante se tienen las dos cosas.
+FICHAS DE REGISTRO Y RESUMENES DE CONGRESO. La tabla anterior no decia nada de
+ellos, y sin embargo 60 de los 155 estudios del corpus existen unicamente como
+ficha de registro de ensayo y 3 solo como resumen de congreso: 63 de 155,
+admitidos de hecho pero no declarados en ningun criterio. Se declara ahora.
 
-Cada fila de exclusion lleva su codigo del vocabulario cerrado
-(`scripts/exclusion_codes.py`), que es el mismo con el que se cuentan las
-exclusiones en el diagrama PRISMA y en el anexo S16. Asi la tabla de criterios y
-la de recuentos hablan el mismo idioma.
+No confundir esa fila con el codigo PRO. PRO excluye ARTICULOS DE PROTOCOLO
+publicados en revista (EST-035, EST-052, EST-083, EST-122; el de CYPHY tiene 223
+ocurrencias de "will be"), que son un informe que anuncia lo que se hara. Una
+ficha de registro es otra cosa: es el rastro del ensayo en la corriente de
+registros que PRISMA 2020 obliga a separar, y se contabiliza como estudio
+identificado aunque no aporte resultados. Las dos filas lo dicen expresamente,
+porque juntas parecen contradecirse.
+
+Cada fila de exclusion cierra con su codigo del vocabulario cerrado
+(`scripts/exclusion_codes.py`), el mismo con el que se cuentan las exclusiones en
+el diagrama PRISMA y en el anexo S16, para poder ir de un criterio a sus
+exclusiones sin cruzar tablas a ojo.
 
 La ventana de publicacion no se teclea: sale de los escalares.
 
@@ -50,46 +61,55 @@ def ventana():
 def filas():
     a, b = ventana()
     inclusion = [
-        ("Población", "Pacientes humanos con infección por *Pseudomonas aeruginosa* "
-                      "clasificada como MDR, XDR o PDR según Magiorakos et al., o descrita "
-                      "en términos que impliquen esas categorías."),
-        ("Población", "Estudios con varios patógenos, cuando el subgrupo de "
-                      "*P. aeruginosa* es separable."),
-        ("Intervención", "Administración terapéutica de bacteriófagos líticos, por "
-                         "cualquier vía."),
-        ("Intervención", "Fagoterapia sola o combinada con antimicrobianos."),
-        ("Comparador", "No se exigió comparador: se admitieron estudios de un solo brazo."),
-        ("Desenlaces", "Estudios que reporten éxito clínico, erradicación microbiológica, "
-                       "mortalidad, eventos adversos o emergencia de resistencia al fago, "
-                       "según la definición de cada estudio."),
-        ("Diseños", "Ensayos aleatorizados y no aleatorizados, cohortes, series de casos "
-                    "y reportes de caso, con pacientes tratados."),
-        ("Idioma", "Informes redactados en español o en inglés."),
-        ("Periodo", "Publicaciones de %s a %s, donde la interfaz de búsqueda lo admite."
-                    % (a, b)),
+        "Artículos originales publicados entre %s y %s, donde la interfaz de "
+        "búsqueda permitió aplicar el filtro." % (a, b),
+        "Artículos redactados en español o en inglés.",
+        "Artículos nacionales e internacionales, incluida la literatura regional "
+        "indexada en BVS y SciELO.",
+        "Artículos originales que reporten el uso terapéutico de bacteriófagos "
+        "líticos en pacientes humanos con infección por *Pseudomonas aeruginosa* "
+        "multirresistente (MDR), extremadamente resistente (XDR) o panresistente "
+        "(PDR), según Magiorakos et al., o descrita en términos que impliquen esas "
+        "categorías.",
+        "Artículos en los que el bacteriófago se administre solo o combinado con "
+        "antimicrobianos, por cualquier vía.",
+        "Artículos sobre varios patógenos, cuando los datos de *P. aeruginosa* "
+        "pueden separarse del resto.",
+        "Ensayos clínicos aleatorizados y no aleatorizados, estudios de cohorte, "
+        "series de casos y reportes de caso que describan pacientes tratados.",
+        "Artículos que informen al menos uno de los desenlaces de interés: éxito "
+        "clínico, erradicación microbiológica, mortalidad, eventos adversos o "
+        "emergencia de resistencia al fago.",
+        "Fichas de registro de ensayos clínicos y resúmenes de congreso que cumplan "
+        "lo anterior, contabilizados como estudios identificados aunque no aporten "
+        "resultados publicados.",
     ]
     exclusion = [
-        ("ORG", "Organismo distinto de *P. aeruginosa*, sin subgrupo separable."),
-        ("VET", "Aislados o infección veterinaria, no humana."),
-        ("INT", "Endolisinas u otros derivados administrados sin la partícula viral."),
-        ("OFF", "Estudios que no evalúan fagoterapia en pacientes: encuestas, "
-                "epidemiología, prensa u otra terapia."),
-        ("LAB", "Trabajo de laboratorio, preclínico o de modelización, sin pacientes "
-                "tratados."),
-        ("REV", "Revisiones narrativas y comentarios, sin datos primarios propios."),
-        ("SEC", "Síntesis secundarias: revisiones sistemáticas y revisiones de alcance."),
-        ("PRO", "Protocolos de estudio: declaran lo que se hará, sin resultados."),
-        ("IDI", "Informes redactados en un idioma distinto del español o el inglés."),
-        ("NOREC", "Estudios cuyo texto completo no se pudo recuperar, de modo que los "
-                  "criterios no pudieron verificarse contra el artículo."),
+        ("Artículos publicados fuera del período de estudio.", None),
+        ("Estudios publicados en un idioma diferente del español o el inglés.", "IDI"),
+        ("Estudios sobre un organismo distinto de *P. aeruginosa* cuando sus datos "
+         "no pueden separarse del resto.", "ORG"),
+        ("Estudios en animales o sobre aislados veterinarios.", "VET"),
+        ("Estudios de laboratorio, preclínicos o de modelización, sin pacientes "
+         "tratados.", "LAB"),
+        ("Artículos de revisión bibliográfica, editoriales y comentarios sin datos "
+         "primarios propios.", "REV"),
+        ("Revisiones sistemáticas y revisiones de alcance.", "SEC"),
+        ("Artículos que no evalúan fagoterapia en pacientes: encuestas, estudios "
+         "epidemiológicos, notas de prensa u otra terapia.", "OFF"),
+        ("Estudios en los que la intervención no es un bacteriófago, como "
+         "endolisinas u otros derivados administrados sin la partícula viral.", "INT"),
+        ("Artículos de protocolo publicados en revista, que declaran lo que se hará "
+         "sin presentar resultados.", "PRO"),
+        ("Estudios cuyo texto completo no se pudo recuperar, de modo que los "
+         "criterios no pudieron verificarse contra el artículo.", "NOREC"),
     ]
-    inc = ["**%s.** %s" % (e, t) for e, t in inclusion]
-    exc = ["**%s.** %s" % (c, t) for c, t in exclusion]
+    exc = [t if c is None else "%s (%s)" % (t, c) for t, c in exclusion]
     # Se enfrentan fila a fila; la columna corta se rellena en blanco, como en
     # la tabla que sirvio de modelo.
-    n = max(len(inc), len(exc))
-    inc += [""] * (n - len(inc))
-    exc += [""] * (n - len(exc))
+    n = max(len(inclusion), len(exc))
+    inc = inclusion + [""] * (n - len(inclusion))
+    exc = exc + [""] * (n - len(exc))
     return list(zip(inc, exc))
 
 
@@ -120,10 +140,10 @@ def main():
     fin = m.find("**Tabla 2.", ini)
     if fin < 0:
         raise SystemExit("no encuentro donde acaba la Tabla 1")
-    pie = ("**Tabla 1.** Criterios de inclusión y exclusión de los estudios. Las "
-           "filas de inclusión llevan delante el dominio PICO al que responden; las "
-           "de exclusión, el código del vocabulario cerrado con el que se contabilizan "
-           "en el diagrama PRISMA (Figura 1) y en el anexo de exclusiones.\n\n")
+    pie = ("**Tabla 1.** Criterios de inclusión y exclusión de los artículos. Entre "
+           "paréntesis, el código del vocabulario cerrado con el que cada motivo de "
+           "exclusión se contabiliza en el diagrama PRISMA (Figura 1) y en el anexo "
+           "de exclusiones.\n\n")
     MANUSCRITO.write_text(m[:ini] + pie + "\n".join(md) + "\n\n" + m[fin:],
                           encoding="utf-8")
     print("Tabla 1 del manuscrito reemplazada por el formato a dos columnas")
