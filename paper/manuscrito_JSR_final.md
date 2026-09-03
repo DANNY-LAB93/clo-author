@@ -68,7 +68,7 @@ Danny Valdiviezo y Nataly Trelles condujeron esta revisión conforme a la declar
 
 ### Criterios de elegibilidad
 
-Los autores fijaron los criterios antes de iniciar la búsqueda (Tabla 1). La unidad de inclusión fue el **estudio** y no el informe, conforme a PRISMA 2020: un protocolo, sus resúmenes de congreso y su publicación final constituyen un solo estudio con varios informes.
+Los autores fijaron los criterios de elegibilidad —esto es, los criterios de inclusión y exclusión— antes de iniciar la búsqueda (Tabla 1). La unidad de inclusión fue el **estudio** y no el informe, conforme a PRISMA 2020: un protocolo, sus resúmenes de congreso y su publicación final constituyen un solo estudio con varios informes.
 
 ### Fuentes de información y estrategia de búsqueda
 

@@ -128,7 +128,13 @@ def filas():
 
 
 CABECERA = ("Criterios de inclusión", "Criterios de exclusión")
-PIE = "**Tabla 1.** Criterios de inclusión y exclusión de los artículos."
+# El manuscrito titula su seccion "Criterios de elegibilidad", que es como los
+# llama el item 5 de PRISMA 2020, y el pie decia "Criterios de inclusion y
+# exclusion". Es lo mismo con dos nombres, y la seccion remitia a una tabla que
+# se llamaba de otra manera. El pie los ata; las columnas siguen diciendo
+# inclusion y exclusion, que es el formato que pidio D.V.
+PIE = ("**Tabla 1.** Criterios de elegibilidad: inclusión y exclusión de los "
+       "artículos.")
 TNR = "Times New Roman"
 ESCRITORIO = pathlib.Path.home() / "Desktop" / "Envio_JSR_Fagoterapia_Pseudomonas"
 
