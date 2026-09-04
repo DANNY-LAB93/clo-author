@@ -133,13 +133,13 @@ def textos(S, O):
          "{extraibles} con publicación recuperable y {con_texto} con texto "
          "obtenido ({recuperacion} %). De esos {extraibles}, "
          "el {casos} % son reportes de caso único y el {comparativos} % tiene "
-         "diseño comparativo; la categoría de resistencia no puede asignarse en el "
-         "{sin_clase} %. En {sin_def} de los {brazos} brazos extraídos "
+         "diseño comparativo; la categoría de resistencia no puede asignarse desde "
+         "el resumen en el {sin_clase} %. En {sin_def} de {brazos} brazos extraídos "
          "({sin_def_pct} %) no consta una definición operativa de éxito clínico. "
          "Ningún brazo reúne los requisitos aritméticos de una proporción agrupada "
          "y los de elegibilidad."),
         ("Conclusiones",
-         "El cuerpo de evidencia es amplio y, a la vez, estructuralmente "
+         "El cuerpo de evidencia es amplio pero estructuralmente "
          "inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de "
          "las síntesis previas descansan sobre supuestos que estos "
          "datos no verifican."),
@@ -177,12 +177,13 @@ def textos(S, O):
          "remain, {extraibles} with a retrievable publication and {con_texto} with "
          "the text obtained ({recuperacion} %). Of those {extraibles}, {casos} % are single case "
          "reports and {comparativos} % have a comparative design; resistance "
-         "category cannot be assigned in {sin_clase} %. In {sin_def} of the "
+         "category cannot be assigned from the abstract in {sin_clase} %. In "
+         "{sin_def} of the "
          "{brazos} extracted arms ({sin_def_pct} %) no operational definition of "
          "clinical success is on record. No arm meets the arithmetic requirements "
          "of a pooled proportion together with those of eligibility."),
         ("Conclusions",
-         "The evidence base is broad and, at the same time, structurally unsuited "
+         "The evidence base is broad but structurally unsuited "
          "to a quantitative synthesis of efficacy. The overall proportions of "
          "previous syntheses rest on assumptions that these data do not verify."),
     ]

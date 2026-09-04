@@ -169,7 +169,7 @@ AFIRMACIONES = [
     (JSR, "de los que {estudios_excluidos_tras_texto_completo} se excluyeron: {excluidos_entre_los_leidos} al leer el artículo y {excluidos_sin_texto_completo} sin poder leerlo"),
     (JSR, "Quedan {estudios} estudios, {estudios_extraibles} con publicación recuperable y {texto_completo_obtenido} con texto obtenido ({texto_completo_pct} %)"),
     (JSR, "De esos {estudios_extraibles}, el {casos_unicos_pct} % son reportes de caso único y el {estudios_comparativos_pct} % tiene diseño comparativo"),
-    (JSR, "no puede asignarse en el {sin_clase_util_pct} %. En {definicion_sin_definicion_operativa} de los {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
+    (JSR, "no puede asignarse desde el resumen en el {sin_clase_util_pct} %. En {definicion_sin_definicion_operativa} de {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
     (JSR, "con {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados por consenso"),
     # ---- La procedencia geografica venia de un corpus anterior: decia Rusia 7,
     # Polonia y Georgia 6, y "no consta en 76", cuando son 3, 5 y 58. Nombraba
@@ -181,7 +181,7 @@ AFIRMACIONES = [
     (JSR, "of which {estudios_excluidos_tras_texto_completo} were excluded: {excluidos_entre_los_leidos} on reading the article and {excluidos_sin_texto_completo} without being able to read it", 1, True),
     (JSR, "{estudios} studies remain, {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),
     (JSR, "Of those {estudios_extraibles}, {casos_unicos_pct} % are single case reports and {estudios_comparativos_pct} % have a comparative design", 1, True),
-    (JSR, "cannot be assigned in {sin_clase_util_pct} %. In {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
+    (JSR, "cannot be assigned from the abstract in {sin_clase_util_pct} %. In {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
     (JSR, "with {extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements adjudicated by consensus", 1, True),
 ]
 
