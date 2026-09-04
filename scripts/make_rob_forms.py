@@ -96,6 +96,16 @@ def corpus():
         if s not in fuera and v and v != "NA" and s not in diseno:
             diseno[s] = v
 
+    # La capa de correcciones va encima, como en el resto del canal: es donde se
+    # anotan las adjudicaciones posteriores con su cita y su firma. Nunca se
+    # edita `extraccion_adjudicada.csv`, que es el registro de lo que dieron las
+    # dos lecturas.
+    corr = RS / "extraccion" / "correcciones_tras_texto_completo.csv"
+    if corr.exists():
+        for f in lee(corr):
+            if f.get("campo") == "study_design" and f["study_id"] not in fuera:
+                diseno[f["study_id"]] = f["valor_corregido"].strip()
+
     salida = []
     for s in sorted(grupos):
         if s in fuera:
