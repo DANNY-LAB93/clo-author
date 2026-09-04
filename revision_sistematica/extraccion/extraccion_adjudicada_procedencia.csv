@@ -49,7 +49,7 @@ EST-047,A,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,cons
 EST-048,A,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,sin segunda lectura,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso
 EST-049,A,consenso,consenso,consenso,consenso,acuerdo,consenso,consenso,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo
 EST-050,A,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso
-EST-051,A,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,ABIERTO,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,ABIERTO
+EST-051,A,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,ABIERTO,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,corregido contra el texto (una firma)
 EST-052,A,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
 EST-053,A,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso
 EST-054,A,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
@@ -96,7 +96,7 @@ EST-115,A,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,consenso,acuerdo,si
 EST-116,A,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
 EST-117,A,consenso,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso
 EST-118,A,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,consenso,corregido por consenso contra el texto,consenso,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
-EST-121,A,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
+EST-121,A,acuerdo,corregido contra el texto (una firma),corregido contra el texto (una firma),acuerdo,acuerdo,corregido contra el texto (una firma),acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,corregido contra el texto (una firma),acuerdo,corregido contra el texto (una firma),corregido contra el texto (una firma),acuerdo,corregido contra el texto (una firma),acuerdo,acuerdo,corregido contra el texto (una firma),corregido contra el texto (una firma)
 EST-122,A,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
 EST-124,A,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo
 EST-126,A,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo

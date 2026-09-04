@@ -33,7 +33,7 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from check_manuscript_claims import AFIRMACIONES, ES, EN, ESCALARES, formatea
+from check_manuscript_claims import AFIRMACIONES, ES, EN, JSR, ESCALARES, formatea
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -61,13 +61,21 @@ def main():
                 esc["desenlace_%s_%s" % (campo, k)] = v
         for k, v in O["definicion_exito"].items():
             esc["definicion_" + k] = v
-    textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8")}
+    # Los tres manuscritos. El de JSR se anadio al comprobador el 2026-09-02 y
+    # no aqui, asi que sincronizar reventaba con un KeyError en cuanto una
+    # afirmacion suya quedaba desactualizada.
+    textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8"),
+              JSR: JSR.read_text(encoding="utf-8")}
 
     cambios, fallos = [], []
     for entrada in AFIRMACIONES:
         archivo, plantilla = entrada[0], entrada[1]
         veces = entrada[2] if len(entrada) > 2 else 1
-        ingles = archivo is EN
+        # El idioma lo declara la propia afirmacion cuando lo trae, porque el
+        # manuscrito de JSR lleva los dos dentro. Deducirlo del fichero escribio
+        # el abstract ingles con decimales espanoles --"75,8 %" en vez de
+        # "75.8 %"-- y lo dejo corrupto hasta que el comprobador lo canto.
+        ingles = entrada[3] if len(entrada) > 3 else (archivo is EN)
         claves = re.findall(r"\{(\w+)\}", plantilla)
         esperado = plantilla.format(**{c: formatea(esc[c], ingles, c) for c in claves})
 
