@@ -39,12 +39,14 @@ except ImportError:
     raise SystemExit("hace falta openpyxl: python -m pip install openpyxl")
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from rob_instruments import INSTRUMENTOS
+from rob_instruments import INSTRUMENTOS, SIMPLIFICADOS
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DEST = ROOT / "revision_sistematica" / "riesgo_sesgo"
 CONFLICTOS = DEST / "riesgo_sesgo_conflictos.csv"
+CONFLICTOS_SIMPLE = DEST / "riesgo_sesgo_comparativos_conflictos.csv"
 INFORME = ROOT / "quality_reports" / "rob_agreement.md"
+INFORME_SIMPLE = ROOT / "quality_reports" / "rob_agreement_comparativos.md"
 
 COLS = ["study_id", "instrumento", "item", "pregunta", "valor_a", "valor_b",
         "resolucion", "resuelto_por", "fecha"]
@@ -82,11 +84,11 @@ def etiqueta(k):
     return "pobre"
 
 
-def lee_libro(p):
+def lee_libro(p, instrumentos=None):
     """{(estudio, instrumento, item): valor}. El juicio global va como item 'GLOBAL'."""
     wb = openpyxl.load_workbook(p, data_only=True)
     fuera = {}
-    for inst in INSTRUMENTOS:
+    for inst in (instrumentos or INSTRUMENTOS):
         hoja = inst["hoja"][:31]
         if hoja not in wb.sheetnames:
             continue
@@ -107,11 +109,12 @@ def lee_libro(p):
     return fuera
 
 
-def previas():
+def previas(destino=None):
     """Las resoluciones ya firmadas, para no perderlas al reescribir."""
-    if not CONFLICTOS.exists():
+    destino = destino or CONFLICTOS
+    if not destino.exists():
         return {}
-    with open(CONFLICTOS, encoding="utf-8-sig", newline="") as fh:
+    with open(destino, encoding="utf-8-sig", newline="") as fh:
         return {(r["study_id"], r["instrumento"], r["item"]): r
                 for r in csv.DictReader(fh)
                 if (r.get("resolucion") or "").strip()}
@@ -120,18 +123,29 @@ def previas():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--a", default=str(DEST / "riesgo_sesgo_danny_valdiviezo.xlsx"))
-    ap.add_argument("--b", default=str(DEST / "riesgo_sesgo_nataly_trelles.xlsx"))
+    ap.add_argument("--b", default=None)
+    ap.add_argument("--simplificado", action="store_true",
+                    help="los formularios por dominio de los comparativos")
     args = ap.parse_args()
+    instrumentos = SIMPLIFICADOS if args.simplificado else INSTRUMENTOS
+    conflictos_p = CONFLICTOS_SIMPLE if args.simplificado else CONFLICTOS
+    informe_p = INFORME_SIMPLE if args.simplificado else INFORME
+    if args.simplificado and args.a == str(DEST / 'riesgo_sesgo_danny_valdiviezo.xlsx'):
+        args.a = str(DEST / 'riesgo_sesgo_comparativos_danny_valdiviezo.xlsx')
+    if args.b is None:
+        args.b = str(DEST / ('riesgo_sesgo_comparativos_nataly_trelles.xlsx'
+                             if args.simplificado
+                             else 'riesgo_sesgo_nataly_trelles.xlsx'))
 
     pa, pb = pathlib.Path(args.a), pathlib.Path(args.b)
     for p in (pa, pb):
         if not p.exists():
             raise SystemExit("no encuentro %s" % p)
-    A, B = lee_libro(pa), lee_libro(pb)
-    guardadas = previas()
+    A, B = lee_libro(pa, instrumentos), lee_libro(pb, instrumentos)
+    guardadas = previas(conflictos_p)
 
     pregunta = {}
-    for inst in INSTRUMENTOS:
+    for inst in instrumentos:
         for it in inst["items"]:
             pregunta[(inst["clave"], it["codigo"])] = it["texto_es"]
         pregunta[(inst["clave"], "GLOBAL")] = "JUICIO GLOBAL del estudio"
@@ -159,7 +173,7 @@ def main():
                 "fecha": prev.get("fecha", "")})
 
     DEST.mkdir(parents=True, exist_ok=True)
-    with open(CONFLICTOS, "w", encoding="utf-8-sig", newline="") as fh:
+    with open(conflictos_p, "w", encoding="utf-8-sig", newline="") as fh:
         w = csv.DictWriter(fh, COLS)
         w.writeheader()
         w.writerows(conflictos)
@@ -186,7 +200,7 @@ def main():
         lineas += ["Acuerdo global: **%.1f %%** sobre %d respuestas.\n" % (acuerdo, comparadas)]
 
     kk = []
-    for inst in INSTRUMENTOS:
+    for inst in instrumentos:
         filas = [(cod, por_item[(inst["clave"], cod)])
                  for cod in [it["codigo"] for it in inst["items"]] + ["GLOBAL"]
                  if por_item.get((inst["clave"], cod))]
@@ -215,14 +229,14 @@ def main():
                    "en las respuestas, y con pocos estudios por instrumento no "
                    "siempre la hay.\n"]
 
-    INFORME.write_text("\n".join(lineas), encoding="utf-8")
+    informe_p.write_text("\n".join(lineas), encoding="utf-8")
 
     print("comparadas %d respuestas · %d desacuerdos (%d firmados, %d escritos "
           "sin firma)" % (comparadas, len(conflictos), firmadas,
                           escritas - firmadas))
     print("sin pareja %d · sin contestar %d" % (sin_pareja, vacias))
-    print("escrito %s" % CONFLICTOS.relative_to(ROOT))
-    print("escrito %s" % INFORME.relative_to(ROOT))
+    print("escrito %s" % conflictos_p.relative_to(ROOT))
+    print("escrito %s" % informe_p.relative_to(ROOT))
 
 
 if __name__ == "__main__":

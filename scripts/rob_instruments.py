@@ -253,3 +253,70 @@ INSTRUMENTOS = [
         ],
     },
 ]
+
+
+# ---------------------------------------------------------------------------
+# VERSION SIMPLIFICADA, solo para los estudios con grupo de comparacion
+# ---------------------------------------------------------------------------
+# D.V. decidio el 2026-09-04 mantener la revision como narrativa descriptiva
+# --sin metaanalisis y sin GRADE-- y anadir riesgo de sesgo SOLO a los estudios
+# comparativos. Es el minimo que evita que un editor la rechace por incompleta
+# en metodos, y no promete una sintesis que el propio articulo demuestra
+# imposible.
+#
+# QUE SE SIMPLIFICA Y QUE NO. Se responde POR DOMINIO, no pregunta a pregunta.
+# RoB 2 pasa de sus 22 preguntas de senalizacion a los 5 juicios de dominio que
+# esas preguntas alimentan; ROBINS-I ya venia por dominio y no cambia. Lo que NO
+# se simplifica es la escala: los juicios son los del instrumento, literales.
+#
+# ES UNA SIMPLIFICACION Y HAY QUE DECLARARLA. Sin las preguntas de senalizacion
+# el juicio de dominio deja de ser reproducible por el algoritmo de RoB 2 y pasa
+# a ser un juicio directo de los revisores. Eso es legitimo y comun en revisiones
+# descriptivas, pero Metodos tiene que decir "a nivel de dominio" y no dejar
+# creer que se aplico el algoritmo completo.
+
+import re
+
+
+def _dominios(clave):
+    """Los dominios de un instrumento, en orden y sin repetir."""
+    inst = next(i for i in INSTRUMENTOS if i["clave"] == clave)
+    fuera, vistos = [], set()
+    for it in inst["items"]:
+        d = it.get("dominio", "")
+        if d and d not in vistos:
+            vistos.add(d)
+            # El dominio de RoB 2 ya viene numerado ("1. Proceso de..."), y el
+            # formulario antepone el codigo: sin quitarlo salia "1. 1. Proceso".
+            cod = d.split(".")[0].strip() if "." in d[:3] else d[:4]
+            texto = re.sub(r"^\s*\d+\.\s*", "", d)
+            fuera.append({"codigo": cod, "dominio": d,
+                          "dominio_evidencia": it.get("dominio_evidencia", ""),
+                          "texto_en": texto, "texto_es": texto,
+                          "respuestas": inst["juicios"]})
+    return fuera
+
+
+SIMPLIFICADOS = [
+    {"clave": "rob2", "hoja": "RoB 2 por dominio",
+     "nombre": "RoB 2 — juicio POR DOMINIO (ensayos aleatorizados)",
+     "cuando": "Un juicio por dominio, sin responder las 22 preguntas de "
+               "señalización. Declárese en Métodos como evaluación a nivel de dominio.",
+     "fuente": next(i for i in INSTRUMENTOS if i["clave"] == "rob2")["fuente"],
+     "items": _dominios("rob2"),
+     "respuestas": JUICIO_ROB2,
+     "juicios": JUICIO_ROB2},
+    {"clave": "robins", "hoja": "ROBINS-I por dominio",
+     "nombre": "ROBINS-I — juicio por dominio (no aleatorizados y cohortes)",
+     "cuando": "ROBINS-I ya se responde por dominio: no se simplifica nada.",
+     "fuente": next(i for i in INSTRUMENTOS if i["clave"] == "robins")["fuente"],
+     "items": next(i for i in INSTRUMENTOS if i["clave"] == "robins")["items"],
+     "respuestas": JUICIO_ROBINS,
+     "juicios": JUICIO_ROBINS},
+]
+
+# Los disenos que llevan grupo de comparacion. Un reporte de caso o una serie no
+# entran en la evaluacion simplificada: no hay nada que comparar, y su calidad se
+# describe en el texto sin instrumento.
+COMPARATIVOS = {"RCT", "non-randomised trial", "retrospective cohort",
+                "prospective cohort"}

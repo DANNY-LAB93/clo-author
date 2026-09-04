@@ -28,13 +28,16 @@ import pathlib
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from compare_rob import CONFLICTOS, lee_libro
-from rob_instruments import INSTRUMENTOS, NO_EVALUABLE, PENDIENTE
+from compare_rob import CONFLICTOS, CONFLICTOS_SIMPLE, lee_libro
+from rob_instruments import (INSTRUMENTOS, SIMPLIFICADOS, NO_EVALUABLE,
+                             PENDIENTE)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DEST = ROOT / "revision_sistematica" / "riesgo_sesgo"
 SALIDA = DEST / "riesgo_sesgo_adjudicado.csv"
+SALIDA_SIMPLE = DEST / "riesgo_sesgo_comparativos_adjudicado.csv"
 ESCALARES = ROOT / "quality_reports" / "rob_scalars.json"
+ESCALARES_SIMPLE = ROOT / "quality_reports" / "rob_comparativos_scalars.json"
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -45,17 +48,29 @@ except Exception:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--a", default=str(DEST / "riesgo_sesgo_danny_valdiviezo.xlsx"))
-    ap.add_argument("--b", default=str(DEST / "riesgo_sesgo_nataly_trelles.xlsx"))
+    ap.add_argument("--b", default=None)
+    ap.add_argument("--simplificado", action="store_true",
+                    help="los formularios por dominio de los comparativos")
     args = ap.parse_args()
+    instrumentos = SIMPLIFICADOS if args.simplificado else INSTRUMENTOS
+    conflictos_p = CONFLICTOS_SIMPLE if args.simplificado else CONFLICTOS
+    salida_p = SALIDA_SIMPLE if args.simplificado else SALIDA
+    escalares_p = ESCALARES_SIMPLE if args.simplificado else ESCALARES
+    if args.simplificado and args.a == str(DEST / 'riesgo_sesgo_danny_valdiviezo.xlsx'):
+        args.a = str(DEST / 'riesgo_sesgo_comparativos_danny_valdiviezo.xlsx')
+    if args.b is None:
+        args.b = str(DEST / ('riesgo_sesgo_comparativos_nataly_trelles.xlsx'
+                             if args.simplificado
+                             else 'riesgo_sesgo_nataly_trelles.xlsx'))
     pa, pb = pathlib.Path(args.a), pathlib.Path(args.b)
     for p in (pa, pb):
         if not p.exists():
             raise SystemExit("falta %s. Genéralo con make_rob_forms.py" % p.name)
-    A, B = lee_libro(pa), lee_libro(pb)
+    A, B = lee_libro(pa, instrumentos), lee_libro(pb, instrumentos)
 
     firmado, sin_firma = {}, []
-    if CONFLICTOS.exists():
-        with open(CONFLICTOS, encoding="utf-8-sig", newline="") as fh:
+    if conflictos_p.exists():
+        with open(conflictos_p, encoding="utf-8-sig", newline="") as fh:
             for r in csv.DictReader(fh):
                 k = (r["study_id"], r["instrumento"], r["item"])
                 res = (r.get("resolucion") or "").strip()
@@ -95,7 +110,7 @@ def main():
     DEST.mkdir(parents=True, exist_ok=True)
     cols = ["study_id", "instrumento", "item", "valor", "procedencia",
             "firmado_por", "fecha"]
-    with open(SALIDA, "w", encoding="utf-8-sig", newline="") as fh:
+    with open(salida_p, "w", encoding="utf-8-sig", newline="") as fh:
         w = csv.DictWriter(fh, cols)
         w.writeheader()
         w.writerows(filas)
@@ -103,7 +118,7 @@ def main():
     # ---- escalares -------------------------------------------------------
     # Un estudio cuenta como evaluado solo si tiene TODAS las preguntas de su
     # instrumento resueltas. A medio evaluar no es una categoria de riesgo.
-    n_items = {i["clave"]: len(i["items"]) for i in INSTRUMENTOS}
+    n_items = {i["clave"]: len(i["items"]) for i in instrumentos}
     por_estudio = collections.defaultdict(dict)
     for f in filas:
         por_estudio[(f["study_id"], f["instrumento"])][f["item"]] = f["valor"]
@@ -131,9 +146,9 @@ def main():
         "juicio_global": dict(juicios),
         "evaluados_por_instrumento": dict(por_inst),
     }
-    ESCALARES.write_text(json.dumps(S, ensure_ascii=False, indent=2), encoding="utf-8")
+    escalares_p.write_text(json.dumps(S, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    print("escrito %s  (%d respuestas)" % (SALIDA.relative_to(ROOT), len(filas)))
+    print("escrito %s  (%d respuestas)" % (salida_p.relative_to(ROOT), len(filas)))
     print("   por acuerdo   %4d" % S["respuestas_por_acuerdo"])
     print("   por consenso  %4d" % S["respuestas_por_consenso"])
     print("   desacuerdos sin firmar   %4d  <- NO entran" % len(abiertos))
@@ -148,7 +163,7 @@ def main():
         print("   %-34s %3d" % (j, n))
     if not completos:
         print("   (todavía ninguno: los formularios están en blanco)")
-    print("escrito %s" % ESCALARES.relative_to(ROOT))
+    print("escrito %s" % escalares_p.relative_to(ROOT))
 
 
 if __name__ == "__main__":

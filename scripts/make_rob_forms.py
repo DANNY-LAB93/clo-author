@@ -42,7 +42,8 @@ except ImportError:
     raise SystemExit("hace falta openpyxl: python -m pip install openpyxl")
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from rob_instruments import INSTRUMENTOS, POR_DISENO, NO_EVALUABLE, PENDIENTE
+from rob_instruments import (INSTRUMENTOS, SIMPLIFICADOS, COMPARATIVOS,
+                             POR_DISENO, NO_EVALUABLE, PENDIENTE)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RS = ROOT / "revision_sistematica"
@@ -232,9 +233,20 @@ def hoja_no_evaluables(wb, filas, titulo, cabecera, porque):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--revisor", required=True)
+    ap.add_argument("--simplificado", action="store_true",
+                    help="solo los estudios con grupo de comparación, y por "
+                         "dominio en vez de pregunta a pregunta")
     a = ap.parse_args()
 
     filas, ev = corpus(), evidencia()
+    # En modo simplificado se evalua SOLO lo comparativo. Los reportes y las
+    # series salen del formulario entero, no a una hoja de descartados: no es
+    # que no se pudieran evaluar, es que se decidio no evaluarlos, y son cosas
+    # distintas que Metodos tiene que distinguir.
+    instrumentos = INSTRUMENTOS
+    if a.simplificado:
+        instrumentos = SIMPLIFICADOS
+        filas = [f for f in filas if f["diseno"] in COMPARATIVOS]
     if not ev:
         print("AVISO: no hay evidencia_por_dominio.csv. Ejecuta antes:")
         print("       python scripts/evidencia_riesgo_sesgo.py --csv")
@@ -274,7 +286,7 @@ def main():
         c.alignment = Alignment(wrap_text=True, vertical="top")
 
     resumen = []
-    for inst in INSTRUMENTOS:
+    for inst in instrumentos:
         f = por.get(inst["clave"], [])
         if f:
             hoja(wb, inst, f, ev)
@@ -296,7 +308,10 @@ def main():
 
     DEST.mkdir(parents=True, exist_ok=True)
     slug = a.revisor.lower().replace(" ", "_")
-    salida = DEST / ("riesgo_sesgo_%s.xlsx" % slug)
+    # Nombre distinto: los dos formularios no son intercambiables y confundirlos
+    # mezclaria una evaluacion por dominio con otra pregunta a pregunta.
+    sufijo = "_comparativos" if a.simplificado else ""
+    salida = DEST / ("riesgo_sesgo%s_%s.xlsx" % (sufijo, slug))
     try:
         wb.save(salida)
     except PermissionError:
