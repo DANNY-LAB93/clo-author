@@ -49,7 +49,12 @@ INFORME = ROOT / "quality_reports" / "rob_agreement.md"
 INFORME_SIMPLE = ROOT / "quality_reports" / "rob_agreement_comparativos.md"
 
 COLS = ["study_id", "instrumento", "item", "pregunta", "valor_a", "valor_b",
-        "resolucion", "resuelto_por", "fecha"]
+        "frase_a", "frase_b", "resolucion", "resuelto_por", "fecha"]
+
+# A partir de cuantas respuestas comparables el acuerdo perfecto deja de ser
+# creible. Con cinco celdas dos revisores pueden coincidir en todo; con ochenta
+# no. El umbral es deliberadamente bajo: mas vale preguntar de mas.
+SOSPECHA_ACUERDO_TOTAL = 20
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -109,6 +114,37 @@ def lee_libro(p, instrumentos=None):
     return fuera
 
 
+def notas(p, instrumentos=None):
+    """Las dos columnas de texto libre del final: {(estudio, inst): (frase, duda)}.
+
+    Van DESPUES del juicio global, asi que `lee_libro` no las ve --y no debe
+    verlas: se colarian como si fueran items y el ingestor las trataria como
+    juicios--. Se leen aparte porque hacen falta al resolver: sentarse a firmar
+    un desacuerdo viendo dos etiquetas y ningun motivo no es resolverlo, es
+    elegir. Aqui se recogen para que el fichero de conflictos lleve al lado la
+    frase en que se apoyo cada uno.
+    """
+    wb = openpyxl.load_workbook(p, data_only=True)
+    fuera = {}
+    for inst in (instrumentos or INSTRUMENTOS):
+        hoja = inst["hoja"][:31]
+        if hoja not in wb.sheetnames:
+            continue
+        ws = wb[hoja]
+        # 5 de contexto + los items + el juicio global; lo siguiente es la
+        # frase, y despues la duda sobre el diseno.
+        j = 5 + len(inst["items"]) + 1
+        for fila in ws.iter_rows(min_row=4):
+            s = fila[0].value
+            if not s or j >= len(fila):
+                continue
+            def v(k):
+                return (str(fila[k].value).strip()
+                        if k < len(fila) and fila[k].value is not None else "")
+            fuera[(str(s).strip(), inst["clave"])] = (v(j), v(j + 1))
+    return fuera
+
+
 def previas(destino=None):
     """Las resoluciones ya firmadas, para no perderlas al reescribir."""
     destino = destino or CONFLICTOS
@@ -142,6 +178,7 @@ def main():
         if not p.exists():
             raise SystemExit("no encuentro %s" % p)
     A, B = lee_libro(pa, instrumentos), lee_libro(pb, instrumentos)
+    NA, NB = notas(pa, instrumentos), notas(pb, instrumentos)
     guardadas = previas(conflictos_p)
 
     pregunta = {}
@@ -168,6 +205,8 @@ def main():
                 "study_id": s, "instrumento": inst, "item": cod,
                 "pregunta": pregunta.get((inst, cod), ""),
                 "valor_a": va, "valor_b": vb,
+                "frase_a": NA.get((s, inst), ("", ""))[0],
+                "frase_b": NB.get((s, inst), ("", ""))[0],
                 "resolucion": prev.get("resolucion", ""),
                 "resuelto_por": prev.get("resuelto_por", ""),
                 "fecha": prev.get("fecha", "")})
@@ -177,6 +216,14 @@ def main():
         w = csv.DictWriter(fh, COLS)
         w.writeheader()
         w.writerows(conflictos)
+
+    dudas = []
+    for clave, (_, duda) in sorted(NA.items()):
+        if duda:
+            dudas.append(("revisor A", clave[0], duda))
+    for clave, (_, duda) in sorted(NB.items()):
+        if duda:
+            dudas.append(("revisor B", clave[0], duda))
 
     comparadas = sum(len(v) for v in por_item.values())
     # "Escrita" y "firmada" no son lo mismo, y el ingestor solo se queda con
@@ -195,9 +242,44 @@ def main():
               "| Sin pareja (solo uno contestó) | %d |" % sin_pareja,
               "| Sin contestar por ninguno | %d |" % vacias, ""]
 
+    if dudas:
+        # Esto va ANTES que la concordancia: si el diseno adjudicado esta mal,
+        # el instrumento esta mal, y la kappa de sus juicios no significa nada.
+        lineas += ["## Dudas sobre el diseño adjudicado", "",
+                   "Resolver esto primero: cambia qué instrumento se aplica.", ""]
+        lineas += ["- **%s**, %s: %s" % d for d in dudas]
+        lineas += [""]
+
     if comparadas:
         acuerdo = 100.0 * (comparadas - len(conflictos)) / comparadas
         lineas += ["Acuerdo global: **%.1f %%** sobre %d respuestas.\n" % (acuerdo, comparadas)]
+
+    # EL ACUERDO PERFECTO NO ES UN RESULTADO, ES UN SINTOMA. Dos personas que
+    # juzgan por separado ochenta dominios discrepan en alguno: es exactamente
+    # lo que la doble evaluacion existe para medir. Cero desacuerdos sobre
+    # muchas celdas casi siempre significa que los dos cuadernos no son
+    # independientes --uno copiado del otro, o los dos rellenados por la misma
+    # persona--, y entonces la kappa de 1,00 no mide concordancia entre
+    # revisores: mide que el fichero es el mismo. Es lo primero que comprueba
+    # un arbitro, y el guion no puede presentarlo como un hallazgo.
+    acuerdo_total = comparadas >= SOSPECHA_ACUERDO_TOTAL and not conflictos
+    if acuerdo_total:
+        lineas[1:1] = [
+            "",
+            "> **ATENCIÓN: los dos cuadernos coinciden en las %d respuestas, sin "
+            "una sola discrepancia.**" % comparadas,
+            ">",
+            "> Eso no es lo que produce una evaluación independiente por dos "
+            "revisores; es lo que produce un cuaderno copiado del otro, o los "
+            "dos rellenados por la misma persona. Hay que resolver si las dos "
+            "evaluaciones son de verdad independientes antes de usar nada de "
+            "este informe.",
+            ">",
+            "> Mientras no se resuelva, la kappa de más abajo **no mide "
+            "concordancia entre revisores**, no debe reportarse, y la frase de "
+            "Métodos que declara evaluación independiente con resolución por "
+            "consenso sería falsa.",
+        ]
 
     kk = []
     for inst in instrumentos:
@@ -235,6 +317,15 @@ def main():
           "sin firma)" % (comparadas, len(conflictos), firmadas,
                           escritas - firmadas))
     print("sin pareja %d · sin contestar %d" % (sin_pareja, vacias))
+    if acuerdo_total:
+        print()
+        print("ATENCION: %d respuestas y CERO desacuerdos." % comparadas)
+        print("  Una evaluacion independiente por dos revisores no sale asi.")
+        print("  Comprueba si los dos cuadernos son de verdad independientes")
+        print("  antes de usar la kappa o de ingerir nada.")
+    if dudas:
+        print("%d duda(s) sobre el diseño adjudicado, al principio del informe"
+              % len(dudas))
     print("escrito %s" % conflictos_p.relative_to(ROOT))
     print("escrito %s" % informe_p.relative_to(ROOT))
 
