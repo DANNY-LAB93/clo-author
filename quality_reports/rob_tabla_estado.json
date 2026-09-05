@@ -1,0 +1,34 @@
+{
+  "comparativos_adjudicados": 12,
+  "evaluables": 11,
+  "sin_texto_completo": 1,
+  "sin_texto_completo_ids": [
+    "EST-029"
+  ],
+  "por_instrumento": {
+    "RoB 2": 3,
+    "ROBINS-I": 8
+  },
+  "celdas_totales": 82,
+  "celdas_con_juicio": 0,
+  "celdas_pendientes": 82,
+  "completa": false,
+  "dominios": {
+    "RoB 2": [
+      "Proceso de aleatorización",
+      "Desviaciones de la intervención prevista",
+      "Datos de desenlace faltantes",
+      "Medición del desenlace",
+      "Selección del resultado notificado"
+    ],
+    "ROBINS-I": [
+      "Sesgo por confusión",
+      "Sesgo en la selección de los participantes",
+      "Sesgo en la clasificación de las intervenciones",
+      "Sesgo por desviaciones de las intervenciones previstas",
+      "Sesgo por datos faltantes",
+      "Sesgo en la medición de los desenlaces",
+      "Sesgo en la selección del resultado notificado"
+    ]
+  }
+}

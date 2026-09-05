@@ -396,6 +396,10 @@ def main():
     paises_pre = collections.Counter(
         (pre[k].get("geographic_source") or "no declarada") for k in todos_pre)
     S["rusos_antes_de_la_enmienda"] = paises_pre.get("Rusia", 0)
+    # La discusion cita las dos procedencias de Europa del Este que la enmienda
+    # de idioma se llevo por delante. La ucraniana estaba tecleada en la prosa;
+    # ahora sale de aqui, como el resto.
+    S["ucranianos_antes_de_la_enmienda"] = paises_pre.get("Ucrania", 0)
 
     # ---- verificacion de idioma, por clase de evidencia --------------------
     ver = RS / "cribado" / "idioma_verificacion.csv"

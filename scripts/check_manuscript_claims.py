@@ -177,6 +177,13 @@ AFIRMACIONES = [
     # cuatro exclusiones por idioma (IDI) son justo las que bajaron Rusia de 7 a 3,
     # y el parrafo no se recalculo. Se ancla el recuento que mas se cita.
     (JSR, "No consta en {procedencia_no_declarada} de los {estudios_extraibles} estudios"),
+    # El riesgo de sesgo simplificado: alcance y numero de celdas. Si manana se
+    # consigue el texto del ECA que falta, o se readjudica un diseno, estas
+    # frases dejan de ser ciertas y aqui salta.
+    (JSR, "identifica **{sesgo_comparativos_adjudicados} estudios con grupo de comparación**, de los cuales **{sesgo_evaluables} son evaluables**: {sesgo_instrumento_RoB2} ensayos aleatorizados con RoB 2 y {sesgo_instrumento_ROBINSI} ensayos no aleatorizados y cohortes con ROBINS-I"),
+    (JSR, "Los {sesgo_celdas_totales} juicios de dominio de los {sesgo_evaluables} estudios comparativos"),
+    (JSR, "El riesgo de sesgo por dominios de los {sesgo_evaluables} comparativos con texto completo"),
+    (JSR, "Domain-level risk-of-bias assessment of the {sesgo_evaluables} comparative studies with full text", 1, True),
     (JSR, "From {registros_identificados} records, {informes_unicos} unique reports remained; {informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies assessed for eligibility", 1, True),
     (JSR, "of which {estudios_excluidos_tras_texto_completo} were excluded: {excluidos_entre_los_leidos} on reading the article and {excluidos_sin_texto_completo} without being able to read it", 1, True),
     (JSR, "{estudios} studies remain, {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),
@@ -214,9 +221,11 @@ SECCIONES = {
            "## 4. Discussion", "## 5. Conclusions", "## Declarations"],
     # El de la revista no lleva numeracion y agrupa discusion y conclusiones,
     # que es como estructura sus articulos Journal of Science and Research.
+    # Las tablas y figuras ya NO van en una seccion al final: cada pie esta
+    # donde el texto la cita, y el .docx adjunta el CSV o el PNG ahi mismo.
     "jsr": ["## RESUMEN", "## ABSTRACT", "## INTRODUCCIÓN", "## DESARROLLO",
             "## METODOLOGÍA", "## RESULTADOS", "## DISCUSIÓN Y CONCLUSIONES",
-            "## DECLARACIONES", "## REFERENCIAS", "## TABLAS Y FIGURAS"],
+            "## DECLARACIONES", "## REFERENCIAS"],
 }
 
 
@@ -253,6 +262,17 @@ def main():
                 esc["desenlace_%s_%s" % (campo, k)] = v
         for k, v in O["definicion_exito"].items():
             esc["definicion_" + k] = v
+    # El alcance de la evaluacion de riesgo de sesgo tambien vive aparte, y es
+    # justo el tipo de cifra que envejece: cambia con cada diseno adjudicado y
+    # con cada texto completo que se consiga.
+    rb = ESCALARES.parent / "rob_tabla_estado.json"
+    if rb.exists():
+        R = json.load(open(rb, encoding="utf-8"))
+        for k, v in R.items():
+            if not isinstance(v, (dict, list)):
+                esc["sesgo_" + k] = v
+        for k, v in R.get("por_instrumento", {}).items():
+            esc["sesgo_instrumento_%s" % k.replace(" ", "").replace("-", "")] = v
     textos = {ES: ES.read_text(encoding="utf-8"), EN: EN.read_text(encoding="utf-8"),
               JSR: JSR.read_text(encoding="utf-8")}
     # el manuscrito usa espacio normal o fino indistintamente; se normaliza

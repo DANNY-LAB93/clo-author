@@ -105,6 +105,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `comparativos_perdidos_al_releer` | 12 |
 | `ecas_perdidos_al_releer` | 9 |
 | `rusos_antes_de_la_enmienda` | 34 |
+| `ucranianos_antes_de_la_enmienda` | 3 |
 | `idioma_probado_por_texto` | 200 |
 | `idioma_por_campo_de_fuente` | 3 |
 | `idioma_por_version_inglesa` | 4 |

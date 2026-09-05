@@ -43,7 +43,8 @@ ADJUNTOS = {
     "Tabla 2.": TABLAS / "tabla_1_caracteristicas.csv",
     "Tabla 3.": TABLAS / "tabla_2_completitud.csv",
     "Tabla 4.": TABLAS / "tabla_5_desenlaces.csv",
-    "Tabla 5.": TABLAS / "tabla_6_embudo.csv",
+    "Tabla 5.": TABLAS / "tabla_7_riesgo_sesgo.csv",
+    "Tabla 6.": TABLAS / "tabla_6_embudo.csv",
     "Figura 1.": FIGURAS / "figura_1_prisma.png",
     "Figura 2.": FIGURAS / "figura_2_composicion.png",
 }

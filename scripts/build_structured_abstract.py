@@ -48,7 +48,8 @@ def escalares():
     def carga(n):
         d = json.loads((ROOT / "quality_reports" / n).read_text(encoding="utf-8"))
         return d.get("escalares", d)
-    return carga("synthesis_scalars.json"), carga("outcome_scalars.json")
+    return (carga("synthesis_scalars.json"), carga("outcome_scalars.json"),
+            carga("rob_tabla_estado.json"))
 
 
 def mil(n):
@@ -64,8 +65,33 @@ def dec_en(x):
     return "%.1f" % float(x)
 
 
-def textos(S, O):
+def sesgo(R):
+    """La frase de riesgo de sesgo, en las dos formas que puede ser verdad.
+
+    Mientras falte un juicio en `rob_tabla_estado.json` el resumen NO puede
+    decir que la evaluación se hizo. Se redacta la forma pendiente, que es
+    fea a propósito: se ve desde lejos y desaparece sola en cuanto los dos
+    revisores cierran los formularios y se vuelve a ejecutar el guion.
+    """
+    n = R["evaluables"]
+    if R["completa"]:
+        return ("El riesgo de sesgo se evaluó por dominios en los %d "
+                "comparativos con texto completo (RoB 2, ROBINS-I); no se "
+                "aplicó GRADE." % n,
+                "Risk of bias was assessed by domain in the %d comparative "
+                "studies with full text (RoB 2, ROBINS-I); GRADE was not "
+                "applied." % n)
+    return ("El riesgo de sesgo por dominios de los %d comparativos con "
+            "texto completo (RoB 2, ROBINS-I) está en evaluación; no se aplicó "
+            "GRADE." % n,
+            "Domain-level risk-of-bias assessment of the %d comparative "
+            "studies with full text (RoB 2, ROBINS-I) is under way; GRADE was "
+            "not applied." % n)
+
+
+def textos(S, O, R):
     D = O["definicion_exito"]
+    sesgo_es, sesgo_en = sesgo(R)
     c = dict(
         registros=mil(S["registros_identificados"]),
         unicos=mil(S["informes_unicos"]),
@@ -85,6 +111,8 @@ def textos(S, O):
         sin_def=D["sin_definicion_operativa"],
         firmados=S["extraccion_conflictos_firmados"],
         desacuerdos=S["extraccion_desacuerdos"],
+        sesgo_es=sesgo_es,
+        sesgo_en=sesgo_en,
     )
     es = dict(c, recuperacion=dec_es(S["texto_completo_pct"]),
               casos=dec_es(S["casos_unicos_pct"]),
@@ -104,27 +132,25 @@ def textos(S, O):
         ("Introducción",
          "Varias síntesis recientes agregan los desenlaces de la fagoterapia en "
          "*Pseudomonas aeruginosa* resistente en proporciones globales de éxito, "
-         "presuponiendo una agregabilidad no examinada."),
+         "sin examinar su agregabilidad."),
         ("Objetivo",
          "Delimitar la evidencia clínica disponible y determinar si su estructura "
-         "y su reporte admiten una síntesis cuantitativa de eficacia.",
-         "Este trabajo delimita la evidencia clínica disponible y determina si su "
-         "estructura y su reporte admiten una síntesis cuantitativa de eficacia."),
+         "y reporte admiten una síntesis cuantitativa de eficacia.",
+         "Este trabajo delimita esa evidencia y determina si su estructura y "
+         "reporte admiten una síntesis cuantitativa de eficacia."),
         ("Metodología",
          "Revisión sistemática conforme a PRISMA 2020, en dos corrientes: bases "
          "bibliográficas y registros de ensayos. {fuentes_may} fuentes, "
          "con ventana {anio_min}-{anio_max} donde la interfaz la admite. La unidad "
          "de inclusión fue el estudio, no el informe. Extracción por duplicado e "
          "independiente, con {firmados} de {desacuerdos} desacuerdos adjudicados "
-         "por consenso. No se evaluó el riesgo de sesgo ni la certeza de la "
-         "evidencia.",
-         "Se realizó una revisión sistemática conforme a PRISMA 2020, en dos "
-         "corrientes: bases bibliográficas y registros de ensayos. Se interrogaron "
-         "{fuentes} fuentes, con ventana {anio_min}-{anio_max} donde la interfaz la "
+         "por consenso. {sesgo_es}",
+         "Se realizó una revisión sistemática conforme a PRISMA 2020 sobre "
+         "{fuentes} fuentes, en dos corrientes —bases bibliográficas y registros "
+         "de ensayos—, con ventana {anio_min}-{anio_max} donde la interfaz la "
          "admite. La unidad de inclusión fue el estudio, no el informe. Extracción "
          "por duplicado e independiente, con {firmados} de {desacuerdos} "
-         "desacuerdos adjudicados por consenso. No se evaluó el riesgo de sesgo ni "
-         "la certeza de la evidencia."),
+         "desacuerdos adjudicados por consenso. {sesgo_es}"),
         ("Resultados",
          "De {registros} registros quedaron {unicos} informes únicos; {informes} "
          "informes formaron {evaluados} estudios evaluados para elegibilidad, de "
@@ -139,36 +165,33 @@ def textos(S, O):
          "Ningún brazo reúne los requisitos aritméticos de una proporción agrupada "
          "y los de elegibilidad."),
         ("Conclusiones",
-         "El cuerpo de evidencia es amplio pero estructuralmente "
-         "inadecuado para una síntesis cuantitativa de eficacia. Las proporciones de "
-         "las síntesis previas descansan sobre supuestos que estos "
-         "datos no verifican."),
+         "El cuerpo de evidencia es amplio pero inadecuado para una síntesis "
+         "cuantitativa de eficacia: las proporciones publicadas descansan sobre "
+         "supuestos que estos datos no verifican."),
     ]
     EN = [
         ("Introduction",
          "Several recent syntheses pool phage therapy outcomes in resistant "
-         "*Pseudomonas aeruginosa* into overall success proportions, presupposing "
-         "an aggregability that has not been examined."),
+         "*Pseudomonas aeruginosa* into overall success proportions without "
+         "examining their aggregability."),
         ("Objective",
-         "To delimit the available clinical evidence and to determine whether its "
-         "structure and reporting admit a quantitative synthesis of efficacy.",
-         "This work delimits the available clinical evidence and determines whether "
-         "its structure and reporting admit a quantitative synthesis of efficacy."),
+         "To delimit the available evidence and determine whether its structure "
+         "and reporting admit a quantitative synthesis of efficacy.",
+         "This work delimits that evidence and determines whether its structure "
+         "and reporting admit a quantitative synthesis of efficacy."),
         ("Methodology",
          "Systematic review following PRISMA 2020, with separate streams for "
          "bibliographic databases and trial registries. Eight sources were queried "
          "with a {anio_min}-{anio_max} window where the interface allows it. The "
          "unit of inclusion was the study, not the report. Extraction was in "
          "duplicate and independent, with {firmados} of {desacuerdos} disagreements "
-         "adjudicated by consensus. Risk of bias and certainty of evidence were "
-         "not assessed.",
-         "A systematic review was conducted following PRISMA 2020, with separate "
-         "streams for bibliographic databases and trial registries. Eight sources "
-         "were queried with a {anio_min}-{anio_max} window where the interface "
-         "allows it. The unit of inclusion was the study, not the report. Data were "
-         "extracted in duplicate and independently, with {firmados} of "
-         "{desacuerdos} disagreements adjudicated by consensus. Risk of bias and "
-         "certainty of evidence were not assessed."),
+         "adjudicated by consensus. {sesgo_en}",
+         "A systematic review was conducted following PRISMA 2020 across eight "
+         "sources, in two streams —bibliographic databases and trial registries—, "
+         "with a {anio_min}-{anio_max} window where the interface allows it. The "
+         "unit of inclusion was the study, not the report. Data were extracted in "
+         "duplicate and independently, with {firmados} of {desacuerdos} "
+         "disagreements adjudicated by consensus. {sesgo_en}"),
         ("Results",
          "From {registros} records, {unicos} unique reports remained; {informes} "
          "reports formed {evaluados} studies assessed for eligibility, of which "
@@ -183,9 +206,9 @@ def textos(S, O):
          "clinical success is on record. No arm meets the arithmetic requirements "
          "of a pooled proportion together with those of eligibility."),
         ("Conclusions",
-         "The evidence base is broad but structurally unsuited "
-         "to a quantitative synthesis of efficacy. The overall proportions of "
-         "previous syntheses rest on assumptions that these data do not verify."),
+         "The evidence base is broad but unsuited to a quantitative synthesis of "
+         "efficacy: the published proportions rest on assumptions that these data "
+         "do not verify."),
     ]
 
     def arma(bloques, ctx):
@@ -219,8 +242,8 @@ def corrido(bloques):
 
 
 def main():
-    S, O = escalares()
-    es, en = textos(S, O)
+    S, O, R = escalares()
+    es, en = textos(S, O, R)
     versiones = [
         ("Resumen estructurado (español)", etiquetado(es), es),
         ("Structured abstract (English)", etiquetado(en), en),
@@ -259,12 +282,15 @@ def main():
     SALIDA.write_text("\n".join(cuerpo), encoding="utf-8")
     print("escrito %s" % SALIDA.relative_to(ROOT))
 
-    # El manuscrito lleva la version etiquetada, que es la que pidio D.V.
+    # El manuscrito lleva la version de PARRAFO CORRIDO: la revista no publica
+    # resumenes con subsecciones internas, y asi es como aparecen los suyos.
+    # La version etiquetada se conserva en `resumen_estructurado.md` por si
+    # hace falta para otro destino.
     m = MANUSCRITO.read_text(encoding="utf-8")
     nuevo = ("## RESUMEN\n\n%s\n\n**Palabras clave:** %s.\n\n"
              "## ABSTRACT\n\n%s\n\n**Keywords:** %s.\n\n"
-             % (etiquetado(es), "; ".join(CLAVE_ES),
-                etiquetado(en), "; ".join(CLAVE_EN)))
+             % (corrido(es), "; ".join(CLAVE_ES),
+                corrido(en), "; ".join(CLAVE_EN)))
     i, j = m.find("## RESUMEN"), m.find("## INTRODUCCIÓN")
     if i < 0 or j < 0:
         raise SystemExit("no encuentro el resumen dentro del manuscrito")
