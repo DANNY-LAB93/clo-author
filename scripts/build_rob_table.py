@@ -41,6 +41,13 @@ ADJUDICADO = (ROOT / "revision_sistematica" / "riesgo_sesgo"
               / "riesgo_sesgo_comparativos_adjudicado.csv")
 TABLAS = ROOT / "paper" / "tablas"
 ESTADO = ROOT / "quality_reports" / "rob_tabla_estado.json"
+MANUSCRITO = ROOT / "paper" / "manuscrito_JSR_final.md"
+
+# El bloque del manuscrito que este guion posee, delimitado por su encabezado y
+# por el pie de la Tabla 5. Lo de en medio se reescribe entero; el pie y todo lo
+# que viene despues no se tocan.
+MARCA_INI = "### Riesgo de sesgo"
+MARCA_FIN = "**Tabla 5.**"
 
 PENDIENTE_CELDA = "pendiente"
 NO_APLICA = "n. a."
@@ -82,6 +89,144 @@ def juicios():
     with open(ADJUDICADO, encoding="utf-8-sig", newline="") as fh:
         return {(r["study_id"], r["instrumento"], r["item"]): r["valor"].strip()
                 for r in csv.DictReader(fh) if r["valor"].strip()}
+
+
+def procedencias():
+    """Cuántos juicios salieron por acuerdo y cuántos por consenso firmado."""
+    if not ADJUDICADO.exists():
+        return collections.Counter()
+    with open(ADJUDICADO, encoding="utf-8-sig", newline="") as fh:
+        return collections.Counter(r["procedencia"].strip()
+                                   for r in csv.DictReader(fh)
+                                   if r["valor"].strip())
+
+
+ALCANCE = (
+    "El diseño adjudicado sobre el artículo identifica **%(comp)d estudios con "
+    "grupo de comparación**, de los cuales **%(ev)d son evaluables**: %(rob2)d "
+    "ensayos aleatorizados con RoB 2 y %(robins)d ensayos no aleatorizados y "
+    "cohortes con ROBINS-I. El duodécimo es un ensayo aleatorizado cuyo texto "
+    "completo no se obtuvo y que, por tanto, no se evalúa; no recibe un juicio "
+    "de riesgo alto por esa razón, porque no evaluar y evaluar mal no son lo "
+    "mismo. Ese conjunto de %(ev)d estudios coincide en número, pero no en "
+    "composición, con los 11 ensayos que la Tabla 2 cuenta: aquella clasifica "
+    "por lo que el resumen declara sobre los 95 estudios recuperables y no "
+    "incluye las cohortes, mientras que esta evaluación clasifica por lo que se "
+    "leyó en el artículo de los 71 con texto obtenido y sí las incluye. La "
+    "Tabla 5 recoge los juicios por dominio.")
+
+AVISO = (
+    "**[PENDIENTE — no enviar el manuscrito con esta nota. Los %d juicios de "
+    "dominio de los %d estudios comparativos aún no han sido emitidos por los "
+    "dos revisores. La Tabla 5 y el párrafo que la resume se generan desde la "
+    "evaluación adjudicada en cuanto lo estén.]**")
+
+# El orden va de menos a mas riesgo. Se usa para decir cual es el dominio que
+# concentra los juicios desfavorables sin tener que elegirlo a mano.
+GRAVEDAD = {
+    "Bajo riesgo de sesgo": 0, "Algunas preocupaciones": 1,
+    "Riesgo moderado": 1, "Alto riesgo de sesgo": 2, "Riesgo grave": 2,
+    "Riesgo crítico": 3, "Sin información para juzgar": 1,
+}
+
+
+# Como se nombra cada juicio dentro de la frase. El nombre literal del
+# instrumento ("Bajo riesgo de sesgo") no encaja en una enumeracion.
+EN_PROSA = {
+    "Bajo riesgo de sesgo": "de bajo riesgo",
+    "Algunas preocupaciones": "de algunas preocupaciones",
+    "Alto riesgo de sesgo": "de alto riesgo",
+    "Riesgo moderado": "de riesgo moderado",
+    "Riesgo grave": "de riesgo grave",
+    "Riesgo crítico": "de riesgo crítico",
+    "Sin información para juzgar": "sin información para juzgar",
+}
+
+
+def _enumera(trozos):
+    """['a', 'b', 'c'] -> 'a, b y c'."""
+    if len(trozos) == 1:
+        return trozos[0]
+    return ", ".join(trozos[:-1]) + " y " + trozos[-1]
+
+
+def resumen_prosa(evaluables, orden, titulo, J, proc):
+    """El párrafo de Resultados, escrito desde los juicios adjudicados.
+
+    No se redacta a mano en el manuscrito por la misma razón que el resto de las
+    cifras: si mañana se readjudica un dominio, la prosa tiene que moverse con
+    él o deja de ser verdad. Los juicios se enumeran de menor a mayor riesgo,
+    que es el orden en que los define el instrumento, y no por frecuencia.
+    """
+    frases, dicho_desfavorable = [], False
+    for clave, nombre in (("rob2", "RoB 2"), ("robins", "ROBINS-I")):
+        estudios = [c for c in evaluables if c["instrumento"] == clave]
+        if not estudios:
+            continue
+        glob = collections.Counter(
+            J.get((c["study_id"], clave, "GLOBAL"), "") for c in estudios)
+        glob.pop("", None)
+        if not glob:
+            continue
+        ordenados = sorted(glob.items(), key=lambda kv: GRAVEDAD.get(kv[0], 9))
+        frases.append("De los %d estudios evaluados con %s, el juicio global es "
+                      "%s." % (len(estudios), nombre,
+                               _enumera(["%s en %d" % (EN_PROSA.get(j, j), n)
+                                         for j, n in ordenados])))
+        # El dominio que mas peso tiene en ese juicio, dicho por su nombre.
+        peor, peor_n = None, 0
+        for cod in orden[clave]:
+            n = sum(1 for c in estudios
+                    if GRAVEDAD.get(J.get((c["study_id"], clave, cod), ""), 0) >= 2)
+            if n > peor_n:
+                peor, peor_n = titulo[(clave, cod)], n
+        if peor and peor_n:
+            # La aclaracion de que cuenta como desfavorable se da UNA vez, la
+            # primera; repetirla en el segundo instrumento sobra.
+            coletilla = ("" if dicho_desfavorable else
+                         " —alto riesgo en RoB 2; grave o crítico en ROBINS-I—")
+            dicho_desfavorable = True
+            frases.append("El dominio que más juicios desfavorables concentra en "
+                          "%s%s es «%s», con %d de %d."
+                          % (nombre, coletilla, peor[0].lower() + peor[1:],
+                             peor_n, len(estudios)))
+    ac, co = proc.get("acuerdo", 0), proc.get("consenso", 0)
+    if ac or co:
+        frases.append("Los dos revisores coincidieron en %d de los %d juicios y "
+                      "resolvieron los %d restantes por consenso."
+                      % (ac, ac + co, co))
+    return " ".join(frases)
+
+
+def escribe_manuscrito(estado, evaluables, orden, titulo, J):
+    """Deja el bloque de Resultados diciendo lo que los ficheros sostienen.
+
+    Se escribe SIEMPRE, esté completa la evaluación o no: mientras falte un
+    juicio deja el aviso, y en cuanto no falte ninguno lo sustituye por el
+    párrafo de resultados. Así el manuscrito no puede quedarse afirmando una
+    evaluación que no existe ni arrastrando un aviso que ya sobra.
+    """
+    if not MANUSCRITO.exists():
+        return
+    s = MANUSCRITO.read_text(encoding="utf-8")
+    ini, fin = s.find(MARCA_INI), s.find(MARCA_FIN)
+    if ini < 0 or fin < 0 or fin < ini:
+        print("AVISO: no encuentro el bloque de riesgo de sesgo en %s; "
+              "la tabla se escribió, el manuscrito no." % MANUSCRITO.name)
+        return
+    alcance = ALCANCE % {"comp": estado["comparativos_adjudicados"],
+                         "ev": estado["evaluables"],
+                         "rob2": estado["por_instrumento"].get("RoB 2", 0),
+                         "robins": estado["por_instrumento"].get("ROBINS-I", 0)}
+    if estado["completa"]:
+        segundo = resumen_prosa(evaluables, orden, titulo, J,
+                                procedencias())
+    else:
+        segundo = AVISO % (estado["celdas_pendientes"], estado["evaluables"])
+    nuevo = "%s\n\n%s\n\n%s\n\n" % (MARCA_INI, alcance, segundo)
+    MANUSCRITO.write_text(s[:ini] + nuevo + s[fin:], encoding="utf-8")
+    print("bloque de riesgo de sesgo reescrito en %s (%s)"
+          % (MANUSCRITO.name, "resultados" if estado["completa"] else "aviso"))
 
 
 def main():
@@ -147,6 +292,7 @@ def main():
     }
     ESTADO.write_text(json.dumps(estado, ensure_ascii=False, indent=2),
                       encoding="utf-8")
+    escribe_manuscrito(estado, evaluables, orden, titulo, J)
 
     print("comparativos con diseño adjudicado: %d  (evaluables %d, sin texto %d)"
           % (len(filas_corpus), len(evaluables), len(sin_texto)))
