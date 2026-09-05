@@ -1,12 +1,23 @@
 {
-  "evaluados": 0,
+  "modo": "consenso",
+  "evaluados": 11,
   "a_medias": 0,
-  "no_evaluables_sin_texto": 24,
+  "no_evaluables_sin_texto": 1,
   "respuestas_por_acuerdo": 0,
-  "respuestas_por_consenso": 0,
+  "respuestas_por_consenso": 82,
   "desacuerdos_abiertos": 0,
   "resoluciones_sin_firma": 0,
   "sin_segunda_lectura": 0,
-  "juicio_global": {},
-  "evaluados_por_instrumento": {}
+  "firmado_por": "PRUEBA A y PRUEBA B",
+  "fecha": "2026-09-05",
+  "juicio_global": {
+    "Bajo riesgo de sesgo": 2,
+    "Riesgo grave": 6,
+    "Riesgo moderado": 2,
+    "Algunas preocupaciones": 1
+  },
+  "evaluados_por_instrumento": {
+    "rob2": 3,
+    "robins": 8
+  }
 }

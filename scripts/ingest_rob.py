@@ -45,13 +45,109 @@ except Exception:
     pass
 
 
+CONSENSO = DEST / "riesgo_sesgo_comparativos_consenso.xlsx"
+
+
+def ingiere_consenso(salida_p, escalares_p):
+    """Un solo cuaderno acordado entre los dos autores, con su firma.
+
+    No hay concordancia que medir aqui y no se finge que la haya: la
+    procedencia de cada juicio es «consenso», sin excepcion, y el manuscrito
+    declara evaluacion por consenso y no por duplicado independiente.
+
+    Se exige la firma por la misma razon que en la ruta de dos cuadernos: sin
+    los dos nombres, «acordado entre los autores» es una afirmacion que nadie
+    ha hecho. Y se exigen los 82 juicios completos, porque una tabla a medias
+    publicada como completa es peor que no tenerla.
+    """
+    import openpyxl
+    if not CONSENSO.exists():
+        raise SystemExit("falta %s. Genéralo con make_rob_consensus.py"
+                         % CONSENSO.name)
+    wb = openpyxl.load_workbook(CONSENSO, data_only=True)
+    if "Firma" not in wb.sheetnames:
+        raise SystemExit("el cuaderno no tiene hoja «Firma»; regenéralo.")
+    fw = wb["Firma"]
+    quien = [str(fw.cell(row=r, column=2).value or "").strip() for r in (5, 6)]
+    fecha = str(fw.cell(row=7, column=2).value or "").strip()[:10]
+    faltan_firma = [q for q in quien if not q]
+    if faltan_firma or not fecha:
+        raise SystemExit(
+            "NO SE INGIERE: falta la firma en la hoja «Firma» de %s.\n"
+            "  nombres: %s\n  fecha: %s\n"
+            "Sin los dos nombres y la fecha, «acordado entre los autores» no lo "
+            "ha afirmado nadie." % (CONSENSO.name,
+                                    " / ".join(q or "(vacío)" for q in quien),
+                                    fecha or "(vacía)"))
+
+    V = lee_libro(CONSENSO, SIMPLIFICADOS)
+    vacias = sorted(k for k, v in V.items() if not v)
+    if vacias:
+        raise SystemExit(
+            "NO SE INGIERE: quedan %d juicios sin decidir.\n  %s%s"
+            % (len(vacias),
+               ", ".join("%s %s" % (k[0], k[2]) for k in vacias[:8]),
+               " …" if len(vacias) > 8 else ""))
+
+    filas = [{"study_id": s, "instrumento": inst, "item": cod, "valor": v,
+              "procedencia": "consenso", "firmado_por": " y ".join(quien),
+              "fecha": fecha}
+             for (s, inst, cod), v in sorted(V.items())]
+
+    cols = ["study_id", "instrumento", "item", "valor", "procedencia",
+            "firmado_por", "fecha"]
+    DEST.mkdir(parents=True, exist_ok=True)
+    with open(salida_p, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, cols)
+        w.writeheader()
+        w.writerows(filas)
+
+    n_items = {i["clave"]: len(i["items"]) for i in SIMPLIFICADOS}
+    por_estudio = collections.defaultdict(dict)
+    for f in filas:
+        por_estudio[(f["study_id"], f["instrumento"])][f["item"]] = f["valor"]
+    completos = {k: d["GLOBAL"] for k, d in por_estudio.items()
+                 if d.get("GLOBAL")
+                 and sum(1 for c, v in d.items() if c != "GLOBAL" and v)
+                 >= n_items.get(k[1], 0)}
+    S = {
+        "modo": "consenso",
+        "evaluados": len(completos),
+        "a_medias": len(por_estudio) - len(completos),
+        "no_evaluables_sin_texto": 1,
+        "respuestas_por_acuerdo": 0,
+        "respuestas_por_consenso": len(filas),
+        "desacuerdos_abiertos": 0,
+        "resoluciones_sin_firma": 0,
+        "sin_segunda_lectura": 0,
+        "firmado_por": " y ".join(quien),
+        "fecha": fecha,
+        "juicio_global": dict(collections.Counter(completos.values())),
+        "evaluados_por_instrumento": dict(
+            collections.Counter(inst for _, inst in completos)),
+    }
+    escalares_p.write_text(json.dumps(S, ensure_ascii=False, indent=2),
+                           encoding="utf-8")
+    print("escrito %s  (%d juicios, todos por consenso)"
+          % (salida_p.relative_to(ROOT), len(filas)))
+    print("   acordado por %s el %s" % (" y ".join(quien), fecha))
+    print("estudios con juicio completo: %d" % len(completos))
+    for j, n in collections.Counter(completos.values()).most_common():
+        print("   %-34s %3d" % (j, n))
+    print("escrito %s" % escalares_p.relative_to(ROOT))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--a", default=str(DEST / "riesgo_sesgo_danny_valdiviezo.xlsx"))
     ap.add_argument("--b", default=None)
     ap.add_argument("--simplificado", action="store_true",
                     help="los formularios por dominio de los comparativos")
+    ap.add_argument("--consenso", action="store_true",
+                    help="el cuaderno único acordado entre los dos autores")
     args = ap.parse_args()
+    if args.consenso:
+        return ingiere_consenso(SALIDA_SIMPLE, ESCALARES_SIMPLE)
     instrumentos = SIMPLIFICADOS if args.simplificado else INSTRUMENTOS
     conflictos_p = CONFLICTOS_SIMPLE if args.simplificado else CONFLICTOS
     salida_p = SALIDA_SIMPLE if args.simplificado else SALIDA

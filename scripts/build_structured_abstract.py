@@ -74,6 +74,16 @@ def sesgo(R):
     revisores cierran los formularios y se vuelve a ejecutar el guion.
     """
     n = R["evaluables"]
+    if R["completa"] and R.get("modo") == "consenso":
+        # El resumen tiene que decir POR CONSENSO. Omitirlo dejaria al lector
+        # suponer duplicado independiente, que es lo normal en una revision
+        # sistematica y no es lo que se hizo.
+        return ("El riesgo de sesgo se evaluó por consenso, por dominios, en "
+                "los %d comparativos con texto completo (RoB 2, ROBINS-I); no "
+                "se aplicó GRADE." % n,
+                "Risk of bias was assessed by consensus, by domain, in the %d "
+                "comparative studies with full text (RoB 2, ROBINS-I); GRADE "
+                "was not applied." % n)
     if R["completa"]:
         return ("El riesgo de sesgo se evaluó por dominios en los %d "
                 "comparativos con texto completo (RoB 2, ROBINS-I); no se "
@@ -254,8 +264,14 @@ def main():
     fallos = []
     for nombre, t, bloques in versiones:
         n = palabras(t)
-        print("%-42s %3d palabras  %s" % (nombre, n, "OK" if n <= TOPE else "SE PASA"))
-        if n > TOPE:
+        # Solo el parrafo corrido entra en el manuscrito; la etiquetada se
+        # guarda aparte. Sus cinco etiquetas cuentan cinco palabras, y
+        # bloquear el envio por ellas dejaba el resumen sin actualizar.
+        manda = "corrido" in nombre or "single paragraph" in nombre
+        print("%-42s %3d palabras  %s%s"
+              % (nombre, n, "OK" if n <= TOPE else "SE PASA",
+                 "" if manda else "  (no se envía)"))
+        if n > TOPE and manda:
             # Se dice donde esta el peso, para saber por donde recortar.
             reparto = "  ".join("%s %d" % (b[0][:4], palabras(b[1])) for b in bloques)
             fallos.append("%s: %d palabras, el tope es %d. Reparto: %s"

@@ -181,9 +181,15 @@ AFIRMACIONES = [
     # consigue el texto del ECA que falta, o se readjudica un diseno, estas
     # frases dejan de ser ciertas y aqui salta.
     (JSR, "identifica **{sesgo_comparativos_adjudicados} estudios con grupo de comparación**, de los cuales **{sesgo_evaluables} son evaluables**: {sesgo_instrumento_RoB2} ensayos aleatorizados con RoB 2 y {sesgo_instrumento_ROBINSI} ensayos no aleatorizados y cohortes con ROBINS-I"),
-    (JSR, "Los {sesgo_celdas_totales} juicios de dominio de los {sesgo_evaluables} estudios comparativos"),
-    (JSR, "El riesgo de sesgo por dominios de los {sesgo_evaluables} comparativos con texto completo"),
-    (JSR, "Domain-level risk-of-bias assessment of the {sesgo_evaluables} comparative studies with full text", 1, True),
+    # El recuento de juicios se ancla en el parrafo de alcance, que existe
+    # tanto con la evaluacion pendiente como terminada. Estuvo anclado en el
+    # aviso de PENDIENTE, que desaparece al completarse: al ingerir los 82
+    # juicios el comprobador fallaba por una frase que ya no debia existir.
+    (JSR, "La Tabla 5 recoge los {sesgo_celdas_totales} juicios por dominio"),
+    # Del resumen se ancla el trozo que sobrevive a las tres redacciones
+    # --pendiente, terminada y terminada por consenso--, que es el alcance.
+    (JSR, "los {sesgo_evaluables} comparativos con texto completo (RoB 2, ROBINS-I)"),
+    (JSR, "the {sesgo_evaluables} comparative studies with full text (RoB 2, ROBINS-I)", 1, True),
     (JSR, "From {registros_identificados} records, {informes_unicos} unique reports remained; {informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies assessed for eligibility", 1, True),
     (JSR, "of which {estudios_excluidos_tras_texto_completo} were excluded: {excluidos_entre_los_leidos} on reading the article and {excluidos_sin_texto_completo} without being able to read it", 1, True),
     (JSR, "{estudios} studies remain, {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),

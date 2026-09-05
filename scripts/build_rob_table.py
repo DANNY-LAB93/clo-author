@@ -113,7 +113,7 @@ ALCANCE = (
     "por lo que el resumen declara sobre los 95 estudios recuperables y no "
     "incluye las cohortes, mientras que esta evaluación clasifica por lo que se "
     "leyó en el artículo de los 71 con texto obtenido y sí las incluye. La "
-    "Tabla 5 recoge los juicios por dominio.")
+    "Tabla 5 recoge los %(celdas)d juicios por dominio.")
 
 AVISO = (
     "**[PENDIENTE — no enviar el manuscrito con esta nota. Los %d juicios de "
@@ -191,7 +191,16 @@ def resumen_prosa(evaluables, orden, titulo, J, proc):
                           % (nombre, coletilla, peor[0].lower() + peor[1:],
                              peor_n, len(estudios)))
     ac, co = proc.get("acuerdo", 0), proc.get("consenso", 0)
-    if ac or co:
+    if co and not ac:
+        # Ruta de consenso: un solo cuaderno acordado. Decir aqui "coincidieron
+        # en 0 y resolvieron 82 por consenso" seria describir una doble lectura
+        # que no existio. La ausencia de concordancia entre revisores no se
+        # disimula: se enuncia, y Limitaciones la recoge.
+        frases.append("Los %d juicios se emitieron en una evaluación única "
+                      "acordada entre los dos autores; al no haber dos lecturas "
+                      "independientes, no se reporta concordancia entre "
+                      "revisores." % co)
+    elif ac or co:
         frases.append("Los dos revisores coincidieron en %d de los %d juicios y "
                       "resolvieron los %d restantes por consenso."
                       % (ac, ac + co, co))
@@ -216,6 +225,7 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
         return
     alcance = ALCANCE % {"comp": estado["comparativos_adjudicados"],
                          "ev": estado["evaluables"],
+                         "celdas": estado["celdas_totales"],
                          "rob2": estado["por_instrumento"].get("RoB 2", 0),
                          "robins": estado["por_instrumento"].get("ROBINS-I", 0)}
     if estado["completa"]:
@@ -276,7 +286,12 @@ def main():
     (TABLAS / "tabla_7_riesgo_sesgo.md").write_text("\n".join(md) + "\n",
                                                     encoding="utf-8")
 
+    proc = procedencias()
     estado = {
+        # Como se emitieron los juicios. El manuscrito y el resumen redactan
+        # distinto segun esto, y no puede deducirse del numero de celdas.
+        "modo": ("consenso" if proc.get("consenso") and not proc.get("acuerdo")
+                 else "duplicado"),
         "comparativos_adjudicados": len(filas_corpus),
         "evaluables": len(evaluables),
         "sin_texto_completo": len(sin_texto),
