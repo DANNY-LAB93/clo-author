@@ -56,6 +56,14 @@ COLS = ["study_id", "instrumento", "item", "pregunta", "valor_a", "valor_b",
 # no. El umbral es deliberadamente bajo: mas vale preguntar de mas.
 SOSPECHA_ACUERDO_TOTAL = 20
 
+# Cuantas notas de texto libre identicas palabra por palabra bastan para dudar
+# de que los cuadernos sean independientes. Dos personas pueden coincidir en un
+# juicio de una lista cerrada; no escriben la misma frase, con la misma
+# numeracion y los mismos tabuladores, en varios estudios seguidos. Esta senal
+# es mas dificil de borrar que el acuerdo perfecto: sigue estando aunque se
+# cambien juicios a mano para fabricar discrepancias.
+SOSPECHA_NOTAS_IGUALES = 3
+
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -262,6 +270,37 @@ def main():
     # persona--, y entonces la kappa de 1,00 no mide concordancia entre
     # revisores: mide que el fichero es el mismo. Es lo primero que comprueba
     # un arbitro, y el guion no puede presentarlo como un hallazgo.
+    # La otra senal, y la mas dificil de falsear: el texto libre. Si los dos
+    # cuadernos traen la MISMA frase, caracter por caracter, en varios estudios,
+    # no son dos lecturas. Se comprueba aparte del acuerdo porque sobrevive a
+    # que alguien cambie juicios a mano para que aparezcan discrepancias.
+    notas_iguales = sorted(k[0] for k in set(NA) & set(NB)
+                           if NA[k][0].strip()
+                           and NA[k][0].strip() == NB[k][0].strip())
+    notas_iguales = sorted(set(notas_iguales))
+    con_nota = len({k[0] for k in NA if NA[k][0].strip()}
+                   | {k[0] for k in NB if NB[k][0].strip()})
+    if len(notas_iguales) >= SOSPECHA_NOTAS_IGUALES:
+        lineas[1:1] = [
+            "",
+            "> **ATENCIÓN: la columna «¿en qué frase te apoyaste?» trae el mismo "
+            "texto, palabra por palabra, en %d de los %d estudios anotados.**"
+            % (len(notas_iguales), con_nota),
+            ">",
+            "> " + ", ".join(notas_iguales) + ".",
+            ">",
+            "> Dos revisores pueden elegir el mismo juicio de una lista cerrada; "
+            "no escriben la misma frase, con la misma numeración y los mismos "
+            "tabuladores, en varios estudios seguidos. Eso indica que un cuaderno "
+            "salió del otro, con independencia de que los juicios difieran en "
+            "algunas celdas.",
+            ">",
+            "> Mientras no se resuelva, la kappa de más abajo no mide "
+            "concordancia entre dos lecturas independientes y no debe "
+            "reportarse; y la frase de Métodos que declara evaluación "
+            "independiente y a ciegas sería falsa.",
+        ]
+
     acuerdo_total = comparadas >= SOSPECHA_ACUERDO_TOTAL and not conflictos
     if acuerdo_total:
         lineas[1:1] = [
@@ -317,6 +356,12 @@ def main():
           "sin firma)" % (comparadas, len(conflictos), firmadas,
                           escritas - firmadas))
     print("sin pareja %d · sin contestar %d" % (sin_pareja, vacias))
+    if len(notas_iguales) >= SOSPECHA_NOTAS_IGUALES:
+        print()
+        print("ATENCION: la misma frase, palabra por palabra, en %d de los %d "
+              "estudios anotados." % (len(notas_iguales), con_nota))
+        print("  Los dos cuadernos no parecen lecturas independientes.")
+        print("  Esta al principio del informe, con la lista de estudios.")
     if acuerdo_total:
         print()
         print("ATENCION: %d respuestas y CERO desacuerdos." % comparadas)
