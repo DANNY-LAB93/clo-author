@@ -237,6 +237,38 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
     MANUSCRITO.write_text(s[:ini] + nuevo + s[fin:], encoding="utf-8")
     print("bloque de riesgo de sesgo reescrito en %s (%s)"
           % (MANUSCRITO.name, "resultados" if estado["completa"] else "aviso"))
+    escribe_otros(estado)
+
+
+def escribe_otros(estado):
+    """El maestro y su traducción dicen lo mismo, y cambian a la vez.
+
+    Se quedaron atrás una vez: el de la revista ya declaraba una evaluación por
+    consenso en curso y estos dos seguían diciendo que no se había hecho
+    ninguna. Los tres viajan en el mismo sobre.
+    """
+    import rob_bloques as RB
+    ctx = {"comp": estado["comparativos_adjudicados"],
+           "ev": estado["evaluables"],
+           "celdas": estado["celdas_totales"],
+           "faltan": estado["celdas_pendientes"],
+           "brazos": 103}
+    for rel, ini, fin, comun, pendiente, hecho in RB.BLOQUES:
+        p = ROOT / rel
+        if not p.exists():
+            continue
+        s = p.read_text(encoding="utf-8")
+        i, j = s.find(ini), s.find(fin)
+        if i < 0 or j < 0 or j < i:
+            print("AVISO: no encuentro el bloque 2.7 en %s" % p.name)
+            continue
+        cuerpo = (comun + (hecho if estado["completa"] else pendiente)) % ctx
+        s = s[:i] + "%s\n\n%s\n\n" % (ini, cuerpo) + s[j:]
+        for rel2, viejo, nuevo in RB.LIMITACION:
+            if rel2 == rel and viejo in s:
+                s = s.replace(viejo, nuevo, 1)
+        p.write_text(s, encoding="utf-8")
+        print("   y en %s" % p.name)
 
 
 def main():

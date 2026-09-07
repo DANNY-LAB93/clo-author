@@ -86,14 +86,59 @@ def nota(d, texto):
     r.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
 
+def estado_riesgo_de_sesgo():
+    """Los items 11 y 18 de PRISMA, redactados desde el canal.
+
+    Devuelve {item: (veredicto, texto)}. Si el fichero de estado no existe
+    todavia, se dice eso y no se inventa un veredicto.
+    """
+    import json as _json
+    p = ROOT / "quality_reports" / "rob_tabla_estado.json"
+    if not p.exists():
+        sin = ("NO CUMPLE", "No se ha evaluado. Ver §2.7.")
+        return {"11": sin, "18": sin}
+    R = _json.loads(p.read_text(encoding="utf-8"))
+    alcance = ("%d de los %d estudios con diseño comparativo adjudicado sobre "
+               "el artículo (RoB 2 en los aleatorizados, ROBINS-I en los no "
+               "aleatorizados y las cohortes), a nivel de dominio y POR "
+               "CONSENSO entre los dos autores, no por duplicado "
+               "independiente. Los reportes y series de casos no se evalúan "
+               "con instrumento formal, por decisión: §2.7 dice por qué. "
+               % (R["evaluables"], R["comparativos_adjudicados"]))
+    if R.get("completa"):
+        return {
+            "11": ("CUMPLE", alcance + "El estudio comparativo restante no "
+                   "tiene texto completo y no se evalúa. La limitación consta "
+                   "en §4.4"),
+            "18": ("CUMPLE", "Tabla de dominios con los %d juicios, estudio "
+                   "por estudio, en §3.7" % R["celdas_totales"]),
+        }
+    return {
+        "11": ("PARCIAL", alcance + "La evaluación está EN CURSO: faltan %d de "
+               "los %d juicios. §2.7 lo declara" % (R["celdas_pendientes"],
+                                                    R["celdas_totales"])),
+        "18": ("NO CUMPLE", "Los juicios por estudio aún no están emitidos "
+               "(faltan %d de %d). No se sustituyen por ningún indicador "
+               "derivado del diseño. §2.7 y §4.4"
+               % (R["celdas_pendientes"], R["celdas_totales"])),
+    }
+
+
 # ---------------------------------------------------------------- documentos
 def v1_prisma(S):
     """Lista de comprobacion PRISMA 2020, item por item.
+
+    Los items 11 y 18 (riesgo de sesgo) NO se redactan aqui: salen de
+    `rob_tabla_estado.json`, que es el mismo fichero del que sale el
+    manuscrito. Estuvieron escritos a mano diciendo "no se ha realizado"
+    mientras el manuscrito ya declaraba una evaluacion en curso, y una lista
+    PRISMA que contradice a su propio manuscrito es peor que no adjuntarla.
 
     Se marca CUMPLE / PARCIAL / NO CUMPLE y se dice donde mirar. Marcar todo
     como cumplido es la forma mas rapida de perder la confianza del editor: los
     tres items que esta revision no cumple se declaran como tales.
     """
+    ROB = estado_riesgo_de_sesgo()
     d = doc_nuevo("S1. Lista de comprobación PRISMA 2020",
                   "Fagoterapia en Pseudomonas aeruginosa multirresistente. "
                   "Estado a 11 de agosto de 2026.")
@@ -127,12 +172,8 @@ def v1_prisma(S):
          "ningún resumen del corpus las declara. Las definiciones de los "
          "textos completos leídos se discuten en §3.5 y §3.6"),
         ("10b", "Otras variables", "Lista y definiciones", "CUMPLE", "S4"),
-        ("11", "Riesgo de sesgo", "Herramienta, cuántos revisores", "NO CUMPLE",
-         "§2.7 declara que NO se ha evaluado y por qué: exige lectura por "
-         "dominio de los dos revisores, y %d de los %d estudios siguen sin "
-         % (S["texto_completo_no_obtenido"], S["estudios_extraibles"]) +
-         "texto completo. No se promete para una versión futura de este "
-         "informe. Declarado también en §4.4"),
+        ("11", "Riesgo de sesgo", "Herramienta, cuántos revisores", ROB["11"][0],
+         ROB["11"][1]),
         ("12", "Medidas del efecto", "Para cada desenlace", "NO APLICA",
          "Este informe no presenta estimaciones de efecto. §3.5 mide la completitud con que se reportan los desenlaces; §3.6 explica por qué no se agregan"),
         ("13a-f", "Métodos de síntesis", "Incluida la decisión de no agrupar", "CUMPLE",
@@ -155,9 +196,7 @@ def v1_prisma(S):
          "los motivos de las etapas 1 a 3 con vocabulario cerrado"),
         ("17", "Características de los estudios", "De cada uno", "CUMPLE",
          "Tabla 1, y listado completo en S5"),
-        ("18", "Riesgo de sesgo por estudio", "", "NO CUMPLE",
-         "No se ha realizado. El motivo está en §2.7 y la limitación en §4.4; "
-         "no se promete para una versión futura de este informe"),
+        ("18", "Riesgo de sesgo por estudio", "", ROB["18"][0], ROB["18"][1]),
         ("19", "Resultados de los estudios", "", "PARCIAL",
          "§3.5 y las Tablas 5 y 6 reportan la COMPLETITUD con que cada estudio "
          "declara los cinco desenlaces, no sus estimaciones de efecto. El "

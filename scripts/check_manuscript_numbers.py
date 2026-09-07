@@ -27,6 +27,16 @@ except Exception:
 # origen. Se enumeran para que la comprobacion siga siendo estricta: sin esta
 # lista habria que relajar el criterio y entonces dejaria de detectar nada.
 EXCEPCIONES = {
+    # Comprobadas una a una el 2026-09-05 contra su fuente. Estaban saliendo
+    # como "sin respaldo" desde hace semanas, y una lista de fallos que siempre
+    # trae los mismos tres deja de leerse: son reales, y aqui consta por que.
+    "4416": "registros que devolvio ProQuest, que NO se exporto ni forma parte "
+            "del corpus; la cifra existe para declarar la fuente no usada",
+    "495": "informes del corpus anteriores a 2016, contados sobre "
+           "screening_corpus_all.csv: la ventana no se aplico en BVS, SciELO "
+           "ni los registros",
+    "98": "extraccion_doble_pct, que si es escalar; el comprobador lo marca "
+          "porque el 98 aparece pegado a otra cifra en la misma frase",
     "2020": "PRISMA 2020, ano de la declaracion",
     "102": "TP-102, nombre del producto en el ensayo de Nir-Paz; no es una cifra",
     "2017": "ano de la lista de patogenos prioritarios de la OMS que la de 2024 sustituye",
