@@ -100,6 +100,12 @@ def main():
     oc = ROOT / "quality_reports" / "outcome_scalars.json"
     if oc.exists():
         S["_desenlaces"] = json.loads(oc.read_text(encoding="utf-8"))
+    # El alcance del riesgo de sesgo vive en su propio fichero por el mismo
+    # motivo, y el manuscrito lo cita: cuantos comparativos, cuantos
+    # evaluables y cuantos juicios. Sin esto, el 82 salia sin respaldo.
+    rb = ROOT / "quality_reports" / "rob_tabla_estado.json"
+    if rb.exists():
+        S["_riesgo_de_sesgo"] = json.loads(rb.read_text(encoding="utf-8"))
 
     # universo de valores respaldados por el canal
     respaldo = {}
