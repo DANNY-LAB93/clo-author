@@ -113,7 +113,7 @@ ALCANCE = (
     "por lo que el resumen declara sobre los 95 estudios recuperables y no "
     "incluye las cohortes, mientras que esta evaluación clasifica por lo que se "
     "leyó en el artículo de los 71 con texto obtenido y sí las incluye. La "
-    "Tabla 5 recoge los %(celdas)d juicios por dominio.")
+    "Tabla 5 lleva %(celdas)d juicios de dominio%(recoge)s.")
 
 AVISO = (
     "**[PENDIENTE — no enviar el manuscrito con esta nota. Los %d juicios de "
@@ -226,6 +226,8 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
     alcance = ALCANCE % {"comp": estado["comparativos_adjudicados"],
                          "ev": estado["evaluables"],
                          "celdas": estado["celdas_totales"],
+                         "recoge": ("" if estado["completa"]
+                                    else ", todavía sin emitir"),
                          "rob2": estado["por_instrumento"].get("RoB 2", 0),
                          "robins": estado["por_instrumento"].get("ROBINS-I", 0)}
     if estado["completa"]:
@@ -238,6 +240,37 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
     print("bloque de riesgo de sesgo reescrito en %s (%s)"
           % (MANUSCRITO.name, "resultados" if estado["completa"] else "aviso"))
     escribe_otros(estado)
+
+
+def reconcilia_escalares(estado):
+    """Los escalares del consenso no pueden decir mas que el CSV adjudicado.
+
+    El 5 de septiembre un ensayo dejo `rob_comparativos_scalars.json` con 82
+    juicios y la firma "PRUEBA A y PRUEBA B", y ese fichero se commiteo: el CSV
+    del que sale estaba vacio y nadie lo comprobaba. Un fichero derivado que
+    sobrevive a sus datos es peor que uno que falta, porque parece bueno.
+    """
+    esc = ROOT / "quality_reports" / "rob_comparativos_scalars.json"
+    if not esc.exists():
+        return
+    try:
+        S = json.loads(esc.read_text(encoding="utf-8"))
+    except ValueError:
+        return
+    dice = int(S.get("respuestas_por_acuerdo", 0) or 0) +         int(S.get("respuestas_por_consenso", 0) or 0)
+    if dice <= estado["celdas_con_juicio"]:
+        return
+    esc.write_text(json.dumps({
+        "modo": "sin evaluar",
+        "evaluados": 0,
+        "celdas_con_juicio": estado["celdas_con_juicio"],
+        "celdas_pendientes": estado["celdas_pendientes"],
+        "nota": ("Regenerado por build_rob_table.py: el fichero afirmaba %d "
+                 "juicios que el CSV adjudicado no tiene. Lo escribe "
+                 "ingest_rob.py cuando hay evaluación firmada." % dice),
+    }, ensure_ascii=False, indent=2), encoding="utf-8")
+    print("AVISO: %s afirmaba %d juicios y el CSV tiene %d. Regenerado."
+          % (esc.name, dice, estado["celdas_con_juicio"]))
 
 
 def escribe_otros(estado):
@@ -253,6 +286,20 @@ def escribe_otros(estado):
            "celdas": estado["celdas_totales"],
            "faltan": estado["celdas_pendientes"],
            "brazos": 103}
+    # Metodos del propio manuscrito de la revista: mismo mecanismo.
+    met = ROOT / "paper" / "manuscrito_JSR_final.md"
+    s = met.read_text(encoding="utf-8")
+    i, j = s.find(RB.JSR_MET_INI), s.find(RB.JSR_MET_FIN)
+    if i >= 0 and j > i:
+        cuerpo = (RB.JSR_MET % dict(
+            ctx, estado=(RB.JSR_MET_HECHO if estado["completa"]
+                         else RB.JSR_MET_PENDIENTE % ctx)))
+        met.write_text(s[:i] + RB.JSR_MET_INI + "\n\n" + cuerpo + "\n\n" + s[j:],
+                       encoding="utf-8")
+        print("   Métodos de %s" % met.name)
+    else:
+        print("AVISO: no encuentro el bloque de Métodos en %s" % met.name)
+
     for rel, ini, fin, comun, pendiente, hecho in RB.BLOQUES:
         p = ROOT / rel
         if not p.exists():
@@ -339,6 +386,7 @@ def main():
     }
     ESTADO.write_text(json.dumps(estado, ensure_ascii=False, indent=2),
                       encoding="utf-8")
+    reconcilia_escalares(estado)
     escribe_manuscrito(estado, evaluables, orden, titulo, J)
 
     print("comparativos con diseño adjudicado: %d  (evaluables %d, sin texto %d)"

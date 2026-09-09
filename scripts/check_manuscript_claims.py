@@ -185,7 +185,7 @@ AFIRMACIONES = [
     # tanto con la evaluacion pendiente como terminada. Estuvo anclado en el
     # aviso de PENDIENTE, que desaparece al completarse: al ingerir los 82
     # juicios el comprobador fallaba por una frase que ya no debia existir.
-    (JSR, "La Tabla 5 recoge los {sesgo_celdas_totales} juicios por dominio"),
+    (JSR, "La Tabla 5 lleva {sesgo_celdas_totales} juicios de dominio"),
     # Del resumen se ancla el trozo que sobrevive a las tres redacciones
     # --pendiente, terminada y terminada por consenso--, que es el alcance.
     (JSR, "los {sesgo_evaluables} comparativos con texto completo (RoB 2, ROBINS-I)"),

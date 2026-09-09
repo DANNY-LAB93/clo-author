@@ -138,3 +138,53 @@ BLOQUES = [
     ("paper/manuscript_systematic_review_en.md", EN_INI, EN_FIN,
      EN_COMUN, EN_PENDIENTE, EN_HECHO),
 ]
+
+
+# --- Metodos del manuscrito de la revista ------------------------------------
+# El concejo del 2026-09-07 lo cazo: estos parrafos estaban en pasado --"se
+# evaluo", "los juicios se emitieron", "los dos autores evaluaron cada dominio
+# con el articulo delante"-- sobre 82 juicios que no existen. El manuscrito se
+# contradecia consigo mismo tres veces: el resumen decia "esta en evaluacion",
+# Metodos decia "se emitieron" y una nota entre corchetes decia que no. Ahora
+# el tiempo verbal sale del estado, como todo lo demas.
+
+JSR_MET_INI = "### Evaluación del riesgo de sesgo"
+JSR_MET_FIN = "### Síntesis"
+
+JSR_MET = (
+    "El riesgo de sesgo se evalúa únicamente en los estudios con diseño "
+    "comparativo, que son los únicos capaces de sostener una afirmación de "
+    "eficacia relativa, y solo en aquellos cuyo texto completo se obtuvo. El "
+    "diseño que determina el instrumento es el adjudicado sobre el artículo, no "
+    "el que declara el resumen. Los ensayos aleatorizados se evalúan con RoB 2 "
+    "(11), y los ensayos no aleatorizados y las cohortes con ROBINS-I (12).\n\n"
+    "La evaluación se emite **a nivel de dominio**: un juicio por cada dominio "
+    "del instrumento, con las categorías literales de cada herramienta, sin "
+    "responder las preguntas de señalización que RoB 2 utiliza para derivar el "
+    "juicio de dominio mediante su algoritmo. Es una simplificación deliberada, "
+    "acorde con una revisión descriptiva sin estimación agrupada, y se declara "
+    "aquí para que no se atribuya a esta evaluación una reproducibilidad "
+    "algorítmica que no tiene. ROBINS-I se responde por dominio en su "
+    "formulación original, de modo que en su caso no hay simplificación "
+    "alguna.\n\n"
+    "**Los juicios se emiten por consenso y no por duplicado independiente.** "
+    "Los dos autores evalúan cada dominio con el artículo delante y acuerdan un "
+    "único juicio, registrando la frase del texto en que se apoyan. A "
+    "diferencia de la extracción de datos, que sí se realizó por duplicado e "
+    "independientemente, esta evaluación no admite una medida de concordancia "
+    "entre revisores, y no se reporta ninguna. La limitación se recoge en su "
+    "sección.%(estado)s\n\n"
+    "Los reportes de caso y las series de casos no se evalúan con instrumento "
+    "formal, por decisión y no por imposibilidad: carecen de grupo de "
+    "comparación, de asignación y de seguimiento estructurado, y aplicarles una "
+    "herramienta construida sobre esos tres supuestos produce un riesgo alto "
+    "uniforme que informa sobre el instrumento y no sobre el estudio (13). Sus "
+    "limitaciones metodológicas se describen de forma narrativa en los "
+    "Resultados.")
+
+JSR_MET_PENDIENTE = (
+    "\n\n**La evaluación está en curso: faltan %(faltan)d de los %(celdas)d "
+    "juicios.** Mientras falte alguno, esta revisión no reporta riesgo de "
+    "sesgo, y ningún indicador derivado del diseño lo sustituye.")
+
+JSR_MET_HECHO = ""
