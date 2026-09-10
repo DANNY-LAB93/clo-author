@@ -177,6 +177,10 @@ AFIRMACIONES = [
     # cuatro exclusiones por idioma (IDI) son justo las que bajaron Rusia de 7 a 3,
     # y el parrafo no se recalculo. Se ancla el recuento que mas se cita.
     (JSR, "No consta en {procedencia_no_declarada} de los {estudios_extraibles} estudios"),
+    # PRISMA 24c: las dos enmiendas y su efecto. Faltaban enteras en el
+    # manuscrito de la revista, que declaraba CERO donde el maestro declara DOS.
+    (JSR, "Excluyó **{estudios_eliminados_por_idioma} estudios completos** —el corpus pasó de {estudios_antes_de_la_enmienda} a {estudios_antes_de_releer}—, y la pérdida no fue uniforme: {comparativos_perdidos_por_idioma} de ellos tenían diseño comparativo y {ecas_perdidos_por_idioma} eran ensayos aleatorizados"),
+    (JSR, "extendida a los {texto_completo_no_obtenido} que siguen sin texto, el corpus caería de {estudios} a {corpus_si_se_excluye_lo_no_recuperado} estudios, los comparativos de {estudios_comparativos} a {comparativos_si_se_excluye_lo_no_recuperado} y los ensayos aleatorizados de {ecas} a {ecas_si_se_excluye_lo_no_recuperado}"),
     # El riesgo de sesgo simplificado: alcance y numero de celdas. Si manana se
     # consigue el texto del ECA que falta, o se readjudica un diseno, estas
     # frases dejan de ser ciertas y aqui salta.

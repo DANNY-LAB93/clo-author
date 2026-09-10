@@ -226,13 +226,17 @@ def v1_prisma(S):
     tabla(d, ["Ítem", "Elemento", "Qué exige", "Estado", "Dónde está"],
           [(a, b, c, e, f) for a, b, c, e, f in ITEMS],
           [1.4, 3.2, 3.8, 2.4, 6.2])
-    est = collections.Counter(i[3].split()[0] for i in ITEMS)
+    # El recuento agrupaba por la PRIMERA PALABRA del veredicto, y "NO CUMPLE"
+    # y "NO APLICA" empiezan las dos por "NO": los items que no aplican se le
+    # presentaban al editor como incumplidos, y la fila "NO APLICA" salia
+    # siempre en cero. Se agrupa por el veredicto entero, normalizando solo el
+    # parentesis de "CUMPLE (declarado)".
+    est = collections.Counter(i[3].split(" (")[0] for i in ITEMS)
     d.add_heading("Resumen del estado", level=2)
-    for k in ("CUMPLE", "PARCIAL", "NO", "NO APLICA"):
+    for k in ("CUMPLE", "PARCIAL", "NO CUMPLE", "NO APLICA"):
         n = est.get(k, 0)
         if n:
-            d.add_paragraph("%s: %d ítems" % (
-                {"NO": "NO CUMPLE"}.get(k, k), n), style="List Bullet")
+            d.add_paragraph("%s: %d ítems" % (k, n), style="List Bullet")
     nota(d, "Los ítems marcados NO CUMPLE dependen todos de la extracción por "
             "duplicado, que está en curso. Se declaran como limitación en §4.4 "
             "del manuscrito en lugar de presentarse como cumplidos.")
