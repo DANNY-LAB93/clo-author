@@ -1,0 +1,69 @@
+﻿id,ambito,comprobacion,valor_reportado,valor_recalculado,diferencia,estado
+F1,Flujo,23 057 - 5 928 duplicados = informes unicos,17129.0,17129.0,0.0,OK
+F2,Flujo,17 129 - 3 235 (reglas etapa 1) = titulos cribados,13894.0,13894.0,0.0,OK
+F3,Flujo,13 894 - 13 434 excluidos = avanzan a resumen,460.0,460.0,0.0,OK
+F4,Flujo,460 - 227 excluidos = informes a texto completo,233.0,233.0,0.0,OK
+F5,Flujo,154 estudios de 1 informe + 30 multi-informe = estudios,184.0,184.0,0.0,OK
+F6,Flujo,informes atribuidos a los 30 estudios multi-informe,,79.0,,derivado
+F7,Flujo,121 articulos + 3 solo resumen de congreso = recuperables,124.0,124.0,0.0,OK
+F8,Flujo,184 - 124 = estudios solo con ficha de registro,60.0,60.0,0.0,OK
+F9,Flujo,60/184 = 'casi uno de cada tres' sin publicacion (%),,32.6087,,derivado
+L1,Idioma,219 - 184 estudios = perdida por idioma,35.0,35.0,0.0,OK
+L2,Idioma,159 - 124 recuperables = perdida por idioma,35.0,35.0,0.0,OK
+L3,Idioma,41 - 23 comparativos = comparativos perdidos (resumen dice 18),18.0,18.0,0.0,OK
+L4,Idioma,21 - 16 aleatorizados = aleatorizados perdidos,,5.0,,derivado
+L5,Idioma,% comparativos entre los 35 excluidos por idioma,,51.4286,,derivado
+L6,Idioma,% comparativos entre los 124 retenidos,18.5,18.5484,0.0484,OK
+T1a,Tabla 1,suma de los 7 disenos = 124,124.0,124.0,0.0,OK
+T1%Reporte de cas,Tabla 1,Reporte de caso único: 49/124 (%),39.5,39.5161,0.0161,OK
+T1%Serie de casos,Tabla 1,Serie de casos: 19/124 (%),15.3,15.3226,0.0226,OK
+T1%No declarado e,Tabla 1,No declarado en el resumen: 16/124 (%),12.9,12.9032,0.0032,OK
+T1%Ensayo aleator,Tabla 1,Ensayo aleatorizado: 16/124 (%),12.9,12.9032,0.0032,OK
+T1%Cohorte prospe,Tabla 1,Cohorte prospectiva: 13/124 (%),10.5,10.4839,-0.0161,OK
+T1%Ensayo no alea,Tabla 1,Ensayo no aleatorizado: 7/124 (%),5.6,5.6452,0.0452,OK
+T1%Cohorte retros,Tabla 1,Cohorte retrospectiva: 4/124 (%),3.2,3.2258,0.0258,OK
+T1b,Tabla 1,'Publicados desde 2020' 103/124 (%),83.1,83.0645,-0.0355,OK
+T1c,Tabla 1,comparativos = aleatorizado(16)+no aleatorizado(7),23.0,23.0,0.0,OK
+T1d,Tabla 1,comparativos 23/124 (%),18.5,18.5484,0.0484,OK
+T1e,Tabla 1,suma de la columna Procedencia = 124,124.0,124.0,0.0,OK
+T1f,Tabla 1,procedencia no declarada 76/124 (%),61.3,61.2903,-0.0097,OK
+T2s|Clase de resistencia (MDR/XDR/PDR),Tabla 2,Clase de resistencia (MDR/XDR/PDR): declara + no declara = 124,124.0,124.0,0.0,OK
+T2d|Clase de resistencia (MDR/XDR/PDR),Tabla 2,Clase de resistencia (MDR/XDR/PDR): declara (%),29.8,29.8387,0.0387,OK
+T2n|Clase de resistencia (MDR/XDR/PDR),Tabla 2,Clase de resistencia (MDR/XDR/PDR): no declara (%),70.2,70.1613,-0.0387,OK
+T2s|Ámbito de patógeno (solo *P. aerug,Tabla 2,Ámbito de patógeno (solo *P. aerug: declara + no declara = 124,124.0,124.0,0.0,OK
+T2d|Ámbito de patógeno (solo *P. aerug,Tabla 2,Ámbito de patógeno (solo *P. aerug: declara (%),47.6,47.5806,-0.0194,OK
+T2n|Ámbito de patógeno (solo *P. aerug,Tabla 2,Ámbito de patógeno (solo *P. aerug: no declara (%),52.4,52.4194,0.0194,OK
+T2s|Vía de administración del fago,Tabla 2,Vía de administración del fago: declara + no declara = 124,124.0,124.0,0.0,OK
+T2d|Vía de administración del fago,Tabla 2,Vía de administración del fago: declara (%),42.7,42.7419,0.0419,OK
+T2n|Vía de administración del fago,Tabla 2,Vía de administración del fago: no declara (%),57.3,57.2581,-0.0419,OK
+T2s|Modalidad (monoterapia o combinada,Tabla 2,Modalidad (monoterapia o combinada: declara + no declara = 124,124.0,124.0,0.0,OK
+T2d|Modalidad (monoterapia o combinada,Tabla 2,Modalidad (monoterapia o combinada: declara (%),29.8,29.8387,0.0387,OK
+T2n|Modalidad (monoterapia o combinada,Tabla 2,Modalidad (monoterapia o combinada: no declara (%),70.2,70.1613,-0.0387,OK
+T2s|Criterio DTR (*difficult-to-treat ,Tabla 2,Criterio DTR (*difficult-to-treat : declara + no declara = 124,124.0,124.0,0.0,OK
+T2d|Criterio DTR (*difficult-to-treat ,Tabla 2,Criterio DTR (*difficult-to-treat : declara (%),1.6,1.6129,0.0129,OK
+T2n|Criterio DTR (*difficult-to-treat ,Tabla 2,Criterio DTR (*difficult-to-treat : no declara (%),98.4,98.3871,-0.0129,OK
+R1,Texto,"80,6 % no asignable = (87 no menciona + 13 inclasificable)/124",80.6,80.6452,0.0452,OK
+R2,Texto,"suma de los porcentajes redondeados del texto (70,2 + 10,5) — el exacto (100/124) es 80,65 %; el texto suma redondeados",80.6,80.7,0.1,REDONDEO
+R3,Texto,"'10,5 % adicional' equivale a n estudios",,13.0,,derivado
+R4,Texto,clase de resistencia REALMENTE utilizable: (37-13)/124 (%),,19.3548,,derivado
+T3a,Tabla 3,91 con texto completo + 33 sin = 124,124.0,124.0,0.0,OK
+T3b,Tabla 3,91/124 = texto completo obtenido (%),73.4,73.3871,-0.0129,OK
+T3c,Tabla 3,comparativos 12+11 = 23 (coincide con Tabla 1),23.0,23.0,0.0,OK
+T3d,Tabla 3,comparativos como % de la columna 'con texto completo',13.2,13.1868,-0.0132,OK
+T3e,Tabla 3,comparativos como % de la columna 'sin texto completo',33.3,33.3333,0.0333,OK
+T3f,Tabla 3,casos unicos 40+9 = 49 (coincide con Tabla 1),49.0,49.0,0.0,OK
+T3g,Tabla 3,aleatorizados 8+8 = 16 (coincide con Tabla 1),16.0,16.0,0.0,OK
+T3h,Texto,"'la fraccion restante concentra el 47,8 % de los comparativos' = 11/23",47.8,47.8261,0.0261,OK
+T3i,Tabla 3,pacientes declarados 1 042 + 489 = total,,1531.0,,derivado
+T3j,Tabla 3,% de pacientes en la fraccion sin texto completo,,31.9399,,derivado
+T4r|ORG,Tabla 4,ORG: por titulo + por resumen = total,3087.0,3087.0,0.0,OK
+T4r|REV,Tabla 4,REV: por titulo + por resumen = total,2867.0,2867.0,0.0,OK
+T4r|SEC,Tabla 4,SEC: por titulo + por resumen = total,89.0,89.0,0.0,OK
+T4r|LAB,Tabla 4,LAB: por titulo + por resumen = total,4078.0,4078.0,0.0,OK
+T4r|VET,Tabla 4,VET: por titulo + por resumen = total,834.0,834.0,0.0,OK
+T4r|OFF,Tabla 4,OFF: por titulo + por resumen = total,2671.0,2671.0,0.0,OK
+T4r|IDI,Tabla 4,IDI: por titulo + por resumen = total,35.0,35.0,0.0,OK
+T4c1,Tabla 4,columna 'Por titulo' suma 13 434 (= excluidos por titulo del flujo),13434.0,13434.0,0.0,OK
+T4c2,Tabla 4,columna 'Por resumen' suma 227 (= excluidos por resumen del flujo),227.0,227.0,0.0,OK
+T4c3,Tabla 4,total general 13 434 + 227,13661.0,13661.0,0.0,OK
+T4c4,Tabla 4,"IDI (enmienda de idioma) = 35 informes, coincide con parrafo 70",35.0,35.0,0.0,OK

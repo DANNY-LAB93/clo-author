@@ -1,0 +1,52 @@
+--- a/scripts/build_jsr_submission.py
++++ b/scripts/build_jsr_submission.py
+@@ -33,8 +33,17 @@
+ ES = ROOT / "paper" / "manuscrito_revision_sistematica.md"
+ EN = ROOT / "paper" / "manuscript_systematic_review_en.md"
+ BIB = ROOT / "Bibliography_base.bib"
++SUPLEMENTOS = ROOT / "verificables revisión sistemática"
+ DESTINO_POR_DEFECTO = pathlib.Path.home() / "Desktop" / "Envio_JSR_Fagoterapia_Pseudomonas"
+ 
++# Lista blanca de anexos: cualquier fichero cuyo nombre empiece por S<dígito>_ o por 00_.
++# Se eligió inclusión por patrón, y no exclusión por lista, para que un anexo nuevo entre
++# solo en el paquete sin tocar este script. Lo que queda fuera por construcción son los
++# cuatro renderizados del manuscrito (manuscrito_es.docx, manuscript_en.docx y sus dos PDF)
++# y la subcarpeta «figuras y tablas», que no son material suplementario y que ya viajan en
++# el paquete por su propio canal.
++PATRON_ANEXO = re.compile(r"^(S\d{1,2}_|00_)")
++
+ try:
+     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+ except Exception:
+@@ -409,6 +418,31 @@
+                 n += 1
+         print("  %-42s %d ficheros" % (sub + "/", n))
+ 
++    # Material suplementario. Antes de este paso el script no copiaba ningún anexo, y los
++    # tres que aparecían en el paquete habían entrado por una copia manual ajena al canal.
++    if not SUPLEMENTOS.is_dir():
++        print("  AVISO: no existe %s; el paquete sale sin anexos" % SUPLEMENTOS.name)
++    else:
++        dst = destino / "suplementos"
++        dst.mkdir(exist_ok=True)
++        copiados = []
++        for f in sorted(SUPLEMENTOS.iterdir()):
++            if f.is_file() and PATRON_ANEXO.match(f.name):
++                shutil.copy2(f, dst / f.name)
++                copiados.append(f.name)
++        print("  %-42s %d ficheros" % ("suplementos/", len(copiados)))
++
++        # Comprobación de cobertura: cada anexo citado en el manuscrito debe viajar en el
++        # paquete. Se contrasta contra el texto autoritativo, no contra una lista fija, para
++        # que la comprobación siga siendo válida si el manuscrito cambia de anexos.
++        citados = set(re.findall(r"\bS(\d{1,2})\b", ES.read_text(encoding="utf-8")))
++        presentes = {m.group(1) for m in
++                     (re.match(r"^S(\d{1,2})_", n_) for n_ in copiados) if m}
++        faltan = sorted(citados - presentes, key=int)
++        if faltan:
++            print("  AVISO: el manuscrito cita anexos que no se copiaron: %s"
++                  % ", ".join("S" + s for s in faltan))
++
+     print("\nescrito en %s" % destino)
+     return 0
+ 

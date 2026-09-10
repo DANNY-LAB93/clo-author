@@ -1,0 +1,5 @@
+﻿hipotesis,tabla,medida,valor,p,prueba
+Los disenos comparativos estan sobrerrepresentados en la fraccion SIN texto completo,comparativos: 12/91 con texto vs 11/33 sin texto,odds ratio (con/sin),0.304,0.0174,Fisher exacto bilateral
+Los ensayos aleatorizados estan sobrerrepresentados en la fraccion SIN texto completo,aleatorizados: 8/91 con texto vs 8/33 sin texto,odds ratio (con/sin),0.301,0.0336,Fisher exacto bilateral
+Los reportes de caso unico estan sobrerrepresentados en la fraccion CON texto completo,casos unicos: 40/91 con texto vs 9/33 sin texto,odds ratio (con/sin),2.092,0.102,Fisher exacto bilateral
+La enmienda de idioma elimino comparativos de forma desproporcionada,comparativos: 18/35 excluidos por idioma vs 23/124 retenidos,odds ratio (excluidos/retenidos),4.65,0.000295,Fisher exacto bilateral

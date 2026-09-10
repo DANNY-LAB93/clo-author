@@ -1,0 +1,104 @@
+﻿nct,fago_terapeutico,motivo_adjudicacion,estado,fase,reclutamiento,inicio,fin_primario,meses_desde_fin,publicado,pmids,patrocinador,condiciones
+NCT05182749,True,fago en titulo o intervencion,ACTIVE_NOT_RECRUITING,PHASE1;PHASE2,52.0,2023-02-23,2024-12-09,20.5,False,,"Intralytix, Inc.",Shigellosis
+NCT06827041,True,fago en titulo o intervencion,ACTIVE_NOT_RECRUITING,PHASE1,1.0,2024-02-22,2025-02,18.3,False,,Ottawa Hospital Research Institute,Periprosthetic Joint Infection
+NCT06456424,True,fago en titulo o intervencion,ACTIVE_NOT_RECRUITING,PHASE1;PHASE2,1.0,2024-11-20,2025-11,9.3,False,,University of Calgary,Prosthetic Joint Infections of Hip;Staphylococcus Aureus Infection
+NCT04682964,True,fago en titulo o intervencion,ACTIVE_NOT_RECRUITING,PHASE3,128.0,2020-10-02,2025-12-31,7.8,False,,"Tashkent State Medical University (Tashkent Pediatric Medical Institute), Uzbekistan",Acute Tonsillitis
+NCT06814756,True,fago en titulo o intervencion,ACTIVE_NOT_RECRUITING,PHASE1;PHASE2,1.0,2025-03-26,2026-03,5.4,False,,University of Calgary,Prosthetic Joint Infections of Hip
+NCT03808103,True,fago en titulo o intervencion,ACTIVE_NOT_RECRUITING,PHASE1;PHASE2,30.0,2019-05-01,2026-06-01,2.8,False,,"Intralytix, Inc.",Crohn Disease
+NCT06798168,True,fago en titulo o intervencion,AVAILABLE,,,,,,False,,Ottawa Hospital Research Institute,Joint Infection
+NCT00089180,True,fago en titulo o intervencion,COMPLETED,PHASE2,100.0,2004-03,2007-01,235.3,False,,National Cancer Institute (NCI),Actinic Keratosis;Basal Cell Carcinoma of the Skin;Recurrent Skin Cancer;Squamous Cell Carcinoma of the Skin
+NCT00663091,True,fago en titulo o intervencion,COMPLETED,PHASE1,64.0,2006-09,2008-05,219.3,False,,Southwest Regional Wound Care Center,Venous Leg Ulcers
+NCT01818206,True,fago en titulo o intervencion,COMPLETED,NA,59.0,2012-02,2012-04,172.3,False,,"University Hospital, Montpellier",Cystic Fibrosis
+NCT02757755,True,fago en titulo o intervencion,COMPLETED,PHASE1,12.0,2016-05,2016-08,120.3,False,,"Armata Pharmaceuticals, Inc.",Healthy Volunteers
+NCT03269617,True,fago en titulo o intervencion,COMPLETED,NA,43.0,2016-10-01,2017-05-30,110.9,False,,Colorado State University,"Gastrointestinal Disorder, Functional"
+NCT03140085,True,fago en titulo o intervencion,COMPLETED,PHASE2;PHASE3,97.0,2017-06-02,2018-12-14,92.4,True,32949500;28950849,Balgrist University Hospital,Intravesical Bacteriophage Treatment for Urinary Tract Infections
+NCT04511221,True,fago en titulo o intervencion,COMPLETED,NA,93.0,2018-10-01,2019-10-31,81.8,False,,Colorado State University,Mild Gastrointestinal Symptoms in Healthy Adults
+NCT04191148,True,fago en titulo o intervencion,COMPLETED,PHASE1,36.0,2019-12-30,2020-11-19,69.2,True,33310655,Locus Biosciences,Urinary Tract Infections
+NCT04737876,True,"producto de fago con nombre comercial, confirmado en la ficha",COMPLETED,PHASE1,18.0,2020-10-28,2020-12-21,68.1,False,,"BiomX, Inc.",Healthy Volunteers
+NCT04935892,True,fago en titulo o intervencion,COMPLETED,NA,34.0,2020-08-01,2021-04-20,64.2,True,35997135,Louis Stokes VA Medical Center,"Transmission, Other/Miscellaneous"
+NCT05498363,True,fago en titulo o intervencion,COMPLETED,,100.0,2008-01-01,2021-12-31,55.8,True,38834776,Queen Astrid Military Hospital,Bacterial Infections
+NCT04325685,True,fago en titulo o intervencion,COMPLETED,NA,60.0,2020-01-01,2021-12-31,55.8,False,,Northern State Medical University,Trauma Injury;Brain Injuries;Abdominal Sepsis;Pancreatitis;Meningitis;Encephalitis;Seizures;Acute Respiratory Distress Syndrome
+NCT04803708,True,fago en titulo o intervencion,COMPLETED,PHASE1;PHASE2,20.0,2021-03-22,2022-08-07,48.6,True,39740667,"Technophage, SA",Diabetic Foot Ulcer;Pseudomonas Aeruginosa Infection;Staphylococcus Aureus Infection;Acinetobacter Infection
+NCT04596319,True,fago en titulo o intervencion,COMPLETED,PHASE1;PHASE2,29.0,2020-12-22,2022-12-14,44.4,False,,"Armata Pharmaceuticals, Inc.",Cystic Fibrosis;Pseudomonas Aeruginosa;Pseudomonas;Lung Infection;Lung Infection Pseudomonal
+NCT05750433,True,fago en titulo o intervencion,COMPLETED,NA,120.0,2021-10-01,2022-12-23,44.1,False,,Colorado State University,Gastrointestinal Dysfunction
+NCT04684641,True,fago en titulo o intervencion,COMPLETED,PHASE1;PHASE2,8.0,2021-03-29,2023-05-26,39.0,True,38280761;36344073,Yale University,Cystic Fibrosis
+NCT05010577,True,fago en titulo o intervencion,COMPLETED,PHASE1;PHASE2,43.0,2022-06-21,2024-03-10,29.5,True,40593506;38280761;36344073,"BiomX, Inc.",Chronic Pseudomonas Aeruginosa Infection;Cystic Fibrosis
+NCT05272566,True,fago en titulo o intervencion,COMPLETED,,38.0,2022-04-01,2024-03-20,29.2,True,41051016,"Rigshospitalet, Denmark",Feeding Patterns;Microbial Colonization
+NCT05616221,True,fago en titulo o intervencion,COMPLETED,PHASE2,48.0,2023-01-10,2024-07-17,25.3,False,,"Armata Pharmaceuticals, Inc.",Non-cystic Fibrosis Bronchiectasis;Pseudomonas Aeruginosa;Lung Infection
+NCT05184764,True,fago en titulo o intervencion,COMPLETED,PHASE1;PHASE2,56.0,2022-04-26,2024-11-07,21.6,False,,"Armata Pharmaceuticals, Inc.",Bacteremia;Staphylococcus Aureus;Staphylococcus Aureus Bacteremia;Bacteremia Staph;Bacteremia Due to Staphylococcus Aureus
+NCT05453578,True,fago en titulo o intervencion,COMPLETED,PHASE1;PHASE2,73.0,2022-10-03,2025-04-10,16.5,True,36578069,National Institute of Allergy and Infectious Diseases (NIAID),Bacterial Disease Carrier;Cystic Fibrosis
+NCT05948592,True,fago en titulo o intervencion,COMPLETED,PHASE2,76.0,2023-11-08,2025-10-30,9.9,False,,"Technophage, SA",Diabetic Foot Infection
+NCT07589166,True,fago en titulo o intervencion,COMPLETED,,40.0,2025-09-09,2026-03-01,5.8,False,,North Carolina State University,Terpene Synthases;Carotenoid Modifying Enzymes
+NCT00001540,True,fago en titulo o intervencion,COMPLETED,,52.0,1996-04,,,False,,National Institute of Allergy and Infectious Diseases (NIAID),HIV Infections
+NCT00001145,True,fago en titulo o intervencion,COMPLETED,PHASE2,5.0,1999-10,,,False,,National Institute of Allergy and Infectious Diseases (NIAID),Immunoproliferative Disorder
+NCT00006066,True,fago en titulo o intervencion,COMPLETED,PHASE1,92.0,,,,False,,National Institute of Allergy and Infectious Diseases (NIAID),HIV Infections
+NCT06262282,True,fago en titulo o intervencion,ENROLLING_BY_INVITATION,,10.0,2024-02-05,2026-12-31,-4.2,False,,National Jewish Health,Cystic Fibrosis;Nontuberculous Mycobacterial Lung Disease;Nontuberculous Mycobacterium Infection;Mycobacterium Infections;Mycobacterium; Pulmonary
+NCT05314426,True,fago en titulo o intervencion,ENROLLING_BY_INVITATION,,100.0,2022-04-19,2027-04,-7.6,False,,Mayo Clinic,Bacteriophage Therapy
+NCT07228702,True,fago en titulo o intervencion,ENROLLING_BY_INVITATION,PHASE1,1.0,2026-01-11,2027-10,-13.6,False,,Vancouver Coastal Health,Non-Tuberculous Mycobacterial (NTM) Pneumonia;Mycobacterium Abscessus Infection
+NCT07619924,True,fago en titulo o intervencion,ENROLLING_BY_INVITATION,EARLY_PHASE1,150.0,2025-01-15,2027-10-31,-14.2,False,,First Affiliated Hospital Xi'an Jiaotong University,Phage Therapy;Bacteriophage Therapy;Skin and Soft Tissue Infections
+NCT06750588,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE1,12.0,2025-11-05,2026-04,4.4,False,,Nterica Bio inc,Alcohol-Associated Hepatitis
+NCT07382271,True,fago en titulo o intervencion,NOT_YET_RECRUITING,NA,6.0,2026-02,2026-06,2.4,False,,The Affiliated Nanjing Drum Tower Hospital of Nanjing University Medical School,Urinary Tract Infections;Urinary Tract Infections Caused by Drug-resistant Bacteria
+NCT06942624,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE1;PHASE2,1.0,2025-05,2026-06,2.4,False,,Orthopaedic Innovation Centre,Periprosthetic Joint Infection
+NCT06656572,True,fago en titulo o intervencion,NOT_YET_RECRUITING,NA,120.0,2024-12-01,2026-09-01,-0.2,False,,Rady Pediatric Genomics & Systems Medicine Institute,Catatonia
+NCT06992726,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE4,88.0,2025-08-01,2026-12-01,-3.2,False,,Weiwei Ma,Obesity;Mild Cognitive Impairment
+NCT07280598,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE1,30.0,2025-12-31,2026-12-31,-4.2,False,,"University of California, San Diego",CF - Cystic Fibrosis;Klebsiella Pneumoniae Infection;E Coli Infections;Staphylococcus Aureus Infection;Achromobacter;Stenotrophomonas Maltophilia Infection
+NCT07461337,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE1;PHASE2,1.0,2026-03,2027-03,-6.6,False,,University of Calgary,Prosthetic Joint Infections of Hip;Bacteriophage Therapy
+NCT07429162,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE1,1.0,2026-07-02,2027-07-02,-10.2,False,,Alberta Health services,Mycobacterium Abscessus Infection;Bacteriophage Therapy;Pulmonary Disease
+NCT07698002,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE2;PHASE3,10.0,2026-07-02,2027-08-01,-11.2,False,,Ottawa Hospital Research Institute,Periprosthetic Infection
+NCT06605651,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE2,100.0,2026-07,2028-03,-18.6,False,,Phagenix,Hip Prosthesis Infection;Knee Prosthesis Infection
+NCT07202234,True,fago en titulo o intervencion,NOT_YET_RECRUITING,NA,248.0,2025-11-01,2028-05-31,-21.2,False,,Chinese PLA General Hospital,VAP - Ventilator Associated Pneumonia
+NCT02664740,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE1;PHASE2,60.0,2026-09-01,2028-11,-26.7,False,,Centre Hospitalier Universitaire de Nīmes,Diabetic Foot;Staphylococcal Infections
+NCT07612605,True,fago en titulo o intervencion,NOT_YET_RECRUITING,EARLY_PHASE1,250.0,2026-06-01,2028-12-31,-28.2,False,,Chinese PLA General Hospital,Pneumonia
+NCT07338123,True,fago en titulo o intervencion,NOT_YET_RECRUITING,EARLY_PHASE1,240.0,2026-02-01,2028-12-31,-28.2,False,,Chinese PLA General Hospital,Pneumonia
+NCT07240181,True,fago en titulo o intervencion,NOT_YET_RECRUITING,,40.0,2025-12-01,2029-12-31,-40.2,False,,Andreas Munk Petersen,IBD (Inflammatory Bowel Disease);Crohns Disease;Colitis Ulcerative
+NCT07533292,True,fago en titulo o intervencion,NOT_YET_RECRUITING,PHASE3,100.0,2026-04-05,2029-12-31,-40.2,False,,"Second Affiliated Hospital, Zhejiang University, School of Medicine",Orthopedic;Implant Infection
+NCT04636554,True,fago en titulo o intervencion,NO_LONGER_AVAILABLE,,,,,,False,,"Adaptive Phage Therapeutics, Inc.",Covid19;Bacteremia;Septicemia;Acinetobacter Baumannii Infection;Pseudomonas Aeruginosa Infection;Staph Aureus Infection
+NCT03395743,True,fago en titulo o intervencion,NO_LONGER_AVAILABLE,,,,,,False,,"Armata Pharmaceuticals, Inc.",
+NCT03395769,True,fago en titulo o intervencion,NO_LONGER_AVAILABLE,,,,,,False,,"Armata Pharmaceuticals, Inc.",
+NCT04724603,True,fago en titulo o intervencion,RECRUITING,,25.0,2021-02-01,2022-08-01,48.8,False,,Hospices Civils de Lyon,Bone and Joint Infection;Prosthetic Joint Infection
+NCT04650607,True,fago en titulo o intervencion,RECRUITING,,100.0,2022-05-09,2023-10-09,34.6,False,,Hospices Civils de Lyon,Prosthetic Joint Infection;Severe Infection
+NCT06290557,True,fago en titulo o intervencion,RECRUITING,PHASE1,52.0,2024-07-10,2025-07-01,13.8,False,,University Hospital Tuebingen,Staphylococcus Aureus
+NCT05457140,True,fago en titulo o intervencion,RECRUITING,NA,15.0,2022-10-10,2025-08,12.4,False,,Rady Pediatric Genomics & Systems Medicine Institute,Psychosis
+NCT07212400,True,fago en titulo o intervencion,RECRUITING,,4.0,2025-10-16,2025-11-16,9.3,False,,"Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement",General Population (no Specific Condition or Disease)
+NCT05272579,True,fago en titulo o intervencion,RECRUITING,EARLY_PHASE1,20.0,2023-11-07,2025-12-31,7.8,False,,"Rigshospitalet, Denmark",Necrotizing Enterocolitis;Microbial Substitution
+NCT06998043,True,fago en titulo o intervencion,RECRUITING,PHASE2,63.0,2025-07-02,2026-03,5.4,False,,BiomX Ltd,Chronic Pseudomonas Aeruginosa Infection;Cystic Fibrosis (CF)
+NCT06938867,True,fago en titulo o intervencion,RECRUITING,PHASE1;PHASE2,24.0,2025-02-25,2026-04-01,4.8,False,,SNIPR Biome Aps.,E Coli Infections;Allogenic Transplant Patients
+NCT05488340,True,fago en titulo o intervencion,RECRUITING,PHASE2,318.0,2022-07-13,2026-06,2.4,False,,Locus Biosciences,Urinary Tract Infections
+NCT06409819,True,fago en titulo o intervencion,RECRUITING,PHASE1;PHASE2,32.0,2025-06-15,2026-10-01,-1.2,False,,"University of California, San Diego","Urinary Tract Infection, Recurrent"
+NCT07492771,True,fago en titulo o intervencion,RECRUITING,PHASE1,18.0,2026-07-25,2026-12,-3.6,False,,"MicrobiotiX Co., Ltd",Pneumonia - Bacterial;Pseudomonas Aeruginosa Infection
+NCT06559618,True,fago en titulo o intervencion,RECRUITING,PHASE1,30.0,2025-02-03,2027-09,-12.6,False,,Barbara Trautner,Bacteriuria;Spinal Cord Injuries;Asymptomatic Bacteriuria;Escherichia Coli
+NCT07275905,True,fago en titulo o intervencion,RECRUITING,PHASE1,12.0,2026-08-01,2028-01,-16.7,False,,Ghady Haidar,Cystic Fibrosis (CF);Achromobacter Infection
+NCT05883995,True,fago en titulo o intervencion,RECRUITING,,1500.0,2023-02-01,2028-02-01,-17.2,False,,Hospices Civils de Lyon,Bone Infection
+NCT06870409,True,fago en titulo o intervencion,RECRUITING,PHASE3,30.0,2025-02-05,2028-02-05,-17.3,False,,University Clinical Hospital na V.V.Vinogradov (branch of RUDN university na Patrice Lumumba),"Endocarditis, Bacterial"
+NCT07076238,True,fago en titulo o intervencion,RECRUITING,,100.0,2025-06-25,2030-06-25,-46.0,False,,NYU Langone Health,Nontuberculous Mycobacterial Lung Disease
+NCT04923958,True,fago en titulo o intervencion,RECRUITING,NA,26436.0,2021-04-14,2031-05-31,-57.1,False,,"University of California, San Francisco",Tuberculosis
+NCT06185920,True,fago en titulo o intervencion,RECRUITING,,250.0,2023-02-01,2033-02-01,-77.2,False,,Hospices Civils de Lyon,Severe Infection
+NCT05715619,True,fago en titulo o intervencion,SUSPENDED,PHASE1;PHASE2,80.0,2023-10-25,2026-10-31,-2.2,False,,"Intralytix, Inc.",Vancomycin-Resistant Enterococcal Colonization
+NCT00937274,True,fago en titulo o intervencion,TERMINATED,NA,120.0,2009-08,2013-01,163.3,True,26981577,Société des Produits Nestlé (SPN),Diarrhea
+NCT03296631,True,fago en titulo o intervencion,TERMINATED,,19.0,2017-09-05,2018-12-31,91.8,False,,Institut Pasteur,Human Gut Microbiome Development
+NCT04287478,True,fago en titulo o intervencion,TERMINATED,PHASE1;PHASE2,1.0,2020-12-09,2023-02-28,41.9,False,,"Adaptive Phage Therapeutics, Inc.",Urinary Tract Infection Bacterial
+NCT05967130,True,fago en titulo o intervencion,TERMINATED,PHASE3,5.0,2023-07-01,2024-01-01,31.8,False,,Shahid Beheshti University of Medical Sciences,Urinary Tract Infections;Transplant-Related Disorder
+NCT05177107,True,fago en titulo o intervencion,TERMINATED,PHASE2,41.0,2021-11-24,2025-01-30,18.8,False,,"Adaptive Phage Therapeutics, Inc.",Osteomyelitis;Diabetic Foot Osteomyelitis
+NCT01617122,True,fago en titulo o intervencion,UNKNOWN,NA,200.0,1995-10,2015-12,128.4,False,,University of South Florida,Primary Immune Deficiency Diseases
+NCT02116010,True,fago en titulo o intervencion,UNKNOWN,PHASE1;PHASE2,,2015-07,2016-07,121.4,False,,Phagenix,Wound Infection
+NCT03009903,True,fago en titulo o intervencion,UNKNOWN,,400.0,2017-01,2017-07,109.4,False,,MBcure Ltd,Acne
+NCT03231267,True,fago en titulo o intervencion,UNKNOWN,,460.0,2018-02-12,2020-02,78.3,False,,Assistance Publique - Hôpitaux de Paris,Multiresistant Enterobacteriaceae
+NCT02957370,True,fago en titulo o intervencion,UNKNOWN,,230.0,2015-06-11,2022-04,52.4,False,,"University of California, Irvine",Urinary Bladder Neoplasms
+NCT04323475,True,fago en titulo o intervencion,UNKNOWN,PHASE1,12.0,2022-01,2023-01,43.3,False,,"Precisio Biotix Therapeutics, Inc.",Wound Infection
+NCT05537519,True,fago en titulo o intervencion,UNKNOWN,PHASE1;PHASE2,1.0,2023-05-01,2023-07-28,37.0,False,,Unity Health Toronto,Recurrent Urinary Tract Infection
+NCT04815798,True,fago en titulo o intervencion,UNKNOWN,PHASE1;PHASE2,69.0,2022-01,2023-08,36.4,False,,"Precisio Biotix Therapeutics, Inc.",Pressure Ulcer
+NCT05973721,True,fago en titulo o intervencion,UNKNOWN,NA,50.0,2023-07-01,2023-09-01,35.8,False,,Shanghai 10th People's Hospital,Pib Specific Phage;Intractable Constipation
+NCT05369104,True,fago en titulo o intervencion,UNKNOWN,PHASE2,64.0,2022-06-15,2023-12-16,32.3,False,,Phagenix,Infection of Total Hip Joint Prosthesis;Infection of Total Knee Joint Prosthesis
+NCT06524791,True,fago en titulo o intervencion,UNKNOWN,,300.0,2024-11-15,2024-11-15,21.3,False,,"Central Hospital, Nancy, France",Gastroenteritis
+NCT06368388,True,fago en titulo o intervencion,UNKNOWN,,50.0,2021-06-01,2024-12-01,20.8,False,,Universitaire Ziekenhuizen KU Leuven,Musculoskeletal Infection;Chronic Rhinosinusitis (Diagnosis);Sepsis;Pulmonary Infection;Hidradenitis Suppurativa
+NCT05618418,True,fago en titulo o intervencion,UNKNOWN,,30.0,2022-07-01,2025-01-01,19.8,False,,"Copenhagen University Hospital, Hvidovre",Alcoholic Hepatitis
+NCT05590195,True,fago en titulo o intervencion,UNKNOWN,PHASE3,50.0,2024-05-01,2025-03-01,17.8,False,,Jeremy Burton,Bacterial Vaginosis;Bacterial Infections;Bacterial Vaginosis &#X7C; Vaginal &#X7C; Microbiology;Vaginal Infection
+NCT06370598,True,fago en titulo o intervencion,UNKNOWN,PHASE1;PHASE2,15.0,2024-09,2025-05,15.4,False,,"Technophage, SA","Pneumonia, Ventilator-Associated"
+NCT06319235,True,fago en titulo o intervencion,UNKNOWN,PHASE1;PHASE2,52.0,2023-10-27,2025-12-31,7.8,False,,MB PHARMA s.r.o.,Surgical Site Infection;Staphylococcus Aureus Infection;Pseudomonas Aeruginosa Infection;Bacterial Infections;Surgical Wound Infection
+NCT00945087,True,fago en titulo o intervencion,UNKNOWN,NA,,2005-12,,,False,,Institute of Immunology and Experimental Therapy of the Polish Academy of Sciences,Bacterial Infections
+NCT06568380,True,fago en titulo o intervencion,WITHDRAWN,NA,0.0,2020-01,2020-02,78.3,False,,"Central Hospital, Nancy, France",Gastroenteritis Norovirus
+NCT04289948,True,fago en titulo o intervencion,WITHDRAWN,PHASE1;PHASE2,0.0,2019-03-01,2022-06-01,50.8,False,,University Hospitals of Derby and Burton NHS Foundation Trust,Diabetes;Diabetic Foot;Diabetic Foot Infection
+NCT04787250,True,fago en titulo o intervencion,WITHDRAWN,PHASE1;PHASE2,0.0,2022-10,2023-05,39.4,False,,"Adaptive Phage Therapeutics, Inc.",Prosthetic Joint Infection
+NCT05240300,True,"producto de fago con nombre comercial, confirmado en la ficha",WITHDRAWN,PHASE1;PHASE2,0.0,2022-05,2023-06,38.4,False,,"BiomX, Inc.",Atopic Dermatitis
+NCT05269121,True,fago en titulo o intervencion,WITHDRAWN,PHASE1;PHASE2,0.0,2022-09,2023-11,33.3,False,,"Adaptive Phage Therapeutics, Inc.",Prosthetic Joint Infection;Bacterial Infections
+NCT05269134,True,fago en titulo o intervencion,WITHDRAWN,PHASE2,0.0,2023-03-27,2025-07,13.4,False,,"Adaptive Phage Therapeutics, Inc.",Prosthetic Joint Infection

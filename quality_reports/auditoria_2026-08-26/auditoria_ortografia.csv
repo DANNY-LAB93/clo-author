@@ -1,0 +1,11 @@
+﻿fichero,linea,encontrado,esperado,contexto
+tabla_1_caracteristicas.csv,23,Belgica,Bélgica,"Belgica,2,1.6"
+tabla_1_caracteristicas.csv,26,Iran,Irán,"Iran,2,1.6"
+tabla_4_exclusiones.csv,3,Revision,Revisión,"REV,""Revision narrativa o comentario, sin datos primarios propios"",280"
+tabla_4_exclusiones.csv,4,Sintesis,Síntesis,"SEC,Sintesis secundaria (revision sistematica o scoping),84,5,89"
+tabla_4_exclusiones.csv,4,revision,revisión,"SEC,Sintesis secundaria (revision sistematica o scoping),84,5,89"
+tabla_4_exclusiones.csv,5,preclinico,preclínico,"LAB,""Trabajo de laboratorio, preclinico o de modelizacion; sin pacient"
+tabla_4_exclusiones.csv,5,modelizacion,modelización,"LAB,""Trabajo de laboratorio, preclinico o de modelizacion; sin pacient"
+tabla_4_exclusiones.csv,6,infeccion,infección,"VET,""Aislados o infeccion veterinaria, no humana"",834,0,834"
+tabla_4_exclusiones.csv,7,epidemiologia,epidemiología,"OFF,""No evalua fagoterapia en pacientes (encuesta, epidemiologia, pren"
+tabla_4_exclusiones.csv,7,evalua,evalúa,"OFF,""No evalua fagoterapia en pacientes (encuesta, epidemiologia, pren"
