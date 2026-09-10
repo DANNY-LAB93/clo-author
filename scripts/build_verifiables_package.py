@@ -142,6 +142,35 @@ def v1_prisma(S):
     d = doc_nuevo("S1. Lista de comprobación PRISMA 2020",
                   "Fagoterapia en Pseudomonas aeruginosa multirresistente. "
                   "Estado a 11 de agosto de 2026.")
+    # A DONDE APUNTAN LAS REFERENCIAS. La columna "dónde mirar" usa la
+    # numeracion del informe extendido (§2.1 a §4.4), que NO viaja en el sobre
+    # de la revista: alli va el manuscrito con secciones sin numerar. Un editor
+    # que siga "§2.7" no encuentra nada. La correspondencia se declara aqui, en
+    # vez de dejar 27 remisiones colgando.
+    d.add_heading("Cómo leer la columna «dónde mirar»", level=2)
+    d.add_paragraph(
+        "Las remisiones §1 a §4.4 corresponden al informe extendido. En el "
+        "manuscrito enviado a la revista, cuyas secciones no van numeradas, "
+        "equivalen a:")
+    for a, b in (("§1", "INTRODUCCIÓN"),
+                 ("§2.1", "METODOLOGÍA › Protocolo y reporte"),
+                 ("§2.2", "METODOLOGÍA › Criterios de elegibilidad (Tabla 1)"),
+                 ("§2.3", "METODOLOGÍA › Fuentes de información y estrategia de búsqueda"),
+                 ("§2.4", "METODOLOGÍA › Selección de los estudios"),
+                 ("§2.6", "METODOLOGÍA › Extracción de datos"),
+                 ("§2.7", "METODOLOGÍA › Evaluación del riesgo de sesgo"),
+                 ("§2.8", "METODOLOGÍA › Síntesis"),
+                 ("§2.9", "METODOLOGÍA › Enmiendas al protocolo"),
+                 ("§3.1 y §3.1.1", "RESULTADOS › Selección de los estudios (Figura 1)"),
+                 ("§3.3", "RESULTADOS › Características del cuerpo de evidencia (Tabla 2)"),
+                 ("§3.5", "RESULTADOS › Reporte de los desenlaces (Tabla 4)"),
+                 ("§3.6", "RESULTADOS › Viabilidad de la síntesis cuantitativa (Tabla 6)"),
+                 ("§4, §4.3 y §4.4", "DISCUSIÓN Y CONCLUSIONES")):
+        d.add_paragraph("%s  →  %s" % (a, b), style="List Bullet")
+    d.add_paragraph(
+        "Las tablas también se renumeran entre los dos documentos: la Tabla 1 "
+        "del manuscrito de la revista es la de criterios de elegibilidad, y la "
+        "de características del corpus es allí la Tabla 2.")
     ITEMS = [
         ("1", "Título", "Identifica el informe como revisión sistemática", "CUMPLE", "Título"),
         ("2", "Resumen estructurado", "Ver lista PRISMA for Abstracts", "CUMPLE", "Resumen"),
