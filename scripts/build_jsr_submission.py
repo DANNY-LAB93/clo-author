@@ -435,10 +435,11 @@ def escribe_leeme(destino, S, anexos):
     md.append("")
     md.append("| Fichero | Que es |")
     md.append("|---|---|")
-    md.append("| `manuscrito_JSR.docx` | **El articulo.** Times New Roman 12, carta, "
-              "RESUMEN / ABSTRACT / INTRODUCCION / DESARROLLO / METODOLOGIA / RESULTADOS "
-              "/ DISCUSION Y CONCLUSIONES / DECLARACIONES / REFERENCIAS. Citas Vancouver "
-              "numeradas. Las 4 tablas y las 2 figuras van incrustadas al final |")
+    md.append("| `manuscrito_JSR_final.docx` | **El articulo, y el unico.** Times New "
+              "Roman 12, A4, interlineado doble. RESUMEN / ABSTRACT / INTRODUCCION / "
+              "DESARROLLO / METODOLOGIA / RESULTADOS / DISCUSION Y CONCLUSIONES / "
+              "DECLARACIONES / REFERENCIAS. Citas Vancouver numeradas. Las 6 tablas y "
+              "las 2 figuras van donde el texto las cita, no en un anexo al final |")
     md.append("| `carta_de_presentacion.docx` | Carta al Comite Editorial. Declara por "
               "adelantado lo que un revisor va a preguntar |")
     md.append("| `suplementos/` | Los 14 anexos (S0 a S13), el indice y la guia, en %d "
@@ -645,10 +646,19 @@ def main():
     ]
     figuras = [(t_, r, n) for t_, r, n in figuras if r.exists()]
 
-    docx_out = destino / "manuscrito_JSR.docx"
-    escribe_docx(docx_out, bloques, meta, refs, tablas, figuras)
-    print("  %-42s %d bloques, %d refs, %d tablas, %d figuras"
-          % (docx_out.name, len(bloques), len(refs), len(tablas), len(figuras)))
+    # EL MANUSCRITO LO ESCRIBE UN SOLO GUION. Este construia el suyo desde el
+    # maestro (`manuscrito_JSR.docx`) mientras `build_jsr_docx.py` construia el
+    # de la revista (`manuscrito_JSR_final.docx`) en la misma carpeta: dos
+    # ficheros llamandose los dos "el articulo", con 2 500 palabras de
+    # diferencia, y este LEEME apuntando al que no era. Se delega.
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import build_jsr_docx
+    build_jsr_docx.main()
+    docx_out = destino / "manuscrito_JSR_final.docx"
+    viejo = destino / "manuscrito_JSR.docx"
+    if viejo.exists():
+        viejo.unlink()
+        print("  %-42s retirado: lo sustituye %s" % (viejo.name, docx_out.name))
 
     # Figuras y tablas, tal como salen del canal
     for sub, patrones in (("figuras", ("*.png", "*.pdf")), ("tablas", ("*.csv",))):

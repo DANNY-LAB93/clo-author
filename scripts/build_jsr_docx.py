@@ -201,15 +201,30 @@ def main():
 
     DEST.mkdir(parents=True, exist_ok=True)
     salida = DEST / "manuscrito_JSR_final.docx"
+    alterno = DEST / "manuscrito_JSR_final_NUEVO.docx"
     try:
         d.save(salida)
+        # El plan B de la vez anterior queda obsoleto en cuanto el bueno se
+        # escribe. Si no se retira, el sobre acumula manuscritos y adjuntar el
+        # equivocado deja de ser improbable: paso, y sobrevivio cuatro dias.
+        for sobra in [alterno] + list(DEST.glob("~$*.docx")):
+            if not sobra.exists():
+                continue
+            try:
+                sobra.unlink()
+                print("retirado %s: ya sobra" % sobra.name)
+            except OSError:
+                # Word lo tiene abierto. Se avisa y se sigue: no vale la pena
+                # tumbar la construccion del manuscrito por un residuo.
+                print("AVISO: %s sigue abierto en Word y no se pudo retirar."
+                      % sobra.name)
     except PermissionError:
         # Word bloquea el fichero mientras lo tiene abierto. Se escribe al lado
         # y se dice, en vez de morir o de dejar creer que se guardo.
-        salida = DEST / "manuscrito_JSR_final_NUEVO.docx"
+        salida = alterno
         d.save(salida)
         print("AVISO: el .docx estaba abierto en Word y no se pudo sobrescribir.")
-        print("       Cierra Word y renombra este fichero, o vuelve a ejecutar el guion.")
+        print("       Cierra Word y vuelve a ejecutar: el bueno se escribe y este se borra.")
     print("escrito %s  (%d KB)" % (salida, salida.stat().st_size // 1024))
     print("  Times New Roman 12, A4, márgenes 1\", interlineado doble, justificado")
 
