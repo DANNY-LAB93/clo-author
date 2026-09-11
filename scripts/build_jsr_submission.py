@@ -71,13 +71,48 @@ def lee_bib(ruta):
     return fuera
 
 
+# Los acentos que este .bib usa de verdad, contados sobre el fichero. La
+# version anterior solo conocia el agudo sobre vocal, la o barrada y la
+# dieresis, y dejaba pasar cinco mas: «Savovi{\'c}» salia como «Savovi\'c» en
+# la lista de referencias, con la barra invertida a la vista.
+ACENTOS = {
+    "'": {"a": "á", "e": "é", "i": "í", "o": "ó", "u": "ú", "c": "ć", "n": "ń",
+          "s": "ś", "z": "ź", "y": "ý",
+          "A": "Á", "E": "É", "I": "Í", "O": "Ó", "U": "Ú", "C": "Ć"},
+    "`": {"a": "à", "e": "è", "i": "ì", "o": "ò", "u": "ù",
+          "A": "À", "E": "È", "I": "Ì", "O": "Ò", "U": "Ù"},
+    '"': {"a": "ä", "e": "ë", "i": "ï", "o": "ö", "u": "ü",
+          "A": "Ä", "E": "Ë", "I": "Ï", "O": "Ö", "U": "Ü"},
+    "~": {"a": "ã", "n": "ñ", "o": "õ", "A": "Ã", "N": "Ñ", "O": "Õ"},
+    "^": {"a": "â", "e": "ê", "i": "î", "o": "ô", "u": "û"},
+    "c": {"c": "ç", "C": "Ç", "s": "ş", "S": "Ş"},      # cedilla: {\c c}
+    "v": {"c": "č", "s": "š", "z": "ž", "C": "Č", "S": "Š", "Z": "Ž"},  # caron
+}
+SUELTOS = {"o": "ø", "O": "Ø", "ae": "æ", "AE": "Æ", "ss": "ß",
+           "aa": "å", "AA": "Å", "l": "ł", "L": "Ł"}
+
+
 def limpia_tex(s):
     """Quita los envoltorios de LaTeX que el .bib usa para proteger mayúsculas."""
-    s = re.sub(r"\{\\'\{?([aeiouAEIOU])\}?\}", lambda m: {
-        "a": "á", "e": "é", "i": "í", "o": "ó", "u": "ú",
-        "A": "Á", "E": "É", "I": "Í", "O": "Ó", "U": "Ú"}[m.group(1)], s)
-    s = re.sub(r"\{\\o\}", "ø", s)
-    s = re.sub(r"\{\\\"\{?([aouAOU])\}?\}", r"\1", s)
+    def acento(m):
+        marca, letra = m.group(1), m.group(2)
+        return ACENTOS.get(marca, {}).get(letra, letra)
+    # El .bib escribe el mismo acento de tres formas: {\'o}, {\c{c}} y, sin
+    # llave ninguna, Gr\'egory. Las tres tienen que caer, y la ultima se
+    # escapaba: salia «Gr\'egory» con la barra a la vista en la referencia.
+    s = re.sub(r"\{\\(['`\"~^cv])\s*\{?([A-Za-z])\}?\}", acento, s)
+    s = re.sub(r"\\(['`\"~^])\s*\{?([A-Za-z])\}?", acento, s)
+    s = re.sub(r"\\([cv])\s+\{?([A-Za-z])\}?", acento, s)
+    s = re.sub(r"\{\\([a-zA-Z]{1,2})\}",
+               lambda m: SUELTOS.get(m.group(1), m.group(1)), s)
+    # Cursivas del titulo: los nombres de especie van en \textit{} y, al quitar
+    # solo las llaves, quedaba «\textitPseudomonas» pegado. Se pasa a la marca
+    # que el escritor de Word entiende.
+    s = re.sub(r"\\(?:textit|emph)\{([^{}]*)\}", r"*\1*", s)
+    s = re.sub(r"\\textbf\{([^{}]*)\}", r"**\1**", s)
+    # Comillas de TeX: ``asi'' -> "asi".
+    s = s.replace("``", "“").replace("''", "”")
+    s = s.replace("\\&", "&").replace("\\_", "_").replace("\\#", "#")
     return s.replace("{", "").replace("}", "").replace("\\%", "%")
 
 
@@ -92,6 +127,13 @@ def autores_vancouver(campo):
     partes = [a for a in partes if a.lower() not in ("others", "et al.", "et al")]
     fuera = []
     for a in partes:
+        # AUTOR CORPORATIVO. El .bib lo protege con llaves --{{World Health
+        # Organization}}-- justamente para que no se parta como un nombre de
+        # persona. Sin esto salia "Organization WH", que es un autor que no
+        # existe, en la referencia de la lista OMS 2024.
+        if a.startswith("{") and a.endswith("}"):
+            fuera.append(a[1:-1].strip())
+            continue
         if "," in a:
             ape, nom = a.split(",", 1)
         else:
@@ -107,7 +149,10 @@ def autores_vancouver(campo):
 def referencia(e):
     """Una entrada en Vancouver, como las imprime la revista."""
     trozos = []
-    a = autores_vancouver(limpia_tex(e.get("author", "")))
+    # El orden importa: `limpia_tex` borra las llaves, y son justo lo que
+    # distingue a un autor corporativo de una persona. Se limpia DESPUES de
+    # formatear, no antes.
+    a = limpia_tex(autores_vancouver(e.get("author", "")))
     if a:
         # «... et al.» ya trae su punto; anadir otro deja «et al..»
         trozos.append(a if a.endswith(".") else a + ".")
