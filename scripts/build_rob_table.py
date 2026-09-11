@@ -79,6 +79,7 @@ def dominios():
         orden[inst["clave"]] = [it["codigo"] for it in inst["items"]]
         for it in inst["items"]:
             titulo[(inst["clave"], it["codigo"])] = it["texto_es"]
+            titulo[(inst["clave"], it["codigo"], "en")] = it["texto_en"]
     return orden, titulo
 
 
@@ -143,14 +144,46 @@ EN_PROSA = {
 }
 
 
-def _enumera(trozos):
-    """['a', 'b', 'c'] -> 'a, b y c'."""
+def _enumera(trozos, y=" y "):
+    """['a', 'b', 'c'] -> 'a, b y c'. El conector tambien tiene idioma."""
     if len(trozos) == 1:
         return trozos[0]
-    return ", ".join(trozos[:-1]) + " y " + trozos[-1]
+    return ", ".join(trozos[:-1]) + y + trozos[-1]
 
 
-def resumen_prosa(evaluables, orden, titulo, J, proc):
+EN_PROSA_EN = {
+    "Bajo riesgo de sesgo": "low risk",
+    "Algunas preocupaciones": "some concerns",
+    "Alto riesgo de sesgo": "high risk",
+    "Riesgo moderado": "moderate risk",
+    "Riesgo grave": "serious risk",
+    "Riesgo crítico": "critical risk",
+    "Sin información para juzgar": "no information",
+}
+
+FRASES = {
+    "es": {"global": "De los %d estudios evaluados con %s, el juicio global es %s.",
+           "en_n": "%s en %d",
+           "peor": "El dominio que más juicios desfavorables concentra en %s%s es «%s», con %d de %d.",
+           "coletilla": " —alto riesgo en RoB 2; grave o crítico en ROBINS-I—",
+           "consenso": ("Los %d juicios se emitieron en una evaluación única acordada "
+                        "entre los dos autores; al no haber dos lecturas independientes, "
+                        "no se reporta concordancia entre revisores."),
+           "duplicado": ("Los dos revisores coincidieron en %d de los %d juicios y "
+                         "resolvieron los %d restantes por consenso.")},
+    "en": {"global": "Of the %d studies assessed with %s, the overall judgement is %s.",
+           "en_n": "%s in %d",
+           "peor": "The domain concentrating most unfavourable judgements%s in %s is “%s”, in %d of %d.",
+           "coletilla": " —high risk under RoB 2; serious or critical under ROBINS-I—",
+           "consenso": ("The %d judgements were issued in a single assessment agreed "
+                        "between the two authors; with no two independent readings, no "
+                        "inter-reviewer agreement is reported."),
+           "duplicado": ("The two reviewers agreed on %d of the %d judgements and "
+                         "resolved the remaining %d by consensus.")},
+}
+
+
+def resumen_prosa(evaluables, orden, titulo, J, proc, idioma="es"):
     """El párrafo de Resultados, escrito desde los juicios adjudicados.
 
     No se redacta a mano en el manuscrito por la misma razón que el resto de las
@@ -158,6 +191,8 @@ def resumen_prosa(evaluables, orden, titulo, J, proc):
     él o deja de ser verdad. Los juicios se enumeran de menor a mayor riesgo,
     que es el orden en que los define el instrumento, y no por frecuencia.
     """
+    F = FRASES[idioma]
+    ETQ = EN_PROSA if idioma == "es" else EN_PROSA_EN
     frases, dicho_desfavorable = [], False
     for clave, nombre in (("rob2", "RoB 2"), ("robins", "ROBINS-I")):
         estudios = [c for c in evaluables if c["instrumento"] == clave]
@@ -169,41 +204,38 @@ def resumen_prosa(evaluables, orden, titulo, J, proc):
         if not glob:
             continue
         ordenados = sorted(glob.items(), key=lambda kv: GRAVEDAD.get(kv[0], 9))
-        frases.append("De los %d estudios evaluados con %s, el juicio global es "
-                      "%s." % (len(estudios), nombre,
-                               _enumera(["%s en %d" % (EN_PROSA.get(j, j), n)
-                                         for j, n in ordenados])))
+        frases.append(F["global"] % (len(estudios), nombre,
+                      _enumera([F["en_n"] % (ETQ.get(j, j), n)
+                                for j, n in ordenados],
+                               " y " if idioma == "es" else " and ")))
         # El dominio que mas peso tiene en ese juicio, dicho por su nombre.
         peor, peor_n = None, 0
         for cod in orden[clave]:
             n = sum(1 for c in estudios
                     if GRAVEDAD.get(J.get((c["study_id"], clave, cod), ""), 0) >= 2)
             if n > peor_n:
-                peor, peor_n = titulo[(clave, cod)], n
+                peor_n = n
+                peor = titulo[(clave, cod) if idioma == "es"
+                              else (clave, cod, "en")]
         if peor and peor_n:
             # La aclaracion de que cuenta como desfavorable se da UNA vez, la
             # primera; repetirla en el segundo instrumento sobra.
-            coletilla = ("" if dicho_desfavorable else
-                         " —alto riesgo en RoB 2; grave o crítico en ROBINS-I—")
+            coletilla = "" if dicho_desfavorable else F["coletilla"]
             dicho_desfavorable = True
-            frases.append("El dominio que más juicios desfavorables concentra en "
-                          "%s%s es «%s», con %d de %d."
-                          % (nombre, coletilla, peor[0].lower() + peor[1:],
-                             peor_n, len(estudios)))
+            orden_args = ((nombre, coletilla) if idioma == "es"
+                          else (coletilla, nombre))
+            frases.append(F["peor"] % (orden_args[0], orden_args[1],
+                                       peor[0].lower() + peor[1:],
+                                       peor_n, len(estudios)))
     ac, co = proc.get("acuerdo", 0), proc.get("consenso", 0)
     if co and not ac:
         # Ruta de consenso: un solo cuaderno acordado. Decir aqui "coincidieron
         # en 0 y resolvieron 82 por consenso" seria describir una doble lectura
         # que no existio. La ausencia de concordancia entre revisores no se
         # disimula: se enuncia, y Limitaciones la recoge.
-        frases.append("Los %d juicios se emitieron en una evaluación única "
-                      "acordada entre los dos autores; al no haber dos lecturas "
-                      "independientes, no se reporta concordancia entre "
-                      "revisores." % co)
+        frases.append(F["consenso"] % co)
     elif ac or co:
-        frases.append("Los dos revisores coincidieron en %d de los %d juicios y "
-                      "resolvieron los %d restantes por consenso."
-                      % (ac, ac + co, co))
+        frases.append(F["duplicado"] % (ac, ac + co, co))
     return " ".join(frases)
 
 
@@ -240,6 +272,45 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
     print("bloque de riesgo de sesgo reescrito en %s (%s)"
           % (MANUSCRITO.name, "resultados" if estado["completa"] else "aviso"))
     escribe_otros(estado)
+
+
+def escribe_seccion_37(estado, evaluables, orden, titulo, J, proc):
+    """La §3.7 del maestro y de su traducción: existe solo si hay juicios.
+
+    Los Resultados del maestro acababan en 3.6, sin riesgo de sesgo en ninguna
+    parte. Al completarse la evaluación, la §2.7 y el ítem 18 de la lista PRISMA
+    empezaron los dos a remitir a una «sección 3.7» inexistente. Se escribe
+    cuando hay algo que reportar y se retira cuando no: una sección de
+    resultados vacía contradiría a la §2.7, que dice que la revisión no reporta
+    riesgo de sesgo mientras falte un juicio.
+    """
+    import rob_bloques as RB
+    prosa = resumen_prosa(evaluables, orden, titulo, J, proc)
+    ctx = {"ev": estado["evaluables"], "celdas": estado["celdas_totales"],
+           "prosa": prosa,
+           "prosa_en": resumen_prosa(evaluables, orden, titulo, J, proc, "en")}
+    for rel, marca, plantilla in RB.SEC37:
+        p = ROOT / rel
+        if not p.exists():
+            continue
+        s = p.read_text(encoding="utf-8")
+        cab = plantilla.split("\n", 1)[0]
+        # Se retira la que hubiera, y se vuelve a poner si toca. Asi el guion
+        # es idempotente y el paso de HECHO a PENDIENTE tambien limpia.
+        i = s.find(cab)
+        if i >= 0:
+            j = s.find(marca, i)
+            if j > i:
+                s = s[:i] + s[j:]
+        if estado["completa"]:
+            j = s.find(marca)
+            if j < 0:
+                print("AVISO: no encuentro «%s» en %s" % (marca, p.name))
+                continue
+            s = s[:j] + (plantilla % ctx) + s[j:]
+        p.write_text(s, encoding="utf-8")
+        print("   §3.7 %s en %s" % ("escrita" if estado["completa"] else "retirada",
+                                    p.name))
 
 
 def reconcilia_escalares(estado):
@@ -388,6 +459,7 @@ def main():
                       encoding="utf-8")
     reconcilia_escalares(estado)
     escribe_manuscrito(estado, evaluables, orden, titulo, J)
+    escribe_seccion_37(estado, evaluables, orden, titulo, J, proc)
 
     print("comparativos con diseño adjudicado: %d  (evaluables %d, sin texto %d)"
           % (len(filas_corpus), len(evaluables), len(sin_texto)))

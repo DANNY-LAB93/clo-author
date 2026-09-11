@@ -1,7 +1,23 @@
 {
-  "modo": "sin evaluar",
-  "evaluados": 0,
-  "celdas_con_juicio": 0,
-  "celdas_pendientes": 82,
-  "nota": "Regenerado por build_rob_table.py: el fichero afirmaba 82 juicios que el CSV adjudicado no tiene. Lo escribe ingest_rob.py cuando hay evaluación firmada."
+  "modo": "consenso",
+  "evaluados": 11,
+  "a_medias": 0,
+  "no_evaluables_sin_texto": 1,
+  "respuestas_por_acuerdo": 0,
+  "respuestas_por_consenso": 82,
+  "desacuerdos_abiertos": 0,
+  "resoluciones_sin_firma": 0,
+  "sin_segunda_lectura": 0,
+  "firmado_por": "Danny Javier Valdiviezo Verdugo y Nataly Elizabeth Trelles Avila",
+  "fecha": "2026-09-09",
+  "juicio_global": {
+    "Bajo riesgo de sesgo": 2,
+    "Riesgo grave": 6,
+    "Riesgo moderado": 2,
+    "Algunas preocupaciones": 1
+  },
+  "evaluados_por_instrumento": {
+    "rob2": 3,
+    "robins": 8
+  }
 }

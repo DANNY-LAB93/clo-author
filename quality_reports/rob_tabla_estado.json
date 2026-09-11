@@ -1,5 +1,5 @@
 {
-  "modo": "duplicado",
+  "modo": "consenso",
   "comparativos_adjudicados": 12,
   "evaluables": 11,
   "sin_texto_completo": 1,
@@ -11,9 +11,9 @@
     "ROBINS-I": 8
   },
   "celdas_totales": 82,
-  "celdas_con_juicio": 0,
-  "celdas_pendientes": 82,
-  "completa": false,
+  "celdas_con_juicio": 82,
+  "celdas_pendientes": 0,
+  "completa": true,
   "dominios": {
     "RoB 2": [
       "Proceso de aleatorización",

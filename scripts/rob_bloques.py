@@ -188,3 +188,32 @@ JSR_MET_PENDIENTE = (
     "sesgo, y ningún indicador derivado del diseño lo sustituye.")
 
 JSR_MET_HECHO = ""
+
+
+# --- Seccion 3.7 del maestro y su traduccion ---------------------------------
+# El maestro no tenia resultados de riesgo de sesgo en ninguna parte: sus
+# Resultados acababan en 3.6. Al completarse la evaluacion, la redaccion HECHO
+# de 2.7 y el item 18 de la lista PRISMA empezaron los dos a remitir a una
+# "seccion 3.7" que no existia. O se escribe, o las dos remisiones cuelgan.
+#
+# Solo existe cuando la evaluacion esta completa: mientras falte un juicio, 2.7
+# dice que la revision NO reporta riesgo de sesgo, y una seccion de resultados
+# vacia lo contradiria.
+
+SEC37 = [
+    ("paper/manuscrito_revision_sistematica.md", "## 4. Discusi",
+     "### 3.7 Riesgo de sesgo de los estudios comparativos\n\n"
+     "%(prosa)s\n\n"
+     "**Tabla 7.** Riesgo de sesgo por dominio de los %(ev)d estudios "
+     "comparativos evaluables. RoB 2 en los ensayos aleatorizados (cinco "
+     "dominios) y ROBINS-I en los no aleatorizados y las cohortes (siete). "
+     "«n. a.» marca los dominios que el instrumento no contempla, no un juicio "
+     "que falte.\n\n"),
+    ("paper/manuscript_systematic_review_en.md", "## 4. Discussio",
+     "### 3.7 Risk of bias in the comparative studies\n\n"
+     "%(prosa_en)s\n\n"
+     "**Table 7.** Domain-level risk of bias for the %(ev)d assessable "
+     "comparative studies. RoB 2 for randomised trials (five domains) and "
+     "ROBINS-I for non-randomised trials and cohorts (seven). \u201cn. a.\u201d marks "
+     "domains the instrument does not contemplate, not a missing judgement.\n\n"),
+]

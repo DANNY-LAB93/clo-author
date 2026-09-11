@@ -320,3 +320,28 @@ SIMPLIFICADOS = [
 # describe en el texto sin instrumento.
 COMPARATIVOS = {"RCT", "non-randomised trial", "retrospective cohort",
                 "prospective cohort"}
+
+
+# Los titulos de dominio en ingles, literales de cada instrumento. Hasta ahora
+# `texto_en` de RoB 2 era una copia del español y ROBINS-I no tenia ninguno, de
+# modo que la §3.7 del manuscrito ingles nombraba sus dominios en español.
+# Solo los TITULOS: la explicacion de cada dominio sigue sin recuperarse
+# literal, y por eso no se pone aqui nada mas.
+DOMINIOS_EN = {
+    "rob2": ["Randomisation process",
+             "Deviations from intended interventions",
+             "Missing outcome data",
+             "Measurement of the outcome",
+             "Selection of the reported result"],
+    "robins": ["Bias due to confounding",
+               "Bias in selection of participants into the study",
+               "Bias in classification of interventions",
+               "Bias due to deviations from intended interventions",
+               "Bias due to missing data",
+               "Bias in measurement of outcomes",
+               "Bias in selection of the reported result"],
+}
+
+for _inst in SIMPLIFICADOS:
+    for _it, _en in zip(_inst["items"], DOMINIOS_EN[_inst["clave"]]):
+        _it["texto_en"] = _en
