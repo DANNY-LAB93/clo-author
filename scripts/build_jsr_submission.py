@@ -380,13 +380,18 @@ def escribe_carta(destino, S, meta, n_anexos):
     par("El trabajo delimita de forma reproducible la literatura cl\u00ednica sobre "
         "fagoterapia en %s resistente y examina una pregunta que las s\u00edntesis "
         "publicadas han dado por resuelta sin comprobarla: si este cuerpo de "
+        # El \u00abocho\u00bb estaba tecleado y el otro numero salia de `fuentes_n`, que
+        # cuenta brazos y no fuentes. Ahora los dos vienen del canal, y la
+        # frase dice lo que de verdad paso: nueve consultas porque Scopus se
+        # interrogo dos veces.
         "evidencia admite una s\u00edntesis cuantitativa de eficacia. Se interrogaron %d "
-        "consultas sobre ocho bases de datos y registros, incluidos BVS y SciELO, "
-        "que las revisiones previas han cubierto de "
+        "bases de datos y registros con %d consultas \u2014Scopus en dos brazos\u2014, "
+        "incluidos BVS y SciELO, que las revisiones previas han cubierto de "
         "forma desigual, con una ventana de publicaci\u00f3n de %d a %d aplicada en las "
         "que la admiten. De %s registros quedaron %s informes \u00fanicos, %d estudios y "
         "%d con publicaci\u00f3n recuperable."
-        % ("*Pseudomonas aeruginosa*", S["fuentes_n"], S["anio_min"], S["anio_max"],
+        % ("*Pseudomonas aeruginosa*", S["fuentes_distintas_n"], S["fuentes_brazos_n"],
+           S["anio_min"], S["anio_max"],
            mil(S["registros_identificados"]), mil(S["informes_unicos"]),
            S["estudios"], S["estudios_extraibles"]), WD_ALIGN_PARAGRAPH.JUSTIFY)
 

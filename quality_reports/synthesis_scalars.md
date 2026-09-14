@@ -11,6 +11,8 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `fuentes_registros_n` | 3 |
 | `fuentes_n` | 9 |
 | `fuentes_nombres` | BVS (no MEDLINE), CTIS, ClinicalTrials.gov, Cochrane CENTRAL, EudraCT, PubMed, SciELO, Scopus (brazo A), Scopus (brazo B) |
+| `fuentes_distintas_n` | 8 |
+| `fuentes_brazos_n` | 9 |
 | `registros_por_fuente` | PubMed: 9561; Scopus (brazo B): 9360; Scopus (brazo A): 2871; BVS (no MEDLINE): 575; SciELO: 241; Cochrane CENTRAL: 225; ClinicalTrials.gov: 121; CTIS: 10; EudraCT: 3 |
 | `informes_unicos` | 17129 |
 | `registros_identificados` | 23057 |
@@ -130,9 +132,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
 | `palabras_resumen_es` | 262 |
-| `palabras_cuerpo_es` | 6792 |
+| `palabras_cuerpo_es` | 7101 |
 | `palabras_resumen_en` | 280 |
-| `palabras_cuerpo_en` | 6374 |
+| `palabras_cuerpo_en` | 6679 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 122 |
 | `extraccion_estudios_ambos` | 122 |

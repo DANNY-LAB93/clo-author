@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 280; main text 6 374.
+**Word count:** abstract 280; main text 6 679.
 **Tables:** 6. **Figures:** 2. **Supplementary files:** 16 (S0–S15) plus a guide.
 
 ---

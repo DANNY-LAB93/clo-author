@@ -57,7 +57,10 @@ EXCEPCIONES = {
     "4": "numeracion",
     "5": "numeracion",
     "6": "numeracion de codigos de exclusion y de suplementos",
-    "9": "numero de fuentes interrogadas (= fuentes_n)",
+    # Decia «numero de fuentes interrogadas (= fuentes_n)», y son OCHO fuentes:
+    # `fuentes_n` cuenta los nueve brazos de busqueda, con Scopus repetido.
+    # El manuscrito publica «ocho fuentes» y la glosa lo contradecia.
+    "9": "brazos de busqueda (= fuentes_brazos_n; las fuentes son 8)",
     "10": "dia de la ultima busqueda",
     "31": "variables del formulario de extraccion",
     "40": "estudios del conjunto de control positivo",

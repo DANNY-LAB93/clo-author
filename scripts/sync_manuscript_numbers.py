@@ -61,6 +61,19 @@ def main():
                 esc["desenlace_%s_%s" % (campo, k)] = v
         for k, v in O["definicion_exito"].items():
             esc["definicion_" + k] = v
+    # Y lo mismo con el riesgo de sesgo, por la misma razon y con el mismo
+    # aplanado que hace `check_manuscript_claims`. El aviso de arriba se
+    # escribio para los desenlaces y se cumplio al pie de la letra en cuanto
+    # llegaron los anclajes de sesgo: `sesgo_comparativos_adjudicados`
+    # reventaba el reparador justo cuando el comprobador pedia repararlo.
+    rb = ESCALARES.parent / "rob_tabla_estado.json"
+    if rb.exists():
+        R = json.load(open(rb, encoding="utf-8"))
+        for k, v in R.items():
+            if not isinstance(v, (dict, list)):
+                esc["sesgo_" + k] = v
+        for k, v in R.get("por_instrumento", {}).items():
+            esc["sesgo_instrumento_%s" % k.replace(" ", "").replace("-", "")] = v
     # Los tres manuscritos. El de JSR se anadio al comprobador el 2026-09-02 y
     # no aqui, asi que sincronizar reventaba con un KeyError en cuanto una
     # afirmacion suya quedaba desactualizada.

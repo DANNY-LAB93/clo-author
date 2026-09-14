@@ -104,6 +104,13 @@ def main():
     S["fuentes_registros_n"] = len(set(man) & REGISTROS)
     S["fuentes_n"] = len(man)
     S["fuentes_nombres"] = sorted(man)
+    # OJO CON `fuentes_n`: cuenta BRAZOS DE BUSQUEDA, no fuentes. Scopus se
+    # interrogo dos veces --«Scopus (brazo A)» y «(brazo B)»--, asi que hay 9
+    # exportaciones sobre 8 fuentes distintas. El manuscrito publica «ocho
+    # fuentes» y tiene razon; quien escriba «se interrogaron fuentes_n fuentes»
+    # publicara nueve y contradira al manuscrito en el mismo sobre.
+    S["fuentes_distintas_n"] = len({re.sub(r"\s*\(brazo [^)]*\)", "", f) for f in man})
+    S["fuentes_brazos_n"] = len(man)
     S["registros_por_fuente"] = por_frecuencia(por_fuente)
     S["informes_unicos"] = len(corpus)
 

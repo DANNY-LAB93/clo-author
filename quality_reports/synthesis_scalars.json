@@ -15,6 +15,8 @@
     "Scopus (brazo A)",
     "Scopus (brazo B)"
   ],
+  "fuentes_distintas_n": 8,
+  "fuentes_brazos_n": 9,
   "registros_por_fuente": {
     "PubMed": 9561,
     "Scopus (brazo B)": 9360,
@@ -199,9 +201,9 @@
   "decisiones_titulo": 13917,
   "decisiones_resumen": 460,
   "palabras_resumen_es": 262,
-  "palabras_cuerpo_es": 6792,
+  "palabras_cuerpo_es": 7101,
   "palabras_resumen_en": 280,
-  "palabras_cuerpo_en": 6374,
+  "palabras_cuerpo_en": 6679,
   "extraccion_estudios_r1": 124,
   "extraccion_estudios_r2": 122,
   "extraccion_estudios_ambos": 122,
