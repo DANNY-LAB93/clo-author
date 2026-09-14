@@ -20,6 +20,11 @@ from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt, Cm, RGBColor
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+# La fecha larga se define una sola vez, en el constructor del paquete. Dos
+# anexos la imprimen y no pueden discrepar.
+from build_verifiables_package import fecha_larga
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "verificables revisión sistemática"
 try:
@@ -77,8 +82,13 @@ def nota(d, texto):
 def informe_editorial(S):
     d = doc_nuevo(
         "Informe editorial",
+        # La fecha estaba clavada en el 11 de agosto mientras el informe se
+        # regeneraba: hoy narra en su cuerpo los dos cambios de titulo del 14
+        # de septiembre bajo una cabecera de agosto. El veredicto si sigue en
+        # pie --se apoya en los desacuerdos sin firmar, que siguen sin firmar--
+        # y no se toca; lo que se corrige es la fecha.
         "Evaluación previa a revisión por pares. Revista de microbiología "
-        "clínica / revisiones sistemáticas. 11 de agosto de 2026.")
+        "clínica / revisiones sistemáticas. %s." % fecha_larga())
 
     d.add_heading("Decisión", level=1)
     p = d.add_paragraph()
@@ -100,7 +110,9 @@ def informe_editorial(S):
     d.add_heading("Lo que este manuscrito hace bien", level=1)
     for t in [
         "La búsqueda es más amplia que la de las revisiones publicadas en el "
-        "campo: nueve fuentes en dos corrientes, sin restricción de idioma, con "
+        "campo: %d fuentes en dos corrientes —Scopus en dos brazos, %d consultas "
+        "en total—, sin restricción de idioma, con "
+        % (S["fuentes_distintas_n"], S["fuentes_brazos_n"]) +
         "literatura regional y registros de ensayos incluidos. La inclusión de "
         "BVS y SciELO no es decorativa: aporta la literatura donde se "
         "concentran los diseños comparativos.",
@@ -418,7 +430,7 @@ def indice(S):
 
     d.add_heading("Estado del envío", level=1)
     tabla(d, ["Elemento", "Estado"],
-          [("Búsqueda en nueve fuentes", "COMPLETA"),
+          [("Búsqueda en %d fuentes" % S["fuentes_distintas_n"], "COMPLETA"),
            ("Cribado por título y resumen", "COMPLETO — %d estudios" % S["estudios"]),
            ("Verificación del criterio de idioma",
             "COMPLETA — %d informes, ninguno sin prueba" % S["informes_agrupados"]),

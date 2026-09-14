@@ -54,7 +54,7 @@ CATALOGO = [
     ]),
     ("Búsqueda", [
         ("S2_estrategias_de_busqueda.docx", "La cadena de búsqueda literal de cada "
-         "una de las nueve fuentes, con fecha y número de registros.",
+         "una de las ocho fuentes, con fecha y número de registros.",
          "Si la búsqueda es reproducible: se copia y se reejecuta."),
     ]),
     ("Cribado", [
