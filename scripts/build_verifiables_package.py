@@ -14,6 +14,7 @@ SALIDA
 """
 import collections
 import csv
+import datetime
 import json
 import pathlib
 import shutil
@@ -36,6 +37,24 @@ except Exception:
 def leer(p):
     with open(p, encoding="utf-8", newline="") as fh:
         return list(csv.DictReader(fh))
+
+
+MESES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+         "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+
+
+def fecha_larga():
+    """La fecha de HOY, no la que alguien tecleo un dia.
+
+    El subtitulo de S1 decia «Estado a 11 de agosto de 2026» y ahi se quedo
+    mientras el anexo se regeneraba: entre esa fecha y el 14 de septiembre
+    entraron las 29 exclusiones tras leer los textos completos, el riesgo de
+    sesgo firmado y dos cambios de titulo. Una lista de comprobacion que viaja
+    a la revista fechada un mes antes de lo que declara es peor que una sin
+    fecha, porque parece comprobada.
+    """
+    h = datetime.date.today()
+    return "%d de %s de %d" % (h.day, MESES[h.month - 1], h.year)
 
 
 def doc_nuevo(titulo, subtitulo=""):
@@ -141,7 +160,7 @@ def v1_prisma(S):
     ROB = estado_riesgo_de_sesgo()
     d = doc_nuevo("S1. Lista de comprobación PRISMA 2020",
                   "Fagoterapia en Pseudomonas aeruginosa multirresistente. "
-                  "Estado a 11 de agosto de 2026.")
+                  "Estado a %s." % fecha_larga())
     # A DONDE APUNTAN LAS REFERENCIAS. La columna "dónde mirar" usa la
     # numeracion del informe extendido (§2.1 a §4.4), que NO viaja en el sobre
     # de la revista: alli va el manuscrito con secciones sin numerar. Un editor
