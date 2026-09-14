@@ -63,7 +63,7 @@ CODES = {
     # Consecuencia aritmetica, y hay que decirla: aplicado de forma
     # consistente, saca del corpus a TODOS los no recuperados, la tasa de
     # recuperacion pasa a ser 100 % por construccion, y el sesgo de
-    # recuperacion --uno de los tres componentes de verificabilidad que esta
+    # recuperacion --uno de los tres componentes que esta
     # revision mide-- deja de poder medirse. Ver la decision del 2026-09-02.
     "NOREC": "Texto completo no recuperado: no se pudo verificar contra el articulo",
 }

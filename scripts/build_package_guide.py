@@ -141,7 +141,7 @@ def main():
     c = [Paragraph("Guía del material suplementario", st["titulo"])]
     c.append(Paragraph(
         "Fagoterapia en infecciones por <i>Pseudomonas aeruginosa</i> multirresistente: "
-        "revisión sistemática de la literatura clínica y de su verificabilidad",
+        "revisión sistemática de la literatura clínica y la completitud de su reporte",
         st["autores"]))
     c.append(Spacer(1, 10))
     c.append(Paragraph(

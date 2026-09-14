@@ -228,18 +228,25 @@ def informe_editorial(S):
 
     d.add_heading("Observaciones que mejoran el manuscrito (no bloquean)", level=1)
     for t in [
-        "El título se acortó el 14 de septiembre de 2026, de 162 a 141 "
-        "caracteres, tras someterlo a revisión. La versión anterior nombraba "
-        "las dos propiedades que el trabajo evalúa —«la estructura y la "
-        "verificabilidad del cuerpo de evidencia clínica»—; la actual nombra "
-        "una sola: «la literatura clínica y de su verificabilidad». Es una "
-        "pérdida consciente. La pregunta de investigación sigue formulada "
-        "sobre las dos y no se tocó. Se conservó «verificabilidad», que es el "
-        "término que distingue a este trabajo de las revisiones que agregan "
-        "desenlaces, y se adoptó la fórmula «revisión sistemática de la "
-        "literatura» que usa la revista de destino. Queda dicho que "
-        "«literatura» no cubre los registros de ensayo, y que más de un "
-        "tercio de los estudios identificados existe solo como registro.",
+        "El título se revisó dos veces el 14 de septiembre de 2026. Partía de "
+        "«revisión sistemática de la estructura y la verificabilidad del "
+        "cuerpo de evidencia clínica», 162 caracteres en castellano y 157 en "
+        "inglés. Primero se acortó a 141 y 141 adoptando la fórmula «revisión "
+        "sistemática de la literatura» que usa la revista de destino. Después "
+        "se sustituyó «verificabilidad» por «completitud del reporte» "
+        "—«reporting completeness»—, y quedó en 148 y 150. Dos pérdidas "
+        "conscientes, y las dos se declaran aquí. La primera: el título ya no "
+        "nombra la estructura, que es la otra mitad de la pregunta de "
+        "investigación; esa pregunta no se tocó y sigue formulada sobre las "
+        "tres propiedades. La segunda: «completitud del reporte» nombra dos "
+        "de los tres componentes medidos y deja fuera la recuperabilidad del "
+        "informe, que se sigue nombrando en el cuerpo. Se prefirió un título "
+        "que dice menos a uno que dice otra cosa. Sobre el término adoptado "
+        "conviene adelantar una respuesta: buena parte de la literatura que "
+        "se titula «reporting completeness» puntúa adherencia a una guía "
+        "—CONSORT, CARE, STROBE—, y esta revisión no aplicó ninguna: contó "
+        "presencia y ausencia de variables y de numerador y denominador, no "
+        "adherencia normativa.",
         "El resumen (241 palabras en la versión inglesa) cumple el límite "
         "habitual de 250. Comprobar el límite exacto de la revista de destino.",
         "Las cifras de la sección 3.4 miden el reporte EN EL RESUMEN. El "
@@ -269,9 +276,9 @@ def informe_editorial(S):
             "La correcta. No es alcanzable en 24 horas con %d estudios y dos " % S["estudios_extraibles"] +
             "revisores."),
            ("B. Enviar como está, reencuadrado",
-            "Revisión sistemática de la estructura y verificabilidad del "
-            "cuerpo de evidencia, sin estimaciones de eficacia, con las cuatro "
-            "limitaciones declaradas",
+            "Revisión sistemática de la estructura del cuerpo de evidencia, de "
+            "su recuperabilidad y de la completitud de su reporte, sin "
+            "estimaciones de eficacia, con las cuatro limitaciones declaradas",
             "Alcanzable hoy. Es lo que el manuscrito ya hace. Admisible en "
             "revistas metodológicas y en revistas del área que publican "
             "evidence mapping."),

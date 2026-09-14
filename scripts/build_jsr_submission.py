@@ -395,6 +395,16 @@ def escribe_carta(destino, S, meta, n_anexos):
         "\u00e9xito, que es precisamente lo que la literatura reciente viene haciendo.",
         WD_ALIGN_PARAGRAPH.JUSTIFY)
 
+    # El titulo dice \u00abcompletitud del reporte\u00bb, y ese genero suele significar
+    # puntuar adherencia a una guia. Aqui no se puntuo ninguna, asi que la
+    # aclaracion va por delante en vez de esperar a que la pregunten.
+    par("Una precisi\u00f3n sobre el t\u00edtulo. La completitud de reporte que este trabajo "
+        "mide no es adherencia a una gu\u00eda de publicaci\u00f3n: no se puntu\u00f3 CONSORT, ni "
+        "CARE, ni STROBE. Se cont\u00f3 la presencia o la ausencia de las variables que "
+        "una estimaci\u00f3n agrupada necesita \u2014clase de resistencia, \u00e1mbito, numerador, "
+        "denominador y definici\u00f3n operativa del desenlace\u2014 sobre lo que cada informe "
+        "publica.", WD_ALIGN_PARAGRAPH.JUSTIFY)
+
     # Lo que el comite va a preguntar, dicho antes de que lo pregunte. Cada
     # cifra sale de los escalares: si el canal cambia, la carta cambia con el.
     par("Declaro lo siguiente, por si el Comit\u00e9 lo considera al evaluar el trabajo. "
@@ -493,6 +503,24 @@ def escribe_leeme(destino, S, anexos):
 
     md = []
     md.append("# Envio a *Journal of Science and Research* \u2014 que hay aqui y que falta")
+    # Si Word tenia el .docx abierto, el constructor escribio el bueno al lado
+    # con el sufijo _NUEVO y el viejo sigue en la carpeta con el contenido de
+    # la ejecucion anterior. El aviso va aqui, en la hoja que se lee antes de
+    # enviar, porque el de la consola se lo lleva el primer scroll.
+    nuevo = destino / "manuscrito_JSR_final_NUEVO.docx"
+    if nuevo.exists():
+        md.append("")
+        md.append("> ## PARA. HAY DOS MANUSCRITOS EN ESTA CARPETA")
+        md.append(">")
+        md.append("> Word tenia `manuscrito_JSR_final.docx` abierto cuando se genero "
+                  "este envio, asi que no se pudo sobrescribir. **El bueno es "
+                  "`manuscrito_JSR_final_NUEVO.docx`**; el otro es de una ejecucion "
+                  "anterior y su contenido esta desfasado.")
+        md.append(">")
+        md.append("> Cierra Word y vuelve a ejecutar `python scripts/build_jsr_submission.py`: "
+                  "el bueno pasa a llamarse `manuscrito_JSR_final.docx`, el `_NUEVO` "
+                  "desaparece y este aviso con el. **No mandes nada mientras este "
+                  "parrafo siga aqui.**")
     md.append("")
     md.append("**Revista destino:** Journal of Science and Research, E-ISSN 2528-8083  ")
     md.append("(Universidad Tecnica de Babahoyo, Ecuador)  ")
@@ -697,10 +725,10 @@ def main():
     meta = {
         "titulo_es": "Fagoterapia en infecciones por *Pseudomonas aeruginosa* "
                      "multirresistente: revisión sistemática de la literatura "
-                     "clínica y de su verificabilidad",
+                     "clínica y la completitud de su reporte",
         "titulo_en": "Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* "
                      "infections: a systematic review of the clinical "
-                     "literature and its verifiability",
+                     "literature and its reporting completeness",
         "autores": "Danny Valdiviezo¹*  ·  Nataly Trelles²",
         "correo": "dvchiqui@gmail.com",
         "notas_autor": [

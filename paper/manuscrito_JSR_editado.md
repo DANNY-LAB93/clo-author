@@ -1,6 +1,6 @@
-# Fagoterapia en infecciones por *Pseudomonas aeruginosa* multirresistente: revisión sistemática de la literatura clínica y de su verificabilidad
+# Fagoterapia en infecciones por *Pseudomonas aeruginosa* multirresistente: revisión sistemática de la literatura clínica y la completitud de su reporte
 
-# Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* infections: a systematic review of the clinical literature and its verifiability
+# Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* infections: a systematic review of the clinical literature and its reporting completeness
 
 **Danny Valdiviezo**¹, **Nataly Trelles**¹
 
@@ -46,7 +46,7 @@
 
 En ese estrechamiento terapéutico ha reaparecido la fagoterapia. Los bacteriófagos líticos actúan por un mecanismo ajeno a las dianas antibióticas, respetan la microbiota acompañante y admiten adaptarse al aislado del propio paciente (3).
 
-Pese a la atención creciente, no se ha examinado si la literatura clínica disponible tiene la estructura que una síntesis cuantitativa requiere. Esta revisión aborda esa pregunta previa: ¿posee el cuerpo de evidencia sobre fagoterapia en *P. aeruginosa* resistente la estructura y la verificabilidad —entendida como la posibilidad de comprobar, con lo publicado, si un estudio es recuperable como informe, de qué población trata y qué desenlace midió— que una estimación agrupada exige?
+Pese a la atención creciente, no se ha examinado si la literatura clínica disponible tiene la estructura que una síntesis cuantitativa requiere. Esta revisión aborda esa pregunta previa: ¿posee el cuerpo de evidencia sobre fagoterapia en *P. aeruginosa* resistente la estructura, la recuperabilidad y la completitud de reporte —esto es, la posibilidad de comprobar, con lo publicado, si un estudio es recuperable como informe, de qué población trata y qué desenlace midió— que una estimación agrupada exige?
 
 ---
 

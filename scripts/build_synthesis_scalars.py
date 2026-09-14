@@ -10,7 +10,7 @@ QUE NO HACE. No inventa una sintesis de eficacia. La extraccion por duplicado de
 Danny y Nataly no ha ocurrido, y 85 de los 159 estudios extraibles no tienen
 texto completo, asi que ninguna proporcion de exito agrupada seria defendible.
 Lo que se puede sostener hoy es la caracterizacion del cuerpo de evidencia y su
-verificabilidad, y eso es lo que se calcula.
+completitud del reporte, y eso es lo que se calcula.
 
 SALIDA
     quality_reports/synthesis_scalars.json   (cifras con nombre)
