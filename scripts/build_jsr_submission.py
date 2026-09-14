@@ -425,6 +425,29 @@ def escribe_carta(destino, S, meta, n_anexos):
     d.save(ruta)
     return ruta
 
+def poda(dst, escritos, etiqueta):
+    """Retira del sobre lo que esta ejecucion no ha escrito.
+
+    El bucle de copia solo anadia. Un anexo que cambia de nombre al cambiar la
+    cifra que lleva --`S5_listado_184_estudios` paso a 162, a 158, a 157 y a
+    155-- dejaba la version vieja en la carpeta de envio, y el script no la
+    tocaba nunca mas. El 10 de septiembre viajaban cinco listados del corpus con
+    cinco recuentos distintos, cuatro de ellos superados por el que el
+    manuscrito publica. El sobre tiene que ser el reflejo de la ejecucion, no su
+    sedimento.
+    """
+    sobra = [f for f in sorted(dst.iterdir())
+             if f.is_file() and f.name not in escritos]
+    for f in sobra:
+        f.unlink()
+    if sobra:
+        print("  %-42s %d retirado(s) de ejecuciones anteriores: %s"
+              % (etiqueta, len(sobra),
+                 ", ".join(f.name for f in sobra[:4])
+                 + (" ..." if len(sobra) > 4 else "")))
+    return len(sobra)
+
+
 def escribe_leeme(destino, S, anexos):
     """La hoja de instrucciones del envio, con las cifras del canal.
 
@@ -475,6 +498,18 @@ def escribe_leeme(destino, S, anexos):
               "desaparece: el articulo que sirvio de modelo ocupa 19 paginas. El "
               "manuscrito de CMI sigue vivo en el repositorio; esto no lo sustituye."
               % mil(S["palabras_cuerpo_es"]))
+    # Ni el numero de anexos ni el de tablas se teclean: el primero sale de lo
+    # que se acaba de copiar y el segundo del propio manuscrito. Escritos a mano
+    # envejecian en silencio --el LEEME anunciaba 14 anexos «S0 a S13» cuando ya
+    # eran 17, y una lista de comprobacion mandaba mirar 4 tablas de las 6 que
+    # el articulo lleva--.
+    numeros = sorted({int(m.group(1)) for m in
+                      (re.match(r"^S(\d{1,2})_", n) for n in anexos) if m})
+    jsr = ROOT / "paper" / "manuscrito_JSR_final.md"
+    cuerpo = jsr.read_text(encoding="utf-8") if jsr.exists() else ""
+    n_tablas = len(re.findall(r"^\*\*Tabla \d+\.", cuerpo, re.M))
+    n_figuras = len(re.findall(r"^\*\*Figura \d+\.", cuerpo, re.M))
+
     md.append("")
     md.append("## Que hay en la carpeta")
     md.append("")
@@ -483,16 +518,26 @@ def escribe_leeme(destino, S, anexos):
     md.append("| `manuscrito_JSR_final.docx` | **El articulo, y el unico.** Times New "
               "Roman 12, A4, interlineado doble. RESUMEN / ABSTRACT / INTRODUCCION / "
               "DESARROLLO / METODOLOGIA / RESULTADOS / DISCUSION Y CONCLUSIONES / "
-              "DECLARACIONES / REFERENCIAS. Citas Vancouver numeradas. Las 6 tablas y "
-              "las 2 figuras van donde el texto las cita, no en un anexo al final |")
+              "DECLARACIONES / REFERENCIAS. Citas Vancouver numeradas. Las %d tablas y "
+              "las %d figuras van donde el texto las cita, no en un anexo al final |"
+              % (n_tablas, n_figuras))
     md.append("| `carta_de_presentacion.docx` | Carta al Comite Editorial. Declara por "
               "adelantado lo que un revisor va a preguntar |")
-    md.append("| `suplementos/` | Los 14 anexos (S0 a S13), el indice y la guia, en %d "
+    md.append("| `suplementos/` | Los %d anexos (S%d a S%d), el indice y la guia, en %d "
               "ficheros: los de datos van en `.xlsx` y en `.csv`. Empieza por "
               "`00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf`, que dice que pregunta contesta "
-              "cada uno |" % len(anexos))
+              "cada uno |" % (len(numeros), min(numeros), max(numeros), len(anexos)))
     md.append("| `figuras/`, `tablas/` | Las mismas figuras y tablas sueltas, por si las "
               "piden aparte |")
+    # Lo escribe `build_criteria_table.py` en esta misma carpeta. El LEEME no lo
+    # nombraba, y un fichero en el sobre que la hoja de instrucciones ignora
+    # parece un resto de algo.
+    suelto = destino / "tabla_criterios_inclusion_exclusion.docx"
+    if suelto.exists():
+        md.append("| `%s` | La Tabla 1 en un documento aparte, ya maquetada. Va tambien "
+                  "dentro del articulo, donde el texto la cita; esta copia es por si el "
+                  "portal pide los cuadros por separado. La escribe "
+                  "`scripts/build_criteria_table.py` |" % suelto.name)
     md.append("")
     md.append("Los anexos de datos viajan por partida doble: el `.xlsx` trae una hoja "
               "\u00abLeeme\u00bb y las columnas en castellano, y el `.csv` es la copia con los "
@@ -544,7 +589,8 @@ def escribe_leeme(destino, S, anexos):
               "Autoria de N. Trelles resuelta, marcador eliminado",
               "DOI del deposito, o marcador retirado si no hay deposito",
               "Leido entero una vez en Word, buscando saltos de formato",
-              "Comprobado que las 4 tablas y las 2 figuras se ven bien",
+              "Comprobado que las %d tablas y las %d figuras se ven bien"
+              % (n_tablas, n_figuras),
               "Confirmado en el portal OJS de la revista que ficheros pide y en que "
               "orden (busca la URL en el sitio de la Universidad Tecnica de Babahoyo "
               "y verificala; no la doy de memoria)"):
@@ -709,12 +755,13 @@ def main():
     for sub, patrones in (("figuras", ("*.png", "*.pdf")), ("tablas", ("*.csv",))):
         dst = destino / sub
         dst.mkdir(exist_ok=True)
-        n = 0
+        puestos = set()
         for pat in patrones:
             for f in (ROOT / "paper" / sub).glob(pat):
                 shutil.copy2(f, dst / f.name)
-                n += 1
-        print("  %-42s %d ficheros" % (sub + "/", n))
+                puestos.add(f.name)
+        print("  %-42s %d ficheros" % (sub + "/", len(puestos)))
+        poda(dst, puestos, sub + "/")
 
     # Material suplementario. Este paso no existia: el script escribia manuscrito,
     # figuras y tablas, y nada mas. Los tres anexos que aparecian en la carpeta de
@@ -733,6 +780,7 @@ def main():
                 shutil.copy2(f, dst / f.name)
                 copiados.append(f.name)
         print("  %-42s %d ficheros" % ("suplementos/", len(copiados)))
+        poda(dst, set(copiados), "suplementos/")
 
         # Cobertura: cada anexo que el manuscrito cita tiene que viajar. Se
         # contrasta contra el texto autoritativo y no contra una lista fija, para
