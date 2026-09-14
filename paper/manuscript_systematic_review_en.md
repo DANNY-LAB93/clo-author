@@ -1,4 +1,4 @@
-# Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* infections: a systematic review of the structure and verifiability of the clinical evidence base
+# Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* infections: a systematic review of the clinical literature and its verifiability
 
 **Danny Valdiviezo**^1^, **Nataly Trelles**^1^
 

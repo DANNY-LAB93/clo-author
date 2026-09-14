@@ -1,4 +1,4 @@
-# Fagoterapia en infecciones por *Pseudomonas aeruginosa* multirresistente: revisión sistemática de la estructura y la verificabilidad del cuerpo de evidencia clínica
+# Fagoterapia en infecciones por *Pseudomonas aeruginosa* multirresistente: revisión sistemática de la literatura clínica y de su verificabilidad
 
 **Danny Valdiviezo**^1^, **Nataly Trelles**^1^
 

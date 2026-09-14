@@ -1,6 +1,6 @@
-# Fagoterapia en infecciones por *Pseudomonas aeruginosa* multirresistente: revisión sistemática de la estructura y la verificabilidad del cuerpo de evidencia clínica
+# Fagoterapia en infecciones por *Pseudomonas aeruginosa* multirresistente: revisión sistemática de la literatura clínica y de su verificabilidad
 
-# Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* infections: a systematic review of the structure and verifiability of the clinical evidence base
+# Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* infections: a systematic review of the clinical literature and its verifiability
 
 **Danny Valdiviezo**¹, **Nataly Trelles**¹
 

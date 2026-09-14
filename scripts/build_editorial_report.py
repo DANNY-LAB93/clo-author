@@ -228,9 +228,18 @@ def informe_editorial(S):
 
     d.add_heading("Observaciones que mejoran el manuscrito (no bloquean)", level=1)
     for t in [
-        "El título describe con precisión lo que el trabajo hace, pero es "
-        "largo. Considerar «Phage therapy for multidrug-resistant Pseudomonas "
-        "aeruginosa: how verifiable is the clinical evidence base?».",
+        "El título se acortó el 14 de septiembre de 2026, de 162 a 141 "
+        "caracteres, tras someterlo a revisión. La versión anterior nombraba "
+        "las dos propiedades que el trabajo evalúa —«la estructura y la "
+        "verificabilidad del cuerpo de evidencia clínica»—; la actual nombra "
+        "una sola: «la literatura clínica y de su verificabilidad». Es una "
+        "pérdida consciente. La pregunta de investigación sigue formulada "
+        "sobre las dos y no se tocó. Se conservó «verificabilidad», que es el "
+        "término que distingue a este trabajo de las revisiones que agregan "
+        "desenlaces, y se adoptó la fórmula «revisión sistemática de la "
+        "literatura» que usa la revista de destino. Queda dicho que "
+        "«literatura» no cubre los registros de ensayo, y que más de un "
+        "tercio de los estudios identificados existe solo como registro.",
         "El resumen (241 palabras en la versión inglesa) cumple el límite "
         "habitual de 250. Comprobar el límite exacto de la revista de destino.",
         "Las cifras de la sección 3.4 miden el reporte EN EL RESUMEN. El "

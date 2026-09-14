@@ -696,11 +696,11 @@ def main():
                    .read_text(encoding="utf-8"))
     meta = {
         "titulo_es": "Fagoterapia en infecciones por *Pseudomonas aeruginosa* "
-                     "multirresistente: revisión sistemática de la estructura y "
-                     "la verificabilidad del cuerpo de evidencia clínica",
+                     "multirresistente: revisión sistemática de la literatura "
+                     "clínica y de su verificabilidad",
         "titulo_en": "Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* "
-                     "infections: a systematic review of the structure and "
-                     "verifiability of the clinical evidence base",
+                     "infections: a systematic review of the clinical "
+                     "literature and its verifiability",
         "autores": "Danny Valdiviezo¹*  ·  Nataly Trelles²",
         "correo": "dvchiqui@gmail.com",
         "notas_autor": [
