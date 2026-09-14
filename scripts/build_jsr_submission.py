@@ -466,12 +466,16 @@ def escribe_leeme(destino, S, anexos):
         "independiente, el %s %% del corpus, y sigue en el proyecto. Faltan los "
         "otros tres criterios, que son actos suyos y nadie puede firmar por "
         "ella: aprobar la version final, revisarla criticamente y aceptar "
-        "responder por el trabajo. Recabadlo por escrito y quitad el marcador "
-        "del .docx."
+        "responder por el trabajo. Recabadlo por escrito. Esto no deja rastro "
+        "en el documento: no hay marcador que quitar, y el articulo se puede "
+        "enviar sin que nada avise de que falta."
         % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
            S["extraccion_doble_pct"]),
-        "**El DOI del deposito** de datos y codigo, si vais a depositarlo. El "
-        "marcador esta en las declaraciones.",
+        "**El DOI del deposito**, solo si decidis depositar los datos y el "
+        "codigo. Tampoco hay marcador: la declaracion de disponibilidad dice "
+        "hoy que el codigo «se facilita a peticion», que es cierto tal como "
+        "esta. Si depositais, hay que reescribir esa frase, no rellenar un "
+        "hueco.",
         "**Fechas de recepcion y aceptacion.** Van en blanco a proposito: las "
         "pone la revista.",
         "**Exportar a PDF si lo piden.** En esta maquina no hay conversor: "
@@ -545,7 +549,15 @@ def escribe_leeme(destino, S, anexos):
     md.append("")
     md.append("## Lo que TIENES que rellenar antes de mandarlo")
     md.append("")
-    md.append("Son datos que no puedo inventar. Estan marcados en el `.docx`.")
+    # Decia «Estan marcados en el .docx» y de los cuatro solo uno lo estaba,
+    # despues de anadirlo: no habia ningun ORCID ni ningun hueco de autoria en
+    # el documento. Mandar quitar un marcador que no existe hace creer que lo
+    # que no se ve ya esta hecho.
+    md.append("Son datos que no puedo inventar. **Solo el primero deja marca en el "
+              "`.docx`**: un parrafo en negrita bajo el autor de correspondencia que "
+              "empieza por COMPLETAR ANTES DE ENVIAR, y que hay que borrar entero al "
+              "rellenarlo. Los demas no dejan rastro en el documento; se vigilan desde "
+              "aqui.")
     md.append("")
     for i, t in enumerate(pendientes, start=1):
         md.append("%d. %s" % (i, t))
@@ -802,6 +814,17 @@ def main():
 
     carta = escribe_carta(destino, S, meta, n_anexos)
     print("  %-42s carta al comite" % carta.name)
+
+    # El marcador de autor viaja dentro del .docx a proposito: sin el, un ORCID
+    # que falta no se distingue de un ORCID que nadie pidio. El aviso suena en
+    # cada ejecucion hasta que se rellena, para que nadie lo descubra en el
+    # portal de la revista.
+    jsr = ROOT / "paper" / "manuscrito_JSR_final.md"
+    if jsr.exists() and "COMPLETAR ANTES DE ENVIAR" in jsr.read_text(encoding="utf-8"):
+        print("\n  AVISO: el manuscrito sigue llevando el parrafo COMPLETAR ANTES DE "
+              "ENVIAR.\n         Faltan los dos ORCID, las credenciales y el correo "
+              "de N. Trelles.\n         Se rellena en paper/manuscrito_JSR_final.md y "
+              "se vuelve a correr esto.")
 
     print("\nescrito en %s" % destino)
     return 0

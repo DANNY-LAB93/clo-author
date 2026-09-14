@@ -8,6 +8,8 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
+**COMPLETAR ANTES DE ENVIAR — BORRAR ESTE PÁRRAFO ENTERO.** La revista pide una nota al pie por autor con grado académico, filiación, ciudad, país, correo y ORCID, en el patrón del artículo modelo. Faltan: el grado académico de los dos autores, el correo de N. Trelles y los dos identificadores ORCID. D. Valdiviezo: ORCID …………………… N. Trelles: correo …………………… ORCID ……………………
+
 **Fecha de recepción:**
 
 **Fecha de aceptación:**
