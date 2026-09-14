@@ -352,7 +352,16 @@ def escribe_carta(destino, S, meta, n_anexos):
     n.paragraph_format.line_spacing = 1.15
 
     def par(txt, alin=None):
-        pr = d.add_paragraph(txt)
+        # Un solo add_paragraph(txt) pone TODO en redonda, y el binomio va en
+        # cursiva. La carta es el primer documento que lee el Comite y llevaba
+        # «Pseudomonas aeruginosa» sin cursivar, empezando por el titulo. Se
+        # parte el texto en runs por los asteriscos, como en el manuscrito.
+        pr = d.add_paragraph()
+        for i, trozo in enumerate(re.split(r"\*([^*]+)\*", txt)):
+            if not trozo:
+                continue
+            r = pr.add_run(trozo)
+            r.italic = bool(i % 2)
         if alin is not None:
             pr.alignment = alin
         return pr
@@ -377,7 +386,7 @@ def escribe_carta(destino, S, meta, n_anexos):
         "forma desigual, con una ventana de publicaci\u00f3n de %d a %d aplicada en las "
         "que la admiten. De %s registros quedaron %s informes \u00fanicos, %d estudios y "
         "%d con publicaci\u00f3n recuperable."
-        % ("Pseudomonas aeruginosa", S["fuentes_n"], S["anio_min"], S["anio_max"],
+        % ("*Pseudomonas aeruginosa*", S["fuentes_n"], S["anio_min"], S["anio_max"],
            mil(S["registros_identificados"]), mil(S["informes_unicos"]),
            S["estudios"], S["estudios_extraibles"]), WD_ALIGN_PARAGRAPH.JUSTIFY)
 
@@ -686,10 +695,10 @@ def main():
     S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
                    .read_text(encoding="utf-8"))
     meta = {
-        "titulo_es": "Fagoterapia en infecciones por Pseudomonas aeruginosa "
+        "titulo_es": "Fagoterapia en infecciones por *Pseudomonas aeruginosa* "
                      "multirresistente: revisión sistemática de la estructura y "
                      "la verificabilidad del cuerpo de evidencia clínica",
-        "titulo_en": "Phage therapy for multidrug-resistant Pseudomonas aeruginosa "
+        "titulo_en": "Phage therapy for multidrug-resistant *Pseudomonas aeruginosa* "
                      "infections: a systematic review of the structure and "
                      "verifiability of the clinical evidence base",
         "autores": "Danny Valdiviezo¹*  ·  Nataly Trelles²",

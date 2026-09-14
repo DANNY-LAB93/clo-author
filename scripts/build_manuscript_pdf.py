@@ -24,6 +24,7 @@ Uso:
 """
 import argparse
 import pathlib
+import shutil
 import re
 import sys
 
@@ -41,6 +42,7 @@ BIB = ROOT / "Bibliography_base.bib"
 FIGURAS = ROOT / "paper" / "figuras"
 TABLAS = ROOT / "paper" / "tablas"
 SALIDA = ROOT / "paper" / "pdf"
+PAQUETE = ROOT / "verificables revisión sistemática"
 
 VERSIONES = {
     "es": (ROOT / "paper" / "manuscrito_revision_sistematica.md",
@@ -346,6 +348,15 @@ def main():
         doc.build(cuerpo)
         print(f"  {destino.name:44} {len(orden)} referencias, "
               f"{destino.stat().st_size // 1024} KB")
+
+        # El paquete de verificables lleva los dos PDF del manuscrito --su guia
+        # los lista como contenido-- pero nadie los copiaba: entraron a mano el
+        # 20 de agosto y ahi se quedaron. El 14 de septiembre la copia del
+        # paquete tenia 13 paginas y esta 15. Un anexo que se queda atras es
+        # peor que no tenerlo: parece actual.
+        if PAQUETE.is_dir():
+            shutil.copy2(destino, PAQUETE / destino.name)
+            print(f"  {'-> ' + PAQUETE.name:44} copia al dia en el paquete")
 
 
 if __name__ == "__main__":
