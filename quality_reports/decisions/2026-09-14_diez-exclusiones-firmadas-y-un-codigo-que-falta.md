@@ -1,5 +1,12 @@
 # Diez exclusiones firmadas y aplicadas; seis esperan un código que no existe
 
+> **ACTUALIZADO el 14 de septiembre de 2026, más tarde el mismo día.** Las siete
+> filas que este registro dejaba abiertas ya están cerradas: la enmienda del
+> código NOORG se firmó y las siete exclusiones están aplicadas. El corpus está
+> en 137, no en 145. El texto de abajo se conserva entero porque es lo que se
+> propuso y por qué. Ver
+> [2026-09-14_codigo-noorg-y-la-fusion-de-phage4cure.md](2026-09-14_codigo-noorg-y-la-fusion-de-phage4cure.md).
+
 **Estado:** APLICADO el 14 de septiembre de 2026, firmado por D. Valdiviezo y
 N. Trelles. **Siete filas siguen abiertas.**
 **Ficheros:** `scripts/ingest_organismo.py`, `scripts/make_firma_noorg.py`,

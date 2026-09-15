@@ -78,12 +78,12 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
 | Componente | Estado |
 |---|---|
-| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 184 valorados → 39 excluidos (22 por el artículo, 10 por la ficha del registro, 7 sin poder leer ninguno) → **145 estudios, 95 extraíbles** |
+| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 46 excluidos (22 por el artículo, 17 por la ficha del registro, 7 sin poder leer ninguno) → **137 estudios, 95 extraíbles** |
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
 | Texto completo | 71 de 95 (74,7 %). El hueco está sesgado: retiene el 54,5 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
 | Riesgo de sesgo | **emitido y completo**: 14 comparativos adjudicados, 11 evaluables (3 RoB 2, 8 ROBINS-I), 3 sin texto. **82 de 82 juicios**, a nivel de dominio, por consenso y **sin kappa** |
-| Manuscrito | maestro 7 355 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
+| Manuscrito | maestro 7 514 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
 | Anexos | **S0–S16 (17 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
 
@@ -114,7 +114,7 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
 
 4. **NOREC es una enmienda de otra clase.** Los demás códigos hablan de lo que el
    artículo DICE; `NOREC` habla de lo que esta revisión NO PUDO LEER. Se aplica a un
-   estudio (EST-118). Extenderlo a los 24 sin texto hundiría el corpus a 121, los
+   estudio (EST-118). Extenderlo a los 24 sin texto hundiría el corpus a 113, los
    comparativos a 5 y los ECA a 3, y dejaría la recuperación en 100 % **por
    construcción**, destruyendo el sesgo que §3.2 mide. No lo extiendas sin releer eso.
 
@@ -132,20 +132,28 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
    firmas), y hasta el 2026-08-23 contaba como desacuerdo una casilla que uno rellenó y
    el otro no: ningún recuento anterior a `ca12d6a` es comparable.
 
-8. **29 fichas de registro no decían qué organismo se trata.** Se bajaron enteras
-   (`revision_sistematica/textos_completos/registros/`, 25 de ClinicalTrials.gov y 4 de
-   CTIS) y se leyeron una a una: **12 cumplen, 10 no, 7 no se puede saber**. Los dos
-   autores firmaron el 2026-09-14 y **las 10 exclusiones están aplicadas**: el corpus
-   bajó de 155 a 145. **Siguen abiertas 7 filas** y el LEEME del sobre bloquea el envío
-   mientras lo estén: seis firmadas NO CUMPLE **sin código** —su motivo no es «otro
-   organismo» sino «no consta el organismo», y un código nuevo es una enmienda al
-   protocolo— y EST-087 sin decidir. Está en
-   `FIRMAR_codigo_NOORG_y_duplicado.xlsx`, y el estado en
-   `quality_reports/organismo_pendiente.json`. También está confirmado, y sin aplicar,
-   que EST-186 y EST-187 son el mismo ensayo. Ver los dos registros de decisión del
-   2026-09-14.
+8. **29 fichas de registro no decían qué organismo se trata, y el asunto está cerrado.**
+   Se bajaron enteras (`revision_sistematica/textos_completos/registros/`, 25 de
+   ClinicalTrials.gov y 4 de CTIS) y se leyeron una a una: **12 cumplen y se quedan, 17
+   no y están excluidas**. Los dos autores firmaron dos veces el 2026-09-14: primero las
+   10 con código existente (8 ORG, 2 OFF), luego las **7 que obligaron a un código nuevo**.
+   **NOORG** es el undécimo código y es hermano de NOREC — los demás excluyen por lo que
+   el estudio DICE, NOREC por lo que no se pudo LEER y NOORG por lo que el registro no
+   DECLARA. Al leerlas apareció un duplicado: Phage4Cure-001 estaba en CTIS con dos
+   identificadores y entró como dos estudios; EST-187 se fusionó en EST-186. El corpus
+   fue 155 → 145 → 137. La evidencia literal está en
+   `quality_reports/registros_organismo_verificado.csv`; los dos registros de decisión
+   del 2026-09-14 lo cuentan entero.
 
 9. **`check_aritmetica.py` no consulta el canal, recalcula.** Los otros dos verifican
    contra los escalares, así que un escalar bien calculado y mal redactado en su frase
    les pasa (68,0 % donde era 68,9; «casi cuatro de cada diez» para 44,2 %). Este rehace
    la división, las restas del PRISMA y las sumas declaradas desde el texto solo.
+
+10. **Reejecutar `group_reports_into_studies.py` renumeraba estudios, y ya no.** La
+    numeración estable se anclaba en la CLAVE del estudio, y la clave cambia sola en
+    cuanto `fulltext_identifiers.csv` resuelve un DOI: el 2026-09-14 EST-133 y EST-188 se
+    convirtieron en EST-220 y EST-221 sin que nada fallara. Ahora el ancla son los
+    `record_id`, que se derivan del contenido: si el grupo de hoy comparte un informe con
+    un estudio de ayer, es ese estudio. Reejecutarlo es idempotente — compruébalo con
+    `git diff` sobre `study_groups.csv`.

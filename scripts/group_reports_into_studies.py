@@ -132,6 +132,25 @@ def main():
             clave[r["record_id"]] = a
         elif a.startswith("10."):
             clave[r["record_id"]] = "doi:" + a.lower()
+        elif a:
+            # CUALQUIER OTRO IDENTIFICADOR DE ENSAYO SERVIA Y NO SE USABA. La
+            # columna `identificador_resuelto` traia 21 atribuciones que la
+            # cadena ignoraba --ChiCTR, IRCT, ACTRN, CTRI, KCT, numeros CTIS y
+            # codigos de protocolo-- porque solo entendia NCT, PMID y DOI. Cada
+            # una de esas fichas se agrupaba por su titulo, que es justo lo que
+            # esta columna existe para no tener que hacer.
+            #
+            # Lo caro de ignorarlas: Phage4Cure-001 esta en CTIS con dos
+            # identificadores, uno por version del protocolo ("two part" y
+            # "three part"). Los dos informes llevaban escrito el mismo codigo
+            # de protocolo desde el principio y aun asi entraron como DOS
+            # estudios, porque sus titulos difieren en dos palabras. N. Trelles
+            # comprobo que son el mismo ensayo y los dos autores lo firmaron el
+            # 2026-09-14.
+            #
+            # De las 21 atribuciones, solo esa se repite: honrarlas fusiona
+            # exactamente el par que los autores firmaron y no toca nada mas.
+            clave[r["record_id"]] = "cod:" + a
         else:
             clave[r["record_id"]] = "T:" + norm(r["title"])
 
@@ -173,26 +192,51 @@ def main():
     # extraccion de Danny y de Nataly y en la pre-extraccion desde resumen, asi
     # que renumerar en silencio reasigna el trabajo de dos personas a estudios
     # que no leyeron.
-    previo = {}
+    # LA CLAVE NO BASTA COMO ANCLA, Y ESTO COSTO DESCUBRIRLO. Conservar el
+    # numero solo cuando la clave coincide funciona mientras las claves no se
+    # muevan, y se mueven: en cuanto `fulltext_identifiers.csv` resuelve el DOI
+    # de un resumen de congreso, su clave pasa de "T:titulo..." a "doi:...", el
+    # estudio parece nuevo y se le da un numero nuevo. Al reejecutar esto el
+    # 2026-09-14, EST-133 y EST-188 --dos estudios del corpus, con su trabajo
+    # hecho-- se convirtieron en EST-220 y EST-221 sin que nada fallara.
+    #
+    # El ancla de verdad son los INFORMES: un estudio es el conjunto de sus
+    # record_id, y esos se derivan del contenido. Si el grupo de hoy comparte
+    # aunque sea un informe con un estudio de ayer, es ese estudio y conserva
+    # su numero, cambie su clave lo que cambie.
+    previo, previo_recs = {}, {}
     if OUT.exists():
         with open(OUT, encoding="utf-8", newline="") as fh:
             for r in csv.DictReader(fh):
                 previo.setdefault(r["clave"], int(r["estudio"]))
+                previo_recs.setdefault(int(r["estudio"]), set()).add(r["record_id"])
     siguiente = max(previo.values(), default=0) + 1
 
     filas = []
     situaciones = collections.Counter()
-    nuevos = []
+    nuevos, fusiones = [], []
     orden_grupos = sorted(grupos.items(),
                           key=lambda kv: min(int(x["orden"]) for x in kv[1]))
-    numero = {}
+    numero, usados = {}, set()
     for k, recs in orden_grupos:
-        if k in previo:
+        if k in previo and previo[k] not in usados:
             numero[k] = previo[k]
         else:
-            numero[k] = siguiente
-            siguiente += 1
-            nuevos.append(k)
+            ids = {r["record_id"] for r in recs}
+            heredables = sorted(n for n, rs in previo_recs.items()
+                                if (rs & ids) and n not in usados)
+            if heredables:
+                # Si hereda de MAS DE UNO, dos estudios de ayer son uno hoy:
+                # es una fusion declarada, y se anuncia. Se queda con el numero
+                # mas bajo, que es el del informe que entro antes al pozo.
+                numero[k] = heredables[0]
+                if len(heredables) > 1:
+                    fusiones.append((heredables, numero[k]))
+            else:
+                numero[k] = siguiente
+                siguiente += 1
+                nuevos.append(k)
+        usados.add(numero[k])
     n_est = len(orden_grupos)
     for k, recs in orden_grupos:
         tipos = {tipo_informe(r) for r in recs}

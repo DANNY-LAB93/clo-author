@@ -27,6 +27,10 @@ except Exception:
 # origen. Se enumeran para que la comprobacion siga siendo estricta: sin esta
 # lista habria que relajar el criterio y entonces dejaria de detectar nada.
 EXCEPCIONES = {
+    # No es una cifra: es el codigo de protocolo del ensayo Phage4Cure-001,
+    # que el manuscrito nombra al explicar el duplicado en CTIS. Anadido el
+    # 2026-09-14, cuando ese parrafo entro en los tres manuscritos.
+    "001": "codigo de protocolo del ensayo Phage4Cure-001, no una cantidad",
     # Comprobadas una a una el 2026-09-05 contra su fuente. Estaban saliendo
     # como "sin respaldo" desde hace semanas, y una lista de fallos que siempre
     # trae los mismos tres deja de leerse: son reales, y aqui consta por que.

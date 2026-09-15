@@ -25,12 +25,12 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `informes_a_texto_completo` | 233 |
 | `corriente_bases` | 389 |
 | `corriente_registros` | 71 |
-| `estudios` | 145 |
-| `informes_agrupados` | 179 |
-| `estudios_excluidos_tras_texto_completo` | 39 |
-| `informes_excluidos_tras_texto_completo` | 54 |
-| `estudios_antes_de_releer` | 184 |
-| `exclusiones_tras_texto_completo` | ORG: 19; REV: 2; LAB: 3; OFF: 4; IDI: 4; PRO: 4; INT: 2; NOREC: 1 |
+| `estudios` | 137 |
+| `informes_agrupados` | 171 |
+| `estudios_excluidos_tras_texto_completo` | 46 |
+| `informes_excluidos_tras_texto_completo` | 62 |
+| `estudios_antes_de_releer` | 183 |
+| `exclusiones_tras_texto_completo` | ORG: 19; REV: 2; LAB: 3; OFF: 4; IDI: 4; PRO: 4; INT: 2; NOREC: 1; NOORG: 7 |
 | `excluidos_texto_completo_ORG` | 19 |
 | `excluidos_texto_completo_REV` | 2 |
 | `excluidos_texto_completo_LAB` | 3 |
@@ -39,11 +39,12 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `excluidos_texto_completo_PRO` | 4 |
 | `excluidos_texto_completo_INT` | 2 |
 | `excluidos_texto_completo_NOREC` | 1 |
+| `excluidos_texto_completo_NOORG` | 7 |
 | `estudios_con_articulo` | 92 |
 | `estudios_solo_resumen` | 3 |
-| `estudios_solo_registro` | 50 |
+| `estudios_solo_registro` | 42 |
 | `estudios_multiinforme` | 22 |
-| `estudios_un_solo_informe` | 123 |
+| `estudios_un_solo_informe` | 115 |
 | `informes_del_estudio_mayor` | 11 |
 | `estudios_extraibles` | 95 |
 | `texto_completo_obtenido` | 71 |
@@ -85,7 +86,7 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `enmienda_idioma_informes_excluidos` | 35 |
 | `informes_a_texto_completo_antes` | 268 |
 | `estudios_eliminados_por_idioma` | 35 |
-| `estudios_antes_de_la_enmienda` | 219 |
+| `estudios_antes_de_la_enmienda` | 218 |
 | `informes_excluidos_por_idioma_detalle` | rus: 29; dan: 1; dut: 1; jpn: 1 |
 | `informes_excluidos_en_ruso` | 29 |
 | `extraibles_antes_de_la_enmienda` | 159 |
@@ -97,14 +98,14 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `estudios_leidos_a_texto_completo` | 93 |
 | `excluidos_entre_los_leidos` | 22 |
 | `excluidos_tras_texto_completo_pct` | 23.7 |
-| `excluidos_sobre_la_ficha_de_registro` | 10 |
+| `excluidos_sobre_la_ficha_de_registro` | 17 |
 | `registros_sin_organismo_n` | 29 |
 | `registros_organismo_cumple` | 12 |
 | `registros_organismo_no_cumple` | 10 |
 | `registros_organismo_indeterminado` | 7 |
 | `excluidos_sin_poder_leer_nada` | 7 |
 | `excluidos_sin_texto_completo` | 7 |
-| `corpus_si_se_excluye_lo_no_recuperado` | 121 |
+| `corpus_si_se_excluye_lo_no_recuperado` | 113 |
 | `extraibles_si_se_excluye_lo_no_recuperado` | 71 |
 | `comparativos_si_se_excluye_lo_no_recuperado` | 5 |
 | `ecas_si_se_excluye_lo_no_recuperado` | 3 |
@@ -138,9 +139,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
 | `palabras_resumen_es` | 262 |
-| `palabras_cuerpo_es` | 7355 |
+| `palabras_cuerpo_es` | 7514 |
 | `palabras_resumen_en` | 280 |
-| `palabras_cuerpo_en` | 6920 |
+| `palabras_cuerpo_en` | 7075 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 122 |
 | `extraccion_estudios_ambos` | 122 |

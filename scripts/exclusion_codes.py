@@ -66,6 +66,32 @@ CODES = {
     # recuperacion --uno de los tres componentes que esta
     # revision mide-- deja de poder medirse. Ver la decision del 2026-09-02.
     "NOREC": "Texto completo no recuperado: no se pudo verificar contra el articulo",
+    # UNDECIMO CODIGO, ANADIDO EL 2026-09-14. Enmienda al protocolo firmada por
+    # D. Valdiviezo y N. Trelles el mismo dia, en
+    # FIRMAR_codigo_NOORG_y_duplicado.xlsx, hoja «El codigo nuevo».
+    #
+    # POR QUE NO VALE ORG. ORG afirma «organismo distinto de P. aeruginosa».
+    # En estas fichas no hay organismo ninguno: siete registros de ensayo cuya
+    # ficha completa, bajada de ClinicalTrials.gov y de CTIS y leida entera, no
+    # declara que bacteria se trata. Decir «distinto» seria afirmar mas de lo
+    # comprobado, que es el error que ya costo cuatro exclusiones por idioma el
+    # 2026-09-01: la clase de evidencia se llamaba «texto probado» y solo se
+    # habia leido el resumen.
+    #
+    # DE QUE FAMILIA ES. Hermano de NOREC. Los nueve primeros codigos excluyen
+    # por lo que el estudio DICE; NOREC por lo que la revision NO PUDO LEER, y
+    # NOORG por lo que el registro NO DECLARA. Los dos ultimos son propiedades
+    # del proceso, no del estudio, y el manuscrito esta obligado a declararlos
+    # como tales.
+    #
+    # LO QUE CUESTA, y consta en el manuscrito: estos siete estudios son parte
+    # de la evidencia de lo que el propio articulo sostiene --que este cuerpo
+    # de literatura no admite verificacion--. Al excluirlos salen del total, y
+    # por eso se cuentan uno por uno en el diagrama PRISMA y en S16.
+    #
+    # Ver quality_reports/decisions/2026-09-14_diez-exclusiones-firmadas-y-un-codigo-que-falta.md
+    "NOORG": ("La ficha de registro no declara ningun organismo: el criterio de "
+              "P. aeruginosa no se puede verificar ni a favor ni en contra"),
 }
 
 # Patrones que mapean el texto libre ya registrado a su codigo. Se evaluan en
