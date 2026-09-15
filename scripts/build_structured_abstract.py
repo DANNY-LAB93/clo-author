@@ -109,7 +109,8 @@ def textos(S, O, R):
         evaluados=S["estudios_antes_de_releer"],
         excluidos=S["estudios_excluidos_tras_texto_completo"],
         leidos_fuera=S["excluidos_entre_los_leidos"],
-        sin_texto_fuera=S["excluidos_sin_texto_completo"],
+        sin_texto_fuera=S["excluidos_sin_poder_leer_nada"],
+        ficha_fuera=S["excluidos_sobre_la_ficha_de_registro"],
         estudios=S["estudios"],
         extraibles=S["estudios_extraibles"],
         con_texto=S["texto_completo_obtenido"],
@@ -155,17 +156,17 @@ def textos(S, O, R):
          "de inclusión fue el estudio, no el informe. Extracción por duplicado e "
          "independiente, con {firmados} de {desacuerdos} desacuerdos adjudicados "
          "por consenso. {sesgo_es}",
-         "Se realizó una revisión sistemática conforme a PRISMA 2020 sobre "
-         "{fuentes} fuentes, en dos corrientes —bases bibliográficas y registros "
-         "de ensayos—, con ventana {anio_min}-{anio_max} donde la interfaz la "
-         "admite. La unidad de inclusión fue el estudio, no el informe. Extracción "
+         "Revisión sistemática conforme a PRISMA 2020 sobre {fuentes} fuentes "
+         "—bases bibliográficas y registros de ensayos—, con ventana "
+         "{anio_min}-{anio_max} donde la interfaz la admite. La unidad de inclusión fue el estudio, no el informe. Extracción "
          "por duplicado e independiente, con {firmados} de {desacuerdos} "
          "desacuerdos adjudicados por consenso. {sesgo_es}"),
         ("Resultados",
          "De {registros} registros quedaron {unicos} informes únicos; {informes} "
          "informes formaron {evaluados} estudios evaluados para elegibilidad, de "
-         "los que {excluidos} se excluyeron: {leidos_fuera} al leer el artículo y "
-         "{sin_texto_fuera} sin poder leerlo. Quedan {estudios} estudios, "
+         "los que {excluidos} se excluyeron: {leidos_fuera} por el artículo, "
+         "{ficha_fuera} por la ficha del registro y {sin_texto_fuera} sin poder "
+         "leer ninguno. Quedan {estudios} estudios, "
          "{extraibles} con publicación recuperable y {con_texto} con texto "
          "obtenido ({recuperacion} %). De esos {extraibles}, "
          "el {casos} % son reportes de caso único y el {comparativos} % tiene "
@@ -196,17 +197,17 @@ def textos(S, O, R):
          "unit of inclusion was the study, not the report. Extraction was in "
          "duplicate and independent, with {firmados} of {desacuerdos} disagreements "
          "adjudicated by consensus. {sesgo_en}",
-         "A systematic review was conducted following PRISMA 2020 across eight "
-         "sources, in two streams —bibliographic databases and trial registries—, "
-         "with a {anio_min}-{anio_max} window where the interface allows it. The "
+         "A PRISMA 2020 systematic review across eight sources —bibliographic "
+         "databases and trial registries—, with a {anio_min}-{anio_max} window "
+         "where the interface allows it. The "
          "unit of inclusion was the study, not the report. Data were extracted in "
          "duplicate and independently, with {firmados} of {desacuerdos} "
          "disagreements adjudicated by consensus. {sesgo_en}"),
         ("Results",
          "From {registros} records, {unicos} unique reports remained; {informes} "
          "reports formed {evaluados} studies assessed for eligibility, of which "
-         "{excluidos} were excluded: {leidos_fuera} on reading the article and "
-         "{sin_texto_fuera} without being able to read it. {estudios} studies "
+         "{excluidos} were excluded: {leidos_fuera} on the article, {ficha_fuera} on "
+         "the registry record and {sin_texto_fuera} without reading either. {estudios} studies "
          "remain, {extraibles} with a retrievable publication and {con_texto} with "
          "the text obtained ({recuperacion} %). Of those {extraibles}, {casos} % are single case "
          "reports and {comparativos} % have a comparative design; resistance "

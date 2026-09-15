@@ -1,5 +1,13 @@
 # 29 fichas de registro no decían qué organismo se trata, y diez de ellas no cumplen
 
+> **ACTUALIZADO el 14 de septiembre de 2026, más tarde el mismo día.** Lo que
+> sigue se escribió antes de que el cuaderno volviera firmado, y su cabecera
+> decía «NO aplicado». Ya no es cierto: D. Valdiviezo y N. Trelles firmaron las
+> 29 filas menos una, y **diez exclusiones están aplicadas**. El texto original
+> se conserva entero, sin tocar, porque es lo que se midió y lo que se propuso.
+> Lo que pasó después está en
+> [2026-09-14_diez-exclusiones-firmadas-y-un-codigo-que-falta.md](2026-09-14_diez-exclusiones-firmadas-y-un-codigo-que-falta.md).
+
 **Estado:** MEDIDO el 14 de septiembre de 2026. **NO aplicado.** Espera la firma
 de los dos revisores.
 **Ficheros:** `scripts/fetch_registros.py`, `scripts/verifica_organismo_registros.py`,

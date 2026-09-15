@@ -54,11 +54,12 @@ dar error. Ver su `LEEME.md`.
 ```bash
 python scripts/build_synthesis_scalars.py      # 1. las cifras. Siempre primero
 python scripts/build_manuscript_tables.py      # 2. tablas 1-6
-python scripts/build_verifiables_package.py    # 3. S1-S16 (S11-S13 dentro)
-python scripts/build_readable_annexes.py       # 4. los .xlsx legibles de cada .csv
-python scripts/build_editorial_report.py       # 5. S0 y el índice
-python scripts/build_package_guide.py          # 6. la guía del paquete
-python scripts/build_jsr_submission.py         # 7. el sobre de la revista, al Escritorio
+python scripts/build_structured_abstract.py    # 3. el resumen, y avisa si pasa de 250
+python scripts/build_verifiables_package.py    # 4. S1-S16 (S11-S13 dentro)
+python scripts/build_readable_annexes.py       # 5. los .xlsx legibles de cada .csv
+python scripts/build_editorial_report.py       # 6. S0 y el índice
+python scripts/build_package_guide.py          # 7. la guía del paquete
+python scripts/build_jsr_submission.py         # 8. el sobre de la revista, al Escritorio
 
 # Los tres guardianes. Los dos primeros contrastan con el canal;
 # el tercero rehace las cuentas desde el texto solo.
@@ -77,12 +78,12 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
 | Componente | Estado |
 |---|---|
-| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 184 valorados → 29 excluidos al leer el texto → **155 estudios, 95 extraíbles** |
+| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 184 valorados → 39 excluidos (22 por el artículo, 10 por la ficha del registro, 7 sin poder leer ninguno) → **145 estudios, 95 extraíbles** |
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
 | Texto completo | 71 de 95 (74,7 %). El hueco está sesgado: retiene el 54,5 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
 | Riesgo de sesgo | **emitido y completo**: 14 comparativos adjudicados, 11 evaluables (3 RoB 2, 8 ROBINS-I), 3 sin texto. **82 de 82 juicios**, a nivel de dominio, por consenso y **sin kappa** |
-| Manuscrito | maestro 7 121 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
+| Manuscrito | maestro 7 355 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
 | Anexos | **S0–S16 (17 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
 
@@ -113,7 +114,7 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
 
 4. **NOREC es una enmienda de otra clase.** Los demás códigos hablan de lo que el
    artículo DICE; `NOREC` habla de lo que esta revisión NO PUDO LEER. Se aplica a un
-   estudio (EST-118). Extenderlo a los 24 sin texto hundiría el corpus a 131, los
+   estudio (EST-118). Extenderlo a los 24 sin texto hundiría el corpus a 121, los
    comparativos a 5 y los ECA a 3, y dejaría la recuperación en 100 % **por
    construcción**, destruyendo el sesgo que §3.2 mide. No lo extiendas sin releer eso.
 
@@ -133,11 +134,16 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
 
 8. **29 fichas de registro no decían qué organismo se trata.** Se bajaron enteras
    (`revision_sistematica/textos_completos/registros/`, 25 de ClinicalTrials.gov y 4 de
-   CTIS) y se leyeron una a una: **12 cumplen, 10 no, 7 no se puede saber**. La evidencia
-   literal está en `quality_reports/registros_organismo_verificado.csv`. **Nada se ha
-   aplicado**: espera las dos firmas en `FIRMAR_organismo_de_los_registros.xlsx`. Si se
-   firman los 10, el corpus baja de 155 y se mueven el PRISMA, la Tabla 4 y todos los
-   porcentajes. Ver `quality_reports/decisions/2026-09-14_organismo-de-las-fichas-de-registro.md`.
+   CTIS) y se leyeron una a una: **12 cumplen, 10 no, 7 no se puede saber**. Los dos
+   autores firmaron el 2026-09-14 y **las 10 exclusiones están aplicadas**: el corpus
+   bajó de 155 a 145. **Siguen abiertas 7 filas** y el LEEME del sobre bloquea el envío
+   mientras lo estén: seis firmadas NO CUMPLE **sin código** —su motivo no es «otro
+   organismo» sino «no consta el organismo», y un código nuevo es una enmienda al
+   protocolo— y EST-087 sin decidir. Está en
+   `FIRMAR_codigo_NOORG_y_duplicado.xlsx`, y el estado en
+   `quality_reports/organismo_pendiente.json`. También está confirmado, y sin aplicar,
+   que EST-186 y EST-187 son el mismo ensayo. Ver los dos registros de decisión del
+   2026-09-14.
 
 9. **`check_aritmetica.py` no consulta el canal, recalcula.** Los otros dos verifican
    contra los escalares, así que un escalar bien calculado y mal redactado en su frase

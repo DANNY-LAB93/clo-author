@@ -505,37 +505,43 @@ def poda(dst, escritos, etiqueta):
 
 
 def organismo_pendiente(S):
-    """El punto que bloquea el envio si las fichas de registro siguen sin firmar.
+    """El punto que bloquea el envio mientras el organismo de las fichas siga abierto.
 
     El 2026-09-14 se leyeron contra su registro las 29 fichas cuyo titulo,
-    resumen y MeSH no decian que organismo se trata, y diez no cumplen el
-    criterio. Nada se aplico: excluirlas mueve el total, el PRISMA, la Tabla 4
-    y todos los porcentajes. Mientras esa decision este abierta, el sobre no
-    debe subirse, y el aviso desaparece solo cuando las exclusiones esten
-    firmadas y aplicadas. No se teclea cuantas faltan: se cuentan.
+    resumen y MeSH no decian que organismo se trata. Los dos revisores firmaron
+    el cuaderno y diez exclusiones se aplicaron. Siete filas quedaron abiertas,
+    y son justo las que no se pueden cerrar solas: seis firmadas NO CUMPLE sin
+    codigo del vocabulario --un codigo nuevo es una enmienda al protocolo-- y
+    una sin decidir.
+
+    El aviso no se teclea ni se cuenta a ojo: sale de
+    `quality_reports/organismo_pendiente.json`, que escribe `ingest_organismo.py`
+    con lo que NO pudo aplicar. Cuando ese fichero quede vacio, el aviso
+    desaparece solo.
     """
-    tabla = ROOT / "quality_reports" / "registros_organismo_verificado.csv"
-    if not tabla.exists():
+    p = ROOT / "quality_reports" / "organismo_pendiente.json"
+    if not p.exists():
         return ()
-    with open(tabla, encoding="utf-8-sig", newline="") as fh:
-        propuestos = {r["study_id"] for r in csv.DictReader(fh)
-                      if r["veredicto_propuesto"] == "NO CUMPLE"}
-    aplicadas = set()
-    p_ex = ROOT / "revision_sistematica" / "cribado" / "exclusiones_tras_texto_completo.csv"
-    if p_ex.exists():
-        with open(p_ex, encoding="utf-8", newline="") as fh:
-            aplicadas = {r["study_id"] for r in csv.DictReader(fh)}
-    faltan = propuestos - aplicadas
-    if not faltan:
+    d = json.loads(p.read_text(encoding="utf-8"))
+    sin_codigo = [x["study_id"] for x in d.get("firmadas_sin_codigo", [])]
+    sin_decidir = list(d.get("sin_decidir", []))
+    if not (sin_codigo or sin_decidir):
         return ()
-    return ("**Decidido y firmado el organismo de las fichas de registro.** De "
-            "las 29 fichas que no decian que organismo se trata, %d no cumplen "
-            "el criterio y siguen sin firmar (%s). Estan en "
-            "`FIRMAR_organismo_de_los_registros.xlsx`, con la frase literal de "
-            "cada registro. Si se firman, el corpus baja de %s estudios y hay "
-            "que rehacer el canal entero ANTES de enviar: cambian el diagrama "
-            "PRISMA, la Tabla 4 y todos los porcentajes"
-            % (len(faltan), ", ".join(sorted(faltan)), mil(S["estudios"])),)
+    trozos = []
+    if sin_codigo:
+        trozos.append("%d estan firmadas NO CUMPLE pero sin codigo de exclusion "
+                      "(%s): el vocabulario es cerrado y un codigo nuevo es una "
+                      "enmienda al protocolo, que se declara en "
+                      "`scripts/exclusion_codes.py` y se firma"
+                      % (len(sin_codigo), ", ".join(sorted(sin_codigo))))
+    if sin_decidir:
+        trozos.append("%d sigue(n) sin decidir (%s)"
+                      % (len(sin_decidir), ", ".join(sorted(sin_decidir))))
+    return ("**Cerrado el organismo de las fichas de registro.** %s. Hasta que "
+            "se cierren, el corpus de %s estudios puede moverse todavia, y con "
+            "el el diagrama PRISMA y los porcentajes. Ver "
+            "`quality_reports/organismo_pendiente.json`"
+            % ("; ".join(trozos), mil(S["estudios"])),)
 
 
 def escribe_leeme(destino, S, anexos):

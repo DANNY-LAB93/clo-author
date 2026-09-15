@@ -110,7 +110,19 @@ def main():
         #
         # Partiendo la plantilla no se toca ningun valor, y el comodin lleva los
         # espacios como caracteres de verdad y no como escapes con digitos.
-        comodin = "[\\d\u00a0\u2009\u202f .,]+"
+        # EL COMODIN NO PUEDE COMERSE LA PUNTUACION. Escrito como una clase
+        # "[\d espacios . ,]+" era voraz: en una plantilla que EMPIEZA por un
+        # hueco --\u00ab{estudios} studies remain...\u00bb-- el comodin empezaba a casar
+        # en el punto de la frase anterior y se tragaba \u00ab. \u00bb, de modo que al
+        # sustituir desaparecia el final de la oracion. Asi nacio
+        # \u00abwithout being able to read it155 studies remain\u00bb, que viajo en el
+        # resumen en ingles hasta que alguien lo leyo.
+        #
+        # Ahora describe UN NUMERO: digitos, grupos de millar separados por
+        # cualquiera de los cuatro espacios que el manuscrito usa, y una parte
+        # decimal opcional. Ni un punto ni una coma sueltos al final.
+        espacio = "\u00a0\u2009\u202f "
+        comodin = r"\d+(?:[" + espacio + r"]\d{3})*(?:[.,]\d+)?"
         partes = re.split(r"\{(\w+)\}", plantilla)
         molde = "".join(re.escape(p) if i % 2 == 0 else comodin
                         for i, p in enumerate(partes))

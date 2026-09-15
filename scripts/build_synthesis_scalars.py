@@ -378,7 +378,31 @@ def main():
     S["excluidos_entre_los_leidos"] = len(de_los_leidos)
     S["excluidos_tras_texto_completo_pct"] = round(
         100.0 * len(de_los_leidos) / max(1, len(leidos)), 1)
-    S["excluidos_sin_texto_completo"] = len(FUERA - leidos)
+    # TRES FORMAS DE EXCLUIR, NO DOS. Hasta el 2026-09-14 el reparto era
+    # binario -- «al leer el articulo» y «sin poder leerlo»-- y valia mientras
+    # todo lo excluido fuera articulo. Ese dia se excluyeron diez estudios que
+    # son solo ficha de registro, tras bajar y leer la ficha ENTERA del
+    # registro. Meterlos en «sin poder leerlo» habria dicho al lector que no se
+    # leyo nada de ellos, que es justo lo contrario de lo que paso, y habria
+    # convertido una lectura en un fracaso de recuperacion.
+    p_reg = ROOT / "quality_reports" / "registros_organismo_verificado.csv"
+    verificados = set()
+    if p_reg.exists():
+        with open(p_reg, encoding="utf-8-sig", newline="") as fh:
+            verificados = {r["study_id"] for r in csv.DictReader(fh)}
+    sobre_ficha = (FUERA - leidos) & verificados
+    S["excluidos_sobre_la_ficha_de_registro"] = len(sobre_ficha)
+    if p_reg.exists():
+        with open(p_reg, encoding="utf-8-sig", newline="") as fh:
+            vered = collections.Counter(r["veredicto_propuesto"]
+                                        for r in csv.DictReader(fh))
+        S["registros_sin_organismo_n"] = sum(vered.values())
+        S["registros_organismo_cumple"] = vered.get("CUMPLE", 0)
+        S["registros_organismo_no_cumple"] = vered.get("NO CUMPLE", 0)
+        S["registros_organismo_indeterminado"] = vered.get("INDETERMINADO", 0)
+    S["excluidos_sin_poder_leer_nada"] = len(FUERA - leidos - sobre_ficha)
+    # Se conserva el nombre antiguo: es lo que NO se pudo leer en absoluto.
+    S["excluidos_sin_texto_completo"] = S["excluidos_sin_poder_leer_nada"]
 
     # EL CONTRAFACTUAL DE LA SEGUNDA ENMIENDA. El codigo NOREC excluye por no
     # haber podido leer el articulo, y hoy se aplica a UN estudio. El

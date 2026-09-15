@@ -1,0 +1,40 @@
+{
+ "fecha_de_la_firma": "2026-09-14",
+ "firmado_por": "DANNY JAVIER VALDIVIEZO VERDUGO y NATALY ELIZABETH TRELLES AVILA",
+ "sin_decidir": [
+  "EST-087"
+ ],
+ "firmadas_sin_codigo": [
+  {
+   "study_id": "EST-141",
+   "veredicto_propuesto": "INDETERMINADO",
+   "decision_firmada": "NO CUMPLE"
+  },
+  {
+   "study_id": "EST-148",
+   "veredicto_propuesto": "INDETERMINADO",
+   "decision_firmada": "NO CUMPLE"
+  },
+  {
+   "study_id": "EST-192",
+   "veredicto_propuesto": "INDETERMINADO",
+   "decision_firmada": "NO CUMPLE"
+  },
+  {
+   "study_id": "EST-203",
+   "veredicto_propuesto": "INDETERMINADO",
+   "decision_firmada": "NO CUMPLE"
+  },
+  {
+   "study_id": "EST-209",
+   "veredicto_propuesto": "INDETERMINADO",
+   "decision_firmada": "NO CUMPLE"
+  },
+  {
+   "study_id": "EST-214",
+   "veredicto_propuesto": "INDETERMINADO",
+   "decision_firmada": "NO CUMPLE"
+  }
+ ],
+ "por_que": "Un codigo nuevo es una enmienda al protocolo: se declara en scripts/exclusion_codes.py con su fecha y su motivo, y lo firman los dos revisores. Hasta entonces estas exclusiones no se aplican."
+}
