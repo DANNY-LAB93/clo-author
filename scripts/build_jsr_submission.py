@@ -573,12 +573,22 @@ def escribe_leeme(destino, S, anexos):
     md.append("")
     md.append("| Fichero | Que es |")
     md.append("|---|---|")
-    md.append("| `manuscrito_JSR_final.docx` | **El articulo, y el unico.** Times New "
+    md.append("| `manuscrito_JSR_final.docx` | **EL FICHERO QUE SE SUBE.** Times New "
               "Roman 12, A4, interlineado 1,5. RESUMEN / ABSTRACT / INTRODUCCION / "
               "DESARROLLO / METODOLOGIA / RESULTADOS / DISCUSION Y CONCLUSIONES / "
               "DECLARACIONES / REFERENCIAS. Citas Vancouver numeradas. Las %d tablas y "
               "las %d figuras van donde el texto las cita, no en un anexo al final |"
               % (n_tablas, n_figuras))
+    # El .pdf va al lado del .docx y con el mismo nombre: en el portal la unica
+    # diferencia a la vista es la extension. Se declara aqui, en la fila de
+    # despues, para que quien mire la tabla no tenga que deducirlo.
+    pdf = destino / "manuscrito_JSR_final.pdf"
+    if pdf.exists():
+        md.append("| `manuscrito_JSR_final.pdf` | **El mismo articulo, para LEER. NO se "
+                  "sube.** La revista pide Word, RTF u OpenOffice. Ojo: se llama igual "
+                  "que el `.docx` y esta a su lado; en el portal la unica diferencia a "
+                  "la vista es la extension. Ademas no esta convertido del `.docx` sino "
+                  "maquetado aparte, asi que sus saltos de pagina pueden no coincidir |")
     md.append("| `carta_de_presentacion.docx` | Carta al Comite Editorial. Declara por "
               "adelantado lo que un revisor va a preguntar |")
     md.append("| `suplementos/` | Los %d anexos (S%d a S%d), el indice y la guia, en %d "
@@ -863,6 +873,19 @@ def main():
     if viejo.exists():
         viejo.unlink()
         print("  %-42s retirado: lo sustituye %s" % (viejo.name, docx_out.name))
+
+    # EL PDF VIAJA EN EL SOBRE, por decision de D.V. el 2026-09-14. Va con el
+    # mismo nombre que el .docx y a su lado, asi que la unica diferencia a la
+    # vista en el portal es la extension: el LEEME lo declara como «para leer,
+    # NO se sube» y la lista de comprobacion lo repite. La revista pide Word,
+    # RTF u OpenOffice.
+    pdf_origen = ROOT / "paper" / "pdf" / "manuscrito_JSR_final.pdf"
+    if pdf_origen.exists():
+        shutil.copy2(pdf_origen, destino / pdf_origen.name)
+        print("  %-42s para leer; NO es el fichero de envio" % pdf_origen.name)
+    else:
+        print("  AVISO: no hay %s; correr antes scripts/build_jsr_pdf.py"
+              % pdf_origen.name)
 
     # Figuras y tablas, tal como salen del canal
     for sub, patrones in (("figuras", ("*.png", "*.pdf")), ("tablas", ("*.csv",))):
