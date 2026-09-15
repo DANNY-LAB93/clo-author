@@ -1,10 +1,12 @@
 {
   "modo": "consenso",
-  "comparativos_adjudicados": 12,
+  "comparativos_adjudicados": 14,
   "evaluables": 11,
-  "sin_texto_completo": 1,
+  "sin_texto_completo": 3,
   "sin_texto_completo_ids": [
-    "EST-029"
+    "EST-029",
+    "EST-157",
+    "EST-165"
   ],
   "por_instrumento": {
     "RoB 2": 3,

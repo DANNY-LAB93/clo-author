@@ -97,22 +97,32 @@ def informe_editorial(S):
     d.add_paragraph(
         "El trabajo metodológico que sostiene este manuscrito está por encima "
         "de lo habitual en el campo, y su hallazgo central es relevante y "
-        "publicable. No puede, sin embargo, entrar en revisión por pares como "
-        "revisión sistemática completa mientras los desacuerdos de la extracción "
-        "no estén adjudicados: la extracción por duplicado sí está hecha "
-        # Decia «hasta entonces ninguna cifra de desenlace puede apoyarse en
-        # los cuadernos», y las cifras de desenlace SI se apoyan en ellos: la
-        # Tabla 4 y el 67,0 % salen de la extraccion adjudicada. El reparo
-        # editorial sigue en pie, pero por su motivo real.
-        "(%d de %d estudios), pero %d de los %d desacuerdos siguen sin firmar. "
-        "Las cifras de desenlace se apoyan en la extracción adjudicada, de modo "
-        "que ese conjunto todavía tiene %d casillas abiertas: salen vacías y se "
-        "declaran como tales, pero un revisor puede legítimamente pedir que se "
-        "cierren antes de publicar. Lo que sigue distingue lo que impide "
-        "publicar de lo que solo mejora el manuscrito."
-        % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
-           S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"],
-           S["extraccion_conflictos_sin_firmar"]))
+        "publicable. " +
+        ("No puede, sin embargo, entrar en revisión por pares como revisión "
+         "sistemática completa mientras los desacuerdos de la extracción no estén "
+         "adjudicados: la extracción por duplicado sí está hecha "
+         if S["extraccion_conflictos_sin_firmar"] else
+         "El reparo que lo retenía fuera de la revisión por pares ya no está: la "
+         "extracción por duplicado está hecha ") +
+        # Dos redacciones, segun el estado. Con desacuerdos abiertos el reparo
+        # es la adjudicacion; sin ellos, ese reparo cae y hay que decirlo, no
+        # dejar «0 de los 541 siguen sin firmar» en una frase que empieza
+        # diciendo que no ha concluido.
+        "(%d de %d estudios). " % (S["extraccion_estudios_ambos"],
+                                   S["extraccion_estudios_r1"]) +
+        ("Quedan %d de los %d desacuerdos sin firmar, y las cifras de desenlace "
+         "se apoyan en la extracción adjudicada: ese conjunto tiene todavía "
+         "casillas abiertas, que salen vacías y se declaran como tales."
+         % (S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"])
+         if S["extraccion_conflictos_sin_firmar"] else
+         "La adjudicación por consenso quedó cerrada el 14 de septiembre de 2026: "
+         "%d de los %d desacuerdos llevan firma conjunta y los %d restantes se "
+         "cerraron por una regla mecánica, declarada como tal. Con eso cae el "
+         "reparo B1; lo que sigue bloqueando es el registro del protocolo."
+         % (S["extraccion_conflictos_firmados"], S["extraccion_desacuerdos"],
+            S["extraccion_cerrados_por_regla"])) +
+        " Lo que sigue distingue lo que impide publicar de lo que solo mejora "
+        "el manuscrito.")
 
     d.add_heading("Lo que este manuscrito hace bien", level=1)
     for t in [
@@ -187,14 +197,21 @@ def informe_editorial(S):
           # cosa y la resuelven otras personas. Las cifras salen de los
           # escalares para que esta fila no se vuelva a quedar vieja.
           [("B1", "Adjudicación por consenso de los desacuerdos",
-            "La extracción por duplicado está completa (%d de %d estudios, "
-            "%s %%), pero %d de los %d desacuerdos siguen sin firmar. Hasta "
-            "que se firmen no hay desenlaces, ni riesgo de sesgo, ni GRADE, "
-            "porque ninguna cifra puede apoyarse todavía en los cuadernos."
-            % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
-               S["extraccion_doble_pct"],
-               S["extraccion_conflictos_sin_firmar"],
-               S["extraccion_desacuerdos"]),
+            ("La extracción por duplicado está completa (%d de %d estudios, "
+             "%s %%), pero %d de los %d desacuerdos siguen sin firmar, y las "
+             "cifras de desenlace se apoyan en la extracción adjudicada."
+             % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+                S["extraccion_doble_pct"], S["extraccion_conflictos_sin_firmar"],
+                S["extraccion_desacuerdos"])
+             if S["extraccion_conflictos_sin_firmar"] else
+             "RESUELTO el 14 de septiembre de 2026. Extracción por duplicado "
+             "completa (%d de %d estudios, %s %%) y %d de %d desacuerdos con "
+             "firma conjunta; los %d restantes, cerrados por regla mecánica y "
+             "declarados como tal. La fila se conserva porque era el reparo "
+             "principal y el lector tiene que poder ver que cayó."
+             % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
+                S["extraccion_doble_pct"], S["extraccion_conflictos_firmados"],
+                S["extraccion_desacuerdos"], S["extraccion_cerrados_por_regla"])),
             "Los dos revisores, sobre ADJUDICACION_conflictos.xlsx"),
            ("B2", "Registro del protocolo",
             "PROSPERO admite registro aunque la revisión esté en marcha, "
@@ -451,8 +468,12 @@ def indice(S):
             % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
                S["extraccion_doble_pct"])),
            ("Adjudicación de los desacuerdos",
-            "PENDIENTE — %d de %d sin firmar; bloquea reportar desenlaces"
-            % (S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"])),
+            ("PENDIENTE — %d de %d sin firmar; bloquea reportar desenlaces"
+             % (S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"])
+             if S["extraccion_conflictos_sin_firmar"] else
+             "COMPLETA — %d de %d con firma conjunta, %d cerrados por regla"
+             % (S["extraccion_conflictos_firmados"], S["extraccion_desacuerdos"],
+                S["extraccion_cerrados_por_regla"]))),
            ("Validación del cribado en Rayyan",
             "COMPLETA — %d falsos negativos en %d registros recribados a ciegas"
             % (S["validacion_falsos_negativos"], S["validacion_muestra"])),

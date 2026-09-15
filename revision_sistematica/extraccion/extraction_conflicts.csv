@@ -105,7 +105,7 @@ EST-004,A,study_design,cohorte prospectiva,serie de casos,categórico,case serie
 EST-016,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
 EST-017,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
 EST-018,A,study_design,na,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
-EST-020,A,study_design,otra,caso clinico,categórico,,,
+EST-020,A,study_design,otra,caso clinico,categórico,other,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-024,A,study_design,caso clinico,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
 EST-027,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
 EST-028,A,study_design,otra,estudio observacional,categórico,other,DANNY VALDIVIEZO,2026-08-26
@@ -118,35 +118,35 @@ EST-046,A,study_design,serie de casos,caso clinico,categórico,case report,NATAL
 EST-047,A,study_design,serie de casos,caso clinico,categórico,case report,NATALY TRELLES,2026-08-26
 EST-048,A,study_design,serie de casos,caso clinico,categórico,case report,NATALY TRELLES,2026-08-26
 EST-050,A,study_design,cohorte retrospectiva,serie de casos,categórico,case report,NATALY TRELLES,2026-08-26
-EST-051,A,study_design,serie de casos,caso clinico,categórico,,,
+EST-051,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-053,A,study_design,serie de casos,caso clinico,categórico,case report,NATALY TRELLES,2026-08-26
 EST-055,A,study_design,cohorte prospectiva,estudio observacional,categórico,retrospective cohort,NATALY TRELLES,2026-08-26
 EST-057,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
 EST-058,A,study_design,serie de casos,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
-EST-059,A,study_design,NA,serie de casos,categórico,,,
+EST-059,A,study_design,NA,serie de casos,categórico,case series,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-060,A,study_design,cohorte retrospectiva,serie de casos,categórico,retrospective cohort,NATALY TRELLES,2026-08-26
 EST-070,A,study_design,cohorte retrospectiva,serie de casos,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
-EST-073,A,study_design,otra,serie de casos,categórico,,,
+EST-073,A,study_design,otra,serie de casos,categórico,other,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-075,A,study_design,ECA,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
 EST-077,A,study_design,cohorte retrospectiva,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
 EST-080,A,study_design,cohorte retrospectiva,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
 EST-091,A,study_design,otra,estudio observacional,categórico,case series,NATALY TRELLES,2026-08-26
 EST-096,A,study_design,serie de casos,estudio observacional,categórico,non-randomised trial,NATALY TRELLES,2026-08-26
-EST-098,A,study_design,NA,serie de casos,categórico,,,
+EST-098,A,study_design,NA,serie de casos,categórico,case series,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-105,A,study_design,otra,caso clinico,categórico,case report,DANNY VALDIVIEZO,2026-08-26
-EST-115,A,study_design,NA,serie de casos,categórico,,,
+EST-115,A,study_design,NA,serie de casos,categórico,other,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-117,A,study_design,serie de casos,estudio observacional,categórico,case series,DANNY VALDIVIEZO,2026-08-26
-EST-133,A,study_design,NA,serie de casos,categórico,,,
+EST-133,A,study_design,NA,serie de casos,categórico,other,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-134,A,study_design,cohorte prospectiva,serie de casos,categórico,case series,DANNY VALDIVIEZO,2026-08-26
 EST-146,A,study_design,cohorte retrospectiva,serie de casos,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
 EST-152,A,study_design,cohorte retrospectiva,estudio observacional,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
-EST-157,A,study_design,NA,ECA,categórico,,,
-EST-165,A,study_design,NA,serie de casos,categórico,,,
+EST-157,A,study_design,NA,ECA,categórico,RCT,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
+EST-165,A,study_design,NA,serie de casos,categórico,prospective cohort,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-167,A,study_design,NA,serie de casos,categórico,other,NATALY TRELLES,2026-08-26
 EST-178,A,study_design,ECA,estudio observacional,categórico,retrospective cohort,DANNY VALDIVIEZO,2026-08-26
 EST-181,A,study_design,ensayo no aleatorizado,serie de casos,categórico,case report,NATALY TRELLES,2026-08-26
-EST-219,A,study_design,NA,serie de casos,categórico,,,
-EST-001,A,extraction_status,PARCIAL,COMPLETA,categórico,,,
+EST-219,A,study_design,NA,serie de casos,categórico,other,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
+EST-001,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-008,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,DANNY VALDIVIEZO,2026-08-26
 EST-012,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
 EST-014,A,extraction_status,PARCIAL,COMPLETA,categórico,COMPLETE,NATALY TRELLES,2026-08-26
@@ -173,7 +173,7 @@ EST-115,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE
 EST-133,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
 EST-157,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,NATALY TRELLES,2026-08-26
 EST-165,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,NATALY TRELLES,2026-08-26
-EST-167,A,extraction_status,INCOMPLETA,PARCIAL,categórico,,,
+EST-167,A,extraction_status,INCOMPLETA,PARCIAL,categórico,PARTIAL,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-219,A,extraction_status,INCOMPLETA,PARCIAL,categórico,EXTRACTION_INCOMPLETE,DANNY VALDIVIEZO,2026-08-26
 EST-003,A,n_arm,1,15,numérico,1,NATALY TRELLES,2026-08-26
 EST-003,C,n_arm,5,4,numérico,5,NATALY TRELLES,2026-08-26
@@ -242,7 +242,7 @@ EST-021,A,adverse_event_n,0,3,numérico,3,NATALY TRELLES,2026-08-26
 EST-024,A,adverse_event_n,1,0,numérico,1,NATALY TRELLES,2026-08-26
 EST-028,A,adverse_event_n,Na,0,numérico,0,NATALY TRELLES,2026-08-26
 EST-029,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
-EST-043,A,adverse_event_n,NA,0,numérico,,,
+EST-043,A,adverse_event_n,NA,0,numérico,0,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-044,A,adverse_event_n,NA,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
 EST-049,A,adverse_event_n,NA,0,numérico,0,NATALY TRELLES,2026-08-26
 EST-050,A,adverse_event_n,Na,0,numérico,0,DANNY VALDIVIEZO,2026-08-26
@@ -291,7 +291,7 @@ EST-038,A,microbio_eradication_n,0,NA,numérico,0,NATALY TRELLES,2026-08-26
 EST-040,A,microbio_eradication_n,0,1,numérico,1,DANNY VALDIVIEZO,2026-08-26
 EST-048,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
 EST-050,A,microbio_eradication_n,18,NA,numérico,18,DANNY VALDIVIEZO,2026-08-26
-EST-051,A,microbio_eradication_n,1,NA,numérico,,,
+EST-051,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO Y NATALY TRELLES,2026-09-14
 EST-053,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
 EST-057,A,microbio_eradication_n,1,NA,numérico,1,DANNY VALDIVIEZO,2026-08-26
 EST-058,A,microbio_eradication_n,0,NA,numérico,1,NATALY TRELLES,2026-08-26

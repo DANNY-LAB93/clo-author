@@ -425,7 +425,16 @@ def escribe_carta(destino, S, meta, n_anexos):
         "revisamos uno a uno, y una submuestra de %d registros excluidos se recribó "
         "a ciegas en Rayyan sin encontrar ning\u00fan falso negativo. La extracci\u00f3n de "
         "datos se hizo por duplicado y de forma independiente sobre %d de los %d "
-        "estudios, pero la adjudicaci\u00f3n por consenso de los desacuerdos no ha "
+        # OJO CON EL ORDEN DE LOS OPERADORES: `%` liga mas fuerte que `+`, asi
+        # que cada grupo de literales concatenados necesita SU tupla pegada. Al
+        # partir este parrafo en tres con `+`, la tupla que estaba al final se
+        # quedo aplicando al ultimo trozo, que ya no tiene huecos, y el guion
+        # reventaba con \u00abnot all arguments converted\u00bb.
+        "estudios, y la adjudicaci\u00f3n por consenso de los desacuerdos "
+        % (S["informes_agrupados"], S["validacion_muestra"],
+           S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"])
+        # Dos redacciones, segun queden desacuerdos abiertos o no. Decir \u00abno ha
+        # concluido\u00bb y anadir \u00ab0 de 541 siguen sin firmar\u00bb era un sinsentido.
         # DECIA \u00abPOR ESO NINGUNA CIFRA DEL ARTICULO PROCEDE DE ESOS CUADERNOS\u00bb
         # Y ERA FALSO. La completitud de reporte por desenlace --el 67,0 % de
         # brazos sin definicion operativa de exito, y la Tabla 4 entera-- se
@@ -434,18 +443,24 @@ def escribe_carta(destino, S, meta, n_anexos):
         # reporte por desenlace procede de la extraccion adjudicada desde el
         # texto completo\u00bb. La carta, que es el primer documento que lee el
         # Comite, declaraba lo contrario.
-        "concluido: %d de %d siguen sin firmar. Esas casillas salen VAC\u00cdAS del "
-        "conjunto definitivo y se cuentan como abiertas: no se rellenan con la "
-        "respuesta m\u00e1s frecuente ni con la del revisor m\u00e1s completo. La "
+        + ("no ha concluido: %d de %d siguen sin firmar, y esas casillas salen "
+           "VAC\u00cdAS del conjunto definitivo. No se rellenan con la respuesta "
+           "m\u00e1s frecuente ni con la del revisor m\u00e1s completo. "
+           % (S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"])
+           if S["extraccion_conflictos_sin_firmar"] else
+           "qued\u00f3 cerrada el 14 de septiembre de 2026: %d de %d llevan firma "
+           "conjunta de los dos revisores, y los %d restantes se cerraron por una "
+           "regla mec\u00e1nica sobre una comparaci\u00f3n posteriormente rehecha, que se "
+           "declara como tal y no se cuenta como consenso. "
+           % (S["extraccion_conflictos_firmados"], S["extraccion_desacuerdos"],
+              S["extraccion_cerrados_por_regla"])) +
+        "La "
         "caracterizaci\u00f3n estructural del corpus no depende de esos cuadernos "
         "--sale del cribado y de la pre-extracci\u00f3n desde res\u00famenes--, pero la "
         "completitud de reporte por desenlace s\u00ed: procede de la extracci\u00f3n "
         "adjudicada sobre el texto completo, y as\u00ed se declara en M\u00e9todos. "
         "Todo ello consta en M\u00e9todos y en Limitaciones, con la "
-        "concordancia medida. Preferimos declararlo antes que omitirlo."
-        % (S["informes_agrupados"], S["validacion_muestra"],
-           S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
-           S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]),
+        "concordancia medida. Preferimos declararlo antes que omitirlo.",
         WD_ALIGN_PARAGRAPH.JUSTIFY)
 
     par("El manuscrito es original, no ha sido publicado ni est\u00e1 sometido a "
@@ -696,10 +711,15 @@ def escribe_leeme(destino, S, anexos):
     md.append("- el cribado de titulos y resumenes lo emitio **un modelo de lenguaje "
               "como revisor unico**, con criterios y vocabulario cerrado fijados de "
               "antemano por los autores;")
-    md.append("- la extraccion por duplicado **esta completa** (%d de %d estudios) pero "
-              "**la adjudicacion no**: %d de los %d desacuerdos siguen sin firmar;"
-              % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
-                 S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]))
+    md.append("- la extraccion por duplicado **esta completa** (%d de %d estudios) y "
+              % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"]) +
+              ("**la adjudicacion no**: %d de los %d desacuerdos siguen sin firmar;"
+               % (S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"])
+               if S["extraccion_conflictos_sin_firmar"] else
+               "**la adjudicacion tambien**: %d de %d con firma conjunta de los dos "
+               "revisores y %d cerrados por una regla mecanica, declarados como tal;"
+               % (S["extraccion_conflictos_firmados"], S["extraccion_desacuerdos"],
+                  S["extraccion_cerrados_por_regla"])))
     # Esta linea decia «ninguna cifra del articulo procede de los cuadernos de
     # extraccion» y era falsa: la Tabla 4 y el 67,0 % salen de la extraccion
     # adjudicada. Estaba ademas en la lista de «lo que NO hay que tocar», o sea

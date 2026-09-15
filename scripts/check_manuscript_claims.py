@@ -76,6 +76,15 @@ AFIRMACIONES = [
     (EN, "was {extraccion_acuerdo_mediano_pct} % median agreement and a median Cohen's kappa of {extraccion_kappa_mediana} over the {extraccion_kappas_informativas} of {extraccion_categoricos_total} categorical fields where it is informative, ranging from {extraccion_acuerdo_min_pct} % to {extraccion_acuerdo_max_pct} %"),
 
     (ES, "hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} adjudicadas"),
+    # El RESTO tambien se ancla. El 14 de septiembre se firmaron las 14 que
+    # quedaban abiertas, el escalar de firmadas subio de 525 a 539, y estas
+    # frases siguieron diciendo «de las 16 restantes» y «hay 525 de 541»: el
+    # sync arreglo el fragmento anclado y dejo intacta la frase de al lado,
+    # que decia lo contrario tres palabras despues.
+    (ES, "Las {extraccion_cerrados_por_regla} restantes se habían cerrado antes"),
+    (EN, "The remaining {extraccion_cerrados_por_regla} had been closed earlier"),
+    (JSR, "hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} adjudicados"),
+    (JSR, "Los {extraccion_cerrados_por_regla} restantes se cerraron por una regla mecánica"),
     (ES, "extracción de datos independiente ({extraccion_estudios_r2} de los {extraccion_estudios_r1} estudios)"),
     (EN, "{extraccion_conflictos_firmados} of {extraccion_desacuerdos} are adjudicated"),
     (EN, "independent data extraction ({extraccion_estudios_r2} of the {extraccion_estudios_r1} studies)"),

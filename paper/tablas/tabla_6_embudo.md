@@ -3,7 +3,7 @@
 | Requisito acumulado | Brazos que quedan |
 |---|---|
 | Brazos extraídos | 103 |
-| Diseño comparativo | 16 |
+| Diseño comparativo | 18 |
 | Numerador y denominador coherentes | 5 |
 | Definición operativa del éxito | 2 |
 | Desenlace atribuible a P. aeruginosa | 1 |

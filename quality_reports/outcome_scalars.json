@@ -17,12 +17,12 @@
     },
     "microbio_eradication_n": {
       "nombre": "erradicación microbiológica",
-      "brazos_que_lo_reportan": 56,
-      "con_numerador_y_denominador": 56,
-      "pct_de_los_brazos": 54.4,
-      "en_brazos_legibles": 55,
-      "pct_de_los_legibles": 69.6,
-      "de_esos_con_doble_lectura": 55,
+      "brazos_que_lo_reportan": 57,
+      "con_numerador_y_denominador": 57,
+      "pct_de_los_brazos": 55.3,
+      "en_brazos_legibles": 56,
+      "pct_de_los_legibles": 70.9,
+      "de_esos_con_doble_lectura": 56,
       "doble_lectura_pct": 98.2
     },
     "mortality_n": {
@@ -37,12 +37,12 @@
     },
     "adverse_event_n": {
       "nombre": "eventos adversos",
-      "brazos_que_lo_reportan": 83,
-      "con_numerador_y_denominador": 80,
-      "pct_de_los_brazos": 77.7,
-      "en_brazos_legibles": 70,
-      "pct_de_los_legibles": 88.6,
-      "de_esos_con_doble_lectura": 79,
+      "brazos_que_lo_reportan": 84,
+      "con_numerador_y_denominador": 81,
+      "pct_de_los_brazos": 78.6,
+      "en_brazos_legibles": 71,
+      "pct_de_los_legibles": 89.9,
+      "de_esos_con_doble_lectura": 80,
       "doble_lectura_pct": 98.8
     },
     "resistance_emergence_n": {
@@ -80,20 +80,20 @@
   ],
   "disenos": {
     "case report": 42,
-    "case series": 24,
-    "no clasificable": 19,
+    "case series": 26,
+    "no clasificable": 12,
     "retrospective cohort": 8,
-    "RCT": 4,
+    "RCT": 5,
+    "other": 5,
     "non-randomised trial": 3,
-    "other": 2,
-    "prospective cohort": 1
+    "prospective cohort": 2
   },
-  "diseno_no_clasificable": 19,
-  "brazos_con_diseno": 84,
+  "diseno_no_clasificable": 12,
+  "brazos_con_diseno": 91,
   "diseno_na_acordado": 12,
-  "diseno_abierto": 7,
-  "brazos_comparativos": 16,
-  "estudios_comparativos_extraidos": 13,
+  "diseno_abierto": 0,
+  "brazos_comparativos": 18,
+  "estudios_comparativos_extraidos": 15,
   "embudo": [
     {
       "filtro": "brazos extraídos",
@@ -101,7 +101,7 @@
     },
     {
       "filtro": "diseño comparativo",
-      "quedan": 16
+      "quedan": 18
     },
     {
       "filtro": "numerador y denominador coherentes",
@@ -126,8 +126,8 @@
   ],
   "brazos_agregables_final": 0,
   "brazos_agregables_final_ids": [],
-  "brazos_ensayo": 7,
-  "brazos_cohorte": 9,
+  "brazos_ensayo": 8,
+  "brazos_cohorte": 10,
   "brazos_agregables_exito_clinico": 2,
   "estudios_agregables_exito_clinico": 2,
   "agregables_detalle": [
