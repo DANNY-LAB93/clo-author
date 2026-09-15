@@ -44,6 +44,10 @@ SUPLEMENTOS = ROOT / "verificables revisión sistemática"
 # ya viajan por su propio camino.
 PATRON_ANEXO = re.compile(r"^(S\d{1,2}_|00_)")
 
+# La pagina de envios de la revista: de ahi salen sus normas de formato y
+# los dos formularios obligatorios. Leida el 2026-09-14.
+PORTAL = "https://revistas.utb.edu.ec/index.php/sr/about/submissions"
+
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -502,8 +506,16 @@ def escribe_leeme(destino, S, anexos):
         "hueco.",
         "**Fechas de recepcion y aceptacion.** Van en blanco a proposito: las "
         "pone la revista.",
-        "**Exportar a PDF si lo piden.** En esta maquina no hay conversor: "
-        "abridlo en Word y guardad como PDF.",
+        # Decia «exportar a PDF si lo piden, que aqui no hay conversor». Las
+        # dos mitades eran falsas: la revista NO acepta PDF como fichero de
+        # envio, y ya hay un PDF maquetado para leer.
+        "**El PDF no se envia.** La lista de comprobacion de la revista dice "
+        "que el fichero de envio va en «OpenOffice, Microsoft Word, RTF o "
+        "WordPerfect»: lo que se sube es el `.docx`. Hay un PDF maquetado en "
+        "`paper/pdf/manuscrito_JSR_final.pdf`, pero es para leer e imprimir. "
+        "No esta convertido del `.docx` --en esta maquina no hay conversor-- "
+        "sino maquetado aparte, asi que sus saltos de pagina pueden no "
+        "coincidir con los de Word.",
     ]
 
     md = []
@@ -585,6 +597,43 @@ def escribe_leeme(destino, S, anexos):
                   "portal pide los cuadros por separado. La escribe "
                   "`scripts/build_criteria_table.py` |" % suelto.name)
     md.append("")
+    # LO QUE NO ESTA EN LA CARPETA Y TIENE QUE ESTAR. El LEEME no nombraba los
+    # dos formularios de la revista, y sin ellos el envio ni siquiera entra en
+    # revision. Se leyeron sus normas el 2026-09-14 --antes solo se decia
+    # «confirmalo en el portal»-- y la lista de comprobacion es taxativa.
+    md.append("")
+    md.append("## Lo que NO esta aqui y sin lo cual no arranca la revision")
+    md.append("")
+    md.append("La revista provee dos formularios propios y hay que descargarlos de "
+              "su seccion **Archivos y formatos descargables**, en "
+              "<%s>. Su lista de comprobacion dice, literalmente: «No se iniciara "
+              "el proceso de revision del articulo si antes no se encuentran en la "
+              "plataforma (o en el correo de la revista) ademas del articulo, la "
+              "carta de cesion de derechos y la informacion del(los) autor(es), en "
+              "los formatos adecuados, los mismos que se encuentran en la seccion "
+              "Archivos Suplementarios de la revista»." % PORTAL)
+    md.append("")
+    md.append("| Falta | Que es |")
+    md.append("|---|---|")
+    md.append("| **Carta de originalidad y cesion de derechos** | Formulario de la "
+              "revista. Ocho puntos y la firma de los dos autores, con nombre, "
+              "documento de identidad, correo, ORCID y filiacion. Lo que va en cada "
+              "hueco esta en `paper/docx/datos_carta_cesion.docx` |")
+    md.append("| **Formato de informacion de articulo y autores** | Otro formulario "
+              "suyo, mas la hoja de calculo de informacion de autores |")
+    md.append("")
+    md.append("**No sirve una carta propia.** El envio se devuelve si no llega en el "
+              "formato de ellos.")
+    md.append("")
+    md.append("Sus normas de formato, leidas el mismo dia, el manuscrito **las cumple "
+              "todas**: A4, margenes de 3 cm, Times New Roman 12, interlineado 1,5, "
+              "parrafos justificados y sin espacio entre consecutivos, titulo en "
+              "mayuscula sostenida a 18 pt y por debajo de 20 palabras, resalte en "
+              "cursiva y no en negrita, palabras clave en orden alfabetico y en "
+              "negrita y cursiva, resumen de 250 palabras en el maximo de 250, y el "
+              "cuerpo en 23 paginas contra un limite de 25 que en los articulos de "
+              "revision no cuenta las referencias.")
+    md.append("")
     md.append("Los anexos de datos viajan por partida doble: el `.xlsx` trae una hoja "
               "\u00abLeeme\u00bb y las columnas en castellano, y el `.csv` es la copia con los "
               "nombres internos que permite reejecutar el canal. Los `.csv` de esta "
@@ -642,15 +691,22 @@ def escribe_leeme(destino, S, anexos):
     md.append("")
     md.append("## Antes de darle a enviar")
     md.append("")
-    for t in ("ORCID y credenciales de los dos autores",
+    # Lo que BLOQUEA va primero. Antes la lista abria con los ORCID y cerraba
+    # con «confirmalo en el portal»; los dos formularios sin los cuales la
+    # revista ni empieza no estaban.
+    for t in ("**Descargada, rellenada y FIRMADA la carta de cesion de derechos "
+              "de la revista**, con los dos autores. Sin ella no arranca la "
+              "revision",
+              "**Descargado y rellenado el formato de informacion de articulo y "
+              "autores**. Tampoco arranca sin el",
+              "Subido el `.docx`, NO el PDF: la revista no acepta PDF como "
+              "fichero de envio",
+              "ORCID y credenciales de los dos autores",
               "Autoria de N. Trelles resuelta, marcador eliminado",
               "DOI del deposito, o marcador retirado si no hay deposito",
               "Leido entero una vez en Word, buscando saltos de formato",
               "Comprobado que las %d tablas y las %d figuras se ven bien"
-              % (n_tablas, n_figuras),
-              "Confirmado en el portal OJS de la revista que ficheros pide y en que "
-              "orden (busca la URL en el sitio de la Universidad Tecnica de Babahoyo "
-              "y verificala; no la doy de memoria)"):
+              % (n_tablas, n_figuras)):
         md.append("- [ ] %s" % t)
     md.append("")
 
