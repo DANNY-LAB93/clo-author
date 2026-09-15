@@ -86,7 +86,7 @@ Esta revisión se condujo conforme a la declaración PRISMA 2020 (10); la lista 
 
 Los criterios de elegibilidad —esto es, los criterios de inclusión y exclusión— se fijaron antes de iniciar la búsqueda, con las tres enmiendas que se detallan más abajo, y se resumen en la Tabla 1. La unidad de inclusión fue el **estudio** y no el informe, conforme a PRISMA 2020: un protocolo, sus resúmenes de congreso y su publicación final constituyen un solo estudio con varios informes. La categoría de resistencia se admitió tal como la declarara el artículo, según las definiciones internacionales (3), o descrita en términos que impliquen esas categorías.
 
-**Tabla 1.** Criterios de inclusión y exclusión de los artículos.
+**Tabla 1.** Criterios de elegibilidad: inclusión y exclusión de los artículos.
 
 | Criterios de inclusión | Criterios de exclusión |
 |---|---|
