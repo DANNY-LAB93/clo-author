@@ -426,9 +426,22 @@ def escribe_carta(destino, S, meta, n_anexos):
         "a ciegas en Rayyan sin encontrar ning\u00fan falso negativo. La extracci\u00f3n de "
         "datos se hizo por duplicado y de forma independiente sobre %d de los %d "
         "estudios, pero la adjudicaci\u00f3n por consenso de los desacuerdos no ha "
-        "concluido: %d de %d siguen sin firmar. Por eso ninguna cifra del art\u00edculo "
-        "procede de esos cuadernos; todas salen del cribado y de la pre-extracci\u00f3n "
-        "desde res\u00famenes. Todo ello consta en M\u00e9todos y en Limitaciones, con la "
+        # DECIA \u00abPOR ESO NINGUNA CIFRA DEL ARTICULO PROCEDE DE ESOS CUADERNOS\u00bb
+        # Y ERA FALSO. La completitud de reporte por desenlace --el 67,0 % de
+        # brazos sin definicion operativa de exito, y la Tabla 4 entera-- se
+        # calcula sobre `extraccion_adjudicada.csv`, que es la fusion de los dos
+        # cuadernos. El manuscrito lo dice bien en Metodos: \u00abLa completitud de
+        # reporte por desenlace procede de la extraccion adjudicada desde el
+        # texto completo\u00bb. La carta, que es el primer documento que lee el
+        # Comite, declaraba lo contrario.
+        "concluido: %d de %d siguen sin firmar. Esas casillas salen VAC\u00cdAS del "
+        "conjunto definitivo y se cuentan como abiertas: no se rellenan con la "
+        "respuesta m\u00e1s frecuente ni con la del revisor m\u00e1s completo. La "
+        "caracterizaci\u00f3n estructural del corpus no depende de esos cuadernos "
+        "--sale del cribado y de la pre-extracci\u00f3n desde res\u00famenes--, pero la "
+        "completitud de reporte por desenlace s\u00ed: procede de la extracci\u00f3n "
+        "adjudicada sobre el texto completo, y as\u00ed se declara en M\u00e9todos. "
+        "Todo ello consta en M\u00e9todos y en Limitaciones, con la "
         "concordancia medida. Preferimos declararlo antes que omitirlo."
         % (S["informes_agrupados"], S["validacion_muestra"],
            S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
@@ -687,8 +700,18 @@ def escribe_leeme(destino, S, anexos):
               "**la adjudicacion no**: %d de los %d desacuerdos siguen sin firmar;"
               % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
                  S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]))
-    md.append("- **ninguna cifra del articulo procede de los cuadernos de extraccion**: "
-              "todas salen del cribado y de la pre-extraccion desde resumenes.")
+    # Esta linea decia «ninguna cifra del articulo procede de los cuadernos de
+    # extraccion» y era falsa: la Tabla 4 y el 67,0 % salen de la extraccion
+    # adjudicada. Estaba ademas en la lista de «lo que NO hay que tocar», o sea
+    # blindada como declaracion de honestidad. Una declaracion de honestidad
+    # falsa es lo peor que puede llevar este sobre.
+    md.append("- **las cifras del articulo tienen dos origenes, y el manuscrito dice "
+              "cual es cual**: la caracterizacion estructural del corpus sale del "
+              "cribado y de la pre-extraccion desde resumenes; la completitud de "
+              "reporte por desenlace sale de la extraccion adjudicada sobre el texto "
+              "completo. Las %d casillas sin acuerdo salen vacias de ese conjunto y se "
+              "cuentan como abiertas, no se rellenan con una conjetura."
+              % S["extraccion_conflictos_sin_firmar"])
     md.append("")
     md.append("Quitar cualquiera de estas frases para que el articulo \u00abpase mejor\u00bb "
               "convierte un trabajo honesto en uno que no lo es. Si un revisor objeta "

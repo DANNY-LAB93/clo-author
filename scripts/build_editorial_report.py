@@ -100,12 +100,19 @@ def informe_editorial(S):
         "publicable. No puede, sin embargo, entrar en revisión por pares como "
         "revisión sistemática completa mientras los desacuerdos de la extracción "
         "no estén adjudicados: la extracción por duplicado sí está hecha "
-        "(%d de %d estudios), pero %d de los %d desacuerdos siguen sin firmar, "
-        "y hasta entonces ninguna cifra de desenlace puede apoyarse en los "
-        "cuadernos. Lo que sigue distingue lo que impide publicar de lo que "
-        "solo mejora el manuscrito."
+        # Decia «hasta entonces ninguna cifra de desenlace puede apoyarse en
+        # los cuadernos», y las cifras de desenlace SI se apoyan en ellos: la
+        # Tabla 4 y el 67,0 % salen de la extraccion adjudicada. El reparo
+        # editorial sigue en pie, pero por su motivo real.
+        "(%d de %d estudios), pero %d de los %d desacuerdos siguen sin firmar. "
+        "Las cifras de desenlace se apoyan en la extracción adjudicada, de modo "
+        "que ese conjunto todavía tiene %d casillas abiertas: salen vacías y se "
+        "declaran como tales, pero un revisor puede legítimamente pedir que se "
+        "cierren antes de publicar. Lo que sigue distingue lo que impide "
+        "publicar de lo que solo mejora el manuscrito."
         % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
-           S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"]))
+           S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"],
+           S["extraccion_conflictos_sin_firmar"]))
 
     d.add_heading("Lo que este manuscrito hace bien", level=1)
     for t in [
