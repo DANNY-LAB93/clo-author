@@ -562,7 +562,7 @@ def escribe_leeme(destino, S, anexos):
     md.append("| Fichero | Que es |")
     md.append("|---|---|")
     md.append("| `manuscrito_JSR_final.docx` | **El articulo, y el unico.** Times New "
-              "Roman 12, A4, interlineado doble. RESUMEN / ABSTRACT / INTRODUCCION / "
+              "Roman 12, A4, interlineado 1,5. RESUMEN / ABSTRACT / INTRODUCCION / "
               "DESARROLLO / METODOLOGIA / RESULTADOS / DISCUSION Y CONCLUSIONES / "
               "DECLARACIONES / REFERENCIAS. Citas Vancouver numeradas. Las %d tablas y "
               "las %d figuras van donde el texto las cita, no en un anexo al final |"

@@ -1,6 +1,6 @@
 """Convierte el manuscrito editado para JSR a .docx con el formato de la revista.
 
-Times New Roman 12, A4, márgenes de una pulgada, interlineado doble,
+Times New Roman 12, A4, márgenes de 3 cm, interlineado 1,5,
 texto justificado y cabecera con el ISSN. Los encabezados de sección van en
 versalitas y negrita; las tablas en markdown se convierten en tablas de Word.
 
@@ -32,6 +32,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 FUENTE = ROOT / "paper" / "manuscrito_JSR_final.md"
 DEST = pathlib.Path.home() / "Desktop" / "Envio_JSR_Fagoterapia_Pseudomonas"
 TNR = "Times New Roman"
+INTERLINEADO = 1.5
 TABLAS = ROOT / "paper" / "tablas"
 FIGURAS = ROOT / "paper" / "figuras"
 
@@ -53,7 +54,7 @@ ADJUNTOS = {
 def documento():
     d = docx.Document()
     s = d.sections[0]
-    # A4, doble espacio y margenes de 3 cm: lo que piden las normas de la
+    # A4, interlineado 1,5 y margenes de 3 cm: lo que piden las normas de la
     # revista, leidas en revistas.utb.edu.ec/index.php/sr el 2026-09-14.
     # Estaban a una pulgada --2,54 cm-- desde que se escribio esto, que es el
     # valor por defecto de Word y no el de la revista: «Todas las margenes de
@@ -68,7 +69,15 @@ def documento():
     # consecutivos». Va en el estilo Normal, o sea en el cuerpo; los titulos,
     # los pies de tabla y las listas fijan el suyo aparte y no se tocan.
     n.paragraph_format.space_after = Pt(0)
-    n.paragraph_format.line_spacing = 2.0
+    # INTERLINEADO 1,5, y esto merece explicacion porque la revista se
+    # contradice a si misma en la misma pagina. «Del formato de presentacion»
+    # dice «una columna a doble espacio»; «De la extension de los documentos»
+    # dice «no mas de 25 paginas en tamano A4 y a 1.5 de espacio». Medido: a
+    # doble, el cuerpo llega a la pagina 27 y se pasa del limite; a 1,5 se
+    # queda en 23. D.V. eligio 1,5 el 14 de septiembre de 2026. El valor vive
+    # aqui y el constructor del PDF lo importa, para que los dos no puedan
+    # discrepar.
+    n.paragraph_format.line_spacing = INTERLINEADO
     cab = s.header.paragraphs[0]
     cab.text = "JOURNAL OF SCIENCE AND RESEARCH E-ISSN: 2528-8083"
     cab.runs[0].font.size = Pt(10)
@@ -271,8 +280,9 @@ def main():
     # El mensaje sale del documento, no de una cadena: decia «márgenes 1"»
     # despues de ponerlos a 3 cm, y un aviso que miente es peor que ninguno.
     s = d.sections[0]
-    print("  Times New Roman 12, A4, márgenes %.1f cm, interlineado doble, "
-          "sin espacio entre párrafos, justificado" % s.left_margin.cm)
+    print("  Times New Roman 12, A4, márgenes %.1f cm, interlineado %s, "
+          "sin espacio entre párrafos, justificado"
+          % (s.left_margin.cm, ("%g" % INTERLINEADO).replace(".", ",")))
 
 
 if __name__ == "__main__":

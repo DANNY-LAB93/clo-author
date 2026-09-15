@@ -82,7 +82,7 @@ INCUMPLE = []
 
 CUMPLE = [
     "A4", "margenes de 3 cm", "Times New Roman 12",
-    "una columna a doble espacio", "parrafos justificados y sin espacio entre "
+    "una columna a interlineado 1,5", "parrafos justificados y sin espacio entre "
     "consecutivos", "resumen de 250 palabras, en el maximo",
     "cinco palabras clave en orden alfabetico, dentro del rango de tres a cinco",
     "las keywords en el mismo orden que las palabras clave, como pide la norma",

@@ -15,7 +15,7 @@ Word calcule sobre el .docx.
 
 LAS NORMAS DE LA REVISTA, leidas en revistas.utb.edu.ec el 2026-09-14 y
 aplicadas aqui igual que en el .docx: A4, margenes de 3 cm, Times New Roman 12,
-doble espacio, parrafos justificados y sin espacio entre consecutivos, titulo
+interlineado 1,5, parrafos justificados y sin espacio entre consecutivos, titulo
 en mayuscula sostenida a 18 pt, resalte en cursiva y no en negrita, y las
 palabras clave en negrita y cursiva.
 
@@ -43,7 +43,7 @@ from reportlab.platypus import (BaseDocTemplate, Frame, Image, KeepTogether,
                                 PageTemplate, Paragraph, Spacer, Table, TableStyle)
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from build_jsr_docx import ADJUNTOS
+from build_jsr_docx import ADJUNTOS, INTERLINEADO
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 FUENTE = ROOT / "paper" / "manuscrito_JSR_final.md"
@@ -82,9 +82,12 @@ def estilos():
                                   fontSize=12, leading=16, alignment=TA_CENTER,
                                   spaceAfter=4)
     # «no debe haber espacio entre los consecutivos»: spaceAfter = 0 en el
-    # cuerpo. El doble espacio se hace con leading, 12 pt * 2.
+    # cuerpo. El interlineado se hace con leading: 12 pt por el factor que
+    # declara `build_jsr_docx`, importado para que el PDF y el .docx no
+    # puedan discrepar.
     s["cuerpo"] = ParagraphStyle("c", parent=b["BodyText"], fontName="Times-Roman",
-                                 fontSize=12, leading=24, alignment=TA_JUSTIFY,
+                                 fontSize=12, leading=12 * INTERLINEADO,
+                                 alignment=TA_JUSTIFY,
                                  spaceAfter=0, firstLineIndent=0)
     s["clave"] = ParagraphStyle("cl", parent=s["cuerpo"], fontName="Times-BoldItalic")
     s["h1"] = ParagraphStyle("h1", parent=b["Heading1"], fontName="Times-Bold",
@@ -209,7 +212,8 @@ def main():
     doc.build(cuerpo)
     print("escrito %s  (%d KB)" % (destino.relative_to(ROOT),
                                    destino.stat().st_size // 1024))
-    print("  A4, márgenes %.0f cm, Times New Roman 12, doble espacio" % (MARGEN / cm))
+    print("  A4, márgenes %.0f cm, Times New Roman 12, interlineado %s"
+          % (MARGEN / cm, ("%g" % INTERLINEADO).replace(".", ",")))
     print("  NO es el fichero de envío: la revista pide Word, RTF u OpenOffice.")
 
 
