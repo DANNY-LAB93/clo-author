@@ -227,10 +227,31 @@ def textos(S, O, R):
     return arma(ES, es), arma(EN, en)
 
 
-CLAVE_ES = ["bacteriófagos", "fagoterapia", "*Pseudomonas aeruginosa*",
-            "farmacorresistencia bacteriana múltiple", "revisión sistemática"]
-CLAVE_EN = ["bacteriophages", "phage therapy", "*Pseudomonas aeruginosa*",
-            "multiple bacterial drug resistance", "systematic review"]
+# Las palabras clave van EMPAREJADAS y el orden se calcula, no se teclea. Las
+# normas de JSR --leidas en revistas.utb.edu.ec el 14 de septiembre de 2026--
+# piden dos cosas a la vez: que las castellanas vayan en orden alfabetico y que
+# «las keywords deben estar escritas en el orden de las palabras clave», o sea
+# en el orden del castellano, no en el suyo propio. Escritas como dos listas
+# sueltas se descolocaban: «farmacorresistencia» iba detras de «Pseudomonas».
+PARES_CLAVE = [
+    ("bacteriófagos", "bacteriophages"),
+    ("fagoterapia", "phage therapy"),
+    ("farmacorresistencia bacteriana múltiple", "multiple bacterial drug resistance"),
+    ("*Pseudomonas aeruginosa*", "*Pseudomonas aeruginosa*"),
+    ("revisión sistemática", "systematic review"),
+]
+
+
+def _orden(par):
+    """Alfabetico por la voz castellana, ignorando tildes y los asteriscos."""
+    s = par[0].strip("*").lower()
+    for a, b in zip("áéíóúü", "aeiouu"):
+        s = s.replace(a, b)
+    return s
+
+
+CLAVE_ES = [es for es, _ in sorted(PARES_CLAVE, key=_orden)]
+CLAVE_EN = [en for _, en in sorted(PARES_CLAVE, key=_orden)]
 
 
 def palabras(t):

@@ -20,7 +20,7 @@ import sys
 import docx
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.shared import Pt, Inches, Mm
+from docx.shared import Pt, Inches, Mm, Cm
 import csv as _csv
 
 try:
@@ -53,15 +53,21 @@ ADJUNTOS = {
 def documento():
     d = docx.Document()
     s = d.sections[0]
-    # A4 y doble espacio: lo que piden las normas de la revista
-    # (revistas.utb.edu.ec/index.php/sr, consultadas el 2026-09-02).
+    # A4, doble espacio y margenes de 3 cm: lo que piden las normas de la
+    # revista, leidas en revistas.utb.edu.ec/index.php/sr el 2026-09-14.
+    # Estaban a una pulgada --2,54 cm-- desde que se escribio esto, que es el
+    # valor por defecto de Word y no el de la revista: «Todas las margenes de
+    # 3 cm», dice la directriz.
     s.page_width, s.page_height = Mm(210), Mm(297)
     for lado in ("left_margin", "right_margin", "top_margin", "bottom_margin"):
-        setattr(s, lado, Inches(1))
+        setattr(s, lado, Cm(3))
     n = d.styles["Normal"]
     n.font.name = TNR
     n.font.size = Pt(12)
-    n.paragraph_format.space_after = Pt(10)
+    # «Los parrafos se justifican, y no debe haber espacio entre los
+    # consecutivos». Va en el estilo Normal, o sea en el cuerpo; los titulos,
+    # los pies de tabla y las listas fijan el suyo aparte y no se tocan.
+    n.paragraph_format.space_after = Pt(0)
     n.paragraph_format.line_spacing = 2.0
     cab = s.header.paragraphs[0]
     cab.text = "JOURNAL OF SCIENCE AND RESEARCH E-ISSN: 2528-8083"
@@ -226,7 +232,11 @@ def main():
         print("AVISO: el .docx estaba abierto en Word y no se pudo sobrescribir.")
         print("       Cierra Word y vuelve a ejecutar: el bueno se escribe y este se borra.")
     print("escrito %s  (%d KB)" % (salida, salida.stat().st_size // 1024))
-    print("  Times New Roman 12, A4, márgenes 1\", interlineado doble, justificado")
+    # El mensaje sale del documento, no de una cadena: decia «márgenes 1"»
+    # despues de ponerlos a 3 cm, y un aviso que miente es peor que ninguno.
+    s = d.sections[0]
+    print("  Times New Roman 12, A4, márgenes %.1f cm, interlineado doble, "
+          "sin espacio entre párrafos, justificado" % s.left_margin.cm)
 
 
 if __name__ == "__main__":

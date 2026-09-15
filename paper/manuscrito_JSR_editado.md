@@ -22,7 +22,7 @@
 
 **Conclusiones.** El cuerpo de evidencia clínica sobre fagoterapia en *P. aeruginosa* resistente es amplio y, a la vez, estructuralmente inadecuado para una síntesis cuantitativa de eficacia. Las proporciones globales publicadas descansan sobre supuestos que estos datos no verifican.
 
-**Palabras clave:** bacteriófagos; fagoterapia; *Pseudomonas aeruginosa*; farmacorresistencia bacteriana múltiple; revisión sistemática.
+**Palabras clave:** bacteriófagos; fagoterapia; farmacorresistencia bacteriana múltiple; *Pseudomonas aeruginosa*; revisión sistemática.
 
 ## ABSTRACT
 
@@ -36,7 +36,7 @@
 
 **Conclusions.** The clinical evidence base for phage therapy in resistant *P. aeruginosa* is broad and, at the same time, structurally unsuited to a quantitative synthesis of efficacy. The published overall proportions rest on assumptions that these data do not verify.
 
-**Keywords:** bacteriophages; phage therapy; *Pseudomonas aeruginosa*; multiple bacterial drug resistance; systematic review.
+**Keywords:** bacteriophages; phage therapy; multiple bacterial drug resistance; *Pseudomonas aeruginosa*; systematic review.
 
 ---
 
