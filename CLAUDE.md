@@ -52,21 +52,39 @@ dar error. Ver su `LEEME.md`.
 ## Comandos
 
 ```bash
-python scripts/build_synthesis_scalars.py      # 1. las cifras. Siempre primero
-python scripts/build_manuscript_tables.py      # 2. tablas 1-6
-python scripts/build_structured_abstract.py    # 3. el resumen, y avisa si pasa de 250
-python scripts/build_verifiables_package.py    # 4. S1-S16 (S11-S13 dentro)
-python scripts/build_readable_annexes.py       # 5. los .xlsx legibles de cada .csv
-python scripts/build_editorial_report.py       # 6. S0 y el índice
-python scripts/build_package_guide.py          # 7. la guía del paquete
-python scripts/build_jsr_submission.py         # 8. el sobre de la revista, al Escritorio
-python scripts/zip_jsr_submission.py           # 9. el .zip, comprobado fichero a fichero
+# 1. LAS CIFRAS. Siempre lo primero: todo lo de abajo las lee.
+python scripts/build_synthesis_scalars.py
 
-# Los tres guardianes. Los dos primeros contrastan con el canal;
+# 2. LO QUE ENTRA EN EL MANUSCRITO
+python scripts/build_manuscript_tables.py      # tablas 1-6
+python scripts/build_criteria_table.py         # la tabla de criterios, y la mete en el .md
+python scripts/build_structured_abstract.py    # el resumen; avisa si pasa de 250 palabras
+python scripts/build_manuscript_figures.py     # PRISMA y composicion
+
+# 3. EL PAQUETE DE VERIFICABLES
+python scripts/build_verifiables_package.py    # S1-S16 (S11-S13 dentro)
+python scripts/build_readable_annexes.py       # los .xlsx legibles de cada .csv
+python scripts/build_editorial_report.py       # S0 y el indice
+python scripts/build_package_guide.py          # la guia del paquete
+
+# 4. LOS DOCUMENTOS DERIVADOS. Nadie los corria y por eso viajo un PDF
+#    del dia anterior dentro del .zip, con 155 estudios frente a 137.
+python scripts/build_maestro_docx.py           # informe_extendido.docx
+python scripts/build_resumen_docx.py           # resumen_estructurado.docx
+python scripts/build_cesion_datos.py           # datos_carta_cesion.docx
+python scripts/build_manuscript_pdf.py         # los PDF del maestro y del ingles
+python scripts/build_jsr_pdf.py                # el PDF del manuscrito de la revista
+
+# 5. EL SOBRE
+python scripts/build_jsr_submission.py         # al Escritorio
+python scripts/zip_jsr_submission.py           # el .zip, comprobado fichero a fichero
+
+# LOS TRES GUARDIANES. Los dos primeros contrastan con el canal;
 # el tercero rehace las cuentas desde el texto solo.
 python scripts/check_manuscript_numbers.py     # toda cifra tiene origen
 python scripts/check_manuscript_claims.py      # cada frase lleva SU escalar
 python scripts/check_aritmetica.py             # las cuentas, rehechas
+python scripts/sync_manuscript_numbers.py --escribir   # las pone al dia
 ```
 
 > **El orden importa.** Correrlos desordenados ya borró un anexo una vez.

@@ -58,17 +58,49 @@ def main():
     if faltan:
         raise SystemExit("al sobre le falta: %s" % ", ".join(faltan))
 
-    # --- el sobre no puede ser mas viejo que lo que dice contener ---
-    doc = (sobre / "manuscrito_JSR_final.docx").stat().st_mtime
-    viejo = [p.name for p in (FUENTE, ESCALARES)
-             if p.exists() and p.stat().st_mtime > doc]
-    if viejo:
-        raise SystemExit(
-            "el sobre esta caduco: %s se modifico DESPUES que el manuscrito "
-            "del sobre. Corre scripts/build_jsr_submission.py y vuelve a "
-            "intentarlo." % " y ".join(viejo))
+    # --- LOS DOCUMENTOS DERIVADOS, CONTRA SU FUENTE ---
+    #
+    # La primera version de esta comprobacion miraba SOLO el manuscrito del
+    # sobre, y por eso dejo pasar un .zip con el PDF del dia anterior dentro:
+    # 155 estudios en el PDF y 137 en el .docx, en el mismo sobre. El
+    # manuscrito lo reescribe `build_jsr_submission.py`; el PDF, el informe
+    # extendido, el resumen y la hoja de la carta de cesion los escriben otros
+    # cuatro scripts que no estaban en el orden documentado, y el sobre los
+    # COPIA tal y como los encuentre.
+    #
+    # Se comparan contra los dos manuscritos en Markdown, que son la fuente de
+    # los cinco. No se comparan contra los escalares: esos se reescriben al
+    # empezar cada tanda y quedarian siempre por delante de todo.
+    fuentes = [ROOT / "paper" / "manuscrito_JSR_final.md",
+               ROOT / "paper" / "manuscrito_revision_sistematica.md"]
+    ultima = max((p.stat().st_mtime for p in fuentes if p.exists()), default=0)
+    derivados = sorted(
+        [p for p in (ROOT / "paper" / "docx").glob("*.docx")] +
+        [p for p in (ROOT / "paper" / "pdf").glob("*.pdf")])
+    caducos = [str(p.relative_to(ROOT)) for p in derivados
+               if p.stat().st_mtime < ultima]
+    if caducos:
+        print("EL ZIP NO SE ESCRIBE. Estos documentos son mas viejos que el "
+              "manuscrito del que salen:", file=sys.stderr)
+        for c in caducos:
+            print("  " + c, file=sys.stderr)
+        print("\nRehazlos y vuelve a correr `build_jsr_submission.py`. Estan "
+              "en el orden de CLAUDE.md, pasos 9 a 12.", file=sys.stderr)
+        raise SystemExit(1)
 
+    # --- y el sobre, contra el manuscrito ---
     ficheros = sorted(p for p in sobre.rglob("*") if p.is_file())
+    doc = (sobre / "manuscrito_JSR_final.docx").stat().st_mtime
+    if ultima > doc:
+        raise SystemExit("el sobre esta caduco: el manuscrito fuente cambio "
+                         "despues. Corre scripts/build_jsr_submission.py.")
+    copiados = {"manuscrito_JSR_final.pdf", "para_leer", "tabla_criterios_inclusion_exclusion.docx"}
+    viejos = [str(p.relative_to(sobre)) for p in ficheros
+              if (p.name in copiados or p.parent.name in copiados)
+              and p.stat().st_mtime < ultima]
+    if viejos:
+        raise SystemExit("el sobre trae copias viejas de %s. Corre "
+                         "scripts/build_jsr_submission.py." % ", ".join(viejos))
     destino = sobre.with_suffix(".zip")
     if destino.exists():
         destino.unlink()
