@@ -77,7 +77,24 @@ def documento():
 
 
 def escribe(p, txt, size=12, negrita=False, cursiva=False):
-    """Resuelve **negrita** y *cursiva* en linea, que es como viene el markdown."""
+    """Resuelve **negrita** y *cursiva* en linea, que es como viene el markdown.
+
+    LA NEGRITA DEL MARKDOWN SALE EN CURSIVA, y solo en este documento. La
+    directriz de la revista es explicita: «Si se desea resaltar palabras o
+    frases del texto, no usar letra negrita sino letra cursiva». El manuscrito
+    llevaba 112 fragmentos en negrita, que son las cifras que el texto quiere
+    que salten a la vista.
+
+    No se cambia el markdown, y por dos razones. La primera es que el `.md` lo
+    comparten tres manuscritos y solo uno va a esta revista. La segunda es que
+    los 102 anclajes de `check_manuscript_claims` citan frases que llevan los
+    asteriscos dentro: tocar la fuente los romperia todos de golpe.
+
+    La distincion que se respeta: `negrita=True` es un parametro, y lo usan los
+    titulos, los encabezados de tabla y los de seccion --eso es ESTRUCTURA y
+    sigue en negrita--. Los `**` dentro del texto son RESALTE y pasan a
+    cursiva, que es justo lo que pide la norma.
+    """
     for trozo in re.split(r"(\*\*[^*]+\*\*|\*[^*]+\*)", txt):
         if not trozo:
             continue
@@ -86,8 +103,8 @@ def escribe(p, txt, size=12, negrita=False, cursiva=False):
         r = p.add_run(trozo.strip("*"))
         r.font.name = TNR
         r.font.size = Pt(size)
-        r.bold = negrita or neg
-        r.italic = cursiva or cur
+        r.bold = negrita
+        r.italic = cursiva or cur or neg
 
 
 def tabla(d, filas):
@@ -158,11 +175,17 @@ def main():
         if not l or l == "---":
             continue
         if l.startswith("# "):
+            # «El titulo del articulo debera ser [...] escrito en mayuscula
+            # sostenida [...] en negrita, tamano de fuente 18». Iba a 14 pt y
+            # en minusculas. Se sube de caja aqui y no en el markdown: el
+            # mismo titulo lo leen la carta, la guia y el informe extendido,
+            # donde en versalitas no pinta nada. `.upper()` respeta los
+            # asteriscos, asi que el binomio sigue en cursiva.
             titulos += 1
             p = d.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             p.paragraph_format.space_after = Pt(6 if titulos == 1 else 12)
-            escribe(p, l[2:], size=14, negrita=True, cursiva=False)
+            escribe(p, l[2:].upper(), size=18, negrita=True, cursiva=False)
             continue
         if l.startswith("### "):
             p = d.add_paragraph()
@@ -178,6 +201,19 @@ def main():
             p.paragraph_format.space_after = Pt(8)
             escribe(p, l[3:].upper(), size=12, negrita=True)
             continue
+        # LAS PALABRAS CLAVE SON LA EXCEPCION, y la pide la misma frase de la
+        # directriz que nos dio el orden alfabetico: «escritas en espanol con
+        # letra Times New Roman, EN NEGRITA Y CURSIVA». Es el unico sitio del
+        # articulo donde la revista quiere negrita, justo despues de haberla
+        # prohibido para resaltar. Se aplica a la lista, no a la etiqueta.
+        m = re.match(r"^\*\*(Palabras clave|Keywords):\*\*\s*(.+)$", l)
+        if m:
+            p = d.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            escribe(p, "**%s:** " % m.group(1), size=12)
+            escribe(p, m.group(2), size=12, negrita=True, cursiva=True)
+            continue
+
         # pie de tabla o figura: se escribe y se adjunta lo que nombra
         adj = next((k for k in ADJUNTOS if l.startswith("**" + k)), None)
         if adj:

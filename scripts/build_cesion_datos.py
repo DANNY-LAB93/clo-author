@@ -71,21 +71,14 @@ PUNTOS = [
     ("Se aceptan las condiciones de la Revista JSR en cuanto a normas, "
      "procedimientos, formato, edicion grafica, correccion y otros "
      "requerimientos que se solicitan en la convocatoria.",
-     "OJO: quedan DOS normas de formato sin cumplir, listadas al final de esta "
-     "hoja. Las otras tres --margenes, espacio entre parrafos y orden de las "
-     "palabras clave-- se corrigieron el 14 de septiembre."),
+     "Las cinco normas de formato que el manuscrito incumplia el 14 de "
+     "septiembre estan corregidas. El detalle, al final de esta hoja."),
 ]
 
-# Tres se arreglaron el 14 de septiembre --margenes, espacio entre parrafos y
-# orden alfabetico de las palabras clave-- y salieron de esta lista. Quedan las
-# dos que no son mecanicas: cambiarlas altera como se lee el articulo.
-INCUMPLE = [
-    ("Titulo", "exige MAYUSCULA SOSTENIDA, negrita, 18 pt",
-     "va en minusculas y a 14 pt (las 19 palabras si caben en el maximo de 20)"),
-    ("Resalte", "exige cursiva y prohibe la negrita para resaltar",
-     "hay 112 fragmentos en negrita en el cuerpo, que son las que hacen saltar "
-     "a la vista cada cifra"),
-]
+# Las cinco se corrigieron el 14 de septiembre. La lista se queda vacia a
+# proposito y no se borra: si la revista cambia una norma o alguien toca el
+# constructor, aqui es donde vuelve a aparecer.
+INCUMPLE = []
 
 CUMPLE = [
     "A4", "margenes de 3 cm", "Times New Roman 12",
@@ -94,6 +87,9 @@ CUMPLE = [
     "cinco palabras clave en orden alfabetico, dentro del rango de tres a cinco",
     "las keywords en el mismo orden que las palabras clave, como pide la norma",
     "decimales con coma", "millares con espacio fino",
+    "titulo en mayuscula sostenida, negrita, 18 pt, 19 palabras de 20",
+    "resalte en cursiva y no en negrita",
+    "palabras clave en negrita y cursiva, como pide la directriz",
     "figuras en PNG, ademas del PDF vectorial",
 ]
 
@@ -205,12 +201,24 @@ def main():
                             if estado.startswith(("OJO", "ATENCION")) else
                             RGBColor(0x44, 0x44, 0x44))
 
-    h(d, "Lo que el punto 8 todavia no cubre")
+    h(d, "El punto 8: las normas de formato")
     p = d.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    escribe(p, "Firmar el punto 8 es aceptar las normas de formato de la revista. "
-               "Leídas en su web el 14 de septiembre de 2026, al manuscrito le quedan "
-               "**%d sin cumplir**:" % len(INCUMPLE), size=10.5)
+    if INCUMPLE:
+        escribe(p, "Firmar el punto 8 es aceptar las normas de formato de la revista. "
+                   "Leídas en su web el 14 de septiembre de 2026, al manuscrito le quedan "
+                   "**%d sin cumplir**:" % len(INCUMPLE), size=10.5)
+    else:
+        escribe(p, "Firmar el punto 8 es aceptar las normas de formato de la revista. "
+                   "Leídas en su web el 14 de septiembre de 2026, el manuscrito **las "
+                   "cumple todas**. Las cinco que fallaban se corrigieron ese mismo día: "
+                   "márgenes de 2,54 a 3 cm, el espacio entre párrafos consecutivos a "
+                   "cero, las palabras clave en orden alfabético y con las keywords en "
+                   "ese mismo orden, el título en mayúscula sostenida a 18 pt, y el "
+                   "resalte del cuerpo pasado de negrita a cursiva. La negrita se "
+                   "conserva donde la norma la pide o la da por supuesta: los títulos, "
+                   "los encabezados de sección y de tabla, y la propia lista de palabras "
+                   "clave, que la directriz exige «en negrita y cursiva».", size=10.5)
     for que, exige, hay in INCUMPLE:
         p = d.add_paragraph()
         p.paragraph_format.left_indent = Inches(0.35)
