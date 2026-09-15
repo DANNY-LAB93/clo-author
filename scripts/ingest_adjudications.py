@@ -111,14 +111,39 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--escribir", action="store_true",
                     help="sin esto solo informa, no toca el CSV")
+    # Un segundo cuaderno con el mismo formato de diez columnas. Lo escribe
+    # `make_firma_pendientes.py` y solo lleva los desacuerdos que seguian
+    # abiertos: el grande tiene 574 filas y los pendientes no se ven ahi.
+    ap.add_argument("--cuaderno", default=None,
+                    help="ruta de otro cuaderno con la hoja «Desacuerdos» "
+                         "(por defecto, %s)" % CUADERNO.name)
     args = ap.parse_args()
 
-    if not CUADERNO.exists():
-        print("no existe %s" % CUADERNO)
+    cuaderno = pathlib.Path(args.cuaderno) if args.cuaderno else CUADERNO
+    if not cuaderno.exists():
+        print("no existe %s" % cuaderno)
         return 1
     import openpyxl
 
-    h = openpyxl.load_workbook(CUADERNO, data_only=True)["Desacuerdos"]
+    libro = openpyxl.load_workbook(cuaderno, data_only=True)
+    if "Desacuerdos" not in libro.sheetnames:
+        print("%s no tiene una hoja «Desacuerdos»; tiene %s"
+              % (cuaderno.name, ", ".join(libro.sheetnames)))
+        return 1
+    # La firma vive en su propia hoja en el cuaderno de pendientes. Si esta y
+    # falta algun nombre o la fecha, no se ingiere: es la misma regla que
+    # aplica `ingest_rob.py --consenso`, y por el mismo motivo.
+    if "Firma" in libro.sheetnames:
+        f = libro["Firma"]
+        faltan = [f.cell(i, 1).value or "?" for i in (5, 6, 7)
+                  if not str(f.cell(i, 2).value or "").strip()]
+        if faltan:
+            print("la hoja «Firma» de %s esta incompleta: falta %s"
+                  % (cuaderno.name, ", ".join(faltan)))
+            print("sin los dos nombres y la fecha, «consenso» es una palabra")
+            return 1
+    print("leyendo %s" % cuaderno.name)
+    h = libro["Desacuerdos"]
     filas = list(h.iter_rows(min_row=2, values_only=True))
     # Columnas del cuaderno: 0 estudio, 1 brazo, 6 acordado, 7 quien, 8 fecha,
     # 9 campo interno. El orden lo fija build_adjudication_workbook.py.
