@@ -597,6 +597,14 @@ def escribe_leeme(destino, S, anexos):
               "cada uno |" % (len(numeros), min(numeros), max(numeros), len(anexos)))
     md.append("| `figuras/`, `tablas/` | Las mismas figuras y tablas sueltas, por si las "
               "piden aparte |")
+    leer = destino / "para_leer"
+    if leer.is_dir() and any(leer.iterdir()):
+        md.append("| `para_leer/` | **Nada de esto se sube.** El informe extendido "
+                  "--la version larga, con la metodologia que el articulo condensa--, "
+                  "las cuatro versiones del resumen con cual se envia marcada, y la "
+                  "hoja con lo que va en cada hueco de la carta de cesion de la "
+                  "revista. Estan en carpeta aparte para que no se suban por error: "
+                  "el informe extendido tiene aspecto de manuscrito y no lo es |")
     # Lo escribe `build_criteria_table.py` en esta misma carpeta. El LEEME no lo
     # nombraba, y un fichero en el sobre que la hoja de instrucciones ignora
     # parece un resto de algo.
@@ -628,7 +636,7 @@ def escribe_leeme(destino, S, anexos):
     md.append("| **Carta de originalidad y cesion de derechos** | Formulario de la "
               "revista. Ocho puntos y la firma de los dos autores, con nombre, "
               "documento de identidad, correo, ORCID y filiacion. Lo que va en cada "
-              "hueco esta en `paper/docx/datos_carta_cesion.docx` |")
+              "hueco esta en `para_leer/datos_carta_cesion.docx`, en este mismo sobre |")
     md.append("| **Formato de informacion de articulo y autores** | Otro formulario "
               "suyo, mas la hoja de calculo de informacion de autores |")
     md.append("")
@@ -886,6 +894,34 @@ def main():
     else:
         print("  AVISO: no hay %s; correr antes scripts/build_jsr_pdf.py"
               % pdf_origen.name)
+
+    # PARA_LEER: lo que acompana al envio sin ser parte de el. No va en la raiz
+    # a proposito. Ahi ya hay dos ficheros que se llaman igual y solo se
+    # distinguen por la extension; el informe extendido son 9 200 palabras con
+    # aspecto de un tercer manuscrito, y en un portal OJS eso se sube por error.
+    # Ademas el LEEME citaba `paper/docx/datos_carta_cesion.docx`, una ruta del
+    # repositorio que no existe para quien solo tiene el sobre: ahora la hoja
+    # viaja y la referencia deja de colgar.
+    LECTURA = (
+        ("informe_extendido.docx",
+         "el informe extendido, con la metodologia que el articulo condensa"),
+        ("resumen_estructurado.docx",
+         "las cuatro versiones del resumen, con cual se envia marcada"),
+        ("datos_carta_cesion.docx",
+         "lo que va en cada hueco de la carta de cesion de la revista"),
+    )
+    leer_dst = destino / "para_leer"
+    leer_dst.mkdir(exist_ok=True)
+    puestos = set()
+    for nombre, _ in LECTURA:
+        f = ROOT / "paper" / "docx" / nombre
+        if f.exists():
+            shutil.copy2(f, leer_dst / nombre)
+            puestos.add(nombre)
+        else:
+            print("  AVISO: falta paper/docx/%s" % nombre)
+    print("  %-42s %d ficheros; ninguno se sube" % ("para_leer/", len(puestos)))
+    poda(leer_dst, puestos, "para_leer/")
 
     # Figuras y tablas, tal como salen del canal
     for sub, patrones in (("figuras", ("*.png", "*.pdf")), ("tablas", ("*.csv",))):
