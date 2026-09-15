@@ -587,7 +587,10 @@ def escribe_leeme(destino, S, anexos):
     md.append("")
     md.append("Los anexos de datos viajan por partida doble: el `.xlsx` trae una hoja "
               "\u00abLeeme\u00bb y las columnas en castellano, y el `.csv` es la copia con los "
-              "nombres internos que permite reejecutar el canal.")
+              "nombres internos que permite reejecutar el canal. Los `.csv` de esta "
+              "carpeta van en UTF-8 **con BOM**, para que Excel respete las tildes al "
+              "abrirlos con doble clic; si los lees desde codigo, abrelos como "
+              "`utf-8-sig`.")
     md.append("")
     md.append("## Lo que TIENES que rellenar antes de mandarlo")
     md.append("")
@@ -829,11 +832,30 @@ def main():
         dst = destino / "suplementos"
         dst.mkdir(exist_ok=True)
         copiados = []
+        # LOS .csv SALEN CON BOM, y solo aqui. En la carpeta del repositorio
+        # dos de los diez lo llevan y ocho no, y cuatro de esos ocho tienen
+        # tildes: Excel, al abrir un UTF-8 sin BOM, los lee como cp1252 y
+        # ensena «MÃºltiple». Un revisor que abra S5 bien y S9 roto pensara que
+        # los datos estan corruptos. No se normalizan las del repositorio
+        # porque varios guiones las leen con `utf-8` a secas y el BOM les
+        # metería ﻿ en el nombre de la primera columna; la copia del sobre
+        # no la lee ningun guion.
+        con_bom = 0
         for f in sorted(SUPLEMENTOS.iterdir()):
-            if f.is_file() and PATRON_ANEXO.match(f.name):
+            if not (f.is_file() and PATRON_ANEXO.match(f.name)):
+                continue
+            if f.suffix.lower() == ".csv":
+                b = f.read_bytes()
+                if not b.startswith(b"\xef\xbb\xbf"):
+                    b = b"\xef\xbb\xbf" + b
+                    con_bom += 1
+                (dst / f.name).write_bytes(b)
+            else:
                 shutil.copy2(f, dst / f.name)
-                copiados.append(f.name)
-        print("  %-42s %d ficheros" % ("suplementos/", len(copiados)))
+            copiados.append(f.name)
+        print("  %-42s %d ficheros%s"
+              % ("suplementos/", len(copiados),
+                 " (%d .csv marcados con BOM para Excel)" % con_bom if con_bom else ""))
         poda(dst, set(copiados), "suplementos/")
 
         # Cobertura: cada anexo que el manuscrito cita tiene que viajar. Se
