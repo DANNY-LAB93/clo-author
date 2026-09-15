@@ -504,6 +504,40 @@ def poda(dst, escritos, etiqueta):
     return len(sobra)
 
 
+def organismo_pendiente(S):
+    """El punto que bloquea el envio si las fichas de registro siguen sin firmar.
+
+    El 2026-09-14 se leyeron contra su registro las 29 fichas cuyo titulo,
+    resumen y MeSH no decian que organismo se trata, y diez no cumplen el
+    criterio. Nada se aplico: excluirlas mueve el total, el PRISMA, la Tabla 4
+    y todos los porcentajes. Mientras esa decision este abierta, el sobre no
+    debe subirse, y el aviso desaparece solo cuando las exclusiones esten
+    firmadas y aplicadas. No se teclea cuantas faltan: se cuentan.
+    """
+    tabla = ROOT / "quality_reports" / "registros_organismo_verificado.csv"
+    if not tabla.exists():
+        return ()
+    with open(tabla, encoding="utf-8-sig", newline="") as fh:
+        propuestos = {r["study_id"] for r in csv.DictReader(fh)
+                      if r["veredicto_propuesto"] == "NO CUMPLE"}
+    aplicadas = set()
+    p_ex = ROOT / "revision_sistematica" / "cribado" / "exclusiones_tras_texto_completo.csv"
+    if p_ex.exists():
+        with open(p_ex, encoding="utf-8", newline="") as fh:
+            aplicadas = {r["study_id"] for r in csv.DictReader(fh)}
+    faltan = propuestos - aplicadas
+    if not faltan:
+        return ()
+    return ("**Decidido y firmado el organismo de las fichas de registro.** De "
+            "las 29 fichas que no decian que organismo se trata, %d no cumplen "
+            "el criterio y siguen sin firmar (%s). Estan en "
+            "`FIRMAR_organismo_de_los_registros.xlsx`, con la frase literal de "
+            "cada registro. Si se firman, el corpus baja de %s estudios y hay "
+            "que rehacer el canal entero ANTES de enviar: cambian el diagrama "
+            "PRISMA, la Tabla 4 y todos los porcentajes"
+            % (len(faltan), ", ".join(sorted(faltan)), mil(S["estudios"])),)
+
+
 def escribe_leeme(destino, S, anexos):
     """La hoja de instrucciones del envio, con las cifras del canal.
 
@@ -755,7 +789,8 @@ def escribe_leeme(destino, S, anexos):
     # Lo que BLOQUEA va primero. Antes la lista abria con los ORCID y cerraba
     # con «confirmalo en el portal»; los dos formularios sin los cuales la
     # revista ni empieza no estaban.
-    for t in ("**Descargada, rellenada y FIRMADA la carta de cesion de derechos "
+    for t in (organismo_pendiente(S) +
+             ("**Descargada, rellenada y FIRMADA la carta de cesion de derechos "
               "de la revista**, con los dos autores. Sin ella no arranca la "
               "revision",
               "**Descargado y rellenado el formato de informacion de articulo y "
@@ -767,7 +802,7 @@ def escribe_leeme(destino, S, anexos):
               "DOI del deposito, o marcador retirado si no hay deposito",
               "Leido entero una vez en Word, buscando saltos de formato",
               "Comprobado que las %d tablas y las %d figuras se ven bien"
-              % (n_tablas, n_figuras)):
+              % (n_tablas, n_figuras))):
         md.append("- [ ] %s" % t)
     md.append("")
 
