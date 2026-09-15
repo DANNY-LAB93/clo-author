@@ -1,0 +1,814 @@
+{
+ "ctNumber": "2023-507203-55-00",
+ "ctStatus": "Ended",
+ "startDateEU": "2023-08-21",
+ "endDateEU": "2025-05-27",
+ "decisionDate": "2023-08-08T16:09:36.261",
+ "publishDate": "2026-04-28T03:42:53.519530071",
+ "ctPublicStatusCode": 8,
+ "authorizedApplication": {
+  "authorizedPartI": {
+   "id": 87170,
+   "rowSubjectCount": 0,
+   "products": [],
+   "trialDetails": {
+    "clinicalTrialIdentifiers": {
+     "publicTitle": "A three part randomized, double-blind, placebo-controlled, parallel group SAD and MD clinical study to evaluate the safety, tolerability and preliminary efficacy of an inhaled (nebulized) phage cocktail in healthy subjects and in patients with chronic colonization of the lung with Pseudomonas aeruginosa",
+     "publicTitleTranslations": [],
+     "shortTitle": "Phage4Cure-001",
+     "secondaryIdentifyingNumbers": {
+      "additionalRegistries": []
+     }
+    },
+    "trialInformation": {
+     "trialCategory": {
+      "trialPhase": "1",
+      "trialCategory": "1",
+      "trialCategoryId": 78266
+     },
+     "medicalCondition": {
+      "partIMedicalConditions": [
+       {
+        "id": 89408,
+        "medicalCondition": "Pseudomonas colonization",
+        "medicalConditionTranslations": [],
+        "isConditionRareDisease": false
+       }
+      ],
+      "meddraConditionTerms": [
+       {
+        "termId": 100000073322,
+        "version": "21.1",
+        "level": "LLT",
+        "termName": "Pseudomonas colonization",
+        "classificationCode": "10068292",
+        "organClass": 10021881,
+        "active": false
+       }
+      ]
+     },
+     "trialDuration": {
+      "estimatedEndDate": "2024-05-31",
+      "estimatedRecruitmentStartDate": "2023-09-01"
+     },
+     "populationOfTrialSubjects": {
+      "ageRanges": [
+       {
+        "id": 237397,
+        "ageRangeCategoryCode": "3",
+        "ageRangeCategory": "3"
+       },
+       {
+        "id": 237398,
+        "ageRangeCategoryCode": "4",
+        "ageRangeCategory": "4"
+       }
+      ],
+      "ageRangeSecondaryIds": [
+       {
+        "id": 237399,
+        "ageRangeCategoryCode": "4",
+        "ctAgeRangeCode": "7",
+        "ageRangeCategory": "4",
+        "ctAgeRange": "7"
+       }
+      ],
+      "clinicalTrialGroups": [
+       {
+        "code": "2",
+        "name": "Patients"
+       },
+       {
+        "code": "1",
+        "name": "Healthy volunteers"
+       }
+      ],
+      "isFemaleSubjects": true,
+      "isMaleSubjects": true,
+      "isVulnerablePopulationSelected": true
+     }
+    }
+   },
+   "assessmentOutcome": "acceptable",
+   "assessmentOutcomeDate": "2025-02-19",
+   "therapeuticAreas": [
+    {
+     "code": "1",
+     "name": "Diseases [C] - Bacterial Infections and Mycoses [C01]"
+    },
+    {
+     "code": "8",
+     "name": "Diseases [C] - Respiratory Tract Diseases [C08]"
+    }
+   ],
+   "medicalConditions": [
+    {
+     "id": 89408,
+     "medicalCondition": "Pseudomonas colonization",
+     "isConditionRareDisease": false
+    }
+   ],
+   "sponsors": [
+    {
+     "id": 95437,
+     "primary": true,
+     "publicContacts": [
+      {
+       "id": 284981,
+       "type": "Public",
+       "functionalName": "Public enquiries",
+       "functionalEmailAddress": "enquiries@charite-research.org",
+       "telephone": "+4930450539200",
+       "organisation": {
+        "id": 177849,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       }
+      }
+     ],
+     "scientificContacts": [
+      {
+       "id": 284982,
+       "type": "Scientific",
+       "functionalName": "Scientific Service",
+       "functionalEmailAddress": "submission@charite-research.org",
+       "telephone": "+4930450539200",
+       "organisation": {
+        "id": 177849,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       }
+      }
+     ],
+     "thirdParties": [],
+     "organisation": {
+      "id": 177849,
+      "type": "Pharmaceutical company",
+      "typeCode": "10",
+      "name": "Charite Research Organisation GmbH",
+      "commercial": true,
+      "isBusinessKeyValidated": true,
+      "businessKey": "ORG-100028160",
+      "organisationLocationStatus": "Active"
+     },
+     "addresses": [
+      {
+       "id": 174418,
+       "organisation": {
+        "id": 177849,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 184887,
+        "oneLine": "Chariteplatz 1, Mitte",
+        "addressLine1": "Chariteplatz 1",
+        "addressLine2": "Mitte",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Berlin",
+        "postcode": "10117",
+        "country": 2013,
+        "countryName": "Germany"
+       },
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100045195"
+      }
+     ],
+     "isCommercial": true,
+     "commercial": "Commercial"
+    }
+   ],
+   "trialCategoryCode": "1",
+   "partOneTherapeuticAreas": [
+    {
+     "id": 870860,
+     "therapeuticArea": {
+      "code": "1",
+      "name": "Diseases [C] - Bacterial Infections and Mycoses [C01]"
+     }
+    },
+    {
+     "id": 870861,
+     "therapeuticArea": {
+      "code": "8",
+      "name": "Diseases [C] - Respiratory Tract Diseases [C08]"
+     }
+    }
+   ]
+  },
+  "authorizedPartsII": [
+   {
+    "id": 211987,
+    "mscId": 12540,
+    "mscInfo": {
+     "id": 12540,
+     "clinicalTrialId": 7644,
+     "countryOrganisationId": 2013,
+     "reportingStatusCode": "Ended",
+     "fromDate": "2023-08-04",
+     "toDate": "2023-08-04",
+     "isProposedRms": true,
+     "countryName": "Germany",
+     "organisationInfo": {},
+     "firstDecisionDate": "2023-08-08",
+     "trialStatus": "Ended",
+     "trialPeriod": [
+      {
+       "id": 3616,
+       "trialStartDate": "2023-08-21",
+       "fromDate": "2023-08-21"
+      },
+      {
+       "id": 3617,
+       "trialStartDate": "2023-08-21",
+       "fromDate": "2023-08-21"
+      },
+      {
+       "id": 57463,
+       "trialStartDate": "2023-08-21",
+       "trialEndDate": "2025-05-27",
+       "fromDate": "2025-05-27"
+      },
+      {
+       "id": 59468,
+       "trialStartDate": "2023-08-21",
+       "trialEndDate": "2025-05-27",
+       "fromDate": "2025-06-26"
+      }
+     ],
+     "trialRecruitmentPeriod": [
+      {
+       "id": 3237,
+       "recruitmentStartDate": "2023-08-21",
+       "fromDate": "2023-08-21"
+      },
+      {
+       "id": 3238,
+       "recruitmentStartDate": "2023-08-21",
+       "fromDate": "2023-08-21"
+      },
+      {
+       "id": 77662,
+       "recruitmentStartDate": "2023-08-21",
+       "recruitmentEndDate": "2025-05-27",
+       "fromDate": "2025-05-27"
+      },
+      {
+       "id": 77663,
+       "recruitmentStartDate": "2023-08-21",
+       "recruitmentEndDate": "2025-05-27",
+       "fromDate": "2025-05-27"
+      },
+      {
+       "id": 80605,
+       "recruitmentStartDate": "2023-08-21",
+       "recruitmentEndDate": "2025-05-27",
+       "fromDate": "2025-06-26"
+      },
+      {
+       "id": 80606,
+       "recruitmentStartDate": "2023-08-21",
+       "recruitmentEndDate": "2025-05-27",
+       "fromDate": "2025-06-26"
+      }
+     ],
+     "hasRecruitmentStarted": true,
+     "activeTrialPeriod": {
+      "id": 88106,
+      "trialStartDate": "2023-08-21",
+      "trialEndDate": "2025-05-27",
+      "fromDate": "2023-08-21",
+      "isBenefitRiskBalanceTemporaryHalt": false,
+      "isBenefitRiskBalanceEndTrail": false,
+      "isTemporaryHalt": false,
+      "isEndTrial": true
+     },
+     "activeTrialRecruitmentPeriod": {
+      "recruitmentStartDate": "2023-08-21",
+      "recruitmentEndDate": "2025-05-27"
+     },
+     "isWillingAtDayThreeView": false,
+     "clinicalTrialStatusHistory": [
+      {
+       "id": 9342,
+       "mscId": 12540,
+       "trialStatus": "Under evaluation",
+       "trialStatusDate": "2023-07-21T10:29:50.639"
+      },
+      {
+       "id": 10238,
+       "mscId": 12540,
+       "trialStatus": "Authorised",
+       "trialStatusDate": "2023-08-08T16:09:35.819"
+      },
+      {
+       "id": 86140,
+       "mscId": 12540,
+       "trialStatus": "Authorised",
+       "trialStatusDate": "2025-06-26T09:10:19.646"
+      },
+      {
+       "id": 86141,
+       "mscId": 12540,
+       "trialStatus": "Ended",
+       "trialStatusDate": "2025-06-26T09:14:46.156"
+      },
+      {
+       "id": 83744,
+       "mscId": 12540,
+       "trialStatus": "Ended",
+       "trialStatusDate": "2025-05-27T14:50:51.31"
+      }
+     ],
+     "applicationTypeMsc": "1",
+     "mscName": "Germany",
+     "decision": "authorized",
+     "decisionDate": "2023-08-08"
+    },
+    "decisionDate": "2023-08-08",
+    "recruitmentSubjectCount": 50,
+    "trialSites": [
+     {
+      "id": 1410886,
+      "organisationAddressInfo": {
+       "id": 177371,
+       "organisation": {
+        "id": 180814,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 188060,
+        "oneLine": "Chariteplatz 1, Mitte",
+        "addressLine1": "Chariteplatz 1",
+        "addressLine2": "Mitte",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Berlin",
+        "postcode": "10117",
+        "country": 2013,
+        "countryName": "Germany"
+       },
+       "phone": "+4930450553892",
+       "email": "martin.witzenrath@charite.de",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100045195"
+      },
+      "personInfo": {
+       "id": 1571374,
+       "firstName": "Martin",
+       "lastName": "Witzenrath",
+       "telephone": "+4930450553892",
+       "email": "martin.witzenrath@charite.de",
+       "title": "2"
+      },
+      "departmentName": "Department of Infectious Diseases and Respiratory Medicine, Charité Berlin"
+     }
+    ],
+    "applicationStatusCode": "Authorised"
+   }
+  ],
+  "applicationInfo": [
+   {
+    "id": 10641,
+    "type": "INITIAL",
+    "status": "Authorised",
+    "ctNumber": "2023-507203-55-00",
+    "trialStatus": "Ended",
+    "submissionDate": "2023-07-21",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2023-08-08"
+    },
+    "partIIInfo": [
+     {
+      "id": 33831,
+      "mscId": 12540,
+      "mscInfo": {
+       "id": 12540,
+       "mscName": "Germany",
+       "countryOrganisationId": 2013,
+       "assessmentOutcome": "acceptable",
+       "assessmentOutcomeDate": "2023-08-08",
+       "decision": "authorized",
+       "decisionDate": "2023-08-08",
+       "reportingStatusCode": "Ended",
+       "countryName": "Germany",
+       "trialStatus": "Ended",
+       "firstDecisionDate": "2023-08-08"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2023-08-08",
+    "ctMSCsByApplication": [
+     {
+      "id": 12540,
+      "mscName": "Germany",
+      "reportingStatusCode": "Ended"
+     }
+    ],
+    "businessKey": "IN",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 4611,
+      "applicationId": 10641,
+      "mscId": 12540,
+      "mscName": "Germany",
+      "decisionDate": "2023-08-08T16:09:36.261",
+      "decision": "authorized",
+      "assessmentOutcome": "acceptable",
+      "eventType": "decision",
+      "part2Id": 33831,
+      "part1Id": 15952,
+      "applicationType": "INITIAL",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 17456,
+    "type": "SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2023-507203-55-00",
+    "trialStatus": "Ended",
+    "submissionDate": "2023-12-21",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2024-02-21"
+    },
+    "partIIInfo": [
+     {
+      "id": 70858,
+      "mscId": 12540,
+      "mscInfo": {
+       "id": 12540,
+       "mscName": "Germany",
+       "countryOrganisationId": 2013,
+       "assessmentOutcome": "acceptable",
+       "assessmentOutcomeDate": "2024-03-01",
+       "decision": "authorized",
+       "decisionDate": "2023-08-08",
+       "reportingStatusCode": "Ended",
+       "countryName": "Germany",
+       "trialStatus": "Ended",
+       "firstDecisionDate": "2023-08-08"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2024-03-06",
+    "ctMSCsByApplication": [
+     {
+      "id": 12540,
+      "mscName": "Germany",
+      "reportingStatusCode": "Ended"
+     }
+    ],
+    "businessKey": "SM-2",
+    "modScope": "PART_I_AND_PART_II",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 14966,
+      "applicationId": 17456,
+      "mscId": 12540,
+      "mscName": "Germany",
+      "decisionDate": "2024-03-06T08:08:34.646",
+      "decision": "authorized",
+      "assessmentOutcome": "acceptable",
+      "eventType": "decision",
+      "part2Id": 70858,
+      "part1Id": 29402,
+      "applicationType": "SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 31875,
+    "type": "SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2023-507203-55-00",
+    "trialStatus": "Ended",
+    "submissionDate": "2024-07-24",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2024-08-12"
+    },
+    "partIIInfo": [],
+    "decisionDate": "2024-08-15",
+    "ctMSCsByApplication": [
+     {
+      "id": 12540,
+      "mscName": "Germany",
+      "reportingStatusCode": "Ended"
+     }
+    ],
+    "businessKey": "SM-3",
+    "modScope": "PART_I",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 33593,
+      "applicationId": 31875,
+      "mscId": 12540,
+      "mscName": "Germany",
+      "decisionDate": "2024-08-15T12:51:29.405",
+      "decision": "authorized",
+      "eventType": "decision",
+      "part1Id": 48394,
+      "applicationType": "SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 34569,
+    "type": "SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2023-507203-55-00",
+    "trialStatus": "Ended",
+    "submissionDate": "2024-09-05",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2024-10-16"
+    },
+    "partIIInfo": [
+     {
+      "id": 135880,
+      "mscId": 12540,
+      "mscInfo": {
+       "id": 12540,
+       "mscName": "Germany",
+       "countryOrganisationId": 2013,
+       "assessmentOutcome": "acceptable",
+       "assessmentOutcomeDate": "2024-10-16",
+       "decision": "authorized",
+       "decisionDate": "2023-08-08",
+       "reportingStatusCode": "Ended",
+       "countryName": "Germany",
+       "trialStatus": "Ended",
+       "firstDecisionDate": "2023-08-08"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2024-10-17",
+    "ctMSCsByApplication": [
+     {
+      "id": 12540,
+      "mscName": "Germany",
+      "reportingStatusCode": "Ended"
+     }
+    ],
+    "businessKey": "SM-4",
+    "modScope": "PART_I_AND_PART_II",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 42351,
+      "applicationId": 34569,
+      "mscId": 12540,
+      "mscName": "Germany",
+      "decisionDate": "2024-10-17T08:49:19.191",
+      "decision": "authorized",
+      "assessmentOutcome": "acceptable",
+      "eventType": "decision",
+      "part2Id": 135880,
+      "part1Id": 53861,
+      "applicationType": "SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 44162,
+    "type": "NON SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2023-507203-55-00",
+    "trialStatus": "Ended",
+    "submissionDate": "2024-12-18",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2024-10-16"
+    },
+    "partIIInfo": [
+     {
+      "id": 167536,
+      "mscId": 12540,
+      "mscInfo": {
+       "id": 12540,
+       "mscName": "Germany",
+       "countryOrganisationId": 2013,
+       "decision": "authorized",
+       "decisionDate": "2023-08-08",
+       "reportingStatusCode": "Ended",
+       "countryName": "Germany",
+       "trialStatus": "Ended",
+       "firstDecisionDate": "2023-08-08"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2024-12-18",
+    "ctMSCsByApplication": [
+     {
+      "id": 12540,
+      "mscName": "Germany",
+      "reportingStatusCode": "Ended"
+     }
+    ],
+    "businessKey": "NSM-4",
+    "modScope": "PART_II",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 51552,
+      "applicationId": 44162,
+      "mscId": 12540,
+      "mscName": "Germany",
+      "decisionDate": "2024-12-18T10:42:45.087",
+      "decision": "authorized",
+      "eventType": "decision",
+      "part2Id": 167536,
+      "part1Id": 68202,
+      "applicationType": "NON SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 47230,
+    "type": "SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2023-507203-55-00",
+    "trialStatus": "Ended",
+    "submissionDate": "2025-02-03",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2025-02-19"
+    },
+    "partIIInfo": [],
+    "decisionDate": "2025-02-20",
+    "ctMSCsByApplication": [
+     {
+      "id": 12540,
+      "mscName": "Germany",
+      "reportingStatusCode": "Ended"
+     }
+    ],
+    "businessKey": "SM-5",
+    "modScope": "PART_I",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 58836,
+      "applicationId": 47230,
+      "mscId": 12540,
+      "mscName": "Germany",
+      "decisionDate": "2025-02-20T10:03:56.741",
+      "decision": "authorized",
+      "eventType": "decision",
+      "part1Id": 72897,
+      "applicationType": "SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 56474,
+    "type": "NON SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2023-507203-55-00",
+    "trialStatus": "Ended",
+    "submissionDate": "2025-05-27",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2025-02-19"
+    },
+    "partIIInfo": [
+     {
+      "id": 211987,
+      "mscId": 12540,
+      "mscInfo": {
+       "id": 12540,
+       "mscName": "Germany",
+       "countryOrganisationId": 2013,
+       "decision": "authorized",
+       "decisionDate": "2023-08-08",
+       "reportingStatusCode": "Ended",
+       "countryName": "Germany",
+       "trialStatus": "Ended",
+       "firstDecisionDate": "2023-08-08"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2025-05-27",
+    "ctMSCsByApplication": [
+     {
+      "id": 12540,
+      "mscName": "Germany",
+      "reportingStatusCode": "Ended"
+     }
+    ],
+    "businessKey": "NSM-6",
+    "modScope": "PART_II",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 73274,
+      "applicationId": 56474,
+      "mscId": 12540,
+      "mscName": "Germany",
+      "decisionDate": "2025-05-27T14:38:26.335",
+      "decision": "authorized",
+      "eventType": "decision",
+      "part2Id": 211987,
+      "part1Id": 87170,
+      "applicationType": "NON SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   }
+  ],
+  "trialGlobalEnd": [],
+  "memberStatesConcerned": [
+   {
+    "mscName": "Germany",
+    "mscId": 12540,
+    "firstDecisionDate": "2023-08-08T16:09:36.261",
+    "lastDecisionDate": "2025-05-27T14:38:26.335",
+    "mscPublicStatusCode": 8
+   }
+  ],
+  "eudraCt": {
+   "isTransitioned": false
+  }
+ },
+ "events": {
+  "temporaryHaltList": [],
+  "trialEvents": [
+   {
+    "mscId": 12540,
+    "mscName": "Germany",
+    "events": [
+     {
+      "notificationType": "START_OF_TRIAL",
+      "date": "2023-08-21"
+     },
+     {
+      "notificationType": "END_OF_TRIAL",
+      "date": "2025-05-27"
+     },
+     {
+      "notificationType": "START_OF_RECRUITMENT",
+      "date": "2023-08-21"
+     },
+     {
+      "notificationType": "END_OF_RECRUITMENT",
+      "date": "2025-05-27"
+     }
+    ]
+   }
+  ],
+  "unexpectedEvents": [],
+  "seriousBreaches": [],
+  "urgentSafetyMeasures": []
+ },
+ "results": {},
+ "documents": [],
+ "trialRegion": "EEA",
+ "trialRegionCode": 1,
+ "correctiveMeasures": []
+}

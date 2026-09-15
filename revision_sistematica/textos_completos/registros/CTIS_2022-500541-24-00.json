@@ -1,0 +1,805 @@
+{
+ "ctNumber": "2022-500541-24-00",
+ "ctStatus": "Authorised",
+ "startDateEU": "2024-07-02",
+ "decisionDate": "2023-09-20T18:17:52.578",
+ "publishDate": "2025-09-30T03:41:28.649315855",
+ "ctPublicStatusCode": 3,
+ "authorizedApplication": {
+  "authorizedPartI": {
+   "id": 99429,
+   "rowSubjectCount": 0,
+   "products": [],
+   "trialDetails": {
+    "clinicalTrialIdentifiers": {
+     "publicTitle": "Comparison of the efficacy of standard treatment associated with phage therapy versus standard treatment plus placebo for diabetic foot ulcers infected by Staphylococcus aureus",
+     "publicTitleTranslations": [
+      {
+       "id": 7869331,
+       "uuid": "aa64f640-bce6-4052-ba71-4062b7d4319e",
+       "attributeTranslation": "Comparaison de l'efficacité du traitement standard associé à la phagothérapie par rapport au traitement standard associé à un placebo pour les ulcères du pied diabétique infectés par Staphylococcus aureus",
+       "language": 10,
+       "languageDescription": "French"
+      }
+     ],
+     "shortTitle": "PHRC-N/2015/AS-01",
+     "secondaryIdentifyingNumbers": {
+      "nctNumber": {
+       "id": 433027,
+       "number": "NCT02664740"
+      },
+      "additionalRegistries": []
+     }
+    },
+    "trialInformation": {
+     "trialCategory": {
+      "trialPhase": "9",
+      "trialCategory": "1",
+      "trialCategoryId": 90140
+     },
+     "medicalCondition": {
+      "partIMedicalConditions": [
+       {
+        "id": 102667,
+        "medicalCondition": "Diabetic foot",
+        "medicalConditionTranslations": [],
+        "isConditionRareDisease": false
+       }
+      ],
+      "meddraConditionTerms": [
+       {
+        "termId": 100000055495,
+        "version": "21.1",
+        "level": "LLT",
+        "termName": "Diabetic foot ulcer",
+        "classificationCode": "10012664",
+        "organClass": 10040785,
+        "active": false
+       },
+       {
+        "termId": 100000014569,
+        "version": "20.1",
+        "level": "PT",
+        "termName": "Diabetic foot infection",
+        "classificationCode": "10060803",
+        "organClass": 100000004862,
+        "active": false
+       }
+      ]
+     },
+     "trialDuration": {
+      "estimatedEndDate": "2026-08-31",
+      "estimatedRecruitmentStartDate": "2025-01-01"
+     },
+     "populationOfTrialSubjects": {
+      "ageRanges": [
+       {
+        "id": 272235,
+        "ageRangeCategoryCode": "3",
+        "ageRangeCategory": "3"
+       },
+       {
+        "id": 272236,
+        "ageRangeCategoryCode": "4",
+        "ageRangeCategory": "4"
+       }
+      ],
+      "ageRangeSecondaryIds": [
+       {
+        "id": 272238,
+        "ageRangeCategoryCode": "4",
+        "ctAgeRangeCode": "8",
+        "ageRangeCategory": "4",
+        "ctAgeRange": "8"
+       },
+       {
+        "id": 272237,
+        "ageRangeCategoryCode": "3",
+        "ctAgeRangeCode": "9",
+        "ageRangeCategory": "3",
+        "ctAgeRange": "9"
+       },
+       {
+        "id": 272239,
+        "ageRangeCategoryCode": "4",
+        "ctAgeRangeCode": "7",
+        "ageRangeCategory": "4",
+        "ctAgeRange": "7"
+       }
+      ],
+      "clinicalTrialGroups": [
+       {
+        "code": "2",
+        "name": "Patients"
+       }
+      ],
+      "isFemaleSubjects": true,
+      "isMaleSubjects": true,
+      "isVulnerablePopulationSelected": false
+     }
+    }
+   },
+   "assessmentOutcome": "acceptable",
+   "assessmentOutcomeDate": "2025-09-15",
+   "therapeuticAreas": [
+    {
+     "code": "1",
+     "name": "Diseases [C] - Bacterial Infections and Mycoses [C01]"
+    }
+   ],
+   "medicalConditions": [
+    {
+     "id": 102667,
+     "medicalCondition": "Diabetic foot",
+     "isConditionRareDisease": false
+    }
+   ],
+   "sponsors": [
+    {
+     "id": 111419,
+     "primary": true,
+     "publicContacts": [
+      {
+       "id": 328470,
+       "type": "Public",
+       "functionalName": "Christophe MASSEGUIN, Project Manager",
+       "functionalEmailAddress": "christophe.masseguin@chu-nimes.fr",
+       "telephone": "+33466686836",
+       "organisation": {
+        "id": 15387,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier Universitaire De Nimes",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100009906",
+        "organisationLocationStatus": "Active"
+       }
+      }
+     ],
+     "scientificContacts": [
+      {
+       "id": 328471,
+       "type": "Scientific",
+       "functionalName": "Christophe MASSEGUIN, Project Manager",
+       "functionalEmailAddress": "christophe.masseguin@chu-nimes.fr",
+       "telephone": "+33466686836",
+       "organisation": {
+        "id": 15387,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier Universitaire De Nimes",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100009906",
+        "organisationLocationStatus": "Active"
+       }
+      }
+     ],
+     "thirdParties": [],
+     "organisation": {
+      "id": 15387,
+      "type": "Hospital/Clinic/Other health care facility",
+      "typeCode": "8",
+      "name": "Centre Hospitalier Universitaire De Nimes",
+      "commercial": false,
+      "isBusinessKeyValidated": true,
+      "businessKey": "ORG-100009906",
+      "organisationLocationStatus": "Active"
+     },
+     "addresses": [
+      {
+       "id": 14626,
+       "organisation": {
+        "id": 15387,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier Universitaire De Nimes",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100009906",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 14774,
+        "oneLine": "4 Place Du Professeur Robert Debre",
+        "addressLine1": "4 Place Du Professeur Robert Debre",
+        "addressLine2": "",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Nimes Cedex 9",
+        "postcode": "30029",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100014958"
+      }
+     ],
+     "isCommercial": false,
+     "commercial": "Non-Commercial"
+    }
+   ],
+   "trialCategoryCode": "1",
+   "partOneTherapeuticAreas": [
+    {
+     "id": 958891,
+     "therapeuticArea": {
+      "code": "1",
+      "name": "Diseases [C] - Bacterial Infections and Mycoses [C01]"
+     }
+    }
+   ]
+  },
+  "authorizedPartsII": [
+   {
+    "id": 243197,
+    "mscId": 5407,
+    "mscInfo": {
+     "id": 5407,
+     "clinicalTrialId": 548,
+     "countryOrganisationId": 2012,
+     "reportingStatusCode": "Authorised",
+     "fromDate": "2023-07-31",
+     "toDate": "2023-07-31",
+     "isProposedRms": true,
+     "countryName": "France",
+     "organisationInfo": {},
+     "firstDecisionDate": "2023-09-20",
+     "trialStatus": "Authorised",
+     "trialPeriod": [
+      {
+       "id": 47403,
+       "trialStartDate": "2024-07-02",
+       "fromDate": "2025-01-07"
+      },
+      {
+       "id": 47404,
+       "trialStartDate": "2024-07-02",
+       "fromDate": "2025-01-07"
+      }
+     ],
+     "trialRecruitmentPeriod": [],
+     "hasRecruitmentStarted": false,
+     "activeTrialPeriod": {
+      "id": 65456,
+      "trialStartDate": "2024-07-02",
+      "fromDate": "2025-01-07"
+     },
+     "activeTrialRecruitmentPeriod": {},
+     "isWillingAtDayThreeView": false,
+     "clinicalTrialStatusHistory": [
+      {
+       "id": 6889,
+       "mscId": 5407,
+       "trialStatus": "Under evaluation",
+       "trialStatusDate": "2023-06-02T12:00:21.968"
+      },
+      {
+       "id": 12650,
+       "mscId": 5407,
+       "trialStatus": "Authorised",
+       "trialStatusDate": "2023-09-20T18:17:52.353"
+      }
+     ],
+     "applicationTypeMsc": "1",
+     "mscName": "France",
+     "recruitmentRestartDate": "2027-10-05",
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2025-09-25",
+     "decision": "authorized",
+     "decisionDate": "2023-09-20"
+    },
+    "decisionDate": "2023-09-20",
+    "recruitmentSubjectCount": 60,
+    "trialSites": [
+     {
+      "id": 1652477,
+      "organisationAddressInfo": {
+       "id": 84620,
+       "organisation": {
+        "id": 87242,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier Universitaire De Nimes",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100009906",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 88680,
+        "oneLine": "4 Place Du Professeur Robert Debre, Bp 40026",
+        "addressLine1": "4 Place Du Professeur Robert Debre",
+        "addressLine2": "Bp 40026",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Nimes Cedex 9",
+        "postcode": "30029",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "phone": "+33466684149",
+       "email": "Albert.sotto@chu-nimes.fr",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100014958"
+      },
+      "personInfo": {
+       "id": 1837149,
+       "firstName": "Albert",
+       "lastName": "SOTTO",
+       "telephone": "+33466684149",
+       "email": "Albert.sotto@chu-nimes.fr",
+       "title": "2"
+      },
+      "departmentName": "Service des Maladies Infectieuses et tropicales"
+     },
+     {
+      "id": 1652475,
+      "organisationAddressInfo": {
+       "id": 84673,
+       "organisation": {
+        "id": 87295,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier De Tourcoing",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100014121",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 88733,
+        "oneLine": "155 Rue Du President Coty, Bp 40619",
+        "addressLine1": "155 Rue Du President Coty",
+        "addressLine2": "Bp 40619",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Tourcoing Cedex",
+        "postcode": "59208",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "phone": "+33320694617",
+       "email": "bgachet@ch-tourcoing.fr",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100019945"
+      },
+      "personInfo": {
+       "id": 1837147,
+       "firstName": "Benoit",
+       "lastName": "GACHET",
+       "telephone": "+33320694617",
+       "email": "bgachet@ch-tourcoing.fr",
+       "title": "1"
+      },
+      "departmentName": "Service Universitaire des Maladies Infectieuses et du Voyageur"
+     },
+     {
+      "id": 1652480,
+      "organisationAddressInfo": {
+       "id": 84627,
+       "organisation": {
+        "id": 87249,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier Universitaire De Toulouse",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100011252",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 88687,
+        "oneLine": "1 Avenue Du Professeur Jean Poulhes, Tsa 50032",
+        "addressLine1": "1 Avenue Du Professeur Jean Poulhes",
+        "addressLine2": "Tsa 50032",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Toulouse Cedex 9",
+        "postcode": "31059",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "phone": "+33561323289",
+       "email": "martini.j@chu-toulouse.fr",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100046174"
+      },
+      "personInfo": {
+       "id": 1837152,
+       "firstName": "Jacques",
+       "lastName": "MARTINI",
+       "telephone": "+33561323289",
+       "email": "martini.j@chu-toulouse.fr",
+       "title": "1"
+      },
+      "departmentName": "service de Diabétologie -Maladies Métaboliques- Nutrition"
+     },
+     {
+      "id": 1652478,
+      "organisationAddressInfo": {
+       "id": 89846,
+       "organisation": {
+        "id": 92548,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier Universitaire De Nimes",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100009906",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 94163,
+        "oneLine": "Place Du Professeur Robert Debre",
+        "addressLine1": "Place Du Professeur Robert Debre",
+        "addressLine2": "",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Nimes",
+        "postcode": "30900",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "phone": "+33466682526",
+       "email": "sophie.schuldiner@chu-nimes.fr",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100077341"
+      },
+      "personInfo": {
+       "id": 1837150,
+       "firstName": "Sophie",
+       "lastName": "Schuldiner",
+       "telephone": "+33466682526",
+       "email": "sophie.schuldiner@chu-nimes.fr",
+       "title": "1"
+      },
+      "departmentName": "Service de Maladies Métaboliques et Endocriniennes"
+     },
+     {
+      "id": 1652479,
+      "organisationAddressInfo": {
+       "id": 84667,
+       "organisation": {
+        "id": 87289,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Hopital Europeen Marseille",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100009640",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 88727,
+        "oneLine": "6 Rue Desiree Clary",
+        "addressLine1": "6 Rue Desiree Clary",
+        "addressLine2": "",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Marseille",
+        "postcode": "13003",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "phone": "+33625752553",
+       "email": "s.rebaudet@hopital-europeen.fr",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100013975"
+      },
+      "personInfo": {
+       "id": 1837151,
+       "firstName": "Stanislas",
+       "lastName": "REBAUDET",
+       "telephone": "+33625752553",
+       "email": "s.rebaudet@hopital-europeen.fr",
+       "title": "1"
+      },
+      "departmentName": "Service de Médecine interne"
+     },
+     {
+      "id": 1652476,
+      "organisationAddressInfo": {
+       "id": 94427,
+       "organisation": {
+        "id": 97166,
+        "type": "Health care",
+        "typeCode": "2",
+        "name": "Centre Hospitalier Intercommunal de Villeneuve Saint Georges",
+        "commercial": false,
+        "isBusinessKeyValidated": false,
+        "businessKey": "ORL-000000628",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 98996,
+        "oneLine": "40, allée de la source",
+        "addressLine1": "40, allée de la source",
+        "addressLine2": "",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Villeneuve-Saint-Georges",
+        "postcode": "94190",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "phone": "+33143862162",
+       "email": "pauline.caraux-paz@chiv.fr",
+       "isBusinessKeyValidated": false,
+       "businessKey": "ORL-000000628"
+      },
+      "personInfo": {
+       "id": 1837148,
+       "firstName": "Pauline",
+       "lastName": "CARAUX PAZ",
+       "telephone": "+33143862162",
+       "email": "pauline.caraux-paz@chiv.fr",
+       "title": "1"
+      },
+      "departmentName": "Service de Médecine Interne,  Maladies Infectieuses et  Tropicales"
+     },
+     {
+      "id": 1652474,
+      "organisationAddressInfo": {
+       "id": 84636,
+       "organisation": {
+        "id": 87258,
+        "type": "Hospital/Clinic/Other health care facility",
+        "typeCode": "8",
+        "name": "Centre Hospitalier Universitaire De Bordeaux",
+        "commercial": false,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100008602",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 88696,
+        "oneLine": "Place Amelie Raba Leon",
+        "addressLine1": "Place Amelie Raba Leon",
+        "addressLine2": "",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Bordeaux",
+        "postcode": "33000",
+        "country": 2012,
+        "countryName": "France"
+       },
+       "phone": "+556795523",
+       "email": "Frederic-antoine.dauchy@chu-bordeaux.fr",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100049712"
+      },
+      "personInfo": {
+       "id": 1837146,
+       "firstName": "Frédéric Antoine",
+       "lastName": "DAUCHY",
+       "telephone": "+556795523",
+       "email": "Frederic-antoine.dauchy@chu-bordeaux.fr",
+       "title": "1"
+      },
+      "departmentName": "Service de Médecine tropicale et pathologies infectieuses"
+     }
+    ],
+    "applicationStatusCode": "Authorised"
+   }
+  ],
+  "applicationInfo": [
+   {
+    "id": 552,
+    "type": "INITIAL",
+    "status": "Authorised",
+    "ctNumber": "2022-500541-24-00",
+    "trialStatus": "Authorised",
+    "submissionDate": "2023-06-02",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2023-09-18"
+    },
+    "partIIInfo": [
+     {
+      "id": 33170,
+      "mscId": 5407,
+      "mscInfo": {
+       "id": 5407,
+       "mscName": "France",
+       "countryOrganisationId": 2012,
+       "assessmentOutcome": "acceptable",
+       "assessmentOutcomeDate": "2023-09-08",
+       "decision": "authorized",
+       "decisionDate": "2023-09-20",
+       "reportingStatusCode": "Authorised",
+       "countryName": "France",
+       "trialStatus": "Authorised",
+       "firstDecisionDate": "2023-09-20"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2023-09-20",
+    "ctMSCsByApplication": [
+     {
+      "id": 5407,
+      "mscName": "France",
+      "reportingStatusCode": "Authorised"
+     }
+    ],
+    "businessKey": "IN",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 6184,
+      "applicationId": 552,
+      "mscId": 5407,
+      "mscName": "France",
+      "decisionDate": "2023-09-20T18:17:52.578",
+      "decision": "authorized",
+      "assessmentOutcome": "acceptable",
+      "eventType": "decision",
+      "part2Id": 33170,
+      "part1Id": 16424,
+      "applicationType": "INITIAL",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 45089,
+    "type": "SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2022-500541-24-00",
+    "trialStatus": "Authorised",
+    "submissionDate": "2025-02-18",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2025-04-01"
+    },
+    "partIIInfo": [
+     {
+      "id": 188211,
+      "mscId": 5407,
+      "mscInfo": {
+       "id": 5407,
+       "mscName": "France",
+       "countryOrganisationId": 2012,
+       "assessmentOutcome": "acceptable",
+       "assessmentOutcomeDate": "2025-04-16",
+       "decision": "authorized",
+       "decisionDate": "2023-09-20",
+       "reportingStatusCode": "Authorised",
+       "countryName": "France",
+       "trialStatus": "Authorised",
+       "firstDecisionDate": "2023-09-20"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2025-04-16",
+    "ctMSCsByApplication": [
+     {
+      "id": 5407,
+      "mscName": "France",
+      "reportingStatusCode": "Authorised"
+     }
+    ],
+    "businessKey": "SM-2",
+    "modScope": "PART_I_AND_PART_II",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 67384,
+      "applicationId": 45089,
+      "mscId": 5407,
+      "mscName": "France",
+      "decisionDate": "2025-04-16T19:10:36.272",
+      "decision": "authorized",
+      "assessmentOutcome": "acceptable",
+      "eventType": "decision",
+      "part2Id": 188211,
+      "part1Id": 77286,
+      "applicationType": "SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   },
+   {
+    "id": 63992,
+    "type": "SUBSTANTIAL MODIFICATION",
+    "status": "Authorised",
+    "ctNumber": "2022-500541-24-00",
+    "trialStatus": "Authorised",
+    "submissionDate": "2025-09-03",
+    "partI": {
+     "assessmentOutcome": "acceptable",
+     "assessmentOutcomeDate": "2025-09-15"
+    },
+    "partIIInfo": [
+     {
+      "id": 243197,
+      "mscId": 5407,
+      "mscInfo": {
+       "id": 5407,
+       "mscName": "France",
+       "countryOrganisationId": 2012,
+       "assessmentOutcome": "acceptable",
+       "assessmentOutcomeDate": "2025-09-25",
+       "decision": "authorized",
+       "decisionDate": "2023-09-20",
+       "reportingStatusCode": "Authorised",
+       "countryName": "France",
+       "trialStatus": "Authorised",
+       "firstDecisionDate": "2023-09-20"
+      },
+      "applicationStatusCode": "Authorised"
+     }
+    ],
+    "decisionDate": "2025-09-29",
+    "ctMSCsByApplication": [
+     {
+      "id": 5407,
+      "mscName": "France",
+      "reportingStatusCode": "Authorised"
+     }
+    ],
+    "businessKey": "SM-3",
+    "modScope": "PART_I_AND_PART_II",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 91327,
+      "applicationId": 63992,
+      "mscId": 5407,
+      "mscName": "France",
+      "decisionDate": "2025-09-29T17:56:19.043",
+      "decision": "authorized",
+      "assessmentOutcome": "acceptable",
+      "eventType": "decision",
+      "part2Id": 243197,
+      "part1Id": 99429,
+      "applicationType": "SUBSTANTIAL MODIFICATION",
+      "isRMS": true
+     }
+    ]
+   }
+  ],
+  "trialGlobalEnd": [],
+  "memberStatesConcerned": [
+   {
+    "mscName": "France",
+    "mscId": 5407,
+    "firstDecisionDate": "2023-09-20T18:17:52.578",
+    "lastDecisionDate": "2025-09-29T17:56:19.043",
+    "mscPublicStatusCode": 3
+   }
+  ],
+  "eudraCt": {
+   "isTransitioned": false
+  }
+ },
+ "events": {
+  "temporaryHaltList": [],
+  "trialEvents": [
+   {
+    "mscId": 5407,
+    "mscName": "France",
+    "events": [
+     {
+      "notificationType": "START_OF_TRIAL",
+      "date": "2024-07-02"
+     }
+    ]
+   }
+  ],
+  "unexpectedEvents": [],
+  "seriousBreaches": [],
+  "urgentSafetyMeasures": []
+ },
+ "results": {},
+ "documents": [],
+ "trialRegion": "EEA",
+ "trialRegionCode": 1,
+ "correctiveMeasures": []
+}

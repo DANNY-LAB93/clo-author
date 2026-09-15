@@ -48,6 +48,7 @@ Uso:
 
 Sin `--escribir` no toca nada: enseña lo que haría.
 """
+import collections
 import argparse
 import csv
 import datetime
@@ -59,8 +60,25 @@ from extraction_schema import CATEGORICOS, NUMERICOS, normaliza
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CONFLICTOS = ROOT / "revision_sistematica" / "extraccion" / "extraction_conflicts.csv"
-ORDEN = ROOT / "quality_reports" / "orden_de_extraccion.csv"
 HOJA = ROOT / "revision_sistematica" / "extraccion" / "hoja_de_consenso.csv"
+# De donde sale «este estudio tiene texto completo». Antes salia de la columna
+# `texto_completo` de quality_reports/orden_de_extraccion.csv, que es una foto
+# del 2026-08-09 y dejo de moverse: desde entonces se recuperaron textos y se
+# excluyeron 29 estudios tras leerlos. Estratificar los conflictos con una foto
+# caducada manda a la reunion de consenso estudios que ya no estan y deja fuera
+# textos que si llegaron. La verdad viva son los ficheros en disco, contados
+# igual que en build_synthesis_scalars.py.
+TEXTOS = ROOT / "revision_sistematica" / "textos_completos"
+
+
+def estudios_con_texto():
+    """Los identificadores que tienen el texto completo en disco, hoy."""
+    hay = {q.stem for q in (TEXTOS / "pdf").iterdir()
+           if q.suffix.lower() in (".pdf", ".docx")}
+    web = TEXTOS / "texto_html"
+    if web.exists():
+        hay |= {q.stem for q in web.glob("*.txt")}
+    return hay
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -131,8 +149,8 @@ def main():
     args = ap.parse_args()
 
     filas = list(csv.DictReader(open(CONFLICTOS, encoding="utf-8")))
-    orden = {r["id"]: r for r in csv.DictReader(open(ORDEN, encoding="utf-8-sig"))}
-    tiene_texto = {k: (v.get("texto_completo") == "si") for k, v in orden.items()}
+    con_texto = estudios_con_texto()
+    tiene_texto = collections.defaultdict(bool, {k: True for k in con_texto})
 
     resueltas, consenso = [], []
     contador = {"R1": 0, "R2": 0, "A": 0, "B": 0, "C": 0, "ya_resuelto": 0}

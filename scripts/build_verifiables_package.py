@@ -532,24 +532,25 @@ def v9_idioma(S):
           % (n, fuera))
 
 
-def declaracion_ia():
-    """La declaración de uso de IA, tomada literal del manuscrito autoritativo.
+def del_manuscrito(marca, que_es):
+    """Un párrafo del manuscrito autoritativo, copiado literal.
 
-    Se lee en vez de reescribirse porque las dos versiones que existían habían
-    divergido, y la del anexo era la suave: decía que el modelo dio «asistencia
-    en la programación» del cribado cuando fue él quien emitió las decisiones,
-    y que los autores «verificaron todo el contenido» cuando el manuscrito dice
-    que los registros excluidos no los releyó nadie.
+    Ninguna declaración del anexo se redacta aquí. Se leen porque las versiones
+    paralelas divergen y siempre en la misma dirección: la del anexo salía más
+    suave. La de IA decía que el modelo dio «asistencia en la programación» del
+    cribado cuando fue él quien emitió las decisiones, y que los autores
+    «verificaron todo el contenido» cuando el manuscrito dice que los registros
+    excluidos no los releyó nadie. La de CRediT decía «PENDIENTE DE COMPLETAR»
+    cuando el manuscrito ya repartía las categorías entre los dos autores.
     """
     md = (ROOT / "paper" / "manuscrito_revision_sistematica.md").read_text(
         encoding="utf-8")
-    marca = "**Uso de inteligencia artificial.**"
     i = md.find(marca)
     if i < 0:
         raise SystemExit(
-            "S7: no encuentro «%s» en el manuscrito. La declaración de uso de "
-            "IA sale de ahí y no se redacta en este script; si la sección se "
-            "renombró, actualiza la marca." % marca)
+            "S7: no encuentro «%s» en el manuscrito. %s sale de ahí y no se "
+            "redacta en este script; si la sección se renombró, actualiza la "
+            "marca." % (marca, que_es))
     texto = md[i + len(marca):].split("\n\n")[0].strip()
     # El .docx no lleva marcado Markdown: los asteriscos quedarian a la vista.
     return texto.replace("**", "")
@@ -565,12 +566,12 @@ def v7_declaraciones(S):
         ("Conflictos de interés",
          "Los autores declaran no tener conflictos de interés. Cada autor debe "
          "adjuntar además el formulario ICMJE Disclosure of Interest firmado."),
+        # Tampoco esta se redacta aqui: el manuscrito ya reparte las categorias
+        # entre los dos autores y el anexo seguia diciendo «PENDIENTE DE
+        # COMPLETAR». Un comite que abra los dos documentos ve la contradiccion.
         ("Contribución de los autores (CRediT)",
-         "PENDIENTE DE COMPLETAR antes del envío. Debe asignar a cada autor las "
-         "categorías CRediT que le correspondan: conceptualización, curación de "
-         "datos, análisis formal, investigación, metodología, software, "
-         "validación, visualización, redacción del borrador original, y "
-         "redacción con revisión y edición."),
+         del_manuscrito("**Contribución de los autores (CRediT).**",
+                        "la contribución de los autores")),
         ("Registro del protocolo",
          "PENDIENTE. La revisión no está registrada en PROSPERO ni en OSF. El "
          "manuscrito declara la ausencia de forma explícita en §2.1. Si se "
@@ -591,7 +592,9 @@ def v7_declaraciones(S):
         # excluyo no los releyo ningun humano. Es justo la declaracion que un
         # comite mira primero, y tener dos versiones distintas de ella en el
         # mismo envio es peor que no adjuntarla.
-        ("Uso de inteligencia artificial", declaracion_ia()),
+        ("Uso de inteligencia artificial",
+         del_manuscrito("**Uso de inteligencia artificial.**",
+                        "la declaración de uso de IA")),
         ("Ética y consentimiento",
          "No aplica: la revisión se basa en literatura publicada y en registros "
          "públicos de ensayos, sin datos individuales de pacientes."),
@@ -664,10 +667,16 @@ def main():
     s4 = OUT / "S4_pre_extraccion_desde_resumen.csv"
     if s4.exists():
         filas = leer(s4)
-        # el fichero lleva BOM, asi que la primera clave sale como "﻿id"
-        with open(ROOT / "quality_reports" / "orden_de_extraccion.csv",
-                  encoding="utf-8-sig", newline="") as fh:
-            vivos = {r["id"] for r in csv.DictReader(fh)}
+        # Que estudios siguen en el corpus se decide con la misma fuente que
+        # S5, `study_groups.csv` menos las exclusiones tras el texto completo.
+        # Antes salia de quality_reports/orden_de_extraccion.csv, que es una
+        # foto del 2026-08-09: hoy los dos conjuntos coinciden exactamente en
+        # los mismos 95 estudios, pero la foto no se mueve cuando el corpus si,
+        # y el dia que dejen de coincidir el anexo mentiria sin avisar.
+        vivos = {"EST-%03d" % int(g["estudio"])
+                 for g in leer(RS / "cribado" / "study_groups.csv")
+                 if g["informe_para_extraer"] == "SI"
+                 and g["situacion"] in ("extraible", "solo-resumen")}
         p_ex = RS / "cribado" / "exclusiones_tras_texto_completo.csv"
         if p_ex.exists():
             vivos -= {r["study_id"] for r in leer(p_ex)}

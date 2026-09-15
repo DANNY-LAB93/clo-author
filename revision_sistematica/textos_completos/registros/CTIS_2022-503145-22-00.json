@@ -1,0 +1,393 @@
+{
+ "ctNumber": "2022-503145-22-00",
+ "ctStatus": "Not authorised",
+ "decisionDate": "2023-07-07T12:05:28.78",
+ "publishDate": "2024-06-17T19:28:24.506922726",
+ "ctPublicStatusCode": 11,
+ "authorizedApplication": {
+  "authorizedPartI": {
+   "id": 12088,
+   "rowSubjectCount": 0,
+   "products": [],
+   "trialDetails": {
+    "clinicalTrialIdentifiers": {
+     "publicTitle": "A two part, randomized, double-blind, placebo-controlled, parallel group SAD and MD clinical study to evaluate the safety, tolerability and preliminary efficacy of an inhaled (nebulized) phage cocktail in healthy subjects and in patients with chronic colonization of the lung with Pseudomonas aeruginosa",
+     "publicTitleTranslations": [],
+     "shortTitle": "Phage4Cure-001",
+     "secondaryIdentifyingNumbers": {
+      "additionalRegistries": []
+     }
+    },
+    "trialInformation": {
+     "trialCategory": {
+      "trialPhase": "1",
+      "trialCategory": "1",
+      "trialCategoryId": 8158
+     },
+     "medicalCondition": {
+      "partIMedicalConditions": [
+       {
+        "id": 9590,
+        "medicalCondition": "Pseudomonas colonization",
+        "medicalConditionTranslations": [],
+        "isConditionRareDisease": false
+       }
+      ],
+      "meddraConditionTerms": [
+       {
+        "termId": 100000073322,
+        "version": "21.1",
+        "level": "LLT",
+        "termName": "Pseudomonas colonization",
+        "classificationCode": "10068292",
+        "organClass": 10021881,
+        "active": false
+       }
+      ]
+     },
+     "trialDuration": {
+      "estimatedEndDate": "2024-06-01",
+      "estimatedRecruitmentStartDate": "2023-08-01"
+     },
+     "populationOfTrialSubjects": {
+      "ageRanges": [
+       {
+        "id": 29603,
+        "ageRangeCategoryCode": "3",
+        "ageRangeCategory": "3"
+       }
+      ],
+      "ageRangeSecondaryIds": [
+       {
+        "id": 29604,
+        "ageRangeCategoryCode": "3",
+        "ctAgeRangeCode": "9",
+        "ageRangeCategory": "3",
+        "ctAgeRange": "9"
+       }
+      ],
+      "clinicalTrialGroups": [
+       {
+        "code": "2",
+        "name": "Patients"
+       },
+       {
+        "code": "1",
+        "name": "Healthy volunteers"
+       }
+      ],
+      "isFemaleSubjects": true,
+      "isMaleSubjects": true,
+      "isVulnerablePopulationSelected": true
+     }
+    }
+   },
+   "assessmentOutcome": "not_acceptable",
+   "assessmentOutcomeDate": "2023-06-19",
+   "therapeuticAreas": [
+    {
+     "code": "8",
+     "name": "Diseases [C] - Respiratory Tract Diseases [C08]"
+    },
+    {
+     "code": "1",
+     "name": "Diseases [C] - Bacterial Infections and Mycoses [C01]"
+    }
+   ],
+   "medicalConditions": [
+    {
+     "id": 9590,
+     "medicalCondition": "Pseudomonas colonization",
+     "isConditionRareDisease": false
+    }
+   ],
+   "sponsors": [
+    {
+     "id": 12702,
+     "primary": true,
+     "publicContacts": [
+      {
+       "id": 29636,
+       "type": "Public",
+       "functionalName": "Public enquiries",
+       "functionalEmailAddress": "enquiries@charite-research.org",
+       "telephone": "+4930450539200",
+       "organisation": {
+        "id": 71812,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       }
+      }
+     ],
+     "scientificContacts": [
+      {
+       "id": 29637,
+       "type": "Scientific",
+       "functionalName": "Scientific Service",
+       "functionalEmailAddress": "submission@charite-research.org",
+       "telephone": "+4930450539200",
+       "organisation": {
+        "id": 71812,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       }
+      }
+     ],
+     "thirdParties": [],
+     "organisation": {
+      "id": 71812,
+      "type": "Pharmaceutical company",
+      "typeCode": "10",
+      "name": "Charite Research Organisation GmbH",
+      "commercial": true,
+      "isBusinessKeyValidated": true,
+      "businessKey": "ORG-100028160",
+      "organisationLocationStatus": "Active"
+     },
+     "addresses": [
+      {
+       "id": 69446,
+       "organisation": {
+        "id": 71812,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 72543,
+        "oneLine": "Chariteplatz 1, Mitte",
+        "addressLine1": "Chariteplatz 1",
+        "addressLine2": "Mitte",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Berlin",
+        "postcode": "10117",
+        "country": 2013,
+        "countryName": "Germany"
+       },
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100045195"
+      }
+     ],
+     "isCommercial": true,
+     "commercial": "Commercial"
+    }
+   ],
+   "trialCategoryCode": "1",
+   "partOneTherapeuticAreas": [
+    {
+     "id": 124696,
+     "therapeuticArea": {
+      "code": "8",
+      "name": "Diseases [C] - Respiratory Tract Diseases [C08]"
+     }
+    },
+    {
+     "id": 124695,
+     "therapeuticArea": {
+      "code": "1",
+      "name": "Diseases [C] - Bacterial Infections and Mycoses [C01]"
+     }
+    }
+   ]
+  },
+  "authorizedPartsII": [
+   {
+    "id": 27380,
+    "mscId": 5030,
+    "mscInfo": {
+     "id": 5030,
+     "clinicalTrialId": 3350,
+     "countryOrganisationId": 2013,
+     "reportingStatusCode": "Not authorised",
+     "fromDate": "2023-06-19",
+     "toDate": "2023-06-19",
+     "isProposedRms": true,
+     "countryName": "Germany",
+     "organisationInfo": {},
+     "firstDecisionDate": "2023-07-07",
+     "trialStatus": "Not authorised",
+     "trialPeriod": [],
+     "trialRecruitmentPeriod": [],
+     "hasRecruitmentStarted": false,
+     "activeTrialPeriod": {},
+     "activeTrialRecruitmentPeriod": {},
+     "isWillingAtDayThreeView": false,
+     "clinicalTrialStatusHistory": [
+      {
+       "id": 4421,
+       "mscId": 5030,
+       "trialStatus": "Under evaluation",
+       "trialStatusDate": "2023-03-30T14:19:40.218"
+      },
+      {
+       "id": 8685,
+       "mscId": 5030,
+       "trialStatus": "Not authorised",
+       "trialStatusDate": "2023-07-07T12:05:28.171"
+      }
+     ],
+     "applicationTypeMsc": "1",
+     "mscName": "Germany",
+     "assessmentOutcome": "acceptable_conditions",
+     "assessmentOutcomeDate": "2023-07-04",
+     "decision": "not_authorized",
+     "decisionDate": "2023-07-07"
+    },
+    "decisionDate": "2023-07-07",
+    "recruitmentSubjectCount": 32,
+    "trialSites": [
+     {
+      "id": 155138,
+      "organisationAddressInfo": {
+       "id": 77370,
+       "organisation": {
+        "id": 79899,
+        "type": "Pharmaceutical company",
+        "typeCode": "10",
+        "name": "Charite Research Organisation GmbH",
+        "commercial": true,
+        "isBusinessKeyValidated": true,
+        "businessKey": "ORG-100028160",
+        "organisationLocationStatus": "Active"
+       },
+       "address": {
+        "addressId": 81137,
+        "oneLine": "Chariteplatz 1, Mitte",
+        "addressLine1": "Chariteplatz 1",
+        "addressLine2": "Mitte",
+        "addressLine3": "",
+        "addressLine4": "",
+        "city": "Berlin",
+        "postcode": "10117",
+        "country": 2013,
+        "countryName": "Germany"
+       },
+       "phone": "+4930450553892",
+       "email": "martin.witzenrath@charite.de",
+       "isBusinessKeyValidated": true,
+       "businessKey": "LOC-100045195"
+      },
+      "personInfo": {
+       "id": 187006,
+       "firstName": "Martin",
+       "lastName": "Witzenrath",
+       "telephone": "+4930450553892",
+       "email": "martin.witzenrath@charite.de",
+       "title": "2"
+      },
+      "departmentName": "Department of Infectious Diseases and Respiratory Medicine, Charité Berlin"
+     }
+    ],
+    "applicationStatusCode": "Not authorised"
+   }
+  ],
+  "applicationInfo": [
+   {
+    "id": 4147,
+    "type": "INITIAL",
+    "status": "Not authorised",
+    "ctNumber": "2022-503145-22-00",
+    "trialStatus": "Not authorised",
+    "submissionDate": "2023-03-30",
+    "partI": {
+     "assessmentOutcome": "not_acceptable",
+     "assessmentOutcomeDate": "2023-06-19"
+    },
+    "partIIInfo": [
+     {
+      "id": 27380,
+      "mscId": 5030,
+      "mscInfo": {
+       "id": 5030,
+       "mscName": "Germany",
+       "countryOrganisationId": 2013,
+       "assessmentOutcome": "acceptable_conditions",
+       "assessmentOutcomeDate": "2023-07-04",
+       "decision": "not_authorized",
+       "decisionDate": "2023-07-07",
+       "reportingStatusCode": "Not authorised",
+       "countryName": "Germany",
+       "trialStatus": "Not authorised",
+       "firstDecisionDate": "2023-07-07"
+      },
+      "applicationStatusCode": "Not authorised"
+     }
+    ],
+    "decisionDate": "2023-07-07",
+    "ctMSCsByApplication": [
+     {
+      "id": 5030,
+      "mscName": "Germany",
+      "reportingStatusCode": "Not authorised"
+     }
+    ],
+    "businessKey": "IN",
+    "allPartTwosOutOfScope": false,
+    "applicationTrialDecisionByMsc": {},
+    "decisions": [
+     {
+      "id": 3616,
+      "applicationId": 4147,
+      "mscId": 5030,
+      "mscName": "Germany",
+      "decisionDate": "2023-07-07T12:05:28.78",
+      "decision": "not_authorized",
+      "justification": "Not all considerations have been fully resolved – refer to the Final Assessment Report.",
+      "assessmentOutcome": "acceptable_conditions",
+      "eventType": "decision",
+      "part2Id": 27380,
+      "part1Id": 12088,
+      "applicationType": "INITIAL",
+      "isRMS": true
+     }
+    ]
+   }
+  ],
+  "trialGlobalEnd": [],
+  "memberStatesConcerned": [
+   {
+    "mscName": "Germany",
+    "mscId": 5030,
+    "firstDecisionDate": "2023-07-07T12:05:28.78",
+    "lastDecisionDate": "2023-07-07T12:05:28.78",
+    "mscPublicStatusCode": 11
+   }
+  ],
+  "eudraCt": {
+   "isTransitioned": false
+  }
+ },
+ "events": {
+  "temporaryHaltList": [],
+  "trialEvents": [
+   {
+    "mscId": 5030,
+    "mscName": "Germany",
+    "events": []
+   }
+  ],
+  "unexpectedEvents": [],
+  "seriousBreaches": [],
+  "urgentSafetyMeasures": []
+ },
+ "results": {},
+ "documents": [],
+ "trialRegion": "EEA",
+ "trialRegionCode": 1,
+ "correctiveMeasures": []
+}
