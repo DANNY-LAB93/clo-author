@@ -60,6 +60,7 @@ python scripts/build_readable_annexes.py       # 5. los .xlsx legibles de cada .
 python scripts/build_editorial_report.py       # 6. S0 y el índice
 python scripts/build_package_guide.py          # 7. la guía del paquete
 python scripts/build_jsr_submission.py         # 8. el sobre de la revista, al Escritorio
+python scripts/zip_jsr_submission.py           # 9. el .zip, comprobado fichero a fichero
 
 # Los tres guardianes. Los dos primeros contrastan con el canal;
 # el tercero rehace las cuentas desde el texto solo.
