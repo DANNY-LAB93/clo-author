@@ -199,6 +199,32 @@ AFIRMACIONES = [
     # aviso de PENDIENTE, que desaparece al completarse: al ingerir los 82
     # juicios el comprobador fallaba por una frase que ya no debia existir.
     (JSR, "La Tabla 5 lleva {sesgo_celdas_totales} juicios de dominio"),
+    # --- EL CUERPO DEL MANUSCRITO DE LA REVISTA ---
+    #
+    # Estas siete no estaban, y su ausencia costo cara: el 2026-09-15 el cuerpo
+    # seguia declarando 184 estudios evaluados, 39 exclusiones, 145 en el corpus
+    # y un 77,7 % de eventos adversos, todo superado, mientras el resumen del
+    # mismo fichero ya daba las cifras nuevas. Un manuscrito que se contradice a
+    # si mismo entre el resumen y los Resultados es lo primero que ve un arbitro.
+    (JSR, "Agrupados por estudio, esos {informes_a_texto_completo} corresponden a "
+          "**{estudios_antes_de_releer} estudios evaluados para elegibilidad**"),
+    (JSR, "De ellos se excluyeron **{estudios_excluidos_tras_texto_completo}**: "
+          "{excluidos_entre_los_leidos} tras leer el artículo, "
+          "{excluidos_sobre_la_ficha_de_registro} tras leer la ficha completa de su "
+          "registro de ensayos y {excluidos_sin_poder_leer_nada} sin poder leer "
+          "ninguno de los dos"),
+    (JSR, "El cuerpo de evidencia queda en **{estudios} estudios**, que agrupan "
+          "{informes_agrupados} informes: {estudios_un_solo_informe} con un solo "
+          "informe y {estudios_multiinforme} con varios"),
+    (JSR, "De los {estudios} estudios, **{estudios_extraibles} tienen publicación "
+          "recuperable**: {estudios_con_articulo} artículos y {estudios_solo_resumen} "
+          "que solo existen como resumen de congreso. Los **{estudios_solo_registro} "
+          "restantes son únicamente fichas de registro de ensayo**"),
+    (JSR, "Se identificaron **{registros_sin_organismo_n} fichas** en esa situación"),
+    (JSR, "El resultado son {estudios} estudios, frente a las decenas"),
+    (JSR, "Que {estudios_solo_registro} de {estudios} estudios sean fichas de registro"),
+    (JSR, "Los eventos adversos son lo que más se reporta con denominador "
+          "({desenlace_adverse_event_n_pct_de_los_brazos} % de los brazos)"),
     # Del resumen se ancla el trozo que sobrevive a las tres redacciones
     # --pendiente, terminada y terminada por consenso--, que es el alcance.
     (JSR, "los {sesgo_evaluables} comparativos con texto completo (RoB 2, ROBINS-I)"),

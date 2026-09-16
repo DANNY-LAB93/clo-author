@@ -96,8 +96,23 @@ def norm(s):
     return re.sub(r"[.,]", "", s)
 
 
+# EL MANUSCRITO QUE SE ENVIA TAMBIEN SE COMPRUEBA. Durante semanas este
+# guardian miro solo el maestro, y el de la revista --el unico que viaja-- no
+# lo miraba nadie: el 2026-09-15 se descubrio que seguia diciendo 184 estudios
+# evaluados, 39 exclusiones, 145 en el corpus y un 77,7 % de eventos adversos,
+# todo ello superado. Ninguna de esas cifras existe en los escalares, de modo
+# que el guardian las habria cazado el primer dia si se le hubiera pasado el
+# fichero. Ahora se comprueban los dos por defecto.
+MANUSCRITOS = (POR_DEFECTO, ROOT / "paper" / "manuscrito_JSR_final.md")
+
+
 def main():
-    ruta = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else POR_DEFECTO
+    if len(sys.argv) > 1:
+        return sum(comprueba(pathlib.Path(a)) for a in sys.argv[1:])
+    return sum(comprueba(r) for r in MANUSCRITOS if r.exists())
+
+
+def comprueba(ruta):
     S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
                    .read_text(encoding="utf-8"))
     # Los desenlaces salen de la extraccion adjudicada y viven en su propio
@@ -147,6 +162,9 @@ def main():
     texto = ruta.read_text(encoding="utf-8")
     # fuera bloques de codigo, citas bibliograficas y enlaces
     texto = re.sub(r"\[@[^\]]+\]", " ", texto)
+    # Las citas Vancouver del manuscrito de la revista --(8,9), (16-18), (20)--
+    # son referencias, no cifras. El maestro cita con [@clave] y no las tiene.
+    texto = re.sub(r"\((\d{1,2}(?:[,\u2013-]\d{1,2})*)\)", " ", texto)
     texto = re.sub(r"\^\d+\^", " ", texto)
     # La numeracion de secciones no es un dato: "seccion 3.2" y el encabezado
     # "## 3. Resultados" son referencias internas, no cifras que respaldar.
@@ -157,10 +175,20 @@ def main():
     # El recuento de palabras es metadato autorreferente del propio manuscrito:
     # no procede del canal y no tiene sentido exigirle respaldo.
     texto = re.sub(r"(?m)^\*\*(Recuento de palabras|Word count).*$", " ", texto)
+    # La lista de referencias en Vancouver es un bosque de volumenes, paginas y
+    # anios que no salen del canal ni tienen por que. Se corta ahi.
+    corte = re.search(r"(?m)^#{1,3}\s*REFERENCIAS\s*$", texto)
+    if corte:
+        texto = texto[:corte.start()]
 
     sin_respaldo = []
     vistos = set()
-    for m in re.finditer(r"\b\d[\d   .,]*\d\b|\b\d\b", texto):
+    # UN NUMERO, NO DOS PEGADOS. El comodin admitia coma-y-espacio, de modo
+    # que «De esos 95, el 44,2 %» se leia como la cifra 9544.2 y salia sin
+    # respaldo. El separador de millares es un espacio o una coma SIN espacio
+    # detras; una coma seguida de espacio separa dos cifras distintas.
+    patron = r"\b\d+(?:[\u202f\xa0\u2009 ]\d{3})*(?:[.,]\d+)?\b"
+    for m in re.finditer(patron, texto):
         crudo = m.group(0)
         v = norm(crudo)
         if v in vistos:

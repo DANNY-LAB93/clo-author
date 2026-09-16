@@ -263,6 +263,14 @@ def main():
     # y el manuscrito seguia con la vieja. La misma tabla con dos pies, y uno
     # de los dos viajando suelto en el sobre.
     nuevas = lineas[:ini] + [PIE, ""] + md + lineas[fin:]
+    # NO SE REESCRIBE SI NO CAMBIA NADA. Tocar el fichero mueve su fecha, y
+    # el guardian del .zip compara cada documento derivado contra la fecha
+    # del manuscrito: reescribirlo por costumbre dejaba el .docx de la tabla
+    # «caducado» un segundo despues de generarlo, y el sobre no se podia
+    # comprimir sin volver a correrlo todo en circulo.
+    if nuevas == lineas:
+        print("Tabla 1 del manuscrito ya estaba al dia; no se reescribe")
+        return
     MANUSCRITO.write_text("\n".join(nuevas), encoding="utf-8")
     print("Tabla 1 del manuscrito reemplazada (%d lineas dentro, %d fuera)"
           % (fin - ini, len(lineas)))

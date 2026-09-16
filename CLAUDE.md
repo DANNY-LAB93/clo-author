@@ -164,12 +164,20 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
    `quality_reports/registros_organismo_verificado.csv`; los dos registros de decisión
    del 2026-09-14 lo cuentan entero.
 
-9. **`check_aritmetica.py` no consulta el canal, recalcula.** Los otros dos verifican
+9. **Los tres guardianes miran AHORA los dos manuscritos.** Hasta el 2026-09-15
+   `check_manuscript_numbers.py` solo leía el maestro, y el de la revista —el único
+   que viaja— no lo miraba nadie: seguía diciendo 184 estudios evaluados, 39
+   exclusiones, 145 en el corpus y un 77,7 % de eventos adversos, todo superado,
+   mientras su propio resumen ya daba las cifras nuevas. Ahora comprueba los dos por
+   defecto, salta la lista de referencias Vancouver y hay **8 anclas nuevas sobre el
+   cuerpo** del manuscrito de la revista, no solo sobre su resumen.
+
+10. **`check_aritmetica.py` no consulta el canal, recalcula.** Los otros dos verifican
    contra los escalares, así que un escalar bien calculado y mal redactado en su frase
    les pasa (68,0 % donde era 68,9; «casi cuatro de cada diez» para 44,2 %). Este rehace
    la división, las restas del PRISMA y las sumas declaradas desde el texto solo.
 
-10. **Reejecutar `group_reports_into_studies.py` renumeraba estudios, y ya no.** La
+11. **Reejecutar `group_reports_into_studies.py` renumeraba estudios, y ya no.** La
     numeración estable se anclaba en la CLAVE del estudio, y la clave cambia sola en
     cuanto `fulltext_identifiers.csv` resuelve un DOI: el 2026-09-14 EST-133 y EST-188 se
     convirtieron en EST-220 y EST-221 sin que nada fallara. Ahora el ancla son los
