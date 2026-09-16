@@ -663,8 +663,8 @@ def escribe_leeme(destino, S, anexos):
               "ficheros: los de datos van en `.xlsx` y en `.csv`. Empieza por "
               "`00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf`, que dice que pregunta contesta "
               "cada uno |" % (len(numeros), min(numeros), max(numeros), len(anexos)))
-    md.append("| `figuras/`, `tablas/` | Las mismas figuras y tablas sueltas, por si las "
-              "piden aparte |")
+    md.append("| `figuras/`, `tablas/` | Las mismas figuras y tablas del articulo, sueltas "
+              "y numeradas COMO EN EL ARTICULO, por si las piden aparte |")
     leer = destino / "para_leer"
     if leer.is_dir() and any(leer.iterdir()):
         md.append("| `para_leer/` | **Nada de esto se sube.** El informe extendido "
@@ -804,8 +804,11 @@ def escribe_leeme(destino, S, anexos):
               "Subido el `.docx`, NO el PDF: la revista no acepta PDF como "
               "fichero de envio",
               "ORCID y credenciales de los dos autores",
-              "Autoria de N. Trelles resuelta, marcador eliminado",
-              "DOI del deposito, o marcador retirado si no hay deposito",
+              "Borrado el parrafo COMPLETAR ANTES DE ENVIAR, una vez puestos "
+              "el grado, el correo y los ORCID",
+              "Decidido si se depositan datos y codigo. No hay marcador que "
+              "quitar: la declaracion dice hoy que se facilitan a peticion, y "
+              "eso es cierto tal como esta",
               "Leido entero una vez en Word, buscando saltos de formato",
               "Comprobado que las %d tablas y las %d figuras se ven bien"
               % (n_tablas, n_figuras))):
@@ -1007,17 +1010,47 @@ def main():
     print("  %-42s %d ficheros; ninguno se sube" % ("para_leer/", len(puestos)))
     poda(leer_dst, puestos, "para_leer/")
 
-    # Figuras y tablas, tal como salen del canal
-    for sub, patrones in (("figuras", ("*.png", "*.pdf")), ("tablas", ("*.csv",))):
-        dst = destino / sub
-        dst.mkdir(exist_ok=True)
-        puestos = set()
-        for pat in patrones:
-            for f in (ROOT / "paper" / sub).glob(pat):
-                shutil.copy2(f, dst / f.name)
-                puestos.add(f.name)
-        print("  %-42s %d ficheros" % (sub + "/", len(puestos)))
-        poda(dst, puestos, sub + "/")
+    # Figuras, tal como salen del canal
+    dst = destino / "figuras"
+    dst.mkdir(exist_ok=True)
+    puestos = set()
+    for pat in ("*.png", "*.pdf"):
+        for f in (ROOT / "paper" / "figuras").glob(pat):
+            shutil.copy2(f, dst / f.name)
+            puestos.add(f.name)
+    print("  %-42s %d ficheros" % ("figuras/", len(puestos)))
+    poda(dst, puestos, "figuras/")
+
+    # LAS TABLAS SUELTAS, CON EL NUMERO QUE TIENEN EN EL ARTICULO. Antes se
+    # copiaba `paper/tablas/*.csv` entero, ocho ficheros con el nombre que
+    # tienen en el repositorio, y ese nombre NO es el numero del articulo:
+    # `tabla_4_exclusiones.csv` no es la Tabla 4 --la Tabla 4 son los
+    # desenlaces-- y `tabla_3_sesgo_recuperacion.csv` no es la Tabla 3. Dos de
+    # los ocho ni siquiera estan en este manuscrito: pertenecen al informe
+    # extendido. Un editor que pida «las tablas aparte» abria ficheros que
+    # contradicen al articulo.
+    #
+    # La correspondencia no se teclea: sale de `ADJUNTOS`, el mismo diccionario
+    # con el que `build_jsr_docx.py` las mete en el .docx, mas la Tabla 1, que
+    # va incrustada en el texto y la escribe `build_criteria_table.py`.
+    import build_jsr_docx as _jsr
+    dst = destino / "tablas"
+    dst.mkdir(exist_ok=True)
+    fuente = dict(_jsr.ADJUNTOS)
+    fuente["Tabla 1."] = ROOT / "paper" / "tablas" / "tabla_criterios_inclusion_exclusion.csv"
+    puestos = set()
+    for etiqueta, origen in sorted(fuente.items()):
+        if not etiqueta.startswith("Tabla") or not origen.exists():
+            continue
+        n = etiqueta.split()[1].rstrip(".")
+        # el nombre del fichero conserva de que trata, tomado del nombre del canal
+        asunto = re.sub(r"^tabla_(\d+_)?", "", origen.stem)
+        nombre = "Tabla_%s_%s.csv" % (n, asunto)
+        shutil.copy2(origen, dst / nombre)
+        puestos.add(nombre)
+    print("  %-42s %d ficheros, numeradas como en el articulo"
+          % ("tablas/", len(puestos)))
+    poda(dst, puestos, "tablas/")
 
     # Material suplementario. Este paso no existia: el script escribia manuscrito,
     # figuras y tablas, y nada mas. Los tres anexos que aparecian en la carpeta de
