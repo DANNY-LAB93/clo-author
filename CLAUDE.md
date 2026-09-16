@@ -60,6 +60,8 @@ python scripts/build_manuscript_tables.py      # tablas 1-6
 python scripts/build_criteria_table.py         # la tabla de criterios, y la mete en el .md
 python scripts/build_structured_abstract.py    # el resumen; avisa si pasa de 250 palabras
 python scripts/build_manuscript_figures.py     # PRISMA y composicion
+python scripts/build_conciliacion.py           # informe->estudio->brazo, y las 8 cifras
+python scripts/build_tabla6_brazos.py          # la Tabla 6 brazo a brazo (S17)
 
 # 3. EL PAQUETE DE VERIFICABLES
 python scripts/build_verifiables_package.py    # S1-S16 (S11-S13 dentro)
@@ -76,6 +78,8 @@ python scripts/build_manuscript_pdf.py         # los PDF del maestro y del ingle
 python scripts/build_jsr_pdf.py                # el PDF del manuscrito de la revista
 
 # 5. EL SOBRE
+python scripts/build_criteria_table.py         # OTRA VEZ, al final: escribe el .docx
+                                               # suelto del sobre y tiene que ser el ultimo
 python scripts/build_jsr_submission.py         # al Escritorio
 python scripts/zip_jsr_submission.py           # el .zip, comprobado fichero a fichero
 

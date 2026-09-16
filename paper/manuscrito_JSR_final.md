@@ -8,7 +8,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**COMPLETAR ANTES DE ENVIAR — BORRAR ESTE PÁRRAFO ENTERO.** La revista pide una nota al pie por autor con grado académico, filiación, ciudad, país, correo y ORCID, en el patrón del artículo modelo. Faltan: el grado académico de los dos autores, el correo de N. Trelles y los dos identificadores ORCID. D. Valdiviezo: ORCID …………………… N. Trelles: correo …………………… ORCID ……………………
+**[DATO FALTANTE] — BORRAR ESTE PÁRRAFO ENTERO ANTES DE ENVIAR.** La revista pide una nota al pie por autor con grado académico, filiación, ciudad, país, correo y ORCID. Faltan: grado académico de D. Valdiviezo [DATO FALTANTE]; grado académico de N. Trelles [DATO FALTANTE]; correo de N. Trelles [DATO FALTANTE]; ORCID de D. Valdiviezo [DATO FALTANTE]; ORCID de N. Trelles [DATO FALTANTE]. Fecha de recepción y fecha de aceptación: las pone la revista.
 
 **Fecha de recepción:**
 
@@ -213,7 +213,9 @@ Los reportes y las series de casos —60 de los 71 estudios leídos— no se eva
 
 ### Viabilidad de la síntesis cuantitativa
 
-Cruzar los requisitos que una proporción agrupada exigiría vacía el corpus paso a paso (Tabla 6). Cuatro de ellos son aritméticos —diseño comparativo, numerador, denominador y definición operativa— y dejan **2 brazos de los 103**. Los criterios de elegibilidad eliminan uno: el artículo reporta una serie de doce pacientes con infecciones de etiología diversa, el numerador corresponde a la serie entera y el subgrupo de *P. aeruginosa* es un solo paciente. El brazo restante es PhagoBurn, cuyo desenlace principal es el *tiempo* hasta una reducción sostenida de la carga bacteriana (16), no una proporción. **No queda ninguno.** El requisito de administración terapéutica y no profiláctica se aplicó en el mismo cruce sin eliminar brazos adicionales.
+Cruzar los requisitos que una proporción agrupada exigiría vacía el corpus paso a paso (Tabla 6). Cuatro de ellos son aritméticos —diseño comparativo, numerador, denominador y definición operativa— y dejan **2 brazos de los 103**. Los criterios de elegibilidad eliminan uno: el artículo reporta una serie de doce pacientes con infecciones de etiología diversa, el numerador corresponde a la serie entera y el subgrupo de *P. aeruginosa* es un solo paciente. El brazo restante es PhagoBurn, cuyo desenlace principal es el *tiempo* hasta una reducción sostenida de la carga bacteriana (16), no una proporción. **No identificamos ningún brazo que reúna los siete requisitos.** El de administración terapéutica y no profiláctica se aplicó en el mismo cruce sin eliminar brazos adicionales.
+
+La afirmación se limita a los brazos evaluables. De los 18 con diseño comparativo, 3 pertenecen a estudios cuyo texto completo no se obtuvo, y su casilla de éxito clínico está vacía porque no pudimos leerlos, no porque el artículo calle; los otros 10 que caen en ese mismo paso sí reflejan un silencio del artículo. El desglose brazo a brazo, con el requisito concreto en que cae cada uno, acompaña al manuscrito como material suplementario.
 
 **Tabla 6.** Brazos que sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = 103 brazos).
 
@@ -233,7 +235,7 @@ Esta revisión delimita el cuerpo de evidencia clínica sobre fagoterapia en *P.
 
 El hallazgo central es negativo: la amplitud del cuerpo de evidencia no se traduce en capacidad de síntesis. Más de cuatro de cada diez estudios recuperables son un caso único; solo uno de cada nueve es un ensayo; en tres de cada cuatro no puede asignarse la categoría de resistencia con la que se pretende estratificar; y 42 de los 137 identificados existen únicamente como registro, sin resultados publicados.
 
-Las revisiones recientes han reportado proporciones globales de éxito clínico superiores al 80 % (6,7). Esos resultados no contradicen los aquí obtenidos: los explican. Una literatura compuesta mayoritariamente por casos que se publican tras un desenlace favorable produce al agregarse una proporción alta por construcción, y lo que mide es la propensión a publicar éxitos.
+Las revisiones recientes han reportado proporciones globales de éxito clínico superiores al 80 % (6,7). Esos resultados no contradicen los aquí obtenidos: los explican. Una literatura compuesta mayoritariamente por casos que se publican tras un desenlace favorable es compatible con una proporción agregada alta que refleje, al menos en parte, la propensión a publicar éxitos. Esta revisión no puede cuantificar esa contribución: no dispone de una comparación directa entre lo registrado y lo publicado, y lo que documenta es su condición previa, que 42 de 137 estudios identificados no han publicado resultados.
 
 La delimitación sugiere además que aquellas síntesis trabajaron sobre una fracción del campo. La búsqueda sin restricción de idioma recuperó 34 estudios rusos y 3 ucranianos, y ahí se concentran los diseños con comparador. Esta revisión documenta su existencia pero, por su criterio de idioma, no puede pronunciarse sobre su contenido.
 

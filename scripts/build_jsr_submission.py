@@ -735,7 +735,7 @@ def escribe_leeme(destino, S, anexos):
     # que no se ve ya esta hecho.
     md.append("Son datos que no puedo inventar. **Solo el primero deja marca en el "
               "`.docx`**: un parrafo en negrita bajo el autor de correspondencia que "
-              "empieza por COMPLETAR ANTES DE ENVIAR, y que hay que borrar entero al "
+              "empieza por [DATO FALTANTE], y que hay que borrar entero al "
               "rellenarlo. Los demas no dejan rastro en el documento; se vigilan desde "
               "aqui.")
     md.append("")
@@ -804,7 +804,7 @@ def escribe_leeme(destino, S, anexos):
               "Subido el `.docx`, NO el PDF: la revista no acepta PDF como "
               "fichero de envio",
               "ORCID y credenciales de los dos autores",
-              "Borrado el parrafo COMPLETAR ANTES DE ENVIAR, una vez puestos "
+              "Borrado el parrafo [DATO FALTANTE], una vez puestos "
               "el grado, el correo y los ORCID",
               "Decidido si se depositan datos y codigo. No hay marcador que "
               "quitar: la declaracion dice hoy que se facilitan a peticion, y "
@@ -1116,11 +1116,11 @@ def main():
     # cada ejecucion hasta que se rellena, para que nadie lo descubra en el
     # portal de la revista.
     jsr = ROOT / "paper" / "manuscrito_JSR_final.md"
-    if jsr.exists() and "COMPLETAR ANTES DE ENVIAR" in jsr.read_text(encoding="utf-8"):
-        print("\n  AVISO: el manuscrito sigue llevando el parrafo COMPLETAR ANTES DE "
-              "ENVIAR.\n         Faltan los dos ORCID, las credenciales y el correo "
-              "de N. Trelles.\n         Se rellena en paper/manuscrito_JSR_final.md y "
-              "se vuelve a correr esto.")
+    if jsr.exists() and "[DATO FALTANTE]" in jsr.read_text(encoding="utf-8"):
+        print("\n  AVISO: el manuscrito sigue llevando el parrafo de [DATO "
+              "FALTANTE].\n         Faltan los dos grados academicos, los dos "
+              "ORCID y el correo de N. Trelles.\n         Se rellena en "
+              "paper/manuscrito_JSR_final.md y se vuelve a correr esto.")
 
     print("\nescrito en %s" % destino)
     return 0

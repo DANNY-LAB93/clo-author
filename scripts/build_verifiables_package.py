@@ -432,6 +432,27 @@ def v6_auditoria(S):
 
 
 
+def v17_tabla6(S):
+    """S17: la Tabla 6 desglosada brazo a brazo.
+
+    La Tabla 6 del manuscrito es un embudo y solo dice cuantos brazos quedan en
+    cada paso. Un arbitro que quiera discrepar necesita ver POR QUE cae cada
+    uno, y sobre todo distinguir los que caen porque el articulo calla de los
+    que caen porque esta revision no pudo leerlo. Lo escribe
+    `build_tabla6_brazos.py`, que aborta si su desglose no reproduce el embudo
+    publicado.
+    """
+    origen = ROOT / "quality_reports" / "tabla6_brazo_a_brazo.csv"
+    if not origen.exists():
+        print("  AVISO: no hay tabla6_brazo_a_brazo.csv; corre "
+              "scripts/build_tabla6_brazos.py")
+        return
+    destino = OUT / "S17_tabla6_brazo_a_brazo.csv"
+    shutil.copy2(origen, destino)
+    filas = leer(destino)
+    print("  S17 %d brazos con su requisito de caida" % len(filas))
+
+
 def v16_exclusiones(S):
     """S16: los estudios excluidos al leer el texto completo, con su motivo.
 
@@ -657,6 +678,7 @@ def main():
 
     v9_idioma(S)
     v16_exclusiones(S)
+    v17_tabla6(S)
 
     # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
     # filas -- el corpus anterior a la enmienda de idioma -- mientras la tabla
