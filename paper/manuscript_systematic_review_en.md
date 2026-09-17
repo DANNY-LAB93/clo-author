@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 280; main text 7 075.
+**Word count:** abstract 280; main text 6 955.
 **Tables:** 6. **Figures:** 2. **Supplementary files:** 16 (S0–S15) plus a guide.
 
 ---
@@ -104,7 +104,7 @@ The structural characterisation of the corpus (sections 3.1 to 3.4, Tables 1 to 
 
 ### 2.7 Risk of bias and certainty
 
-Risk of bias is assessed **only in studies with a comparative design and only in those whose full text was obtained**: 11 of the 14 that the design adjudicated on the article identifies as comparative. Randomised trials with RoB 2 [@Sterne2019_rob2], and non-randomised trials and cohorts with ROBINS-I [@Sterne2016_robinsi]. The remaining study is a randomised trial without full text: it is not assessed, and neither does it receive an unfavourable judgement for that reason.
+Risk of bias is assessed **only in studies with a comparative design and only in those whose full text was obtained**: 12 of the 15 that the design adjudicated on the article identifies as comparative. Randomised trials with RoB 2 [@Sterne2019_rob2], and non-randomised trials and cohorts with ROBINS-I [@Sterne2016_robinsi]. The remaining study is a randomised trial without full text: it is not assessed, and neither does it receive an unfavourable judgement for that reason.
 
 The assessment is issued **at domain level**: one judgement per domain with each instrument's literal categories, without answering the signalling questions through which RoB 2 derives that judgement algorithmically. This is a deliberate simplification in a descriptive review with no pooled estimate, and it is declared so that no algorithmic reproducibility is attributed to it. Case reports and case series are not assessed with a formal instrument, by decision and not by impossibility: they have no comparator, no allocation and no structured follow-up, and a tool built on those assumptions yields a uniform high risk that reports on the instrument rather than on the study [@Murad2018_casereports; @Munn2020_jbicaseseries].
 
@@ -112,7 +112,7 @@ The assessment is issued **at domain level**: one judgement per domain with each
 
 **GRADE is not applied**, and the reason does not depend on the above: it rates the certainty of a pooled estimate and this review presents none. Section 3.5 shows that only 2 of the 103 arms meet the minimum requirements for pooling, and none survives the eligibility criteria. Rating the certainty of a result that does not exist would be a formality, not an assessment [@Guyatt2011_grade].
 
-Section 3.7 reports the 82 judgements and the domain table.
+**The assessment is under way: 8 of the 90 judgements are outstanding.** While any is outstanding this review reports no risk of bias, and no design-derived indicator substitutes for it.
 
 ### 2.8 Synthesis methods and reproducibility
 
@@ -227,12 +227,6 @@ These definitions come from the full texts already retrieved, not from the pre-e
 Added to this is the retrieval bias documented in section 3.2, which as things stand would exclude two-thirds of the comparative studies from any synthesis. **For these reasons no pooled efficacy proportion is presented here**, and we argue that those published in previous reviews rest on assumptions these data do not verify.
 
 ---
-
-### 3.7 Risk of bias in the comparative studies
-
-Of the 3 studies assessed with RoB 2, the overall judgement is low risk in 2 and some concerns in 1. Of the 8 studies assessed with ROBINS-I, the overall judgement is moderate risk in 2 and serious risk in 6. The domain concentrating most unfavourable judgements —high risk under RoB 2; serious or critical under ROBINS-I— in ROBINS-I is “bias due to confounding”, in 6 of 8. The 82 judgements were issued in a single assessment agreed between the two authors; with no two independent readings, no inter-reviewer agreement is reported.
-
-**Table 7.** Domain-level risk of bias for the 11 assessable comparative studies. RoB 2 for randomised trials (five domains) and ROBINS-I for non-randomised trials and cohorts (seven). “n. a.” marks domains the instrument does not contemplate, not a missing judgement.
 
 ## 4. Discussion
 

@@ -166,6 +166,10 @@ def comprueba(ruta):
     # son referencias, no cifras. El maestro cita con [@clave] y no las tiene.
     texto = re.sub(r"\((\d{1,2}(?:[,\u2013-]\d{1,2})*)\)", " ", texto)
     texto = re.sub(r"\^\d+\^", " ", texto)
+    # Los identificadores de estudio son etiquetas, no cantidades. Desde que
+    # el parrafo de riesgo de sesgo nombra los que no tienen texto completo,
+    # «EST-029» entraba como la cifra 29.
+    texto = re.sub(r"EST-\d{3}", " ", texto)
     # La numeracion de secciones no es un dato: "seccion 3.2" y el encabezado
     # "## 3. Resultados" son referencias internas, no cifras que respaldar.
     texto = re.sub(r"(?m)^#{1,6}\s*\d+(\.\d+)*\.?\s", " ", texto)

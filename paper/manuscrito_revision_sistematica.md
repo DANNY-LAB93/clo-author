@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 262; texto principal 7 514.
+**Recuento de palabras:** resumen 262; texto principal 7 379.
 **Tablas:** 6. **Figuras:** 2. **Material suplementario:** 16 anexos (S0–S15) y su guía.
 
 ---
@@ -102,7 +102,7 @@ La caracterización estructural del corpus (secciones 3.1 a 3.4, tablas 1 a 4) p
 
 ### 2.7 Riesgo de sesgo y certeza
 
-El riesgo de sesgo se evalúa **solo en los estudios con diseño comparativo y solo en aquellos cuyo texto completo se obtuvo**: 11 de los 14 que el diseño adjudicado sobre el artículo identifica como comparativos. Los ensayos aleatorizados con RoB 2 [@Sterne2019_rob2] y los no aleatorizados y las cohortes con ROBINS-I [@Sterne2016_robinsi]. El estudio restante es un ensayo aleatorizado sin texto completo: no se evalúa, y tampoco recibe un juicio desfavorable por esa razón.
+El riesgo de sesgo se evalúa **solo en los estudios con diseño comparativo y solo en aquellos cuyo texto completo se obtuvo**: 12 de los 15 que el diseño adjudicado sobre el artículo identifica como comparativos. Los ensayos aleatorizados con RoB 2 [@Sterne2019_rob2] y los no aleatorizados y las cohortes con ROBINS-I [@Sterne2016_robinsi]. El estudio restante es un ensayo aleatorizado sin texto completo: no se evalúa, y tampoco recibe un juicio desfavorable por esa razón.
 
 La evaluación se emite **a nivel de dominio**: un juicio por dominio con las categorías literales de cada instrumento, sin responder las preguntas de señalización con que RoB 2 deriva ese juicio por algoritmo. Es una simplificación deliberada en una revisión descriptiva sin estimación agrupada, y se declara para que no se le atribuya una reproducibilidad algorítmica que no tiene. Los reportes y las series de casos no se evalúan con instrumento formal, por decisión y no por imposibilidad: carecen de comparador, de asignación y de seguimiento estructurado, y una herramienta construida sobre esos supuestos produce un riesgo alto uniforme que informa del instrumento y no del estudio [@Murad2018_casereports; @Munn2020_jbicaseseries].
 
@@ -110,7 +110,7 @@ La evaluación se emite **a nivel de dominio**: un juicio por dominio con las ca
 
 **GRADE no se aplica**, y el motivo no depende de lo anterior: califica la certeza de una estimación agrupada y esta revisión no presenta ninguna. La sección 3.5 muestra que solo 2 de los 103 brazos reúnen los requisitos mínimos para agregar, y ninguno los conserva tras aplicar los criterios de elegibilidad. Calificar la certeza de un resultado que no existe sería un trámite, no una evaluación [@Guyatt2011_grade].
 
-La sección 3.7 reporta los 82 juicios y la tabla de dominios.
+**La evaluación está en curso: faltan 8 de los 90 juicios.** Mientras falte alguno, esta revisión no reporta riesgo de sesgo, y ningún indicador derivado del diseño lo sustituye.
 
 ### 2.8 Métodos de síntesis y reproducibilidad
 
@@ -223,12 +223,6 @@ Estas definiciones proceden de los textos completos ya recuperados, no de la pre
 A ello se añade el sesgo de recuperación documentado en la sección 3.2, que en el estado actual excluiría de la síntesis a dos tercios de los estudios comparativos. **Por estas razones no se presenta ninguna proporción agrupada de eficacia**, y se sostiene que las publicadas en revisiones previas descansan sobre supuestos que estos datos no verifican.
 
 ---
-
-### 3.7 Riesgo de sesgo de los estudios comparativos
-
-De los 3 estudios evaluados con RoB 2, el juicio global es de bajo riesgo en 2 y de algunas preocupaciones en 1. De los 8 estudios evaluados con ROBINS-I, el juicio global es de riesgo moderado en 2 y de riesgo grave en 6. El dominio que más juicios desfavorables concentra en ROBINS-I —alto riesgo en RoB 2; grave o crítico en ROBINS-I— es «sesgo por confusión», con 6 de 8. Los 82 juicios se emitieron en una evaluación única acordada entre los dos autores; al no haber dos lecturas independientes, no se reporta concordancia entre revisores.
-
-**Tabla 7.** Riesgo de sesgo por dominio de los 11 estudios comparativos evaluables. RoB 2 en los ensayos aleatorizados (cinco dominios) y ROBINS-I en los no aleatorizados y las cohortes (siete). «n. a.» marca los dominios que el instrumento no contempla, no un juicio que falte.
 
 ## 4. Discusión
 

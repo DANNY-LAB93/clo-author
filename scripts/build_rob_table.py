@@ -102,19 +102,22 @@ def procedencias():
                                    if r["valor"].strip())
 
 
+# NINGUNA CIFRA TECLEADA AQUI. La version anterior llevaba tres dentro del
+# texto --«El duodécimo», «los 11 ensayos» y «los 71 con texto obtenido»-- y
+# las tres se volvieron falsas el mismo dia, al cambiar la regla de diseño por
+# estudio. Ahora todas entran por el diccionario que arma `main()`.
 ALCANCE = (
     "El diseño adjudicado sobre el artículo identifica **%(comp)d estudios con "
     "grupo de comparación**, de los cuales **%(ev)d son evaluables**: %(rob2)d "
     "ensayos aleatorizados con RoB 2 y %(robins)d ensayos no aleatorizados y "
-    "cohortes con ROBINS-I. El duodécimo es un ensayo aleatorizado cuyo texto "
-    "completo no se obtuvo y que, por tanto, no se evalúa; no recibe un juicio "
-    "de riesgo alto por esa razón, porque no evaluar y evaluar mal no son lo "
-    "mismo. Ese conjunto de %(ev)d estudios coincide en número, pero no en "
-    "composición, con los 11 ensayos que la Tabla 2 cuenta: aquella clasifica "
-    "por lo que el resumen declara sobre los 95 estudios recuperables y no "
-    "incluye las cohortes, mientras que esta evaluación clasifica por lo que se "
-    "leyó en el artículo de los 71 con texto obtenido y sí las incluye. La "
-    "Tabla 5 lleva %(celdas)d juicios de dominio%(recoge)s.")
+    "cohortes con ROBINS-I. %(sin_texto_frase)s; no reciben un juicio de riesgo "
+    "alto por esa razón, porque no evaluar y evaluar mal no son lo mismo. Ese "
+    "conjunto de %(ev)d estudios no es el mismo que los %(t2)d ensayos que "
+    "cuenta la Tabla 2: aquella clasifica por lo que el resumen declara sobre "
+    "los %(extraibles)d estudios recuperables y no incluye las cohortes, "
+    "mientras que esta evaluación clasifica por lo que se leyó en el artículo "
+    "de los %(con_texto)d con texto obtenido y sí las incluye. La Tabla 5 lleva "
+    "%(celdas)d juicios de dominio%(recoge)s.")
 
 AVISO = (
     "**[PENDIENTE — no enviar el manuscrito con esta nota. Los %d juicios de "
@@ -255,13 +258,27 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
         print("AVISO: no encuentro el bloque de riesgo de sesgo en %s; "
               "la tabla se escribió, el manuscrito no." % MANUSCRITO.name)
         return
+    import json as _json
+    _S = _json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                     .read_text(encoding="utf-8"))
+    _n = estado["sin_texto_completo"]
+    _ids = ", ".join(estado.get("sin_texto_completo_ids", []))
+    if _n == 1:
+        _frase = ("El restante no tiene texto completo y no se evalúa (%s)" % _ids)
+    else:
+        _frase = ("Los %d restantes no tienen texto completo y no se evalúan "
+                  "(%s)" % (_n, _ids))
     alcance = ALCANCE % {"comp": estado["comparativos_adjudicados"],
                          "ev": estado["evaluables"],
                          "celdas": estado["celdas_totales"],
                          "recoge": ("" if estado["completa"]
                                     else ", todavía sin emitir"),
                          "rob2": estado["por_instrumento"].get("RoB 2", 0),
-                         "robins": estado["por_instrumento"].get("ROBINS-I", 0)}
+                         "robins": estado["por_instrumento"].get("ROBINS-I", 0),
+                         "sin_texto_frase": _frase,
+                         "t2": _S["estudios_comparativos"],
+                         "extraibles": _S["estudios_extraibles"],
+                         "con_texto": _S["texto_completo_obtenido"]}
     if estado["completa"]:
         segundo = resumen_prosa(evaluables, orden, titulo, J,
                                 procedencias())

@@ -91,11 +91,33 @@ def corpus():
 
     # El diseño sale de la extracción adjudicada, que es la que se leyó sobre el
     # articulo; el del resumen no vale para elegir instrumento.
-    diseno = {}
+    #
+    # CUENTA CUALQUIER BRAZO COMPARATIVO, NO EL PRIMERO. Hasta el 2026-09-16
+    # esto hacia `if s not in diseno`, es decir, se quedaba con el diseño del
+    # PRIMER brazo del estudio y descartaba los demas. Con dos brazos de diseño
+    # distinto la eleccion dependia del orden de las filas, que no significa
+    # nada. EST-004 --brazo A serie de casos, brazo B cohorte prospectiva--
+    # quedaba clasificado como serie de casos y fuera de la evaluacion de
+    # riesgo de sesgo, mientras su brazo B SI contaba entre los 18 brazos
+    # comparativos del embudo de la Tabla 6: el mismo estudio era comparativo
+    # para una tabla y no para la otra.
+    #
+    # La regla nueva, firmada por D. Valdiviezo el 2026-09-16: un estudio es
+    # comparativo si CUALQUIERA de sus brazos lo es. Entre varios diseños
+    # comparativos gana el mas exigente en instrumento --un ECA se evalua con
+    # RoB 2 aunque el estudio traiga tambien una cohorte-- y si ninguno es
+    # comparativo se conserva el primero, que es el comportamiento anterior.
+    PRIORIDAD = ["RCT", "non-randomised trial", "prospective cohort",
+                 "retrospective cohort"]
+    por_estudio = {}
     for f in lee(RS / "extraccion" / "extraccion_adjudicada.csv"):
         s, v = f["study_id"], (f.get("study_design") or "").strip()
-        if s not in fuera and v and v != "NA" and s not in diseno:
-            diseno[s] = v
+        if s not in fuera and v and v != "NA":
+            por_estudio.setdefault(s, []).append(v)
+    diseno = {}
+    for s, vs in por_estudio.items():
+        comp = [d for d in PRIORIDAD if d in vs]
+        diseno[s] = comp[0] if comp else vs[0]
 
     # La capa de correcciones va encima, como en el resto del canal: es donde se
     # anotan las adjudicaciones posteriores con su cita y su firma. Nunca se
