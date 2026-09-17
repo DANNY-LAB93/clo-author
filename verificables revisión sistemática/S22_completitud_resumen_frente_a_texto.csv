@@ -1,0 +1,6 @@
+﻿variable,campo,declarado_texto_completo,declarado_no_clasificable,no_declarado_texto_completo,texto_no_recuperado,total,no_asignable_en_el_resumen,no_asignable_en_el_resumen_pct,silencio_del_articulo_pct
+Clase de resistencia (MDR/XDR/PDR),resistance_class,48,23,0,24,95,72,75.8,0.0
+Vía de administración,route,69,0,2,24,95,50,52.6,2.1
+Ámbito de patógeno,pathogen_scope,62,0,9,24,95,37,38.9,9.5
+Modalidad (monoterapia o combinación),modality,69,0,2,24,95,60,63.2,2.1
+Criterio DTR,dtr_status,70,1,0,24,95,93,97.9,0.0

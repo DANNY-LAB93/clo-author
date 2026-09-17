@@ -235,5 +235,101 @@
   "validacion_tasa_pct": "0.0",
   "validacion_ic_sup_pct": "1.05",
   "validacion_cota_estudios": 143,
-  "validacion_primera_pasada_incluidos": 6
+  "validacion_primera_pasada_incluidos": 6,
+  "embudo_proporcion": [
+    {
+      "filtro": "brazos extraídos",
+      "brazos": 103,
+      "estudios": 95
+    },
+    {
+      "filtro": "numerador y denominador coherentes",
+      "brazos": 70,
+      "estudios": 66
+    },
+    {
+      "filtro": "definición operativa del éxito",
+      "brazos": 26,
+      "estudios": 23
+    },
+    {
+      "filtro": "desenlace atribuible a P. aeruginosa",
+      "brazos": 22,
+      "estudios": 19
+    },
+    {
+      "filtro": "administración terapéutica, no profiláctica",
+      "brazos": 22,
+      "estudios": 19
+    },
+    {
+      "filtro": "reporta una proporción, no un tiempo",
+      "brazos": 21,
+      "estudios": 18
+    }
+  ],
+  "brazos_agrupables": 21,
+  "estudios_agrupables": 18,
+  "brazos_agrupables_n1": 16,
+  "brazos_agrupables_n1_pct": 76.2,
+  "modalidades_extraidas": {
+    "phage+antibiotic combination": 70,
+    "NA": 23,
+    "phage monotherapy": 10
+  },
+  "brazos_con_comparador_extraido": 0,
+  "estudios_denominador_uno": 42,
+  "estudios_denominador_desconocido": 15,
+  "t3_resistance_class_declarado": 48,
+  "t3_resistance_class_no_clasificable": 23,
+  "t3_resistance_class_silencio": 0,
+  "t3_resistance_class_sin_texto": 24,
+  "t3_route_declarado": 69,
+  "t3_route_no_clasificable": 0,
+  "t3_route_silencio": 2,
+  "t3_route_sin_texto": 24,
+  "t3_pathogen_scope_declarado": 62,
+  "t3_pathogen_scope_no_clasificable": 0,
+  "t3_pathogen_scope_silencio": 9,
+  "t3_pathogen_scope_sin_texto": 24,
+  "t3_modality_declarado": 69,
+  "t3_modality_no_clasificable": 0,
+  "t3_modality_silencio": 2,
+  "t3_modality_sin_texto": 24,
+  "t3_dtr_status_declarado": 70,
+  "t3_dtr_status_no_clasificable": 1,
+  "t3_dtr_status_silencio": 0,
+  "t3_dtr_status_sin_texto": 24,
+  "t3_con_texto": 71,
+  "t3_clase_declarada_pct": 67.6,
+  "juicios_globales": 12,
+  "juicios_de_dominio": 78,
+  "celdas_tabla5": 90,
+  "dominios_rob2": 5,
+  "dominios_robins": 7,
+  "juicios_rob2": 15,
+  "juicios_robins": 63,
+  "embudo_prop_numerador": 70,
+  "embudo_prop_numerador_estudios": 66,
+  "embudo_prop_definicion": 26,
+  "embudo_prop_definicion_estudios": 23,
+  "embudo_prop_atribuible": 22,
+  "embudo_prop_atribuible_estudios": 19,
+  "embudo_prop_terapeutica": 22,
+  "embudo_prop_terapeutica_estudios": 19,
+  "embudo_prop_proporcion": 21,
+  "embudo_prop_proporcion_estudios": 18,
+  "estudios_una_sola_fuente": 40,
+  "estudios_una_sola_fuente_pct": 29.2,
+  "una_sola_fuente_por_fuente": {
+    "Cochrane CENTRAL": 20,
+    "ClinicalTrials.gov": 9,
+    "Scopus (brazo B)": 5,
+    "PubMed": 4,
+    "CTIS": 2
+  },
+  "solapamiento_pares_examinados": 16,
+  "solapamiento_textos_examinados": 73,
+  "brazos_con_informe_identificado": 103,
+  "brazos_informe_por_lectura": 71
 }

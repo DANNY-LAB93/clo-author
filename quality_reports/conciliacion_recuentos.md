@@ -6,9 +6,9 @@ tabla `conciliacion_estudio_brazo.csv`, no de los escalares.
 | Cifra del manuscrito | Valor | Unidad | Poblacion sobre la que se cuenta |
 |---|---|---|---|
 | Diseños comparativos, Tabla 2 | 11 | estudios | de los 95 recuperables, clasificados por el diseño **que declara el resumen**; NO incluye cohortes |
-| Estudios con grupo de comparación, Resultados | 14 | estudios | del corpus vivo, por el diseño **adjudicado sobre el artículo**; SÍ incluye cohortes. Regla del canal: manda el PRIMER brazo |
-| ídem, si cuenta **cualquier** brazo comparativo | 15 | estudios | la diferencia es EST-004, con un brazo serie de casos y otro cohorte prospectiva. **Decisión abierta** |
-| Comparativos evaluables, Tabla 5 | 12 | estudios | los 14 anteriores **que tienen texto completo** |
+| Estudios con grupo de comparación, Resultados | 15 | estudios | del corpus vivo, por el diseño **adjudicado sobre el artículo**; SÍ incluye cohortes. **Regla firmada el 2026-09-16**: un estudio es comparativo si CUALQUIERA de sus brazos lo es |
+| ídem, con la regla anterior | 14 | estudios | mandaba el PRIMER brazo del CSV. Se anota porque explica por qué un borrador anterior decía 14; la diferencia es EST-004 |
+| Comparativos evaluables, Tabla 5 | 12 | estudios | los 15 anteriores **que tienen texto completo** |
 | Primer filtro de la Tabla 6 | 18 | **brazos** | brazos de esos estudios comparativos; un estudio aporta más de un brazo |
 | Filas de brazo comparadas | 130 | **filas** | brazos presentes en los DOS cuadernos (A tenía 132, B tenía 130), **incluidos los de estudios excluidos después** |
 | Filas adjudicadas en total | 132 | **filas** | el cuaderno adjudicado entero; 29 pertenecen a estudios excluidos más tarde, y 132 − 29 = 103 |
@@ -33,8 +33,15 @@ tabla `conciliacion_estudio_brazo.csv`, no de los escalares.
 
 ## Lo que esta tabla NO cierra
 
-**EST-004.** La regla que el canal usa para asignar un diseño a un estudio con
-brazos de diseño distinto es «manda el primer brazo», y es arbitraria. Con esa
-regla hay 14 estudios con grupo de comparación; contando cualquier brazo
-comparativo hay 15, y el evaluable pasaría de 12 a 13, porque ese estudio tiene
-texto completo. Es una decisión de los autores y está abierta.
+**Clasificar un estudio como comparativo no lo convierte en una comparación
+utilizable.** Las dos cosas se cuentan por separado y no son la misma: hay 15
+estudios *clasificados* como comparativos, y la Tabla 6 muestra cuántos de sus
+brazos sostienen un contraste que se pueda usar. EST-004 es el caso extremo: es
+comparativo porque uno de sus brazos es una cohorte prospectiva, pero sus dos
+brazos son series clínicas del mismo centro sin asignación ni control externo.
+La clasificación decide qué instrumento de riesgo de sesgo se aplica; no decide
+que exista un comparador válido.
+
+**Un paciente puede estar en dos estudios.** Esta tabla cuenta estudios y brazos,
+no pacientes distintos. El examen de solapamiento está en
+`solapamiento_candidatos.csv`.

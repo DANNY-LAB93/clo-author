@@ -1,11 +1,11 @@
-**Tabla 2. Completitud del reporte en las variables críticas para la estratificación (n = 95 estudios).**
+**Tabla 3. Completitud del reporte en las variables de estratificación, en el resumen y en el texto completo (n = 95 estudios recuperables, 71 con texto obtenido).**
 
-| Variable | Declara (n) | Declara (%) | No declara (n) | No declara (%) |
-|---|---|---|---|---|
-| Clase de resistencia (MDR/XDR/PDR) | 36 | 37.9 | 59 | 62.1 |
-| Ámbito de patógeno (solo *P. aeruginosa* o mixto) | 58 | 61.1 | 37 | 38.9 |
-| Vía de administración del fago | 45 | 47.4 | 50 | 52.6 |
-| Modalidad (monoterapia o combinada) | 35 | 36.8 | 60 | 63.2 |
-| Criterio DTR (*difficult-to-treat resistance*) | 2 | 2.1 | 93 | 97.9 |
+| Variable | No asignable en el resumen | Declarado en el texto completo | Declarado pero no clasificable | No declarado en el texto completo | Texto completo no recuperado |
+|---|---|---|---|---|---|
+| Clase de resistencia (MDR/XDR/PDR) | 59 (62.1 %) | 48 | 23 | 0 | 24 |
+| Ámbito de patógeno (solo *P. aeruginosa* o mixto) | 37 (38.9 %) | 62 | 0 | 9 | 24 |
+| Vía de administración del fago | 50 (52.6 %) | 69 | 0 | 2 | 24 |
+| Modalidad (monoterapia o combinada) | 60 (63.2 %) | 69 | 0 | 2 | 24 |
+| Criterio DTR (*difficult-to-treat resistance*) | 93 (97.9 %) | 70 | 1 | 0 | 24 |
 
-*Nota.* Medido sobre el resumen indexado, que es lo que alimenta las bases bibliográficas y las revisiones automatizadas. Una variable puede constar en el texto completo y no en el resumen; la extracción por duplicado, ya adjudicada, mide esa distinción para los desenlaces en la Tabla 5. Esta tabla se reproduce desde el anexo S4 filtrando en_corpus_actual = sí: el anexo conserva además las filas que la enmienda de idioma dejó fuera, para que la enmienda pueda auditarse.
+*Nota.* La segunda columna mide el RESUMEN indexado, que es lo que alimenta las bases bibliográficas y las revisiones automatizadas. Las cuatro siguientes miden el TEXTO COMPLETO, se excluyen entre sí y suman 95. «Declarado pero no clasificable» significa que el artículo nombra la variable en términos que no permiten asignar una categoría: «multirresistente» sin el antibiograma que decida entre MDR, XDR y PDR. «Texto completo no recuperado» no es silencio del estudio: de esos 24 artículos no sabemos lo que dicen. La columna del resumen se reproduce desde el anexo S4 filtrando en_corpus_actual = sí; las del texto completo, desde la extracción adjudicada (anexo S14).

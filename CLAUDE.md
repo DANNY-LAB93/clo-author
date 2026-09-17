@@ -54,6 +54,13 @@ dar error. Ver su `LEEME.md`.
 ```bash
 # 1. LAS CIFRAS. Siempre lo primero: todo lo de abajo las lee.
 python scripts/build_synthesis_scalars.py
+python scripts/build_brazo_informe.py          # de que informe salio cada brazo (S20)
+python scripts/detecta_solapamiento.py         # pacientes contados dos veces (S21)
+python scripts/build_tabla3_completitud.py     # resumen frente a texto completo (S22)
+python scripts/build_tabla6_brazos.py          # la Tabla 6 brazo a brazo (S17)
+python scripts/build_auditoria_scalars.py      # funde los escalares de auditoria
+                                               # OJO: despues de los cuatro de arriba
+                                               # y ANTES de las tablas, que los leen
 
 # 2. LO QUE ENTRA EN EL MANUSCRITO
 python scripts/build_manuscript_tables.py      # tablas 1-6
@@ -61,10 +68,10 @@ python scripts/build_criteria_table.py         # la tabla de criterios, y la met
 python scripts/build_structured_abstract.py    # el resumen; avisa si pasa de 250 palabras
 python scripts/build_manuscript_figures.py     # PRISMA y composicion
 python scripts/build_conciliacion.py           # informe->estudio->brazo, y las 8 cifras
-python scripts/build_tabla6_brazos.py          # la Tabla 6 brazo a brazo (S17)
+python scripts/audita_cifras.py                # las 17 cifras, recontadas desde la fuente
 
 # 3. EL PAQUETE DE VERIFICABLES
-python scripts/build_verifiables_package.py    # S1-S16 (S11-S13 dentro)
+python scripts/build_verifiables_package.py    # S1-S22 (S11-S13 dentro)
 python scripts/build_readable_annexes.py       # los .xlsx legibles de cada .csv
 python scripts/build_editorial_report.py       # S0 y el indice
 python scripts/build_package_guide.py          # la guia del paquete
@@ -83,11 +90,13 @@ python scripts/build_criteria_table.py         # OTRA VEZ, al final: escribe el 
 python scripts/build_jsr_submission.py         # al Escritorio
 python scripts/zip_jsr_submission.py           # el .zip, comprobado fichero a fichero
 
-# LOS TRES GUARDIANES. Los dos primeros contrastan con el canal;
-# el tercero rehace las cuentas desde el texto solo.
+# LOS CUATRO GUARDIANES. Los dos primeros contrastan con el canal;
+# el tercero rehace las cuentas desde el texto solo; el cuarto mira los DATOS
+# y no la prosa, que es donde nadie miraba hasta el 2026-09-16.
 python scripts/check_manuscript_numbers.py     # toda cifra tiene origen
 python scripts/check_manuscript_claims.py      # cada frase lleva SU escalar
 python scripts/check_aritmetica.py             # las cuentas, rehechas
+python scripts/check_extraccion.py             # numerador<=denominador, vocabularios, citas
 python scripts/sync_manuscript_numbers.py --escribir   # las pone al dia
 ```
 

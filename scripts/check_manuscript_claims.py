@@ -198,7 +198,20 @@ AFIRMACIONES = [
     # tanto con la evaluacion pendiente como terminada. Estuvo anclado en el
     # aviso de PENDIENTE, que desaparece al completarse: al ingerir los 82
     # juicios el comprobador fallaba por una frase que ya no debia existir.
-    (JSR, "La Tabla 5 lleva {sesgo_celdas_totales} juicios de dominio"),
+    # LOS 90 NO SON TODOS DE DOMINIO. Un arbitro rehizo la cuenta el 2026-09-16:
+    # 3x5 + 9x7 = 78, no 90. Los 12 que faltaban son los juicios globales, uno
+    # por estudio. La cifra era correcta y la etiqueta no, que es la manera mas
+    # facil de que un recuento correcto parezca inventado.
+    (JSR, "La Tabla 5 reúne **{celdas_tabla5} juicios**, y no todos son de dominio: {sesgo_instrumento_RoB2} estudios × {dominios_rob2} dominios de RoB 2 dan {juicios_rob2}, y {sesgo_instrumento_ROBINSI} × {dominios_robins} dominios de ROBINS-I dan {juicios_robins}, de modo que hay **{juicios_de_dominio} juicios de dominio**; los **{juicios_globales}** restantes son los juicios globales"),
+    # ---- lo que el articulo dice cuando el resumen calla
+    (JSR, "De los **{t3_con_texto}** estudios cuyo texto se obtuvo, **{t3_resistance_class_declarado}** declaran una categoría de resistencia clasificable (**{t3_clase_declarada_pct} %**), **{t3_resistance_class_no_clasificable}** la mencionan"),
+    (JSR, "derivable en {t3_dtr_status_declarado} de los {t3_con_texto} artículos leídos"),
+    # ---- el embudo de la proporcion descriptiva, sin el filtro de diseno
+    (JSR, "En los {desenlace_brazos} brazos extraídos del corpus **no hay un solo brazo comparador**"),
+    (JSR, "dejan **{embudo_prop_numerador} brazos**; la definición operativa del éxito, **{embudo_prop_definicion}**; que el desenlace sea atribuible a *P. aeruginosa*, **{embudo_prop_atribuible}**; la administración terapéutica y no profiláctica no elimina ninguno; y que el desenlace sea una proporción y no un tiempo deja **{brazos_agrupables} brazos de {estudios_agrupables} estudios**"),
+    (JSR, "**{brazos_agrupables_n1} de los {brazos_agrupables} ({brazos_agrupables_n1_pct} %) tienen un denominador de un solo paciente**"),
+    # ---- de cuantas fuentes depende el corpus
+    (JSR, "**{estudios_una_sola_fuente} de los {estudios} estudios incluidos ({estudios_una_sola_fuente_pct} %) los encontró una sola fuente**"),
     # --- EL CUERPO DEL MANUSCRITO DE LA REVISTA ---
     #
     # Estas siete no estaban, y su ausencia costo cara: el 2026-09-15 el cuerpo

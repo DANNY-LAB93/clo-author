@@ -66,19 +66,28 @@ def main():
     for g in grupos:
         eid = "EST-%03d" % int(g["estudio"])
         d = info.setdefault(eid, {"informes": 0, "tipos": set(), "situacion": g["situacion"],
-                                  "titulo": g["titulo"]})
+                                  "titulo": g["titulo"], "record_ids": []})
         d["informes"] += 1
         d["tipos"].add(g["tipo_informe"])
+        d["record_ids"].append(g["record_id"])
 
     brazos = {}
     for r in adj:
         brazos.setdefault(r["study_id"], []).append(r)
 
     rob_ids = {r["study_id"] for r in rob}
+    instrumento = {r["study_id"]: r["instrumento"] for r in rob}
 
-    campos = ["study_id", "informes", "tipos_de_informe", "situacion",
-              "diseno_declarado_resumen", "diseno_adjudicado", "grupo_comparador",
-              "brazos_extraidos", "texto_completo", "en_tabla_2", "en_tabla_5",
+    def descr(b):
+        """El brazo, en una celda: diseño, n y qué se administró."""
+        n = b["n_arm"] if b["n_arm"] not in ("", "NA") else "n. d."
+        return "%s: %s, n=%s, %s" % (b["arm_id"], b["study_design"] or "no declarado",
+                                     n, b["modality"] or "no declarada")
+
+    campos = ["study_id", "informes", "informes_asociados", "tipos_de_informe",
+              "situacion", "diseno_declarado_resumen", "diseno_adjudicado",
+              "grupo_comparador", "brazos_extraidos", "brazo_A", "brazo_B",
+              "texto_completo", "en_tabla_2", "en_tabla_5", "instrumento",
               "aporta_brazos_a_tabla_6", "motivo_de_exclusion", "titulo"]
     filas = []
     for eid in sorted(info):
@@ -92,18 +101,24 @@ def main():
                     else "no")
         else:
             comp = "no evaluable"
+        bs_ord = sorted(bs, key=lambda b: b["arm_id"])
         filas.append({
             "study_id": eid,
             "informes": d["informes"],
+            "informes_asociados": "; ".join(d["record_ids"]),
             "tipos_de_informe": "; ".join(sorted(d["tipos"])),
             "situacion": d["situacion"],
             "diseno_declarado_resumen": dec,
             "diseno_adjudicado": "; ".join(adjudicado),
             "grupo_comparador": comp,
             "brazos_extraidos": len(bs),
+            "brazo_A": descr(bs_ord[0]) if len(bs_ord) > 0 else "",
+            "brazo_B": descr(bs_ord[1]) if len(bs_ord) > 1 else "",
             "texto_completo": "sí" if eid in pdfs else "no",
             "en_tabla_2": "no" if ex else ("sí" if d["situacion"] in ("extraible", "solo-resumen") else "no"),
             "en_tabla_5": "sí" if eid in rob_ids else "no",
+            "instrumento": {"rob2": "RoB 2", "robins": "ROBINS-I"}.get(
+                instrumento.get(eid, ""), ""),
             "aporta_brazos_a_tabla_6": "sí" if (bs and not ex) else "no",
             "motivo_de_exclusion": ("%s — %s" % (ex["codigo"], ex["motivo"][:90])) if ex else "",
             "titulo": d["titulo"][:110],
@@ -143,9 +158,9 @@ def main():
          "| Cifra del manuscrito | Valor | Unidad | Poblacion sobre la que se cuenta |",
          "|---|---|---|---|",
          "| Diseños comparativos, Tabla 2 | %d | estudios | de los %d recuperables, clasificados por el diseño **que declara el resumen**; NO incluye cohortes |" % (len(t2_comp), len(t2)),
-         "| Estudios con grupo de comparación, Resultados | %d | estudios | del corpus vivo, por el diseño **adjudicado sobre el artículo**; SÍ incluye cohortes. Regla del canal: manda el PRIMER brazo |" % len(adj_comp_primero),
-         "| ídem, si cuenta **cualquier** brazo comparativo | %d | estudios | la diferencia es %s, con un brazo serie de casos y otro cohorte prospectiva. **Decisión abierta** |" % (len(adj_comp), ", ".join(discordia) or "ninguno"),
-         "| Comparativos evaluables, Tabla 5 | %d | estudios | los %d anteriores **que tienen texto completo** |" % (len(t5), len(adj_comp_primero)),
+         "| Estudios con grupo de comparación, Resultados | %d | estudios | del corpus vivo, por el diseño **adjudicado sobre el artículo**; SÍ incluye cohortes. **Regla firmada el 2026-09-16**: un estudio es comparativo si CUALQUIERA de sus brazos lo es |" % len(adj_comp),
+         "| ídem, con la regla anterior | %d | estudios | mandaba el PRIMER brazo del CSV. Se anota porque explica por qué un borrador anterior decía %d; la diferencia es %s |" % (len(adj_comp_primero), len(adj_comp_primero), ", ".join(discordia) or "ninguno"),
+         "| Comparativos evaluables, Tabla 5 | %d | estudios | los %d anteriores **que tienen texto completo** |" % (len(t5), len(adj_comp)),
          "| Primer filtro de la Tabla 6 | %d | **brazos** | brazos de esos estudios comparativos; un estudio aporta más de un brazo |" % len(brazos_comp),
          "| Filas de brazo comparadas | %d | **filas** | brazos presentes en los DOS cuadernos (A tenía %d, B tenía %d), **incluidos los de estudios excluidos después** |" % (conc["filas_comparadas"], conc["filas_a"], conc["filas_b"]),
          "| Filas adjudicadas en total | %d | **filas** | el cuaderno adjudicado entero; %d pertenecen a estudios excluidos más tarde, y %d − %d = %d |" % (len(adj), len(adj) - len(brazos_vivos), len(adj), len(adj) - len(brazos_vivos), len(brazos_vivos)),
@@ -168,11 +183,18 @@ def main():
          "   de las que %d pertenecen a estudios excluidos más tarde, y quedan %d." % (len(adj) - len(brazos_vivos), len(brazos_vivos)),
          "",
          "## Lo que esta tabla NO cierra", "",
-         "**%s.** La regla que el canal usa para asignar un diseño a un estudio con" % (", ".join(discordia) or "Ninguno"),
-         "brazos de diseño distinto es «manda el primer brazo», y es arbitraria. Con esa",
-         "regla hay %d estudios con grupo de comparación; contando cualquier brazo" % len(adj_comp_primero),
-         "comparativo hay %d, y el evaluable pasaría de %d a %d, porque ese estudio tiene" % (len(adj_comp), len(t5), len(t5) + len(discordia)),
-         "texto completo. Es una decisión de los autores y está abierta.",
+         "**Clasificar un estudio como comparativo no lo convierte en una comparación",
+         "utilizable.** Las dos cosas se cuentan por separado y no son la misma: hay %d" % len(adj_comp),
+         "estudios *clasificados* como comparativos, y la Tabla 6 muestra cuántos de sus",
+         "brazos sostienen un contraste que se pueda usar. %s es el caso extremo: es" % (", ".join(discordia) or "Ninguno"),
+         "comparativo porque uno de sus brazos es una cohorte prospectiva, pero sus dos",
+         "brazos son series clínicas del mismo centro sin asignación ni control externo.",
+         "La clasificación decide qué instrumento de riesgo de sesgo se aplica; no decide",
+         "que exista un comparador válido.",
+         "",
+         "**Un paciente puede estar en dos estudios.** Esta tabla cuenta estudios y brazos,",
+         "no pacientes distintos. El examen de solapamiento está en",
+         "`solapamiento_candidatos.csv`.",
          ""]
     (QR / "conciliacion_recuentos.md").write_text("\n".join(L), encoding="utf-8", newline="\n")
 

@@ -462,6 +462,117 @@ def leer_bom(p):
         return list(csv.DictReader(fh))
 
 
+def v19_cribado_modelo(S):
+    """S19: el cribado con modelo de lenguaje, documentado hasta donde se puede.
+
+    POR QUE. Un arbitro pidio doce cosas sobre este cribado --modelo, version,
+    fecha, prompt, configuracion, regla para respuestas ambiguas, tratamiento
+    de errores, ficheros de entrada y salida, que decidio el modelo, que
+    verificaron los autores, si se releyeron los excluidos y si la validacion
+    fue estratificada--. Este anexo responde a las que constan en el registro y
+    marca [DATO FALTANTE] en las que no. Ninguna se rellena de memoria.
+    """
+    import collections
+    d2 = leer(RS / "cribado" / "screening_stage2_pool_decisions.csv")
+    d3 = leer(RS / "cribado" / "screening_stage3_pool_decisions.csv")
+    quien = collections.Counter(r.get("decided_by", "") for r in d2 + d3)
+    fechas = sorted({(r.get("decided_at") or "")[:10] for r in d2 + d3 if r.get("decided_at")})
+
+    d = doc_nuevo("S19. Cribado con modelo de lenguaje",
+                  "Lo que consta en el registro, y lo que no consta")
+    d.add_heading("Lo que el registro documenta", level=2)
+    for k, v in (
+            ("Modelo y version", "Claude Opus 5 (Anthropic), identificador «claude-opus-5», "
+             "tal como queda escrito en la columna decided_by de cada decision"),
+            ("Fechas de uso", "del %s al %s" % (fechas[0], fechas[-1]) if fechas else "[DATO FALTANTE]"),
+            ("Decisiones emitidas por el modelo",
+             "%d en la etapa de titulo y %d en la de resumen, cada una con su motivo "
+             "codificado y su marca de tiempo" % (len(d2), len(d3))),
+            ("Ficheros de entrada y salida",
+             "entrada: revision_sistematica/cribado/screening_corpus_all.csv; salida: los "
+             "anexos S3, que son el registro original sin reelaborar"),
+            ("Vocabulario de motivos",
+             "cerrado y fijado por los autores antes del cribado; se publica en scripts/"
+             "exclusion_codes.py y en la Tabla 1"),
+            ("Decisiones verificadas por los autores",
+             "los informes que superaron el cribado se revisaron uno a uno contra los "
+             "criterios; los registros que el modelo excluyo NO se releyeron individualmente"),
+            ("Validacion del error de exclusion",
+             "recribado ciego de %s de los %s registros excluidos en la etapa de titulo; "
+             "%s falsos negativos (%s %%; IC 95 %% exacto, 0,00 a %s %%)"
+             % (S["validacion_muestra"], S["validacion_marco"],
+                S["validacion_falsos_negativos"], S["validacion_tasa_pct"],
+                S["validacion_ic_sup_pct"]))):
+        pp = d.add_paragraph()
+        pp.add_run(k + ". ").bold = True
+        pp.add_run(v)
+
+    d.add_heading("Lo que el registro NO documenta", level=2)
+    d.add_paragraph(
+        "Las cuatro cosas siguientes no quedaron guardadas y no se reconstruyen a "
+        "posteriori: escribirlas ahora de memoria seria inventarlas.")
+    for t in ("[DATO FALTANTE] El texto literal e integro de la instruccion con que se "
+              "aplicaron los criterios registro a registro. Lo que si consta es el "
+              "vocabulario cerrado de motivos y los criterios de la Tabla 1, que son su "
+              "contenido.",
+              "[DATO FALTANTE] Los parametros de generacion (temperatura, longitud maxima, "
+              "semilla).",
+              "[DATO FALTANTE] La regla escrita para respuestas ambiguas y el tratamiento "
+              "de los errores de llamada. En la practica, el pozo de titulo avanzo por "
+              "defecto a lectura de resumen cuando la decision no era clara, pero esa "
+              "regla no se escribio antes.",
+              "[DATO FALTANTE] Estratificacion de la muestra de validacion por fuente y "
+              "por motivo de exclusion. La muestra de %s se tomo al azar sobre el marco "
+              "entero, sin estratificar." % S["validacion_muestra"]):
+        d.add_paragraph(t, style="List Bullet")
+
+    d.add_heading("Como debe leerse el 0 de 350", level=2)
+    d.add_paragraph(
+        "La tasa observada de falsos negativos es del 0,0 %%, y eso NO significa que la "
+        "tasa real sea cero. Con 350 extracciones y ningun fallo, el intervalo exacto "
+        "llega al %s %%, que sobre el marco de %s registros admite hasta %s perdidos. "
+        "La cifra acota el error; no lo elimina."
+        % (S["validacion_ic_sup_pct"], S["validacion_marco"], S["validacion_cota_estudios"]))
+    d.add_heading("Quien emitio cada decision", level=2)
+    for k, v in quien.most_common():
+        d.add_paragraph("%s — %d decisiones" % (k or "sin declarar", v), style="List Bullet")
+    d.save(OUT / "S19_cribado_con_modelo_de_lenguaje.docx")
+    print("  S19 cribado con modelo: %d decisiones de %d emisores"
+          % (len(d2) + len(d3), len(quien)))
+
+
+def v20_brazo_informe(S):
+    """S20: de que informe salio cada brazo, y con que prueba."""
+    origen = ROOT / "quality_reports" / "brazo_informe.csv"
+    if not origen.exists():
+        print("  AVISO: no hay brazo_informe.csv; corre scripts/build_brazo_informe.py")
+        return
+    shutil.copy2(origen, OUT / "S20_de_que_informe_salio_cada_brazo.csv")
+    print("  S20 %d brazos con su informe de origen" % len(leer_bom(origen)))
+
+
+def v21_solapamiento(S):
+    """S21: el examen de solapamiento de pacientes entre estudios."""
+    origen = ROOT / "quality_reports" / "solapamiento_candidatos.csv"
+    if not origen.exists():
+        print("  AVISO: no hay solapamiento_candidatos.csv; corre "
+              "scripts/detecta_solapamiento.py")
+        return
+    shutil.copy2(origen, OUT / "S21_solapamiento_de_pacientes.csv")
+    print("  S21 %d pares candidatos de solapamiento" % len(leer_bom(origen)))
+
+
+def v22_completitud(S):
+    """S22: la Tabla 3 con las cuatro situaciones, en fichero."""
+    origen = ROOT / "quality_reports" / "tabla3_completitud.csv"
+    if not origen.exists():
+        print("  AVISO: no hay tabla3_completitud.csv; corre "
+              "scripts/build_tabla3_completitud.py")
+        return
+    shutil.copy2(origen, OUT / "S22_completitud_resumen_frente_a_texto.csv")
+    print("  S22 completitud en el resumen frente al texto completo")
+
+
 def v17_tabla6(S):
     """S17: la Tabla 6 desglosada brazo a brazo.
 
@@ -710,6 +821,10 @@ def main():
     v16_exclusiones(S)
     v17_tabla6(S)
     v18_evidencia_sesgo(S)
+    v19_cribado_modelo(S)
+    v20_brazo_informe(S)
+    v21_solapamiento(S)
+    v22_completitud(S)
 
     # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
     # filas -- el corpus anterior a la enmienda de idioma -- mientras la tabla

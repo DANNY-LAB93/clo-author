@@ -1,0 +1,66 @@
+{
+  "n_recuperables": 95,
+  "con_texto": 71,
+  "variables": {
+    "resistance_class": {
+      "variable": "Clase de resistencia (MDR/XDR/PDR)",
+      "campo": "resistance_class",
+      "declarado_texto_completo": 48,
+      "declarado_no_clasificable": 23,
+      "no_declarado_texto_completo": 0,
+      "texto_no_recuperado": 24,
+      "total": 95,
+      "no_asignable_en_el_resumen": 72,
+      "no_asignable_en_el_resumen_pct": 75.8,
+      "silencio_del_articulo_pct": 0.0
+    },
+    "route": {
+      "variable": "Vía de administración",
+      "campo": "route",
+      "declarado_texto_completo": 69,
+      "declarado_no_clasificable": 0,
+      "no_declarado_texto_completo": 2,
+      "texto_no_recuperado": 24,
+      "total": 95,
+      "no_asignable_en_el_resumen": 50,
+      "no_asignable_en_el_resumen_pct": 52.6,
+      "silencio_del_articulo_pct": 2.1
+    },
+    "pathogen_scope": {
+      "variable": "Ámbito de patógeno",
+      "campo": "pathogen_scope",
+      "declarado_texto_completo": 62,
+      "declarado_no_clasificable": 0,
+      "no_declarado_texto_completo": 9,
+      "texto_no_recuperado": 24,
+      "total": 95,
+      "no_asignable_en_el_resumen": 37,
+      "no_asignable_en_el_resumen_pct": 38.9,
+      "silencio_del_articulo_pct": 9.5
+    },
+    "modality": {
+      "variable": "Modalidad (monoterapia o combinación)",
+      "campo": "modality",
+      "declarado_texto_completo": 69,
+      "declarado_no_clasificable": 0,
+      "no_declarado_texto_completo": 2,
+      "texto_no_recuperado": 24,
+      "total": 95,
+      "no_asignable_en_el_resumen": 60,
+      "no_asignable_en_el_resumen_pct": 63.2,
+      "silencio_del_articulo_pct": 2.1
+    },
+    "dtr_status": {
+      "variable": "Criterio DTR",
+      "campo": "dtr_status",
+      "declarado_texto_completo": 70,
+      "declarado_no_clasificable": 1,
+      "no_declarado_texto_completo": 0,
+      "texto_no_recuperado": 24,
+      "total": 95,
+      "no_asignable_en_el_resumen": 93,
+      "no_asignable_en_el_resumen_pct": 97.9,
+      "silencio_del_articulo_pct": 0.0
+    }
+  }
+}

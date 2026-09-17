@@ -85,11 +85,33 @@ CATALOGO = [
         ("S8_recuperacion_texto_completo.xlsx + .csv", "Qué se intentó para conseguir cada "
          "texto completo y con qué resultado.",
          "Si el sesgo de recuperación se documentó o se ocultó."),
+        ("S20_de_que_informe_salio_cada_brazo.xlsx + .csv", "Cada brazo extraído con el "
+         "informe del que salió, y con qué prueba se estableció el vínculo: el título "
+         "localizado dentro del documento leído, el informe único del estudio o el único "
+         "artículo del grupo.",
+         "Dónde mirar para comprobar cualquier dato de cualquier brazo (PRISMA 10)."),
+        ("S21_solapamiento_de_pacientes.xlsx + .csv", "Los pares de estudios que pueden "
+         "describir a los mismos pacientes, con la señal que los marcó y la frase literal.",
+         "Si el corpus cuenta a algún paciente dos veces, y cuál."),
     ]),
     ("Extracción", [
         ("S4_pre_extraccion_desde_resumen.xlsx + .csv", "Pre-extracción desde el resumen, "
          "marcada como parcial en cada registro.",
          "De dónde salen las cifras de estructura del corpus."),
+        ("S22_completitud_resumen_frente_a_texto.xlsx + .csv", "Para cada variable de "
+         "estratificación, cuántos estudios la declaran en el texto completo, cuántos la "
+         "mencionan sin poder clasificarla, cuántos callan y de cuántos no hay texto.",
+         "Separar la ausencia en el resumen de la ausencia en el estudio."),
+        ("S17_tabla6_brazo_a_brazo.xlsx + .csv", "La Tabla 6 desglosada: los siete "
+         "requisitos, brazo a brazo, con el primero que falla y por qué.",
+         "Comprobar el embudo de agregabilidad sin fiarse del recuento."),
+        ("S19_cribado_con_modelo_de_lenguaje.docx", "Qué modelo emitió las decisiones de "
+         "cribado, cuándo, sobre qué ficheros, qué verificaron los autores y qué NO quedó "
+         "registrado, marcado como dato faltante.",
+         "Juzgar el procedimiento de cribado, incluido lo que no se puede reconstruir."),
+        ("S18_evidencia_por_dominio.xlsx + .csv", "La frase del artículo en que se apoya "
+         "cada uno de los 90 juicios de riesgo de sesgo.",
+         "Discrepar de un juicio concreto teniendo delante lo que lo sostiene."),
         ("S11_concordancia_entre_extractores.pdf", "Concordancia entre las dos "
          "extracciones independientes, variable a variable, antes de resolver nada.",
          "Cuánto coincidieron de verdad los dos revisores."),

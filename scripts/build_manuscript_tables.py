@@ -144,27 +144,45 @@ def main():
             "del proyecto, ejecución del 10 de agosto de 2026." % n)
 
     # ---- Tabla 2: completitud del reporte ---------------------------------
+    # CUATRO SITUACIONES, NO DOS. Hasta el 2026-09-16 esta tabla medía solo el
+    # resumen y de ahí se concluía que la variable «no puede asignarse» en el
+    # estudio. No es lo mismo: de los 71 artículos leídos, ninguno calla sobre
+    # la clase de resistencia. La ausencia está en el resumen. Las cuatro
+    # columnas del texto completo se excluyen entre sí y suman el corpus.
     filas = []
-    for campo, etiqueta in (
-            ("sin_clase_de_resistencia", "Clase de resistencia (MDR/XDR/PDR)"),
-            ("sin_ambito_de_patogeno", "Ámbito de patógeno (solo *P. aeruginosa* o mixto)"),
-            ("sin_via_de_administracion", "Vía de administración del fago"),
-            ("sin_modalidad", "Modalidad (monoterapia o combinada)"),
-            ("sin_criterio_dtr", "Criterio DTR (*difficult-to-treat resistance*)")):
-        filas.append([etiqueta, n - S[campo], "%.1f" % (100 - S[campo + "_pct"]),
-                      S[campo], S[campo + "_pct"]])
-    escribe("tabla_2_completitud", ["Variable", "Declara (n)", "Declara (%)",
-                                    "No declara (n)", "No declara (%)"], filas,
-            "Tabla 2. Completitud del reporte en las variables críticas para la "
-            "estratificación (n = %d estudios)." % n,
-            "Medido sobre el resumen indexado, que es lo que alimenta las bases "
-            "bibliográficas y las revisiones automatizadas. Una variable puede "
-            "constar en el texto completo y no en el resumen; la extracción por "
-            "duplicado, ya adjudicada, mide esa distinción para los desenlaces "
-            "en la Tabla 5. Esta tabla se "
-            "reproduce desde el anexo S4 filtrando en_corpus_actual = sí: el "
-            "anexo conserva además las filas que la enmienda de idioma dejó "
-            "fuera, para que la enmienda pueda auditarse.")
+    for campo, resumen, etiqueta in (
+            ("resistance_class", "sin_clase_de_resistencia", "Clase de resistencia (MDR/XDR/PDR)"),
+            ("pathogen_scope", "sin_ambito_de_patogeno", "Ámbito de patógeno (solo *P. aeruginosa* o mixto)"),
+            ("route", "sin_via_de_administracion", "Vía de administración del fago"),
+            ("modality", "sin_modalidad", "Modalidad (monoterapia o combinada)"),
+            ("dtr_status", "sin_criterio_dtr", "Criterio DTR (*difficult-to-treat resistance*)")):
+        filas.append([etiqueta,
+                      "%d (%s %%)" % (S[resumen], S[resumen + "_pct"]),
+                      S["t3_%s_declarado" % campo],
+                      S["t3_%s_no_clasificable" % campo],
+                      S["t3_%s_silencio" % campo],
+                      S["t3_%s_sin_texto" % campo]])
+    escribe("tabla_2_completitud",
+            ["Variable", "No asignable en el resumen",
+             "Declarado en el texto completo", "Declarado pero no clasificable",
+             "No declarado en el texto completo", "Texto completo no recuperado"],
+            filas,
+            "Tabla 3. Completitud del reporte en las variables de "
+            "estratificación, en el resumen y en el texto completo "
+            "(n = %d estudios recuperables, %d con texto obtenido)."
+            % (n, S["t3_con_texto"]),
+            "La segunda columna mide el RESUMEN indexado, que es lo que "
+            "alimenta las bases bibliográficas y las revisiones automatizadas. "
+            "Las cuatro siguientes miden el TEXTO COMPLETO, se excluyen entre "
+            "sí y suman %d. «Declarado pero no clasificable» significa que el "
+            "artículo nombra la variable en términos que no permiten asignar "
+            "una categoría: «multirresistente» sin el antibiograma que decida "
+            "entre MDR, XDR y PDR. «Texto completo no recuperado» no es "
+            "silencio del estudio: de esos %d artículos no sabemos lo que "
+            "dicen. La columna del resumen se reproduce desde el anexo S4 "
+            "filtrando en_corpus_actual = sí; las del texto completo, desde la "
+            "extracción adjudicada (anexo S14)."
+            % (n, S["t3_resistance_class_sin_texto"]))
 
     # ---- Tabla 3: sesgo de recuperacion ------------------------------------
     con, sin_ = extr & pdfs, extr - pdfs
@@ -298,25 +316,45 @@ def main():
     # son los criterios de elegibilidad del propio articulo (§2.2), que hasta
     # ahora no se aplicaban a este cruce: sin ellos el embudo paraba en 3.
     if oc.exists():
-        filas = [[x["filtro"][:1].upper() + x["filtro"][1:], x["quedan"]]
-                 for x in O["embudo"]]
-        escribe("tabla_6_embudo", ["Requisito acumulado", "Brazos que quedan"],
+        # DOS EMBUDOS, DOS PREGUNTAS. El de la izquierda incluye el diseño
+        # comparativo y responde a «¿había un contraste utilizable?». El de la
+        # derecha lo omite --agrupar proporciones no exige diseño comparativo--
+        # y responde a «¿había proporciones agrupables?». Presentar solo el
+        # primero hacía pasar por imposibilidad aritmética lo que es una
+        # decisión clínica y estadística.
+        prop = {x["filtro"]: x for x in S["embudo_proporcion"]}
+        filas = []
+        for x in O["embudo"]:
+            f = x["filtro"]
+            pr = prop.get(f)
+            filas.append([f[:1].upper() + f[1:], x["quedan"],
+                          "%d (%d estudios)" % (pr["brazos"], pr["estudios"])
+                          if pr else "no se aplica"])
+        escribe("tabla_6_embudo",
+                ["Requisito acumulado", "Efecto comparativo: brazos que quedan",
+                 "Proporción descriptiva: brazos que quedan"],
                 filas,
                 "Tabla 6. Brazos que sobreviven a cada requisito de una "
                 "proporción agrupada de éxito clínico (n = %d brazos "
                 "extraídos)." % O["brazos"],
                 "Cada fila aplica el requisito de esa fila Y todos los "
-                "anteriores. Los cuatro primeros son aritméticos. Los dos "
-                "siguientes son los criterios de elegibilidad que la sección "
-                "2.2 declara: el desenlace tiene que poder atribuirse a "
+                "anteriores. **Las dos últimas columnas responden a preguntas "
+                "distintas.** La primera exige además diseño comparativo y "
+                "responde a si el corpus sostiene un efecto comparativo; la "
+                "segunda omite ese requisito, porque agrupar proporciones no lo "
+                "exige, y responde a si sostiene una proporción descriptiva. "
+                "Los criterios de elegibilidad de la sección 2.2 son los dos "
+                "penúltimos: el desenlace tiene que poder atribuirse a "
                 "*P. aeruginosa* --la extracción anota cuándo el artículo no "
                 "separa los patógenos-- y la administración tiene que ser "
                 "terapéutica, no profiláctica. El último se lee en el artículo "
                 "y no en una casilla: PhagoBurn reporta el tiempo hasta una "
                 "reducción sostenida de carga bacteriana, no una proporción. "
-                "El resultado es que **ningún brazo del corpus** reúne a la vez "
-                "las condiciones aritméticas y los criterios de elegibilidad de "
-                "esta revisión.")
+                "Ningún brazo reúne los siete requisitos; %d brazos de %d "
+                "estudios reúnen los seis de la proporción descriptiva, y %d de "
+                "esos %d tienen un denominador de un solo paciente."
+                % (S["brazos_agrupables"], S["estudios_agrupables"],
+                   S["brazos_agrupables_n1"], S["brazos_agrupables"]))
 
     print("escritas en %s" % OUT)
     return 0
