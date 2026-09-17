@@ -40,7 +40,7 @@ clo-author/
 ├── scripts/                el canal (Python)
 ├── quality_reports/        decisiones, planes, escalares, auditorías, instantaneas/
 ├── templates/              registro de decisión, mapa de afirmaciones, log de sesión
-└── verificables revisión sistemática/   S0–S16 + guía + ambos manuscritos
+└── verificables revisión sistemática/   S0–S18 + guía + ambos manuscritos
 ```
 
 `quality_reports/instantaneas/` guarda fotos de estados pasados. **Ningún script del
@@ -105,13 +105,12 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
 | Texto completo | 71 de 95 (74,7 %). El hueco está sesgado: retiene el 54,5 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **INCOMPLETO desde el 2026-09-16**: 15 comparativos, 12 evaluables (3 RoB 2, 9 ROBINS-I), 3 sin texto. **82 de 90 juicios**; faltan los 8 de EST-004, que entró al cambiar la regla de diseño. El manuscrito lleva aviso de PENDIENTE y PRISMA 11/18 vuelven a PARCIAL/NO CUMPLE |
+| Riesgo de sesgo | **emitido y completo**: 15 comparativos, 12 evaluables (3 RoB 2, 9 ROBINS-I), 3 sin texto. **90 de 90 juicios**, a nivel de dominio, por consenso y **sin kappa**. La frase de apoyo de cada juicio viaja en S18 |
 | Manuscrito | maestro 7 514 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
-| Anexos | **S0–S16 (17 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
+| Anexos | **S0–S18 (19 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
 
-**Lo que falta, y es de los autores:** los 8 juicios de riesgo de sesgo de EST-004
-(`FIRMAR_riesgo_de_sesgo_EST-004.xlsx`), que bloquean el envío; los dos ORCID, el grado académico de ambos, el
+**Lo que falta, y es de los autores:** los dos ORCID, el grado académico de ambos, el
 correo de N. Trelles (un marcador en `manuscrito_JSR_final.md:11`), la aprobación ICMJE
 escrita de N.T. sobre la versión final, los dos formularios obligatorios de la revista,
 y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).

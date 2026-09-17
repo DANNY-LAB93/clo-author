@@ -8,7 +8,7 @@ tabla `conciliacion_estudio_brazo.csv`, no de los escalares.
 | Diseños comparativos, Tabla 2 | 11 | estudios | de los 95 recuperables, clasificados por el diseño **que declara el resumen**; NO incluye cohortes |
 | Estudios con grupo de comparación, Resultados | 14 | estudios | del corpus vivo, por el diseño **adjudicado sobre el artículo**; SÍ incluye cohortes. Regla del canal: manda el PRIMER brazo |
 | ídem, si cuenta **cualquier** brazo comparativo | 15 | estudios | la diferencia es EST-004, con un brazo serie de casos y otro cohorte prospectiva. **Decisión abierta** |
-| Comparativos evaluables, Tabla 5 | 11 | estudios | los 14 anteriores **que tienen texto completo** |
+| Comparativos evaluables, Tabla 5 | 12 | estudios | los 14 anteriores **que tienen texto completo** |
 | Primer filtro de la Tabla 6 | 18 | **brazos** | brazos de esos estudios comparativos; un estudio aporta más de un brazo |
 | Filas de brazo comparadas | 130 | **filas** | brazos presentes en los DOS cuadernos (A tenía 132, B tenía 130), **incluidos los de estudios excluidos después** |
 | Filas adjudicadas en total | 132 | **filas** | el cuaderno adjudicado entero; 29 pertenecen a estudios excluidos más tarde, y 132 − 29 = 103 |
@@ -36,5 +36,5 @@ tabla `conciliacion_estudio_brazo.csv`, no de los escalares.
 **EST-004.** La regla que el canal usa para asignar un diseño a un estudio con
 brazos de diseño distinto es «manda el primer brazo», y es arbitraria. Con esa
 regla hay 14 estudios con grupo de comparación; contando cualquier brazo
-comparativo hay 15, y el evaluable pasaría de 11 a 12, porque ese estudio tiene
+comparativo hay 15, y el evaluable pasaría de 12 a 13, porque ese estudio tiene
 texto completo. Es una decisión de los autores y está abierta.

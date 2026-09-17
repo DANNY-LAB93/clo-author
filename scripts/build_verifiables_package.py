@@ -432,6 +432,36 @@ def v6_auditoria(S):
 
 
 
+def v18_evidencia_sesgo(S):
+    """S18: la frase del articulo en que se apoya cada juicio de riesgo de sesgo.
+
+    La Tabla 5 da los 90 juicios, pero un juicio sin la cita que lo sostiene no
+    es comprobable: un arbitro no puede discrepar de un «riesgo grave» si no ve
+    en que parte del articulo se leyo. El fichero existia desde el principio en
+    revision_sistematica/riesgo_sesgo/ y no viajaba; la auditoria del
+    2026-09-16 lo senalo.
+    """
+    origen = RS / "riesgo_sesgo" / "evidencia_por_dominio.csv"
+    if not origen.exists():
+        print("  AVISO: no hay evidencia_por_dominio.csv")
+        return
+    evaluados = {r["study_id"] for r in
+                 leer_bom(RS / "riesgo_sesgo" / "riesgo_sesgo_comparativos_adjudicado.csv")}
+    filas = [r for r in leer_bom(origen) if r["study_id"] in evaluados]
+    destino = OUT / "S18_evidencia_por_dominio.csv"
+    with open(destino, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(filas[0].keys()))
+        w.writeheader()
+        w.writerows(filas)
+    print("  S18 %d frases de apoyo, de los %d estudios evaluados"
+          % (len(filas), len(evaluados)))
+
+
+def leer_bom(p):
+    with open(p, encoding="utf-8-sig", newline="") as fh:
+        return list(csv.DictReader(fh))
+
+
 def v17_tabla6(S):
     """S17: la Tabla 6 desglosada brazo a brazo.
 
@@ -679,6 +709,7 @@ def main():
     v9_idioma(S)
     v16_exclusiones(S)
     v17_tabla6(S)
+    v18_evidencia_sesgo(S)
 
     # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
     # filas -- el corpus anterior a la enmienda de idioma -- mientras la tabla

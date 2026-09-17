@@ -13,9 +13,9 @@
     "RoB 2": 3
   },
   "celdas_totales": 90,
-  "celdas_con_juicio": 82,
-  "celdas_pendientes": 8,
-  "completa": false,
+  "celdas_con_juicio": 90,
+  "celdas_pendientes": 0,
+  "completa": true,
   "dominios": {
     "RoB 2": [
       "Proceso de aleatorización",

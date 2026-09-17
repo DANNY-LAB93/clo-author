@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 262; texto principal 7 379.
+**Recuento de palabras:** resumen 262; texto principal 7 514.
 **Tablas:** 6. **Figuras:** 2. **Material suplementario:** 16 anexos (S0–S15) y su guía.
 
 ---
@@ -110,7 +110,7 @@ La evaluación se emite **a nivel de dominio**: un juicio por dominio con las ca
 
 **GRADE no se aplica**, y el motivo no depende de lo anterior: califica la certeza de una estimación agrupada y esta revisión no presenta ninguna. La sección 3.5 muestra que solo 2 de los 103 brazos reúnen los requisitos mínimos para agregar, y ninguno los conserva tras aplicar los criterios de elegibilidad. Calificar la certeza de un resultado que no existe sería un trámite, no una evaluación [@Guyatt2011_grade].
 
-**La evaluación está en curso: faltan 8 de los 90 juicios.** Mientras falte alguno, esta revisión no reporta riesgo de sesgo, y ningún indicador derivado del diseño lo sustituye.
+La sección 3.7 reporta los 90 juicios y la tabla de dominios.
 
 ### 2.8 Métodos de síntesis y reproducibilidad
 
@@ -223,6 +223,12 @@ Estas definiciones proceden de los textos completos ya recuperados, no de la pre
 A ello se añade el sesgo de recuperación documentado en la sección 3.2, que en el estado actual excluiría de la síntesis a dos tercios de los estudios comparativos. **Por estas razones no se presenta ninguna proporción agrupada de eficacia**, y se sostiene que las publicadas en revisiones previas descansan sobre supuestos que estos datos no verifican.
 
 ---
+
+### 3.7 Riesgo de sesgo de los estudios comparativos
+
+De los 3 estudios evaluados con RoB 2, el juicio global es de bajo riesgo en 2 y de algunas preocupaciones en 1. De los 9 estudios evaluados con ROBINS-I, el juicio global es de riesgo moderado en 2 y de riesgo grave en 7. El dominio que más juicios desfavorables concentra en ROBINS-I —alto riesgo en RoB 2; grave o crítico en ROBINS-I— es «sesgo por confusión», con 7 de 9. Los 90 juicios se emitieron en una evaluación única acordada entre los dos autores; al no haber dos lecturas independientes, no se reporta concordancia entre revisores.
+
+**Tabla 7.** Riesgo de sesgo por dominio de los 12 estudios comparativos evaluables. RoB 2 en los ensayos aleatorizados (cinco dominios) y ROBINS-I en los no aleatorizados y las cohortes (siete). «n. a.» marca los dominios que el instrumento no contempla, no un juicio que falte.
 
 ## 4. Discusión
 
