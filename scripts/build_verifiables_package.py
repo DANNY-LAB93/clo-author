@@ -433,6 +433,43 @@ def v6_auditoria(S):
 
 
 def v18_evidencia_sesgo(S):
+    """S18: un juicio por fila, con la frase FIRMADA en que se apoya.
+
+    LO QUE ENVIABA ANTES, Y POR QUE ESTABA MAL. Este anexo copiaba
+    `evidencia_por_dominio.csv`: 229 frases del articulo agrupadas por cubo
+    tematico (CONFUSION, MEDICION, y tambien CONFLICTOS y CASO, que no son
+    dominios de ninguna herramienta). Era una cosecha mecanica para BUSCAR,
+    no la justificacion de un juicio. Un arbitro que quisiera discrepar del
+    juicio D4 de EST-070 encontraba un monton de frases del articulo y ninguna
+    razon. Ademas D1 y D2 de ROBINS-I comparten cubo, de modo que ni siquiera
+    era atribuible por dominio.
+
+    Lo que envia ahora: `pendiente1_juicios.csv`, una fila por juicio, con la
+    frase que los dos revisores escribieron en la columna «¿En que frase te
+    apoyaste?» del cuaderno de consenso. 79 de los 90 la tienen; los 11 sin
+    ella son juicios globales y llevan [DATO FALTANTE].
+    """
+    origen = ROOT / "quality_reports" / "pendiente1_juicios.csv"
+    if origen.exists():
+        destino = OUT / "S18_cada_juicio_con_su_frase.csv"
+        shutil.copy2(origen, destino)
+        filas = leer_bom(destino)
+        sin = sum(1 for r in filas if r["cita_que_lo_respalda"].startswith("[DATO"))
+        print("  S18 %d juicios, %d con frase firmada, %d sin ella (todos globales)"
+              % (len(filas), len(filas) - sin, sin))
+        # la cosecha tematica se conserva aparte: sirve para buscar, no para
+        # respaldar, y decirlo es parte del anexo
+        viejo = OUT / "S18_evidencia_por_dominio.csv"
+        if viejo.exists():
+            viejo.rename(OUT / "S18b_frases_cosechadas_por_tema.csv")
+        for q in OUT.glob("S18_evidencia_por_dominio.xlsx"):
+            q.unlink()
+        return
+    print("  AVISO: no hay pendiente1_juicios.csv; corre scripts/audita_pendientes.py")
+    _v18_antiguo(S)
+
+
+def _v18_antiguo(S):
     """S18: la frase del articulo en que se apoya cada juicio de riesgo de sesgo.
 
     La Tabla 5 da los 90 juicios, pero un juicio sin la cita que lo sostiene no

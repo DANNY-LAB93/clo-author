@@ -83,7 +83,7 @@ AFIRMACIONES = [
     # que decia lo contrario tres palabras despues.
     (ES, "Las {extraccion_cerrados_por_regla} restantes se habían cerrado antes"),
     (EN, "The remaining {extraccion_cerrados_por_regla} had been closed earlier"),
-    (JSR, "hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} adjudicados"),
+    (JSR, "Hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados. El registro de adjudicación anota un único responsable en {conflictos_resueltos_por_uno} de las {extraccion_desacuerdos} filas y a los dos revisores en {conflictos_resueltos_por_los_dos}"),
     (JSR, "Los {extraccion_cerrados_por_regla} restantes se cerraron por una regla mecánica"),
     (ES, "extracción de datos independiente ({extraccion_estudios_r2} de los {extraccion_estudios_r1} estudios)"),
     (EN, "{extraccion_conflictos_firmados} of {extraccion_desacuerdos} are adjudicated"),
@@ -179,7 +179,7 @@ AFIRMACIONES = [
     (JSR, "Quedan {estudios} estudios, {estudios_extraibles} con publicación recuperable y {texto_completo_obtenido} con texto obtenido ({texto_completo_pct} %)"),
     (JSR, "De esos {estudios_extraibles}, el {casos_unicos_pct} % son reportes de caso único y el {estudios_comparativos_pct} % tiene diseño comparativo"),
     (JSR, "no puede asignarse desde el resumen en el {sin_clase_util_pct} %. En {definicion_sin_definicion_operativa} de {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
-    (JSR, "con {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados por consenso"),
+    (JSR, "con {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados"),
     # ---- La procedencia geografica venia de un corpus anterior: decia Rusia 7,
     # Polonia y Georgia 6, y "no consta en 76", cuando son 3, 5 y 58. Nombraba
     # ademas a Iran, que no aparece en ningun estudio del corpus vigente. Las
@@ -202,9 +202,27 @@ AFIRMACIONES = [
     # 3x5 + 9x7 = 78, no 90. Los 12 que faltaban son los juicios globales, uno
     # por estudio. La cifra era correcta y la etiqueta no, que es la manera mas
     # facil de que un recuento correcto parezca inventado.
-    (JSR, "La Tabla 5 reúne **{celdas_tabla5} juicios**, y no todos son de dominio: {sesgo_instrumento_RoB2} estudios × {dominios_rob2} dominios de RoB 2 dan {juicios_rob2}, y {sesgo_instrumento_ROBINSI} × {dominios_robins} dominios de ROBINS-I dan {juicios_robins}, de modo que hay **{juicios_de_dominio} juicios de dominio**; los **{juicios_globales}** restantes son los juicios globales"),
+    (JSR, "La Tabla 5 reúne **{celdas_tabla5} juicios**, y no todos son de dominio: {sesgo_instrumento_RoB2} estudios × {dominios_rob2} dominios de RoB 2 dan {juicios_rob2}, y {sesgo_instrumento_ROBINSI} × {dominios_robins} dominios de ROBINS-I dan {juicios_robins}, de modo que hay **{juicios_de_dominio} celdas de dominio**; las **{juicios_globales}** restantes son los juicios globales"),
+    (JSR, "De las {juicios_de_dominio} celdas de dominio, **{juicios_con_veredicto} llevan un veredicto** y **{juicios_sin_informacion} declaran que no hay información suficiente para juzgar**"),
+    # LA REGLA DEL JUICIO GLOBAL. Decia 11 de 12 y son 9: ROBINS-I reserva
+    # «sin informacion» cuando un dominio lo es y ninguno es grave, de modo
+    # que EST-063 y EST-116 tampoco heredan su peor dominio.
+    (JSR, "En {globales_heredan_peor} de los {sesgo_evaluables} estudios el juicio global se corresponde con sus dominios"),
+    (JSR, "Se cumple en {globales_heredan_peor} de los {sesgo_evaluables} estudios evaluados"),
     # ---- lo que el articulo dice cuando el resumen calla
-    (JSR, "De los **{t3_con_texto}** estudios cuyo texto se obtuvo, **{t3_resistance_class_declarado}** declaran una categoría de resistencia clasificable (**{t3_clase_declarada_pct} %**), **{t3_resistance_class_no_clasificable}** la mencionan"),
+    (JSR, "De los **{t3_con_texto}** estudios cuyo texto se obtuvo, **{t3_resistance_class_declarado}** declaran una categoría de resistencia asignable (**{t3_clase_declarada_pct} %**) —**{t3_clase_mdr_xdr_pdr}** en MDR, XDR o PDR y **{t3_clase_bajo_umbral}** por debajo del umbral de multirresistencia—, **{t3_resistance_class_no_clasificable}** la mencionan"),
+    # ---- lo que acompana a cada juicio: cita, nota o nada
+    (JSR, "De los {celdas_tabla5} juicios, **{citas_literales} se apoyan en una cita literal del artículo**, **{notas_del_revisor} en una nota metodológica escrita por los revisores** —una razón, no una cita— y **{juicios_sin_frase} no registran apoyo alguno**"),
+    # ---- el solapamiento, con el examen sin terminar declarado
+    (JSR, "contiene **{pacientes_duplicados_confirmados} pacientes descritos en más de un estudio**, repartidos entre {estudios_con_paciente_compartido} de los {estudios}"),
+    (JSR, "produjo {pares_solapamiento_examinados} pares candidatos, de los que {pares_solapamiento_confirmados} se confirmaron leyendo, 1 se descartó, 1 quedó sin resolver y **{pares_solapamiento_sin_leer} siguen sin leer**"),
+    # ---- el marco del recribado: titulo MAS resumen
+    (JSR, "muestra aleatoria de {validacion_muestra} de los {validacion_marco} registros excluidos en el cribado: {validacion_marco_titulo} en la etapa de título y {validacion_marco_resumen} en la de resumen"),
+    (JSR, "El recribado ciego de {validacion_muestra} de los {validacion_marco} registros excluidos en título y resumen"),
+    # ---- cuantos brazos aporta cada comparativo
+    (JSR, "De los {sesgo_comparativos_adjudicados} estudios clasificados como comparativos, {comparativos_un_brazo} aportaron un único brazo a la extracción y uno aportó {brazos_del_comparativo_mayor}"),
+    # ---- reportes y series entre los leidos
+    (JSR, "Los reportes y las series de casos —{casos_y_series_leidos} de los {texto_completo_obtenido} estudios leídos— no se evaluaron con instrumento formal"),
     (JSR, "derivable en {t3_dtr_status_declarado} de los {t3_con_texto} artículos leídos"),
     # ---- el embudo de la proporcion descriptiva, sin el filtro de diseno
     (JSR, "En los {desenlace_brazos} brazos extraídos del corpus **no hay un solo brazo comparador**"),
@@ -247,7 +265,7 @@ AFIRMACIONES = [
     (JSR, "{estudios} studies remain, {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),
     (JSR, "Of those {estudios_extraibles}, {casos_unicos_pct} % are single case reports and {estudios_comparativos_pct} % have a comparative design", 1, True),
     (JSR, "cannot be assigned from the abstract in {sin_clase_util_pct} %. In {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
-    (JSR, "with {extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements adjudicated by consensus", 1, True),
+    (JSR, "with {extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements adjudicated", 1, True),
 ]
 
 

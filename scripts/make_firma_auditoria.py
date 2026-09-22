@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Los cuatro hallazgos de la auditoría del 2026-09-16 que hay que firmar.
+"""Los seis hallazgos de la auditoría del 2026-09-16 que hay que firmar.
 
-POR QUE UN CUADERNO. Los cuatro tocan datos ya firmados --la evaluación de
+POR QUE UN CUADERNO. Los seis tocan datos ya firmados --la evaluación de
 riesgo de sesgo y la extracción adjudicada-- y ninguno lo puede corregir un
 script: son juicios de los autores. Aquí va cada uno con la prueba literal
 delante, la pregunta concreta y la casilla para la respuesta.
 
-LOS CUATRO
+LOS SEIS
 
   1. EST-021. El juicio global es «Bajo riesgo de sesgo» y su dominio 2 es
      «Algunas preocupaciones». RoB 2 no permite esa combinación: bajo riesgo
@@ -23,6 +23,10 @@ LOS CUATRO
      «adverse», ni «side effect», ni «tolerability». Además el artículo dice
      cuatro pacientes y cinco ciclos de tratamiento: puede que el 5 sean los
      ciclos y no los eventos.
+  5. EST-063 es un protocolo de BMJ Open --71 «will be», sin resultados-- y los
+     otros cuatro protocolos del corpus se excluyeron con el codigo PRO.
+  6. Siete de los quince estudios «con grupo de comparacion» no tienen ninguno,
+     segun vuestras propias notas del dominio 1.
 
 SALIDA
     ~/Escritorio/FIRMAR_auditoria_2026-09-16.xlsx
@@ -166,6 +170,86 @@ HALLAZGOS = [
         efecto=("La Tabla 4 declara hoy «cinco eventos adversos sobre cuatro» como error de "
                 "reporte. Según lo que decidáis, esa frase cambia o desaparece."),
     ),
+    dict(
+        clave="EST-063-PROTOCOLO",
+        titulo="EST-063 es un protocolo, y los protocolos se excluyeron",
+        que_hay=[
+            "EST-063: Singh J et al. «Single-arm, open-labelled, safety and tolerability of",
+            "intrabronchial and nebulised bacteriophage treatment in children with cystic",
+            "fibrosis and Pseudomonas aeruginosa». BMJ Open Respir Res 2023.",
+            "",
+            "Su estructura es la de un protocolo de BMJ Open:",
+            "  INTRODUCTION / METHODS AND ANALYSIS / Ethics and dissemination",
+            "  «This trial is designed as a small, pilot, single-arm, open-label...»",
+            "  «Results will be transcribed onto a data collection sheet...»",
+            "",
+            "El criterio que vosotros mismos usasteis para los cuatro protocolos que SÍ",
+            "excluisteis fue contar «will be»:",
+            "  EST-035  99 veces  -> excluido PRO",
+            "  EST-052 223 veces  -> excluido PRO",
+            "  EST-122  80 veces  -> excluido PRO",
+            "  EST-083       —     -> excluido PRO",
+            "  EST-063  71 veces  -> EN EL CORPUS",
+            "",
+            "Y vuestra propia nota de riesgo de sesgo, dominio 5, dice:",
+            "  «Es un protocolo; aún no hay resultados.»",
+        ],
+        problema=(
+            "Un protocolo no tiene desenlaces, de modo que se le está evaluando el sesgo "
+            "por datos faltantes y por medición de desenlaces que no existen. Si se aplica "
+            "el mismo criterio que a los otros cuatro, EST-063 se excluye con el código "
+            "PRO."),
+        pregunta="¿Se excluye EST-063 con el código PRO?",
+        opciones=[
+            "Sí: se excluye como protocolo; PRO pasa de 4 a 5 exclusiones",
+            "No: se mantiene y se explica en Métodos por qué este protocolo sí entra",
+            "Otra cosa: descríbela en la casilla de al lado",
+        ],
+        efecto=("Si se excluye, se mueven: corpus 137 -> 136; recuperables 95 -> 94; con "
+                "texto 71 -> 70; brazos 103 -> 102; comparativos 15 -> 14; evaluables "
+                "12 -> 11; juicios 90 -> 82; exclusiones 46 -> 47. Es la corrección de "
+                "mayor alcance de esta auditoría."),
+    ),
+    dict(
+        clave="COMPARATIVOS-SIN-CONTROL",
+        titulo="Siete de los quince «comparativos» no tienen grupo de comparación",
+        que_hay=[
+            "Vuestras propias notas del dominio 1, firmadas, dicen:",
+            "",
+            "  EST-004  «there was no control group for comparison»",
+            "  EST-063  «Sin grupo comparador (diseño de un solo brazo).»",
+            "  EST-070  «Sin grupo control.»",
+            "  EST-096  «Sin grupo control. Imposible separar el efecto del fago.»",
+            "  EST-116  «No se evalúa un efecto de tratamiento comparativo.»",
+            "  EST-146  «Sin grupo control + antibióticos concomitantes frecuentes.»",
+            "  EST-152  «Sin grupo control. No se puede separar el efecto del fago.»",
+            "",
+            "Con grupo de comparación real, cinco:",
+            "  EST-008  BX004-A frente a placebo",
+            "  EST-021  PP1131 frente a cuidado estándar",
+            "  EST-132  terapia convencional frente a convencional + fago",
+            "  EST-055  grupo IV recibe furazidina y cefixima SIN bacteriófago",
+            "  EST-108  compara con y sin antibiótico concomitante, dentro de los",
+            "           tratados con fago; no compara fago contra no fago",
+            "",
+            "Sin texto completo, tres: EST-029, EST-157, EST-165. No se sabe.",
+        ],
+        problema=(
+            "El manuscrito dice «15 estudios con grupo de comparación». La etiqueta sale "
+            "del diseño adjudicado —una cohorte cuenta como comparativa— y vuestras notas "
+            "la contradicen en 7 de los 12 que leísteis. La clasificación sirve para "
+            "escoger el instrumento de riesgo de sesgo; no para afirmar que hay un "
+            "comparador."),
+        pregunta="¿Cómo se nombra esto en el manuscrito?",
+        opciones=[
+            "Mantener los 15 como «clasificados por diseño» y añadir la cifra de los que tienen comparador real",
+            "Cambiar la frase a «15 estudios con diseño comparativo, de los cuales 5 con grupo de comparación»",
+            "Otra cosa: descríbela en la casilla de al lado",
+        ],
+        efecto=("No mueve ninguna cifra del embudo ni del riesgo de sesgo. Cambia lo que "
+                "el manuscrito AFIRMA sobre esos 15, que hoy es más de lo que las notas "
+                "sostienen."),
+    ),
 ]
 
 
@@ -186,7 +270,7 @@ def main():
     h.title = "Empieza aqui"
     h.column_dimensions["A"].width = 106
     texto = [
-        ("Cuatro cosas que encontró la auditoría y que no puede decidir un script", True),
+        ("Seis cosas que encontró la auditoría y que no puede decidir un script", True),
         ("", False),
         ("Ninguna de las cuatro es de estilo. Las cuatro tocan datos que ya firmasteis, y", False),
         ("las cuatro cambian algo de lo que el manuscrito dice. Por eso vienen aquí y no", False),
@@ -196,12 +280,14 @@ def main():
         ("  2. EST-003   la definición de éxito parece copiada de otro estudio", False),
         ("  3. EST-003 y EST-077   parece el mismo paciente en los dos", False),
         ("  4. EST-077   cinco eventos adversos que el artículo no menciona", False),
+        ("  5. EST-063   es un protocolo, y los protocolos se excluyeron", False),
+        ("  6. los 15    siete de ellos no tienen grupo de comparación", False),
         ("", False),
         ("Cada hoja trae la prueba literal, la pregunta y las opciones. Escoged una del", False),
         ("desplegable y, si hace falta, explicad en «por qué». Sin las dos firmas de la", False),
         ("última hoja no se ingiere nada.", False),
         ("", False),
-        ("Mientras estas cuatro sigan sin firmar, el manuscrito lleva un aviso de", True),
+        ("Mientras estas seis sigan sin firmar, el manuscrito lleva un aviso de", True),
         ("PENDIENTE en la sección de riesgo de sesgo y el sobre no se puede enviar.", True),
     ]
     for i, (t, b) in enumerate(texto, start=1):
@@ -267,7 +353,7 @@ def main():
     fi.column_dimensions["B"].width = 54
     fi.cell(row=1, column=1, value="Firma de los dos autores").font = negrita
     fi.cell(row=2, column=1,
-            value="Las cuatro decisiones son de los dos: se firman juntas o no se firma ninguna.")
+            value="Las seis decisiones son de los dos: se firman juntas o no se firma ninguna.")
     for i, k in enumerate(["Revisor 1 (nombre completo)",
                            "Revisor 2 (nombre completo)",
                            "Fecha (AAAA-MM-DD)",

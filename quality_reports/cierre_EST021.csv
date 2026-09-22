@@ -1,0 +1,12 @@
+﻿extremo,estado,evidencia
+Identificación,"Efficacy and tolerability of a cocktail of bacteriophages to treat burn wounds infected by Pseudomonas aeruginosa (PhagoBurn): a randomised, controlled, double-blind phase 1/2 trial.. The Lancet. Infectious diseases, 2019. record_id R49b7551b94",study_groups.csv; texto completo en texto_cache/EST-021.txt
+Informe asociado,R49b7551b94 (artículo). Los otros 2 informes del estudio son fichas de registro del mismo ensayo (NCT02116010).,study_groups.csv
+Diseño,Ensayo aleatorizado. El resumen lo declara RCT y la adjudicación sobre el artículo también.,pre_extraccion + extraccion_adjudicada
+Número de brazos en el ARTÍCULO,Dos: PP1131 y cuidado estándar.,«randomly assigned to receive phage therapy (n=13) or standard of care (n=14)»
+Número de brazos EXTRAÍDOS,Uno (A). El comparador no se extrajo.,extraccion_adjudicada.csv
+n_arm registrado,27 — INCORRECTO,"El 27 es el total del ensayo. El brazo de fagos es n=13; población de seguridad 13, mITT 12. «27 patients were recruited and randomly assigned to receive phage therapy (n=13) or standard of care (n=14)»"
+mortality_n registrado,0 — INCORRECTO,«One patient died in each treatment group after day 21». Hubo 1 muerte en el brazo de fagos.
+clinical_success_n / n_arm,6 / 27 — INCOHERENTE,"El 6 procede de «the most infected wound was successfully reduced by two quadrants or more in half of participants», 6 de 12 de la mITT del brazo de fagos. El denominador correcto es 12, no 27."
+adverse_event_n,3,"«three (23%) of 13 analysable participants had adverse events». El numerador es correcto; su denominador es 13, no 27."
+Estado de inclusión,"Incluido en el corpus vivo, con texto completo (sí), evaluado con la versión adaptada de RoB 2.",carpetas de texto completo
+Juicio de riesgo de sesgo,Dominios: 1=Bajo riesgo de sesgo; 2=Algunas preocupaciones; 3=Bajo riesgo de sesgo; 4=Bajo riesgo de sesgo; 5=Bajo riesgo de sesgo. GLOBAL: Bajo riesgo de sesgo — NO CONFIRMADO.,"RoB 2 (Sterne 2019): «Low risk of bias — the study is judged to be at low risk of bias for all domains». Con D2 en «Algunas preocupaciones», el global no puede ser bajo."

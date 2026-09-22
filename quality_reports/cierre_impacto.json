@@ -1,0 +1,54 @@
+{
+  "impacto": {
+    "hoy": {
+      "estudios_incluidos": 137,
+      "recuperables": 95,
+      "con_texto_completo": 71,
+      "brazos_extraidos": 103,
+      "comparativos": 15,
+      "evaluables": 12,
+      "juicios_totales": 90,
+      "juicios_de_dominio": 78,
+      "juicios_globales": 12,
+      "brazos_comparativos_tabla6": 18,
+      "estudios_tabla6_primer_filtro": 15,
+      "casos_y_series_de_los_leidos": 59,
+      "exclusiones_tras_texto_completo": 46
+    },
+    "si_se_excluye_EST_063": {
+      "estudios_incluidos": 136,
+      "recuperables": 94,
+      "con_texto_completo": 70,
+      "brazos_extraidos": 102,
+      "comparativos": 14,
+      "evaluables": 11,
+      "juicios_totales": 82,
+      "juicios_de_dominio": 71,
+      "juicios_globales": 11,
+      "brazos_comparativos_tabla6": 17,
+      "estudios_tabla6_primer_filtro": 14,
+      "casos_y_series_de_los_leidos": 59,
+      "exclusiones_tras_texto_completo": 47
+    },
+    "diferencia": {
+      "estudios_incluidos": -1,
+      "recuperables": -1,
+      "con_texto_completo": -1,
+      "brazos_extraidos": -1,
+      "comparativos": -1,
+      "evaluables": -1,
+      "juicios_totales": -8,
+      "juicios_de_dominio": -7,
+      "juicios_globales": -1,
+      "brazos_comparativos_tabla6": -1,
+      "estudios_tabla6_primer_filtro": -1,
+      "casos_y_series_de_los_leidos": 0,
+      "exclusiones_tras_texto_completo": 1
+    }
+  },
+  "tipos_de_frase": {
+    "cita literal del artículo": 33,
+    "sin fuente": 11,
+    "nota metodológica del revisor": 46
+  }
+}

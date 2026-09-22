@@ -1,0 +1,9 @@
+﻿filtro,estudios,brazos,no_evaluables,excluidos,motivos,quienes_sobreviven
+0. brazos extraídos,95,103,0,0,,los 103
+1. diseño comparativo,15,18,12,85,diseño «case report»: sin grupo de comparación (42); diseño «case series»: sin grupo de comparación (26); diseño «NA»: sin grupo de comparación (12); diseño «other»: sin grupo de comparación (5),18 brazos
+2. numerador válido,5,5,0,13,éxito clínico n=«NA» sobre N=«9» (1); éxito clínico n=«NA» sobre N=«19» (1); éxito clínico n=«NA» sobre N=«178» (1); éxito clínico n=«NA» sobre N=«10» (1),"EST-004 B, EST-021 A, EST-070 A, EST-132 A, EST-146 A"
+3. denominador válido,5,5,0,0,,"EST-004 B, EST-021 A, EST-070 A, EST-132 A, EST-146 A"
+4. definición operativa de éxito,2,2,0,3,el artículo no define qué contaba como éxito (3),"EST-021 A, EST-146 A"
+5. atribuible a P. aeruginosa,1,1,0,1,el numerador no es una proporción de P. aeruginosa (1),EST-021 A
+"6. terapéutica, no profiláctica",1,1,0,0,,EST-021 A
+7. proporción binaria,0,0,0,1,"el desenlace principal es un tiempo, no una proporción (1)",ninguno

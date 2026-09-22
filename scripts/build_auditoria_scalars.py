@@ -119,6 +119,118 @@ def main():
         S["embudo_prop_" + k] = paso["brazos"]
         S["embudo_prop_%s_estudios" % k] = paso["estudios"]
 
+    # ---- LAS CATORCE CIFRAS DE LA AUDITORIA DE CIERRE (2026-09-20)
+    import re as _re
+    import unicodedata as _ud
+
+    # 1 y 2. juicios: los que heredan el peor dominio, y los que no son juicio
+    ORDEN = {"robins": ["bajo riesgo de sesgo", "riesgo moderado", "riesgo grave",
+                        "riesgo critico"],
+             "rob2": ["bajo riesgo de sesgo", "algunas preocupaciones",
+                      "alto riesgo de sesgo"]}
+
+    def _k(v):
+        v = _ud.normalize("NFKD", (v or "").lower())
+        return "".join(c for c in v if not _ud.combining(c)).strip()
+
+    por_est = collections.defaultdict(dict)
+    for r in rob:
+        por_est[(r["study_id"], r["instrumento"])][r["item"]] = r["valor"]
+    heredan, discord = 0, []
+    for (e, i), d in por_est.items():
+        doms = {x: v for x, v in d.items() if x != "GLOBAL"}
+        sininfo = [x for x, v in doms.items() if "sin informacion" in _k(v)]
+        graves = [x for x, v in doms.items() if _k(v) in ("riesgo grave", "riesgo critico")]
+        esperado = ("sin informacion" if (sininfo and not graves) else
+                    max((_k(v) for v in doms.values() if _k(v) in ORDEN[i]),
+                        key=lambda x: ORDEN[i].index(x), default=""))
+        if _k(d["GLOBAL"]) == esperado:
+            heredan += 1
+        else:
+            discord.append(e)
+    S["globales_heredan_peor"] = heredan
+    S["globales_discordantes"] = len(discord)
+    S["globales_discordantes_ids"] = sorted(discord)
+    S["juicios_sin_informacion"] = sum(
+        1 for r in rob if r["item"] != "GLOBAL" and "sin informacion" in _k(r["valor"]))
+    S["juicios_con_veredicto"] = S["juicios_de_dominio"] - S["juicios_sin_informacion"]
+
+    # 3. reportes y series entre los estudios leídos
+    pdfs = {q.stem for q in (RS / "textos_completos" / "pdf").iterdir()
+            if q.suffix.lower() in (".pdf", ".docx")}
+    _web = RS / "textos_completos" / "texto_html"
+    if _web.exists():
+        pdfs |= {q.stem for q in _web.glob("*.txt")}
+    COMPARA = {"RCT", "non-randomised trial", "retrospective cohort",
+               "prospective cohort"}
+    dis = collections.defaultdict(set)
+    for r in adj:
+        if r["study_design"] and r["study_design"] != "NA":
+            dis[r["study_id"]].add(r["study_design"])
+    leidos = {e for e in dis if e in pdfs}
+    S["comparativos_con_texto"] = len([e for e in leidos if dis[e] & COMPARA])
+    S["casos_y_series_leidos"] = len(leidos) - S["comparativos_con_texto"]
+
+    # 4. la clase de resistencia, separando lo que está por debajo del umbral
+    clase = collections.defaultdict(set)
+    for r in adj:
+        if r["study_id"] in pdfs and r["resistance_class"]:
+            clase[r["study_id"]].add(r["resistance_class"])
+    S["t3_clase_mdr_xdr_pdr"] = sum(
+        1 for v in clase.values() if v & {"MDR", "XDR", "PDR"})
+    S["t3_clase_bajo_umbral"] = sum(
+        1 for v in clase.values()
+        if "below-MDR-threshold" in v and not (v & {"MDR", "XDR", "PDR"}))
+    S["brazos_bajo_umbral"] = sum(
+        1 for r in adj if r["resistance_class"] == "below-MDR-threshold")
+
+    # 5. el marco del recribado, separado por etapa
+    S["validacion_marco_titulo"] = S["excluidos_titulo"]
+    S["validacion_marco_resumen"] = S["excluidos_resumen"]
+
+    # 6. cuántos brazos aporta cada comparativo
+    comp = sorted(e for e, v in dis.items() if v & COMPARA)
+    aporta = collections.Counter()
+    for r in adj:
+        if r["study_id"] in comp and r["study_design"] in COMPARA:
+            aporta[r["study_id"]] += 1
+    S["comparativos_un_brazo"] = sum(1 for v in aporta.values() if v == 1)
+    S["comparativos_varios_brazos"] = sum(1 for v in aporta.values() if v > 1)
+    S["brazos_del_comparativo_mayor"] = max(aporta.values()) if aporta else 0
+
+    # 12. las tres clases de apoyo de los juicios
+    juicios = leer(QR / "pendiente1_juicios.csv", enc="utf-8-sig")
+    S["citas_literales"] = sum(
+        1 for r in juicios if r["cita_que_lo_respalda"] != "[DATO FALTANTE]"
+        and _re.search(r"[\"“”]", r["cita_que_lo_respalda"]))
+    S["juicios_sin_frase"] = sum(
+        1 for r in juicios if r["cita_que_lo_respalda"] == "[DATO FALTANTE]")
+    S["notas_del_revisor"] = (len(juicios) - S["citas_literales"]
+                              - S["juicios_sin_frase"])
+
+    # 8. quién resolvió cada desacuerdo de extracción
+    confl = leer(RS / "extraccion" / "extraction_conflicts.csv")
+    S["conflictos_resueltos_por_los_dos"] = sum(
+        1 for r in confl if " Y " in (r["resuelto_por"] or "").upper())
+    S["conflictos_resueltos_por_uno"] = sum(
+        1 for r in confl if (r["resuelto_por"] or "").upper().strip()
+        in ("DANNY VALDIVIEZO", "NATALY TRELLES"))
+
+    # 10 y 13. el solapamiento, medido
+    sol = leer(QR / "pendiente2_solapamiento.csv", enc="utf-8-sig")
+    S["pares_solapamiento_examinados"] = len(sol)
+    S["pares_solapamiento_confirmados"] = sum(
+        1 for r in sol if r["veredicto"].startswith("SOLAPAMIENTO"))
+    S["pares_solapamiento_sin_leer"] = sum(
+        1 for r in sol if r["veredicto"].startswith("SIN LEER"))
+    conf = [r for r in sol if r["veredicto"].startswith("SOLAPAMIENTO")]
+    S["estudios_con_paciente_compartido"] = len(
+        {x for r in conf for x in (r["estudio_1"], r["estudio_2"])})
+    # El del Berlin Heart aparece en DOS pares y es un solo paciente: se cuenta
+    # por la clave estable, no por la fila.
+    S["pacientes_duplicados_confirmados"] = len(
+        {r["clave_del_paciente"] for r in conf})
+
     # ---- de cuántas fuentes depende cada estudio incluido
     fuentes = collections.defaultdict(set)
     for g in grupos:

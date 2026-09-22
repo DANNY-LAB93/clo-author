@@ -122,6 +122,10 @@ def textos(S, O, R):
         sin_def=D["sin_definicion_operativa"],
         firmados=S["extraccion_conflictos_firmados"],
         desacuerdos=S["extraccion_desacuerdos"],
+        # los brazos que si reunen los seis requisitos que una proporcion
+        # descriptiva exige, y cuantos de ellos son de un solo paciente
+        agrupables=S["brazos_agrupables"],
+        n1=S["brazos_agrupables_n1"],
         sesgo_es=sesgo_es,
         sesgo_en=sesgo_en,
     )
@@ -160,7 +164,7 @@ def textos(S, O, R):
          "—bases bibliográficas y registros de ensayos—, con ventana "
          "{anio_min}-{anio_max} donde la interfaz la admite. La unidad de inclusión fue el estudio, no el informe. Extracción "
          "por duplicado e independiente, con {firmados} de {desacuerdos} "
-         "desacuerdos adjudicados por consenso. {sesgo_es}"),
+         "desacuerdos adjudicados. {sesgo_es}"),
         ("Resultados",
          "De {registros} registros quedaron {unicos} informes únicos; {informes} "
          "informes formaron {evaluados} estudios evaluados para elegibilidad, de "
@@ -196,13 +200,13 @@ def textos(S, O, R):
          "with a {anio_min}-{anio_max} window where the interface allows it. The "
          "unit of inclusion was the study, not the report. Extraction was in "
          "duplicate and independent, with {firmados} of {desacuerdos} disagreements "
-         "adjudicated by consensus. {sesgo_en}",
+         "adjudicated. {sesgo_en}",
          "A PRISMA 2020 systematic review across eight sources —bibliographic "
          "databases and trial registries—, with a {anio_min}-{anio_max} window "
          "where the interface allows it. The "
          "unit of inclusion was the study, not the report. Data were extracted in "
          "duplicate and independently, with {firmados} of {desacuerdos} "
-         "disagreements adjudicated by consensus. {sesgo_en}"),
+         "disagreements adjudicated. {sesgo_en}"),
         ("Results",
          "From {registros} records, {unicos} unique reports remained; {informes} "
          "reports formed {evaluados} studies assessed for eligibility, of which "
@@ -214,8 +218,9 @@ def textos(S, O, R):
          "category cannot be assigned from the abstract in {sin_clase} %. In "
          "{sin_def} of the "
          "{brazos} extracted arms ({sin_def_pct} %) no operational definition of "
-         "clinical success is on record. No arm meets the arithmetic requirements "
-         "of a pooled proportion together with those of eligibility."),
+         "clinical success is on record. No arm meets all seven requirements of a "
+         "pooled proportion; of the {agrupables} meeting the other six, {n1} have "
+         "a single-patient denominator."),
         ("Conclusions",
          "The evidence base is broad but unsuited to a quantitative synthesis of "
          "efficacy: the published proportions rest on assumptions that these data "

@@ -40,7 +40,7 @@ clo-author/
 ├── scripts/                el canal (Python)
 ├── quality_reports/        decisiones, planes, escalares, auditorías, instantaneas/
 ├── templates/              registro de decisión, mapa de afirmaciones, log de sesión
-└── verificables revisión sistemática/   S0–S18 + guía + ambos manuscritos
+└── verificables revisión sistemática/   S0–S22 + guía + ambos manuscritos
 ```
 
 `quality_reports/instantaneas/` guarda fotos de estados pasados. **Ningún script del
@@ -114,9 +114,9 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
 | Texto completo | 71 de 95 (74,7 %). El hueco está sesgado: retiene el 54,5 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **emitido y completo**: 15 comparativos, 12 evaluables (3 RoB 2, 9 ROBINS-I), 3 sin texto. **90 de 90 juicios**, a nivel de dominio, por consenso y **sin kappa**. La frase de apoyo de cada juicio viaja en S18 |
+| Riesgo de sesgo | **emitido y completo**: 15 comparativos, 12 evaluables (3 RoB 2, 9 ROBINS-I), 3 sin texto. **90 celdas: 78 juicios de dominio + 12 globales**, por consenso y **sin kappa**. La frase firmada de cada juicio viaja en S18; **11 globales no la tienen**. EST-021 tiene el global en contradiccion con sus dominios: pendiente de firma |
 | Manuscrito | maestro 7 514 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
-| Anexos | **S0–S18 (19 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
+| Anexos | **S0–S22 (23 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
 
 **Lo que falta, y es de los autores:** los dos ORCID, el grado académico de ambos, el
