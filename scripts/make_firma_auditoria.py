@@ -102,6 +102,8 @@ def construye():
     H = []
     H.append(dict(
         clave="EST-021-GLOBAL",
+        fuente_frase=["revision_sistematica/textos_completos/pdf/EST-021.pdf  (Jault, Lancet Infect Dis 2019)",
+                     "o el manual de RoB 2 (Sterne BMJ 2019) si mantenéis el juicio y os apartáis de la regla"],
         titulo="EST-021 (PhagoBurn): el juicio global no cuadra con sus dominios",
         que_hay=[
             "D1 proceso de aleatorización ........ Bajo riesgo de sesgo",
@@ -128,6 +130,7 @@ def construye():
 
     H.append(dict(
         clave="EST-003-DEFINICION",
+        fuente_frase=["revision_sistematica/textos_completos/pdf/EST-003.pdf  (Onallah, Med 2023). Mirad Resultados y la Tabla 4"],
         titulo="EST-003 (PASA16): la definición de éxito es de otro estudio",
         que_hay=[
             "clinical_success_definition de los cinco brazos de EST-003:",
@@ -188,6 +191,8 @@ def construye():
             "Quedan 13 pares candidatos SIN LEER."]
     H.append(dict(
         clave="SOLAPAMIENTO",
+        fuente_frase=["Los dos PDF de cada par que confirméis, en revision_sistematica/textos_completos/pdf/",
+                     "EST-003, EST-010, EST-012, EST-015, EST-016, EST-046, EST-062, EST-070, EST-077, EST-095, EST-108, EST-124 y EST-164"],
         titulo="Once pacientes están en más de un estudio del corpus",
         que_hay=que,
         problema=(
@@ -211,6 +216,7 @@ def construye():
 
     H.append(dict(
         clave="EST-077-EVENTOS",
+        fuente_frase=["revision_sistematica/textos_completos/pdf/EST-077.pdf  (Aslam, Antimicrob Agents Chemother 2024)"],
         titulo="EST-077: cinco eventos adversos que el artículo no menciona",
         que_hay=[
             "En la extracción adjudicada: adverse_event_n = 5, n_arm = 4.",
@@ -238,6 +244,7 @@ def construye():
 
     H.append(dict(
         clave="EST-063-PROTOCOLO",
+        fuente_frase=["revision_sistematica/textos_completos/pdf/EST-063.pdf  (Singh, BMJ Open Respir Res 2023)"],
         titulo="EST-063 es un protocolo, y los protocolos se excluyeron",
         que_hay=[
             "EST-063: Singh J et al. «Single-arm, open-labelled, safety and",
@@ -280,6 +287,8 @@ def construye():
 
     H.append(dict(
         clave="COMPARATIVOS-SIN-CONTROL",
+        fuente_frase=["Vuestro propio cuaderno de consenso: revision_sistematica/riesgo_sesgo/riesgo_sesgo_comparativos_consenso.xlsx,",
+                     "columna «¿En qué frase te apoyaste?», entrada 1 de cada estudio. O los PDF de los siete."],
         titulo="Siete de los quince «comparativos» no tienen grupo de comparación",
         que_hay=[
             "Vuestras propias notas del dominio 1, firmadas:",
@@ -318,6 +327,8 @@ def construye():
 
     H.append(dict(
         clave="EST-063-116-GLOBALES",
+        fuente_frase=["revision_sistematica/textos_completos/pdf/EST-063.pdf y EST-116.pdf",
+                     "o el manual de ROBINS-I (Sterne BMJ 2016) si mantenéis los juicios"],
         titulo="EST-063 y EST-116: dos globales más que no cuadran",
         que_hay=[
             "EST-063          EST-116",
@@ -352,6 +363,7 @@ def construye():
 
     H.append(dict(
         clave="EST-021-EXTRACCION",
+        fuente_frase=["revision_sistematica/textos_completos/pdf/EST-021.pdf. Mirad Findings, la Tabla 2 y el diagrama CONSORT"],
         titulo="EST-021: dos casillas que el artículo desmiente",
         que_hay=[
             "En la extracción adjudicada: n_arm = 27, mortality_n = 0,",
@@ -399,6 +411,7 @@ def construye():
              "de la proporción descriptiva."]
     H.append(dict(
         clave="BAJO-UMBRAL-MDR",
+        fuente_frase=["revision_sistematica/textos_completos/pdf/EST-001.pdf y EST-094.pdf. Mirad el antibiograma de su paciente"],
         titulo="Dos estudios cuyo único paciente no es multirresistente",
         que_hay=que9,
         problema=(
@@ -461,6 +474,14 @@ def main():
               ("una del desplegable y, si hace falta, explicad en «por qué». Sin las dos", False),
               ("firmas de la última hoja no se ingiere nada.", False),
               ("", False),
+              ("LA CASILLA «FRASE EN QUE OS APOYÁIS».", True),
+              ("Va la cita literal del documento que sostiene vuestra decisión, y cada hoja", False),
+              ("dice de qué fichero sacarla, en «Sacad la frase de». Los artículos están en", False),
+              ("clo-author/revision_sistematica/textos_completos/pdf/, un PDF por estudio.", False),
+              ("Si la decisión no se apoya en una cita sino en un razonamiento vuestro,", False),
+              ("escribidlo igual pero sin comillas: la auditoría separa las dos cosas y", False),
+              ("ninguna de las dos se presenta como la otra.", False),
+              ("", False),
               ("Mientras estas nueve sigan sin firmar, el manuscrito lleva avisos de", True),
               ("pendiente y el sobre no se puede enviar.", True)]
     for i, (t, b) in enumerate(texto, start=1):
@@ -506,13 +527,26 @@ def main():
         s.add_data_validation(dv)
         dv.add(celda)
         f += 1
-        for etq in ("Por qué", "Frase en que os apoyáis"):
-            s.cell(row=f, column=1, value=etq).font = negrita
-            c = s.cell(row=f, column=2)
-            c.fill = ojo
-            c.alignment = arriba
-            s.row_dimensions[f].height = 56
+        s.cell(row=f, column=1, value="Por qué").font = negrita
+        c = s.cell(row=f, column=2)
+        c.fill = ojo
+        c.alignment = arriba
+        s.row_dimensions[f].height = 56
+        f += 2
+        # DE DONDE SALE LA FRASE. La casilla se llamaba «Frase en que os
+        # apoyáis» y no decía de qué documento: quien la rellena tenía que
+        # adivinar qué artículo abrir. Ahora cada hoja nombra el fichero.
+        s.cell(row=f, column=1, value="Sacad la frase de").font = negrita
+        s.cell(row=f, column=1).fill = cab
+        for linea in d["fuente_frase"]:
+            s.cell(row=f, column=2, value=linea).font = mono
             f += 1
+        s.cell(row=f, column=1, value="Frase en que os apoyáis").font = negrita
+        c = s.cell(row=f, column=2)
+        c.fill = ojo
+        c.alignment = arriba
+        s.row_dimensions[f].height = 56
+        f += 1
 
     fi = wb.create_sheet("Firma")
     fi.column_dimensions["A"].width = 46
