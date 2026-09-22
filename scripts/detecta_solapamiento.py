@@ -68,6 +68,14 @@ MARCA = re.compile(
     r"|same patient|el mismo paciente"
     r"|overlap(ping)? (with|patients|cases)", re.I)
 
+# «N de los M casos ya se habian publicado»: la frase que remite a las
+# referencias por numero y que ninguna comprobacion por titulo alcanza.
+DECLARA = re.compile(
+    r"(were|was|have been|has been) previously (reported|published)"
+    r"|previously (reported|published) (in|elsewhere|cases)"
+    r"|of the \d+ .{0,40}(cases|patients).{0,40}previously"
+    r"|\d+ of (the )?\d+ .{0,30}(cases|patients)", re.I)
+
 VACIAS = set("""the of and in for with a an to on by from at as is are was were this that
 these those we our their its be been has have had which who whom using used case cases
 patient patients report reports study studies treatment therapy use versus vs new novel""".split())
@@ -174,9 +182,22 @@ def main():
                         golpes.append((ap.index(k), "identificador " + v))
                         break
             for t in d["titulos"]:
-                k = clave_titulo(t)
-                if k and k in ap:
-                    golpes.append((ap.index(k), "título"))
+                k = clave_titulo(t, 14)
+                if not k:
+                    continue
+                # EL PDF A DOS COLUMNAS PARTE LOS TITULOS DE LA BIBLIOGRAFIA.
+                # La referencia 21 de EST-108 sale asi: «Racenis, K. et al. Use
+                # of phage cocktail BFC 1.10 in 41. Rose, T. et al. Experimental
+                # phage therapy of burn wound combination with ceftazidime-
+                # avibactam...». El titulo entero no aparece nunca seguido; sus
+                # trozos si. Exigir el titulo completo dejaba fuera seis
+                # estudios que EST-108 declara haber publicado antes.
+                trozos = [k[i:i + 20] for i in range(0, len(k), 20)]
+                trozos = [x for x in trozos if len(x) == 20]
+                hall = [x for x in trozos if x in ap]
+                if trozos and len(hall) / len(trozos) >= 0.4:
+                    golpes.append((ap.index(hall[0]),
+                                   "título (%d de %d trozos)" % (len(hall), len(trozos))))
                     break
             if golpes:
                 i, como = min(golpes)
@@ -215,8 +236,19 @@ def main():
         cerca = [f for f in marcas.get(a, [])
                  if clave_titulo(est[b]["designado"])[:20] in plano(f)
                  or any(plano(v) in plano(f) for v in est[b]["ids"])]
+        # EL AGUJERO QUE ESTO CIERRA. EST-108 declara «Twenty-seven of the 100
+        # BT cases/patients were previously reported6,13-26» y remite a sus
+        # referencias por NUMERO. La marca esta, la cita esta, y no se tocan:
+        # el numero volado no lleva el titulo al lado. Exigir que la marca
+        # nombre a B dejaba fuera los siete pacientes que EST-108 comparte con
+        # seis estudios del corpus. Si A declara casos ya publicados y ADEMAS
+        # cita a B, el par se marca firme y se lee.
+        declara = [f for f in marcas.get(a, []) if DECLARA.search(f)]
         if cerca:
             fuerza = "firme: cita + marca de publicación previa"
+        elif declara:
+            fuerza = "firme: A declara casos ya publicados y cita a B"
+            frag = declara[0]
         elif comp and mismo_pais:
             fuerza = "a comprobar: cita + mismo producto y país"
         elif comp:

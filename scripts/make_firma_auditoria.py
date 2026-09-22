@@ -12,7 +12,9 @@ LOS NUEVE
      preocupaciones». RoB 2 no admite esa combinación.
   2. EST-003. Su definición de éxito describe el ensayo BX004-A y BX004-A no
      aparece en su artículo. Además `clinical_success_n` = 13 sobre n = 1.
-  3. Solapamiento. Cuatro pacientes en seis estudios; uno publicado tres veces.
+  3. Solapamiento. Once pacientes en trece estudios; uno publicado tres
+     veces. EST-108 declara que 27 de sus 100 casos ya estaban publicados
+     y seis de esas referencias son estudios de este corpus.
   4. EST-077. `adverse_event_n` = 5 y el artículo no dice «adverse» ni una vez.
   5. EST-063. Es un protocolo de BMJ Open y los otros cuatro protocolos del
      corpus se excluyeron con el código PRO.
@@ -160,30 +162,46 @@ def construye():
                 "el brazo A de EST-003 deja de contarse entre ellos."),
     ))
 
-    que = ["Cinco pares confirmados leyendo los artículos. Cuatro pacientes:",
-           "uno de ellos está publicado TRES veces.", ""]
+    pac = {}
+    for r in conf:
+        pac[r["clave_del_paciente"]] = int(r.get("pacientes_de_esa_clave") or 1)
+    est = {x for r in conf for x in (r["estudio_1"], r["estudio_2"])}
+    que = ["%d pares confirmados leyendo los artículos. %d pacientes repartidos"
+           % (len(conf), sum(pac.values())),
+           "entre %d estudios; uno de ellos está publicado TRES veces." % len(est), ""]
     for r in conf:
         que.append("  %s + %s" % (r["estudio_1"], r["estudio_2"]))
         que.append("      %s" % r["clave_del_paciente"])
     que += ["",
-            "Dos de los cinco los declara el propio EST-003, en una columna",
-            "«Published case» de su Tabla 4 que nadie había leído: el caso 4 dice",
-            "«Khatami et al.» (= EST-095) y el caso 9 «Simner et al.» (= EST-015).",
+            "DOS SERIES LOS CONCENTRAN.",
+            "",
+            "EST-003 comparte cuatro. Dos de ellos los declara el propio EST-003,",
+            "en una columna «Published case» de su Tabla 4 que nadie había leído:",
+            "el caso 4 dice «Khatami et al.» (= EST-095) y el caso 9 «Simner et",
+            "al.» (= EST-015).",
+            "",
+            "EST-108 dice literalmente: «Twenty-seven of the 100 BT cases/patients",
+            "were previously reported6,13-26». De esas quince referencias, SEIS son",
+            "estudios de este corpus: EST-010, EST-016, EST-046, EST-062, EST-124 y",
+            "EST-164. Sus siete pacientes están dentro de los 100 de EST-108.",
             "",
             "Quedan 13 pares candidatos SIN LEER."]
     H.append(dict(
         clave="SOLAPAMIENTO",
-        titulo="Cuatro pacientes están en más de un estudio del corpus",
+        titulo="Once pacientes están en más de un estudio del corpus",
         que_hay=que,
         problema=(
             "El corpus no son 137 conjuntos disjuntos de pacientes. La revisión no "
             "publica ninguna proporción agrupada, de modo que no hay ninguna cifra de "
-            "efecto contaminada, pero seis de los estudios comparten pacientes y hay "
-            "13 pares más sin comprobar."),
+            "efecto contaminada, pero trece de los estudios comparten pacientes y hay "
+            "13 pares más sin comprobar. Dos de los brazos afectados --EST-010 A y "
+            "EST-016 A-- están además entre los 21 que sobreviven al embudo de la "
+            "proporción descriptiva, junto con EST-003 B a E, EST-012 A y EST-015 A: "
+            "ocho de esos 21 brazos son pacientes contados dos veces."),
         pregunta="¿Confirmáis los cinco y qué estudio manda si se cuentan pacientes?",
         opciones=[
-            "Confirmamos los cinco: se declaran en Resultados y en Limitaciones y los dos estudios se mantienen",
-            "Confirmamos los cinco y además marcamos un estudio primario por paciente",
+            "Confirmamos todos: se declaran en Resultados y en Limitaciones y los dos estudios se mantienen",
+            "Confirmamos todos y además marcamos un estudio primario por paciente",
             "No confirmamos alguno: decid cuál y por qué en la casilla de al lado",
         ],
         efecto=("El corpus sigue en 137 estudios: son publicaciones distintas. Lo que "

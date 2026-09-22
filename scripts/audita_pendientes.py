@@ -165,6 +165,11 @@ def tabla_solapamiento():
     # entradas se escriben aquí porque son juicios de lectura, no del script,
     # y el script no puede producirlos: lo que sí hace es no dejar ningún par
     # candidato fuera de la tabla.
+    COMUN = ("EST-108 (Pirnay et al., Nat Microbiol 2024) declara literalmente: "
+             "«Twenty-seven of the 100 BT cases/patients were previously "
+             "reported6,13–26». Su referencia %s es %s, que es este estudio. Los "
+             "pacientes de este estudio están, por tanto, dentro de los 100 de "
+             "EST-108.")
     LEIDO = {
         ("EST-077", "EST-003"): dict(
             clave_del_paciente="P1 nina 10 anos, Berlin Heart EXCOR",
@@ -243,6 +248,77 @@ def tabla_solapamiento():
             veredicto="SIN RESOLVER: leido y no concluyente",
             accion="Hace falta la descripcion de los tres pacientes de EST-061 con edad y fecha, "
                    "que el articulo no da en el texto recuperado."),
+        ("EST-108", "EST-010"): dict(
+            clave_del_paciente="P5 infección espinal panresistente",
+            paciente="referencia 20 de EST-108 = EST-010",
+            evidencia="%s" % (COMUN % ("20", "«Ferry, T. et al. Personalized bacteriophage "
+                      "therapy to treat pandrug-resistant spinal Pseudomonas aeruginosa "
+                      "infection»")),
+            n_duplicados="1", veredicto="SOLAPAMIENTO CONFIRMADO POR LECTURA",
+            accion="Declararlo. El brazo A de EST-010 es además uno de los 21 que "
+                   "sobreviven al embudo de la proporción descriptiva."),
+        ("EST-108", "EST-016"): dict(
+            clave_del_paciente="P6 varón de 21 años, osteomielitis femoral, Riga",
+            paciente="referencia 21 de EST-108 = EST-016",
+            evidencia="%s EST-108 reporta 2 pacientes de Letonia y lleva a la Universidad "
+                      "Stradins de Riga en su lista de autores, que es la institución de "
+                      "EST-016." % (COMUN % ("21", "«Racenis, K. et al. Use of phage "
+                      "cocktail BFC 1.10 in combination with ceftazidime-avibactam»")),
+            n_duplicados="1", veredicto="SOLAPAMIENTO CONFIRMADO POR LECTURA",
+            accion="Declararlo. El brazo A de EST-016 es además uno de los 21 que "
+                   "sobreviven al embudo de la proporción descriptiva."),
+        ("EST-108", "EST-046"): dict(
+            clave_del_paciente="P7 septicemia sensible solo a colistina",
+            paciente="referencia 15 de EST-108 = EST-046",
+            evidencia="%s" % (COMUN % ("15", "«Jennes, S. et al. Use of bacteriophages in "
+                      "the treatment of colistin-only-sensitive Pseudomonas aeruginosa "
+                      "septicaemia»")),
+            n_duplicados="1", veredicto="SOLAPAMIENTO CONFIRMADO POR LECTURA",
+            accion="Declararlo."),
+        ("EST-108", "EST-062"): dict(
+            clave_del_paciente="P8 paciente pediátrica, Bruselas, cóctel BFC-1",
+            paciente="referencia 17 de EST-108 = EST-062",
+            evidencia="%s" % (COMUN % ("17", "«Van Nieuwenhuyse, B. et al. Bacteriophage-"
+                      "antibiotic combination therapy against extensively drug-resistant "
+                      "Pseudomonas aeruginosa»")),
+            n_duplicados="1", veredicto="SOLAPAMIENTO CONFIRMADO POR LECTURA",
+            accion="Declararlo. Los dos son del Queen Astrid Military Hospital, que "
+                   "coordina el consorcio de EST-108."),
+        ("EST-108", "EST-124"): dict(
+            clave_del_paciente="P9 paciente de Racenis 2023",
+            paciente="referencia 25 de EST-108 = EST-124",
+            evidencia="%s" % (COMUN % ("25", "«Racenis, K. et al. Successful bacteriophage-"
+                      "antibiotic combination therapy against multidrug-resistant "
+                      "Pseudomonas»")),
+            n_duplicados="1", veredicto="SOLAPAMIENTO CONFIRMADO POR LECTURA",
+            accion="Declararlo."),
+        ("EST-108", "EST-164"): dict(
+            clave_del_paciente="P10 y P11, dos pacientes musculoesqueléticos, Lovaina",
+            n_pacientes=2,
+            paciente="referencia 19 de EST-108 = EST-164",
+            evidencia="%s EST-164 aporta 2 pacientes." % (COMUN % ("19", "«Onsea, J. et "
+                      "al. Bacteriophage application for difficult-to-treat "
+                      "musculoskeletal infections: development of a standardized "
+                      "protocol»")),
+            n_duplicados="2", veredicto="SOLAPAMIENTO CONFIRMADO POR LECTURA",
+            accion="Declararlo. KU Leuven forma parte del consorcio de EST-108."),
+        ("EST-108", "EST-034"): dict(
+            clave_del_paciente="ninguno",
+            paciente="ninguno",
+            evidencia="EST-034 es una serie de un solo centro de Estados Unidos (Open "
+                      "Forum Infect Dis 2020) y EST-108 es el consorcio belga. EST-108 la "
+                      "cita en la discusión, no entre las referencias 6 y 13-26 de sus "
+                      "casos ya publicados.",
+            n_duplicados="0", veredicto="DESCARTADO POR LECTURA",
+            accion="Ninguna."),
+        ("EST-108", "EST-044"): dict(
+            clave_del_paciente="ninguno",
+            paciente="ninguno",
+            evidencia="EST-044 se publicó en 2026 y EST-108 en 2024: un caso de 2026 no "
+                      "puede estar entre los «previously reported» de 2024. La cita va en "
+                      "el otro sentido.",
+            n_duplicados="0", veredicto="DESCARTADO POR LECTURA",
+            accion="Ninguna."),
         ("EST-012", "EST-026"): dict(
             paciente="ninguno",
             evidencia="EST-012 nombra NCT05269134 —el registro de EST-026— en su "
@@ -268,6 +344,7 @@ def tabla_solapamiento():
         filas.append({
             "estudio_1": a, "estudio_2": b,
             "clave_del_paciente": (d.get("clave_del_paciente", "") if d else "") or FALTA,
+            "pacientes_de_esa_clave": (d.get("n_pacientes", 1) if d else ""),
             "paciente_o_identificador": d["paciente"] if d else FALTA,
             "senal_que_lo_marco": r["fuerza"],
             "evidencia": d["evidencia"] if d else (r["fragmento"][:280] or
@@ -294,6 +371,7 @@ def tabla_solapamiento():
         filas.append({
             "estudio_1": a, "estudio_2": b,
             "clave_del_paciente": d.get("clave_del_paciente", "") or FALTA,
+            "pacientes_de_esa_clave": d.get("n_pacientes", 1),
             "paciente_o_identificador": d["paciente"],
             "senal_que_lo_marco": "NO lo marco el detector: lo encontro la lectura",
             "evidencia": d["evidencia"],

@@ -343,11 +343,11 @@
   "notas_del_revisor": 46,
   "conflictos_resueltos_por_los_dos": 14,
   "conflictos_resueltos_por_uno": 525,
-  "pares_solapamiento_examinados": 20,
-  "pares_solapamiento_confirmados": 5,
+  "pares_solapamiento_examinados": 28,
+  "pares_solapamiento_confirmados": 11,
   "pares_solapamiento_sin_leer": 13,
-  "estudios_con_paciente_compartido": 6,
-  "pacientes_duplicados_confirmados": 4,
+  "estudios_con_paciente_compartido": 13,
+  "pacientes_duplicados_confirmados": 11,
   "estudios_una_sola_fuente": 40,
   "estudios_una_sola_fuente_pct": 29.2,
   "una_sola_fuente_por_fuente": {
@@ -357,8 +357,12 @@
     "PubMed": 4,
     "CTIS": 2
   },
-  "solapamiento_pares_examinados": 16,
+  "solapamiento_pares_examinados": 20,
   "solapamiento_textos_examinados": 73,
   "brazos_con_informe_identificado": 103,
-  "brazos_informe_por_lectura": 71
+  "brazos_informe_por_lectura": 71,
+  "claves_de_paciente_duplicado": 10,
+  "est108_previamente_publicados": 27,
+  "est108_casos": 100,
+  "est108_frase": "«Twenty-seven of the 100 BT ... cases/patients were previously reported»"
 }

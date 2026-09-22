@@ -228,8 +228,37 @@ def main():
         {x for r in conf for x in (r["estudio_1"], r["estudio_2"])})
     # El del Berlin Heart aparece en DOS pares y es un solo paciente: se cuenta
     # por la clave estable, no por la fila.
-    S["pacientes_duplicados_confirmados"] = len(
-        {r["clave_del_paciente"] for r in conf})
+    # una clave puede valer por mas de un paciente: EST-164 aporta dos
+    claves = {}
+    for r in conf:
+        if r["clave_del_paciente"] in ("ninguno", "[DATO FALTANTE]"):
+            continue
+        claves[r["clave_del_paciente"]] = int(r.get("pacientes_de_esa_clave") or 1)
+    S["claves_de_paciente_duplicado"] = len(claves)
+    S["pacientes_duplicados_confirmados"] = sum(claves.values())
+
+    # ---- la declaración de EST-108, leída de su propio texto y no tecleada
+    _t108 = RS / "textos_completos" / "texto_cache" / "EST-108.txt"
+    if _t108.exists():
+        _t = _re.sub(r"\s+", " ", _t108.read_text(encoding="utf-8", errors="replace"))
+        # LAS DOS COLUMNAS PARTEN LA FRASE. En el PDF sale como «Twenty-seven
+        # of the 100 BT tal (QAMH), KU Leuven and Sciensano (...) cases/patients
+        # were previously reported6,13-26»: el sujeto en una columna y el verbo
+        # en la otra. Se buscan las dos mitades y se exige que esten cerca.
+        _m = _re.search(r"(\w+[- ]?\w*) of the (\d+) BT", _t, _re.I)
+        if _m and not _re.search(r"cases/patients were previously reported",
+                                 _t[_m.end():_m.end() + 260], _re.I):
+            _m = None
+        if _m:
+            _pal = {"twenty-seven": 27, "twentyseven": 27}
+            _n = _pal.get(_m.group(1).lower().replace(" ", "-"))
+            if _n is None and _m.group(1).isdigit():
+                _n = int(_m.group(1))
+            if _n is not None:
+                S["est108_previamente_publicados"] = _n
+                S["est108_casos"] = int(_m.group(2))
+                S["est108_frase"] = ("«%s ... cases/patients were "
+                                     "previously reported»" % _m.group(0))
 
     # ---- de cuántas fuentes depende cada estudio incluido
     fuentes = collections.defaultdict(set)

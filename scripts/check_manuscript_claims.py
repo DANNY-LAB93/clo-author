@@ -215,7 +215,10 @@ AFIRMACIONES = [
     (JSR, "De los {celdas_tabla5} juicios, **{citas_literales} se apoyan en una cita literal del artículo**, **{notas_del_revisor} en una nota metodológica escrita por los revisores** —una razón, no una cita— y **{juicios_sin_frase} no registran apoyo alguno**"),
     # ---- el solapamiento, con el examen sin terminar declarado
     (JSR, "contiene **{pacientes_duplicados_confirmados} pacientes descritos en más de un estudio**, repartidos entre {estudios_con_paciente_compartido} de los {estudios}"),
-    (JSR, "produjo {pares_solapamiento_examinados} pares candidatos, de los que {pares_solapamiento_confirmados} se confirmaron leyendo, 1 se descartó, 1 quedó sin resolver y **{pares_solapamiento_sin_leer} siguen sin leer**"),
+    # EST-108 lo declara en su propio texto; el escalar sale de leerlo,
+    # no de teclearlo: `est108_frase` guarda la frase que lo dice.
+    (JSR, "afirma que {est108_previamente_publicados} de sus {est108_casos} pacientes se habían publicado antes"),
+    (JSR, "produjo {pares_solapamiento_examinados} pares candidatos, de los que {pares_solapamiento_confirmados} se confirmaron leyendo, 3 se descartaron, 1 quedó sin resolver y **{pares_solapamiento_sin_leer} siguen sin leer**"),
     # ---- el marco del recribado: titulo MAS resumen
     (JSR, "muestra aleatoria de {validacion_muestra} de los {validacion_marco} registros excluidos en el cribado: {validacion_marco_titulo} en la etapa de título y {validacion_marco_resumen} en la de resumen"),
     (JSR, "El recribado ciego de {validacion_muestra} de los {validacion_marco} registros excluidos en título y resumen"),

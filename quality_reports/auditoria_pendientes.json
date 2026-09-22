@@ -25,9 +25,9 @@
     "con_cita": 79
   },
   "solapamiento": {
-    "pares_examinados": 20,
-    "confirmados": 5,
-    "descartados": 1,
+    "pares_examinados": 28,
+    "confirmados": 11,
+    "descartados": 3,
     "sin_leer": 13
   },
   "est021": {
