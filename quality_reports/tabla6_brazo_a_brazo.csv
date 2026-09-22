@@ -1,7 +1,7 @@
 ﻿study_id,arm_id,diseno_adjudicado,n_exito,N_brazo,texto_completo,diseno_comparativo,denominador_valido,numerador_valido,definicion_operativa,atribuible_a_P_aeruginosa,terapeutica_no_profilactica,proporcion_no_tiempo,primer_requisito_que_falla,motivo
 EST-001,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-002,A,case report,0,1,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
-EST-003,A,case series,13,1,sí,no cumple,cumple,no cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
+EST-003,A,case series,NA,1,sí,no cumple,cumple,no cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
 EST-003,B,case series,5,5,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
 EST-003,C,case series,4,5,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
 EST-003,D,case series,3,4,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
@@ -22,7 +22,7 @@ EST-015,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumpl
 EST-016,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-018,A,case report,0,1,no,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-019,A,case series,1,2,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
-EST-021,A,RCT,6,27,sí,cumple,cumple,cumple,cumple,cumple,cumple,no cumple,proporcion_no_tiempo,"el desenlace principal es un tiempo, no una proporción"
+EST-021,A,RCT,6,13,sí,cumple,cumple,cumple,cumple,cumple,cumple,no cumple,proporcion_no_tiempo,"el desenlace principal es un tiempo, no una proporción"
 EST-024,A,case series,2,2,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
 EST-027,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-028,A,other,NA,30,no,no cumple,cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «other»: sin grupo de comparación
@@ -53,7 +53,6 @@ EST-058,A,case report,1,1,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cu
 EST-059,A,case series,NA,NA,no,no cumple,no cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
 EST-061,A,case series,2,2,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
 EST-062,A,case report,1,1,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
-EST-063,A,non-randomised trial,NA,10,sí,cumple,cumple,no cumple,cumple,cumple,cumple,cumple,numerador_valido,éxito clínico n=«NA» sobre N=«10»
 EST-064,A,NA,NA,NA,no,no evaluable,no cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «NA»: sin grupo de comparación
 EST-065,A,NA,NA,NA,no,no evaluable,no cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «NA»: sin grupo de comparación
 EST-070,A,retrospective cohort,14,18,sí,cumple,cumple,cumple,no cumple,no cumple,cumple,cumple,definicion_operativa,el artículo no define qué contaba como éxito

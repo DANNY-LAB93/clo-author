@@ -58,12 +58,19 @@ python scripts/build_brazo_informe.py          # de que informe salio cada brazo
 python scripts/detecta_solapamiento.py         # pacientes contados dos veces (S21)
 python scripts/build_tabla3_completitud.py     # resumen frente a texto completo (S22)
 python scripts/build_tabla6_brazos.py          # la Tabla 6 brazo a brazo (S17)
+python scripts/build_grupo_comparacion.py      # quien tiene grupo de comparacion DE VERDAD
+python scripts/audita_pendientes.py            # un juicio por fila, con su frase firmada
 python scripts/build_auditoria_scalars.py      # funde los escalares de auditoria
-                                               # OJO: despues de los cuatro de arriba
+                                               # OJO: despues de los de arriba
                                                # y ANTES de las tablas, que los leen
 
 # 2. LO QUE ENTRA EN EL MANUSCRITO
 python scripts/build_manuscript_tables.py      # tablas 1-6
+python scripts/build_rob_table.py              # Tabla 5 y TODO el bloque de riesgo de
+                                               # sesgo de los tres manuscritos. No
+                                               # escribas nada a mano dentro de ese
+                                               # bloque: la siguiente pasada lo borra
+python scripts/build_lista_anexos.py           # la lista de anexos, en el maestro y el ingles
 python scripts/build_criteria_table.py         # la tabla de criterios, y la mete en el .md
 python scripts/build_structured_abstract.py    # el resumen; avisa si pasa de 250 palabras
 python scripts/build_manuscript_figures.py     # PRISMA y composicion
@@ -104,17 +111,17 @@ python scripts/sync_manuscript_numbers.py --escribir   # las pone al dia
 
 ---
 
-## Estado, a 2026-09-14
+## Estado, a 2026-09-22
 
 Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
 | Componente | Estado |
 |---|---|
-| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 46 excluidos (22 por el artículo, 17 por la ficha del registro, 7 sin poder leer ninguno) → **137 estudios, 95 extraíbles** |
+| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 47 excluidos (23 por el artículo, 17 por la ficha del registro, 7 sin poder leer ninguno) → **136 estudios, 94 extraíbles** |
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
-| Texto completo | 71 de 95 (74,7 %). El hueco está sesgado: retiene el 54,5 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
+| Texto completo | 70 de 94 (74,5 %). El hueco está sesgado: retiene el 60,0 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **emitido y completo**: 15 comparativos, 12 evaluables (3 RoB 2, 9 ROBINS-I), 3 sin texto. **90 celdas: 78 juicios de dominio + 12 globales**, por consenso y **sin kappa**. La frase firmada de cada juicio viaja en S18; **11 globales no la tienen**. EST-021 tiene el global en contradiccion con sus dominios: pendiente de firma |
+| Riesgo de sesgo | **emitido, completo y firmado**: 14 comparativos por diseño —de los cuales **5 con grupo de comparación real**—, 11 evaluables (3 RoB 2, 8 ROBINS-I), 3 sin texto. **82 celdas: 71 juicios de dominio + 11 globales**, por consenso y **sin kappa**. **Los 11 globales se corresponden con sus dominios**: los tres que no (EST-021, EST-063, EST-116) se corrigieron por firma el 2026-09-22. La frase firmada de cada juicio viaja en S18; 10 globales no la tienen |
 | Manuscrito | maestro 7 514 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
 | Anexos | **S0–S22 (23 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
@@ -131,7 +138,7 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
 1. **Las cifras publicadas vienen de DOS sitios.** Tablas 1–4 y el PRISMA, de `cribado/`
    y `pre_extraccion_desde_resumen.csv`; las de desenlaces, de la extracción adjudicada
    vía `build_adjudicated_dataset.py` → `build_outcome_scalars.py`. El titular: **69 de
-   103 brazos (67,0 %) no definen éxito clínico**, y solo 2 pasan los cuatro requisitos
+   102 brazos (67,6 %) no definen éxito clínico**, y solo 2 pasan los cuatro requisitos
    para agrupar — uno de ellos mide tiempo, así que no queda ninguno. **GRADE no se hace
    y no se hará**: no hay estimador agrupado cuya certeza calificar.
 
@@ -189,6 +196,40 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
    contra los escalares, así que un escalar bien calculado y mal redactado en su frase
    les pasa (68,0 % donde era 68,9; «casi cuatro de cada diez» para 44,2 %). Este rehace
    la división, las restas del PRISMA y las sumas declaradas desde el texto solo.
+
+12. **`extraccion_adjudicada.csv` es un DERIVADO.** Lo rehace
+    `build_adjudicated_dataset.py` desde los dos cuadernos y borra cualquier cosa
+    escrita ahí a mano. Una corrección posterior a la adjudicación entra por
+    `correcciones_tras_texto_completo.csv`, con valor anterior, cita literal y firma.
+    Editar el CSV de salida funciona hasta la siguiente pasada del canal, y entonces
+    desaparece sin avisar: pasó el 2026-09-22 con las cuatro correcciones de la
+    auditoría.
+
+13. **El bloque de riesgo de sesgo lo posee `build_rob_table.py` entero.** Lo que haya
+    entre `### Riesgo de sesgo` y el pie de la Tabla 5 se reescribe en cada pasada. Tres
+    frases escritas a mano ahí dentro —la coherencia de los globales, el desglose de las
+    celdas y en qué se apoya cada juicio— se perdieron así el 2026-09-22. Ahora las
+    genera el guion; **no escribas nada a mano en ese bloque**.
+
+14. **El manuscrito en inglés ya está al día, y ahora lo vigilan.** Iba dos revisiones
+    del corpus atrás —«Of the 145 studies», «184 studies evaluated», 219, 179, 123— y su
+    lista de anexos estaba **en español** y citaba 16 de los 24 que viajan. No va en el
+    sobre ni en el `.zip`, y por eso ningún guardián lo miraba. Desde el 2026-09-22
+    `check_manuscript_numbers.py` comprueba **los tres** manuscritos, la lista de anexos
+    la escribe `build_lista_anexos.py` para el maestro y el inglés a la vez, y las
+    afirmaciones ancladas pasaron de 131 a 217.
+
+15. **Una cifra escrita EN LETRA se escapa de los guardianes.** Los tres buscan dígitos,
+    y la sección 3.1.1 enumera las exclusiones con palabras: al salir EST-063 se
+    volvieron falsas «Veintinueve», «Veinticuatro» y «Cuatro son protocolos», las tres a
+    la vez y en los tres manuscritos, sin que nada fallara. Un hueco `{letras_<escalar>}`
+    en una afirmación se resuelve ahora como la palabra, en el idioma del manuscrito.
+
+16. **Una cifra puede estar «respaldada» por casualidad.** `check_manuscript_numbers.py`
+    solo mira si el valor existe en los escalares, no si es el escalar que toca: «46»,
+    «71», «18» y «95» pasaban porque esos números existen con otro significado. La
+    defensa real son las anclas de `check_manuscript_claims.py`, que atan cada frase a SU
+    escalar. Si añades una cifra al manuscrito, ánclala.
 
 11. **Reejecutar `group_reports_into_studies.py` renumeraba estudios, y ya no.** La
     numeración estable se anclaba en la CLAVE del estudio, y la clave cambia sola en

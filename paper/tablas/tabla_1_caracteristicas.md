@@ -1,20 +1,20 @@
-**Tabla 1. Características del cuerpo de evidencia recuperable (n = 95 estudios).**
+**Tabla 1. Características del cuerpo de evidencia recuperable (n = 94 estudios).**
 
 | Característica | n | % |
 |---|---|---|
 | Periodo de publicación | 2016–2026 | — |
-| Publicados desde 2020 | 76 | 80.0 |
+| Publicados desde 2020 | 75 | 79.8 |
 |  |  |  |
 | **Diseño** |  |  |
-| Reporte de caso único | 42 | 44.2 |
-| Serie de casos | 18 | 18.9 |
-| Cohorte prospectiva | 13 | 13.7 |
-| No declarado en el resumen | 8 | 8.4 |
+| Reporte de caso único | 42 | 44.7 |
+| Serie de casos | 18 | 19.1 |
+| Cohorte prospectiva | 13 | 13.8 |
+| No declarado en el resumen | 8 | 8.5 |
 | Ensayo aleatorizado | 7 | 7.4 |
-| Ensayo no aleatorizado | 4 | 4.2 |
+| Ensayo no aleatorizado | 3 | 3.2 |
 | Cohorte retrospectiva | 3 | 3.2 |
 |  |  |  |
-| **Diseños comparativos (total)** | 11 | 11.6 |
+| **Diseños comparativos (total)** | 10 | 10.6 |
 |  |  |  |
 | **Procedencia declarada** |  |  |
 | Georgia | 5 | 5.3 |
@@ -28,6 +28,6 @@
 | India | 2 | 2.1 |
 | Israel | 2 | 2.1 |
 | Otros 7 países, un estudio cada uno | 7 | 7.4 |
-| No declarada en el resumen | 58 | 61.1 |
+| No declarada en el resumen | 57 | 60.6 |
 
-*Nota.* Porcentajes sobre los 95 estudios con publicación recuperable. El diseño procede de la pre-extracción sistemática desde el resumen; «No declarado» significa que el resumen no permite reconocer el diseño, no que el estudio carezca de él. Fuente: canal de cribado del proyecto, ejecución del 10 de agosto de 2026.
+*Nota.* Porcentajes sobre los 94 estudios con publicación recuperable. El diseño procede de la pre-extracción sistemática desde el resumen; «No declarado» significa que el resumen no permite reconocer el diseño, no que el estudio carezca de él. Fuente: canal de cribado del proyecto, ejecución del 10 de agosto de 2026.

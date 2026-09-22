@@ -47,6 +47,126 @@ except Exception:
 
 # Frases que deben estar, con el escalar que manda en cada hueco.
 AFIRMACIONES = [
+    (EN, "**In {brazos_bajo_umbral} of the {desenlace_brazos} arms the declared class falls below the multidrug-resistance threshold**"),
+    (EN, "outcomes, over the adjudicated extraction (n = {desenlace_brazos} arms)"),
+    (EN, "a pooled proportion of clinical success (n = {desenlace_brazos} arms)"),
+    # ---- cifras que coincidian por casualidad con OTRO escalar ------------
+    # «46», «71», «18», «95»: el guardian numerico las daba por respaldadas
+    # porque esos valores existen en los escalares con otro significado, y el
+    # sincronizador no las tocaba porque ninguna ancla las nombraba. Salieron
+    # todas a la vez el 2026-09-22, al bajar el corpus a 136.
+    (JSR, "los {estudios_excluidos_tras_texto_completo} estudios detectados después, en la fase de texto completo"),
+    (JSR, "las {estudios_excluidos_tras_texto_completo} exclusiones detectadas en la fase de texto completo"),
+    (JSR, "El examen se hizo sobre los {texto_completo_obtenido} textos completos"),
+    (JSR, "procedencia geográfica de los {estudios_extraibles} estudios con publicación recuperable"),
+    (JSR, "(n = {estudios_extraibles} estudios recuperables, de los que {texto_completo_obtenido} tienen texto obtenido)"),
+    (JSR, "{comparativos_un_brazo} + {brazos_del_comparativo_mayor} son los {desenlace_brazos_comparativos} brazos comparativos"),
+    (ES, "—{estudios_extraibles} tras las exclusiones de la sección 3.1.1—"),
+    (ES, "desde el resumen de los {estudios_extraibles} estudios vigentes"),
+    (ES, "sin los {estudios_excluidos_tras_texto_completo} que salieron después"),
+    # Dos veces: en Metodos y en la descripcion de S4, que ahora genera
+    # `build_lista_anexos.py`.
+    (ES, "desde el resumen de los {estudios_extraibles} estudios con publicación recuperable", 2),
+    (EN, "and without the {estudios_excluidos_tras_texto_completo} that later left"),
+    (EN, "The result is {estudios} studies against the dozens handled by published reviews, and would have been {estudios_antes_de_la_enmienda} without the language restriction"),
+    (EN, "of the {desenlace_brazos} arms of this literature, **not one meets both the arithmetic conditions"),
+    (EN, "**{casos_unicos} single case reports ({casos_unicos_pct} %)**, {diseno_case_series} case series, {diseno_prospective_cohort} prospective cohorts, {diseno_RCT} randomised trials, {diseno_non_randomised_trial} non-randomised trials and {diseno_retrospective_cohort} retrospective cohorts"),
+    (EN, "A further {diseno_no_declarado} do not state a recognisable design in the abstract"),
+    (EN, "Comparative designs total **{estudios_comparativos} studies, {estudios_comparativos_pct} %** of the whole"),
+    # ---- la seccion 3.1.1, que enumera las exclusiones EN LETRA ----------
+    # Ningun guardian las miraba: los tres buscan digitos. Al salir EST-063 el
+    # 2026-09-22 se volvieron falsas «Veintinueve», «Veinticuatro» y «Cuatro
+    # son protocolos», las tres a la vez y en los tres manuscritos.
+    (ES, "### 3.1.1 Los {estudios_excluidos_tras_texto_completo} estudios que el cribado admitió y que salieron después"),
+    (EN, "### 3.1.1 The {estudios_excluidos_tras_texto_completo} studies the screening admitted and that later left"),
+    (ES, "**{letras_excluidos_por_publicacion} salieron al juzgarlos sobre su publicación.**"),
+    (EN, "**{letras_excluidos_por_publicacion} left when judged on their publication.**"),
+    (JSR, "**{letras_excluidos_por_publicacion} exclusiones se decidieron sobre el artículo.**"),
+    (ES, "**{letras_excluidos_leyendo_articulo}** salieron de leer su artículo"),
+    (EN, "**{letras_excluidos_leyendo_articulo}** came from reading the article"),
+    (ES, "**{letras_excluidos_leyendo_articulo_ORG}** no tienen a *P. aeruginosa* en ningún paciente"),
+    (EN, "**{letras_excluidos_leyendo_articulo_ORG}** have *P. aeruginosa* in no patient"),
+    (ES, "**{letras_excluidos_leyendo_articulo_PRO}** son protocolos de estudio"),
+    (EN, "**{letras_excluidos_leyendo_articulo_PRO}** are study protocols"),
+    (ES, "**{letras_excluidos_leyendo_articulo_LAB}** no tienen pacientes"),
+    (EN, "**{letras_excluidos_leyendo_articulo_LAB}** have no patients"),
+    (ES, "**{letras_excluidos_leyendo_articulo_INT}** administran algo que no es un bacteriófago"),
+    (EN, "**{letras_excluidos_leyendo_articulo_INT}** administer something that is not a bacteriophage"),
+    (ES, "**{letras_excluidos_leyendo_articulo_OFF}** no evalúan fagoterapia en pacientes"),
+    (EN, "**{letras_excluidos_leyendo_articulo_OFF}** do not evaluate phage therapy in patients"),
+    (ES, "**{letras_excluidos_leyendo_articulo_REV}** no aportan datos primarios propios"),
+    (EN, "**{letras_excluidos_leyendo_articulo_REV}** supply no primary data of their own"),
+    # ---- lo que escribieron las nueve firmas del 2026-09-22 --------------
+    # Las dos primeras sustituyen una frase que se volvio FALSA al corregir la
+    # extraccion: el manuscrito seguia diciendo que dos brazos declaran un
+    # numerador mayor que su denominador, y ya no lo hace ninguno.
+    (ES, "**hoy ningún brazo declara una proporción imposible**"),
+    (JSR, "**hoy ningún brazo declara una proporción imposible**"),
+    (ES, "**En {brazos_bajo_umbral} de los {desenlace_brazos} brazos la clase declarada queda por debajo del umbral de multirresistencia**"),
+    (JSR, "**En {brazos_bajo_umbral} de los {desenlace_brazos} brazos la clase declarada queda por debajo del umbral de multirresistencia**"),
+    (JSR, "de los {sesgo_evaluables} evaluables, {comparativos_con_grupo_real} tienen un grupo con el que comparar"),
+    (JSR, "y en {comparativos_sin_grupo_real} las notas firmadas del dominio 1 declaran que no lo hay"),
+    # Pies de tabla y descripcion de anexos: tambien llevan cifras.
+    (ES, "declarados, sobre la extracción adjudicada (n = {desenlace_brazos} brazos)"),
+    (ES, "Listado de los {estudios} estudios con su situación y sus informes agrupados, y de los {estudios_excluidos_tras_texto_completo} excluidos"),
+    (JSR, "de una proporción agrupada de éxito clínico (n = {desenlace_brazos} brazos)"),
+    (ES, "sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = {desenlace_brazos} brazos)"),
+    # Las tres ultimas que quedaban sin ancla. El pie de la Tabla 4 del
+    # manuscrito de la revista NO lo escribe `build_manuscript_tables.py`
+    # --ese numera las tablas de otra manera-- y por eso seguia en 103.
+    (ES, "de los {desenlace_brazos} brazos de esta literatura, **ninguno reúne a la vez"),
+    (ES, "Que {estudios_solo_registro} de {estudios} estudios sean fichas de registro"),
+    (JSR, "Completitud de reporte de los cinco desenlaces declarados (n = {desenlace_brazos} brazos)"),
+    (JSR, "que {estudios_solo_registro} de {estudios} estudios identificados no han publicado resultados"),
+    # La composicion por diseno iba entera tecleada, y el «4 ensayos no
+    # aleatorizados» se volvio falso al salir EST-063. Ahora cada diseno tiene
+    # su escalar.
+    (ES, "**{casos_unicos} reportes de caso único ({casos_unicos_pct} %)**, {diseno_case_series} series de casos, {diseno_prospective_cohort} cohortes prospectivas, {diseno_RCT} ensayos aleatorizados, {diseno_non_randomised_trial} ensayos no aleatorizados y {diseno_retrospective_cohort} cohortes retrospectivas"),
+    (ES, "Los comparativos suman **{estudios_comparativos} estudios, el {estudios_comparativos_pct} %** del total"),
+    (JSR, "**{casos_unicos} reportes de caso único ({casos_unicos_pct} %)**, {diseno_case_series} series de casos, {diseno_prospective_cohort} cohortes prospectivas, {diseno_RCT} ensayos aleatorizados"),
+    (JSR, "{diseno_non_randomised_trial} ensayos no aleatorizados y {diseno_retrospective_cohort} cohortes retrospectivas"),
+    (JSR, "Los ensayos, aleatorizados o no, suman **{estudios_comparativos} estudios, el {estudios_comparativos_pct} %** del total"),
+    (ES, "Otros {diseno_no_declarado} no declaran su diseño de forma reconocible en el resumen"),
+    (JSR, "Otros {diseno_no_declarado} no declaran su diseño de forma reconocible en el resumen"),
+    # Las que quedaban sueltas por el corpus.
+    (ES, "la cifra del {texto_completo_pct} % convive con una exclusión"),
+    (ES, "La tabla 5 lo resume sobre los {desenlace_brazos} brazos del corpus vigente"),
+    (ES, "Esos porcentajes se calculan sobre los {desenlace_brazos} brazos, e incluyen por tanto {desenlace_brazos_sin_texto_completo} de estudios"),
+    (JSR, "Esos porcentajes se calculan sobre los {desenlace_brazos} brazos extraídos"),
+    (JSR, "el embudo que importa para esa pregunta parte de los {desenlace_brazos} brazos"),
+    (ES, "El resultado son {estudios} estudios frente a las decenas"),
+    (JSR, "impide leer el corpus como {estudios} conjuntos disjuntos de pacientes"),
+    (JSR, "no puede considerarse fiable, porque la categoría no puede asignarse en el **{sin_clase_util_pct} %** de los estudios"),
+    (JSR, "se obtuvo el texto completo del {texto_completo_pct} % de los estudios recuperables"),
+
+    # ---- Anadido el 2026-09-22, al ingerir las nueve firmas de la auditoria.
+    # Estas frases llevaban cifras que NINGUNA ancla vigilaba: la exclusion de
+    # EST-063 movio trece recuentos y aqui seguian los viejos --103 brazos,
+    # 137 estudios, 95 recuperables, 74,7 %, 68,9 %-- sin que nada fallara. El
+    # sincronizador solo reescribe dentro de frases ancladas, de modo que una
+    # frase sin ancla es una frase que envejece en silencio.
+    #
+    # Van por duplicado a proposito: el maestro y el de la revista dicen lo
+    # mismo con otras palabras, y una sola ancla no casa con los dos.
+    (ES, "no puede asignarse en el **{sin_clase_util_pct} %** de los estudios: el {sin_clase_de_resistencia_pct} % no la menciona en absoluto y un {clase_mencionada_no_clasificable_pct} % adicional"),
+    (JSR, "no puede asignarse en el **{sin_clase_util_pct} %** de los estudios: el {sin_clase_de_resistencia_pct} % no la menciona y un {clase_mencionada_no_clasificable_pct} % adicional"),
+    (ES, "es mixto con subgrupo separable, no consta en el **{sin_ambito_de_patogeno_pct} %**"),
+    (JSR, "es mixto con subgrupo separable— no consta en el **{sin_ambito_de_patogeno_pct} %**"),
+    (JSR, "La **vía de administración** no consta en el **{sin_via_de_administracion_pct} %**"),
+    (JSR, "La Tabla 4 lo resume sobre los {desenlace_brazos} brazos del corpus"),
+    (ES, "con denominador ({desenlace_adverse_event_n_pct_de_los_brazos} % de los brazos) y la emergencia de resistencia al fago lo que menos ({desenlace_resistance_emergence_n_pct_de_los_brazos} %)"),
+    (JSR, "con denominador ({desenlace_adverse_event_n_pct_de_los_brazos} % de los brazos) y la emergencia de resistencia al fago lo que menos ({desenlace_resistance_emergence_n_pct_de_los_brazos} %)"),
+    (JSR, "consta con numerador y denominador en el **{desenlace_clinical_success_n_pct_de_los_brazos} %** de los brazos"),
+    (ES, "Ese {desenlace_clinical_success_n_pct_de_los_brazos} % es, sin embargo, engañoso"),
+    (JSR, "Ese {desenlace_clinical_success_n_pct_de_los_brazos} % es engañoso"),
+    (ES, "Se obtuvo el texto completo de **{texto_completo_obtenido} de los {estudios_extraibles} estudios recuperables ({texto_completo_pct} %)**"),
+    (JSR, "Se obtuvo el texto completo de {texto_completo_obtenido} de los {estudios_extraibles} estudios recuperables ({texto_completo_pct} %)"),
+    (ES, "Casos únicos, {casos_unicos_pct} %; comparativos, {estudios_comparativos_pct} %; sin clase de resistencia asignable, {sin_clase_util_pct} %"),
+    (JSR, "{estudios_solo_registro} de los {estudios} identificados existen únicamente como registro"),
+    (ES, "solo {desenlace_brazos_agregables_exito_clinico} de los {desenlace_brazos} brazos reúnen los requisitos mínimos para agregar"),
+    (ES, "**En {definicion_sin_definicion_operativa} de los {desenlace_brazos} brazos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
+    (JSR, "**En {definicion_sin_definicion_operativa} de {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
+    (ES, "De los {estudios} estudios, **{estudios_extraibles} tienen publicación recuperable**: {estudios_con_articulo} artículos"),
     # ---- La busqueda SI llevo ventana 2016-2026 (PubMed "2016"[dp]:"2026"[dp],
     # Scopus PUBYEAR, CENTRAL). El manuscrito lo decia al reves hasta el
     # 2026-08-23; ahora la ventana se declara en Metodos y en Limitaciones como
@@ -193,7 +313,7 @@ AFIRMACIONES = [
     # El riesgo de sesgo simplificado: alcance y numero de celdas. Si manana se
     # consigue el texto del ECA que falta, o se readjudica un diseno, estas
     # frases dejan de ser ciertas y aqui salta.
-    (JSR, "identifica **{sesgo_comparativos_adjudicados} estudios con grupo de comparación**, de los cuales **{sesgo_evaluables} son evaluables**: {sesgo_instrumento_RoB2} ensayos aleatorizados con RoB 2 y {sesgo_instrumento_ROBINSI} ensayos no aleatorizados y cohortes con ROBINS-I"),
+    (JSR, "identifica **{sesgo_comparativos_adjudicados} estudios con diseño comparativo**, de los cuales **{sesgo_evaluables} son evaluables**: {sesgo_instrumento_RoB2} ensayos aleatorizados con RoB 2 y {sesgo_instrumento_ROBINSI} ensayos no aleatorizados y cohortes con ROBINS-I"),
     # El recuento de juicios se ancla en el parrafo de alcance, que existe
     # tanto con la evaluacion pendiente como terminada. Estuvo anclado en el
     # aviso de PENDIENTE, que desaparece al completarse: al ingerir los 82
@@ -207,8 +327,10 @@ AFIRMACIONES = [
     # LA REGLA DEL JUICIO GLOBAL. Decia 11 de 12 y son 9: ROBINS-I reserva
     # «sin informacion» cuando un dominio lo es y ninguno es grave, de modo
     # que EST-063 y EST-116 tampoco heredan su peor dominio.
-    (JSR, "En {globales_heredan_peor} de los {sesgo_evaluables} estudios el juicio global se corresponde con sus dominios"),
-    (JSR, "Se cumple en {globales_heredan_peor} de los {sesgo_evaluables} estudios evaluados"),
+    # Reescrita el 2026-09-22: al corregirse los tres globales discordantes
+    # ya no hay excepciones que contar, y la frase la genera ahora
+    # `build_rob_table.py` en vez de estar escrita a mano.
+    (JSR, "Se cumple en los {sesgo_evaluables} estudios evaluados, sin excepciones"),
     # ---- lo que el articulo dice cuando el resumen calla
     (JSR, "De los **{t3_con_texto}** estudios cuyo texto se obtuvo, **{t3_resistance_class_declarado}** declaran una categoría de resistencia asignable (**{t3_clase_declarada_pct} %**) —**{t3_clase_mdr_xdr_pdr}** en MDR, XDR o PDR y **{t3_clase_bajo_umbral}** por debajo del umbral de multirresistencia—, **{t3_resistance_class_no_clasificable}** la mencionan"),
     # ---- lo que acompana a cada juicio: cita, nota o nada
@@ -293,6 +415,61 @@ def formatea(valor, ingles, clave=None):
     return s
 
 
+# ---------------------------------------------------------------------------
+# CIFRAS ESCRITAS EN LETRA
+#
+# Un hueco «{letras_estudios}» se resuelve como la palabra y no como el numero.
+# Existe porque la seccion 3.1.1 enumera las exclusiones con palabras y ningun
+# guardian las miraba: buscan digitos. Al salir EST-063 del corpus el
+# 2026-09-22, «Veintinueve», «Veinticuatro» y «Cuatro son protocolos» se
+# volvieron las tres falsas sin que nada fallara.
+#
+# Solo cubre 0-99, que es todo lo que el manuscrito escribe en letra, y
+# devuelve la palabra CAPITALIZADA porque en los tres manuscritos estas cifras
+# abren la oracion.
+# ---------------------------------------------------------------------------
+_UNI_ES = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete",
+           "ocho", "nueve", "diez", "once", "doce", "trece", "catorce",
+           "quince", "diecis\u00e9is", "diecisiete", "dieciocho", "diecinueve",
+           "veinte", "veintiuno", "veintid\u00f3s", "veintitr\u00e9s", "veinticuatro",
+           "veinticinco", "veintis\u00e9is", "veintisiete", "veintiocho",
+           "veintinueve"]
+_DEC_ES = {30: "treinta", 40: "cuarenta", 50: "cincuenta", 60: "sesenta",
+           70: "setenta", 80: "ochenta", 90: "noventa"}
+_UNI_EN = ["zero", "one", "two", "three", "four", "five", "six", "seven",
+           "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
+           "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+_DEC_EN = {20: "twenty", 30: "thirty", 40: "forty", 50: "fifty", 60: "sixty",
+           70: "seventy", 80: "eighty", 90: "ninety"}
+
+
+def en_letra(n, ingles):
+    """El numero como palabra, capitalizada. Fuera de 0-99 devuelve el digito."""
+    n = int(n)
+    if not 0 <= n <= 99:
+        return str(n)
+    if ingles:
+        if n < 20:
+            p = _UNI_EN[n]
+        else:
+            d, u = divmod(n, 10)
+            p = _DEC_EN[d * 10] + ("-" + _UNI_EN[u] if u else "")
+    else:
+        if n < 30:
+            p = _UNI_ES[n]
+        else:
+            d, u = divmod(n, 10)
+            p = _DEC_ES[d * 10] + (" y " + _UNI_ES[u] if u else "")
+    return p[0].upper() + p[1:]
+
+
+def valor_de(esc, clave, ingles):
+    """El valor de un hueco, que puede pedir la palabra en vez del numero."""
+    if clave.startswith("letras_"):
+        return en_letra(esc[clave[len("letras_"):]], ingles)
+    return formatea(esc[clave], ingles, clave)
+
+
 SECCIONES = {
     "es": ["## Resumen", "## 1. Introducción", "## 2. Métodos", "## 3. Resultados",
            "## 4. Discusión", "## 5. Conclusiones", "## Declaraciones"],
@@ -363,11 +540,13 @@ def main():
         veces = entrada[2] if len(entrada) > 2 else 1
         ingles = entrada[3] if len(entrada) > 3 else (archivo is EN)
         claves = re.findall(r"\{(\w+)\}", plantilla)
-        faltan = [c for c in claves if c not in esc]
+        # «letras_x» pide la palabra de «x»: lo que tiene que existir es x.
+        faltan = [c for c in claves
+                  if c.replace("letras_", "", 1) not in esc]
         if faltan:
             fallos.append(f"{archivo.name}: escalar inexistente {faltan} en «{plantilla[:56]}…»")
             continue
-        esperado = plantilla.format(**{c: formatea(esc[c], ingles, c) for c in claves})
+        esperado = plantilla.format(**{c: valor_de(esc, c, ingles) for c in claves})
         esperado_n = re.sub(r"[   ]", " ", esperado)
         n = normal[archivo].count(esperado_n)
         if n == veces:
@@ -377,7 +556,7 @@ def main():
             # ¿está la frase con otro número? Se localiza para poder decirlo.
             molde = re.escape(esperado_n)
             for c in claves:
-                molde = molde.replace(re.escape(formatea(esc[c], ingles, c)),
+                molde = molde.replace(re.escape(valor_de(esc, c, ingles)),
                                       r"([\d  .,]+)")
             hallado = re.search(molde, normal[archivo])
             detalle = (f" -- el manuscrito dice «{hallado.group(0)[:80]}»"

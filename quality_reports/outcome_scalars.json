@@ -1,27 +1,27 @@
 {
-  "brazos": 103,
-  "brazos_legibles": 79,
+  "brazos": 102,
+  "brazos_legibles": 78,
   "brazos_sin_texto_completo": 24,
-  "estudios_extraidos": 95,
-  "brazos_con_denominador": 88,
+  "estudios_extraidos": 94,
+  "brazos_con_denominador": 87,
   "desenlaces": {
     "clinical_success_n": {
       "nombre": "éxito clínico",
-      "brazos_que_lo_reportan": 71,
-      "con_numerador_y_denominador": 71,
-      "pct_de_los_brazos": 68.9,
-      "en_brazos_legibles": 69,
-      "pct_de_los_legibles": 87.3,
-      "de_esos_con_doble_lectura": 69,
-      "doble_lectura_pct": 97.2
+      "brazos_que_lo_reportan": 70,
+      "con_numerador_y_denominador": 70,
+      "pct_de_los_brazos": 68.6,
+      "en_brazos_legibles": 68,
+      "pct_de_los_legibles": 87.2,
+      "de_esos_con_doble_lectura": 68,
+      "doble_lectura_pct": 97.1
     },
     "microbio_eradication_n": {
       "nombre": "erradicación microbiológica",
       "brazos_que_lo_reportan": 57,
       "con_numerador_y_denominador": 57,
-      "pct_de_los_brazos": 55.3,
+      "pct_de_los_brazos": 55.9,
       "en_brazos_legibles": 56,
-      "pct_de_los_legibles": 70.9,
+      "pct_de_los_legibles": 71.8,
       "de_esos_con_doble_lectura": 56,
       "doble_lectura_pct": 98.2
     },
@@ -29,55 +29,52 @@
       "nombre": "mortalidad",
       "brazos_que_lo_reportan": 76,
       "con_numerador_y_denominador": 75,
-      "pct_de_los_brazos": 72.8,
+      "pct_de_los_brazos": 73.5,
       "en_brazos_legibles": 71,
-      "pct_de_los_legibles": 89.9,
-      "de_esos_con_doble_lectura": 73,
-      "doble_lectura_pct": 97.3
+      "pct_de_los_legibles": 91.0,
+      "de_esos_con_doble_lectura": 72,
+      "doble_lectura_pct": 96.0
     },
     "adverse_event_n": {
       "nombre": "eventos adversos",
-      "brazos_que_lo_reportan": 84,
-      "con_numerador_y_denominador": 81,
-      "pct_de_los_brazos": 78.6,
-      "en_brazos_legibles": 71,
-      "pct_de_los_legibles": 89.9,
-      "de_esos_con_doble_lectura": 80,
+      "brazos_que_lo_reportan": 83,
+      "con_numerador_y_denominador": 80,
+      "pct_de_los_brazos": 78.4,
+      "en_brazos_legibles": 70,
+      "pct_de_los_legibles": 89.7,
+      "de_esos_con_doble_lectura": 79,
       "doble_lectura_pct": 98.8
     },
     "resistance_emergence_n": {
       "nombre": "emergencia de resistencia al fago",
       "brazos_que_lo_reportan": 28,
       "con_numerador_y_denominador": 28,
-      "pct_de_los_brazos": 27.2,
+      "pct_de_los_brazos": 27.5,
       "en_brazos_legibles": 28,
-      "pct_de_los_legibles": 35.4,
+      "pct_de_los_legibles": 35.9,
       "de_esos_con_doble_lectura": 16,
       "doble_lectura_pct": 57.1
     }
   },
   "definicion_exito": {
-    "brazos": 103,
-    "con_definicion_operativa": 34,
+    "brazos": 102,
+    "con_definicion_operativa": 33,
     "sin_definicion_declarada": 47,
     "campo_ausente": 1,
     "extraccion_incompleta": 21,
     "sin_definicion_operativa": 69,
-    "sin_definicion_pct": 67.0,
+    "sin_definicion_pct": 67.6,
     "establecido_que_no_define": 48,
-    "establecido_pct": 46.6,
+    "establecido_pct": 47.1,
     "sin_definicion_en_legibles": 45,
-    "sin_definicion_legibles_pct": 57.0
+    "sin_definicion_legibles_pct": 57.7
   },
   "campos_del_esquema_no_extraidos": [
     "microbio_eradication_denom",
     "microbio_eradication_sustained"
   ],
-  "aritmetica_imposible": 2,
-  "aritmetica_imposible_detalle": [
-    "EST-003 clinical_success_n=13 sobre n=1",
-    "EST-077 adverse_event_n=5 sobre n=4"
-  ],
+  "aritmetica_imposible": 0,
+  "aritmetica_imposible_detalle": [],
   "disenos": {
     "case report": 42,
     "case series": 26,
@@ -85,23 +82,23 @@
     "retrospective cohort": 8,
     "RCT": 5,
     "other": 5,
-    "non-randomised trial": 3,
+    "non-randomised trial": 2,
     "prospective cohort": 2
   },
   "diseno_no_clasificable": 12,
-  "brazos_con_diseno": 91,
+  "brazos_con_diseno": 90,
   "diseno_na_acordado": 12,
   "diseno_abierto": 0,
-  "brazos_comparativos": 18,
-  "estudios_comparativos_extraidos": 15,
+  "brazos_comparativos": 17,
+  "estudios_comparativos_extraidos": 14,
   "embudo": [
     {
       "filtro": "brazos extraídos",
-      "quedan": 103
+      "quedan": 102
     },
     {
       "filtro": "diseño comparativo",
-      "quedan": 18
+      "quedan": 17
     },
     {
       "filtro": "numerador y denominador coherentes",
@@ -126,7 +123,7 @@
   ],
   "brazos_agregables_final": 0,
   "brazos_agregables_final_ids": [],
-  "brazos_ensayo": 8,
+  "brazos_ensayo": 7,
   "brazos_cohorte": 10,
   "brazos_agregables_exito_clinico": 2,
   "estudios_agregables_exito_clinico": 2,
@@ -136,7 +133,7 @@
       "arm_id": "A",
       "diseno": "RCT",
       "n": "6",
-      "N": "27",
+      "N": "13",
       "definicion": "The primary endpoint was the time taken for a sustained reduction in bacterial burden by at least two quadrants via a four-quadrant method, assessed by use of d"
     },
     {

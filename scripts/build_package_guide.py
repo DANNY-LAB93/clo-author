@@ -31,6 +31,12 @@ from build_extraction_verifiables import ANCHO, SIN_CITAS, cuadro, documento  # 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "verificables revisión sistemática"
 
+# La guia describia «los 90 juicios de riesgo de sesgo» con una cifra tecleada,
+# y se volvio falsa el 2026-09-22 al salir EST-063 del corpus. Ahora entra por
+# el escalar, como todo lo demas.
+_S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                .read_text(encoding="utf-8"))
+
 # Qué es cada anexo y qué deja comprobar. El orden es el del paquete.
 CATALOGO = [
     ("Manuscrito", [
@@ -110,7 +116,7 @@ CATALOGO = [
          "registrado, marcado como dato faltante.",
          "Juzgar el procedimiento de cribado, incluido lo que no se puede reconstruir."),
         ("S18_evidencia_por_dominio.xlsx + .csv", "La frase del artículo en que se apoya "
-         "cada uno de los 90 juicios de riesgo de sesgo.",
+         "cada uno de los %d juicios de riesgo de sesgo." % _S["celdas_tabla5"],
          "Discrepar de un juicio concreto teniendo delante lo que lo sostiene."),
         ("S11_concordancia_entre_extractores.pdf", "Concordancia entre las dos "
          "extracciones independientes, variable a variable, antes de resolver nada.",

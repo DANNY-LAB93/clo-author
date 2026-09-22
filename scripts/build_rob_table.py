@@ -93,13 +93,28 @@ def juicios():
 
 
 def procedencias():
-    """Cuántos juicios salieron por acuerdo y cuántos por consenso firmado."""
+    """Cuántos juicios salieron por acuerdo y cuántos por consenso firmado.
+
+    Cuenta SOLO los juicios del corpus vigente, y mete las correcciones
+    firmadas en el mismo saco que el consenso, porque una correccion firmada
+    por los dos revisores es un consenso: lo que cambia es cuando se firmo.
+    Sin esto la frase decia «los 87 juicios» --las 90 filas del fichero menos
+    las 3 corregidas el 2026-09-22-- cuando los juicios vigentes son 82.
+    """
     if not ADJUDICADO.exists():
         return collections.Counter()
+    fuera = {r["study_id"] for r in
+             csv.DictReader(open(ROOT / "revision_sistematica" / "cribado"
+                                 / "exclusiones_tras_texto_completo.csv",
+                                 encoding="utf-8"))}
+    c = collections.Counter()
     with open(ADJUDICADO, encoding="utf-8-sig", newline="") as fh:
-        return collections.Counter(r["procedencia"].strip()
-                                   for r in csv.DictReader(fh)
-                                   if r["valor"].strip())
+        for r in csv.DictReader(fh):
+            if not r["valor"].strip() or r["study_id"] in fuera:
+                continue
+            p_ = r["procedencia"].strip()
+            c["consenso" if p_.startswith("corregido por la auditoria") else p_] += 1
+    return c
 
 
 # NINGUNA CIFRA TECLEADA AQUI. La version anterior llevaba tres dentro del
@@ -108,7 +123,7 @@ def procedencias():
 # estudio. Ahora todas entran por el diccionario que arma `main()`.
 ALCANCE = (
     "El diseño adjudicado sobre el artículo identifica **%(comp)d estudios con "
-    "grupo de comparación**, de los cuales **%(ev)d son evaluables**: %(rob2)d "
+    "diseño comparativo**, de los cuales **%(ev)d son evaluables**: %(rob2)d "
     "ensayos aleatorizados con RoB 2 y %(robins)d ensayos no aleatorizados y "
     "cohortes con ROBINS-I. %(sin_texto_frase)s; no reciben un juicio de riesgo "
     "alto por esa razón, porque no evaluar y evaluar mal no son lo mismo. Ese "
@@ -117,7 +132,32 @@ ALCANCE = (
     "los %(extraibles)d estudios recuperables y no incluye las cohortes, "
     "mientras que esta evaluación clasifica por lo que se leyó en el artículo "
     "de los %(con_texto)d con texto obtenido y sí las incluye. La Tabla 5 lleva "
-    "%(celdas)d juicios de dominio%(recoge)s.")
+    "%(celdas)d juicios de dominio%(recoge)s. **La etiqueta de diseño no garantiza un grupo de comparación:** de los %(ev)d evaluables, %(grupo_si)d tienen un grupo con el que comparar (%(grupo_si_ids)s) y en %(grupo_no)d las notas firmadas del dominio 1 declaran que no lo hay, de modo que el contraste que su diseño promete no existe en el artículo. De los %(sin_texto)d sin texto completo no se sabe.")
+
+# Coherencia de los juicios globales con sus dominios, y en que se apoya cada
+# juicio. Estas dos frases estaban ESCRITAS A MANO dentro del bloque que este
+# guion reescribe entero, de modo que una pasada se las llevo por delante sin
+# avisar. Ahora se generan: sobreviven a la siguiente y no pueden quedarse con
+# una cifra vieja.
+DESGLOSE = (
+    "La Tabla 5 reúne **%(celdas)d juicios**, y no todos son de dominio: "
+    "%(n_rob2)d estudios × %(d_rob2)d dominios de RoB 2 dan %(j_rob2)d, y "
+    "%(n_robins)d × %(d_robins)d dominios de ROBINS-I dan %(j_robins)d, de "
+    "modo que hay **%(dominio)d celdas de dominio**; las **%(global)d** "
+    "restantes son los juicios globales, uno por estudio. De las %(dominio)d "
+    "celdas de dominio, **%(veredicto)d llevan un veredicto** y "
+    "**%(sin_info)d declaran que no hay información suficiente para "
+    "juzgar** (%(sin_info_ids)s)."
+)
+
+COHERENCIA = (
+    "Ningún estudio puede llevar un juicio global de bajo riesgo si alguno de "
+    "sus dominios no lo es, ni uno de riesgo moderado si a un dominio le falta "
+    "información para juzgarlo. %(coherencia)s De los %(celdas)d juicios, "
+    "**%(citas)d se apoyan en una cita literal del artículo**, **%(notas)d en "
+    "una nota metodológica escrita por los revisores** —una razón, no una "
+    "cita— y **%(sin_frase)d no registran apoyo alguno**; los %(sin_frase)d "
+    "son juicios globales. El material suplementario los separa uno a uno.")
 
 AVISO = (
     "**[PENDIENTE — no enviar el manuscrito con esta nota. Los %d juicios de "
@@ -278,13 +318,55 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
                          "sin_texto_frase": _frase,
                          "t2": _S["estudios_comparativos"],
                          "extraibles": _S["estudios_extraibles"],
-                         "con_texto": _S["texto_completo_obtenido"]}
+                         "con_texto": _S["texto_completo_obtenido"],
+                         # Firmado el 2026-09-22, hoja 6: la etiqueta de diseno
+                         # y el grupo de comparacion son dos cosas distintas y
+                         # el manuscrito decia solo la primera.
+                         "grupo_si": _S["comparativos_con_grupo_real"],
+                         "grupo_no": _S["comparativos_sin_grupo_real"],
+                         "grupo_si_ids": ", ".join(
+                             _S["comparativos_con_grupo_real_ids"]),
+                         "sin_texto": _n}
     if estado["completa"]:
         segundo = resumen_prosa(evaluables, orden, titulo, J,
                                 procedencias())
     else:
         segundo = AVISO % (estado["celdas_pendientes"], estado["evaluables"])
-    nuevo = "%s\n\n%s\n\n%s\n\n" % (MARCA_INI, alcance, segundo)
+    _sin = _S.get("juicios_sin_informacion_ids") or []
+    desglose = DESGLOSE % {
+        "celdas": _S["celdas_tabla5"],
+        "n_rob2": estado["por_instrumento"].get("RoB 2", 0),
+        "d_rob2": _S["dominios_rob2"],
+        "j_rob2": _S["juicios_rob2"],
+        "n_robins": estado["por_instrumento"].get("ROBINS-I", 0),
+        "d_robins": _S["dominios_robins"],
+        "j_robins": _S["juicios_robins"],
+        "dominio": _S["juicios_de_dominio"],
+        "global": _S["juicios_globales"],
+        "veredicto": _S["juicios_con_veredicto"],
+        "sin_info": _S["juicios_sin_informacion"],
+        "sin_info_ids": ", ".join(_sin) if _sin else "ver el material suplementario",
+    }
+    _disc = _S["globales_discordantes"]
+    if _disc == 0:
+        _coh = ("Se cumple en los %d estudios evaluados, sin excepciones: los "
+                "tres juicios globales que no se correspondían con sus "
+                "dominios —EST-021 con RoB 2, EST-063 y EST-116 con "
+                "ROBINS-I— se corrigieron por firma de los dos revisores "
+                "el 22 de septiembre de 2026, y EST-063 salió del corpus "
+                "ese mismo día por ser un protocolo."
+                % estado["evaluables"])
+    else:
+        _coh = ("Se cumple en %d de los %d estudios evaluados; %s no, y se "
+                "señala en los Resultados."
+                % (_S["globales_heredan_peor"], estado["evaluables"],
+                   ", ".join(_S["globales_discordantes_ids"])))
+    coherencia = COHERENCIA % {"coherencia": _coh,
+                               "celdas": _S["celdas_tabla5"],
+                               "citas": _S["citas_literales"],
+                               "notas": _S["notas_del_revisor"],
+                               "sin_frase": _S["juicios_sin_frase"]}
+    nuevo = "%s\n\n%s\n\n%s\n\n%s\n\n%s\n\n" % (MARCA_INI, alcance, segundo, desglose, coherencia)
     MANUSCRITO.write_text(s[:ini] + nuevo + s[fin:], encoding="utf-8")
     print("bloque de riesgo de sesgo reescrito en %s (%s)"
           % (MANUSCRITO.name, "resultados" if estado["completa"] else "aviso"))
@@ -369,11 +451,19 @@ def escribe_otros(estado):
     ninguna. Los tres viajan en el mismo sobre.
     """
     import rob_bloques as RB
+    import json as _json
+    _O = _json.loads((ROOT / "quality_reports" / "outcome_scalars.json")
+                     .read_text(encoding="utf-8"))
     ctx = {"comp": estado["comparativos_adjudicados"],
            "ev": estado["evaluables"],
            "celdas": estado["celdas_totales"],
            "faltan": estado["celdas_pendientes"],
-           "brazos": 103}
+           # Estaban TECLEADOS dentro del bloque que este guion reescribe,
+           # de modo que el sincronizador los arreglaba y la siguiente
+           # pasada los devolvia a 103. Salen del canal desde el
+           # 2026-09-22.
+           "brazos": _O["brazos"],
+           "agregables": _O["brazos_agregables_exito_clinico"]}
     # Metodos del propio manuscrito de la revista: mismo mecanismo.
     met = ROOT / "paper" / "manuscrito_JSR_final.md"
     s = met.read_text(encoding="utf-8")

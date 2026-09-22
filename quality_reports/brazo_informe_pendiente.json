@@ -1,9 +1,9 @@
 {
   "generado_por": "scripts/build_brazo_informe.py",
-  "brazos": 103,
-  "estudios": 95,
+  "brazos": 102,
+  "estudios": 94,
   "por_via": {
-    "título localizado en el texto leído": 71,
+    "título localizado en el texto leído": 70,
     "informe único": 31,
     "único artículo del grupo": 1
   },

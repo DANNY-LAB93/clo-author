@@ -40,8 +40,16 @@ def main():
     S = json.loads((QR / "synthesis_scalars.json").read_text(encoding="utf-8"))
     t6 = leer(QR / "tabla6_brazo_a_brazo.csv", enc="utf-8-sig")
     t3 = leer(QR / "tabla3_completitud.csv", enc="utf-8-sig")
-    rob = leer(RS / "riesgo_sesgo" / "riesgo_sesgo_comparativos_adjudicado.csv", enc="utf-8-sig")
     excl = {r["study_id"] for r in leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv")}
+    # Los juicios de un estudio que salio del corpus NO se borran de su fichero
+    # --son el registro de lo que se juzgo de verdad-- pero dejan de contarse,
+    # igual que `study_groups` conserva a los excluidos del cribado y el canal
+    # no los suma. EST-063 salio como protocolo el 2026-09-22 y se lleva sus
+    # siete juicios de dominio y su global.
+    rob = [r for r in leer(RS / "riesgo_sesgo"
+                           / "riesgo_sesgo_comparativos_adjudicado.csv",
+                           enc="utf-8-sig")
+           if r["study_id"] not in excl]
     adj = [r for r in leer(RS / "extraccion" / "extraccion_adjudicada.csv")
            if r["study_id"] not in excl]
     grupos = leer(RS / "cribado" / "study_groups.csv")
@@ -102,6 +110,23 @@ def main():
     S["t3_clase_declarada_pct"] = round(
         100.0 * S["t3_resistance_class_declarado"] / con_texto, 1)
 
+    # ---- grupo de comparacion REAL, no etiqueta de diseno --------------
+    # La etiqueta «comparativo» sale del diseno adjudicado y una cohorte cuenta
+    # como comparativa aunque no tenga con que comparar. Los dos autores
+    # firmaron el 2026-09-22 (hoja 6 de la auditoria) que el manuscrito diga
+    # las dos cosas: cuantos tienen diseno comparativo y cuantos tienen grupo.
+    _g = RS / "riesgo_sesgo" / "grupo_de_comparacion_real.csv"
+    if _g.exists():
+        _f = [r for r in leer(_g) if r["en_el_corpus"] == "si"]
+        S["comparativos_con_grupo_real"] = sum(
+            1 for r in _f if r["tiene_grupo_de_comparacion"] == "si")
+        S["comparativos_sin_grupo_real"] = sum(
+            1 for r in _f if r["tiene_grupo_de_comparacion"] == "no")
+        S["comparativos_con_grupo_real_ids"] = sorted(
+            r["study_id"] for r in _f if r["tiene_grupo_de_comparacion"] == "si")
+        S["comparativos_sin_grupo_real_ids"] = sorted(
+            r["study_id"] for r in _f if r["tiene_grupo_de_comparacion"] == "no")
+
     # ---- juicios: los 90 no son todos de dominio
     S["juicios_globales"] = sum(1 for r in rob if r["item"] == "GLOBAL")
     S["juicios_de_dominio"] = len(rob) - S["juicios_globales"]
@@ -144,7 +169,14 @@ def main():
         esperado = ("sin informacion" if (sininfo and not graves) else
                     max((_k(v) for v in doms.values() if _k(v) in ORDEN[i]),
                         key=lambda x: ORDEN[i].index(x), default=""))
-        if _k(d["GLOBAL"]) == esperado:
+        # «Sin informacion para juzgar» es como se llama el juicio en los
+        # cuadernos; `esperado` lo nombra «sin informacion». Comparadas tal
+        # cual, un global CORRECTO salia discordante: EST-116 lo hizo el
+        # 2026-09-22, en cuanto se corrigio.
+        _glob = _k(d["GLOBAL"])
+        if esperado == "sin informacion" and _glob.startswith("sin informacion"):
+            _glob = "sin informacion"
+        if _glob == esperado:
             heredan += 1
         else:
             discord.append(e)
@@ -154,6 +186,16 @@ def main():
     S["juicios_sin_informacion"] = sum(
         1 for r in rob if r["item"] != "GLOBAL" and "sin informacion" in _k(r["valor"]))
     S["juicios_con_veredicto"] = S["juicios_de_dominio"] - S["juicios_sin_informacion"]
+    # Y de quien son, para que el manuscrito pueda nombrarlos sin teclearlos.
+    _si = collections.Counter(
+        r["study_id"] for r in rob
+        if r["item"] != "GLOBAL" and "sin informacion" in _k(r["valor"]))
+    _n_es = {1: "un dominio", 2: "dos dominios", 3: "tres dominios",
+             4: "cuatro dominios", 5: "cinco dominios", 6: "seis dominios",
+             7: "siete dominios"}
+    S["juicios_sin_informacion_ids"] = [
+        "%s, %s" % (e, _n_es.get(n, "%d dominios" % n))
+        for e, n in sorted(_si.items())]
 
     # 3. reportes y series entre los estudios leídos
     pdfs = {q.stem for q in (RS / "textos_completos" / "pdf").iterdir()
@@ -181,8 +223,21 @@ def main():
     S["t3_clase_bajo_umbral"] = sum(
         1 for v in clase.values()
         if "below-MDR-threshold" in v and not (v & {"MDR", "XDR", "PDR"}))
-    S["brazos_bajo_umbral"] = sum(
-        1 for r in adj if r["resistance_class"] == "below-MDR-threshold")
+    _bajo = [r for r in adj if r["resistance_class"] == "below-MDR-threshold"]
+    S["brazos_bajo_umbral"] = len(_bajo)
+    S["brazos_bajo_umbral_ids"] = sorted(
+        "%s %s" % (r["study_id"], r["arm_id"]) for r in _bajo)
+    # Un brazo por debajo del umbral dentro de un estudio que SI incluye
+    # multirresistentes es un estrato, y no compromete la elegibilidad del
+    # estudio. Un estudio de un solo brazo cuyo unico paciente esta por debajo
+    # del umbral, si. Los dos autores firmaron el 2026-09-22 mantenerlos y
+    # declararlos; la distincion tiene que salir del dato, no de la prosa.
+    _n_brazos = collections.Counter(r["study_id"] for r in adj)
+    S["brazos_bajo_umbral_estrato"] = sum(
+        1 for r in _bajo if _n_brazos[r["study_id"]] > 1)
+    S["bajo_umbral_estudio_entero_ids"] = sorted(
+        r["study_id"] for r in _bajo if _n_brazos[r["study_id"]] == 1)
+    S["bajo_umbral_estudio_entero"] = len(S["bajo_umbral_estudio_entero_ids"])
 
     # 5. el marco del recribado, separado por etapa
     S["validacion_marco_titulo"] = S["excluidos_titulo"]

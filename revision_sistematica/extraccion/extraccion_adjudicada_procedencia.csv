@@ -1,11 +1,11 @@
 study_id,arm_id,adverse_event_n,clinical_success_definition,clinical_success_n,dtr_status,extraction_citation,extraction_status,geographic_source,incomplete_reason,journal_tier,los_days,microbio_eradication_n,modality,mortality_n,n_arm,pathogen_scope,publication_year,resistance_class,resistance_class_source,resistance_emergence_n,route,study_design
 EST-001,A,acuerdo,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
 EST-002,A,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
-EST-003,A,consenso,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
-EST-003,B,consenso,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
-EST-003,C,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
-EST-003,D,consenso,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
-EST-003,E,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
+EST-003,A,consenso,corregido por consenso contra el texto,corregido por consenso contra el texto,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
+EST-003,B,consenso,corregido por consenso contra el texto,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
+EST-003,C,acuerdo,corregido por consenso contra el texto,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
+EST-003,D,consenso,corregido por consenso contra el texto,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
+EST-003,E,acuerdo,corregido por consenso contra el texto,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
 EST-004,A,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso
 EST-004,B,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
 EST-005,A,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
@@ -24,7 +24,7 @@ EST-017,A,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,ABI
 EST-018,A,consenso,consenso,consenso,consenso,acuerdo,consenso,consenso,acuerdo,sin segunda lectura,sin segunda lectura,sin segunda lectura,consenso,sin segunda lectura,consenso,acuerdo,consenso,acuerdo,acuerdo,sin segunda lectura,consenso,consenso
 EST-019,A,acuerdo,consenso,consenso,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,sin segunda lectura,consenso,corregido por consenso contra el texto,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo
 EST-020,A,acuerdo,consenso,acuerdo,consenso,acuerdo,consenso,consenso,acuerdo,sin segunda lectura,sin segunda lectura,acuerdo,acuerdo,consenso,consenso,acuerdo,consenso,acuerdo,acuerdo,sin segunda lectura,consenso,consenso
-EST-021,A,consenso,consenso,consenso,acuerdo,acuerdo,consenso,consenso,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo
+EST-021,A,consenso,consenso,consenso,acuerdo,acuerdo,consenso,consenso,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso,corregido por consenso contra el texto,corregido por consenso contra el texto,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo
 EST-024,A,consenso,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso
 EST-027,A,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso
 EST-028,A,consenso,consenso,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,sin segunda lectura,sin segunda lectura,sin segunda lectura,consenso,sin segunda lectura,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso
@@ -68,7 +68,7 @@ EST-073,A,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,consenso,acuerdo,si
 EST-074,A,acuerdo,consenso,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo
 EST-075,A,consenso,consenso,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso
 EST-076,A,consenso,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo
-EST-077,A,consenso,consenso,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,consenso,sin segunda lectura,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso
+EST-077,A,corregido por consenso contra el texto,consenso,acuerdo,consenso,acuerdo,acuerdo,consenso,acuerdo,consenso,sin segunda lectura,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,sin segunda lectura,acuerdo,consenso
 EST-078,A,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo
 EST-080,A,acuerdo,consenso,consenso,acuerdo,acuerdo,acuerdo,consenso,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,acuerdo,acuerdo,acuerdo,acuerdo,consenso,consenso,consenso
 EST-081,A,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo,acuerdo

@@ -1,6 +1,6 @@
 # Solapamiento de pacientes: lo que hay que leer
 
-Generado por `scripts/detecta_solapamiento.py` sobre los 71 textos completos
+Generado por `scripts/detecta_solapamiento.py` sobre los 70 textos completos
 del corpus vivo. Cada fragmento es literal del artículo.
 
 ## EST-003 — Refractory Pseudomonas aeruginosa infections treated with phage PASA16: A compassionate us
@@ -58,10 +58,6 @@ del corpus vivo. Cada fragmento es literal del artículo.
 ## EST-062 — Bacteriophage-antibiotic combination therapy against extensively drug-resistant Pseudomona
 
 > oPINactivitywasdetectedagainstphagesPNMand infecttheemergingphage-resistantP.aeruginosaisolates. 14-1duringorafteraverylongIVapplicationofthesephages,whereas unpublishedcasesdiddetectpotentPINagainstPNMand14-1,already Phage-antibioticsynergy startingsignificantlyduringthesecondweekofPT.Thiscouldsuggest EventhoughallPTrandomizedcontrolledtrialsthathavebeenper
-
-## EST-063 — Single-arm, open-labelled, safety and tolerability of intrabronchial and nebulised bacteri
-
-> mentary tract may suggest contamination obtained approval from the Sydney Children’s Hospital 2 Singh J, et al. BMJ Open Resp Res 2023;10:e001360. doi:10.1136/bmjresp-2022-001360Open access Table 1 Existing human trials previously published (only relevant inhaled route is shown) Reference Year Indication Aetiology Delivery method Efficacy Delacoste63 1959 Refractory coughs NA Inhalation 100% Hoeflmayr et al64 1962 Bronchitis Streptococci (2/3); Inhalation
 
 ## EST-070 — Compassionate Use of Bacteriophages for Failed Persistent Infections During the First 5 Ye
 

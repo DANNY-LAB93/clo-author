@@ -33,7 +33,8 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from check_manuscript_claims import AFIRMACIONES, ES, EN, JSR, ESCALARES, formatea
+from check_manuscript_claims import (AFIRMACIONES, ES, EN, JSR, ESCALARES,
+                                     formatea, valor_de)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -90,7 +91,7 @@ def main():
         # "75.8 %"-- y lo dejo corrupto hasta que el comprobador lo canto.
         ingles = entrada[3] if len(entrada) > 3 else (archivo is EN)
         claves = re.findall(r"\{(\w+)\}", plantilla)
-        esperado = plantilla.format(**{c: formatea(esc[c], ingles, c) for c in claves})
+        esperado = plantilla.format(**{c: valor_de(esc, c, ingles) for c in claves})
 
         # molde con los números convertidos en comodines
         # El separador de millares del manuscrito no siempre es el mismo
@@ -123,9 +124,14 @@ def main():
         # decimal opcional. Ni un punto ni una coma sueltos al final.
         espacio = "\u00a0\u2009\u202f "
         comodin = r"\d+(?:[" + espacio + r"]\d{3})*(?:[.,]\d+)?"
+        # Un hueco «{letras_*}» no casa contra un numero sino contra una
+        # palabra: la seccion 3.1.1 escribe «Veinticuatro» y no «24».
+        palabra = r"[A-Za-z\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1-]+(?: y [a-z\u00e1\u00e9\u00ed\u00f3\u00fa]+)?"
         partes = re.split(r"\{(\w+)\}", plantilla)
-        molde = "".join(re.escape(p) if i % 2 == 0 else comodin
-                        for i, p in enumerate(partes))
+        molde = "".join(
+            re.escape(p) if i % 2 == 0
+            else (palabra if p.startswith("letras_") else comodin)
+            for i, p in enumerate(partes))
         halladas = [m.group(0) for m in re.finditer(molde, textos[archivo])]
 
         if not halladas:

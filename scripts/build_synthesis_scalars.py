@@ -168,6 +168,29 @@ def main():
     S["estudios_excluidos_tras_texto_completo"] = len(FUERA)
     S["informes_excluidos_tras_texto_completo"] = len(grupos) - len(dentro_g)
     S["estudios_antes_de_releer"] = S["estudios"] + len(FUERA)
+    # ---- las dos mitades de la exclusion, y el desglose de la primera ------
+    # La seccion 3.1.1 las enumera EN LETRA --«Veintinueve salieron al
+    # juzgarlos sobre su publicacion», «Veinticuatro salieron de leer su
+    # articulo»-- y ninguna cifra escrita en letra la vigilaba nadie: al salir
+    # EST-063 las tres se volvieron falsas a la vez y los tres guardianes
+    # callaron, porque buscan digitos.
+    #
+    # La frontera no se teclea: un estudio que solo existe como ficha de
+    # registro se juzgo sobre la ficha, y uno extraible sobre su publicacion.
+    _sit = {"EST-%03d" % int(g["estudio"]): g["situacion"] for g in grupos
+            if g["informe_para_extraer"] == "SI"}
+    _pub = [r for r in excl_ft.values() if _sit.get(r["study_id"]) != "solo-registro"]
+    S["excluidos_por_publicacion"] = len(_pub)
+    S["excluidos_por_ficha_de_registro"] = len(FUERA) - len(_pub)
+    # De los juzgados sobre su publicacion, los que salieron de LEER el
+    # articulo: los demas salieron por idioma (se ve en la pagina del editor)
+    # o por no haberse podido leer ninguno.
+    _lee = [r for r in _pub if r["codigo"] not in ("IDI", "NOREC")]
+    S["excluidos_leyendo_articulo"] = len(_lee)
+    _cl = collections.Counter(r["codigo"] for r in _lee)
+    for _k, _v in _cl.items():
+        S["excluidos_leyendo_articulo_%s" % _k] = _v
+
     cft = collections.Counter(r["codigo"] for r in excl_ft.values())
     S["exclusiones_tras_texto_completo"] = {k: cft[k] for k in CODES if cft[k]}
     for k in CODES:
@@ -207,6 +230,13 @@ def main():
         (pre.get(k, {}).get("study_design") or "no declarado")
         for k in extraibles)
     S["disenos"] = por_frecuencia(disenos)
+    # Cada diseno, ademas, como escalar suelto. La frase de composicion del
+    # manuscrito --«42 reportes de caso unico, 18 series de casos, 13 cohortes
+    # prospectivas...»-- los llevaba TECLEADOS: al salir EST-063 del corpus el
+    # «4 ensayos no aleatorizados» paso a ser 3 y nada fallo. Con nombre propio
+    # los puede anclar `check_manuscript_claims.py`.
+    for _d, _n in disenos.items():
+        S["diseno_" + _d.replace(" ", "_").replace("-", "_")] = _n
     comp = {k for k in extraibles
             if pre.get(k, {}).get("study_design") in COMPARATIVOS}
     S["estudios_comparativos"] = len(comp)

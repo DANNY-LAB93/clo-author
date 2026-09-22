@@ -41,6 +41,17 @@ EXCEPCIONES = {
            "ni los registros",
     "98": "extraccion_doble_pct, que si es escalar; el comprobador lo marca "
           "porque el 98 aparece pegado a otra cifra en la misma frase",
+    # Hasta el 2026-09-22 el 95 pasaba porque coincidia con
+    # `estudios_extraibles`, que valia 95. Al salir EST-063 el corpus bajo a
+    # 94 y el nivel de confianza se quedo sin respaldo: nunca lo tuvo, se
+    # estaba apoyando en una coincidencia.
+    "95": "nivel de confianza del intervalo exacto de la validacion del cribado (IC 95 %), no una cantidad de estudios; la cifra de estudios recuperables la vigila check_manuscript_claims.py con su propia ancla",
+    # Medicion HISTORICA, no una cuenta del corpus de hoy: cuantos
+    # estudios tenian la clase de evidencia de idioma mal nombrada antes
+    # de renombrarla. Recalcularla no se puede --la clase ya no existe--
+    # y cambiarle el denominador la falsearia, de modo que la frase se
+    # puso en pasado el 2026-09-22 en lugar de tocar las cifras.
+    "29": "estudios cuya verificacion de idioma se hizo sobre el resumen ANTES de renombrar la clase de evidencia; medicion historica, con su denominador de entonces",
     "2020": "PRISMA 2020, ano de la declaracion",
     "102": "TP-102, nombre del producto en el ensayo de Nir-Paz; no es una cifra",
     "2017": "ano de la lista de patogenos prioritarios de la OMS que la de 2024 sustituye",
@@ -103,7 +114,12 @@ def norm(s):
 # todo ello superado. Ninguna de esas cifras existe en los escalares, de modo
 # que el guardian las habria cazado el primer dia si se le hubiera pasado el
 # fichero. Ahora se comprueban los dos por defecto.
-MANUSCRITOS = (POR_DEFECTO, ROOT / "paper" / "manuscrito_JSR_final.md")
+# Y desde el 2026-09-22, tambien el ingles. No viajaba en el sobre, de modo
+# que nadie lo miraba, y se quedo DOS revisiones del corpus atras: seguia
+# diciendo «Of the 145 studies» cuando el corpus era de 136. La misma
+# historia del manuscrito de la revista, repetida en otro fichero.
+MANUSCRITOS = (POR_DEFECTO, ROOT / "paper" / "manuscrito_JSR_final.md",
+               ROOT / "paper" / "manuscript_systematic_review_en.md")
 
 
 def main():

@@ -482,8 +482,14 @@ def _v18_antiguo(S):
     if not origen.exists():
         print("  AVISO: no hay evidencia_por_dominio.csv")
         return
+    # Un estudio que salio del corpus se lleva sus juicios: el anexo publica lo
+    # que sostiene la Tabla 5, y la Tabla 5 ya no lo tiene. El fichero de
+    # riesgo de sesgo si lo conserva, porque ahi se juzgo de verdad.
+    fuera = {r["study_id"] for r in
+             leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv")}
     evaluados = {r["study_id"] for r in
-                 leer_bom(RS / "riesgo_sesgo" / "riesgo_sesgo_comparativos_adjudicado.csv")}
+                 leer_bom(RS / "riesgo_sesgo" / "riesgo_sesgo_comparativos_adjudicado.csv")
+                 if r["study_id"] not in fuera}
     filas = [r for r in leer_bom(origen) if r["study_id"] in evaluados]
     destino = OUT / "S18_evidencia_por_dominio.csv"
     with open(destino, "w", encoding="utf-8-sig", newline="") as fh:

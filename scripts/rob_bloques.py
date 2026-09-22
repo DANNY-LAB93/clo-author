@@ -52,7 +52,7 @@ MAESTRO_COMUN = (
     "4.4.\n\n"
     "**GRADE no se aplica**, y el motivo no depende de lo anterior: califica "
     "la certeza de una estimación agrupada y esta revisión no presenta "
-    "ninguna. La sección 3.5 muestra que solo 2 de los %(brazos)d brazos "
+    "ninguna. La sección 3.5 muestra que solo %(agregables)d de los %(brazos)d brazos "
     "reúnen los requisitos mínimos para agregar, y ninguno los conserva tras "
     "aplicar los criterios de elegibilidad. Calificar la certeza de un "
     "resultado que no existe sería un trámite, no una evaluación "
@@ -94,7 +94,7 @@ EN_COMUN = (
     "reported. The limitation is stated in section 4.4.\n\n"
     "**GRADE is not applied**, and the reason does not depend on the above: it "
     "rates the certainty of a pooled estimate and this review presents none. "
-    "Section 3.5 shows that only 2 of the %(brazos)d arms meet the minimum "
+    "Section 3.5 shows that only %(agregables)d of the %(brazos)d arms meet the minimum "
     "requirements for pooling, and none survives the eligibility criteria. "
     "Rating the certainty of a result that does not exist would be a "
     "formality, not an assessment [@Guyatt2011_grade].")

@@ -1,19 +1,18 @@
 {
   "juicios": {
-    "total": 90,
-    "de_dominio": 78,
-    "globales": 12,
+    "total": 82,
+    "de_dominio": 71,
+    "globales": 11,
     "rob2_estudios": 3,
     "rob2_dominios": 5,
-    "robins_estudios": 9,
+    "robins_estudios": 8,
     "robins_dominios": 7,
-    "calculo": "3 x 5 = 15 ; 9 x 7 = 63 ; 15 + 63 = 78 de dominio ; + 12 globales = 90",
+    "calculo": "3 x 5 = 15 ; 8 x 7 = 56 ; 15 + 56 = 71 de dominio ; + 11 globales = 82",
     "reproduce": true,
     "sin_cita": [
       "EST-008 GLOBAL",
       "EST-021 GLOBAL",
       "EST-055 GLOBAL",
-      "EST-063 GLOBAL",
       "EST-070 GLOBAL",
       "EST-096 GLOBAL",
       "EST-108 GLOBAL",
@@ -22,7 +21,7 @@
       "EST-146 GLOBAL",
       "EST-152 GLOBAL"
     ],
-    "con_cita": 79
+    "con_cita": 72
   },
   "solapamiento": {
     "pares_examinados": 28,
@@ -34,35 +33,35 @@
     "identificacion": "CONFIRMADA: Efficacy and tolerability of a cocktail of bacteriophages to treat burn wounds i, The Lancet. Infectious diseases 2019, R49b7551b94",
     "diseno": "CONFIRMADO: ECA. Declarado RCT en el resumen y adjudicado RCT sobre el artículo; los dos coinciden.",
     "informes": "CONFIRMADO: 3 informes, de los cuales el designado para extraer es R49b7551b94 (artículo); los otros 2 son fichas de registro (NCT02116010).",
-    "brazos": "CONFIRMADO: 1 brazo extraído (A), n=27. El artículo tiene dos grupos —PP1131 y cuidado estándar— y **solo se extrajo el expuesto**.",
+    "brazos": "CONFIRMADO: 1 brazo extraído (A), n=13. El artículo tiene dos grupos —PP1131 y cuidado estándar— y **solo se extrajo el expuesto**.",
     "inclusion": "CONFIRMADA: en el corpus vivo, con texto completo (sí) y evaluado con RoB 2 adaptado.",
-    "juicio": "NO CONFIRMADO. Dominios: 1=Bajo riesgo de sesgo; 2=Algunas preocupaciones; 3=Bajo riesgo de sesgo; 4=Bajo riesgo de sesgo; 5=Bajo riesgo de sesgo. Peor dominio: «Algunas preocupaciones». Juicio global firmado: «Bajo riesgo de sesgo». RoB 2 no admite bajo riesgo global con un dominio en algunas preocupaciones.",
+    "juicio": "NO CONFIRMADO. Dominios: 1=Bajo riesgo de sesgo; 2=Algunas preocupaciones; 3=Bajo riesgo de sesgo; 4=Bajo riesgo de sesgo; 5=Bajo riesgo de sesgo. Peor dominio: «Algunas preocupaciones». Juicio global firmado: «Algunas preocupaciones». RoB 2 no admite bajo riesgo global con un dominio en algunas preocupaciones.",
     "que_falta": "La decisión firmada de los dos autores en la hoja 1 de ~/Escritorio/FIRMAR_auditoria_2026-09-16.xlsx: corregir el global a «Algunas preocupaciones», o mantenerlo y declarar en Métodos por qué se apartan de la regla del instrumento. Ningún documento adicional del estudio hace falta: el dato es el juicio, no el artículo.",
     "comparador_no_extraido": "El comparador de EST-021 es «standard of care a thick cream» según su propio texto; no se extrajo como brazo, de modo que el contraste no está en los datos."
   },
   "brazos": {
-    "total": 103,
+    "total": 102,
     "esperado": 103,
     "duplicados": [],
     "todos_con_informe": true,
     "sin_trazabilidad": [],
-    "sin_comparador": 103,
-    "sin_tiempo_de_evaluacion": 103,
-    "brazos_de_estudios_excluidos": 29
+    "sin_comparador": 102,
+    "sin_tiempo_de_evaluacion": 102,
+    "brazos_de_estudios_excluidos": 30
   },
   "embudo": [
     {
       "filtro": "0. brazos extraídos",
-      "brazos": 103,
-      "estudios": 95,
+      "brazos": 102,
+      "estudios": 94,
       "no_evaluables": 0,
       "excluidos_en_este_paso": 0,
       "motivos": ""
     },
     {
       "filtro": "1. diseño comparativo",
-      "brazos": 18,
-      "estudios": 15,
+      "brazos": 17,
+      "estudios": 14,
       "no_evaluables": 12,
       "excluidos_en_este_paso": 85,
       "motivos": "diseño «case report»: sin grupo de comparación (42); diseño «case series»: sin grupo de comparación (26); diseño «NA»: sin grupo de comparación (12)"
@@ -72,7 +71,7 @@
       "brazos": 5,
       "estudios": 5,
       "no_evaluables": 0,
-      "excluidos_en_este_paso": 13,
+      "excluidos_en_este_paso": 12,
       "motivos": "éxito clínico n=«NA» sobre N=«9» (1); éxito clínico n=«NA» sobre N=«19» (1); éxito clínico n=«NA» sobre N=«178» (1)"
     },
     {

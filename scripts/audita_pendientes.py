@@ -110,8 +110,14 @@ def frases_firmadas():
 
 
 def tabla_juicios(enlace, informes):
-    rob = leer(RS / "riesgo_sesgo" / "riesgo_sesgo_comparativos_adjudicado.csv",
-               enc="utf-8-sig")
+    # Los juicios de un estudio que salio del corpus no cuentan: EST-063 se
+    # excluyo como protocolo el 2026-09-22 y se llevo sus ocho.
+    _fuera = {r["study_id"] for r in
+              leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv")}
+    rob = [r for r in leer(RS / "riesgo_sesgo"
+                           / "riesgo_sesgo_comparativos_adjudicado.csv",
+                           enc="utf-8-sig")
+           if r["study_id"] not in _fuera]
     frases = frases_firmadas()
     nombre = {}
     for i in RI.SIMPLIFICADOS:

@@ -54,45 +54,45 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 
 | | |
 |---|---|
-| Publicada | 137 |
-| Recalculada | 137 |
+| Publicada | 136 |
+| Recalculada | 136 |
 | Unidad de análisis | estudios |
 | Denominador | de los 183 evaluados |
 | Fuente | `study_groups.csv menos exclusiones_tras_texto_completo.csv` |
-| Cálculo | 183 − 46 excluidos = 137 |
+| Cálculo | 183 − 47 excluidos = 136 |
 
 ## Informes de los estudios incluidos — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 171 |
-| Recalculada | 171 |
+| Publicada | 170 |
+| Recalculada | 170 |
 | Unidad de análisis | informes |
 | Denominador | de los 233 informes evaluados |
 | Fuente | `study_groups.csv, filas cuyo estudio no está excluido` |
-| Cálculo | 233 − 62 informes de estudios excluidos = 171 |
+| Cálculo | 233 − 63 informes de estudios excluidos = 170 |
 
 ## Estudios con publicación recuperable — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 95 |
-| Recalculada | 95 |
+| Publicada | 94 |
+| Recalculada | 94 |
 | Unidad de análisis | estudios |
-| Denominador | de los 137 incluidos |
+| Denominador | de los 136 incluidos |
 | Fuente | `study_groups.csv, situación «extraible» o «solo-resumen» del informe designado` |
-| Cálculo | 95 de 137; los otros 42 son solo ficha de registro |
+| Cálculo | 94 de 136; los otros 42 son solo ficha de registro |
 
 ## Estudios con texto obtenido — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 71 |
-| Recalculada | 71 |
+| Publicada | 70 |
+| Recalculada | 70 |
 | Unidad de análisis | estudios |
-| Denominador | de los 95 recuperables |
+| Denominador | de los 94 recuperables |
 | Fuente | `carpetas textos_completos/pdf y texto_html` |
-| Cálculo | 71 de 95 recuperables = 74.7 % |
+| Cálculo | 70 de 94 recuperables = 74.5 % |
 
 ## Estudios solo con ficha de registro — ✔ consistente
 
@@ -101,9 +101,9 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 | Publicada | 42 |
 | Recalculada | 42 |
 | Unidad de análisis | estudios |
-| Denominador | de los 137 incluidos |
+| Denominador | de los 136 incluidos |
 | Fuente | `study_groups.csv, estudios cuyos informes son todos ficha de registro` |
-| Cálculo | 42 + 95 recuperables = 137 incluidos |
+| Cálculo | 42 + 94 recuperables = 136 incluidos |
 
 ## Filas de brazo comparadas — ✔ consistente
 
@@ -120,54 +120,54 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 
 | | |
 |---|---|
-| Publicada | 103 |
-| Recalculada | 103 |
+| Publicada | 102 |
+| Recalculada | 102 |
 | Unidad de análisis | brazos |
-| Denominador | de los 137 estudios incluidos |
+| Denominador | de los 136 estudios incluidos |
 | Fuente | `extraccion_adjudicada.csv menos los estudios excluidos` |
-| Cálculo | 132 filas adjudicadas − 29 de estudios excluidos después = 103 |
+| Cálculo | 132 filas adjudicadas − 30 de estudios excluidos después = 102 |
 
 ## Brazos con texto completo — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 79 |
-| Recalculada | 79 |
+| Publicada | 78 |
+| Recalculada | 78 |
 | Unidad de análisis | brazos |
-| Denominador | de los 103 brazos extraídos |
+| Denominador | de los 102 brazos extraídos |
 | Fuente | `extraccion_adjudicada.csv cruzado con las carpetas de texto` |
-| Cálculo | 79 de 103 brazos pertenecen a estudios con texto |
+| Cálculo | 78 de 102 brazos pertenecen a estudios con texto |
 
-## Estudios con grupo de comparación — ✔ consistente
+## Estudios con diseño comparativo — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 15 |
-| Recalculada | 15 |
+| Publicada | 14 |
+| Recalculada | 14 |
 | Unidad de análisis | estudios |
-| Denominador | de los 137 incluidos |
+| Denominador | de los 136 incluidos |
 | Fuente | `extraccion_adjudicada.csv, diseño adjudicado; regla firmada el 2026-09-16` |
-| Cálculo | estudios con al menos un brazo de diseño RCT/non-randomised trial/prospective cohort/retrospective cohort = 15 |
+| Cálculo | estudios con al menos un brazo de diseño RCT/non-randomised trial/prospective cohort/retrospective cohort = 14 |
 
 ## Comparativos evaluables — ✔ consistente
-
-| | |
-|---|---|
-| Publicada | 12 |
-| Recalculada | 12 |
-| Unidad de análisis | estudios |
-| Denominador | de los 15 comparativos |
-| Fuente | `los comparativos cuyo estudio tiene texto completo` |
-| Cálculo | 15 − 3 sin texto (EST-029, EST-157, EST-165) = 12 |
-
-## Ensayos en la Tabla 2 — ✔ consistente
 
 | | |
 |---|---|
 | Publicada | 11 |
 | Recalculada | 11 |
 | Unidad de análisis | estudios |
-| Denominador | de los 95 recuperables |
+| Denominador | de los 14 comparativos |
+| Fuente | `los comparativos cuyo estudio tiene texto completo` |
+| Cálculo | 14 − 3 sin texto (EST-029, EST-157, EST-165) = 11 |
+
+## Ensayos en la Tabla 2 — ✔ consistente
+
+| | |
+|---|---|
+| Publicada | 10 |
+| Recalculada | 10 |
+| Unidad de análisis | estudios |
+| Denominador | de los 94 recuperables |
 | Fuente | `pre_extraccion_desde_resumen.csv, diseño DECLARADO en el resumen` |
 | Cálculo | criterio distinto del anterior: clasifica por el resumen y no cuenta cohortes |
 
@@ -175,21 +175,21 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 
 | | |
 |---|---|
-| Publicada | 18 |
-| Recalculada | 18 |
+| Publicada | 17 |
+| Recalculada | 17 |
 | Unidad de análisis | brazos |
-| Denominador | de los 103 brazos extraídos |
+| Denominador | de los 102 brazos extraídos |
 | Fuente | `extraccion_adjudicada.csv, brazos cuyo diseño es comparativo` |
-| Cálculo | 18 brazos aportados por los 15 estudios comparativos |
+| Cálculo | 17 brazos aportados por los 14 estudios comparativos |
 
 ## Celdas de la Tabla 5 — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 90 |
-| Recalculada | 90 |
+| Publicada | 82 |
+| Recalculada | 82 |
 | Unidad de análisis | celdas de juicio |
-| Denominador | de los 12 estudios evaluables |
+| Denominador | de los 11 estudios evaluables |
 | Fuente | `riesgo_sesgo_comparativos_adjudicado.csv` |
-| Cálculo | 3 × 5 dominios de RoB 2 = 15; 9 × 7 dominios de ROBINS-I = 63; 15 + 63 = 78 juicios de dominio; más 12 juicios globales, uno por estudio, = 90 celdas |
-| Advertencia | el manuscrito las llama «juicios de dominio» y no lo son: 78 son de dominio y 12 son globales |
+| Cálculo | 3 × 5 dominios de RoB 2 = 15; 8 × 7 dominios de ROBINS-I = 56; 15 + 56 = 71 juicios de dominio; más 11 juicios globales, uno por estudio, = 82 celdas |
+| Advertencia | el manuscrito las llama «juicios de dominio» y no lo son: 71 son de dominio y 11 son globales |

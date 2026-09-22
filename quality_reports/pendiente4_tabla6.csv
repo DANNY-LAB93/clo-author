@@ -53,7 +53,6 @@ EST-058,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE
 EST-059,A,case series,no,NO CUMPLE,NO CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case series»: sin grupo de comparación,brazo sin datos descriptivos ni diseño comparativo
 EST-061,A,case series,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case series»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-062,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
-EST-063,A,non-randomised trial,sí,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,numerador_valido,éxito clínico n=«NA» sobre N=«10»,"estudio clasificado como comparativo, sin datos descriptivos utilizables"
 EST-064,A,NA,no,NO EVALUABLE,NO CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «NA»: sin grupo de comparación,brazo no evaluable: el diseño no consta
 EST-065,A,NA,no,NO EVALUABLE,NO CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «NA»: sin grupo de comparación,brazo no evaluable: el diseño no consta
 EST-070,A,retrospective cohort,sí,CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,definicion_operativa,el artículo no define qué contaba como éxito,"estudio clasificado como comparativo, con datos descriptivos; contraste causal NO utilizable: no se extrajo brazo comparador"
