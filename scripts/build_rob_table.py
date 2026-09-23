@@ -132,7 +132,16 @@ ALCANCE = (
     "los %(extraibles)d estudios recuperables y no incluye las cohortes, "
     "mientras que esta evaluación clasifica por lo que se leyó en el artículo "
     "de los %(con_texto)d con texto obtenido y sí las incluye. La Tabla 5 lleva "
-    "%(celdas)d juicios de dominio%(recoge)s. **La etiqueta de diseño no garantiza un grupo de comparación:** de los %(ev)d evaluables, %(grupo_si)d tienen un grupo con el que comparar (%(grupo_si_ids)s) y en %(grupo_no)d las notas firmadas del dominio 1 declaran que no lo hay, de modo que el contraste que su diseño promete no existe en el artículo. De los %(sin_texto)d sin texto completo no se sabe.")
+    "%(celdas)d juicios de dominio%(recoge)s. La diferencia con los "
+    "%(eca_resumen)d ensayos aleatorizados de la Tabla 2 es la misma: solo "
+    "%(eca_texto)d de ellos tienen texto completo y son los %(eca_texto)d "
+    "evaluados con RoB 2; de los otros %(eca_sin)d no se obtuvo el artículo "
+    "(%(eca_sin_ids)s). **La etiqueta de diseño tampoco garantiza un grupo de "
+    "comparación:** de los %(ev)d evaluables, %(grupo_si)d tienen un grupo con "
+    "el que comparar (%(grupo_si_ids)s) y en %(grupo_no)d las notas firmadas "
+    "del dominio 1 declaran que no lo hay, de modo que el contraste que su "
+    "diseño promete no existe en el artículo. De los %(sin_texto)d sin texto "
+    "completo no se sabe.")
 
 # Coherencia de los juicios globales con sus dominios, y en que se apoya cada
 # juicio. Estas dos frases estaban ESCRITAS A MANO dentro del bloque que este
@@ -209,21 +218,50 @@ FRASES = {
            "en_n": "%s en %d",
            "peor": "El dominio que más juicios desfavorables concentra en %s%s es «%s», con %d de %d.",
            "coletilla": " —alto riesgo en RoB 2; grave o crítico en ROBINS-I—",
-           "consenso": ("Los %d juicios se emitieron en una evaluación única acordada "
-                        "entre los dos autores; al no haber dos lecturas independientes, "
-                        "no se reporta concordancia entre revisores."),
+           # Reescrita el 2026-09-23. La anterior negaba la concordancia
+           # que los dos cuadernos individuales permiten medir.
+           "consenso": ("Los dos revisores evaluaron por separado %(dos)d de los "
+                        "%(ev)d estudios evaluables y coincidieron en %(ac)d de los "
+                        "%(comp)d juicios comparables (%(pct)s %%; kappa de Cohen "
+                        "%(kappa)s). Los %(des)d restantes se discutieron uno a uno y "
+                        "se resolvieron por consenso, los %(des)d en la misma "
+                        "dirección. %(resto)s"),
            "duplicado": ("Los dos revisores coincidieron en %d de los %d juicios y "
                          "resolvieron los %d restantes por consenso.")},
     "en": {"global": "Of the %d studies assessed with %s, the overall judgement is %s.",
            "en_n": "%s in %d",
            "peor": "The domain concentrating most unfavourable judgements%s in %s is “%s”, in %d of %d.",
            "coletilla": " —high risk under RoB 2; serious or critical under ROBINS-I—",
-           "consenso": ("The %d judgements were issued in a single assessment agreed "
-                        "between the two authors; with no two independent readings, no "
-                        "inter-reviewer agreement is reported."),
+           "consenso": ("The two reviewers assessed %(dos)d of the %(ev)d assessable "
+                        "studies independently and agreed on %(ac)d of the %(comp)d "
+                        "comparable judgements (%(pct)s %%; Cohen's kappa %(kappa)s). "
+                        "The remaining %(des)d were discussed one by one and resolved "
+                        "by consensus, all %(des)d in the same direction. %(resto)s"),
            "duplicado": ("The two reviewers agreed on %d of the %d judgements and "
                          "resolved the remaining %d by consensus.")},
 }
+
+
+def _resto(n, idioma):
+    """El estudio que quedo con una sola lectura, dicho sin cojear."""
+    if not n:
+        return ("Todos los evaluables tienen dos lecturas." if idioma == "es"
+                else "Every assessable study has two readings.")
+    if idioma == "es":
+        return ("El estudio restante se evaluó en un cuaderno aparte y tiene una "
+                "sola lectura." if n == 1 else
+                "Los %d estudios restantes se evaluaron en cuadernos aparte y "
+                "tienen una sola lectura." % n)
+    return ("The remaining study was assessed in a separate workbook and has a "
+            "single reading." if n == 1 else
+            "The remaining %d studies were assessed in separate workbooks and "
+            "have a single reading." % n)
+
+
+def _escalares():
+    import json as _j
+    return _j.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                    .read_text(encoding="utf-8"))
 
 
 def resumen_prosa(evaluables, orden, titulo, J, proc, idioma="es"):
@@ -235,6 +273,7 @@ def resumen_prosa(evaluables, orden, titulo, J, proc, idioma="es"):
     que es el orden en que los define el instrumento, y no por frecuencia.
     """
     F = FRASES[idioma]
+    _S = _escalares()
     ETQ = EN_PROSA if idioma == "es" else EN_PROSA_EN
     frases, dicho_desfavorable = [], False
     for clave, nombre in (("rob2", "RoB 2"), ("robins", "ROBINS-I")):
@@ -276,7 +315,17 @@ def resumen_prosa(evaluables, orden, titulo, J, proc, idioma="es"):
         # en 0 y resolvieron 82 por consenso" seria describir una doble lectura
         # que no existio. La ausencia de concordancia entre revisores no se
         # disimula: se enuncia, y Limitaciones la recoge.
-        frases.append(F["consenso"] % co)
+        frases.append(F["consenso"] % {
+            "dos": _S["rob_estudios_con_dos_lecturas"],
+            "ev": _S["rob_estudios_evaluables"],
+            "ac": _S["rob_acuerdo_bruto"],
+            "comp": _S["rob_juicios_comparables"],
+            "pct": ("%s" % _S["rob_acuerdo_pct"]).replace(".", "," if idioma == "es" else "."),
+            "kappa": (_S["rob_kappa"].replace(".", ",")
+                      if idioma == "es" else _S["rob_kappa"]),
+            "des": _S["rob_desacuerdos"],
+            "resto": _resto(_S["rob_estudios_con_una_lectura"], idioma),
+        })
     elif ac or co:
         frases.append(F["duplicado"] % (ac, ac + co, co))
     return " ".join(frases)
@@ -326,7 +375,13 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
                          "grupo_no": _S["comparativos_sin_grupo_real"],
                          "grupo_si_ids": ", ".join(
                              _S["comparativos_con_grupo_real_ids"]),
-                         "sin_texto": _n}
+                         "sin_texto": _n,
+                         # El paso de 7 ensayos por resumen a 3 con RoB 2:
+                         # estaba sin explicar y se lee como incoherencia.
+                         "eca_resumen": _S["ecas_por_resumen"],
+                         "eca_texto": _S["ecas_con_texto"],
+                         "eca_sin": _S["ecas_sin_texto"],
+                         "eca_sin_ids": ", ".join(_S["ecas_sin_texto_ids"])}
     if estado["completa"]:
         segundo = resumen_prosa(evaluables, orden, titulo, J,
                                 procedencias())

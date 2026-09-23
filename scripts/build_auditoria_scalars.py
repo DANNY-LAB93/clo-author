@@ -110,6 +110,44 @@ def main():
     S["t3_clase_declarada_pct"] = round(
         100.0 * S["t3_resistance_class_declarado"] / con_texto, 1)
 
+    # ---- por que 7 ensayos en la Tabla 2 y solo 3 con RoB 2 -------------
+    # La Tabla 2 clasifica por lo que DECLARA EL RESUMEN sobre los recuperables;
+    # RoB 2 se aplica a los que ademas tienen texto completo. El manuscrito
+    # daba las dos cifras sin explicar el paso, y un lector atento lo lee como
+    # una incoherencia.
+    _pre = {r["id_provisional"]: r for r in
+            leer(RS / "extraccion" / "pre_extraccion_desde_resumen.csv")}
+    _pdfs = {q.stem for q in (RS / "textos_completos" / "pdf").iterdir()}
+    _reps = {"EST-%03d" % int(g["estudio"]): g for g in grupos
+             if g["informe_para_extraer"] == "SI"}
+    _eca = [e for e, g in _reps.items()
+            if e not in excl
+            and g["situacion"] in ("extraible", "solo-resumen")
+            and _pre.get(e, {}).get("study_design") == "RCT"]
+    S["ecas_por_resumen"] = len(_eca)
+    S["ecas_con_texto"] = sum(1 for e in _eca if e in _pdfs)
+    S["ecas_sin_texto"] = len(_eca) - S["ecas_con_texto"]
+    S["ecas_sin_texto_ids"] = sorted(e for e in _eca if e not in _pdfs)
+
+    # ---- concordancia entre los dos revisores, ANTES del consenso ------
+    # El manuscrito decia que no se podia medir. Se puede: los dos cuadernos
+    # individuales existen. `build_concordancia_rob.py` la calcula.
+    _c = QR / "concordancia_rob.json"
+    if _c.exists():
+        S.update(json.loads(_c.read_text(encoding="utf-8")))
+        # EST-004 se evaluo en un cuaderno aparte el 2026-09-17 y tiene UNA
+        # sola lectura. Decir «los 11 evaluables con doble lectura» seria
+        # falso, y la diferencia es justo el estudio que obligo a reabrir la
+        # evaluacion el 2026-09-16.
+        _est = QR / "rob_tabla_estado.json"
+        _ev = (json.loads(_est.read_text(encoding="utf-8"))["evaluables"]
+               if _est.exists() else None)
+        if _ev is None:
+            raise SystemExit("falta rob_tabla_estado.json: corre "
+                             "build_rob_table.py antes que este")
+        S["rob_estudios_evaluables"] = _ev
+        S["rob_estudios_con_una_lectura"] = _ev - S["rob_estudios_con_dos_lecturas"]
+
     # ---- grupo de comparacion REAL, no etiqueta de diseno --------------
     # La etiqueta «comparativo» sale del diseno adjudicado y una cohorte cuenta
     # como comparativa aunque no tenga con que comparar. Los dos autores

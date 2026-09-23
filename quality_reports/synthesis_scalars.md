@@ -30,6 +30,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `estudios_excluidos_tras_texto_completo` | 47 |
 | `informes_excluidos_tras_texto_completo` | 63 |
 | `estudios_antes_de_releer` | 183 |
+| `registros_de_CTIS` | 10 |
+| `registros_de_EudraCT` | 3 |
+| `registros_de_ClinicalTrials_gov` | 121 |
 | `excluidos_por_publicacion` | 30 |
 | `excluidos_por_ficha_de_registro` | 17 |
 | `excluidos_leyendo_articulo` | 25 |
@@ -60,12 +63,12 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `texto_completo_no_obtenido` | 24 |
 | `texto_completo_pct` | 74.5 |
 | `disenos` | case report: 42; case series: 18; prospective cohort: 13; no declarado: 8; RCT: 7; non-randomised trial: 3; retrospective cohort: 3 |
-| `diseno_no_declarado` | 8 |
-| `diseno_case_series` | 18 |
 | `diseno_case_report` | 42 |
 | `diseno_prospective_cohort` | 13 |
-| `diseno_RCT` | 7 |
+| `diseno_case_series` | 18 |
+| `diseno_no_declarado` | 8 |
 | `diseno_retrospective_cohort` | 3 |
+| `diseno_RCT` | 7 |
 | `diseno_non_randomised_trial` | 3 |
 | `estudios_comparativos` | 10 |
 | `estudios_comparativos_pct` | 10.6 |
@@ -155,9 +158,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
 | `palabras_resumen_es` | 262 |
-| `palabras_cuerpo_es` | 7726 |
+| `palabras_cuerpo_es` | 7856 |
 | `palabras_resumen_en` | 280 |
-| `palabras_cuerpo_en` | 7274 |
+| `palabras_cuerpo_en` | 7414 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 122 |
 | `extraccion_estudios_ambos` | 122 |

@@ -168,6 +168,21 @@ def main():
     S["estudios_excluidos_tras_texto_completo"] = len(FUERA)
     S["informes_excluidos_tras_texto_completo"] = len(grupos) - len(dentro_g)
     S["estudios_antes_de_releer"] = S["estudios"] + len(FUERA)
+    # ---- de donde salen los informes de registro ---------------------------
+    # El manuscrito daba «23 057 registros» y «134 informes de registro» sin
+    # decir si el segundo estaba dentro del primero. Lo esta: las dos
+    # corrientes se identifican juntas y PRISMA solo las separa a partir del
+    # cribado. Sin esta frase un lector cuidadoso lee una incoherencia.
+    _REG = ("ClinicalTrials.gov", "CTIS", "EudraCT")
+    _por_reg = collections.Counter()
+    for r in corpus:
+        for f in (r.get("sources") or "").split(";"):
+            f = f.strip()
+            if f in _REG:
+                _por_reg[f] += 1
+    for _k, _v in _por_reg.items():
+        S["registros_de_%s" % _k.replace(".", "_").replace("-", "_")] = _v
+
     # ---- las dos mitades de la exclusion, y el desglose de la primera ------
     # La seccion 3.1.1 las enumera EN LETRA --«Veintinueve salieron al
     # juzgarlos sobre su publicacion», «Veinticuatro salieron de leer su

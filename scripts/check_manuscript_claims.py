@@ -47,6 +47,19 @@ except Exception:
 
 # Frases que deben estar, con el escalar que manda en cada hueco.
 AFIRMACIONES = [
+    # ---- 23 057 y 134 no son dos corrientes: la segunda esta dentro -------
+    (ES, "Los {informes_de_registros} informes de registro de ensayos no son una corriente aparte de esa cifra: están dentro de los {registros_identificados} identificados ({registros_de_ClinicalTrials_gov} de ClinicalTrials.gov, {registros_de_CTIS} de CTIS y {registros_de_EudraCT} de EudraCT)"),
+    (EN, "The {informes_de_registros} trial-registry reports are not a separate stream from that figure: they are among the {registros_identificados} identified ({registros_de_ClinicalTrials_gov} from ClinicalTrials.gov, {registros_de_CTIS} from CTIS and {registros_de_EudraCT} from EudraCT)"),
+    # ---- concordancia en riesgo de sesgo, medida el 2026-09-23 -----------
+    # El manuscrito afirmaba que NO se podia medir. Los dos cuadernos
+    # individuales existen y difieren en 12 juicios sobre el corpus vigente.
+    (ES, "coincidieron en {rob_acuerdo_bruto} de los {rob_juicios_comparables} juicios comparables ({rob_acuerdo_pct} %; kappa de Cohen {rob_kappa})"),
+    (EN, "agreed on {rob_acuerdo_bruto} of the {rob_juicios_comparables} comparable judgements ({rob_acuerdo_pct} %; Cohen's kappa {rob_kappa})"),
+    (ES, "Los dos revisores evaluaron por separado {rob_estudios_con_dos_lecturas} de los {rob_estudios_evaluables} estudios evaluables"),
+    (EN, "The two reviewers assessed {rob_estudios_con_dos_lecturas} of the {rob_estudios_evaluables} assessable studies independently"),
+    (ES, "la concordancia previa al consenso fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), con {rob_desacuerdos} desacuerdos"),
+    (JSR, "la concordancia previa fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), y los {rob_desacuerdos} desacuerdos"),
+    (EN, "pre-consensus agreement was {rob_acuerdo_pct} % ({rob_acuerdo_bruto} of {rob_juicios_comparables} judgements; Cohen's kappa {rob_kappa}), with {rob_desacuerdos} disagreements"),
     (EN, "**In {brazos_bajo_umbral} of the {desenlace_brazos} arms the declared class falls below the multidrug-resistance threshold**"),
     (EN, "outcomes, over the adjudicated extraction (n = {desenlace_brazos} arms)"),
     (EN, "a pooled proportion of clinical success (n = {desenlace_brazos} arms)"),

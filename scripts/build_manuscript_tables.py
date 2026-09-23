@@ -305,7 +305,10 @@ def main():
         escribe("tabla_5_desenlaces",
                 ["Desenlace", "Con numerador y denominador",
                  "%% de los %d brazos" % O["brazos"],
-                 "%% de los %d con texto completo" % O["brazos_legibles"],
+                 # «con texto completo» se leia como estudios o como textos,
+                 # y son BRAZOS: 78 brazos legibles frente a 70 estudios con
+                 # texto. Dos unidades distintas en la misma tabla.
+                 "%% de los %d brazos legibles" % O["brazos_legibles"],
                  "% con doble lectura"], filas,
                 "Tabla 5. Completitud de reporte de los cinco desenlaces "
                 "declarados, sobre los %d brazos de la extracción adjudicada."

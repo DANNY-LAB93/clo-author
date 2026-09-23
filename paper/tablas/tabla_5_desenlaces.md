@@ -1,6 +1,6 @@
 **Tabla 5. Completitud de reporte de los cinco desenlaces declarados, sobre los 102 brazos de la extracción adjudicada.**
 
-| Desenlace | Con numerador y denominador | % de los 102 brazos | % de los 78 con texto completo | % con doble lectura |
+| Desenlace | Con numerador y denominador | % de los 102 brazos | % de los 78 brazos legibles | % con doble lectura |
 |---|---|---|---|---|
 | Éxito clínico | 70 | 68.6 | 87.2 | 97.1 |
 | Erradicación microbiológica | 57 | 55.9 | 71.8 | 98.2 |

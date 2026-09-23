@@ -59,6 +59,7 @@ python scripts/detecta_solapamiento.py         # pacientes contados dos veces (S
 python scripts/build_tabla3_completitud.py     # resumen frente a texto completo (S22)
 python scripts/build_tabla6_brazos.py          # la Tabla 6 brazo a brazo (S17)
 python scripts/build_grupo_comparacion.py      # quien tiene grupo de comparacion DE VERDAD
+python scripts/build_concordancia_rob.py       # concordancia entre los dos revisores en RoB
 python scripts/audita_pendientes.py            # un juicio por fila, con su frase firmada
 python scripts/build_auditoria_scalars.py      # funde los escalares de auditoria
                                                # OJO: despues de los de arriba
@@ -111,7 +112,7 @@ python scripts/sync_manuscript_numbers.py --escribir   # las pone al dia
 
 ---
 
-## Estado, a 2026-09-22
+## Estado, a 2026-09-23
 
 Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
@@ -121,8 +122,8 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
 | Texto completo | 70 de 94 (74,5 %). El hueco está sesgado: retiene el 60,0 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **emitido, completo y firmado**: 14 comparativos por diseño —de los cuales **5 con grupo de comparación real**—, 11 evaluables (3 RoB 2, 8 ROBINS-I), 3 sin texto. **82 celdas: 71 juicios de dominio + 11 globales**, por consenso y **sin kappa**. **Los 11 globales se corresponden con sus dominios**: los tres que no (EST-021, EST-063, EST-116) se corrigieron por firma el 2026-09-22. La frase firmada de cada juicio viaja en S18; 10 globales no la tienen |
-| Manuscrito | maestro 7 514 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
+| Riesgo de sesgo | **emitido, completo y firmado**: 14 comparativos por diseño —de los cuales **5 con grupo de comparación real**—, 11 evaluables (3 RoB 2, 8 ROBINS-I), 3 sin texto. **82 celdas: 71 juicios de dominio + 11 globales**. **Doble lectura independiente en 10 de los 11**: acuerdo 83,8 % (62/74), **kappa 0,78**, 12 desacuerdos resueltos por consenso, los 12 en la misma dirección. EST-004 tiene una sola lectura. **Los 11 globales se corresponden con sus dominios**: los tres que no (EST-021, EST-063, EST-116) se corrigieron por firma el 2026-09-22. La frase firmada de cada juicio viaja en S18; 10 globales no la tienen |
+| Manuscrito | maestro 7 856 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
 | Anexos | **S0–S22 (23 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
 
@@ -230,6 +231,19 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
     «71», «18» y «95» pasaban porque esos números existen con otro significado. La
     defensa real son las anclas de `check_manuscript_claims.py`, que atan cada frase a SU
     escalar. Si añades una cifra al manuscrito, ánclala.
+
+17. **El cribado NO lo hizo Rayyan, y confundirlo falsifica los Métodos.** Las etapas 2
+    y 3 —13 894 títulos y 460 resúmenes— las condujo **un solo revisor humano (D.V.),
+    sin duplicación**, y las decisiones registro a registro **las emitió Claude Opus 5**.
+    Rayyan se usó **solo** en el recribado ciego de los 350 excluidos, que es la
+    validación, y ahí sí lo hicieron los dos autores. Un encargo externo del 2026-09-23
+    pedía describir Rayyan como la herramienta de cribado; aplicarlo habría convertido
+    una declaración correcta en una falsa.
+
+18. **La concordancia en riesgo de sesgo SÍ se puede medir, y se mide.** El manuscrito
+    afirmó hasta el 2026-09-23 que «no admite medida de concordancia». Los dos cuadernos
+    individuales existen y difieren en 12 juicios sobre el corpus vigente. Antes de
+    escribir que algo no se puede calcular, mira si el fichero está ahí.
 
 11. **Reejecutar `group_reports_into_studies.py` renumeraba estudios, y ya no.** La
     numeración estable se anclaba en la CLAVE del estudio, y la clave cambia sola en
