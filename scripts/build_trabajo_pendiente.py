@@ -189,7 +189,37 @@ def escribe_csv(ruta, filas):
         w.writerows(filas)
 
 
+def ya_relleno(ruta, hojas):
+    """¿Tiene el cuaderno de ruta algo escrito en las columnas que van vacias?
+
+    Los dos autores devolvieron este cuaderno relleno el 2026-09-30. Volver a
+    correr el guion lo habria pisado con la version en blanco sin avisar. La
+    copia firmada vive en revision_sistematica/lectura_pendiente/, pero un
+    cuaderno a medio rellenar no tiene por que estar copiado en ningun sitio.
+    """
+    if not ruta.exists():
+        return False
+    from openpyxl import load_workbook
+    wb = load_workbook(ruta, read_only=True)
+    for nombre, filas in hojas:
+        if nombre[:31] not in wb.sheetnames or not filas:
+            continue
+        vacias = {c for c in filas[0] if all(not str(f[c]).strip() for f in filas)}
+        it = wb[nombre[:31]].iter_rows(values_only=True)
+        cab = [str(c) for c in next(it)]
+        for row in it:
+            for c, v in zip(cab, row):
+                if c in vacias and v not in (None, ""):
+                    return True
+    return False
+
+
 def escribe_xlsx(ruta, hojas):
+    if ya_relleno(ruta, hojas):
+        alt = ruta.with_name(ruta.stem + "_nuevo.xlsx")
+        print("AVISO: %s ya tiene columnas rellenas; no se pisa. Escribo %s"
+              % (ruta.name, alt.name))
+        ruta = alt
     wb = Workbook()
     wb.remove(wb.active)
     cab = Font(bold=True, color="FFFFFF")

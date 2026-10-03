@@ -210,6 +210,7 @@ SEC37 = [
     ("paper/manuscrito_revision_sistematica.md", "## 4. Discusi",
      "### 3.7 Riesgo de sesgo de los estudios comparativos\n\n"
      "%(prosa)s\n\n"
+     "%(contraste)s\n\n"
      "**Tabla 7.** Riesgo de sesgo por dominio de los %(ev)d estudios "
      "comparativos evaluables. RoB 2 en los ensayos aleatorizados (cinco "
      "dominios) y ROBINS-I en los no aleatorizados y las cohortes (siete). "
@@ -218,6 +219,7 @@ SEC37 = [
     ("paper/manuscript_systematic_review_en.md", "## 4. Discussio",
      "### 3.7 Risk of bias in the comparative studies\n\n"
      "%(prosa_en)s\n\n"
+     "%(contraste_en)s\n\n"
      "**Table 7.** Domain-level risk of bias for the %(ev)d assessable "
      "comparative studies. RoB 2 for randomised trials (five domains) and "
      "ROBINS-I for non-randomised trials and cohorts (seven). \u201cn. a.\u201d marks "

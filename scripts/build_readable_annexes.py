@@ -64,6 +64,21 @@ QUE_ES = {
     "S10_idioma_verificado_sobre_texto_completo": (
         "El idioma comprobado sobre el PDF, no sobre lo que declaraba la base de datos.",
         "Sección 2.9. El nombre de la revista no determina el idioma del artículo."),
+    "S21_solapamiento_de_pacientes": (
+        "Cada par de estudios que podía describir a los mismos pacientes, con el veredicto "
+        "tras leer los dos artículos y los pacientes que comparten, una clave por persona.",
+        "Sección 4.4, limitación séptima. Un paciente que sale en tres pares tiene la misma "
+        "clave en los tres y se cuenta una vez."),
+    "S23_clase_de_resistencia_comprobada": (
+        "La clase de resistencia de cada estudio con texto completo, comprobada contra el "
+        "antibiograma del artículo, con la conclusión firmada por los dos autores.",
+        "Sección 3.4. La columna «queda abierto» dice lo que la lectura no resolvió y no "
+        "se cambió en la extracción."),
+    "S24_comparativos_reextraidos": (
+        "Los estudios con diseño comparativo, reextraídos: qué comparan, desde cuándo, "
+        "hasta cuándo y si hay un contraste para P. aeruginosa.",
+        "Sección 3.7. «Grupo sin fago» y «contraste para P. aeruginosa» son la "
+        "codificación del texto firmado que va al lado."),
 }
 
 # Cabeceras. Lo que el canal llama X, un revisor lo entiende como Y.

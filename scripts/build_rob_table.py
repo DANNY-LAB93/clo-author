@@ -141,7 +141,92 @@ ALCANCE = (
     "el que comparar (%(grupo_si_ids)s) y en %(grupo_no)d las notas firmadas "
     "del dominio 1 declaran que no lo hay, de modo que el contraste que su "
     "diseño promete no existe en el artículo. De los %(sin_texto)d sin texto "
-    "completo no se sabe.")
+    "completo no se sabe. %(contraste)s")
+
+
+def frase_contraste_con_entrada(ingles=False):
+    """La misma frase para el maestro y el ingles, que no traen la del ALCANCE.
+
+    En el de la revista la precede «de los 11 evaluables, 5 tienen un grupo con
+    el que comparar»; en la §3.7 del maestro no hay nada antes, y «De los 5 con
+    grupo» quedaba colgando.
+    """
+    S = json.load(open(ROOT / "quality_reports" / "synthesis_scalars.json",
+                       encoding="utf-8"))
+    if "comparativos_contraste_pa" not in S:
+        return ""
+    con, sin = S["comparativos_con_grupo_real_ids"], S["comparativos_sin_grupo_real_ids"]
+    ev = len(con) + len(sin)
+
+    def y(v):
+        return (", ".join(v[:-1]) + (" and " if ingles else " y ") + v[-1]
+                if len(v) > 1 else "".join(v))
+    if ingles:
+        entrada = ("A comparative design label does not guarantee a comparison "
+                   "group: of the %d assessable studies, %d have one (%s) and in %d "
+                   "the signed domain-1 notes state there is none. "
+                   % (ev, len(con), y(con), len(sin)))
+    else:
+        entrada = ("La etiqueta de diseño no garantiza un grupo de comparación: de "
+                   "los %d evaluables, %d lo tienen (%s) y en %d las notas firmadas "
+                   "del dominio 1 declaran que no lo hay. "
+                   % (ev, len(con), y(con), len(sin)))
+    return entrada + frase_contraste(ingles)
+
+
+def frase_contraste(ingles=False):
+    """Cuantos de los que tienen grupo dan de verdad un contraste para P. aeruginosa.
+
+    Firmado por los dos autores el 2026-09-30 al reextraer los comparativos
+    (punto 7 del encargo). Cada «por que» sale de su fila firmada; ninguna
+    cifra ni ningun identificador se teclea aqui.
+    """
+    S = json.load(open(ROOT / "quality_reports" / "synthesis_scalars.json",
+                       encoding="utf-8"))
+    if "comparativos_contraste_pa" not in S:
+        return ""
+    f = ROOT / "revision_sistematica" / "lectura_pendiente" / "lectura_comparativos_firmada.csv"
+    filas = {r["study_id"]: r for r in csv.DictReader(open(f, encoding="utf-8-sig"))}
+    con = S["comparativos_con_grupo_real_ids"]
+    sin_pa = [e for e in S["comparativos_fago_vs_no_fago_ids"]
+              if e not in S["comparativos_contraste_pa_ids"]]
+    # El motivo, del texto firmado: «no: ningún paciente tenía P. aeruginosa».
+    TRAD = {"ningún paciente tenía P. aeruginosa":
+            "no patient had *P. aeruginosa*",
+            "el artículo no desglosa por organismo":
+            "the article does not break its results down by organism"}
+
+    def motivo(e):
+        m = filas[e]["contraste_para_p_aeruginosa"].split(":", 1)[-1].strip()
+        if ingles:
+            return "in %s %s" % (e, TRAD.get(m, m))
+        return "en %s %s" % (e, m.replace("P. aeruginosa", "*P. aeruginosa*"))
+
+    def y(v):
+        return (", ".join(v[:-1]) + (" and " if ingles else " y ") + v[-1]
+                if len(v) > 1 else "".join(v))
+    parcial = S["comparativos_contraste_pa_parcial_ids"]
+    if ingles:
+        return ("Of the %d with a comparison group, %d compare phage with no phage "
+                "—%s compares with and without antibiotic within phage-treated "
+                "patients—, and only %d give a between-arm contrast for "
+                "*P. aeruginosa* (%s%s): %s." % (
+                    len(con), S["comparativos_fago_vs_no_fago"],
+                    y(S["comparativos_grupo_con_fago_ids"]),
+                    S["comparativos_contraste_pa"],
+                    y(S["comparativos_contraste_pa_ids"]),
+                    ("; that of %s is partial" % y(parcial)) if parcial else "",
+                    "; ".join(motivo(e) for e in sin_pa)))
+    return ("De los %d con grupo, %d comparan fago con ausencia de fago —%s "
+            "compara con y sin antibiótico dentro de los tratados con fago—, y "
+            "solo %d dan un contraste entre brazos para *P. aeruginosa* (%s%s): "
+            "%s." % (
+                len(con), S["comparativos_fago_vs_no_fago"],
+                y(S["comparativos_grupo_con_fago_ids"]),
+                S["comparativos_contraste_pa"],
+                y(S["comparativos_contraste_pa_ids"]),
+                ("; el de %s, parcial" % y(parcial)) if parcial else "",
+                "; ".join(motivo(e) for e in sin_pa)))
 
 # Coherencia de los juicios globales con sus dominios, y en que se apoya cada
 # juicio. Estas dos frases estaban ESCRITAS A MANO dentro del bloque que este
@@ -376,6 +461,7 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
                          "grupo_si_ids": ", ".join(
                              _S["comparativos_con_grupo_real_ids"]),
                          "sin_texto": _n,
+                         "contraste": frase_contraste(),
                          # El paso de 7 ensayos por resumen a 3 con RoB 2:
                          # estaba sin explicar y se lee como incoherencia.
                          "eca_resumen": _S["ecas_por_resumen"],
@@ -442,7 +528,9 @@ def escribe_seccion_37(estado, evaluables, orden, titulo, J, proc):
     prosa = resumen_prosa(evaluables, orden, titulo, J, proc)
     ctx = {"ev": estado["evaluables"], "celdas": estado["celdas_totales"],
            "prosa": prosa,
-           "prosa_en": resumen_prosa(evaluables, orden, titulo, J, proc, "en")}
+           "prosa_en": resumen_prosa(evaluables, orden, titulo, J, proc, "en"),
+           "contraste": frase_contraste_con_entrada(),
+           "contraste_en": frase_contraste_con_entrada(ingles=True)}
     for rel, marca, plantilla in RB.SEC37:
         p = ROOT / rel
         if not p.exists():

@@ -1,6 +1,6 @@
 ﻿Variable,No asignable en el resumen,Declarado en el texto completo,Declarado pero no clasificable,No declarado en el texto completo,Texto completo no recuperado
-Clase de resistencia (MDR/XDR/PDR),58 (61.7 %),48,22,0,24
-Ámbito de patógeno (solo *P. aeruginosa* o mixto),36 (38.3 %),61,0,9,24
-Vía de administración del fago,49 (52.1 %),68,0,2,24
-Modalidad (monoterapia o combinada),59 (62.8 %),68,0,2,24
-Criterio DTR (*difficult-to-treat resistance*),92 (97.9 %),69,1,0,24
+Clase de resistencia (MDR/XDR/PDR),54 (60.0 %),51,15,0,24
+Ámbito de patógeno (solo *P. aeruginosa* o mixto),32 (35.6 %),61,0,5,24
+Vía de administración del fago,46 (51.1 %),65,0,1,24
+Modalidad (monoterapia o combinada),57 (63.3 %),65,0,1,24
+Criterio DTR (*difficult-to-treat resistance*),88 (97.8 %),64,2,0,24

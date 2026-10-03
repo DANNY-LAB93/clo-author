@@ -595,14 +595,50 @@ def v20_brazo_informe(S):
 
 
 def v21_solapamiento(S):
-    """S21: el examen de solapamiento de pacientes entre estudios."""
-    origen = ROOT / "quality_reports" / "solapamiento_candidatos.csv"
+    """S21: el examen de solapamiento de pacientes entre estudios.
+
+    Hasta el 2026-10-01 copiaba `solapamiento_candidatos.csv`, que es lo que
+    propone el DETECTOR: sin veredicto, sin pacientes y sin los pares que solo
+    encontro la lectura. El manuscrito remitia a este anexo para el desglose
+    de lo confirmado y lo descartado, y el desglose no viajaba. Ahora viaja
+    `pendiente2_solapamiento.csv`: cada par examinado, con su veredicto, sus
+    pacientes y la frase firmada.
+    """
+    origen = ROOT / "quality_reports" / "pendiente2_solapamiento.csv"
     if not origen.exists():
-        print("  AVISO: no hay solapamiento_candidatos.csv; corre "
-              "scripts/detecta_solapamiento.py")
+        print("  AVISO: no hay pendiente2_solapamiento.csv; corre "
+              "scripts/audita_pendientes.py")
         return
     shutil.copy2(origen, OUT / "S21_solapamiento_de_pacientes.csv")
-    print("  S21 %d pares candidatos de solapamiento" % len(leer_bom(origen)))
+    print("  S21 %d pares examinados de solapamiento" % len(leer_bom(origen)))
+
+
+def v23_clase_verificada(S):
+    """S23: la clase de resistencia comprobada contra el articulo, estudio a estudio.
+
+    La lectura firmada por los dos autores el 2026-09-30, con su texto intacto
+    y, al lado, como la codifico `ingest_lectura_firmada.py` y que cambio en la
+    extraccion. Lo que quedo abierto va en su columna, no escondido.
+    """
+    origen = RS / "lectura_pendiente" / "lectura_resistencia_firmada.csv"
+    if not origen.exists():
+        print("  AVISO: no hay lectura_resistencia_firmada.csv; corre "
+              "scripts/ingest_lectura_firmada.py --escribir")
+        return
+    shutil.copy2(origen, OUT / "S23_clase_de_resistencia_comprobada.csv")
+    print("  S23 %d estudios con la clase comprobada contra el artículo"
+          % len(leer_bom(origen)))
+
+
+def v24_comparativos(S):
+    """S24: los comparativos reextraidos: comparador, tiempo cero, estimando."""
+    origen = RS / "lectura_pendiente" / "lectura_comparativos_firmada.csv"
+    if not origen.exists():
+        print("  AVISO: no hay lectura_comparativos_firmada.csv; corre "
+              "scripts/ingest_lectura_firmada.py --escribir")
+        return
+    shutil.copy2(origen, OUT / "S24_comparativos_reextraidos.csv")
+    print("  S24 %d comparativos reextraídos" % len(leer_bom(origen)))
 
 
 def v22_completitud(S):
@@ -868,6 +904,8 @@ def main():
     v20_brazo_informe(S)
     v21_solapamiento(S)
     v22_completitud(S)
+    v23_clase_verificada(S)
+    v24_comparativos(S)
 
     # S4 se copiaba tal cual y no permitia reproducir la Tabla 2: tiene 159
     # filas -- el corpus anterior a la enmienda de idioma -- mientras la tabla

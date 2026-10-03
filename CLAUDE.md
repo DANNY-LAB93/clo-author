@@ -40,7 +40,7 @@ clo-author/
 ├── scripts/                el canal (Python)
 ├── quality_reports/        decisiones, planes, escalares, auditorías, instantaneas/
 ├── templates/              registro de decisión, mapa de afirmaciones, log de sesión
-└── verificables revisión sistemática/   S0–S22 + guía + ambos manuscritos
+└── verificables revisión sistemática/   S0–S24 + guía + ambos manuscritos
 ```
 
 `quality_reports/instantaneas/` guarda fotos de estados pasados. **Ningún script del
@@ -52,6 +52,12 @@ dar error. Ver su `LEEME.md`.
 ## Comandos
 
 ```bash
+# 0. SI HAY CORRECCIONES NUEVAS: el derivado y sus escalares van antes que todo.
+python scripts/ingest_lectura_firmada.py --escribir   # la lectura del 2026-09-30 (idempotente)
+python scripts/ingest_firma_lectura.py --escribir     # lo firmado el 2026-10-01 (+ adenda si trae 2 firmas)
+python scripts/build_adjudicated_dataset.py
+python scripts/build_outcome_scalars.py
+
 # 1. LAS CIFRAS. Siempre lo primero: todo lo de abajo las lee.
 python scripts/build_synthesis_scalars.py
 python scripts/build_brazo_informe.py          # de que informe salio cada brazo (S20)
@@ -79,7 +85,8 @@ python scripts/build_conciliacion.py           # informe->estudio->brazo, y las 
 python scripts/audita_cifras.py                # las 17 cifras, recontadas desde la fuente
 
 # 3. EL PAQUETE DE VERIFICABLES
-python scripts/build_verifiables_package.py    # S1-S22 (S11-S13 dentro)
+python scripts/build_verifiables_package.py    # S1-S24 (S11-S13 dentro). Un anexo NUEVO va
+                                               # antes que build_lista_anexos, o esta se niega
 python scripts/build_readable_annexes.py       # los .xlsx legibles de cada .csv
 python scripts/build_editorial_report.py       # S0 y el indice
 python scripts/build_package_guide.py          # la guia del paquete
@@ -112,22 +119,23 @@ python scripts/sync_manuscript_numbers.py --escribir   # las pone al dia
 
 ---
 
-## Estado, a 2026-09-23
+## Estado, a 2026-10-03
 
 Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
 | Componente | Estado |
 |---|---|
-| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 47 excluidos (23 por el artículo, 17 por la ficha del registro, 7 sin poder leer ninguno) → **136 estudios, 94 extraíbles** |
+| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 51 excluidos (27 por el artículo, 17 por la ficha del registro, 7 sin poder leer ninguno) → **132 estudios, 90 extraíbles**, 98 brazos |
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
-| Texto completo | 70 de 94 (74,5 %). El hueco está sesgado: retiene el 60,0 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
+| Texto completo | 66 de 90 (73,3 %). El hueco está sesgado: retiene el 66,7 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **emitido, completo y firmado**: 14 comparativos por diseño —de los cuales **5 con grupo de comparación real**—, 11 evaluables (3 RoB 2, 8 ROBINS-I), 3 sin texto. **82 celdas: 71 juicios de dominio + 11 globales**. **Doble lectura independiente en 10 de los 11**: acuerdo 83,8 % (62/74), **kappa 0,78**, 12 desacuerdos resueltos por consenso, los 12 en la misma dirección. EST-004 tiene una sola lectura. **Los 11 globales se corresponden con sus dominios**: los tres que no (EST-021, EST-063, EST-116) se corrigieron por firma el 2026-09-22. La frase firmada de cada juicio viaja en S18; 10 globales no la tienen |
-| Manuscrito | maestro 7 856 palabras de cuerpo + 262 de resumen. Cabe en JSR; pasa del límite de 3 500 de CMI |
-| Anexos | **S0–S22 (23 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
+| Riesgo de sesgo | **emitido, completo y firmado**: 13 comparativos por diseño —**4 con grupo de comparación**, 3 de fago frente a no fago y **solo 2 con contraste para *P. aeruginosa*** (EST-008 parcial, EST-021)—, 10 evaluables (3 RoB 2, 7 ROBINS-I), 3 sin texto. **74 celdas: 64 de dominio + 10 globales**. Doble lectura en 9 de los 10: acuerdo 83,3 % (55/66), **kappa 0,77**, 11 desacuerdos resueltos por consenso. EST-004 tiene una sola lectura. EST-055 salió el 2026-10-01 (ORG) y con él sus 8 juicios |
+| Lectura del 2026-09-30 | **firmada e ingerida**, y lo abierto **firmado el 2026-10-01**: 9 sin ningún paciente con *P. aeruginosa* tratado → **4 excluidos (ORG)**, 5 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, 5 mantenidos por firma. **Solapamiento: 20 pacientes en 18 estudios**, 31 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
+| Manuscrito | maestro 8 931 palabras de cuerpo; 295 anclas, todas al día. Pasa del límite de 3 500 de CMI |
+| Anexos | **S0–S24 (25 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
 
-**Lo que falta, y es de los autores:** los dos ORCID, el grado académico de ambos, el
+**Lo que falta, y es de los autores:** la adenda `~/Desktop/FIRMAR_adenda_lectura_2026-10-03.xlsx` (excluir EST-132 y mantener EST-106: hoy solo las firma D.V.); los dos ORCID, el grado académico de ambos, el
 correo de N. Trelles (un marcador en `manuscrito_JSR_final.md:11`), la aprobación ICMJE
 escrita de N.T. sobre la versión final, los dos formularios obligatorios de la revista,
 y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
@@ -244,6 +252,14 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
     afirmó hasta el 2026-09-23 que «no admite medida de concordancia». Los dos cuadernos
     individuales existen y difieren en 12 juicios sobre el corpus vigente. Antes de
     escribir que algo no se puede calcular, mira si el fichero está ahí.
+
+19. **La lectura del 2026-09-30 vive en `revision_sistematica/lectura_pendiente/`, no en
+    `quality_reports/`.** `build_trabajo_pendiente.py` escribe el cuaderno EN BLANCO en
+    `quality_reports/pendiente_lectura.xlsx` y lo habría pisado relleno; ahora se niega
+    y escribe `_nuevo`. La traducción del texto firmado a categorías está en
+    `ingest_lectura_firmada.py`, con una guarda por estudio. Lo que deja un brazo con
+    más de un valor NO se aplica: va al cuaderno de firma. El solapamiento se cuenta
+    por PERSONA (`P1`…`P20`), no por fila: por fila salían 22 donde son 20.
 
 11. **Reejecutar `group_reports_into_studies.py` renumeraba estudios, y ya no.** La
     numeración estable se anclaba en la CLAVE del estudio, y la clave cambia sola en

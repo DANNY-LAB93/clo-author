@@ -1,0 +1,482 @@
+﻿hoja,fila,columna,estudio,pagina_declarada,resultado,paginas_halladas,en_la_pagina_declarada,cita
+2 resistencia,EST-001,criterio_o_antibiograma_en_que_te_apoyas,EST-001,2,entera,2,si,Pseudomonas aeruginosa susceptible to ceftazidime and ciprofloxacin grew in culture
+2 resistencia,EST-001,criterio_o_antibiograma_en_que_te_apoyas,EST-001,2,entera,2,si,"A knee joint puncture showed P. aeruginosa persistence, with the same antimicrobial susceptibility profile"
+2 resistencia,EST-002,criterio_o_antibiograma_en_que_te_apoyas,EST-002,2,entera,2,si,recurrent bloodstream infections (BSI) caused by ceftazidime and piperacillin-tazobactam resistant Pseudomonas aeruginosa
+2 resistencia,EST-002,criterio_o_antibiograma_en_que_te_apoyas,EST-002,2,entera,2,si,"Antimicrobial susceptibility testing was performed by broth microdilution (Microscan, Beckman Coulter) and interpreted using European Committee on Antimicrobial Susceptibility Testing (EUCAST) criteria"
+2 resistencia,EST-002,criterio_o_antibiograma_en_que_te_apoyas,EST-002,,imagen: no comprobable como texto,,,"[imagen] Figura 1 (p. 3, imagen), aislado HE2011311 dic/2020: TZP >16 (R); Ceftazidime 32 (R); Cefepime >8 (R); Meropenem 2 (S); CAZ/AVI 4 (S); Ciprofloxacin 1 (R); Amikacin ≤8 (S)"
+2 resistencia,EST-002,criterio_o_antibiograma_en_que_te_apoyas,EST-002,,imagen: no comprobable como texto,,,"[imagen] Figura 1 (p. 3, imagen), aislado pre-fago HE2011471: TZP >16 (R); Ceftazidime 32 (R); Cefepime 4 (S); Meropenem 1 (S); CAZ/AVI 4 (S); Ciprofloxacin 0.5 (S); Amikacin ≤8 (S)"
+2 resistencia,EST-003,criterio_o_antibiograma_en_que_te_apoyas,EST-003,16,entera,16,si,"Briefly, Multi-drug resistance (MDR) was defined as the lack of susceptibility to at least one antimicrobial agent in three or more categories"
+2 resistencia,EST-003,criterio_o_antibiograma_en_que_te_apoyas,EST-003,8,entera,"2,8",si,"S, susceptible;"
+2 resistencia,EST-003,criterio_o_antibiograma_en_que_te_apoyas,EST-003,5,entera,5,si,Nine out of the 15 patients had P. aeruginosa antibiotic-resistant infections
+2 resistencia,EST-003,criterio_o_antibiograma_en_que_te_apoyas,EST-003,6,entera,6,si,"In two cases (cases 3 and 7), antibiotics were administered despite the infection being determined to be resistant based on the antibiogram results"
+2 resistencia,EST-003,criterio_o_antibiograma_en_que_te_apoyas,EST-003,7,entera,7,si,"9 osteomyelitis 25/M debrided cranial bone and scalp tissue XDR i.v., 30 days BID"
+2 resistencia,EST-003,criterio_o_antibiograma_en_que_te_apoyas,EST-003,15,entera,15,si,UPMC emergency approval number EA21110067
+2 resistencia,EST-004,criterio_o_antibiograma_en_que_te_apoyas,EST-004,2,entera,2,si,were the first nine patients treated with compassionate phage therapy because of MDR (seven patients) or PDR (two patients) PsA that did not respond to standard cystic fibrosis (CF) therapies (Table 1)
+2 resistencia,EST-004,criterio_o_antibiograma_en_que_te_apoyas,EST-004,5,entera,5,si,"Antibiotic susceptibility results from clinical microbiology laboratory testing for sputum isolates taken before and after therapy from patient 1 (a) and patient 3 (b) are shown (R, resistant; S, susceptible; I, intermediate; X, not reported)"
+2 resistencia,EST-004,criterio_o_antibiograma_en_que_te_apoyas,EST-004,12,entera,12,si,"Antibiotic susceptibility determined to be resistant, intermediate, or sensitive according to CLSI"
+2 resistencia,EST-004,criterio_o_antibiograma_en_que_te_apoyas,EST-004,,imagen: no comprobable como texto,,,"[imagen] Fig. 2a-b (p. 5, imagen): pacientes 1 y 3, aislado Pre = R a aztreonam, piperacilina-tazobactam, cefepime, ceftazidima, imipenem, meropenem, ciprofloxacino, levofloxacino, amikacina, gentamicina y tobramicina"
+2 resistencia,EST-004,criterio_o_antibiograma_en_que_te_apoyas,EST-004,,imagen: no comprobable como texto,,,"[imagen] Extended Data Fig. 1 (p. 12, imagen): MIC por paciente (1-9) pre y post; colistina en morado (intermedio) o verde (sensible) en todos los pacientes"
+2 resistencia,EST-006,criterio_o_antibiograma_en_que_te_apoyas,EST-006,4,entera,4,si,All P. aeruginosa isolates collected from the patient reported here were XDR isolates
+2 resistencia,EST-006,criterio_o_antibiograma_en_que_te_apoyas,EST-006,5,entera,5,si,Piperacilline + Tazobactam R MIC > 32 R MIC >32 R MIC >32 R MIC >32 Ceftazidime R R R R Aztreonam R MIC > 32 R MIC > 32 R MIC > 32 R Imipenem R MIC > 8 R MIC > 8 R MIC > 8 R MIC >8 Meropenem R MIC: 16 R MIC: 16 R R
+2 resistencia,EST-006,criterio_o_antibiograma_en_que_te_apoyas,EST-006,5,entera,5,si,Ciprofloxacine R R R R Levofloxacine R R R R
+2 resistencia,EST-006,criterio_o_antibiograma_en_que_te_apoyas,EST-006,5,entera,5,si,Colistine S MIC: 2 S MIC: 1 S MIC: 2 S MIC: 2
+2 resistencia,EST-006,criterio_o_antibiograma_en_que_te_apoyas,EST-006,5,entera,5,si,Amikacine R MIC > 32 R MIC > 32 R MIC > 32 R MIC > 32
+2 resistencia,EST-006,criterio_o_antibiograma_en_que_te_apoyas,EST-006,5,entera,5,si,Fosfomycine S MIC: 64 R
+2 resistencia,EST-007,criterio_o_antibiograma_en_que_te_apoyas,EST-007,1,entera,1,si,We treated a 37-year-old man with MDR P. aeruginosa frontal osteitis
+2 resistencia,EST-007,criterio_o_antibiograma_en_que_te_apoyas,EST-007,2,entera,2,si,requiring reconstructive flap surgery involving two MDR P. aeruginosa isolates found in bone surgical samples (Supplementary Table 1)
+2 resistencia,EST-007,criterio_o_antibiograma_en_que_te_apoyas,EST-007,2,entera,2,si,A bone biopsy revealed a wild-type P. aeruginosa
+2 resistencia,EST-008,criterio_o_antibiograma_en_que_te_apoyas,EST-008,5,entera,5,si,Nine adult volunteers with CF and chronic P. aeruginosa pulmonary infection provided written informed consent
+2 resistencia,EST-008,criterio_o_antibiograma_en_que_te_apoyas,EST-008,5,entera,5,si,antibiotic susceptibility: Supplementary Data 6
+2 resistencia,EST-009,criterio_o_antibiograma_en_que_te_apoyas,EST-009,1,entera,1,si,"Testing of prostatic secretion and semen samples revealed pathogenic bacteria in each case, which collectively included members of the Staphylococcal species such as Methicillin resistant Staphylococcus aureus (MRSA) and Staphylococcus haemolyticus, Enterococcus faecalis, and Streptococcus mitis, among others"
+2 resistencia,EST-009,criterio_o_antibiograma_en_que_te_apoyas,EST-009,8,entera,8,si,"Phage lysates of Streptococcus spp., Staphylococcus spp., Escherichia coli, Pseudomonas eruginosa, and Proteus spp."
+2 resistencia,EST-010,criterio_o_antibiograma_en_que_te_apoyas,EST-010,2,entera,2,si,"Aspiration revealed pan drug-resistant P. aeruginosa in culture, with resistance to all antibiotics including ceftazidime/avibactam (MIC 64 mg/L), ceftolozane/tazobactam (MIC > 256 mg/L) and colistin (MIC 8 mg/L)"
+2 resistencia,EST-010,criterio_o_antibiograma_en_que_te_apoyas,EST-010,3,entera,3,si,but remained susceptible to the phage cocktail and cefiderocol
+2 resistencia,EST-010,criterio_o_antibiograma_en_que_te_apoyas,EST-010,3,entera,3,si,Whole genome sequencing of this strain identified numerous acquired genes accounting for this high level of resistance to antibiotics (Table 3)
+2 resistencia,EST-011,criterio_o_antibiograma_en_que_te_apoyas,EST-011,2,entera,2,si,"On February 16, 2023, sputum culture revealed CRPA, (Fig. 1A) which was only sensitive to colistin and tobramycin (Supplementary Table S2) according to sensitivity testing"
+2 resistencia,EST-011,criterio_o_antibiograma_en_que_te_apoyas,EST-011,2,entera,2,si,"including multidrug-resistant (MDR) Klebsiella pneumoniae, MDR P. aeruginosa, and Candida albicans"
+2 resistencia,EST-012,criterio_o_antibiograma_en_que_te_apoyas,EST-012,5,entera,5,si,"Initially sensitive to oral antibiotics, the organism became multidrug resistant following chronic suppression with ciprofloxacin"
+2 resistencia,EST-012,criterio_o_antibiograma_en_que_te_apoyas,EST-012,5,entera,5,si,Chronic suppression was no longer feasible given the bacteria was resistant to all oral antibiotic options
+2 resistencia,EST-012,criterio_o_antibiograma_en_que_te_apoyas,EST-012,9,entera,9,si,Based on pre-and post-treatment with phages and antibiotic susceptibilities patterns (Supplementary Table 6)
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,3,entera,3,si,Bile culture identified a multidrug-resistant isolate of P. aeruginosa
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,3,entera,3,si,"However, the infection recurred within two months, showing resistance to ceftazidime"
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,3,entera,3,si,"P. aeruginosa was once again detected in her bile, with resistance to carbapenems and quinolones, and intermediate resistance to ticarcillin/clavulanic acid, cefoperazone/sulbactam, and aztreonam"
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,4,entera,4,si,"Strain W220926 was isolated before phage therapy, while the remaining strains were obtained during and after the treatment."
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,8,entera,8,si,The antimicrobial susceptibility of P. aeruginosa was determined by an automated antimicrobial susceptibility testing instrument Vitek 2
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,,imagen: no comprobable como texto,,,"[imagen] Figura 2A (p. 4, imagen), W220926 sep-2022 pre-fago: Ticarcilina/clavulánico R; Piperacilina-tazobactam S; Ceftazidima S; Cefoperazona/sulbactam I; Cefepime S; Aztreonam I; Imipenem R; Meropenem R; Amikacina S; Tobramicina S; Ciprofloxacino R; Levofloxacino R; Colistina S; Ceftazidima/avibactam S"
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,,imagen: no comprobable como texto,,,"[imagen] Figura 2A (p. 4, imagen), W221205 dic-2022 (durante el 1.er curso): TIM I; TZP I; CAZ S; CFP/SUL S; FEP S; ATM I; IMP R; MEM R; AMK S; TOB S; CIP I; LVX R; COL S; CZA S"
+2 resistencia,EST-013,criterio_o_antibiograma_en_que_te_apoyas,EST-013,,imagen: no comprobable como texto,,,"[imagen] Figura 2A (p. 4, imagen), W230622/W230623/W230629 jun-2023: TIM, TZP, CAZ, CFP/SUL, FEP, ATM, IMP, MEM, CIP y LVX R; AMK I/I/S; TOB S; COL S; CZA S"
+2 resistencia,EST-014,criterio_o_antibiograma_en_que_te_apoyas,EST-014,1,entera,1,si,suffered BPF-associated empyema and pneumonia caused by carbapenem-resistant P. aeruginosa
+2 resistencia,EST-014,criterio_o_antibiograma_en_que_te_apoyas,EST-014,1,entera,1,si,may be effective at alleviating a multidrug-resistant bacterial infection in BPF-associated empyema
+2 resistencia,EST-015,criterio_o_antibiograma_en_que_te_apoyas,EST-015,1,entera,1,si,complicated by a difficult-to-treat P. aeruginosa (DTR-P. aeruginosa) infection
+2 resistencia,EST-015,criterio_o_antibiograma_en_que_te_apoyas,EST-015,1,entera,1,si,Cefiderocol was the sole antibiotic with consistent activity against six bacterial isolates obtained from the infected region over a 38 day period
+2 resistencia,EST-015,criterio_o_antibiograma_en_que_te_apoyas,EST-015,2,entera,2,si,AST results using BMD for six P. aeruginosa isolates recovered from the same patient over a 38 day period
+2 resistencia,EST-015,criterio_o_antibiograma_en_que_te_apoyas,EST-015,,imagen: no comprobable como texto,,,"[imagen] Tabla 1 (p. 2), aislado 1 día 17, CMI mg/L: AMK >32; ATM 16; CAZ >16; CZA >32; CIP >2; CST ≤1; C/T >8; FDC 0.5; FEP >16; GEN >8; IPM 16; IMR 2; MEM >8; PLZ >4; TOB >8; TZP 32 (el texto extraído del PDF pierde el signo «>»)"
+2 resistencia,EST-016,criterio_o_antibiograma_en_que_te_apoyas,EST-016,1,entera,1,si,We present a case of a 21-year-old patient with relapsing multidrug-resistant (MDR) P. aeruginosa femur osteomyelitis
+2 resistencia,EST-016,criterio_o_antibiograma_en_que_te_apoyas,EST-016,5,entera,5,si,"The MIC and BPC values of ceftazidime-avibactam were 8 and 16 mg/L, respectively"
+2 resistencia,EST-016,criterio_o_antibiograma_en_que_te_apoyas,EST-016,4,entera,4,si,Acquired values were interpreted according to the EUCAST
+2 resistencia,EST-019,criterio_o_antibiograma_en_que_te_apoyas,EST-019,8,entera,8,si,"Bacterial susceptibility to antibiotics, colored based on antibiogram result (green, susceptible; red, resistant; yellow, susceptible with increased exposure; gray, not assessed)"
+2 resistencia,EST-019,criterio_o_antibiograma_en_que_te_apoyas,EST-019,,imagen: no comprobable como texto,,,"[imagen] Figura 3A (p. 8, imagen), LFV P. aeruginosa: AMK, COL, GEN, MEM, TOB en rojo (R); ATM, FEP, CAZ, IPM, PIP/TAZ en amarillo; CIP y LVX en verde"
+2 resistencia,EST-019,criterio_o_antibiograma_en_que_te_apoyas,EST-019,,imagen: no comprobable como texto,,,"[imagen] Figura 3A (p. 8, imagen), HVR P. aeruginosa: PIP/TAZ, CAZ, FEP, IPM, MEM, TOB, AMK, CIP y LVX en rojo; COL y TOL/TAZ en verde"
+2 resistencia,EST-021,criterio_o_antibiograma_en_que_te_apoyas,EST-021,1,entera,1,si,"Bacteriophages, natural bacterial viruses, are being considered as an alternative therapy to treat infections caused by multidrug-resistant bacteria"
+2 resistencia,EST-021,criterio_o_antibiograma_en_que_te_apoyas,EST-021,7,entera,7,si,"Overall, P aeruginosa strains isolated from participants in the standard of care group had broader antibiotic suscepti"
+2 resistencia,EST-024,criterio_o_antibiograma_en_que_te_apoyas,EST-024,2,entera,2,si,"Prior to phage treatment, Pt1 had pan-resistant P. aeruginosa in sputum culture; this included resistance to the newer antibiotics such as ceftolozane-tazobactam, ceftazidime-avibactam, and meropenem-vaborbactam"
+2 resistencia,EST-024,criterio_o_antibiograma_en_que_te_apoyas,EST-024,2,entera,2,si,"Pt2’s P. aeruginosa from respiratory cultures were consistently pan-resistant, including to the newer antibiotics ceftolozane-tazobactam and ceftazidime-avibactam"
+2 resistencia,EST-024,criterio_o_antibiograma_en_que_te_apoyas,EST-024,3,entera,3,si,with the mucoid strain being susceptible to meropenem
+2 resistencia,EST-027,criterio_o_antibiograma_en_que_te_apoyas,EST-027,3,entera,3,si,"Minimum inhibitory concentration (MIC) determinations performed on at least three isolates per sputum sample revealed heterogenous susceptibility profiles for beta-lactam antibiotics (aztreonam, ceftazidime, meropenem) with susceptible and resistant isolates present in the same sputum sample (Fig. 3d–f and Supplementary Table S1)"
+2 resistencia,EST-027,criterio_o_antibiograma_en_que_te_apoyas,EST-027,1,entera,1,si,The MDR phenotype in the collected isolates is multifactorial and mainly due to spontaneous chromosomal mutations
+2 resistencia,EST-027,criterio_o_antibiograma_en_que_te_apoyas,EST-027,,imagen: no comprobable como texto,,,"[imagen] Fig. 3d-f (p. 4, imagen), aislado secuenciado del día 6: aztreonam 32, ceftazidima 64, meropenem 16 mg/L, por encima del punto de corte EUCAST 2019 (líneas discontinuas)"
+2 resistencia,EST-030,criterio_o_antibiograma_en_que_te_apoyas,EST-030,2,entera,2,si,His clinical course and treatment regimen for the XDR P. aeruginosa are summarized in Fig. 2
+2 resistencia,EST-030,criterio_o_antibiograma_en_que_te_apoyas,EST-030,2,entera,2,si,"two distinct morphologies of P. aeruginosa resistant to ciprofloxacin, ceftazidime, and cefepime isolated (Fig. 1, day 160)"
+2 resistencia,EST-030,criterio_o_antibiograma_en_que_te_apoyas,EST-030,2,entera,2,si,"Superficial cultures of the exposed tissues grew multiple strains of P. aeruginosa with highly variable resistance profiles (Fig. 1, day 183–188)"
+2 resistencia,EST-030,criterio_o_antibiograma_en_que_te_apoyas,EST-030,3,entera,3,si,"and resistant (red circle), intermediate (pink circle), and susceptible (white circle) antibiotic profiles are indicated"
+2 resistencia,EST-030,criterio_o_antibiograma_en_que_te_apoyas,EST-030,,imagen: no comprobable como texto,,,"[imagen] FIG 1 (p. 3, imagen), aislado MRSN 111391 (día 187): GEN intermedio; CAZ, IPM, I-R, MEM, MVB, CIP, LVX y CST resistentes; AMK, CZA, C/T, TZP y FDC sensibles"
+2 resistencia,EST-031,criterio_o_antibiograma_en_que_te_apoyas,EST-031,5,entera,5,si,"Microbiological examination of wound cultures consistently identified carbapenem-resistant Pseudomonas aeruginosa, indicating a multidrug-resistant pathogen with limited therapeutic options"
+2 resistencia,EST-031,criterio_o_antibiograma_en_que_te_apoyas,EST-031,2,entera,2,si,Antibiotic susceptibility testing was performed in accordance with CLSI 2025 guidelines using the Kirby-Bauer disk diffusion method to confirm MDR phenotypes [18] (Fig. 1A–C)
+2 resistencia,EST-034,criterio_o_antibiograma_en_que_te_apoyas,EST-034,5,entera,5,si,Post-transplant course complicated by recurrent MDR P. aeruginosa pneumonia
+2 resistencia,EST-034,criterio_o_antibiograma_en_que_te_apoyas,EST-034,5,entera,5,si,Acute on chronic respiratory failure due to MDR P. aeruginosa pneumonia unresponsive to antibiotics
+2 resistencia,EST-034,criterio_o_antibiograma_en_que_te_apoyas,EST-034,5,entera,5,si,Patient developed MDR P. aeruginosa infection of the driveline complicated by sternal osteomyelitis and recurrent bacteremia
+2 resistencia,EST-038,criterio_o_antibiograma_en_que_te_apoyas,EST-038,4,entera,4,si,"With the development of antibiotic resistance, disease management became difficult"
+2 resistencia,EST-038,criterio_o_antibiograma_en_que_te_apoyas,EST-038,11,entera,11,si,Table S2: Antibiotic susceptibility information for P. aeruginosa strains of patient #1
+2 resistencia,EST-039,criterio_o_antibiograma_en_que_te_apoyas,EST-039,6,entera,6,si,"The results of PCR-diagnostics on the day of admission revealed the presence of multidrug-resistant A. baumannii (104 CFU/mL), K. pneumoniae (105 CFU/mL), P. aeruginosa (105 CFU/mL), and S. aureus (105 CFU/mL) in bronchoalveolar lavage"
+2 resistencia,EST-039,criterio_o_antibiograma_en_que_te_apoyas,EST-039,6,entera,6,si,The results of sensitivity testing of the isolated bacteria to antibiotics and the detection of resistance markers are presented in Tables S2 and S3
+2 resistencia,EST-040,criterio_o_antibiograma_en_que_te_apoyas,EST-040,2,entera,2,si,"As a result of antibiotic pressure, an XDR strain emerged, which was only susceptible to colistin, cefiderocol, amikacin, and gentamicin"
+2 resistencia,EST-040,criterio_o_antibiograma_en_que_te_apoyas,EST-040,4,entera,4,si,"In June 2021, the strain was susceptible to cefiderocol and colistin"
+2 resistencia,EST-042,criterio_o_antibiograma_en_que_te_apoyas,EST-042,2,entera,2,si,the patient developed a perinephric infection caused by pan-drug-resistant P. aeruginosa (PDR-PA) (Figure 2A)
+2 resistencia,EST-042,criterio_o_antibiograma_en_que_te_apoyas,EST-042,4,entera,4,si,"A test on the antibiotic sensitivity of wound isolates conducted before and after three courses of phage therapy. The pink box indicates susceptibility, the deep red represents resistance, the white indicates intermediate resistance, and the slash denotes untested"
+2 resistencia,EST-042,criterio_o_antibiograma_en_que_te_apoyas,EST-042,2,entera,2,si,accompanied by asymptomatic bacteriuria caused by antibiotic-resistant P. aeruginosa
+2 resistencia,EST-042,criterio_o_antibiograma_en_que_te_apoyas,EST-042,,imagen: no comprobable como texto,,,"[imagen] Figura 2D (p. 4, imagen), paciente 2, 2020.06.11: amikacina S, aztreonam S, ceftazidima S, ciprofloxacino R, cefoperazona-sulbactam S, cefepime S, gentamicina S, imipenem R, levofloxacino R, meropenem R, piperacilina S, tobramicina S, piperacilina-tazobactam S"
+2 resistencia,EST-042,criterio_o_antibiograma_en_que_te_apoyas,EST-042,,imagen: no comprobable como texto,,,"[imagen] Figura 2D, paciente 2, 2020.07.20: amikacina S, tobramicina S, gentamicina I; aztreonam, ceftazidima, ciprofloxacino, cefoperazona-sulbactam, cefepime, imipenem, levofloxacino, meropenem, piperacilina y piperacilina-tazobactam R"
+2 resistencia,EST-042,criterio_o_antibiograma_en_que_te_apoyas,EST-042,,imagen: no comprobable como texto,,,"[imagen] Figura 1B (p. 3, imagen), paciente 1, pre-fago WZH0215 (2023.02.15): imipenem R, meropenem I; el resto S"
+2 resistencia,EST-043,criterio_o_antibiograma_en_que_te_apoyas,EST-043,2,entera,2,si,"a surveillance culture from a tracheal aspirate identified NDM-1-producing P aeruginosa, resistant to all β-lactams except cefiderocol"
+2 resistencia,EST-043,criterio_o_antibiograma_en_que_te_apoyas,EST-043,21,entera,21,si,Tobramycin ≤1 (S) ≤1 (S) 8 (R) 8 (R) 8 (R) 4 (R) Amikacin 32 (I) ≥64 (R) ≥64 (R) ≥64 (R) ≥64 (R) ≥64 (R) Ciprofloxacin ≥4 (R) ≥4 (R) ≥4 (R) ≥4 (R) ≥4 (R) ≥4 (R)
+2 resistencia,EST-043,criterio_o_antibiograma_en_que_te_apoyas,EST-043,21,entera,21,si,Colistin 0·5 (I)*
+2 resistencia,EST-043,criterio_o_antibiograma_en_que_te_apoyas,EST-043,21,entera,21,si,Ceftazidime ≥64 (R) ≥64 (R) ≥64 (R) ≥64 (R) ≥64 (R) ≥64 (R)
+2 resistencia,EST-043,criterio_o_antibiograma_en_que_te_apoyas,EST-043,21,entera,21,si,Meropenem ≥16 (R) ≥16 (R) ≥16 (R) ≥16 (R) ≥16 (R) 32 (R)*
+2 resistencia,EST-043,criterio_o_antibiograma_en_que_te_apoyas,EST-043,3,entera,3,si,Faced with calciphylaxis complicated by pan-resistant NDM-1-producing P aeruginosa
+2 resistencia,EST-044,criterio_o_antibiograma_en_que_te_apoyas,EST-044,3,entera,3,si,Cefepime 16 (I) 16 (I) 32 (R) >32 (R) 4 (S) >32 (R) >32 (R) >32 (R) >32 (R) Ceftazidime 8 (S) 16 (I) >32 (R) 32 (R) 4 (S) >32 (R) >32 (R) >32 (R) >32 (R)
+2 resistencia,EST-044,criterio_o_antibiograma_en_que_te_apoyas,EST-044,3,entera,3,si,Imipenem >8 (R) >8 (R) >8 (R) >8 (R) >8 (R) >8 (R) >8 (R) >8 (R) >8 (R)
+2 resistencia,EST-044,criterio_o_antibiograma_en_que_te_apoyas,EST-044,3,entera,3,si,Levofloxacin 2 (I) 2 (I) 4 (R) 2 (I) >1 (S) 4 (R) 2 (I) 4 (R) 4 (R) Piperacillin + tazobactam 16 (S) 16 (S) 128 (R) >128 (R) 16 (S) 128 (R) 128 (R) 128 (R) 128 (R)
+2 resistencia,EST-044,criterio_o_antibiograma_en_que_te_apoyas,EST-044,3,entera,3,si,(S) >16 (R) Imipenem/relebactam
+2 resistencia,EST-044,criterio_o_antibiograma_en_que_te_apoyas,EST-044,4,entera,4,si,Our patient developed an extensively MDR P aeruginosa postoperative infection
+2 resistencia,EST-046,criterio_o_antibiograma_en_que_te_apoyas,EST-046,1,entera,1,si,"One month after admission, the patient developed septicaemia with colistin-only-sensitive P. aeruginosa"
+2 resistencia,EST-046,criterio_o_antibiograma_en_que_te_apoyas,EST-046,1,entera,1,si,"Wound cultures on admission revealed colonisation with, amongst others, multidrug-resistant P. aeruginosa"
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,"Two morphologically distinct MDR Pseudomonas aeruginosa isolates grew from the aspirated synovial fluid: one was resistant to all antibiotics except colistin, the other was susceptible to colistin and ceftazidime only (Table 1)"
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,PIP-TAZ R (128) R (128)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,CAZ S (4) R (64)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,IMI R (16) R (16)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,AZT R (64) R (64)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,CEF R (64) R (64)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,CIP R (2) R (2)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,GEN R (16) R (16)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,FOS R (256) R (256)
+2 resistencia,EST-047,criterio_o_antibiograma_en_que_te_apoyas,EST-047,2,entera,2,si,COL S (0.5) S (1)
+2 resistencia,EST-048,criterio_o_antibiograma_en_que_te_apoyas,EST-048,3,entera,3,si,"meropenem 2 gr q12h iv (chosen based on the antibiotic susceptibility profile of the Pa_AR1 isolate; minimum inhibitory concentration, 2 μg/mL)"
+2 resistencia,EST-048,criterio_o_antibiograma_en_que_te_apoyas,EST-048,6,entera,6,si,"biofilm-associated infections are recalcitrant antibiotics and surgery, even when antibiotic-resistance pathogens do not sustain them"
+2 resistencia,EST-049,criterio_o_antibiograma_en_que_te_apoyas,EST-049,1,entera,1,si,adjunctive bacteriophage therapy used to treat a multidrug-resistant Pseudomonas aeruginosa pneumonia in a lung transplant recipient
+2 resistencia,EST-049,criterio_o_antibiograma_en_que_te_apoyas,EST-049,2,entera,2,si,"The patient received AB-PA01-m1 on days 53–63, an additional antipseudomonal phage cocktail from the United States Navy on days 64–78"
+2 resistencia,EST-050,criterio_o_antibiograma_en_que_te_apoyas,EST-050,5,entera,5,si,"Most patients were treated with phages that target S. aureus ( n = 19; 73,1%), and six (26.9%) received phages that target P. aeruginosa"
+2 resistencia,EST-050,criterio_o_antibiograma_en_que_te_apoyas,EST-050,5,entera,5,si,The outcome of each patient will be presented in subsequent papers (case reports and case series)
+2 resistencia,EST-051,criterio_o_antibiograma_en_que_te_apoyas,EST-051,2,entera,2,si,"multi-drug resistant (MDR) Pseudomonas aeruginosa, MDR Proteus mirabilis, MDR Klebsiella pneumoniae, MDR Escherichia coli, and vancomycin-resistant Enterococcus faecium"
+2 resistencia,EST-051,criterio_o_antibiograma_en_que_te_apoyas,EST-051,5,entera,5,si,Intesti bacteriophage showed activity only against the E. coli strain
+2 resistencia,EST-051,criterio_o_antibiograma_en_que_te_apoyas,EST-051,2,entera,2,si,The previously cultivated multi-resistant Gram-negative bacteria could not be detected
+2 resistencia,EST-053,criterio_o_antibiograma_en_que_te_apoyas,EST-053,2,entera,2,si,The pathogen was susceptible to all tested antimicrobial agents except trimetoprim + sulpha
+2 resistencia,EST-053,criterio_o_antibiograma_en_que_te_apoyas,EST-053,2,entera,2,si,"P. aeruginosa of an otherwise similar susceptibility pattern, but resistant to levofloxacin, was growing in the samples taken from the inguinal area during the operation"
+2 resistencia,EST-053,criterio_o_antibiograma_en_que_te_apoyas,EST-053,3,entera,3,si,"Even though meropenem was still an option, other treatment alternatives began to be considered"
+2 resistencia,EST-055,criterio_o_antibiograma_en_que_te_apoyas,EST-055,4,entera,4,si,Resistance rate (%). Antibiotics E. coli (n = 114) K. pneumoniae (n = 31) Proteus mirabilis (n = 20) S. epidermidis (n = 8) S. aureus (n = 5)
+2 resistencia,EST-055,criterio_o_antibiograma_en_que_te_apoyas,EST-055,3,entera,3,si,"This bacteriophage cocktail includes filtrate of phagolysates of 6 bacterial pathogens: Staphylococcus, Streptococcus, Proteus (P. vulgaris, P. mirabilis), Pseudomonas aeruginosa, enteropathogenic E. coli, and Klebsiella pneumoniae"
+2 resistencia,EST-057,criterio_o_antibiograma_en_que_te_apoyas,EST-057,1,entera,1,si,Investigations revealed bacterial prostatitis caused by multi-susceptible P. aeruginosa
+2 resistencia,EST-057,criterio_o_antibiograma_en_que_te_apoyas,EST-057,2,entera,2,si,"Multiple blood cultures were, once again, positive for P. aeruginosa with the same resistance profile"
+2 resistencia,EST-057,criterio_o_antibiograma_en_que_te_apoyas,EST-057,1,entera,1,si,These DTIs are caused by antibiotic-sensitive bacteria but associated with foreign material
+2 resistencia,EST-058,criterio_o_antibiograma_en_que_te_apoyas,EST-058,5,entera,5,si,Minimum inhibitory concentration (μg/mL) determined in different clinical isolates by MicroScan broth microdilution panel NM57 (Beckman-Coulter) using EUCAST v13 breakpoints (2023)
+2 resistencia,EST-058,criterio_o_antibiograma_en_que_te_apoyas,EST-058,3,entera,3,si,"The P. aeruginosa isolated that day from a bronchoalveolar lavage showed an increased MDR phenotype, susceptible only to ceftazidime-avibactam"
+2 resistencia,EST-058,criterio_o_antibiograma_en_que_te_apoyas,EST-058,,imagen: no comprobable como texto,,,"[imagen] FIG 2C (p. 5, imagen), aislado del día 0: AMK >16 (R), ATM 2 (I), FEP 8 (I), CAZ 4 (I), CIP >1 (R), IMP >4 (R), MEM >8 (R), TZP 8 (I), CEF-TAZ ≤1 (S), CZA ≤2 (S), TOB >4 (R)"
+2 resistencia,EST-061,criterio_o_antibiograma_en_que_te_apoyas,EST-061,4,entera,4,si,"Pseudomonas aeruginosa (Patient 1, Episode 1) Amikacin, tobramycin Gentamicin, colistin Aztreonam, piperacillin‐tazobactam, meropenem, ceftazi‐ dime, cefepime, ciprofloxacin, ceftazidime‐avibactam"
+2 resistencia,EST-061,criterio_o_antibiograma_en_que_te_apoyas,EST-061,4,entera,4,si,"Pseudomonas aeruginosa (Patient 2) Colistin Piperacillin‐tazobactam Amikacin, cefepime, ceftazidime, ceftazidime‐avibactam, gentamicin, levofloxacin, meropenem, tobramycin"
+2 resistencia,EST-061,criterio_o_antibiograma_en_que_te_apoyas,EST-061,4,entera,4,si,Antibiotic susceptibility of baseline clinical bacterial isolates as determined according to Clinical & Laboratory Standards Institute guidelines
+2 resistencia,EST-061,criterio_o_antibiograma_en_que_te_apoyas,EST-061,4,entera,4,si,who was colonized with a MDR P. aeruginosa sensitive to only colis‐ tin (Table 2)
+2 resistencia,EST-062,criterio_o_antibiograma_en_que_te_apoyas,EST-062,2,entera,2,si,"The isolated P. aeruginosa strain’s antibiogram suggested an extensively drugresistant (XDR) phenotype, with susceptibility to colistin only and intermediate susceptibility to aztreonam (data not shown)"
+2 resistencia,EST-062,criterio_o_antibiograma_en_que_te_apoyas,EST-062,3,entera,3,si,Five of the isolates harbor the blaVIM-2 gene coding for a VIM (Verona Integron-encoded Metallo-beta-lactamase) type carbapenemase
+2 resistencia,EST-070,criterio_o_antibiograma_en_que_te_apoyas,EST-070,2,entera,2,si,Multidrug resistant was defined as nonsusceptibility to at least 1 agent in 3 or more antimicrobial categories
+2 resistencia,EST-070,criterio_o_antibiograma_en_que_te_apoyas,EST-070,6,entera,6,si,1 46 M Pseudomonas aeruginosa (MDR) Osteomyelitis Pa14NøPASA16 (APT) Ceftazidime Remission Indeterminate 3 mo
+2 resistencia,EST-070,criterio_o_antibiograma_en_que_te_apoyas,EST-070,6,entera,6,si,7 41 F P aeruginosa (PDR) Infected silicone injection Pa14NøPASA16 (APT) Meropenem Remission Indeterminate
+2 resistencia,EST-074,criterio_o_antibiograma_en_que_te_apoyas,EST-074,1,entera,1,si,"eight patients with multi-drug resistant or especially recalcitrant Staphylococcus aureus, Enterococcus faecium, Pseudomonas aeruginosa, Klebsiella pneumoniae, and Escherichia coli infections were treated"
+2 resistencia,EST-074,criterio_o_antibiograma_en_que_te_apoyas,EST-074,5,entera,5,si,Continuous isolation of P. aeruginosa and high inflammation parameters despite conventional antibiotic therapy
+2 resistencia,EST-074,criterio_o_antibiograma_en_que_te_apoyas,EST-074,11,entera,11,si,Figure S9: Antibiogram from Patient 2
+2 resistencia,EST-075,criterio_o_antibiograma_en_que_te_apoyas,EST-075,2,entera,2,si,19 patients on mechanical ventilation whose condition was complicated by antibiotic-resistant pneumonia were examined
+2 resistencia,EST-075,criterio_o_antibiograma_en_que_te_apoyas,EST-075,2,entera,2,si,"bacteriophages were selected individually for each patient, taking into account the microbial etiology of the disease (Pseudomonas aeruginosa, Кlebsiella pneumoniae, Acinetobacter baumanii)"
+2 resistencia,EST-077,criterio_o_antibiograma_en_que_te_apoyas,EST-077,15,entera,15,si,All our cases had persistent MDR pseudomonal LVAD infection associated with recurrent bacteremia and hospitali­ zation
+2 resistencia,EST-077,criterio_o_antibiograma_en_que_te_apoyas,EST-077,5,entera,5,si,Table S1 depicts antibiotic susceptibility profiles of all P. aeruginosa isolates
+2 resistencia,EST-077,criterio_o_antibiograma_en_que_te_apoyas,EST-077,10,entera,10,si,Antibiotic susceptibility was determined using VITEK 2 in the clinical microbiologic laboratory
+2 resistencia,EST-077,criterio_o_antibiograma_en_que_te_apoyas,EST-077,11,entera,11,si,A 10-year-old female with a genetic cardiomyopathy was admitted with cardiogenic shock and underwent placement of a Berlin Heart Excor VAD in January 2019
+2 resistencia,EST-077,criterio_o_antibiograma_en_que_te_apoyas,EST-077,,imagen: no comprobable como texto,,,"[imagen] FIG 3A (p. 10, imagen), PaD1 (driveline, día −52): amikacina S, aztreonam S, cefepime R, ceftazidima S, ciprofloxacino R, gentamicina S, meropenem R, piperacilina-tazobactam S, tobramicina S"
+2 resistencia,EST-080,criterio_o_antibiograma_en_que_te_apoyas,EST-080,5,entera,5,si,Bacterial culture of swabs taken from the infected area showed Pseudomonas aeruginosa
+2 resistencia,EST-080,criterio_o_antibiograma_en_que_te_apoyas,EST-080,5,entera,5,si,Antibiotic sensitivity of the isolated P. aeruginosa strain showed multidrug resistance
+2 resistencia,EST-085,criterio_o_antibiograma_en_que_te_apoyas,EST-085,3,entera,3,si,"The P. aeruginosa strain PA-LX01 isolated from the patient's sputum was identified as a pyomelanin-producing, multidrug-resistant pathogen (Figure 1A,B)"
+2 resistencia,EST-085,criterio_o_antibiograma_en_que_te_apoyas,EST-085,2,entera,2,si,The antibiotic sensitivity test was performed by the agar disk diffusion method with reference to the Clinical and Laboratory Standards Institute (CLSI) standard
+2 resistencia,EST-085,criterio_o_antibiograma_en_que_te_apoyas,EST-085,,imagen: no comprobable como texto,,,"[imagen] Figura 1B (p. 3, imagen), PA-LX01 (24 feb): amikacina S, tobramicina S, aztreonam R, ceftazidima R, cefepime R, cefoperazona-sulbactam R, meropenem R, imipenem S, piperacilina-tazobactam I, ciprofloxacino I, levofloxacino R"
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,P. aeruginosa AST S. maltophilia AST
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,Amikacin 8 R Amikacin S Amikacin R
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,Aztreonam S Aztreonam R
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,Ceftazidim S Ceftazidim R
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,Colistin S Cefepim R
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,Imipenem S Imipenem R
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,Meropenem S Meropenem R
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,Piperacillin-Taz. S Piperacillin-Taz. R
+2 resistencia,EST-088,criterio_o_antibiograma_en_que_te_apoyas,EST-088,6,entera,6,si,AST is assessed by standard disk diffusion method for P. aeruginosa and S. maltophilia
+2 resistencia,EST-091,criterio_o_antibiograma_en_que_te_apoyas,EST-091,2,entera,2,si,"All presented with chronic, antibiotic-refractory bacterial infections, predominantly involving Staphylococcus aureus, Pseudomonas aeruginosa and Escherichia coli (Table 1)"
+2 resistencia,EST-091,criterio_o_antibiograma_en_que_te_apoyas,EST-091,3,entera,3,si,5 M 21 P. aeruginosa Bronchitis. Kartagener’s syndrome.
+2 resistencia,EST-094,criterio_o_antibiograma_en_que_te_apoyas,EST-094,2,entera,2,si,"However, on POD 9, she developed drug sensitive P. aeruginosa mediastinitis"
+2 resistencia,EST-094,criterio_o_antibiograma_en_que_te_apoyas,EST-094,2,entera,2,si,She also suffered a high-grade P. aeruginosa bacteremia which had evolved to be ciprofloxacin non-susceptible
+2 resistencia,EST-094,criterio_o_antibiograma_en_que_te_apoyas,EST-094,2,entera,2,si,b Fluoroquinolones-non-susceptible (intermediate resistance) Pseudomonas aeruginosa isolates
+2 resistencia,EST-094,criterio_o_antibiograma_en_que_te_apoyas,EST-094,4,entera,4,si,"Despite morphological differences, they exhibited similar antibiotic susceptibility profiles (see Tables S2, S3)"
+2 resistencia,EST-094,criterio_o_antibiograma_en_que_te_apoyas,EST-094,,imagen: no comprobable como texto,,,"[imagen] Fig. 4B (p. 6, imagen), CMI con el antibiótico solo: aztreonam 8; ceftazidima/avibactam 2/4; piperacilina/tazobactam 16/4; fosfomicina ≥256; levofloxacino 2; ceftolozano/tazobactam ≤0,5/4; meropenem ≤0,5"
+2 resistencia,EST-095,criterio_o_antibiograma_en_que_te_apoyas,EST-095,2,entera,2,si,Antimicrobial susceptibility profile of Pseudomonas aeruginosa isolated from a surgically obtained sample of bone from a paediatric patient with chronic infection
+2 resistencia,EST-095,criterio_o_antibiograma_en_que_te_apoyas,EST-095,2,entera,2,si,Colistin 1 S Polymixin B 1 – Fosfomycin ≥256 R Aztreonam 4 I Aztreonam/Avibactam 4/4 – Meropenem 16 R Meropenem/Vaborbactam 16/4 R Imipenem > 32 R
+2 resistencia,EST-095,criterio_o_antibiograma_en_que_te_apoyas,EST-095,1,entera,1,si,chronic osteoarticular Pseudomonas aeruginosa infection (blaNDM-1-positive strain; Table 1) complicating the internal fixation of a traumatic fracture-dislocation in a 7-yearold girl
+2 resistencia,EST-096,criterio_o_antibiograma_en_que_te_apoyas,EST-096,1,entera,1,si,Patients with chronic urinary and urogenital multidrug resistant bacterial infections received phage therapy (PT)
+2 resistencia,EST-096,criterio_o_antibiograma_en_que_te_apoyas,EST-096,4,entera,"4,5",si,P. aeruginosa as well as E. coli were detected at 106 CFU/mL in urine culture 85 days before PT
+2 resistencia,EST-105,criterio_o_antibiograma_en_que_te_apoyas,EST-105,2,entera,2,si,"A surgical bone biopsy revealed infection with an XDR P. aeruginosa that was only susceptible to polymyxins (colistimethate MIC ,0.5mg/L) and ceftolozane/tazobactam"
+2 resistencia,EST-105,criterio_o_antibiograma_en_que_te_apoyas,EST-105,2,entera,2,si,replaced by imipenem/cilastatin as he developed a catheter-related bacteraemia due to ceftazidime-resistant Pseudomonas aeruginosa
+2 resistencia,EST-106,criterio_o_antibiograma_en_que_te_apoyas,EST-106,4,entera,4,si,was switched to oral ciprofloxacin (750 mg q12h) as the isolated P. aeruginosa was susceptible to ciprofloxacin at this time
+2 resistencia,EST-106,criterio_o_antibiograma_en_que_te_apoyas,EST-106,5,entera,5,si,"his P. aeruginosa sample showed intermediate resistance to ciprofloxacin; therefore, the patient was treated with several week courses of intravenous ceftazidime that successfully suppressed the infection"
+2 resistencia,EST-106,criterio_o_antibiograma_en_que_te_apoyas,EST-106,3,entera,3,si,unaware of a case involving therapeutic application of phages to disrupt biofilms in a PVGI caused by MDR pathogen
+2 resistencia,EST-108,criterio_o_antibiograma_en_que_te_apoyas,EST-108,21,entera,21,si,"Antibiotic resistance profile of targeted infections, % (n)** Usual drug resistance 47.4% (54) Multidrug resistance 25.4% (29) Extensive drug resistance 20.2% (23) Pandrug resistance 5.3% (6)"
+2 resistencia,EST-108,criterio_o_antibiograma_en_que_te_apoyas,EST-108,16,entera,16,si,multidrug resistance (MDR) was defined as acquired non-susceptibility to at least one agent in three or more antimicrobial categories
+2 resistencia,EST-108,criterio_o_antibiograma_en_que_te_apoyas,EST-108,2,entera,2,si,Baseline characteristics of the patients are presented in Supplementary Table 1 and Extended Data Table 1
+2 resistencia,EST-108,criterio_o_antibiograma_en_que_te_apoyas,EST-108,5,entera,5,si,"26 Spinal infection P. aeruginosa 4029, 4032 and 4034 Local and intravenous"
+2 resistencia,EST-116,criterio_o_antibiograma_en_que_te_apoyas,EST-116,6,entera,6,si,"For P. aeruginosa, 7.1% of strains were classified as MDR, 10.7% as XDR, and 7.1% as PDR"
+2 resistencia,EST-116,criterio_o_antibiograma_en_que_te_apoyas,EST-116,6,entera,6,si,we observed that—with the exception of E. coli—the majority of phage therapy requests concerned non-MDR organisms
+2 resistencia,EST-116,criterio_o_antibiograma_en_que_te_apoyas,EST-116,8,entera,8,si,Details with regard to the phage therapy protocol and outcome will be the subject of separate publications
+2 resistencia,EST-117,criterio_o_antibiograma_en_que_te_apoyas,EST-117,2,entera,2,si,3 Pseud Psmw31 Locally and orally 0.00 0.002 14 B
+2 resistencia,EST-117,criterio_o_antibiograma_en_que_te_apoyas,EST-117,2,entera,2,si,"Experimental phage therapy of drug-resistant bacterial infections, including MRSA infections"
+2 resistencia,EST-121,criterio_o_antibiograma_en_que_te_apoyas,EST-121,2,entera,2,si,3 Inflammation of the left hip local and oral P.aeruginosa Ps_2N 25 F
+2 resistencia,EST-121,criterio_o_antibiograma_en_que_te_apoyas,EST-121,2,entera,2,si,"Experimental phage therapy of drug-resistant bacterial infections, including MRSA infections"
+2 resistencia,EST-124,criterio_o_antibiograma_en_que_te_apoyas,EST-124,3,entera,3,si,The results of the wound swab showed the presence of multidrug-resistant (MDR) P. aeruginosa with no alternative oral antibiotics available
+2 resistencia,EST-124,criterio_o_antibiograma_en_que_te_apoyas,EST-124,4,entera,4,si,CAZ I (MIC = 2) I R I I (MIC = 2) I (MIC = 2)
+2 resistencia,EST-124,criterio_o_antibiograma_en_que_te_apoyas,EST-124,4,entera,4,si,CIP I (MIC = 0.25) I R R I (MIC = 0.25) I (MIC = 0.25)
+2 resistencia,EST-124,criterio_o_antibiograma_en_que_te_apoyas,EST-124,4,entera,4,si,IPM I (MIC ≤1) I R R I (MIC ≤1) I (MIC ≤1) MEM S (MIC = 1) S R I S (MIC ≤0.125) S (MIC = 1) TOB S (MIC = 0.5) ND R R S (MIC = 0.5) S (MIC = 0.5) TZP I (MIC = 8) I R I I (MIC = 4) I (MIC = 8)
+2 resistencia,EST-124,criterio_o_antibiograma_en_que_te_apoyas,EST-124,4,entera,4,si,"ND, not determined; R, resistant; S, susceptible; I, susceptible, increased exposure"
+2 resistencia,EST-129,criterio_o_antibiograma_en_que_te_apoyas,EST-129,2,entera,2,si,Intraoperative cultures were positive for MSSA and Pseudomonas aeruginosa
+2 resistencia,EST-129,criterio_o_antibiograma_en_que_te_apoyas,EST-129,3,entera,3,si,"The antibiotic regimen was changed to intravenous ciprofloxacin and meropenem, followed by administration of meropenem alone due to changes in the sensitivity pattern for P. aeruginosa"
+2 resistencia,EST-132,criterio_o_antibiograma_en_que_te_apoyas,EST-132,2,entera,2,si,"a mixture of bacteriophages against isolates most commonly found in the ICU, such as Escherichia coli, Pseudomonas aeruginosa, Acinetobacter baumannii, Klebsiella pneumoniae, and Enterococcus faecalis, was applied on the PU topically"
+2 resistencia,EST-134,criterio_o_antibiograma_en_que_te_apoyas,EST-134,5,entera,5,si,9 56–60 Pseudomonas 106 No data No data 60 1.3 Sudden fever and chills started on the 3rd day
+2 resistencia,EST-134,criterio_o_antibiograma_en_que_te_apoyas,EST-134,3,entera,3,si,For all bacterial strains antibiotic and phage sensitivity tests were performed
+2 resistencia,EST-135,criterio_o_antibiograma_en_que_te_apoyas,EST-135,2,entera,2,si,As methicillin-susceptible S. aureus (only resistant to penicillin) grew in culture from the discharge sample
+2 resistencia,EST-135,criterio_o_antibiograma_en_que_te_apoyas,EST-135,4,entera,4,si,"A bacterial culture of the hematoma revealed superinfection with Pseudomonas aeruginosa, Achromobacter spp., and Proteus mirabilis in culture"
+2 resistencia,EST-146,criterio_o_antibiograma_en_que_te_apoyas,EST-146,6,entera,6,si,Persistent (dissemination) LVAD driveline infection caused by Pseudomonas aeruginosa (MYC4). Treatment: phage cocktail and cefepime
+2 resistencia,EST-146,criterio_o_antibiograma_en_que_te_apoyas,EST-146,3,entera,3,si,Multidrug-resistant organism (or difficult-to-treat infection)
+2 resistencia,EST-152,criterio_o_antibiograma_en_que_te_apoyas,EST-152,7,entera,7,si,The patients were administered monovalent phage lysate Staphylococcus aureus Staph_1N or Staph_A5L (Tables 1 and 2)
+2 resistencia,EST-152,criterio_o_antibiograma_en_que_te_apoyas,EST-152,6,entera,6,si,A multidrugresistant Pseudomonas aeruginosa in a lung transplant recipient was treated with adjunctive intravenous and inhaled PT
+2 resistencia,EST-164,criterio_o_antibiograma_en_que_te_apoyas,EST-164,6,entera,6,si,Isolated pathogens and associated antibiotic susceptibility profiles
+2 resistencia,EST-164,criterio_o_antibiograma_en_que_te_apoyas,EST-164,5,entera,5,si,"The extensively drug-resistant (XDR) P. aeruginosa in Patient 2 was non-susceptible to the phages (i.e., PNM, 14/1) present in BFC1"
+2 resistencia,EST-164,criterio_o_antibiograma_en_que_te_apoyas,EST-164,3,entera,3,si,"Unfortunately, for one patient, the isolated P. aeruginosa strain was not stored for susceptibility testing"
+2 resistencia,EST-164,criterio_o_antibiograma_en_que_te_apoyas,EST-164,,imagen: no comprobable como texto,,,"[imagen] Tabla 2 (p. 6, imagen), paciente 1, P. aeruginosa: TZP R, CAZ R, FEP R, MEM R, LVX R, GEN I, AMK S, SXT R, CST S"
+2 resistencia,EST-164,criterio_o_antibiograma_en_que_te_apoyas,EST-164,,imagen: no comprobable como texto,,,"[imagen] Tabla 2 (p. 6, imagen), paciente 2, P. aeruginosa: TZP R, CAZ R, FEP R, MEM R, LVX R, GEN R, TOB R, AMK R, SXT R, CST S"
+2 resistencia,EST-169,criterio_o_antibiograma_en_que_te_apoyas,EST-169,4,entera,4,si,The antibiotic susceptibility profile of P. aeruginosa of F12 and M17
+2 resistencia,EST-169,criterio_o_antibiograma_en_que_te_apoyas,EST-169,4,entera,4,si,S: Sensitive; R: Resistant; S-IE: Susceptible with increased exposure; INS: Insufficient evidence; BT: Bacteriophage therapy
+2 resistencia,EST-169,criterio_o_antibiograma_en_que_te_apoyas,EST-169,3,entera,3,si,The P. aeruginosa isolate demonstrated a more sensitive organism towards antibiotics following BT
+2 resistencia,EST-169,criterio_o_antibiograma_en_que_te_apoyas,EST-169,,imagen: no comprobable como texto,,,"[imagen] Fig. 4 (p. 4, imagen), F12: amikacina S, aztreonam S-IE, cefepime S-IE, ceftazidima S-IE, ceftolozano/tazobactam S, ciprofloxacino S-IE, gentamicina INS, imipenem S-IE, meropenem S-IE, piperacilina/tazobactam S-IE, tobramicina S"
+2 resistencia,EST-169,criterio_o_antibiograma_en_que_te_apoyas,EST-169,,imagen: no comprobable como texto,,,"[imagen] Fig. 4, M17 antes de la fagoterapia: R a amikacina, aztreonam, cefepime, ceftazidima, ceftolozano/tazobactam, ciprofloxacino, gentamicina, imipenem, meropenem, piperacilina/tazobactam y tobramicina"
+2 resistencia,EST-170,criterio_o_antibiograma_en_que_te_apoyas,EST-170,1,entera,1,si,We present a TEVAR for a ruptured zone 0 MTAA complicated by multidrug-resistant Klebsiella pneumoniae infection requiring phage therapy
+2 resistencia,EST-170,criterio_o_antibiograma_en_que_te_apoyas,EST-170,4,entera,4,si,Phage therapy was described in one patient with Dacron aortic graft infection complicated by an aorto-cutaneous fistula due to Pseudomonas aeruginosa
+2 resistencia,EST-181,criterio_o_antibiograma_en_que_te_apoyas,EST-181,4,entera,4,si,PJI of non-staphylococcal etiology
+2 resistencia,EST-181,criterio_o_antibiograma_en_que_te_apoyas,EST-181,9,entera,9,si,Identified PJI bacteria were Staphylococcus spp.
+2 resistencia,EST-184,criterio_o_antibiograma_en_que_te_apoyas,EST-184,2,entera,2,si,"Wound cultures grew polymicrobial organisms, including carbapenem-resistant Pseudomonas aeruginosa, methicillin-resistant Staphylococcus aureus, Enterococcus faecalis, and Proteus mirabilis."
+2 resistencia,EST-184,criterio_o_antibiograma_en_que_te_apoyas,EST-184,2,entera,2,si,"Due to persistent infection with progressively resistant organisms despite culture-directed antimicrobial therapy, adjunctive investigational bacteriophage therapy was initiated."
+2 resistencia,EST-208,criterio_o_antibiograma_en_que_te_apoyas,EST-208,1,entera,1,si,Intraoperative culture samples tested positive for methicillin-susceptible Staphylococcus aureus.
+2 resistencia,EST-208,criterio_o_antibiograma_en_que_te_apoyas,EST-208,1,entera,1,si,Bacteriophage products are a mixture of sterile filtrates of phage lysates which have previously been shown to be active against S. aureus isolates from the patient.
+7 comparativos,EST-004,brazo_control_identificado,EST-004,7,entera,7,si,"Because of the nature of compassionate phage therapy, there was no control group for comparison."
+7 comparativos,EST-004,brazo_control_identificado,EST-004,2,entera,2,si,Phages were delivered as mixtures (cocktails) of two or three phages (n = 6) or single-phage therapy (n = 3; Table 2)
+7 comparativos,EST-004,tipo_y_unidad_de_asignacion,EST-004,9,entera,9,si,"For this cohort, we received unsolicited requests from the patient or their physician for assistance to treat sputum MDR or PDR PsA refractory to standard, approved CF therapies."
+7 comparativos,EST-004,tipo_y_unidad_de_asignacion,EST-004,9,entera,9,si,"Phage selection for cocktails met EOP criteria for each phage, and single phages were selected on the basis of best EOP ≥0.1."
+7 comparativos,EST-004,tiempo_cero,EST-004,2,entera,2,si,Inhaled phage therapy was given twice daily for inpatients (n = 4) or daily for outpatients (n = 5) for 7–10 days.
+7 comparativos,EST-004,tiempo_cero,EST-004,9,entera,9,si,Pre-phage therapy FEV1 is consistent with each patient’s best FEV1 over the preceding 6 months
+7 comparativos,EST-004,tiempo_de_evaluacion_del_desenlace,EST-004,3,entera,3,si,"after completion of therapy (5–18 days (median 7, mean 8.4))"
+7 comparativos,EST-004,tiempo_de_evaluacion_del_desenlace,EST-004,3,entera,3,si,"A later time point (15–42 days (median 20, mean 22.7)) after completion of phage therapy"
+7 comparativos,EST-004,tiempo_de_evaluacion_del_desenlace,EST-004,3,entera,3,si,we compared lung function (percent predicted forced expiratory volume in 1 s (ppFEV1)) before versus after phage therapy (days 21–35)
+7 comparativos,EST-004,tiempo_de_evaluacion_del_desenlace,EST-004,9,entera,9,si,we remained in contact to assess potential adverse events for a total of 30 days
+7 comparativos,EST-004,cointervenciones_y_antibiotico_concomitante,EST-004,2,entera,2,si,"When phage therapy was initiated, all patients were concurrently on IV antibiotics (n = 6) or recently completed antibiotics (n = 3; Table 2)."
+7 comparativos,EST-004,cointervenciones_y_antibiotico_concomitante,EST-004,2,entera,2,si,IV antibiotics during phage therapy 9 (100%)
+7 comparativos,EST-004,cointervenciones_y_antibiotico_concomitante,EST-004,7,entera,7,si,"PwCF had differences in CF genotype, clinical phenotype and CF-specific treatments"
+7 comparativos,EST-004,perdidas_y_datos_faltantes,EST-004,4,entera,4,si,Two participants did not provide sputum samples after Post (14 days).
+7 comparativos,EST-004,perdidas_y_datos_faltantes,EST-004,3,entera,3,si,"INH, inhaled; NA, data not available."
+7 comparativos,EST-004,estimando_reportado,EST-004,3,entera,3,si,"which is a 104 median or 102 mean difference, respectively (P = 0.006, two-way analysis of variance (ANOVA) with Dunnett’s multiple-comparisons test)"
+7 comparativos,EST-004,estimando_reportado,EST-004,4,entera,4,si,"which is median or mean ppFEV1 difference of 6 and 8, respectively (P = 0.004, Wilcoxon signed-rank two-tailed t-test)"
+7 comparativos,EST-004,hay_contraste_extraible,EST-004,7,entera,7,si,"Because of the nature of compassionate phage therapy, there was no control group for comparison."
+7 comparativos,EST-008,brazo_control_identificado,EST-008,5,entera,5,si,"were randomly assigned to receive either BX004-A (7 patients) or a placebo vehicle (2 patients), in addition to their standard of care inhaled antibiotics (tobramycin, aztreonam, or colistin)"
+7 comparativos,EST-008,tipo_y_unidad_de_asignacion,EST-008,12,entera,12,si,"This randomized, double-blind, placebo-controlled, multicenter study sought to evaluate the safety and tolerability of BX004-A in CF subjects with chronic P. aeruginosa pulmonary infection."
+7 comparativos,EST-008,tipo_y_unidad_de_asignacion,EST-008,12,entera,12,si,The results described in this paper pertain to part 1 of this study.
+7 comparativos,EST-008,tiempo_cero,EST-008,12,entera,12,si,"Sputum samples used for quantification of PFU and CFU were taken at days 1 (baseline), 2, 3 (both pre and post dose), 4, 8, 15."
+7 comparativos,EST-008,tiempo_cero,EST-008,5,entera,5,si,Day 1: all subjects received placebo to ensure they tolerated the excipients
+7 comparativos,EST-008,tiempo_de_evaluacion_del_desenlace,EST-008,12,entera,12,si,Subjects were all included in a 6-month safety follow-up
+7 comparativos,EST-008,tiempo_de_evaluacion_del_desenlace,EST-008,5,entera,5,si,"Significant reductions of P. aeruginosa colony forming units (CFU) in sputum occurred in the treatment arm compared to placebo, on days 4 (1.9 log10 CFU per gram of sputum difference between groups, p = 0.035) and 15 (2.7 log10 CFU per gram of sputum difference between groups, p = 0.029)"
+7 comparativos,EST-008,cointervenciones_y_antibiotico_concomitante,EST-008,12,entera,12,si,"receiving one of three anti-pseudomonal inhaled standard of care antibiotics: tobramycin, aztreonam, or colistin – throughout the seven days of dosing"
+7 comparativos,EST-008,cointervenciones_y_antibiotico_concomitante,EST-008,12,entera,12,si,receipt of systemic (IV or oral) anti-pseudomonal antimicrobials within the 4 weeks prior to Screening
+7 comparativos,EST-008,cointervenciones_y_antibiotico_concomitante,EST-008,5,entera,5,si,we assessed the impact of two potential confounders in the BX004-A arm: type of inhaled antibiotic and use of a CFTR modulator
+7 comparativos,EST-008,perdidas_y_datos_faltantes,EST-008,5,entera,5,si,no premature discontinuations from study drug or from the study
+7 comparativos,EST-008,perdidas_y_datos_faltantes,EST-008,12,entera,12,si,Samples which contained less than 0.3 g of sputum were used for qualitative analysis only.
+7 comparativos,EST-008,estimando_reportado,EST-008,10,entera,10,si,"The p-values (two-sided t-test) are day2:9e-4, day3a:0.045, day3b:0.780, day4:0.035, day8:0.486, day15:0.029."
+7 comparativos,EST-008,estimando_reportado,EST-008,1,entera,1,si,BX004-A met the primary endpoints of safety and tolerability.
+7 comparativos,EST-008,hay_contraste_extraible,EST-008,5,entera,5,si,"However, given the small sample size of Part 1 of this first-in-human study, caution is warranted when interpreting efficacy-related outcomes."
+7 comparativos,EST-008,hay_contraste_extraible,EST-008,5,entera,5,si,"BX004-A was well tolerated by all patients, with no adverse events related to treatment"
+7 comparativos,EST-021,brazo_control_identificado,EST-021,1,entera,1,si,"or standard of care (1% sulfadiazine silver emulsion cream), both given as a daily topical treatment for 7 days, with 14 days of follow-up"
+7 comparativos,EST-021,brazo_control_identificado,EST-021,7,entera,7,si,Patients were randomly assigned to the PP1131 group (n=13) or the standard of care group (n=14).
+7 comparativos,EST-021,tipo_y_unidad_de_asignacion,EST-021,3,entera,3,si,"After confirmation of infection, participants were randomly assigned (1:1) to receive PP1131 or standard of care by use of an interactive web response system with an electronic case report form."
+7 comparativos,EST-021,tipo_y_unidad_de_asignacion,EST-021,3,entera,3,si,"Randomisation was stratified according to study site and ongoing active antibiotic treatments at baseline, if any."
+7 comparativos,EST-021,tipo_y_unidad_de_asignacion,EST-021,3,entera,3,si,Treatment allocation was masked from microbiologists who did the microbiological evaluations for the primary endpoint and investigators.
+7 comparativos,EST-021,tiempo_cero,EST-021,3,entera,3,si,"At day 0, participants were given either sulfadiazine silver or PP1131."
+7 comparativos,EST-021,tiempo_de_evaluacion_del_desenlace,EST-021,3,entera,3,si,"All treatments were applied daily for 7 days. Observations were made for 21 days, including the initial 7 days of treatment and 14 days of follow"
+7 comparativos,EST-021,tiempo_de_evaluacion_del_desenlace,EST-021,5,entera,5,si,The primary efficacy endpoint was the time taken for a sustained reduction in bacterial burden of two quadrants or more assessed by semiquantitative culture results
+7 comparativos,EST-021,cointervenciones_y_antibiotico_concomitante,EST-021,3,entera,3,si,Adjunctive antibiotic therapy during the 7
+7 comparativos,EST-021,cointervenciones_y_antibiotico_concomitante,EST-021,3,entera,3,si,day treatment period was allowed at the discretion of the treating physician according to French Burn Society recommendations.
+7 comparativos,EST-021,cointervenciones_y_antibiotico_concomitante,EST-021,7,entera,7,si,antibiotic treatment active against P aeruginosa was introduced after day 0 for two (17%) of 12 participants in the PP1131 group and for five (38%) of 13 in the standard of care group
+7 comparativos,EST-021,cointervenciones_y_antibiotico_concomitante,EST-021,3,entera,3,si,if a burn wound was suspected to be clinically infected patients were given povidone
+7 comparativos,EST-021,perdidas_y_datos_faltantes,EST-021,1,entera,1,si,"One patient in the standard of care group was not exposed to treatment, giving a safety population of 26 patients (PP1131 n=13, standard of care n=13), and one patient in the PP1131 group did not have an infection at day 0, giving an efficacy population of 25 patients (PP1131 n=12, standard of care n=13)."
+7 comparativos,EST-021,perdidas_y_datos_faltantes,EST-021,1,entera,1,si,"The trial was stopped on Jan 2, 2017, because of the insufficient efficacy of PP1131."
+7 comparativos,EST-021,perdidas_y_datos_faltantes,EST-021,5,entera,5,si,we set the desired original sample size at 125 participants
+7 comparativos,EST-021,estimando_reportado,EST-021,1,entera,1,si,"The primary endpoint was reached in a median of 144 h (95% CI 48–not reached) in the PP1131 group versus a median of 47 h (23–122) in the standard of care group (hazard ratio 0·29, 95% CI 0·10–0·79; p=0·018)."
+7 comparativos,EST-021,estimando_reportado,EST-021,7,entera,7,si,"being in the PP1131 group was the only predictor associated with a reduction in the time to bacterial burden (HR 0·24, 95% CI 0·08–0·75; p=0·014; appendix p 11)"
+7 comparativos,EST-021,hay_contraste_extraible,EST-021,7,entera,7,si,"At day 7 (168 h), the primary endpoint was achieved in a lower proportion of patients in the PP1131 group (six [50%]) than in the standard of care group (11 [85%])"
+7 comparativos,EST-021,hay_contraste_extraible,EST-021,1,entera,1,si,"In the PP1131 group, three (23%) of 13 analysable participants had adverse events versus seven (54%) of 13 in the standard of care group."
+7 comparativos,EST-021,hay_contraste_extraible,EST-021,10,entera,10,si,"First, the treatment groups were unbalanced despite random"
+7 comparativos,EST-055,brazo_control_identificado,EST-055,3,entera,3,si,group IV received furazidin and cefixime (without bacteriophage). There was no placebo control group
+7 comparativos,EST-055,tipo_y_unidad_de_asignacion,EST-055,3,entera,3,si,"Following patient exclusion, a sequence of random numbers was generated by computer and then assigned to each investigated group"
+7 comparativos,EST-055,tipo_y_unidad_de_asignacion,EST-055,1,entera,"1,8",si,"A prospective, observational, comparative study"
+7 comparativos,EST-055,tiempo_cero,EST-055,2,entera,2,si,Pain levels were measured using a visual analog scale (VAS) before the initiation of treatment as well as after 7 and 14 days
+7 comparativos,EST-055,tiempo_de_evaluacion_del_desenlace,EST-055,1,entera,1,si,which were completed on days 7 and 14 following treatment
+7 comparativos,EST-055,tiempo_de_evaluacion_del_desenlace,EST-055,5,entera,5,si,"Unfortunately, at this stage, it is not clear what the long-term impact on the recurrence of UTIs would be"
+7 comparativos,EST-055,cointervenciones_y_antibiotico_concomitante,EST-055,3,entera,3,si,"The treatment included both monotherapy with bacteriophage cocktail (Sextaphage) (30 mL, orally, 6 times a day) and its combination with cefixime (400 mg once a day) alone or together with furazidin (100 mg 3 times a day)"
+7 comparativos,EST-055,perdidas_y_datos_faltantes,EST-055,3,entera,3,si,"During the enrollment period, 39 women were excluded from the study for various reasons, including urethral catheterization (n = 7)"
+7 comparativos,EST-055,perdidas_y_datos_faltantes,EST-055,4,entera,4,si,A total of 178 female patients were included in the final analysis
+7 comparativos,EST-055,estimando_reportado,EST-055,5,entera,5,si,p value by ANOVA + Tukey post hoc test (p < 0.05 is considered statistically significant)
+7 comparativos,EST-055,hay_contraste_extraible,EST-055,4,entera,4,si,Isolated multidrug-resistant bacterial pathogens in studied population
+7 comparativos,EST-070,brazo_control_identificado,EST-070,4,entera,4,si,"To date, 20 phage therapy requests have resulted in patient treatment both in Israel and abroad (Table 2)"
+7 comparativos,EST-070,brazo_control_identificado,EST-070,4,entera,4,si,"Out of the remaining 33 cases, phage therapy was not pursued for various reasons"
+7 comparativos,EST-070,tipo_y_unidad_de_asignacion,EST-070,1,entera,1,si,"To date, 20 phage therapy courses were given to 18 patients by the IPTC"
+7 comparativos,EST-070,tiempo_cero,EST-070,4,entera,4,si,Treatment period varied with each case (6–45 days) and sometimes consisted of 2 treatment cycles
+7 comparativos,EST-070,tiempo_de_evaluacion_del_desenlace,EST-070,4,entera,4,si,The follow-up period varied from 1 month and up to 3 years
+7 comparativos,EST-070,tiempo_de_evaluacion_del_desenlace,EST-070,2,entera,2,si,"The clinical outcomes were determined adopted based on the outcome assessment guidelines for osteomyelitis, with recovery, remission, and failure being the defined outcomes [25]"
+7 comparativos,EST-070,cointervenciones_y_antibiotico_concomitante,EST-070,6,entera,6,si,"10 32 M P aeruginosa (MDR) Bone infection Pa14NøPASA16 (APT) Ceftazidime-avibactam, ciprofloxacin Remission Indeterminate 6 mo"
+7 comparativos,EST-070,perdidas_y_datos_faltantes,EST-070,3,entera,3,si,A total of 196 requests were registered in our center between 2018 and 2022; 37 requests contained only partial data and are excluded from this study (Figure 1C)
+7 comparativos,EST-070,perdidas_y_datos_faltantes,EST-070,4,entera,4,si,"For the remaining 8 cases (44%), the culture could not be obtained from the infection site, and the outcome was assessed as indeterminate"
+7 comparativos,EST-070,estimando_reportado,EST-070,4,entera,4,si,"Among the remaining 18 patients who received therapy, 14 (50%) achieved clinical remission while 4 (22%) were classified as treatment failure, resulting in a success rate of 78%"
+7 comparativos,EST-070,hay_contraste_extraible,EST-070,3,entera,3,si,Descriptive statistics in this study was performed using Microsoft Excel
+7 comparativos,EST-096,brazo_control_identificado,EST-096,,entera,"1,2,7,9",,control
+7 comparativos,EST-096,brazo_control_identificado,EST-096,7,entera,7,si,The control of AAS was sera from 10 healthy donors showing a low level of AAS against phages
+7 comparativos,EST-096,tipo_y_unidad_de_asignacion,EST-096,1,entera,1,si,Patients (11 women and 4 men) with bacterial chronic urinary or urogenital infections underwent phage therapy (PT) between 2016 and 2019 at HIIET Phage Therapy Unit (PTU)
+7 comparativos,EST-096,tiempo_cero,EST-096,2,entera,2,si,"Blood was collected before PT, on the third day of PT and after PT"
+7 comparativos,EST-096,tiempo_de_evaluacion_del_desenlace,EST-096,7,entera,7,si,"In the period of 14–61 days after the therapy, the level of antibodies was still low (mean K rate = 0.12 ± 0.42)"
+7 comparativos,EST-096,tiempo_de_evaluacion_del_desenlace,EST-096,7,entera,7,si,The outcome of PT was assessed according to Mi ̨edzybrodzki et al. (2012) [7]
+7 comparativos,EST-096,cointervenciones_y_antibiotico_concomitante,EST-096,6,entera,6,si,Concomitant antibiotic treatment with ciprofloxacin was applied during this PT cycle
+7 comparativos,EST-096,perdidas_y_datos_faltantes,EST-096,,entera,"3,5,6",,not tested
+7 comparativos,EST-096,perdidas_y_datos_faltantes,EST-096,5,entera,5,si,not possible to evaluate
+7 comparativos,EST-096,estimando_reportado,EST-096,7,entera,7,si,Eleven women underwent one cycle of PT or the first cycle of PT intravaginally and intravesically or only intravesically and six of them (54.5%) had A–C results of PT
+7 comparativos,EST-096,hay_contraste_extraible,EST-096,2,entera,2,si,A statistical analysis for K rate was performed using the Wilcoxon rank sum test (dependent trials)
+7 comparativos,EST-108,brazo_control_identificado,EST-108,12,entera,12,si,"No control groups, blinding or randomization were put in place and different medical specialties and infection types were involved"
+7 comparativos,EST-108,brazo_control_identificado,EST-108,4,entera,4,si,"In 69.3% (79/114) of targeted infections, bacteriophages were administered in combination with standard-of-care antibiotics"
+7 comparativos,EST-108,tipo_y_unidad_de_asignacion,EST-108,12,entera,12,si,We reviewed the first 100 consecutive BT cases facilitated by a Belgian consortium between 1 January 2008 and 30 April 2022
+7 comparativos,EST-108,tipo_y_unidad_de_asignacion,EST-108,16,entera,16,si,The following variables were analysed for 92 of the 100 patients (for which a complete dataset was available)
+7 comparativos,EST-108,tiempo_cero,EST-108,16,entera,16,si,The period between the start of BT and the evaluation of the clinical outcome varied according to the treating physician and the indication
+7 comparativos,EST-108,tiempo_de_evaluacion_del_desenlace,EST-108,16,entera,16,si,"ranged from 1 month to 1 year, the latter for difficult-to-treat bone infections"
+7 comparativos,EST-108,tiempo_de_evaluacion_del_desenlace,EST-108,16,entera,16,si,Microbiological eradication was not prospectively or systematically evaluated
+7 comparativos,EST-108,cointervenciones_y_antibiotico_concomitante,EST-108,16,entera,16,si,The influence of other (medical/surgical) interventions was not determined
+7 comparativos,EST-108,perdidas_y_datos_faltantes,EST-108,11,entera,11,si,"For 8 targeted infections, in 8 patients, no adequate post BT bacteriological data were available (Supplementary Table 1)"
+7 comparativos,EST-108,perdidas_y_datos_faltantes,EST-108,21,entera,21,si,"*n = 90 (for 10 patients, age and gender were not discl"
+7 comparativos,EST-108,estimando_reportado,EST-108,1,entera,1,si,eradication was 70% less probable when no concomitant antibiotics were used (odds ratio = 0.3; 95% confidence interval = 0.127–0.749)
+7 comparativos,EST-108,hay_contraste_extraible,EST-108,11,entera,11,si,Clinical improvement or bacterial eradication was not significantly correlated with the presence of either P. aeruginosa or S. aureus
+7 comparativos,EST-116,brazo_control_identificado,EST-116,1,entera,1,si,"From April 2013 to April 2018, 260 phage therapy requests were addressed to the QAMH. Of these 260 requests, only 15 patients received phage therapy"
+7 comparativos,EST-116,tipo_y_unidad_de_asignacion,EST-116,7,entera,7,si,Three inclusion criteria were taken into account
+7 comparativos,EST-116,tipo_y_unidad_de_asignacion,EST-116,8,entera,8,si,"In 15 cases, the phagogram indicated susceptibility of the infecting bacterial pathogen(s) to the tested phage(s) and treatment was proposed to the patient and to his treating physician (Figure 1)"
+7 comparativos,EST-116,tiempo_cero,EST-116,2,entera,2,si,"The aim of this paper was to describe, analyze, and discuss the 260 phage therapy requests addressed to the QAMH"
+7 comparativos,EST-116,tiempo_de_evaluacion_del_desenlace,EST-116,8,entera,8,si,"However, we can disclose that no serious adverse events were observed and that, in general, phage therapy seemed helpful in a considerable number of the cases"
+7 comparativos,EST-116,cointervenciones_y_antibiotico_concomitante,EST-116,8,entera,8,si,"with the exception of one case that was recently published [8], other antimicrobial agents (e.g., antibiotics) were applied simultaneously with the phages"
+7 comparativos,EST-116,perdidas_y_datos_faltantes,EST-116,8,entera,8,si,70 applicants (26.9%) did not respond to the email request for more information
+7 comparativos,EST-116,perdidas_y_datos_faltantes,EST-116,6,entera,6,si,"From the 190 requests with completed files, only 102 antibiograms could be retrieved and analyzed (Supplementary Table S1)"
+7 comparativos,EST-116,estimando_reportado,EST-116,8,entera,8,si,Only 15 (5.8%) of the 260 phage therapy requests resulted in actual phage therapy
+7 comparativos,EST-116,hay_contraste_extraible,EST-116,8,entera,8,si,will not be discussed in this article
+7 comparativos,EST-132,brazo_control_identificado,EST-132,2,entera,2,si,"Group C (N = 34) received conventional therapy, and group B (N = 34) received conventional therapy with topical bacteriophage application"
+7 comparativos,EST-132,tipo_y_unidad_de_asignacion,EST-132,2,entera,2,si,Randomization was performed using computer-generated random numbers
+7 comparativos,EST-132,tipo_y_unidad_de_asignacion,EST-132,2,entera,2,si,Group allocation was done using sealed opaque envelopes
+7 comparativos,EST-132,tiempo_cero,EST-132,2,entera,2,si,Grading was done before starting treatment
+7 comparativos,EST-132,tiempo_cero,EST-132,2,entera,2,si,this process usually took 4–5 days
+7 comparativos,EST-132,tiempo_de_evaluacion_del_desenlace,EST-132,2,entera,2,si,"Wound healing was assessed in both groups on day 5, 7, 14, 21, and 28"
+7 comparativos,EST-132,tiempo_de_evaluacion_del_desenlace,EST-132,7,entera,7,si,"Follow-up was restricted to 28 days, so long-term outcomes such as recurrence or sustained healing could not be assessed"
+7 comparativos,EST-132,cointervenciones_y_antibiotico_concomitante,EST-132,2,entera,2,si,Broad-spectrum intravenous antibiotics were started initially and later modified according to the culture sensitivity report
+7 comparativos,EST-132,cointervenciones_y_antibiotico_concomitante,EST-132,2,entera,2,si,"In group B, the same care was provided along with customized topical bacteriophage therapy"
+7 comparativos,EST-132,perdidas_y_datos_faltantes,EST-132,2,entera,2,si,"Four patients were excluded from each group as the patients died before the 28 days, and 34 patients in each group were analyzed (Fig. 1)"
+7 comparativos,EST-132,perdidas_y_datos_faltantes,EST-132,1,entera,1,si,"Seventy-six adult patients with grade II–IV PUs were screened, and 68 were enrolled (34 in each group)"
+7 comparativos,EST-132,estimando_reportado,EST-132,5,entera,5,si,Day 28 7.26 ± 2.38 3.88 ± 2.03 <0.001
+7 comparativos,EST-132,hay_contraste_extraible,EST-132,5,entera,5,si,Values are presented as mean ± SD; Lower PUSH scores indicate better healing
+7 comparativos,EST-146,brazo_control_identificado,EST-146,4,entera,4,si,Although this was not a clinical trial and the phage was not benchmarked against a control or placebo cohort
+7 comparativos,EST-146,tipo_y_unidad_de_asignacion,EST-146,1,entera,1,si,We retrospectively assessed 12 cases of customized phage therapy from a phage production center
+7 comparativos,EST-146,tipo_y_unidad_de_asignacion,EST-146,5,entera,5,si,Note–cases 5 and 6 are the same patient
+7 comparativos,EST-146,tiempo_cero,EST-146,3,entera,3,si,All patients were treated with intravenous (IV) phage therapy (Table 5)
+7 comparativos,EST-146,tiempo_de_evaluacion_del_desenlace,EST-146,4,entera,4,si,The duration of follow-up after phage therapy to determine the outcome was based on infection type
+7 comparativos,EST-146,tiempo_de_evaluacion_del_desenlace,EST-146,2,entera,2,si,These responses were determined by a combination of physician judgment and patient symptom reporting
+7 comparativos,EST-146,cointervenciones_y_antibiotico_concomitante,EST-146,3,entera,3,si,All patients received concomitant antibiotic therapy
+7 comparativos,EST-146,perdidas_y_datos_faltantes,EST-146,3,entera,3,si,"For 1 case, we were not provided sufficient clinical information despite treatment being regarded as successful, so we omitted this case"
+7 comparativos,EST-146,estimando_reportado,EST-146,1,entera,1,si,"After treatment, 42% (5/12) of cases showed bacterial eradication and 58% (7/12) showed clinical improvement"
+7 comparativos,EST-146,hay_contraste_extraible,EST-146,3,entera,3,si,P. aeruginosa (1)
+7 comparativos,EST-152,brazo_control_identificado,EST-152,2,entera,2,si,were treated with S. aureus phages Staph_1N or Staph_A5L either locally or as a concomitant local and oral treatment (Table 1 and Table 2 respectively)
+7 comparativos,EST-152,tipo_y_unidad_de_asignacion,EST-152,7,entera,7,si,"A total of 27 patients with bacterial infections such as bone infections, soft tissue infections, or upper respiratory tract infections underwent PT between 2017 and 2023"
+7 comparativos,EST-152,tiempo_cero,EST-152,2,entera,2,si,Patients underwent phage therapy (PT) until week 8 after the administration of the first dose
+7 comparativos,EST-152,tiempo_de_evaluacion_del_desenlace,EST-152,3,entera,3,si,The earliest time point when high levels of antiphage antibodies in sera were observed fell on weeks 3–8 of PT
+7 comparativos,EST-152,cointervenciones_y_antibiotico_concomitante,EST-152,7,entera,7,si,About 10 mL dihydroxy aluminium sodium carbonate solution (68 mg/mL) was applied up to 20 min before phage application to prevent phage inactivation by gastric juice
+7 comparativos,EST-152,perdidas_y_datos_faltantes,EST-152,,demasiado corta,,,n.s.
+7 comparativos,EST-152,perdidas_y_datos_faltantes,EST-152,3,entera,"3,4",si,n.s. no serum
+7 comparativos,EST-152,perdidas_y_datos_faltantes,EST-152,7,entera,7,si,it was impossible to collect samples according to clinical trial protocols due to limitations associated with patient availability
+7 comparativos,EST-152,estimando_reportado,EST-152,5,entera,5,si,"As for the treatment outcome, 27.3% of patients treated locally with phages had positive clinical responses to PT (A–C)"
+7 comparativos,EST-152,hay_contraste_extraible,EST-152,3,entera,3,si,Patients treated locally with S. aureus phages
+15 solapamiento,EST-009 + EST-038,frase_en_que_te_apoyas,EST-009,3,entera,3,si,A 33-year-old Indian male had the following subjective symptoms from June 2016 till November 2016
+15 solapamiento,EST-009 + EST-038,frase_en_que_te_apoyas,EST-038,4,entera,4,si,"Patient #1 (43 years old, male with cystic fibrosis)"
+15 solapamiento,EST-009 + EST-038,frase_en_que_te_apoyas,EST-038,5,entera,5,si,"patient #2 (64 years old, female with primary ciliary dyskinesia, bronchiectasis, refused antibiotic therapy options)"
+15 solapamiento,EST-009 + EST-038,frase_en_que_te_apoyas,EST-038,7,entera,7,si,"Patient #3 (72 years old, female with chronic bacterial cystitis)"
+15 solapamiento,EST-009 + EST-044,frase_en_que_te_apoyas,EST-009,3,entera,3,si,A 33-year-old Indian male had the following subjective symptoms from June 2016 till November 2016
+15 solapamiento,EST-009 + EST-044,frase_en_que_te_apoyas,EST-044,1,entera,1,si,A 2-year-old female patient with a history of biliary atresia underwent Kasai procedure at 4 months of age at a hospital in Mexico.
+15 solapamiento,EST-009 + EST-044,frase_en_que_te_apoyas,EST-044,4,entera,4,si,All 4 strains of P aeruginosa collected from the patient over the course of 2 months were found to be susceptible to a bacteriophage cocktail containing phages HC18 and HC20
+15 solapamiento,EST-009 + EST-080,frase_en_que_te_apoyas,EST-009,3,entera,3,si,A 33-year-old Indian male had the following subjective symptoms from June 2016 till November 2016
+15 solapamiento,EST-009 + EST-080,frase_en_que_te_apoyas,EST-080,2,entera,2,si,A 74-year-old male with osteomyelitis of the sternum and recurrent parasternal abscess
+15 solapamiento,EST-009 + EST-080,frase_en_que_te_apoyas,EST-080,3,entera,3,si,A 60-year-old female presented with chronic osteomyelitis of the right tibia
+15 solapamiento,EST-009 + EST-080,frase_en_que_te_apoyas,EST-080,4,entera,4,si,A 69-year-old male with antibiotic-resistant bacterial infection presented at the EPTC in July of 2017.
+15 solapamiento,EST-009 + EST-080,frase_en_que_te_apoyas,EST-080,5,entera,5,si,A 68-year-old male presented at the EPTC in December of 2017 with postsurgical infection.
+15 solapamiento,EST-009 + EST-134,frase_en_que_te_apoyas,EST-009,3,entera,3,si,A 33-year-old Indian male had the following subjective symptoms from June 2016 till November 2016
+15 solapamiento,EST-009 + EST-134,frase_en_que_te_apoyas,EST-134,2,entera,2,si,"From September 2016, 130 patients planned for TURP were screened in preparation for the RCT (Leitner et al., 2017) at the TNCU."
+15 solapamiento,EST-009 + EST-134,frase_en_que_te_apoyas,EST-134,4,entera,4,si,The mean age was 69 ± 12 years
+15 solapamiento,EST-012 + EST-015,frase_en_que_te_apoyas,EST-012,5,entera,5,si,A 96-year-old male with multiple comorbidities including heart failure presented with a chronic multidrug-resistant Pseudomonas aeruginosa infection in complex implants.
+15 solapamiento,EST-012 + EST-015,frase_en_que_te_apoyas,EST-015,1,entera,1,si,We report the case of a 25-year-old male who experienced an accidental electrocution resulting in exposed calvarium in the left parieto-temporal region
+15 solapamiento,EST-012 + EST-015,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"9 osteomyelitis 25/M debrided cranial bone and scalp tissue XDR i.v., 30 days BID"
+15 solapamiento,EST-012 + EST-015,frase_en_que_te_apoyas,EST-003,7,entera,7,si,10 prosthetic joint infection 96/M synovial fluid tissue sonicate S
+15 solapamiento,EST-012 + EST-015,frase_en_que_te_apoyas,EST-003,15,entera,15,si,UPMC emergency approval number EA21110067
+15 solapamiento,EST-012 + EST-015,frase_en_que_te_apoyas,EST-012,13,entera,13,si,We obtained compassionateuse IRB (EA21110067) from the University of Pittsburgh
+15 solapamiento,EST-016 + EST-164,frase_en_que_te_apoyas,EST-016,2,entera,2,si,"In July 2018, a 21-year-old man was hospitalized after a road accident with open comminuted proximal right femoral and acetabular fractures"
+15 solapamiento,EST-016 + EST-164,frase_en_que_te_apoyas,EST-164,4,entera,4,si,"2017—Polytrauma after assault, with open segmental fractures of the right femur."
+15 solapamiento,EST-016 + EST-164,frase_en_que_te_apoyas,EST-164,1,entera,1,si,"Department of Trauma Surgery, University Hospitals Leuven, 3000 Leuven, Belgium"
+15 solapamiento,EST-038 + EST-044,frase_en_que_te_apoyas,EST-038,4,entera,4,si,"Patient #1 (43 years old, male with cystic fibrosis)"
+15 solapamiento,EST-038 + EST-044,frase_en_que_te_apoyas,EST-044,1,entera,1,si,A 2-year-old female patient with a history of biliary atresia underwent Kasai procedure at 4 months of age at a hospital in Mexico.
+15 solapamiento,EST-038 + EST-080,frase_en_que_te_apoyas,EST-038,4,entera,4,si,"Patient #1 (43 years old, male with cystic fibrosis)"
+15 solapamiento,EST-038 + EST-080,frase_en_que_te_apoyas,EST-038,7,entera,7,si,"Patient #3 (72 years old, female with chronic bacterial cystitis)"
+15 solapamiento,EST-038 + EST-080,frase_en_que_te_apoyas,EST-080,5,entera,5,si,A 68-year-old male presented at the EPTC in December of 2017 with postsurgical infection.
+15 solapamiento,EST-038 + EST-134,frase_en_que_te_apoyas,EST-038,1,entera,1,si,These cases were selected upon examination of EPTC clinical data from the years 2018 and 2019.
+15 solapamiento,EST-038 + EST-134,frase_en_que_te_apoyas,EST-134,2,entera,2,si,"From September 2016, 130 patients planned for TURP were screened in preparation for the RCT (Leitner et al., 2017) at the TNCU."
+15 solapamiento,EST-044 + EST-080,frase_en_que_te_apoyas,EST-044,1,entera,1,si,A 2-year-old female patient with a history of biliary atresia underwent Kasai procedure at 4 months of age at a hospital in Mexico.
+15 solapamiento,EST-044 + EST-080,frase_en_que_te_apoyas,EST-080,1,entera,1,si,"we conducted a retrospective analysis of four surgical patients who have sought treatment at the Eliava Phage Therapy Center, Tbilisi, Georgia"
+15 solapamiento,EST-051 + EST-108,frase_en_que_te_apoyas,EST-051,2,entera,2,si,A 42-year-old man suffered a war injury during the Russian war in Ukraine. He had a history of a gunshot and a blast injury to his proximal left femur 8 months ago.
+15 solapamiento,EST-051 + EST-108,frase_en_que_te_apoyas,EST-051,2,entera,2,si,Pirnay et al. have just recently published clinical outcomes of their first 100 cases treated with personalized phage therapy.
+15 solapamiento,EST-051 + EST-108,frase_en_que_te_apoyas,EST-108,12,entera,12,si,We reviewed the first 100 consecutive BT cases facilitated by a Belgian consortium between 1 January 2008 and 30 April 2022.
+15 solapamiento,EST-062 + EST-164,frase_en_que_te_apoyas,EST-062,2,entera,2,si,"In September 2018, a male toddler suffering from biliary atresia was transferred from Algeria to the Saint-Luc University Hospital"
+15 solapamiento,EST-062 + EST-164,frase_en_que_te_apoyas,EST-164,5,entera,5,si,"Three patients were treated for chronic osteomyelitis of the femur, and one for chronic osteomyelitis of the pelvis."
+15 solapamiento,EST-080 + EST-134,frase_en_que_te_apoyas,EST-080,5,entera,5,si,Bacterial culture of swabs taken from the infected area showed Pseudomonas aeruginosa.
+15 solapamiento,EST-080 + EST-134,frase_en_que_te_apoyas,EST-080,5,entera,5,si,A 68-year-old male presented at the EPTC in December of 2017 with postsurgical infection.
+15 solapamiento,EST-080 + EST-134,frase_en_que_te_apoyas,EST-134,5,entera,5,si,9 56–60 Pseudomonas 106 No data No data 60 1.3 Sudden fever and chills started on the 3rd day
+15 solapamiento,EST-003 + EST-012,frase_en_que_te_apoyas,EST-003,7,entera,7,si,10 prosthetic joint infection 96/M synovial fluid tissue sonicate S
+15 solapamiento,EST-003 + EST-012,frase_en_que_te_apoyas,EST-003,15,entera,15,si,UPMC emergency approval number EA21110067
+15 solapamiento,EST-003 + EST-012,frase_en_que_te_apoyas,EST-012,5,entera,5,si,A 96-year-old male with multiple comorbidities including heart failure presented with a chronic multidrug-resistant Pseudomonas aeruginosa infection in complex implants.
+15 solapamiento,EST-003 + EST-012,frase_en_que_te_apoyas,EST-012,13,entera,13,si,We obtained compassionateuse IRB (EA21110067) from the University of Pittsburgh
+15 solapamiento,EST-003 + EST-015,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"9 osteomyelitis 25/M debrided cranial bone and scalp tissue XDR i.v., 30 days BID"
+15 solapamiento,EST-003 + EST-015,frase_en_que_te_apoyas,EST-003,13,entera,13,si,"Simner, P.J., Cherian, J., Suh, G.A., Bergman, Y., Beisken, S., Fackler, J., Lee, M., Hopkins, R.J., and Tamma, P.D. (2022). Combination of phage therapy and cefiderocol to successfully treat Pseudomonas aeruginosa cranial osteomyelitis"
+15 solapamiento,EST-003 + EST-015,frase_en_que_te_apoyas,EST-015,1,entera,1,si,We report the case of a 25-year-old male who experienced an accidental electrocution resulting in exposed calvarium in the left parieto-temporal region
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-070,6,entera,6,si,1 46 M Pseudomonas aeruginosa (MDR) Osteomyelitis Pa14NøPASA16 (APT) Ceftazidime Remission
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-070,6,entera,6,si,2 7 F P aeruginosa (XDR) Osteomyelitis Pa14NøPASA16 (APT)
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-070,6,entera,6,si,3 10 F P aeruginosa (MDR) Berlin heart intravascular infection Pa14NøPASA16 (APT) Meropenem
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-070,6,entera,6,si,4 69 M P aeruginosa (susceptible) Mastoiditis + osteomyelitis
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-070,6,entera,6,si,7 41 F P aeruginosa (PDR) Infected silicone injection
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-070,6,entera,6,si,"10 32 M P aeruginosa (MDR) Bone infection Pa14NøPASA16 (APT) Ceftazidime-avibactam, ciprofloxacin"
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"1 osteomyelitis 46/M wound tibial infection MDR i.v., 14 days BID"
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"3 bacteremia 10/F prosthetic device infection (Berlin heart EXCOR) MDR i.v., 49 days BID"
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-003,7,entera,7,si,4 osteomyelitis 7/F surgical debridement XDR
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"5 mastoiditis 69/M ear infection S i.v., 14 days BID"
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-003,7,entera,7,si,7 skin and soft tissue infection 41/F massive silicon soft tissue infection
+15 solapamiento,EST-003 + EST-070,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"8 osteomyelitis 32/M surgery wound MDR intraoperative + i.v., 28 days BID"
+15 solapamiento,EST-003 + EST-077,frase_en_que_te_apoyas,EST-077,11,entera,11,si,A 10-year-old female with a genetic cardiomyopathy was admitted with cardiogenic shock and underwent placement of a Berlin Heart Excor VAD in January 2019 as a bridge to transplant.
+15 solapamiento,EST-003 + EST-077,frase_en_que_te_apoyas,EST-077,11,entera,11,si,was started on IV monophage PASA16
+15 solapamiento,EST-003 + EST-077,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"3 bacteremia 10/F prosthetic device infection (Berlin heart EXCOR) MDR i.v., 49 days BID"
+15 solapamiento,EST-003 + EST-095,frase_en_que_te_apoyas,EST-003,7,entera,7,si,"4 osteomyelitis 7/F surgical debridement XDR i.v., 14 days"
+15 solapamiento,EST-003 + EST-095,frase_en_que_te_apoyas,EST-003,7,entera,7,si,8 months Khatami et al
+15 solapamiento,EST-003 + EST-095,frase_en_que_te_apoyas,EST-095,1,entera,1,si,complicating the internal fixation of a traumatic fracture-dislocation in a 7-yearold girl
+15 solapamiento,EST-003 + EST-095,frase_en_que_te_apoyas,EST-095,1,entera,1,si,beginning three months into a twelvemonth course of IV colistin and aztreonam
+15 solapamiento,EST-070 + EST-077,frase_en_que_te_apoyas,EST-070,6,entera,6,si,3 10 F P aeruginosa (MDR) Berlin heart intravascular infection Pa14NøPASA16 (APT) Meropenem
+15 solapamiento,EST-070 + EST-077,frase_en_que_te_apoyas,EST-077,11,entera,11,si,A 10-year-old female with a genetic cardiomyopathy was admitted with cardiogenic shock and underwent placement of a Berlin Heart Excor VAD in January 2019 as a bridge to transplant.
+15 solapamiento,EST-070 + EST-095,frase_en_que_te_apoyas,EST-070,6,entera,6,si,2 7 F P aeruginosa (XDR) Osteomyelitis Pa14NøPASA16 (APT)
+15 solapamiento,EST-070 + EST-095,frase_en_que_te_apoyas,EST-095,1,entera,1,si,complicating the internal fixation of a traumatic fracture-dislocation in a 7-yearold girl
+15 solapamiento,EST-034 + EST-049,frase_en_que_te_apoyas,EST-034,5,entera,5,si,2 67-year-old male [3] Pneumonia in lung transplant recipient Pseudomonas aeruginosa Episode 1: AB-PA01 (4 phages)
+15 solapamiento,EST-034 + EST-049,frase_en_que_te_apoyas,EST-049,2,entera,2,si,The patient received AB-PA01 intravenously on days 1–14 and inhaled AB-PA01 on days 7–28
+15 solapamiento,EST-034 + EST-049,frase_en_que_te_apoyas,EST-049,5,entera,5,si,"Aslam S, Courtwright AM, Koval C, et al. Early clinical ex"
+15 solapamiento,EST-034 + EST-061,frase_en_que_te_apoyas,EST-034,5,entera,5,si,2 67-year-old male [3] Pneumonia in lung transplant recipient Pseudomonas aeruginosa
+15 solapamiento,EST-034 + EST-061,frase_en_que_te_apoyas,EST-061,3,entera,3,si,Patient 1 was a 67‐year‐old man who underwent bilateral lung transplant for hypersensitivity pneumonitis
+15 solapamiento,EST-049 + EST-061,frase_en_que_te_apoyas,EST-049,5,entera,5,si,"Aslam S, Courtwright AM, Koval C, et al. Early clinical ex"
+15 solapamiento,EST-049 + EST-061,frase_en_que_te_apoyas,EST-049,2,entera,2,si,The patient received AB-PA01 intravenously on days 1–14 and inhaled AB-PA01 on days 7–28
+15 solapamiento,EST-049 + EST-061,frase_en_que_te_apoyas,EST-061,3,entera,3,si,Patient 1 was a 67‐year‐old man who underwent bilateral lung transplant for hypersensitivity pneumonitis
+15 solapamiento,EST-034 + EST-077,frase_en_que_te_apoyas,EST-034,5,entera,5,si,60-year-old male Ventricular assist device infection Pseudomonas aeruginosa GD-1 (3 phages)
+15 solapamiento,EST-034 + EST-077,frase_en_que_te_apoyas,EST-034,6,entera,6,si,"8 82-year-old male VAD infection Pseudomonas aeruginosa Episode 1: SDSU1 (2 phages: PAK_P, E217)"
+15 solapamiento,EST-034 + EST-077,frase_en_que_te_apoyas,EST-077,5,entera,5,si,This was a 60-year-old male with LVAD placement in 2013
+15 solapamiento,EST-034 + EST-077,frase_en_que_te_apoyas,EST-077,9,entera,9,si,This was an 82-year-old male with an LVAD placed in 2017
+15 solapamiento,EST-034 + EST-077,frase_en_que_te_apoyas,EST-077,3,entera,3,si,Initial two phage cocktail for 2 weeks: PAK_P1 and E217 (SDSU)
+15 solapamiento,EST-062 + EST-108,frase_en_que_te_apoyas,EST-108,5,entera,5,si,20 Liver transplant and bloodstream infection P
+15 solapamiento,EST-062 + EST-108,frase_en_que_te_apoyas,EST-108,17,entera,17,si,"17. Van Nieuwenhuyse, B. et al. Bacteriophage-antibiotic combination therapy against extensively drug-resistant Pseudomonas aeruginosa infection to allow liver transplantation in a toddler"
+15 solapamiento,EST-062 + EST-108,frase_en_que_te_apoyas,EST-108,2,entera,2,si,Twenty-seven of the 100 BT cases/patients were previously reported
+15 solapamiento,EST-062 + EST-108,frase_en_que_te_apoyas,EST-062,2,entera,2,si,"In September 2018, a male toddler suffering from biliary atresia was transferred from Algeria to the Saint-Luc University Hospital"
+15 solapamiento,EST-010 + EST-108,frase_en_que_te_apoyas,EST-108,5,entera,5,si,"26 Spinal infection P. aeruginosa 4029, 4032 and 4034 Local and intravenous"
+15 solapamiento,EST-010 + EST-108,frase_en_que_te_apoyas,EST-108,17,entera,17,si,"20. Ferry, T. et al. Personalized bacteriophage therapy to treat pandrug-resistant spinal Pseudomonas aeruginosa infection"
+15 solapamiento,EST-010 + EST-108,frase_en_que_te_apoyas,EST-010,2,entera,2,si,A 74-year-old man with melanoma treated with anti-PD1 (pembrolizumab) experienced a catheter-related bacteremia
+15 solapamiento,EST-010 + EST-108,frase_en_que_te_apoyas,EST-010,5,entera,5,si,"three active phages (named vB_PaeP_4029, vB_PaeP_4032 and vB_PaeP_4034)"
+15 solapamiento,EST-088 + EST-108,frase_en_que_te_apoyas,EST-108,6,entera,6,si,"92 Generalized necrotizing fasciitis, empyema, bacteremia S. aureus, P. aeruginosa and Stenotro-phomonas maltophilia ISP, 14-1, PNM, PT07 and BUCT700"
+15 solapamiento,EST-088 + EST-108,frase_en_que_te_apoyas,EST-088,1,entera,1,si,necrotizing fasciitis induced by Panton-Valentine Leukocidinproducing Methicillin-Resistant Staphylococcus aureus (MRSA) in a 12-year-old boy
+15 solapamiento,EST-088 + EST-108,frase_en_que_te_apoyas,EST-088,1,entera,1,si,"Multi-route phage therapy was initiated along with antibiotics against Staphylococcus aureus, Pseudomonas aeruginosa and Stenotrophomonas maltophilia"
+15 solapamiento,EST-088 + EST-108,frase_en_que_te_apoyas,EST-088,3,entera,3,si,"aeruginosa phages PNM, 14-1 and PT07"
+15 solapamiento,EST-046 + EST-108,frase_en_que_te_apoyas,EST-108,5,entera,5,si,"13 Wound and bloodstream infection Pseudomonas aeruginosa 14-1, PNM and ISP (BFC 1) Topical and intravenous"
+15 solapamiento,EST-046 + EST-108,frase_en_que_te_apoyas,EST-108,17,entera,17,si,"15. Jennes, S. et al. Use of bacteriophages in the treatment of colistin-only-sensitive Pseudomonas aeruginosa septicaemia in a patient with acute kidney injury"
+15 solapamiento,EST-046 + EST-108,frase_en_que_te_apoyas,EST-046,1,entera,1,si,"In June 2016, a 61-year-old man was hospitalised for Enterobacter cloacae peritonitis and severe abdominal sepsis"
+15 solapamiento,EST-108 + EST-164,frase_en_que_te_apoyas,EST-108,5,entera,5,si,"22 Chronic osteomyelitis of the pelvis P. aeruginosa and S. epidermidis 14-1, PNM, ISP (BFC 1)"
+15 solapamiento,EST-108 + EST-164,frase_en_que_te_apoyas,EST-108,5,entera,5,si,"24 Chronic osteomyelitis of the femur P. aeruginosa and S. epidermidis 14-1, PNM, ISP (BFC 1)"
+15 solapamiento,EST-108 + EST-164,frase_en_que_te_apoyas,EST-108,17,entera,17,si,"19. Onsea, J. et al. Bacteriophage application for difficult-to-treat musculoskeletal infections"
+15 solapamiento,EST-108 + EST-164,frase_en_que_te_apoyas,EST-164,5,entera,5,si,"Three patients were treated for chronic osteomyelitis of the femur, and one for chronic osteomyelitis of the pelvis."
+15 solapamiento,EST-016 + EST-108,frase_en_que_te_apoyas,EST-108,5,entera,5,si,"27 Orthopaedic infection P. aeruginosa 14-1, PNM and ISP (BFC 1) Local"
+15 solapamiento,EST-016 + EST-108,frase_en_que_te_apoyas,EST-108,17,entera,17,si,"21. Racenis, K. et al. Use of phage cocktail BFC 1.10 in combination with ceftazidime-avibactam"
+15 solapamiento,EST-016 + EST-108,frase_en_que_te_apoyas,EST-016,2,entera,2,si,"In July 2018, a 21-year-old man was hospitalized after a road accident with open comminuted proximal right femoral and acetabular fractures"
+15 solapamiento,EST-002 + EST-108,frase_en_que_te_apoyas,EST-108,2,entera,2,si,Twenty-seven of the 100 BT cases/patients were previously reported
+15 solapamiento,EST-002 + EST-108,frase_en_que_te_apoyas,EST-108,17,entera,17,si,"26. Blasco, L. et al. Case report: analysis of phage therapy failure in a patient with a Pseudomonas aeruginosa prosthetic vascular graft infection"
+15 solapamiento,EST-002 + EST-108,frase_en_que_te_apoyas,EST-002,2,entera,2,si,"In July 2021, 70 ml of the bacteriophage cocktail, consisting of the three phages"
+15 solapamiento,EST-002 + EST-108,frase_en_que_te_apoyas,EST-002,2,entera,2,si,"therapeutic phages were obtained from the Queen Astrid Military Hospital (Brussels, Belgium)"
+15 solapamiento,EST-108 + EST-124,frase_en_que_te_apoyas,EST-108,2,entera,2,si,Twenty-seven of the 100 BT cases/patients were previously reported
+15 solapamiento,EST-108 + EST-124,frase_en_que_te_apoyas,EST-108,17,entera,17,si,"25. Racenis, K. et al. Successful bacteriophage–antibiotic combination therapy against multidrug-resistant Pseudomonas aeruginosa left ventricular assist device driveline infection"
+15 solapamiento,EST-108 + EST-124,frase_en_que_te_apoyas,EST-124,4,entera,4,si,"On 16 June 2021, the operation began with extensive tissue debridement along the course of the driveline"

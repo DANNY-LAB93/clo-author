@@ -47,6 +47,59 @@ except Exception:
 
 # Frases que deben estar, con el escalar que manda en cada hueco.
 AFIRMACIONES = [
+    (ES, "en {desenlace_diseno_no_clasificable} de los {desenlace_brazos} brazos no puede clasificarse —los dos revisores acordaron «NA» en los {desenlace_diseno_na_acordado}—, de modo que los recuentos por diseño son suelos sobre los {desenlace_brazos_con_diseno} restantes. De esos {desenlace_brazos_con_diseno}, **{desenlace_brazos_ensayo} brazos son ensayos**"),
+    (EN, "in {desenlace_diseno_no_clasificable} of the {desenlace_brazos} arms it cannot be classified — the two reviewers agreed on \"NA\" in all {desenlace_diseno_na_acordado} — so the design counts are floors over the remaining {desenlace_brazos_con_diseno}. Of those {desenlace_brazos_con_diseno}, **{desenlace_brazos_ensayo} arms are trials**"),
+    (EN, "That 42 of {estudios} studies are registry entries"),
+    (EN, "Table 5 summarises it over the {desenlace_brazos} extracted arms."),
+    (EN, "Those percentages are computed over all {desenlace_brazos} arms"),
+    (JSR, "En {definicion_establecido_que_no_define} de ellos los revisores lo establecieron leyendo el artículo: {definicion_sin_definicion_declarada} declaran"),
+    # ---- 2026-10-03: frases que solo pasaban por coincidencia (nota 16)
+    (EN, "Single case reports, {casos_unicos_pct} %; comparative, {estudios_comparativos_pct} %; resistance class unassignable, {sin_clase_util_pct} %. Full text was obtained for {texto_completo_obtenido} ({texto_completo_pct} %)"),
+    (EN, "the {texto_completo_pct} % figure coexists with an exclusion"),
+    (EN, "**{estudios_excluidos_tras_texto_completo} of them left the corpus** and were excluded; the next subsection details them. The evidence base stands at **{estudios} studies**, grouping {informes_agrupados} reports: {estudios_un_solo_informe} with a single report and {estudios_multiinforme} with several"),
+    (EN, "These {excluidos_entre_los_leidos} are the other side of that limitation, and they are **{excluidos_tras_texto_completo_pct} %** of the {estudios_leidos_a_texto_completo} studies whose full text could be read"),
+    (EN, "Of the {estudios} studies, **{estudios_extraibles} have a retrievable publication**: {estudios_con_articulo} articles and {estudios_solo_resumen} that exist only as conference abstracts"),
+    (EN, "**Route of administration** is not stated in **{sin_via_de_administracion_pct} %**"),
+    (EN, "or is mixed with a separable subgroup, is not stated in **{sin_ambito_de_patogeno_pct} %**"),
+    (EN, "(difficult-to-treat resistance) is not stated in **{sin_criterio_dtr_pct} %**"),
+    (EN, "Over the {desenlace_brazos_legibles} readable arms the figures rise — from {desenlace_adverse_event_n_pct_de_los_brazos} % to {desenlace_adverse_event_n_pct_de_los_legibles} % for adverse events, from {desenlace_resistance_emergence_n_pct_de_los_brazos} % to {desenlace_resistance_emergence_n_pct_de_los_legibles} % for resistance"),
+    (EN, "That {desenlace_clinical_success_n_pct_de_los_brazos} % is misleading"),
+    (ES, "El cumplimiento del criterio **DTR** (*difficult-to-treat resistance*) no consta en el **{sin_criterio_dtr_pct} %**"),
+    (JSR, "El cumplimiento del criterio **DTR** no consta en el **{sin_criterio_dtr_pct} %**"),
+    (ES, "Estos {excluidos_entre_los_leidos} son la otra cara de esa limitación"),
+    # ---- las decisiones firmadas el 2026-10-01 sobre la lectura del 30-sep
+    (ES, "Los otros {bajo_umbral_estudio_entero} —{lista_bajo_umbral_estudio_entero_ids}— son estudios de un solo brazo cuyo único paciente no es multirresistente. {lista_bajo_umbral_mantenidos_22sep_ids} se mantienen en el corpus por decisión firmada de los dos autores el 22 de septiembre de 2026, y {lista_bajo_umbral_mantenidos_01oct_ids}, que quedaron por debajo del umbral"),
+    (ES, "la permanencia de {lista_bajo_umbral_sin_decision_ids}, que pasó por debajo del umbral al resolverse su clase"),
+    (ES, "Los dos autores releyeron los {lectura_clase_estudios_leidos} estudios que entonces tenían texto completo"),
+    (ES, "En {lectura_sin_pa_total} la lectura no encontró ningún paciente con *P. aeruginosa* tratado con fagos. Los dos autores excluyeron {lectura_sin_pa_excluidos} con el código ORG ({lista_lectura_sin_pa_excluidos_ids}"),
+    (ES, "y mantuvieron {lectura_sin_pa_mantenidos}, que se declaran aquí con lo que el artículo dice: en {lista_lectura_sin_pa_cita_ids} la única mención de *P. aeruginosa* es la descripción del paciente de otro estudio del corpus ({lista_lectura_sin_pa_citados_ids}); en {lista_lectura_sin_pa_coctel_ids} solo figura en la composición del cóctel empírico, sin desglose por organismo, y en {lista_lectura_sin_pa_no_diana_ids} el paciente tuvo *P. aeruginosa*, pero el fago no se dirigió contra ella. Lo mismo ocurre en {lista_lectura_dudosos_mantenidos_ids}, que también se mantienen"),
+    (ES, "De los {lectura_clase_estudios} estudios con texto completo que quedan en el corpus, la clase pudo comprobarse en {lectura_clase_verificables}: en {lectura_clase_antibiograma} contra un antibiograma impreso y en {lectura_clase_texto} contra una descripción de la sensibilidad en el texto; en {lectura_clase_no_verificable} no hay con qué comprobarla"),
+    (ES, "y los {lectura_clase_no_aplica} restantes son los mantenidos sin *P. aeruginosa* tratada"),
+    (ES, "Las {lectura_correcciones} correcciones que la lectura deja inequívocas para el brazo entero —{lectura_correcciones_clase} de clase, {lectura_correcciones_procedencia} de su procedencia y {lectura_correcciones_dtr} del criterio DTR— entraron en la extracción con la firma de los dos autores. Los {lectura_abiertos_resueltos} estudios en que dejaba un brazo con más de un valor los resolvieron los dos autores el 1 de octubre de 2026: en {lectura_abiertos_corregidos} se corrigió la extracción ({lista_lectura_abiertos_corregidos_ids}) y en {lectura_abiertos_sin_cambio} se dejó como estaba ({lista_lectura_abiertos_sin_cambio_ids})"),
+    (ES, "la clase de resistencia de los {lectura_clase_estudios_leidos} estudios que entonces tenían texto completo, comprobada contra el antibiograma publicado"),
+    (ES, "el estimando de los {comparativos_reextraidos_leidos} estudios con diseño comparativo, {comparativos_reextraidos_leidos_con_texto} de ellos con texto"),
+    (ES, "{letras_lectura_sin_pa_excluidos} de ellos se detectaron al comprobar la clase de resistencia contra el artículo"),
+    (JSR, "Los otros {bajo_umbral_estudio_entero} —{lista_bajo_umbral_estudio_entero_ids}— son estudios de un solo brazo cuyo único paciente no es multirresistente. {lista_bajo_umbral_mantenidos_22sep_ids} se mantienen en el corpus por decisión firmada de los dos autores el 22 de septiembre de 2026, y {lista_bajo_umbral_mantenidos_01oct_ids}, que quedaron por debajo del umbral"),
+    (JSR, "la permanencia de {lista_bajo_umbral_sin_decision_ids}, que pasó por debajo del umbral al resolverse su clase"),
+    (JSR, "Los dos autores releyeron los {lectura_clase_estudios_leidos} estudios que entonces tenían texto completo"),
+    (JSR, "En {lectura_sin_pa_total} la lectura no encontró ningún paciente con *P. aeruginosa* tratado con fagos. Los dos autores excluyeron {lectura_sin_pa_excluidos} con el código ORG ({lista_lectura_sin_pa_excluidos_ids}"),
+    (JSR, "y mantuvieron {lectura_sin_pa_mantenidos}, que se declaran aquí con lo que el artículo dice: en {lista_lectura_sin_pa_cita_ids} la única mención de *P. aeruginosa* es la descripción del paciente de otro estudio del corpus ({lista_lectura_sin_pa_citados_ids}); en {lista_lectura_sin_pa_coctel_ids} solo figura en la composición del cóctel empírico, sin desglose por organismo, y en {lista_lectura_sin_pa_no_diana_ids} el paciente tuvo *P. aeruginosa*, pero el fago no se dirigió contra ella. Lo mismo ocurre en {lista_lectura_dudosos_mantenidos_ids}, que también se mantienen"),
+    (JSR, "De los {lectura_clase_estudios} estudios con texto completo que quedan en el corpus, la clase pudo comprobarse en {lectura_clase_verificables}: en {lectura_clase_antibiograma} contra un antibiograma impreso y en {lectura_clase_texto} contra una descripción de la sensibilidad en el texto; en {lectura_clase_no_verificable} no hay con qué comprobarla"),
+    (JSR, "y los {lectura_clase_no_aplica} restantes son los mantenidos sin *P. aeruginosa* tratada"),
+    (JSR, "Las {lectura_correcciones} correcciones que la lectura deja inequívocas para el brazo entero —{lectura_correcciones_clase} de clase, {lectura_correcciones_procedencia} de su procedencia y {lectura_correcciones_dtr} del criterio DTR— entraron en la extracción con la firma de los dos autores. Los {lectura_abiertos_resueltos} estudios en que dejaba un brazo con más de un valor los resolvieron los dos autores el 1 de octubre de 2026: en {lectura_abiertos_corregidos} se corrigió la extracción ({lista_lectura_abiertos_corregidos_ids}) y en {lectura_abiertos_sin_cambio} se dejó como estaba ({lista_lectura_abiertos_sin_cambio_ids})"),
+    (JSR, "la clase de resistencia de los {lectura_clase_estudios_leidos} estudios que entonces tenían texto completo, comprobada contra el antibiograma publicado"),
+    (JSR, "el estimando de los {comparativos_reextraidos_leidos} estudios con diseño comparativo, {comparativos_reextraidos_leidos_con_texto} de ellos con texto"),
+    (EN, "The other {bajo_umbral_estudio_entero} — {lista_bajo_umbral_estudio_entero_ids} — are single-arm studies whose only patient is not multidrug-resistant. {lista_bajo_umbral_mantenidos_22sep_ids} are kept in the corpus by signed decision of the two authors on 22 September 2026, and {lista_bajo_umbral_mantenidos_01oct_ids}, which fell below the threshold"),
+    (EN, "the retention of {lista_bajo_umbral_sin_decision_ids}, which fell below the threshold when its class was resolved"),
+    (EN, "The two authors re-read the {lectura_clase_estudios_leidos} studies that then had full text"),
+    (EN, "In {lectura_sin_pa_total} the reading found no patient with *P. aeruginosa* treated with phages. The two authors excluded {lectura_sin_pa_excluidos} with code ORG ({lista_lectura_sin_pa_excluidos_ids}"),
+    (EN, "and kept {lectura_sin_pa_mantenidos}, which are declared here with what the article says: in {lista_lectura_sin_pa_cita_ids} the only mention of *P. aeruginosa* is the description of the patient of another study in the corpus ({lista_lectura_sin_pa_citados_ids}); in {lista_lectura_sin_pa_coctel_ids} it appears only in the composition of the empirical cocktail, with no breakdown by organism, and in {lista_lectura_sin_pa_no_diana_ids} the patient had *P. aeruginosa*, but the phage was not directed against it. The same holds in {lista_lectura_dudosos_mantenidos_ids}, which are also kept"),
+    (EN, "Of the {lectura_clase_estudios} studies with full text that remain in the corpus, the class could be checked in {lectura_clase_verificables}: in {lectura_clase_antibiograma} against a printed antibiogram and in {lectura_clase_texto} against a description of susceptibility in the text; in {lectura_clase_no_verificable} there is nothing to check it against"),
+    (EN, "the remaining {lectura_clase_no_aplica} are those kept without treated *P. aeruginosa*"),
+    (EN, "The {lectura_correcciones} corrections the reading leaves unambiguous for the whole arm — {lectura_correcciones_clase} of class, {lectura_correcciones_procedencia} of its source and {lectura_correcciones_dtr} of the DTR criterion — entered the extraction with the signature of both authors. The {lectura_abiertos_resueltos} studies in which it left an arm with more than one value were resolved by the two authors on 1 October 2026: in {lectura_abiertos_corregidos} the extraction was corrected ({lista_lectura_abiertos_corregidos_ids}) and in {lectura_abiertos_sin_cambio} it was left as it was ({lista_lectura_abiertos_sin_cambio_ids})"),
+    (EN, "the resistance class of the {lectura_clase_estudios_leidos} studies that then had full text, checked against the published antibiogram"),
+    (EN, "estimand of the {comparativos_reextraidos_leidos} studies with a comparative design, {comparativos_reextraidos_leidos_con_texto} of them with text"),
+    (EN, "{letras_lectura_sin_pa_excluidos} of them were detected when the resistance class was checked against the article"),
     # ---- 23 057 y 134 no son dos corrientes: la segunda esta dentro -------
     (ES, "Los {informes_de_registros} informes de registro de ensayos no son una corriente aparte de esa cifra: están dentro de los {registros_identificados} identificados ({registros_de_ClinicalTrials_gov} de ClinicalTrials.gov, {registros_de_CTIS} de CTIS y {registros_de_EudraCT} de EudraCT)"),
     (EN, "The {informes_de_registros} trial-registry reports are not a separate stream from that figure: they are among the {registros_identificados} identified ({registros_de_ClinicalTrials_gov} from ClinicalTrials.gov, {registros_de_CTIS} from CTIS and {registros_de_EudraCT} from EudraCT)"),
@@ -60,7 +113,15 @@ AFIRMACIONES = [
     (ES, "la concordancia previa al consenso fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), con {rob_desacuerdos} desacuerdos"),
     (JSR, "la concordancia previa fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), y los {rob_desacuerdos} desacuerdos"),
     (EN, "pre-consensus agreement was {rob_acuerdo_pct} % ({rob_acuerdo_bruto} of {rob_juicios_comparables} judgements; Cohen's kappa {rob_kappa}), with {rob_desacuerdos} disagreements"),
-    (EN, "**In {brazos_bajo_umbral} of the {desenlace_brazos} arms the declared class falls below the multidrug-resistance threshold**"),
+    # ---- la lectura firmada del 2026-09-30: umbral, clase comprobada, metodos
+    (EN, "**In {brazos_bajo_umbral} of the {desenlace_brazos} arms the class falls below the multidrug-resistance threshold** ({coma_brazos_bajo_umbral_ids}). {brazos_bajo_umbral_estrato} are strata"),
+    (EN, "Of the {lectura_clase_verificables} checked, the class matched the coded one in {lectura_clase_coincide}; in {lectura_clase_antes_no_clasificable} the extraction had it as not classifiable and the article allowed it to be assigned — {lectura_clase_antes_nc_bajo_umbral} below the threshold and {lectura_clase_antes_nc_xdr} XDR —; in {lectura_clase_mas_grave} it was more severe than coded ({lista_lectura_clase_mas_grave_ids}); in {lectura_clase_no_se_sostiene} the declared class was not confirmed ({lista_lectura_clase_no_se_sostiene_ids}), and in {lectura_clase_mixta} it changes between patients or between isolates of the same arm ({lista_lectura_clase_mixta_ids})"),
+    (EN, "contains **{pacientes_duplicados_confirmados} patients described in more than one study**, spread over {estudios_con_paciente_compartido} of the {estudios}"),
+    (EN, "EST-003 shares {est003_pacientes_compartidos} of its patients: {est003_con_est070} with EST-070"),
+    (EN, "EST-034 shares {est034_pacientes_compartidos} patients with EST-049, EST-061 and EST-077"),
+    (EN, "states that {est108_previamente_publicados} of its {est108_casos} patients had been reported before and cites {est108_referencias_previas} references, of which **{est108_estudios_citados_en_corpus} are studies in this corpus** — {lista_est108_estudios_citados_en_corpus_ids} — contributing {est108_pacientes_citados_en_corpus} patients; to them is added {lista_est108_coincidencias_no_citadas_ids}, published later"),
+    (EN, "The examination covered the {texto_completo_obtenido} full texts and gathered {pares_solapamiento_examinados} pairs: {pares_solapamiento_por_detector} flagged by a detector based on product, country and citation, and {pares_solapamiento_por_lectura} found by reading. {pares_solapamiento_confirmados} were confirmed, {pares_solapamiento_descartados} were ruled out and **none remains unread**"),
+    (EN, "it prevents reading the corpus as {estudios} disjoint sets of patients"),
     (EN, "outcomes, over the adjudicated extraction (n = {desenlace_brazos} arms)"),
     (EN, "a pooled proportion of clinical success (n = {desenlace_brazos} arms)"),
     # ---- cifras que coincidian por casualidad con OTRO escalar ------------
@@ -115,8 +176,17 @@ AFIRMACIONES = [
     # numerador mayor que su denominador, y ya no lo hace ninguno.
     (ES, "**hoy ningún brazo declara una proporción imposible**"),
     (JSR, "**hoy ningún brazo declara una proporción imposible**"),
-    (ES, "**En {brazos_bajo_umbral} de los {desenlace_brazos} brazos la clase declarada queda por debajo del umbral de multirresistencia**"),
-    (JSR, "**En {brazos_bajo_umbral} de los {desenlace_brazos} brazos la clase declarada queda por debajo del umbral de multirresistencia**"),
+    # ---- la lectura firmada del 2026-09-30, en el maestro y en el de la revista
+    (ES, "**En {brazos_bajo_umbral} de los {desenlace_brazos} brazos la clase queda por debajo del umbral de multirresistencia** ({coma_brazos_bajo_umbral_ids}). {brazos_bajo_umbral_estrato} son estratos"),
+    (ES, "De los {lectura_clase_verificables} comprobados, la clase coincidió con la codificada en {lectura_clase_coincide}; en {lectura_clase_antes_no_clasificable} la extracción la daba por no clasificable y el artículo permitía asignarla —{lectura_clase_antes_nc_bajo_umbral} por debajo del umbral y {lectura_clase_antes_nc_xdr} XDR—; en {lectura_clase_mas_grave} era más grave que la codificada ({lista_lectura_clase_mas_grave_ids}); en {lectura_clase_no_se_sostiene} la clase declarada no se confirmó ({lista_lectura_clase_no_se_sostiene_ids}), y en {lectura_clase_mixta} cambia entre pacientes o entre aislados del mismo brazo ({lista_lectura_clase_mixta_ids})"),
+    (JSR, "**En {brazos_bajo_umbral} de los {desenlace_brazos} brazos la clase queda por debajo del umbral de multirresistencia** ({coma_brazos_bajo_umbral_ids}). {brazos_bajo_umbral_estrato} son estratos"),
+    (JSR, "De los {lectura_clase_verificables} comprobados, la clase coincidió con la codificada en {lectura_clase_coincide}; en {lectura_clase_antes_no_clasificable} la extracción la daba por no clasificable y el artículo permitía asignarla —{lectura_clase_antes_nc_bajo_umbral} por debajo del umbral y {lectura_clase_antes_nc_xdr} XDR—; en {lectura_clase_mas_grave} era más grave que la codificada ({lista_lectura_clase_mas_grave_ids}); en {lectura_clase_no_se_sostiene} la clase declarada no se confirmó ({lista_lectura_clase_no_se_sostiene_ids}), y en {lectura_clase_mixta} cambia entre pacientes o entre aislados del mismo brazo ({lista_lectura_clase_mixta_ids})"),
+    (ES, "contiene **{pacientes_duplicados_confirmados} pacientes descritos en más de un estudio**, repartidos entre {estudios_con_paciente_compartido} de los {estudios}"),
+    (ES, "EST-003 comparte {est003_pacientes_compartidos} de sus pacientes: {est003_con_est070} con EST-070"),
+    (ES, "EST-034 comparte {est034_pacientes_compartidos} pacientes con EST-049, EST-061 y EST-077"),
+    (ES, "afirma que {est108_previamente_publicados} de sus {est108_casos} pacientes se habían publicado antes y remite a {est108_referencias_previas} referencias, de las que **{est108_estudios_citados_en_corpus} son estudios de este corpus** —{lista_est108_estudios_citados_en_corpus_ids}—, que aportan {est108_pacientes_citados_en_corpus} pacientes; a ellos se suma {lista_est108_coincidencias_no_citadas_ids}, publicado después"),
+    (ES, "El examen se hizo sobre los {texto_completo_obtenido} textos completos y reunió {pares_solapamiento_examinados} pares: {pares_solapamiento_por_detector} los marcó un detector por producto, país y cita, y {pares_solapamiento_por_lectura} los encontró la lectura. {pares_solapamiento_confirmados} se confirmaron, {pares_solapamiento_descartados} se descartaron y **ninguno queda sin leer**"),
+    (ES, "impide leer el corpus como {estudios} conjuntos disjuntos de pacientes"),
     (JSR, "de los {sesgo_evaluables} evaluables, {comparativos_con_grupo_real} tienen un grupo con el que comparar"),
     (JSR, "y en {comparativos_sin_grupo_real} las notas firmadas del dominio 1 declaran que no lo hay"),
     # Pies de tabla y descripcion de anexos: tambien llevan cifras.
@@ -352,8 +422,11 @@ AFIRMACIONES = [
     (JSR, "contiene **{pacientes_duplicados_confirmados} pacientes descritos en más de un estudio**, repartidos entre {estudios_con_paciente_compartido} de los {estudios}"),
     # EST-108 lo declara en su propio texto; el escalar sale de leerlo,
     # no de teclearlo: `est108_frase` guarda la frase que lo dice.
-    (JSR, "afirma que {est108_previamente_publicados} de sus {est108_casos} pacientes se habían publicado antes"),
-    (JSR, "produjo {pares_solapamiento_examinados} pares candidatos, de los que {pares_solapamiento_confirmados} se confirmaron leyendo, 3 se descartaron, 1 quedó sin resolver y **{pares_solapamiento_sin_leer} siguen sin leer**"),
+    (JSR, "EST-003 comparte {est003_pacientes_compartidos} de sus pacientes: {est003_con_est070} con EST-070"),
+    (JSR, "EST-034 comparte {est034_pacientes_compartidos} pacientes con EST-049, EST-061 y EST-077"),
+    (JSR, "afirma que {est108_previamente_publicados} de sus {est108_casos} pacientes se habían publicado antes y remite a {est108_referencias_previas} referencias, de las que **{est108_estudios_citados_en_corpus} son estudios de este corpus** —{lista_est108_estudios_citados_en_corpus_ids}—, que aportan {est108_pacientes_citados_en_corpus} pacientes; a ellos se suma {lista_est108_coincidencias_no_citadas_ids}, publicado después"),
+    (JSR, "El examen se hizo sobre los {texto_completo_obtenido} textos completos y reunió {pares_solapamiento_examinados} pares: {pares_solapamiento_por_detector} los marcó un detector por producto, país y cita, y {pares_solapamiento_por_lectura} los encontró la lectura. {pares_solapamiento_confirmados} se confirmaron, {pares_solapamiento_descartados} se descartaron y **ninguno queda sin leer**"),
+    (JSR, "impide leer el corpus como {estudios} conjuntos disjuntos de pacientes"),
     # ---- el marco del recribado: titulo MAS resumen
     (JSR, "muestra aleatoria de {validacion_muestra} de los {validacion_marco} registros excluidos en el cribado: {validacion_marco_titulo} en la etapa de título y {validacion_marco_resumen} en la de resumen"),
     (JSR, "El recribado ciego de {validacion_muestra} de los {validacion_marco} registros excluidos en título y resumen"),
@@ -361,7 +434,7 @@ AFIRMACIONES = [
     (JSR, "De los {sesgo_comparativos_adjudicados} estudios clasificados como comparativos, {comparativos_un_brazo} aportaron un único brazo a la extracción y uno aportó {brazos_del_comparativo_mayor}"),
     # ---- reportes y series entre los leidos
     (JSR, "Los reportes y las series de casos —{casos_y_series_leidos} de los {texto_completo_obtenido} estudios leídos— no se evaluaron con instrumento formal"),
-    (JSR, "derivable en {t3_dtr_status_declarado} de los {t3_con_texto} artículos leídos"),
+    (JSR, "ausente del {sin_criterio_dtr_pct} % de los resúmenes y derivable en {t3_dtr_status_declarado} de los {t3_con_texto} artículos leídos"),
     # ---- el embudo de la proporcion descriptiva, sin el filtro de diseno
     (JSR, "En los {desenlace_brazos} brazos extraídos del corpus **no hay un solo brazo comparador**"),
     (JSR, "dejan **{embudo_prop_numerador} brazos**; la definición operativa del éxito, **{embudo_prop_definicion}**; que el desenlace sea atribuible a *P. aeruginosa*, **{embudo_prop_atribuible}**; la administración terapéutica y no profiláctica no elimina ninguno; y que el desenlace sea una proporción y no un tiempo deja **{brazos_agrupables} brazos de {estudios_agrupables} estudios**"),
@@ -476,10 +549,36 @@ def en_letra(n, ingles):
     return p[0].upper() + p[1:]
 
 
+# LISTAS DE ESTUDIOS. «(EST-001 A, EST-003 B, EST-094 A, EST-108 A)» iba
+# tecleado en los tres manuscritos y ningun guardian lo miraba: al reclasificar
+# la lectura del 2026-09-30 tres brazos por debajo del umbral, la lista habria
+# seguido diciendo cuatro. `{coma_x}` une con comas; `{lista_x}` pone «y» o
+# «and» antes del ultimo, que es como se escribe en una oracion.
+PREFIJOS = ("letras_", "coma_", "lista_")
+
+
+def escalar_base(clave):
+    for p in PREFIJOS:
+        if clave.startswith(p):
+            return clave[len(p):]
+    return clave
+
+
+def une(v, ingles, con_y):
+    v = [str(x) for x in v]
+    if not con_y or len(v) < 2:
+        return ", ".join(v)
+    return ", ".join(v[:-1]) + (" and " if ingles else " y ") + v[-1]
+
+
 def valor_de(esc, clave, ingles):
     """El valor de un hueco, que puede pedir la palabra en vez del numero."""
     if clave.startswith("letras_"):
         return en_letra(esc[clave[len("letras_"):]], ingles)
+    if clave.startswith("coma_"):
+        return une(esc[clave[len("coma_"):]], ingles, False)
+    if clave.startswith("lista_"):
+        return une(esc[clave[len("lista_"):]], ingles, True)
     return formatea(esc[clave], ingles, clave)
 
 
@@ -554,8 +653,7 @@ def main():
         ingles = entrada[3] if len(entrada) > 3 else (archivo is EN)
         claves = re.findall(r"\{(\w+)\}", plantilla)
         # «letras_x» pide la palabra de «x»: lo que tiene que existir es x.
-        faltan = [c for c in claves
-                  if c.replace("letras_", "", 1) not in esc]
+        faltan = [c for c in claves if escalar_base(c) not in esc]
         if faltan:
             fallos.append(f"{archivo.name}: escalar inexistente {faltan} en «{plantilla[:56]}…»")
             continue

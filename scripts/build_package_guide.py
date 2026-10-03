@@ -96,8 +96,10 @@ CATALOGO = [
          "localizado dentro del documento leído, el informe único del estudio o el único "
          "artículo del grupo.",
          "Dónde mirar para comprobar cualquier dato de cualquier brazo (PRISMA 10)."),
-        ("S21_solapamiento_de_pacientes.xlsx + .csv", "Los pares de estudios que pueden "
-         "describir a los mismos pacientes, con la señal que los marcó y la frase literal.",
+        ("S21_solapamiento_de_pacientes.xlsx + .csv", "Los %d pares de estudios que "
+         "podían describir a los mismos pacientes, con la señal que los marcó, el "
+         "veredicto tras leer los dos artículos, los pacientes compartidos y la frase "
+         "firmada en que se apoya." % _S["pares_solapamiento_examinados"],
          "Si el corpus cuenta a algún paciente dos veces, y cuál."),
     ]),
     ("Extracción", [
@@ -108,6 +110,16 @@ CATALOGO = [
          "estratificación, cuántos estudios la declaran en el texto completo, cuántos la "
          "mencionan sin poder clasificarla, cuántos callan y de cuántos no hay texto.",
          "Separar la ausencia en el resumen de la ausencia en el estudio."),
+        ("S23_clase_de_resistencia_comprobada.xlsx + .csv", "La clase de resistencia de "
+         "los %d estudios que tenían texto completo, comprobada contra el antibiograma: la "
+         "conclusión firmada, la frase o la tabla en que se apoya, cómo se codificó y qué "
+         "cambió en la extracción." % _S["lectura_clase_estudios_leidos"],
+         "Comprobar si un paciente es multirresistente sin fiarse de la etiqueta del autor."),
+        ("S24_comparativos_reextraidos.xlsx + .csv", "Los %d estudios con diseño "
+         "comparativo, reextraídos: comparador, asignación, tiempo cero, tiempo de "
+         "evaluación, cointervenciones, pérdidas, estimando y si hay un contraste para "
+         "P. aeruginosa." % _S["comparativos_reextraidos_leidos"],
+         "Ver qué comparan de verdad los estudios que se llaman comparativos."),
         ("S17_tabla6_brazo_a_brazo.xlsx + .csv", "La Tabla 6 desglosada: los siete "
          "requisitos, brazo a brazo, con el primero que falla y por qué.",
          "Comprobar el embudo de agregabilidad sin fiarse del recuento."),

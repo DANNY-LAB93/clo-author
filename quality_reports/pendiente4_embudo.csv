@@ -1,7 +1,7 @@
 ﻿filtro,brazos,estudios,no_evaluables,excluidos_en_este_paso,motivos
-0. brazos extraídos,102,94,0,0,
-1. diseño comparativo,17,14,12,85,diseño «case report»: sin grupo de comparación (42); diseño «case series»: sin grupo de comparación (26); diseño «NA»: sin grupo de comparación (12)
-2. numerador válido,5,5,0,12,éxito clínico n=«NA» sobre N=«9» (1); éxito clínico n=«NA» sobre N=«19» (1); éxito clínico n=«NA» sobre N=«178» (1)
+0. brazos extraídos,98,90,0,0,
+1. diseño comparativo,16,13,12,82,diseño «case report»: sin grupo de comparación (39); diseño «case series»: sin grupo de comparación (26); diseño «NA»: sin grupo de comparación (12)
+2. numerador válido,5,5,0,11,éxito clínico n=«NA» sobre N=«9» (1); éxito clínico n=«NA» sobre N=«19» (1); éxito clínico n=«NA» sobre N=«NA» (1)
 3. denominador válido,5,5,0,0,
 4. definición operativa de éxito,2,2,0,3,el artículo no define qué contaba como éxito (3)
 5. atribuible a P. aeruginosa,1,1,0,1,el numerador no es una proporción de P. aeruginosa (1)

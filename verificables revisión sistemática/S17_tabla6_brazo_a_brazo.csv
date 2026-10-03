@@ -12,7 +12,6 @@ EST-005,A,case report,1,1,no,no cumple,cumple,cumple,no cumple,cumple,cumple,cum
 EST-006,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-007,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-008,A,RCT,NA,9,sí,cumple,cumple,no cumple,no cumple,cumple,cumple,cumple,numerador_valido,éxito clínico n=«NA» sobre N=«9»
-EST-009,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-010,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-011,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-012,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
@@ -47,7 +46,6 @@ EST-050,A,case report,18,26,sí,no cumple,cumple,cumple,no cumple,no cumple,cump
 EST-051,A,case report,1,1,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-053,A,case report,1,1,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-054,A,NA,NA,NA,no,no evaluable,no cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «NA»: sin grupo de comparación
-EST-055,A,retrospective cohort,NA,178,sí,cumple,cumple,no cumple,no cumple,cumple,cumple,cumple,numerador_valido,éxito clínico n=«NA» sobre N=«178»
 EST-057,A,case report,1,1,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-058,A,case report,1,1,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-059,A,case series,NA,NA,no,no cumple,no cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
@@ -97,7 +95,5 @@ EST-167,A,other,NA,27,no,no cumple,cumple,no cumple,no cumple,cumple,cumple,cump
 EST-169,A,case series,2,2,sí,no cumple,cumple,cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case series»: sin grupo de comparación
 EST-170,A,case report,1,1,sí,no cumple,cumple,cumple,no cumple,no cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-173,A,NA,NA,NA,no,no evaluable,no cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «NA»: sin grupo de comparación
-EST-181,A,case report,21,23,sí,no cumple,cumple,cumple,cumple,no cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-184,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,no cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación
 EST-188,A,NA,NA,NA,no,no evaluable,no cumple,no cumple,no cumple,cumple,cumple,cumple,diseno_comparativo,diseño «NA»: sin grupo de comparación
-EST-208,A,case report,1,1,sí,no cumple,cumple,cumple,cumple,cumple,cumple,cumple,diseno_comparativo,diseño «case report»: sin grupo de comparación

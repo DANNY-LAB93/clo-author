@@ -120,16 +120,36 @@ ANEXOS = [
             "qué prueba se estableció el vínculo.",
      "Which report each of the {desenlace_brazos} arms came from, and with what "
      "evidence the link was established."),
-    ("S21", "Los pares de estudios que pueden describir a los mismos pacientes, "
-            "con la señal que los marcó y la frase literal.",
-     "Pairs of studies that may describe the same patients, with the signal "
-     "that flagged them and the verbatim sentence."),
+    ("S21", "Los {pares_solapamiento_examinados} pares de estudios que podían "
+            "describir a los mismos pacientes, con la señal que los marcó, el "
+            "veredicto tras leer los dos artículos, los pacientes compartidos y "
+            "la frase firmada en que se apoya.",
+     "The {pares_solapamiento_examinados} pairs of studies that could describe "
+     "the same patients, with the signal that flagged them, the verdict after "
+     "reading both articles, the patients shared and the signed sentence it "
+     "rests on."),
     ("S22", "Para cada variable de estratificación, cuántos estudios la declaran "
             "en el texto completo, cuántos la mencionan sin poder clasificarla, "
             "cuántos callan y de cuántos no hay texto.",
      "For each stratification variable, how many studies state it in the full "
      "text, how many mention it without allowing classification, how many are "
      "silent, and how many have no text at all."),
+    ("S23", "La clase de resistencia de los {lectura_clase_estudios_leidos} estudios que "
+            "tenían texto completo, comprobada contra el antibiograma del artículo: la "
+            "conclusión firmada, la frase o la tabla en que se apoya, cómo se "
+            "codificó y qué cambió en la extracción.",
+     "The resistance class of the {lectura_clase_estudios_leidos} studies that had full "
+     "text, checked against the article's antibiogram: the signed conclusion, "
+     "the sentence or table it rests on, how it was coded and what changed in "
+     "the extraction."),
+    ("S24", "Los {comparativos_reextraidos_leidos} estudios con diseño comparativo, "
+            "reextraídos: comparador, asignación, tiempo cero, tiempo de "
+            "evaluación, cointervenciones, pérdidas, estimando y si hay un "
+            "contraste para *P. aeruginosa*.",
+     "The {comparativos_reextraidos_leidos} studies with a comparative design, "
+     "re-extracted: comparator, allocation, time zero, assessment time, "
+     "co-interventions, losses, estimand and whether there is a contrast for "
+     "*P. aeruginosa*."),
 ]
 
 

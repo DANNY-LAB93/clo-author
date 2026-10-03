@@ -127,10 +127,14 @@ def main():
         # Un hueco «{letras_*}» no casa contra un numero sino contra una
         # palabra: la seccion 3.1.1 escribe «Veinticuatro» y no «24».
         palabra = r"[A-Za-z\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1-]+(?: y [a-z\u00e1\u00e9\u00ed\u00f3\u00fa]+)?"
+        # Y uno «{lista_*}» o «{coma_*}», contra una lista de identificadores.
+        ident = r"EST-\d{3}(?: [A-Z])?"
+        lista = ident + r"(?:(?:, | y | and )" + ident + r")*"
         partes = re.split(r"\{(\w+)\}", plantilla)
         molde = "".join(
             re.escape(p) if i % 2 == 0
-            else (palabra if p.startswith("letras_") else comodin)
+            else (palabra if p.startswith("letras_")
+                  else lista if p.startswith(("lista_", "coma_")) else comodin)
             for i, p in enumerate(partes))
         halladas = [m.group(0) for m in re.finditer(molde, textos[archivo])]
 

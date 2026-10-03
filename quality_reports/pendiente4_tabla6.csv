@@ -12,7 +12,6 @@ EST-005,A,case report,no,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,
 EST-006,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-007,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-008,A,RCT,sí,CUMPLE,NO CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,numerador_valido,éxito clínico n=«NA» sobre N=«9»,"estudio clasificado como comparativo, sin datos descriptivos utilizables"
-EST-009,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-010,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-011,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-012,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
@@ -47,7 +46,6 @@ EST-050,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUM
 EST-051,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-053,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-054,A,NA,no,NO EVALUABLE,NO CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «NA»: sin grupo de comparación,brazo no evaluable: el diseño no consta
-EST-055,A,retrospective cohort,sí,CUMPLE,NO CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,numerador_valido,éxito clínico n=«NA» sobre N=«178»,"estudio clasificado como comparativo, sin datos descriptivos utilizables"
 EST-057,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-058,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-059,A,case series,no,NO CUMPLE,NO CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case series»: sin grupo de comparación,brazo sin datos descriptivos ni diseño comparativo
@@ -97,7 +95,5 @@ EST-167,A,other,no,NO CUMPLE,NO CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,dis
 EST-169,A,case series,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case series»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-170,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-173,A,NA,no,NO EVALUABLE,NO CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «NA»: sin grupo de comparación,brazo no evaluable: el diseño no consta
-EST-181,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-184,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"
 EST-188,A,NA,no,NO EVALUABLE,NO CUMPLE,NO CUMPLE,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «NA»: sin grupo de comparación,brazo no evaluable: el diseño no consta
-EST-208,A,case report,sí,NO CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,CUMPLE,diseno_comparativo,diseño «case report»: sin grupo de comparación,"brazo con datos descriptivos, sin diseño comparativo"

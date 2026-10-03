@@ -390,6 +390,58 @@ def tabla_solapamiento():
             "accion_necesaria": d["accion"],
         })
 
+    # ULTIMA CAPA: la lectura firmada del 2026-09-30. Los dos autores leyeron
+    # los 13 pares que seguian «SIN LEER» y anadieron 19 que la lectura
+    # encontro; su veredicto pisa al de arriba, incluido el de los pares que
+    # este guion ya daba por leidos (EST-003 + EST-070 pasa de 1 paciente a 6,
+    # y EST-049 + EST-061 deja de estar sin resolver). La clave va por
+    # PACIENTE, separada por «; », para que una persona que sale en tres pares
+    # se cuente una vez.
+    firmada = RS / "lectura_pendiente" / "lectura_solapamiento_firmada.csv"
+    if firmada.exists():
+        idx = {}
+        for i, f in enumerate(filas):
+            idx[(f["estudio_1"], f["estudio_2"])] = i
+            idx[(f["estudio_2"], f["estudio_1"])] = i
+        for r in leer(firmada, enc="utf-8-sig"):
+            a, b = r["estudio_1"], r["estudio_2"]
+            conf = r["veredicto"].startswith("SOLAPAMIENTO")
+            senal = (filas[idx[(a, b)]]["senal_que_lo_marco"] if (a, b) in idx else
+                     "NO lo marco el detector: lo encontro la lectura del %s" % r["fecha"])
+            nueva = {
+                "estudio_1": a, "estudio_2": b,
+                "clave_del_paciente": r["claves_de_paciente"] or "ninguno",
+                "pacientes_de_esa_clave": r["pacientes_compartidos"],
+                "paciente_o_identificador": r["pacientes_duplicados_firmado"],
+                "senal_que_lo_marco": senal,
+                "evidencia": "%s — %s" % (r["veredicto_firmado"], r["frase_firmada"]),
+                "pacientes_potencialmente_duplicados": r["pacientes_compartidos"]
+                + (" (%s)" % r["certeza"] if r["certeza"] else ""),
+                "brazos_afectados": "%s: %s | %s: %s" % (
+                    a, ",".join(brazos.get(a, [])) or "—",
+                    b, ",".join(brazos.get(b, [])) or "—"),
+                "se_conto_una_o_dos_veces": ("dos veces, como dos estudios" if conf
+                                             else "una vez"),
+                "veredicto": r["veredicto"],
+                "accion_necesaria": ("Declararlo. Lectura firmada por los dos autores "
+                                     "el %s." % r["fecha"] if conf else "Ninguna."),
+            }
+            if (a, b) in idx:
+                filas[idx[(a, b)]] = nueva
+            else:
+                filas.append(nueva)
+                idx[(a, b)] = idx[(b, a)] = len(filas) - 1
+
+    # Un par con un estudio EXCLUIDO no describe un doble recuento del
+    # corpus: el estudio ya no se cuenta. Se quita de la tabla, igual que el
+    # detector ya no lo propone. Antes del 2026-10-03 se quedaba y pasaba a
+    # contar como «encontrado por la lectura» al dejar de proponerlo el
+    # detector.
+    fuera = {r["study_id"] for r in
+             leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv")}
+    filas = [f for f in filas
+             if f["estudio_1"] not in fuera and f["estudio_2"] not in fuera]
+
     filas.sort(key=lambda f: (0 if f["veredicto"].startswith("SOLAPAMIENTO") else
                               1 if f["veredicto"].startswith("DESCARTADO") else 2,
                               f["estudio_1"]))

@@ -1,6 +1,6 @@
 # Solapamiento de pacientes: lo que hay que leer
 
-Generado por `scripts/detecta_solapamiento.py` sobre los 70 textos completos
+Generado por `scripts/detecta_solapamiento.py` sobre los 66 textos completos
 del corpus vivo. Cada fragmento es literal del artículo.
 
 ## EST-003 — Refractory Pseudomonas aeruginosa infections treated with phage PASA16: A compassionate us
@@ -102,7 +102,3 @@ del corpus vivo. Cada fragmento es literal del artículo.
 ## EST-164 — Bacteriophage Application for Difficult-to-treat Musculoskeletal Infections: Development o
 
 > ofpatientsreceivingbacteriophagetherapy. Moreover,thisapproachshould leadtomorestandardizedtreatmentpathways,whichremainsanimportantissue,asconfirmedby recentlypublishedcasereports[32–35]. Althoughthesereportsalsodescribeacombinationofphage therapywithantibiotics,theyincludeamultitudeoftreatmentschedules(e.g.,routesofadministration). Twocasereportsfromthesam
-
-## EST-181 — Short-Term Outcomes of Phage-Antibiotic Combination Treatment in Adult Patients with Perip
-
-> years. (3) Clinically and laboratory confirmed signs of early post-operative, late chronic, or (3) Clinically and laboratory confirmed signs of early post-operative, late chronic, or acute hematogenous PJI, according to previously published classification [34], with acutehematogenousPJI,accordingtopreviouslypublishedclassification[34],with the main signs of PJI according to the MSIS criteria [35]: a fistula communicating with themainsignsofPJIaccordingtoth

@@ -165,6 +165,131 @@ def main():
         S["comparativos_sin_grupo_real_ids"] = sorted(
             r["study_id"] for r in _f if r["tiene_grupo_de_comparacion"] == "no")
 
+    # ---- y de los que tienen grupo, cual compara fago con NO fago, y cual
+    # da un contraste para P. aeruginosa. Lo firmaron los dos autores el
+    # 2026-09-30 al reextraer los comparativos (punto 7 del encargo). No
+    # contradice la hoja 6: EST-108 SI tiene grupo de comparacion --con y sin
+    # antibiotico--, pero los dos brazos reciben fago.
+    _c = RS / "lectura_pendiente" / "lectura_comparativos_firmada.csv"
+    if _c.exists():
+        _l = {r["study_id"]: r for r in leer(_c, enc="utf-8-sig")
+              if r["study_id"] not in excl}
+        _con = S.get("comparativos_con_grupo_real_ids", [])
+        S["comparativos_fago_vs_no_fago_ids"] = sorted(
+            e for e in _con if _l.get(e, {}).get("grupo_sin_fago") == "si")
+        S["comparativos_fago_vs_no_fago"] = len(S["comparativos_fago_vs_no_fago_ids"])
+        S["comparativos_grupo_con_fago_ids"] = sorted(
+            e for e in _con if _l.get(e, {}).get("grupo_sin_fago") == "no")
+        S["comparativos_contraste_pa_ids"] = sorted(
+            e for e, r in _l.items()
+            if r["contraste_para_p_aeruginosa"] in ("si", "parcial"))
+        S["comparativos_contraste_pa"] = len(S["comparativos_contraste_pa_ids"])
+        S["comparativos_contraste_pa_parcial_ids"] = sorted(
+            e for e, r in _l.items() if r["contraste_para_p_aeruginosa"] == "parcial")
+        S["comparativos_reextraidos"] = len(_l)
+        S["comparativos_reextraidos_con_texto"] = sum(
+            1 for r in _l.values() if r["grupo_sin_fago"] != "sin texto")
+        # Lo que se LEYO, antes de las exclusiones que la propia lectura trajo:
+        # los Metodos describen el procedimiento y el anexo S24 lleva las 14 filas.
+        _todos_c = leer(_c, enc="utf-8-sig")
+        S["comparativos_reextraidos_leidos"] = len(_todos_c)
+        S["comparativos_reextraidos_leidos_con_texto"] = sum(
+            1 for r in _todos_c if r["grupo_sin_fago"] != "sin texto")
+
+    # ---- la clase de resistencia, comprobada contra el articulo (punto 2).
+    # La traduccion del texto firmado a estas categorias esta en
+    # `ingest_lectura_firmada.py`, estudio por estudio y con su guarda.
+    _r = RS / "lectura_pendiente" / "lectura_resistencia_firmada.csv"
+    if _r.exists():
+        _v = [r for r in leer(_r, enc="utf-8-sig") if r["study_id"] not in excl]
+        _cv = collections.Counter(r["verificacion"] for r in _v)
+        S["lectura_clase_estudios"] = len(_v)
+        S["lectura_clase_antibiograma"] = _cv["antibiograma"]
+        S["lectura_clase_texto"] = _cv["texto"]
+        S["lectura_clase_verificables"] = _cv["antibiograma"] + _cv["texto"]
+        S["lectura_clase_no_verificable"] = _cv["no verificable"]
+        S["lectura_clase_no_aplica"] = _cv["no aplica"]
+        S["lectura_clase_no_aplica_ids"] = sorted(
+            r["study_id"] for r in _v if r["verificacion"] == "no aplica")
+
+        def _cubo(rel):
+            if rel.startswith("coincide"):
+                return "coincide"
+            if rel.startswith("la declarada no era clasificable"):
+                return "antes_no_clasificable"
+            if rel.startswith("más grave"):
+                return "mas_grave"
+            if rel.startswith(("menos grave", "no confirma", "refuta")):
+                return "no_se_sostiene"
+            return "mixta"
+        _ver = [r for r in _v if r["verificacion"] in ("antibiograma", "texto")]
+        _cb = collections.Counter(_cubo(r["relacion_con_la_declarada"]) for r in _ver)
+        S["lectura_clase_coincide"] = _cb["coincide"]
+        S["lectura_clase_antes_no_clasificable"] = _cb["antes_no_clasificable"]
+        _anc = [r for r in _ver if _cubo(r["relacion_con_la_declarada"])
+                == "antes_no_clasificable"]
+        S["lectura_clase_antes_nc_bajo_umbral"] = sum(
+            1 for r in _anc if r["clase_verificada_codificada"] == "below-MDR-threshold")
+        S["lectura_clase_antes_nc_xdr"] = sum(
+            1 for r in _anc if r["clase_verificada_codificada"] == "XDR")
+        S["lectura_clase_mas_grave"] = _cb["mas_grave"]
+        S["lectura_clase_mas_grave_ids"] = sorted(
+            r["study_id"] for r in _ver if _cubo(r["relacion_con_la_declarada"]) == "mas_grave")
+        S["lectura_clase_no_se_sostiene"] = _cb["no_se_sostiene"]
+        S["lectura_clase_no_se_sostiene_ids"] = sorted(
+            r["study_id"] for r in _ver
+            if _cubo(r["relacion_con_la_declarada"]) == "no_se_sostiene")
+        S["lectura_clase_mixta"] = _cb["mixta"]
+        S["lectura_clase_mixta_ids"] = sorted(
+            r["study_id"] for r in _ver if _cubo(r["relacion_con_la_declarada"]) == "mixta")
+        S["lectura_queda_abierto"] = sum(1 for r in _v if r["queda_abierto"])
+        S["lectura_queda_abierto_ids"] = sorted(r["study_id"] for r in _v if r["queda_abierto"])
+        _corr = [r for r in leer(RS / "extraccion" / "correcciones_tras_texto_completo.csv")
+                 if r["motivo"].startswith("Lectura firmada del 2026-09-30")
+                 and r["study_id"] not in excl]
+        S["lectura_correcciones"] = len(_corr)
+        S["lectura_correcciones_clase"] = sum(
+            1 for r in _corr if r["campo"] == "resistance_class")
+        S["lectura_correcciones_procedencia"] = sum(
+            1 for r in _corr if r["campo"] == "resistance_class_source")
+        S["lectura_correcciones_dtr"] = sum(1 for r in _corr if r["campo"] == "dtr_status")
+
+        # ---- lo que los dos autores decidieron el 2026-10-01 sobre lo abierto
+        _todos = leer(_r, enc="utf-8-sig")                 # sin filtrar: los 70 leidos
+        S["lectura_clase_estudios_leidos"] = len(_todos)
+        _sinpa = [r["study_id"] for r in _todos if r["verificacion"] == "no aplica"]
+        S["lectura_sin_pa_total"] = len(_sinpa)
+        S["lectura_sin_pa_excluidos_ids"] = sorted(e for e in _sinpa if e in excl)
+        S["lectura_sin_pa_excluidos"] = len(S["lectura_sin_pa_excluidos_ids"])
+        S["lectura_sin_pa_mantenidos_ids"] = sorted(e for e in _sinpa if e not in excl)
+        S["lectura_sin_pa_mantenidos"] = len(S["lectura_sin_pa_mantenidos_ids"])
+        _dec = RS / "lectura_pendiente" / "decisiones_firmadas_2026-10-01.csv"
+        if _dec.exists():
+            _d = [r for r in leer(_dec, enc="utf-8-sig") if r["study_id"] not in excl]
+            _h1 = [r for r in _d if r["hoja"] in ("1 sin P. aeruginosa", "adenda")
+                   and r["decision"] == "mantener"]
+            for cod in ("cita", "coctel", "no_diana"):
+                S["lectura_sin_pa_%s_ids" % cod] = sorted(
+                    r["study_id"] for r in _h1 if r["p_aeruginosa_en_el_articulo"] == cod
+                    and r["study_id"] in _sinpa)
+            S["lectura_sin_pa_citados_ids"] = [
+                next(r["estudio_citado"] for r in _h1 if r["study_id"] == e)
+                for e in S["lectura_sin_pa_cita_ids"]]
+            S["lectura_dudosos_mantenidos_ids"] = sorted(
+                r["study_id"] for r in _h1 if r["study_id"] not in _sinpa)
+            _h3 = [r for r in _d if r["hoja"] == "3 clase y DTR"]
+            S["lectura_abiertos_resueltos"] = len(_h3)
+            S["lectura_abiertos_corregidos_ids"] = sorted(
+                r["study_id"] for r in _h3 if "sin cambio" not in r["decision"])
+            S["lectura_abiertos_corregidos"] = len(S["lectura_abiertos_corregidos_ids"])
+            S["lectura_abiertos_sin_cambio_ids"] = sorted(
+                r["study_id"] for r in _h3 if "sin cambio" in r["decision"])
+            S["lectura_abiertos_sin_cambio"] = len(S["lectura_abiertos_sin_cambio_ids"])
+            _c2 = [r for r in leer(RS / "extraccion" / "correcciones_tras_texto_completo.csv")
+                   if r["motivo"].startswith("Decisión firmada del 2026-10-01")
+                   and r["study_id"] not in excl]
+            S["firma_lectura_correcciones"] = len(_c2)
+
     # ---- juicios: los 90 no son todos de dominio
     S["juicios_globales"] = sum(1 for r in rob if r["item"] == "GLOBAL")
     S["juicios_de_dominio"] = len(rob) - S["juicios_globales"]
@@ -276,6 +401,29 @@ def main():
     S["bajo_umbral_estudio_entero_ids"] = sorted(
         r["study_id"] for r in _bajo if _n_brazos[r["study_id"]] == 1)
     S["bajo_umbral_estudio_entero"] = len(S["bajo_umbral_estudio_entero_ids"])
+    # La firma del 2026-09-22 cubre a EST-001 y EST-094, y a nadie mas. Los
+    # que la lectura del 2026-09-30 llevo por debajo del umbral (EST-053,
+    # EST-057, EST-088) estan en la misma situacion y sin decision firmada:
+    # el manuscrito no puede decir que «se mantienen por decision firmada».
+    _f22 = {"EST-001", "EST-094"}
+    # Las del 2026-10-01 (hoja 2 del cuaderno de la lectura, y la adenda si
+    # llega firmada) salen del fichero de decisiones, no de esta linea.
+    _f01 = set()
+    _dec = RS / "lectura_pendiente" / "decisiones_firmadas_2026-10-01.csv"
+    if _dec.exists():
+        _f01 = {r["study_id"] for r in leer(_dec, enc="utf-8-sig")
+                if r["decision"].startswith("mantener y declarar")}
+    _firmados = _f22 | _f01
+    S["bajo_umbral_mantenidos_22sep_ids"] = [
+        e for e in S["bajo_umbral_estudio_entero_ids"] if e in _f22]
+    S["bajo_umbral_mantenidos_01oct_ids"] = [
+        e for e in S["bajo_umbral_estudio_entero_ids"] if e in _f01]
+    S["bajo_umbral_mantenidos_por_firma_ids"] = [
+        e for e in S["bajo_umbral_estudio_entero_ids"] if e in _firmados]
+    S["bajo_umbral_mantenidos_por_firma"] = len(S["bajo_umbral_mantenidos_por_firma_ids"])
+    S["bajo_umbral_sin_decision_ids"] = [
+        e for e in S["bajo_umbral_estudio_entero_ids"] if e not in _firmados]
+    S["bajo_umbral_sin_decision"] = len(S["bajo_umbral_sin_decision_ids"])
 
     # 5. el marco del recribado, separado por etapa
     S["validacion_marco_titulo"] = S["excluidos_titulo"]
@@ -319,16 +467,58 @@ def main():
     conf = [r for r in sol if r["veredicto"].startswith("SOLAPAMIENTO")]
     S["estudios_con_paciente_compartido"] = len(
         {x for r in conf for x in (r["estudio_1"], r["estudio_2"])})
-    # El del Berlin Heart aparece en DOS pares y es un solo paciente: se cuenta
-    # por la clave estable, no por la fila.
-    # una clave puede valer por mas de un paciente: EST-164 aporta dos
-    claves = {}
+    # El del Berlin Heart aparece en TRES pares y es un solo paciente: se
+    # cuenta por PERSONA, no por fila. Desde la lectura firmada del 2026-09-30
+    # cada fila confirmada trae sus pacientes como «P1 ...; P12 ...», una
+    # clave por persona; contar las cadenas de la columna, como antes, dio 22
+    # donde son 20, porque EST-003 + EST-070 lleva seis personas en una fila.
+    claves = set()
+    pac_de = collections.defaultdict(set)
     for r in conf:
-        if r["clave_del_paciente"] in ("ninguno", "[DATO FALTANTE]"):
-            continue
-        claves[r["clave_del_paciente"]] = int(r.get("pacientes_de_esa_clave") or 1)
+        ks = _re.findall(r"(?:^|;\s*)(P\d+)\b", r["clave_del_paciente"])
+        if not ks:
+            raise SystemExit("solapamiento confirmado sin clave de paciente: %s + %s"
+                             % (r["estudio_1"], r["estudio_2"]))
+        claves.update(ks)
+        for e in (r["estudio_1"], r["estudio_2"]):
+            pac_de[e].update(ks)
     S["claves_de_paciente_duplicado"] = len(claves)
-    S["pacientes_duplicados_confirmados"] = sum(claves.values())
+    S["pacientes_duplicados_confirmados"] = len(claves)
+    S["pares_solapamiento_descartados"] = sum(
+        1 for r in sol if r["veredicto"].startswith("DESCARTADO"))
+    S["pares_solapamiento_sin_resolver"] = sum(
+        1 for r in sol if r["veredicto"].startswith("SIN RESOLVER"))
+    S["pares_solapamiento_por_lectura"] = sum(
+        1 for r in sol if r["senal_que_lo_marco"].startswith("NO lo marco"))
+    S["pares_solapamiento_por_detector"] = (S["pares_solapamiento_examinados"]
+                                            - S["pares_solapamiento_por_lectura"])
+    # Los tres grupos donde se concentra, contados desde los datos.
+    S["est003_pacientes_compartidos"] = len(pac_de["EST-003"])
+    _p003_070 = set()
+    for r in conf:
+        if {r["estudio_1"], r["estudio_2"]} == {"EST-003", "EST-070"}:
+            _p003_070.update(_re.findall(r"(?:^|;\s*)(P\d+)\b", r["clave_del_paciente"]))
+    S["est003_con_est070"] = len(_p003_070)
+    S["est034_pacientes_compartidos"] = len(pac_de["EST-034"])
+    S["est108_pacientes_compartidos"] = len(pac_de["EST-108"])
+    _con108 = sorted({x for r in conf for x in (r["estudio_1"], r["estudio_2"])
+                      if "EST-108" in (r["estudio_1"], r["estudio_2"]) and x != "EST-108"})
+    # EST-088 salio despues que EST-108: no esta entre sus «previously
+    # reported», coincide por infeccion, especies y fagos.
+    _cert = {}
+    _f = RS / "lectura_pendiente" / "lectura_solapamiento_firmada.csv"
+    if _f.exists():
+        for r in leer(_f, enc="utf-8-sig"):
+            _cert[frozenset((r["estudio_1"], r["estudio_2"]))] = r["certeza"]
+    _citados = [e for e in _con108
+                if _cert.get(frozenset(("EST-108", e))) != "muy probable"]
+    _probables = [e for e in _con108 if e not in _citados]
+    S["est108_estudios_citados_en_corpus"] = len(_citados)
+    S["est108_estudios_citados_en_corpus_ids"] = _citados
+    S["est108_pacientes_citados_en_corpus"] = len(
+        set().union(*(pac_de[e] & pac_de["EST-108"] for e in _citados)) if _citados else set())
+    S["est108_coincidencias_no_citadas_ids"] = _probables
+    S["solapamiento_muy_probable"] = sum(1 for v in _cert.values() if v == "muy probable")
 
     # ---- la declaración de EST-108, leída de su propio texto y no tecleada
     _t108 = RS / "textos_completos" / "texto_cache" / "EST-108.txt"
@@ -352,6 +542,20 @@ def main():
                 S["est108_casos"] = int(_m.group(2))
                 S["est108_frase"] = ("«%s ... cases/patients were "
                                      "previously reported»" % _m.group(0))
+                # Y a cuantas referencias remite: «previously reported6,13-26»
+                # son la 6 y de la 13 a la 26. El manuscrito decia «quince»
+                # en letra, tecleado.
+                _r = _re.search(r"previously reported\s*([\d,–\-\s]+)",
+                                _t[_m.end():_m.end() + 400])
+                if _r:
+                    _n_ref = 0
+                    for _tr in _re.split(r"\s*,\s*", _r.group(1).strip()):
+                        _ab = _re.split(r"\s*[–\-]\s*", _tr)
+                        if len(_ab) == 2 and all(x.isdigit() for x in _ab):
+                            _n_ref += int(_ab[1]) - int(_ab[0]) + 1
+                        elif _tr.isdigit():
+                            _n_ref += 1
+                    S["est108_referencias_previas"] = _n_ref
 
     # ---- de cuántas fuentes depende cada estudio incluido
     fuentes = collections.defaultdict(set)
