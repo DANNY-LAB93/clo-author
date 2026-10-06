@@ -55,11 +55,13 @@ dar error. Ver su `LEEME.md`.
 # 0. SI HAY CORRECCIONES NUEVAS: el derivado y sus escalares van antes que todo.
 python scripts/ingest_lectura_firmada.py --escribir   # la lectura del 2026-09-30 (idempotente)
 python scripts/ingest_firma_lectura.py --escribir     # lo firmado el 2026-10-01 (+ adenda si trae 2 firmas)
+python scripts/ingest_firma_idioma.py --escribir      # idioma, 2026-10-06: EST-045/059/173 (solo con 2 firmas)
 python scripts/build_adjudicated_dataset.py
 python scripts/build_outcome_scalars.py
 
 # 1. LAS CIFRAS. Siempre lo primero: todo lo de abajo las lee.
 python scripts/build_synthesis_scalars.py
+python scripts/comprueba_idioma_cuerpo.py      # el idioma del CUERPO de cada PDF del corpus
 python scripts/build_brazo_informe.py          # de que informe salio cada brazo (S20)
 python scripts/detecta_solapamiento.py         # pacientes contados dos veces (S21)
 python scripts/build_tabla3_completitud.py     # resumen frente a texto completo (S22)
@@ -78,6 +80,7 @@ python scripts/build_rob_table.py              # Tabla 5 y TODO el bloque de rie
                                                # escribas nada a mano dentro de ese
                                                # bloque: la siguiente pasada lo borra
 python scripts/build_lista_anexos.py           # la lista de anexos, en el maestro y el ingles
+python scripts/escribe_procedencia.py          # el reparto por pais, en los tres (no se ancla: cambia de forma)
 python scripts/build_criteria_table.py         # la tabla de criterios, y la mete en el .md
 python scripts/build_structured_abstract.py    # el resumen; avisa si pasa de 250 palabras
 python scripts/build_manuscript_figures.py     # PRISMA y composicion
@@ -119,23 +122,24 @@ python scripts/sync_manuscript_numbers.py --escribir   # las pone al dia
 
 ---
 
-## Estado, a 2026-10-03
+## Estado, a 2026-10-06
 
 Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
 | Componente | Estado |
 |---|---|
-| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 51 excluidos (27 por el artículo, 17 por la ficha del registro, 7 sin poder leer ninguno) → **132 estudios, 90 extraíbles**, 98 brazos |
+| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 55 excluidos (28 por el artículo, 17 por la ficha del registro, 10 sin poder leer ninguno) → **128 estudios, 86 extraíbles**, 94 brazos |
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
-| Texto completo | 66 de 90 (73,3 %). El hueco está sesgado: retiene el 66,7 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
+| Texto completo | 65 de 86 (75,6 %). El hueco está sesgado: retiene el 71,4 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **emitido, completo y firmado**: 13 comparativos por diseño —**4 con grupo de comparación**, 3 de fago frente a no fago y **solo 2 con contraste para *P. aeruginosa*** (EST-008 parcial, EST-021)—, 10 evaluables (3 RoB 2, 7 ROBINS-I), 3 sin texto. **74 celdas: 64 de dominio + 10 globales**. Doble lectura en 9 de los 10: acuerdo 83,3 % (55/66), **kappa 0,77**, 11 desacuerdos resueltos por consenso. EST-004 tiene una sola lectura. EST-055 salió el 2026-10-01 (ORG) y con él sus 8 juicios |
-| Lectura del 2026-09-30 | **firmada e ingerida**, y lo abierto **firmado el 2026-10-01**: 9 sin ningún paciente con *P. aeruginosa* tratado → **4 excluidos (ORG)**, 5 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, 5 mantenidos por firma. **Solapamiento: 20 pacientes en 18 estudios**, 31 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
-| Manuscrito | maestro 8 931 palabras de cuerpo; 295 anclas, todas al día. Pasa del límite de 3 500 de CMI |
+| Riesgo de sesgo | **emitido, completo y firmado**: 12 comparativos por diseño —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, 9 evaluables (2 RoB 2, 7 ROBINS-I), 3 sin texto. **68 celdas**. Doble lectura en 8 de los 9: acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
+| Lectura del 2026-09-30 | **firmada e ingerida**, lo abierto **firmado el 1-oct** y la adenda **el 3-oct**: 9 sin ningún paciente con *P. aeruginosa* tratado → **5 excluidos (ORG)**, 4 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, **los 6 mantenidos por firma**. **Solapamiento: 20 pacientes en 18 estudios**, 31 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
+| Idioma | **Solo inglés y español** (D.V., 2026-10-06). Los 65 PDF del corpus, comprobados sobre el cuerpo: 65 en inglés. EST-045, EST-059 y EST-173 salieron con NOREC: sin texto, revistas rusa y griega, idioma no verificable |
+| Manuscrito | 315 anclas, todas al día. Pasa del límite de 3 500 de CMI |
 | Anexos | **S0–S24 (25 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
 
-**Lo que falta, y es de los autores:** la adenda `~/Desktop/FIRMAR_adenda_lectura_2026-10-03.xlsx` (excluir EST-132 y mantener EST-106: hoy solo las firma D.V.); los dos ORCID, el grado académico de ambos, el
+**Lo que falta, y es de los autores:** los dos ORCID, el grado académico de ambos, el
 correo de N. Trelles (un marcador en `manuscrito_JSR_final.md:11`), la aprobación ICMJE
 escrita de N.T. sobre la versión final, los dos formularios obligatorios de la revista,
 y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).

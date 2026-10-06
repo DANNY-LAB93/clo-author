@@ -63,6 +63,23 @@ FIRMA_EXCL = "D. Valdiviezo y N. Trelles"
 FIRMA_CORR = "DANNY VALDIVIEZO; NATALY TRELLES"
 NOMBRES = ("DANNY VALDIVIEZO", "NATALY TRELLES")
 
+
+def son_los_dos(a, b):
+    """Las dos firmas, con el nombre corto o el completo, una de cada autor.
+
+    El cuaderno del 1-oct se firmo «DANNY VALDIVIEZO» y la adenda del 3-oct
+    «DANNY JAVIER VALDIVIEZO VERDUGO». Las dos son la misma persona; lo que no
+    vale es que falte una o que las dos sean del mismo autor.
+    """
+    def quien(n):
+        n = " ".join(n.upper().split())
+        if n.startswith("DANNY") and "VALDIVIEZO" in n:
+            return "DV"
+        if n.startswith("NATALY") and "TRELLES" in n:
+            return "NT"
+        return None
+    return {quien(a), quien(b)} == {"DV", "NT"}
+
 # Hoja 3: la opcion del desplegable -> lo que cambia en la extraccion.
 # Una opcion que deja el brazo como esta no cambia nada, y se registra igual.
 HOJA3 = {
@@ -134,7 +151,7 @@ def main():
     wb = load_workbook(CUADERNO, data_only=True)
 
     r1, r2, f_firma, leido = firmas(wb["Firma"])
-    if {r1, r2} != set(NOMBRES):
+    if not son_los_dos(r1, r2):
         fallos.append("firmas: «%s» y «%s»" % (r1, r2))
     if leido not in ("SI", "SÍ"):
         fallos.append("casilla de lectura: «%s»" % leido)
@@ -239,7 +256,7 @@ def main():
     if ADENDA.exists():
         wa = load_workbook(ADENDA, data_only=True)
         a1, a2, af, _ = firmas(wa["Firma"])
-        if {a1, a2} == set(NOMBRES):
+        if son_los_dos(a1, a2):
             for d in filas(wa["Adenda"]):
                 adenda.append((d["Estudio"], str(d["Vuestra decisión"] or "").strip(),
                                " ".join(filter(None, [str(d.get("Por qué y qué cambia") or ""),

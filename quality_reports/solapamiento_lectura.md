@@ -1,6 +1,6 @@
 # Solapamiento de pacientes: lo que hay que leer
 
-Generado por `scripts/detecta_solapamiento.py` sobre los 66 textos completos
+Generado por `scripts/detecta_solapamiento.py` sobre los 65 textos completos
 del corpus vivo. Cada fragmento es literal del artículo.
 
 ## EST-003 — Refractory Pseudomonas aeruginosa infections treated with phage PASA16: A compassionate us

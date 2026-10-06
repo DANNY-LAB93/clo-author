@@ -207,26 +207,35 @@ def frase_contraste(ingles=False):
                 if len(v) > 1 else "".join(v))
     parcial = S["comparativos_contraste_pa_parcial_ids"]
     if ingles:
+        if sin_pa:
+            cola = ", and only %d give a between-arm contrast for *P. aeruginosa* (%s%s): %s." % (
+                S["comparativos_contraste_pa"], y(S["comparativos_contraste_pa_ids"]),
+                ("; that of %s is partial" % y(parcial)) if parcial else "",
+                "; ".join(motivo(e) for e in sin_pa))
+        else:
+            _n = S["comparativos_contraste_pa"]
+            cola = ", and %s give a between-arm contrast for *P. aeruginosa* (%s%s)." % (
+                "both" if _n == 2 else "all %d" % _n, y(S["comparativos_contraste_pa_ids"]),
+                ("; that of %s is partial" % y(parcial)) if parcial else "")
         return ("Of the %d with a comparison group, %d compare phage with no phage "
                 "—%s compares with and without antibiotic within phage-treated "
-                "patients—, and only %d give a between-arm contrast for "
-                "*P. aeruginosa* (%s%s): %s." % (
-                    len(con), S["comparativos_fago_vs_no_fago"],
-                    y(S["comparativos_grupo_con_fago_ids"]),
-                    S["comparativos_contraste_pa"],
-                    y(S["comparativos_contraste_pa_ids"]),
-                    ("; that of %s is partial" % y(parcial)) if parcial else "",
-                    "; ".join(motivo(e) for e in sin_pa)))
+                "patients—%s" % (len(con), S["comparativos_fago_vs_no_fago"],
+                                 y(S["comparativos_grupo_con_fago_ids"]), cola))
+    # Si todos los de fago frente a no fago dan contraste, no hay «solo» ni
+    # lista de motivos: la frase acababa en «parcial): .» al salir EST-132.
+    if sin_pa:
+        cola = ", y solo %d dan un contraste entre brazos para *P. aeruginosa* (%s%s): %s." % (
+            S["comparativos_contraste_pa"], y(S["comparativos_contraste_pa_ids"]),
+            ("; el de %s, parcial" % y(parcial)) if parcial else "",
+            "; ".join(motivo(e) for e in sin_pa))
+    else:
+        cola = ", y los %d dan un contraste entre brazos para *P. aeruginosa* (%s%s)." % (
+            S["comparativos_contraste_pa"], y(S["comparativos_contraste_pa_ids"]),
+            ("; el de %s, parcial" % y(parcial)) if parcial else "")
     return ("De los %d con grupo, %d comparan fago con ausencia de fago —%s "
-            "compara con y sin antibiótico dentro de los tratados con fago—, y "
-            "solo %d dan un contraste entre brazos para *P. aeruginosa* (%s%s): "
-            "%s." % (
+            "compara con y sin antibiótico dentro de los tratados con fago—%s" % (
                 len(con), S["comparativos_fago_vs_no_fago"],
-                y(S["comparativos_grupo_con_fago_ids"]),
-                S["comparativos_contraste_pa"],
-                y(S["comparativos_contraste_pa_ids"]),
-                ("; el de %s, parcial" % y(parcial)) if parcial else "",
-                "; ".join(motivo(e) for e in sin_pa)))
+                y(S["comparativos_grupo_con_fago_ids"]), cola))
 
 # Coherencia de los juicios globales con sus dominios, y en que se apoya cada
 # juicio. Estas dos frases estaban ESCRITAS A MANO dentro del bloque que este

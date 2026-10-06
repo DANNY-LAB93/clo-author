@@ -290,6 +290,25 @@ def main():
                    and r["study_id"] not in excl]
             S["firma_lectura_correcciones"] = len(_c2)
 
+    # ---- el idioma del CUERPO de cada PDF del corpus (comprueba_idioma_cuerpo.py)
+    _ic = QR / "idioma_cuerpo_pdf.csv"
+    if _ic.exists():
+        _f = leer(_ic, enc="utf-8-sig")
+        S["idioma_cuerpo_comprobados"] = len(_f)
+        S["idioma_cuerpo_ingles"] = sum(1 for r in _f if r["idioma_del_cuerpo"] == "eng")
+        S["idioma_cuerpo_espanol"] = sum(1 for r in _f if r["idioma_del_cuerpo"] == "spa")
+        S["idioma_cuerpo_otro"] = sum(1 for r in _f if r["idioma_del_cuerpo"] not in ("eng", "spa"))
+    S["idioma_no_verificable_excluidos"] = sum(
+        1 for r in leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv")
+        if r["codigo"] == "NOREC" and r["motivo"].startswith("Idioma no verificable"))
+
+    # ---- la §3.1.1: lo juzgado sobre el articulo y lo que no tiene texto.
+    # «Los 29 anteriores» y «los 31 sin texto completo» iban tecleados.
+    S["excluidos_sobre_el_articulo"] = (S["excluidos_por_publicacion"]
+                                        - S.get("excluidos_texto_completo_NOREC", 0))
+    S["sin_texto_completo_total"] = (S["texto_completo_no_obtenido"]
+                                     + S["excluidos_sin_poder_leer_nada"])
+
     # ---- juicios: los 90 no son todos de dominio
     S["juicios_globales"] = sum(1 for r in rob if r["item"] == "GLOBAL")
     S["juicios_de_dominio"] = len(rob) - S["juicios_globales"]
@@ -411,13 +430,21 @@ def main():
     _f01 = set()
     _dec = RS / "lectura_pendiente" / "decisiones_firmadas_2026-10-01.csv"
     if _dec.exists():
-        _f01 = {r["study_id"] for r in leer(_dec, enc="utf-8-sig")
-                if r["decision"].startswith("mantener y declarar")}
-    _firmados = _f22 | _f01
+        _ds = leer(_dec, enc="utf-8-sig")
+        _f01 = {r["study_id"] for r in _ds if r["hoja"] != "adenda"
+                and r["decision"].startswith("mantener y declarar")}
+        _f03 = {r["study_id"] for r in _ds if r["hoja"] == "adenda"
+                and r["decision"].startswith("mantener y declarar")}
+    else:
+        _f03 = set()
+    _firmados = _f22 | _f01 | _f03
     S["bajo_umbral_mantenidos_22sep_ids"] = [
         e for e in S["bajo_umbral_estudio_entero_ids"] if e in _f22]
     S["bajo_umbral_mantenidos_01oct_ids"] = [
         e for e in S["bajo_umbral_estudio_entero_ids"] if e in _f01]
+    # La adenda del 2026-10-03, firmada por los dos (EST-106).
+    S["bajo_umbral_mantenidos_03oct_ids"] = [
+        e for e in S["bajo_umbral_estudio_entero_ids"] if e in _f03]
     S["bajo_umbral_mantenidos_por_firma_ids"] = [
         e for e in S["bajo_umbral_estudio_entero_ids"] if e in _firmados]
     S["bajo_umbral_mantenidos_por_firma"] = len(S["bajo_umbral_mantenidos_por_firma_ids"])

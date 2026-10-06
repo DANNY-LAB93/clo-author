@@ -1,13 +1,13 @@
 {
   "juicios": {
-    "total": 74,
-    "de_dominio": 64,
-    "globales": 10,
-    "rob2_estudios": 3,
+    "total": 68,
+    "de_dominio": 59,
+    "globales": 9,
+    "rob2_estudios": 2,
     "rob2_dominios": 5,
     "robins_estudios": 7,
     "robins_dominios": 7,
-    "calculo": "3 x 5 = 15 ; 7 x 7 = 49 ; 15 + 49 = 64 de dominio ; + 10 globales = 74",
+    "calculo": "2 x 5 = 10 ; 7 x 7 = 49 ; 10 + 49 = 59 de dominio ; + 9 globales = 68",
     "reproduce": true,
     "sin_cita": [
       "EST-008 GLOBAL",
@@ -16,11 +16,10 @@
       "EST-096 GLOBAL",
       "EST-108 GLOBAL",
       "EST-116 GLOBAL",
-      "EST-132 GLOBAL",
       "EST-146 GLOBAL",
       "EST-152 GLOBAL"
     ],
-    "con_cita": 65
+    "con_cita": 60
   },
   "solapamiento": {
     "pares_examinados": 31,
@@ -39,44 +38,44 @@
     "comparador_no_extraido": "El comparador de EST-021 es «standard of care a thick cream» según su propio texto; no se extrajo como brazo, de modo que el contraste no está en los datos."
   },
   "brazos": {
-    "total": 98,
+    "total": 94,
     "esperado": 103,
     "duplicados": [],
     "todos_con_informe": true,
     "sin_trazabilidad": [],
-    "sin_comparador": 98,
-    "sin_tiempo_de_evaluacion": 98,
-    "brazos_de_estudios_excluidos": 34
+    "sin_comparador": 94,
+    "sin_tiempo_de_evaluacion": 94,
+    "brazos_de_estudios_excluidos": 38
   },
   "embudo": [
     {
       "filtro": "0. brazos extraídos",
-      "brazos": 98,
-      "estudios": 90,
+      "brazos": 94,
+      "estudios": 86,
       "no_evaluables": 0,
       "excluidos_en_este_paso": 0,
       "motivos": ""
     },
     {
       "filtro": "1. diseño comparativo",
-      "brazos": 16,
-      "estudios": 13,
-      "no_evaluables": 12,
-      "excluidos_en_este_paso": 82,
-      "motivos": "diseño «case report»: sin grupo de comparación (39); diseño «case series»: sin grupo de comparación (26); diseño «NA»: sin grupo de comparación (12)"
+      "brazos": 15,
+      "estudios": 12,
+      "no_evaluables": 10,
+      "excluidos_en_este_paso": 79,
+      "motivos": "diseño «case report»: sin grupo de comparación (39); diseño «case series»: sin grupo de comparación (25); diseño «NA»: sin grupo de comparación (10)"
     },
     {
       "filtro": "2. numerador válido",
-      "brazos": 5,
-      "estudios": 5,
+      "brazos": 4,
+      "estudios": 4,
       "no_evaluables": 0,
       "excluidos_en_este_paso": 11,
       "motivos": "éxito clínico n=«NA» sobre N=«9» (1); éxito clínico n=«NA» sobre N=«19» (1); éxito clínico n=«NA» sobre N=«NA» (1)"
     },
     {
       "filtro": "3. denominador válido",
-      "brazos": 5,
-      "estudios": 5,
+      "brazos": 4,
+      "estudios": 4,
       "no_evaluables": 0,
       "excluidos_en_este_paso": 0,
       "motivos": ""
@@ -86,8 +85,8 @@
       "brazos": 2,
       "estudios": 2,
       "no_evaluables": 0,
-      "excluidos_en_este_paso": 3,
-      "motivos": "el artículo no define qué contaba como éxito (3)"
+      "excluidos_en_este_paso": 2,
+      "motivos": "el artículo no define qué contaba como éxito (2)"
     },
     {
       "filtro": "5. atribuible a P. aeruginosa",

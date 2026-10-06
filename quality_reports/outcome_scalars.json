@@ -1,73 +1,73 @@
 {
-  "brazos": 98,
-  "brazos_legibles": 74,
-  "brazos_sin_texto_completo": 24,
-  "estudios_extraidos": 90,
-  "brazos_con_denominador": 83,
+  "brazos": 94,
+  "brazos_legibles": 73,
+  "brazos_sin_texto_completo": 21,
+  "estudios_extraidos": 86,
+  "brazos_con_denominador": 82,
   "desenlaces": {
     "clinical_success_n": {
       "nombre": "éxito clínico",
-      "brazos_que_lo_reportan": 67,
-      "con_numerador_y_denominador": 67,
-      "pct_de_los_brazos": 68.4,
-      "en_brazos_legibles": 65,
-      "pct_de_los_legibles": 87.8,
-      "de_esos_con_doble_lectura": 66,
+      "brazos_que_lo_reportan": 66,
+      "con_numerador_y_denominador": 66,
+      "pct_de_los_brazos": 70.2,
+      "en_brazos_legibles": 64,
+      "pct_de_los_legibles": 87.7,
+      "de_esos_con_doble_lectura": 65,
       "doble_lectura_pct": 98.5
     },
     "microbio_eradication_n": {
       "nombre": "erradicación microbiológica",
       "brazos_que_lo_reportan": 54,
       "con_numerador_y_denominador": 54,
-      "pct_de_los_brazos": 55.1,
+      "pct_de_los_brazos": 57.4,
       "en_brazos_legibles": 53,
-      "pct_de_los_legibles": 71.6,
+      "pct_de_los_legibles": 72.6,
       "de_esos_con_doble_lectura": 54,
       "doble_lectura_pct": 100.0
     },
     "mortality_n": {
       "nombre": "mortalidad",
-      "brazos_que_lo_reportan": 72,
-      "con_numerador_y_denominador": 71,
-      "pct_de_los_brazos": 72.4,
-      "en_brazos_legibles": 67,
-      "pct_de_los_legibles": 90.5,
-      "de_esos_con_doble_lectura": 69,
-      "doble_lectura_pct": 97.2
+      "brazos_que_lo_reportan": 71,
+      "con_numerador_y_denominador": 70,
+      "pct_de_los_brazos": 74.5,
+      "en_brazos_legibles": 66,
+      "pct_de_los_legibles": 90.4,
+      "de_esos_con_doble_lectura": 68,
+      "doble_lectura_pct": 97.1
     },
     "adverse_event_n": {
       "nombre": "eventos adversos",
-      "brazos_que_lo_reportan": 79,
-      "con_numerador_y_denominador": 76,
-      "pct_de_los_brazos": 77.6,
-      "en_brazos_legibles": 66,
-      "pct_de_los_legibles": 89.2,
-      "de_esos_con_doble_lectura": 76,
+      "brazos_que_lo_reportan": 77,
+      "con_numerador_y_denominador": 75,
+      "pct_de_los_brazos": 79.8,
+      "en_brazos_legibles": 65,
+      "pct_de_los_legibles": 89.0,
+      "de_esos_con_doble_lectura": 75,
       "doble_lectura_pct": 100.0
     },
     "resistance_emergence_n": {
       "nombre": "emergencia de resistencia al fago",
       "brazos_que_lo_reportan": 26,
       "con_numerador_y_denominador": 26,
-      "pct_de_los_brazos": 26.5,
+      "pct_de_los_brazos": 27.7,
       "en_brazos_legibles": 26,
-      "pct_de_los_legibles": 35.1,
+      "pct_de_los_legibles": 35.6,
       "de_esos_con_doble_lectura": 15,
       "doble_lectura_pct": 57.7
     }
   },
   "definicion_exito": {
-    "brazos": 98,
+    "brazos": 94,
     "con_definicion_operativa": 30,
-    "sin_definicion_declarada": 46,
+    "sin_definicion_declarada": 45,
     "campo_ausente": 1,
-    "extraccion_incompleta": 21,
-    "sin_definicion_operativa": 68,
-    "sin_definicion_pct": 69.4,
-    "establecido_que_no_define": 47,
-    "establecido_pct": 48.0,
-    "sin_definicion_en_legibles": 44,
-    "sin_definicion_legibles_pct": 59.5
+    "extraccion_incompleta": 18,
+    "sin_definicion_operativa": 64,
+    "sin_definicion_pct": 68.1,
+    "establecido_que_no_define": 46,
+    "establecido_pct": 48.9,
+    "sin_definicion_en_legibles": 43,
+    "sin_definicion_legibles_pct": 58.9
   },
   "campos_del_esquema_no_extraidos": [
     "microbio_eradication_denom",
@@ -77,32 +77,32 @@
   "aritmetica_imposible_detalle": [],
   "disenos": {
     "case report": 39,
-    "case series": 26,
-    "no clasificable": 12,
+    "case series": 25,
+    "no clasificable": 10,
     "retrospective cohort": 7,
-    "RCT": 5,
     "other": 5,
+    "RCT": 4,
     "non-randomised trial": 2,
     "prospective cohort": 2
   },
-  "diseno_no_clasificable": 12,
-  "brazos_con_diseno": 86,
-  "diseno_na_acordado": 12,
+  "diseno_no_clasificable": 10,
+  "brazos_con_diseno": 84,
+  "diseno_na_acordado": 10,
   "diseno_abierto": 0,
-  "brazos_comparativos": 16,
-  "estudios_comparativos_extraidos": 13,
+  "brazos_comparativos": 15,
+  "estudios_comparativos_extraidos": 12,
   "embudo": [
     {
       "filtro": "brazos extraídos",
-      "quedan": 98
+      "quedan": 94
     },
     {
       "filtro": "diseño comparativo",
-      "quedan": 16
+      "quedan": 15
     },
     {
       "filtro": "numerador y denominador coherentes",
-      "quedan": 5
+      "quedan": 4
     },
     {
       "filtro": "definición operativa del éxito",
@@ -123,7 +123,7 @@
   ],
   "brazos_agregables_final": 0,
   "brazos_agregables_final_ids": [],
-  "brazos_ensayo": 7,
+  "brazos_ensayo": 6,
   "brazos_cohorte": 9,
   "brazos_agregables_exito_clinico": 2,
   "estudios_agregables_exito_clinico": 2,

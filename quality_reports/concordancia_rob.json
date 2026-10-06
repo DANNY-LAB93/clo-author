@@ -1,12 +1,12 @@
 {
-  "rob_juicios_comparables": 66,
-  "rob_acuerdo_bruto": 55,
-  "rob_acuerdo_pct": 83.3,
-  "rob_kappa": "0.77",
+  "rob_juicios_comparables": 60,
+  "rob_acuerdo_bruto": 49,
+  "rob_acuerdo_pct": 81.7,
+  "rob_kappa": "0.74",
   "rob_desacuerdos": 11,
   "rob_resueltos_hacia_r1": 11,
   "rob_resueltos_hacia_r2": 0,
   "rob_resueltos_tercer_valor": 0,
-  "rob_estudios_con_dos_lecturas": 9,
+  "rob_estudios_con_dos_lecturas": 8,
   "rob_juicios_en_los_cuadernos": 82
 }

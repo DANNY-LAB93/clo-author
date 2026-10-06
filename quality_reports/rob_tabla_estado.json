@@ -1,7 +1,7 @@
 {
   "modo": "consenso",
-  "comparativos_adjudicados": 13,
-  "evaluables": 10,
+  "comparativos_adjudicados": 12,
+  "evaluables": 9,
   "sin_texto_completo": 3,
   "sin_texto_completo_ids": [
     "EST-029",
@@ -10,10 +10,10 @@
   ],
   "por_instrumento": {
     "ROBINS-I": 7,
-    "RoB 2": 3
+    "RoB 2": 2
   },
-  "celdas_totales": 74,
-  "celdas_con_juicio": 74,
+  "celdas_totales": 68,
+  "celdas_con_juicio": 68,
   "celdas_pendientes": 0,
   "completa": true,
   "dominios": {
