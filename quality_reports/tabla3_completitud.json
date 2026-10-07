@@ -1,5 +1,5 @@
 {
-  "n_recuperables": 86,
+  "n_recuperables": 65,
   "con_texto": 65,
   "variables": {
     "resistance_class": {
@@ -8,10 +8,10 @@
       "declarado_texto_completo": 50,
       "declarado_no_clasificable": 15,
       "no_declarado_texto_completo": 0,
-      "texto_no_recuperado": 21,
-      "total": 86,
-      "no_asignable_en_el_resumen": 63,
-      "no_asignable_en_el_resumen_pct": 73.3,
+      "texto_no_recuperado": 0,
+      "total": 65,
+      "no_asignable_en_el_resumen": 46,
+      "no_asignable_en_el_resumen_pct": 70.8,
       "silencio_del_articulo_pct": 0.0
     },
     "route": {
@@ -20,11 +20,11 @@
       "declarado_texto_completo": 64,
       "declarado_no_clasificable": 0,
       "no_declarado_texto_completo": 1,
-      "texto_no_recuperado": 21,
-      "total": 86,
-      "no_asignable_en_el_resumen": 44,
-      "no_asignable_en_el_resumen_pct": 51.2,
-      "silencio_del_articulo_pct": 1.2
+      "texto_no_recuperado": 0,
+      "total": 65,
+      "no_asignable_en_el_resumen": 32,
+      "no_asignable_en_el_resumen_pct": 49.2,
+      "silencio_del_articulo_pct": 1.5
     },
     "pathogen_scope": {
       "variable": "Ámbito de patógeno",
@@ -32,11 +32,11 @@
       "declarado_texto_completo": 60,
       "declarado_no_clasificable": 0,
       "no_declarado_texto_completo": 5,
-      "texto_no_recuperado": 21,
-      "total": 86,
-      "no_asignable_en_el_resumen": 29,
-      "no_asignable_en_el_resumen_pct": 33.7,
-      "silencio_del_articulo_pct": 5.8
+      "texto_no_recuperado": 0,
+      "total": 65,
+      "no_asignable_en_el_resumen": 17,
+      "no_asignable_en_el_resumen_pct": 26.2,
+      "silencio_del_articulo_pct": 7.7
     },
     "modality": {
       "variable": "Modalidad (monoterapia o combinación)",
@@ -44,11 +44,11 @@
       "declarado_texto_completo": 64,
       "declarado_no_clasificable": 0,
       "no_declarado_texto_completo": 1,
-      "texto_no_recuperado": 21,
-      "total": 86,
-      "no_asignable_en_el_resumen": 53,
-      "no_asignable_en_el_resumen_pct": 61.6,
-      "silencio_del_articulo_pct": 1.2
+      "texto_no_recuperado": 0,
+      "total": 65,
+      "no_asignable_en_el_resumen": 36,
+      "no_asignable_en_el_resumen_pct": 55.4,
+      "silencio_del_articulo_pct": 1.5
     },
     "dtr_status": {
       "variable": "Criterio DTR",
@@ -56,10 +56,10 @@
       "declarado_texto_completo": 63,
       "declarado_no_clasificable": 2,
       "no_declarado_texto_completo": 0,
-      "texto_no_recuperado": 21,
-      "total": 86,
-      "no_asignable_en_el_resumen": 84,
-      "no_asignable_en_el_resumen_pct": 97.7,
+      "texto_no_recuperado": 0,
+      "total": 65,
+      "no_asignable_en_el_resumen": 63,
+      "no_asignable_en_el_resumen_pct": 96.9,
       "silencio_del_articulo_pct": 0.0
     }
   }

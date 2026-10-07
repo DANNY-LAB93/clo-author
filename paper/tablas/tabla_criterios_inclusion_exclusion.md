@@ -8,6 +8,6 @@
 | Artículos sobre varios patógenos, cuando los datos de *P. aeruginosa* pueden separarse del resto. | Artículos de revisión bibliográfica, editoriales y comentarios sin datos primarios propios. |
 | Ensayos clínicos aleatorizados y no aleatorizados, estudios de cohorte, series de casos y reportes de caso que describan pacientes tratados. | Revisiones sistemáticas y revisiones de alcance. |
 | Artículos que informen al menos uno de los desenlaces de interés: éxito clínico, erradicación microbiológica, mortalidad, eventos adversos o emergencia de resistencia al fago. | Artículos que no evalúan fagoterapia en pacientes: encuestas, estudios epidemiológicos, notas de prensa u otra terapia. |
-| Fichas de registro de ensayos clínicos y resúmenes de congreso que cumplan lo anterior, contabilizados como estudios identificados aunque no aporten resultados publicados. | Estudios en los que la intervención no es un bacteriófago, como endolisinas u otros derivados administrados sin la partícula viral. |
+| Artículos con el texto completo disponible en PDF, sobre el que se verifican todos los criterios anteriores. | Estudios en los que la intervención no es un bacteriófago, como endolisinas u otros derivados administrados sin la partícula viral. |
 |  | Artículos de protocolo publicados en revista, que declaran lo que se hará sin presentar resultados. |
-|  | Estudios cuyo texto completo no se pudo recuperar, de modo que los criterios no pudieron verificarse contra el artículo. |
+|  | Estudios sin el texto completo del artículo en PDF: no recuperado, o disponible solo como resumen de congreso o ficha de registro de ensayo clínico. |

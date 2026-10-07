@@ -22,9 +22,9 @@
     "con_cita": 60
   },
   "solapamiento": {
-    "pares_examinados": 31,
+    "pares_examinados": 30,
     "confirmados": 19,
-    "descartados": 12,
+    "descartados": 11,
     "sin_leer": 0
   },
   "est021": {
@@ -38,39 +38,39 @@
     "comparador_no_extraido": "El comparador de EST-021 es «standard of care a thick cream» según su propio texto; no se extrajo como brazo, de modo que el contraste no está en los datos."
   },
   "brazos": {
-    "total": 94,
+    "total": 73,
     "esperado": 103,
     "duplicados": [],
     "todos_con_informe": true,
     "sin_trazabilidad": [],
-    "sin_comparador": 94,
-    "sin_tiempo_de_evaluacion": 94,
-    "brazos_de_estudios_excluidos": 38
+    "sin_comparador": 73,
+    "sin_tiempo_de_evaluacion": 73,
+    "brazos_de_estudios_excluidos": 59
   },
   "embudo": [
     {
       "filtro": "0. brazos extraídos",
-      "brazos": 94,
-      "estudios": 86,
+      "brazos": 73,
+      "estudios": 65,
       "no_evaluables": 0,
       "excluidos_en_este_paso": 0,
       "motivos": ""
     },
     {
       "filtro": "1. diseño comparativo",
-      "brazos": 15,
-      "estudios": 12,
-      "no_evaluables": 10,
-      "excluidos_en_este_paso": 79,
-      "motivos": "diseño «case report»: sin grupo de comparación (39); diseño «case series»: sin grupo de comparación (25); diseño «NA»: sin grupo de comparación (10)"
+      "brazos": 12,
+      "estudios": 9,
+      "no_evaluables": 0,
+      "excluidos_en_este_paso": 61,
+      "motivos": "diseño «case report»: sin grupo de comparación (37); diseño «case series»: sin grupo de comparación (24)"
     },
     {
       "filtro": "2. numerador válido",
       "brazos": 4,
       "estudios": 4,
       "no_evaluables": 0,
-      "excluidos_en_este_paso": 11,
-      "motivos": "éxito clínico n=«NA» sobre N=«9» (1); éxito clínico n=«NA» sobre N=«19» (1); éxito clínico n=«NA» sobre N=«NA» (1)"
+      "excluidos_en_este_paso": 8,
+      "motivos": "éxito clínico n=«NA» sobre N=«9» (1); éxito clínico n=«NA» sobre N=«NA» (1); éxito clínico n=«NA» sobre N=«20» (1)"
     },
     {
       "filtro": "3. denominador válido",

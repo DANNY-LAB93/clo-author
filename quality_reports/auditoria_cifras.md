@@ -54,34 +54,34 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 
 | | |
 |---|---|
-| Publicada | 128 |
-| Recalculada | 128 |
+| Publicada | 65 |
+| Recalculada | 65 |
 | Unidad de análisis | estudios |
 | Denominador | de los 183 evaluados |
 | Fuente | `study_groups.csv menos exclusiones_tras_texto_completo.csv` |
-| Cálculo | 183 − 55 excluidos = 128 |
+| Cálculo | 183 − 118 excluidos = 65 |
 
 ## Informes de los estudios incluidos — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 161 |
-| Recalculada | 161 |
+| Publicada | 80 |
+| Recalculada | 80 |
 | Unidad de análisis | informes |
 | Denominador | de los 233 informes evaluados |
 | Fuente | `study_groups.csv, filas cuyo estudio no está excluido` |
-| Cálculo | 233 − 72 informes de estudios excluidos = 161 |
+| Cálculo | 233 − 153 informes de estudios excluidos = 80 |
 
 ## Estudios con publicación recuperable — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 86 |
-| Recalculada | 86 |
+| Publicada | 65 |
+| Recalculada | 65 |
 | Unidad de análisis | estudios |
-| Denominador | de los 128 incluidos |
+| Denominador | de los 65 incluidos |
 | Fuente | `study_groups.csv, situación «extraible» o «solo-resumen» del informe designado` |
-| Cálculo | 86 de 128; los otros 42 son solo ficha de registro |
+| Cálculo | 65 de 65; los otros 0 son solo ficha de registro |
 
 ## Estudios con texto obtenido — ✔ consistente
 
@@ -90,20 +90,20 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 | Publicada | 65 |
 | Recalculada | 65 |
 | Unidad de análisis | estudios |
-| Denominador | de los 86 recuperables |
+| Denominador | de los 65 recuperables |
 | Fuente | `carpetas textos_completos/pdf y texto_html` |
-| Cálculo | 65 de 86 recuperables = 75.6 % |
+| Cálculo | 65 de 65 recuperables = 100.0 % |
 
 ## Estudios solo con ficha de registro — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 42 |
-| Recalculada | 42 |
+| Publicada | 0 |
+| Recalculada | 0 |
 | Unidad de análisis | estudios |
-| Denominador | de los 128 incluidos |
+| Denominador | de los 65 incluidos |
 | Fuente | `study_groups.csv, estudios cuyos informes son todos ficha de registro` |
-| Cálculo | 42 + 86 recuperables = 128 incluidos |
+| Cálculo | 0 + 65 recuperables = 65 incluidos |
 
 ## Filas de brazo comparadas — ✔ consistente
 
@@ -120,12 +120,12 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 
 | | |
 |---|---|
-| Publicada | 94 |
-| Recalculada | 94 |
+| Publicada | 73 |
+| Recalculada | 73 |
 | Unidad de análisis | brazos |
-| Denominador | de los 128 estudios incluidos |
+| Denominador | de los 65 estudios incluidos |
 | Fuente | `extraccion_adjudicada.csv menos los estudios excluidos` |
-| Cálculo | 132 filas adjudicadas − 38 de estudios excluidos después = 94 |
+| Cálculo | 132 filas adjudicadas − 59 de estudios excluidos después = 73 |
 
 ## Brazos con texto completo — ✔ consistente
 
@@ -134,20 +134,20 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 | Publicada | 73 |
 | Recalculada | 73 |
 | Unidad de análisis | brazos |
-| Denominador | de los 94 brazos extraídos |
+| Denominador | de los 73 brazos extraídos |
 | Fuente | `extraccion_adjudicada.csv cruzado con las carpetas de texto` |
-| Cálculo | 73 de 94 brazos pertenecen a estudios con texto |
+| Cálculo | 73 de 73 brazos pertenecen a estudios con texto |
 
 ## Estudios con diseño comparativo — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 12 |
-| Recalculada | 12 |
+| Publicada | 9 |
+| Recalculada | 9 |
 | Unidad de análisis | estudios |
-| Denominador | de los 128 incluidos |
+| Denominador | de los 65 incluidos |
 | Fuente | `extraccion_adjudicada.csv, diseño adjudicado; regla firmada el 2026-09-16` |
-| Cálculo | estudios con al menos un brazo de diseño RCT/non-randomised trial/prospective cohort/retrospective cohort = 12 |
+| Cálculo | estudios con al menos un brazo de diseño RCT/non-randomised trial/prospective cohort/retrospective cohort = 9 |
 
 ## Comparativos evaluables — ✔ consistente
 
@@ -156,18 +156,18 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 | Publicada | 9 |
 | Recalculada | 9 |
 | Unidad de análisis | estudios |
-| Denominador | de los 12 comparativos |
+| Denominador | de los 9 comparativos |
 | Fuente | `los comparativos cuyo estudio tiene texto completo` |
-| Cálculo | 12 − 3 sin texto (EST-029, EST-157, EST-165) = 9 |
+| Cálculo | 9 − 0 sin texto () = 9 |
 
 ## Ensayos en la Tabla 2 — ✔ consistente
 
 | | |
 |---|---|
-| Publicada | 7 |
-| Recalculada | 7 |
+| Publicada | 2 |
+| Recalculada | 2 |
 | Unidad de análisis | estudios |
-| Denominador | de los 86 recuperables |
+| Denominador | de los 65 recuperables |
 | Fuente | `pre_extraccion_desde_resumen.csv, diseño DECLARADO en el resumen` |
 | Cálculo | criterio distinto del anterior: clasifica por el resumen y no cuenta cohortes |
 
@@ -175,12 +175,12 @@ sobre los ficheros de datos; ninguna se lee de `synthesis_scalars.json`.
 
 | | |
 |---|---|
-| Publicada | 15 |
-| Recalculada | 15 |
+| Publicada | 12 |
+| Recalculada | 12 |
 | Unidad de análisis | brazos |
-| Denominador | de los 94 brazos extraídos |
+| Denominador | de los 73 brazos extraídos |
 | Fuente | `extraccion_adjudicada.csv, brazos cuyo diseño es comparativo` |
-| Cálculo | 15 brazos aportados por los 12 estudios comparativos |
+| Cálculo | 12 brazos aportados por los 9 estudios comparativos |
 
 ## Celdas de la Tabla 5 — ✔ consistente
 

@@ -206,35 +206,47 @@ def figura_prisma(S):
     y_cribado_fin = y
 
     # --- Inclusion ----------------------------------------------------------
-    t_e = ("Estudios incluidos\nn = %d  (agrupando %d informes)"
-           % (S["estudios"], S["informes_agrupados"]))
+    # Desde el 2026-10-06 solo se admiten estudios con el PDF del articulo
+    # completo (NOREC ampliado como NOPDF): no queda ninguna ficha de registro
+    # y la recuperacion es del 100 % por construccion. La bifurcacion «con
+    # publicacion / solo ficha» y la caja del texto obtenido dibujaban un 0 y
+    # un 100 % que no informan de nada; se dibujan solo si vuelven a hacerlo.
+    solo_texto = (S["estudios_solo_registro"] == 0 and S["texto_completo_no_obtenido"] == 0)
+    if solo_texto:
+        t_e = ("Estudios incluidos, todos con el\ntexto completo leído\n"
+               "n = %d  (agrupando %d informes)" % (S["estudios"], S["informes_agrupados"]))
+    else:
+        t_e = ("Estudios incluidos\nn = %d  (agrupando %d informes)"
+               % (S["estudios"], S["informes_agrupados"]))
     h_e = alto(t_e)
     caja(ax, X_IZQ, y - HUECO - h_e, ANCHO_IZQ, h_e, t_e)
     flecha(ax, (CENTRO, y), (CENTRO, y - HUECO))
     y = y - HUECO - h_e
 
-    t_a = "Con publicación\nrecuperable\nn = %d" % S["estudios_extraibles"]
-    h_a = alto(t_a)
-    w = (ANCHO_IZQ - 0.020) / 2
-    caja(ax, X_IZQ, y - HUECO - h_a, w, h_a, t_a)
-    caja(ax, X_IZQ + w + 0.020, y - HUECO - h_a, w, h_a,
-         "Solo ficha de registro\nde ensayo\nn = %d"
-         % S["estudios_solo_registro"])
-    # Bifurcacion en T: una linea baja, una travesana, y dos flechas que
-    # entran verticales. Un conector "angle" no sirve aqui porque sus dos
-    # extremos son verticales y matplotlib no puede cortar rectas paralelas.
-    y_t = y - HUECO / 2
-    c_izq, c_der = X_IZQ + w / 2, X_IZQ + w * 1.5 + 0.020
-    ax.plot([CENTRO, CENTRO], [y, y_t], color=BORDE, linewidth=0.8, zorder=1)
-    ax.plot([c_izq, c_der], [y_t, y_t], color=BORDE, linewidth=0.8, zorder=1)
-    flecha(ax, (c_izq, y_t), (c_izq, y - HUECO))
-    flecha(ax, (c_der, y_t), (c_der, y - HUECO))
-    h_d = alto("x\nx", 8.0)
-    caja(ax, X_DER, y - HUECO - h_a + (h_a - h_d) / 2, ANCHO_DER, h_d,
-         "Texto completo obtenido\nn = %d de %d (%.1f %%)"
-         % (S["texto_completo_obtenido"], S["estudios_extraibles"],
-            S["texto_completo_pct"]), SUAVE)
-    y_fin = min(y - HUECO - h_a, ultimo[0])
+    if solo_texto:
+        y_fin = min(y, ultimo[0])
+    else:
+        t_a = "Con publicación\nrecuperable\nn = %d" % S["estudios_extraibles"]
+        h_a = alto(t_a)
+        w = (ANCHO_IZQ - 0.020) / 2
+        caja(ax, X_IZQ, y - HUECO - h_a, w, h_a, t_a)
+        caja(ax, X_IZQ + w + 0.020, y - HUECO - h_a, w, h_a,
+             "Solo ficha de registro\nde ensayo\nn = %d"
+             % S["estudios_solo_registro"])
+        # Bifurcacion en T: una linea baja, una travesana, y dos flechas que
+        # entran verticales.
+        y_t = y - HUECO / 2
+        c_izq, c_der = X_IZQ + w / 2, X_IZQ + w * 1.5 + 0.020
+        ax.plot([CENTRO, CENTRO], [y, y_t], color=BORDE, linewidth=0.8, zorder=1)
+        ax.plot([c_izq, c_der], [y_t, y_t], color=BORDE, linewidth=0.8, zorder=1)
+        flecha(ax, (c_izq, y_t), (c_izq, y - HUECO))
+        flecha(ax, (c_der, y_t), (c_der, y - HUECO))
+        h_d = alto("x\nx", 8.0)
+        caja(ax, X_DER, y - HUECO - h_a + (h_a - h_d) / 2, ANCHO_DER, h_d,
+             "Texto completo obtenido\nn = %d de %d (%.1f %%)"
+             % (S["texto_completo_obtenido"], S["estudios_extraibles"],
+                S["texto_completo_pct"]), SUAVE)
+        y_fin = min(y - HUECO - h_a, ultimo[0])
 
     # --- bandas de fase -----------------------------------------------------
     for a, b, etiqueta in ((y_cribado_top + 0.006, 0.982, "Identificación"),

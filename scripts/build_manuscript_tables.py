@@ -150,6 +150,9 @@ def main():
     # la clase de resistencia. La ausencia está en el resumen. Las cuatro
     # columnas del texto completo se excluyen entre sí y suman el corpus.
     filas = []
+    # Desde el 2026-10-06 todo el corpus tiene texto completo (seccion 2.9): la
+    # columna «Texto completo no recuperado» seria una columna de ceros.
+    todo_texto = S.get("texto_completo_no_obtenido", 0) == 0
     for campo, resumen, etiqueta in (
             ("resistance_class", "sin_clase_de_resistencia", "Clase de resistencia (MDR/XDR/PDR)"),
             ("pathogen_scope", "sin_ambito_de_patogeno", "Ámbito de patógeno (solo *P. aeruginosa* o mixto)"),
@@ -160,9 +163,29 @@ def main():
                       "%d (%s %%)" % (S[resumen], S[resumen + "_pct"]),
                       S["t3_%s_declarado" % campo],
                       S["t3_%s_no_clasificable" % campo],
-                      S["t3_%s_silencio" % campo],
-                      S["t3_%s_sin_texto" % campo]])
-    escribe("tabla_2_completitud",
+                      S["t3_%s_silencio" % campo]]
+                     + ([] if todo_texto else [S["t3_%s_sin_texto" % campo]]))
+    if todo_texto:
+        escribe("tabla_2_completitud",
+                ["Variable", "No asignable en el resumen",
+                 "Declarado en el texto completo", "Declarado pero no clasificable",
+                 "No declarado en el texto completo"],
+                filas,
+                "Tabla 3. Completitud del reporte en las variables de "
+                "estratificación, en el resumen y en el texto completo "
+                "(n = %d estudios, todos con texto completo)." % n,
+                "La segunda columna mide el RESUMEN indexado, que es lo que "
+                "alimenta las bases bibliográficas y las revisiones automatizadas. "
+                "Las tres siguientes miden el TEXTO COMPLETO, se excluyen entre sí "
+                "y suman %d: todos los estudios del corpus tienen el artículo "
+                "completo (sección 2.9). «Declarado pero no clasificable» significa "
+                "que el artículo nombra la variable en términos que no permiten "
+                "asignar una categoría: «multirresistente» sin el antibiograma que "
+                "decida entre MDR, XDR y PDR. La columna del resumen se reproduce "
+                "desde el anexo S4 filtrando en_corpus_actual = sí; las del texto "
+                "completo, desde la extracción adjudicada (anexo S14)." % n)
+    else:
+        escribe("tabla_2_completitud",
             ["Variable", "No asignable en el resumen",
              "Declarado en el texto completo", "Declarado pero no clasificable",
              "No declarado en el texto completo", "Texto completo no recuperado"],
@@ -184,8 +207,21 @@ def main():
             "extracción adjudicada (anexo S14)."
             % (n, S["t3_resistance_class_sin_texto"]))
 
-    # ---- Tabla 3: sesgo de recuperacion ------------------------------------
-    con, sin_ = extr & pdfs, extr - pdfs
+    # ---- Tabla 3: lo que el criterio del texto completo deja fuera ----------
+    # Hasta el 2026-10-06 comparaba los estudios con y sin texto completo
+    # DENTRO del corpus. Desde la ampliacion de NOREC (codigo NOPDF, firmada
+    # por los dos) no queda ninguno sin texto: la comparacion es ahora entre lo
+    # que se incluye y lo que el criterio excluyo por no tener el articulo.
+    # Las fichas de registro no tienen diseno extraido del resumen y se
+    # cuentan aparte, en la nota.
+    con = extr & pdfs
+    with open(RS / "cribado" / "exclusiones_tras_texto_completo.csv", encoding="utf-8",
+              newline="") as fh:
+        _cod = {r["study_id"]: r["codigo"] for r in csv.DictReader(fh)}
+    _sit = {"EST-%03d" % int(g["estudio"]): g["situacion"] for g in grupos
+            if g["informe_para_extraer"] == "SI"}
+    sin_ = {e for e, c in _cod.items() if c in ("NOREC", "NOPDF")
+            and _sit.get(e) in ("extraible", "solo-resumen")}
 
     def perfil(conj):
         d = collections.Counter((pre.get(k, {}).get("study_design")
@@ -201,36 +237,31 @@ def main():
 
     dc, cc, pcn = perfil(con)
     ds, cs, psn = perfil(sin_)
+    mil = lambda x: f"{x:,}".replace(",", " ")
     filas = [["Estudios", len(con), len(sin_)],
              ["Diseños comparativos", cc, cs],
              ["Comparativos (% de la columna)",
-              "%.1f" % (100.0 * cc / len(con)), "%.1f" % (100.0 * cs / len(sin_))],
+              "%.1f" % (100.0 * cc / max(1, len(con))), "%.1f" % (100.0 * cs / max(1, len(sin_)))],
              ["Reportes de caso único", dc["case report"], ds["case report"]],
              ["Ensayos aleatorizados", dc["RCT"], ds["RCT"]],
-             # Millar fino, como el resto del manuscrito: escribia «1044»
-             # en una tabla donde arriba pone «17 129».
-             ["Pacientes declarados (suma de n por brazo)",
-              f"{pcn:,}".replace(",", " "),
-              f"{psn:,}".replace(",", " ")]]
+             ["Pacientes declarados (suma de n por brazo)", mil(pcn), mil(psn)]]
     escribe("tabla_3_sesgo_recuperacion",
-            ["", "Con texto completo", "Sin texto completo"], filas,
-            "Tabla 3. Comparación entre los estudios con y sin texto completo "
-            "obtenido.",
-            # La nota se DERIVA de la tabla. Antes afirmaba que la fracción no
-            # obtenida declaraba más pacientes que la obtenida: cuando el
-            # corpus crecio la direccion se invirtio y la nota siguio diciendo
-            # lo mismo, contradiciendo a la tabla que encabeza. Una nota que
-            # asegura una direccion sin mirarla es una cifra tecleada a mano
-            # disfrazada de prosa.
-            "La fracción no obtenida no es una muestra aleatoria: concentra el "
-            "%.1f %% de los estudios comparativos (%.1f %% de esa fracción, "
-            "frente al %.1f %% de la obtenida) y declara %s pacientes que la "
-            "obtenida (%s frente a %s). Cualquier síntesis limitada a lo "
-            "descargable heredaría esa asimetría."
-            % (S["comparativos_sin_texto_pct"],
-               100.0 * cs / max(1, len(sin_)),
-               100.0 * cc / max(1, len(con)),
-               "más" if f"{psn:,}".replace(",", " ") > f"{pcn:,}".replace(",", " ") else "menos", f"{psn:,}".replace(",", " "), f"{pcn:,}".replace(",", " ")))
+            ["", "Incluidos (texto completo leído)",
+             "Excluidos por no tener el texto completo"], filas,
+            "Tabla 3. Lo que el criterio del texto completo deja fuera: estudios "
+            "incluidos frente a los excluidos por no disponer del PDF del artículo.",
+            # La nota se DERIVA de la tabla, como antes: una nota que asegura
+            # una direccion sin mirarla es una cifra tecleada disfrazada.
+            "La columna de excluidos reúne los artículos cuyo texto no se obtuvo y "
+            "los resúmenes de congreso (códigos NOREC y NOPDF); el diseño sale del "
+            "resumen. Además se excluyeron %d fichas de registro sin artículo, que no "
+            "tienen diseño extraído. Lo excluido no es una muestra aleatoria: "
+            "concentra el %.1f %% de los diseños comparativos (%.1f %% de esa "
+            "columna, frente al %.1f %% de la de incluidos) y declara %s pacientes "
+            "(%s frente a %s). Es el efecto del criterio, y se declara como tal."
+            % (S["criterio_texto_fichas"], S["criterio_texto_comparativos_pct"],
+               100.0 * cs / max(1, len(sin_)), 100.0 * cc / max(1, len(con)),
+               "más" if psn > pcn else "menos", mil(psn), mil(pcn)))
 
     # ---- Tabla 4: motivos de exclusion -------------------------------------
     filas = []
@@ -260,26 +291,41 @@ def main():
     if oc.exists():
         O = json.loads(oc.read_text(encoding="utf-8"))
         filas = []
+        # Desde el 2026-10-06 todos los brazos son de estudios con texto
+        # completo (seccion 2.9): la columna «% de los brazos legibles» repetia
+        # la anterior cifra por cifra.
+        dos_denominadores = O["brazos_legibles"] != O["brazos"]
         for campo, d in O["desenlaces"].items():
             filas.append([
                 d["nombre"].capitalize(),
                 d["con_numerador_y_denominador"],
-                "%.1f" % d["pct_de_los_brazos"],
-                "%.1f" % d["pct_de_los_legibles"],
-                "%.1f" % d["doble_lectura_pct"],
-            ])
-        nota = (
-            "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador sin "
-            "denominador no es una proporción. Se dan DOS denominadores porque "
-            "miden cosas distintas: sobre los %d brazos extraídos, y sobre los %d "
-            "cuyo estudio tiene texto completo recuperado. La diferencia entre "
-            "ambos no es silencio de la literatura sino hueco documental nuestro: "
-            "de un artículo que no se ha podido leer no se puede afirmar que "
-            "calle. «Con doble lectura» es el porcentaje de esas casillas en que "
-            "los dos revisores coincidieron o resolvieron por consenso; el resto "
-            "lo leyó un solo revisor, y en la fila de emergencia de resistencia "
-            "esas casillas las rellenó siempre el mismo. "
-            % (O["brazos"], O["brazos_legibles"]))
+                "%.1f" % d["pct_de_los_brazos"]]
+                + (["%.1f" % d["pct_de_los_legibles"]] if dos_denominadores else [])
+                + ["%.1f" % d["doble_lectura_pct"]])
+        if dos_denominadores:
+            nota = (
+                "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador sin "
+                "denominador no es una proporción. Se dan DOS denominadores porque "
+                "miden cosas distintas: sobre los %d brazos extraídos, y sobre los %d "
+                "cuyo estudio tiene texto completo recuperado. La diferencia entre "
+                "ambos no es silencio de la literatura sino hueco documental nuestro: "
+                "de un artículo que no se ha podido leer no se puede afirmar que "
+                "calle. «Con doble lectura» es el porcentaje de esas casillas en que "
+                "los dos revisores coincidieron o resolvieron por consenso; el resto "
+                "lo leyó un solo revisor, y en la fila de emergencia de resistencia "
+                "esas casillas las rellenó siempre el mismo. "
+                % (O["brazos"], O["brazos_legibles"]))
+        else:
+            nota = (
+                "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador sin "
+                "denominador no es una proporción. Los %d brazos pertenecen a "
+                "estudios con el artículo completo leído (sección 2.9), de modo que "
+                "un desenlace que no consta es un desenlace que el artículo no "
+                "reporta. «Con doble lectura» es el porcentaje de esas casillas en "
+                "que los dos revisores coincidieron o resolvieron por consenso; el "
+                "resto lo leyó un solo revisor, y en la fila de emergencia de "
+                "resistencia esas casillas las rellenó siempre el mismo. "
+                % O["brazos"])
         if O.get("campos_del_esquema_no_extraidos"):
             nota += (
                 "La fila de erradicación usa el tamaño del brazo como denominador: "
@@ -288,28 +334,38 @@ def main():
                 "que no consta a cuántos pacientes se les hizo cultivo de control. "
                 "El denominador real es por tanto menor o igual que el usado. "
                 % " y ".join("`%s`" % c for c in O["campos_del_esquema_no_extraidos"]))
+        if O["brazos_con_diseno"] == O["brazos"]:
+            nota += (
+                "El diseño consta en los %d brazos: %d son comparativos, y solo %d "
+                "reúnen a la vez diseño comparativo, numerador, denominador y una "
+                "definición operativa del éxito clínico. "
+                % (O["brazos"], O["brazos_comparativos"],
+                   O["brazos_agregables_exito_clinico"]))
+        else:
+            nota += (
+                "El diseño solo puede clasificarse en %d de los %d brazos (%d con un "
+                "«NA» que los dos revisores acordaron y %d con la casilla aún "
+                "abierta), de modo que los recuentos por diseño son suelos: de esos "
+                "%d, %d son comparativos, y solo %d reúnen a la vez diseño "
+                "comparativo, numerador, denominador y una definición operativa del "
+                "éxito clínico. "
+                % (O["brazos_con_diseno"], O["brazos"], O["diseno_na_acordado"],
+                   O["diseno_abierto"], O["brazos_con_diseno"],
+                   O["brazos_comparativos"], O["brazos_agregables_exito_clinico"]))
         nota += (
-            "El diseño solo puede clasificarse en %d de los %d brazos (%d con un "
-            "«NA» que los dos revisores acordaron y %d con la casilla aún "
-            "abierta), de modo que los recuentos por diseño son suelos: de esos "
-            "%d, %d son comparativos, y solo %d reúnen a la vez diseño "
-            "comparativo, numerador, denominador y una definición operativa del "
-            "éxito clínico. Dos brazos reportan un numerador mayor que su "
+            "Dos brazos reportan un numerador mayor que su "
             "denominador y se señalan como error de reporte. «Comparativo» "
             "describe lo que el estudio es, no lo que hay en este fichero: la "
             "extracción se hizo por brazo y se extrajo el de fago, de modo que "
-            "el conjunto no contiene los brazos de control."
-            % (O["brazos_con_diseno"], O["brazos"], O["diseno_na_acordado"],
-               O["diseno_abierto"], O["brazos_con_diseno"],
-               O["brazos_comparativos"], O["brazos_agregables_exito_clinico"]))
+            "el conjunto no contiene los brazos de control.")
         escribe("tabla_5_desenlaces",
                 ["Desenlace", "Con numerador y denominador",
-                 "%% de los %d brazos" % O["brazos"],
-                 # «con texto completo» se leia como estudios o como textos,
-                 # y son BRAZOS: 78 brazos legibles frente a 70 estudios con
-                 # texto. Dos unidades distintas en la misma tabla.
-                 "%% de los %d brazos legibles" % O["brazos_legibles"],
-                 "% con doble lectura"], filas,
+                 "%% de los %d brazos" % O["brazos"]]
+                # «con texto completo» se leia como estudios o como textos,
+                # y son BRAZOS. Solo se da si difiere del total.
+                + (["%% de los %d brazos legibles" % O["brazos_legibles"]]
+                   if dos_denominadores else [])
+                + ["% con doble lectura"], filas,
                 "Tabla 5. Completitud de reporte de los cinco desenlaces "
                 "declarados, sobre los %d brazos de la extracción adjudicada."
                 % O["brazos"], nota)

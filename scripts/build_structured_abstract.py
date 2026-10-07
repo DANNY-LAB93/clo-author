@@ -79,23 +79,23 @@ def sesgo(R):
         # suponer duplicado independiente, que es lo normal en una revision
         # sistematica y no es lo que se hizo.
         return ("El riesgo de sesgo se evaluó por consenso, por dominios, en "
-                "los %d comparativos con texto completo (RoB 2, ROBINS-I); no "
+                "los %d comparativos (RoB 2, ROBINS-I); no "
                 "se aplicó GRADE." % n,
                 "Risk of bias was assessed by consensus, by domain, in the %d "
-                "comparative studies with full text (RoB 2, ROBINS-I); GRADE "
+                "comparative studies (RoB 2, ROBINS-I); GRADE "
                 "was not applied." % n)
     if R["completa"]:
         return ("El riesgo de sesgo se evaluó por dominios en los %d "
-                "comparativos con texto completo (RoB 2, ROBINS-I); no se "
+                "comparativos (RoB 2, ROBINS-I); no se "
                 "aplicó GRADE." % n,
                 "Risk of bias was assessed by domain in the %d comparative "
-                "studies with full text (RoB 2, ROBINS-I); GRADE was not "
+                "studies (RoB 2, ROBINS-I); GRADE was not "
                 "applied." % n)
-    return ("El riesgo de sesgo por dominios de los %d comparativos con "
-            "texto completo (RoB 2, ROBINS-I) está en evaluación; no se aplicó "
+    return ("El riesgo de sesgo por dominios de los %d comparativos "
+            "(RoB 2, ROBINS-I) está en evaluación; no se aplicó "
             "GRADE." % n,
             "Domain-level risk-of-bias assessment of the %d comparative "
-            "studies with full text (RoB 2, ROBINS-I) is under way; GRADE was "
+            "studies (RoB 2, ROBINS-I) is under way; GRADE was "
             "not applied." % n)
 
 
@@ -111,11 +111,16 @@ def textos(S, O, R):
         leidos_fuera=S["excluidos_entre_los_leidos"],
         sin_texto_fuera=S["excluidos_sin_poder_leer_nada"],
         ficha_fuera=S["excluidos_sobre_la_ficha_de_registro"],
+        nopdf=S["excluidos_texto_completo_NOPDF"],
+        comp_fuera=S["criterio_texto_comparativos"],
+        comp_antes=S["criterio_texto_comparativos_antes"],
         estudios=S["estudios"],
         extraibles=S["estudios_extraibles"],
         con_texto=S["texto_completo_obtenido"],
-        anio_min=S["anio_min"],
-        anio_max=S["anio_max"],
+        # La VENTANA de busqueda, no el recorrido del corpus (ver
+        # build_synthesis_scalars: dejaron de coincidir el 2026-10-06).
+        anio_min=S["ventana_desde"],
+        anio_max=S["ventana_hasta"],
         fuentes="ocho",
         fuentes_may="Ocho",
         brazos=O["brazos"],
@@ -157,28 +162,29 @@ def textos(S, O, R):
          "Revisión sistemática conforme a PRISMA 2020, en dos corrientes: bases "
          "bibliográficas y registros de ensayos. {fuentes_may} fuentes, "
          "con ventana {anio_min}-{anio_max} donde la interfaz la admite. La unidad "
-         "de inclusión fue el estudio, no el informe. Extracción por duplicado e "
+         "de inclusión fue el estudio, con artículo completo (criterio añadido tras la extracción). Extracción por duplicado e "
          "independiente, con {firmados} de {desacuerdos} desacuerdos adjudicados "
          "por consenso. {sesgo_es}",
          "Revisión sistemática conforme a PRISMA 2020 sobre {fuentes} fuentes "
          "—bases bibliográficas y registros de ensayos—, con ventana "
-         "{anio_min}-{anio_max} donde la interfaz la admite. La unidad de inclusión fue el estudio, no el informe. Extracción "
+         "{anio_min}-{anio_max} donde la interfaz la admite. La unidad de inclusión fue el estudio, con artículo completo (criterio añadido tras la extracción). Extracción "
          "por duplicado e independiente, con {firmados} de {desacuerdos} "
          "desacuerdos adjudicados. {sesgo_es}"),
         ("Resultados",
          "De {registros} registros quedaron {unicos} informes únicos; {informes} "
          "informes formaron {evaluados} estudios evaluados para elegibilidad, de "
-         "los que {excluidos} se excluyeron: {leidos_fuera} por el artículo, "
-         "{ficha_fuera} por la ficha del registro y {sin_texto_fuera} sin poder "
-         "leer ninguno. Quedan {estudios} estudios, "
-         "{extraibles} con publicación recuperable y {con_texto} con texto "
-         "obtenido ({recuperacion} %). De esos {extraibles}, "
+         "los que {excluidos} se excluyeron, {nopdf} por no disponer del artículo "
+         "completo. Quedan {estudios} estudios, todos leídos a texto completo; "
+         "exigirlo dejó fuera {comp_fuera} de {comp_antes} diseños comparativos. De ellos, "
          "el {casos} % son reportes de caso único y el {comparativos} % tiene "
-         "diseño comparativo; la categoría de resistencia no puede asignarse desde "
+         "diseño comparativo según el resumen; la categoría de resistencia no puede asignarse desde "
          "el resumen en el {sin_clase} %. En {sin_def} de {brazos} brazos extraídos "
          "({sin_def_pct} %) no consta una definición operativa de éxito clínico. "
-         "Ningún brazo reúne los requisitos aritméticos de una proporción agrupada "
-         "y los de elegibilidad."),
+         # PhagoBurn cumple los aritmeticos y los de elegibilidad y cae por la
+         # metrica (mide un tiempo): «aritmeticos y de elegibilidad» a secas
+         # era falso para ese brazo.
+         "Ningún brazo reúne a la vez los requisitos aritméticos, los de "
+         "elegibilidad y la métrica de una proporción agrupada."),
         ("Conclusiones",
          "El cuerpo de evidencia es amplio pero inadecuado para una síntesis "
          "cuantitativa de eficacia: las proporciones publicadas descansan sobre "
@@ -198,23 +204,22 @@ def textos(S, O, R):
          "Systematic review following PRISMA 2020, with separate streams for "
          "bibliographic databases and trial registries. Eight sources were queried "
          "with a {anio_min}-{anio_max} window where the interface allows it. The "
-         "unit of inclusion was the study, not the report. Extraction was in "
+         "unit of inclusion was the study, with its full article (a criterion added after extraction). Extraction was in "
          "duplicate and independent, with {firmados} of {desacuerdos} disagreements "
          "adjudicated. {sesgo_en}",
          "A PRISMA 2020 systematic review across eight sources —bibliographic "
          "databases and trial registries—, with a {anio_min}-{anio_max} window "
          "where the interface allows it. The "
-         "unit of inclusion was the study, not the report. Data were extracted in "
+         "unit of inclusion was the study, with its full article (a criterion added after extraction). Data were extracted in "
          "duplicate and independently, with {firmados} of {desacuerdos} "
          "disagreements adjudicated. {sesgo_en}"),
         ("Results",
          "From {registros} records, {unicos} unique reports remained; {informes} "
          "reports formed {evaluados} studies assessed for eligibility, of which "
-         "{excluidos} were excluded: {leidos_fuera} on the article, {ficha_fuera} on "
-         "the registry record and {sin_texto_fuera} without reading either. {estudios} studies "
-         "remain, {extraibles} with a retrievable publication and {con_texto} with "
-         "the text obtained ({recuperacion} %). Of those {extraibles}, {casos} % are single case "
-         "reports and {comparativos} % have a comparative design; resistance "
+         "{excluidos} were excluded, {nopdf} for lacking the full article. {estudios} "
+         "studies remain, all read in full text; requiring it left out {comp_fuera} of "
+         "{comp_antes} comparative designs. Of these, {casos} % are single case "
+         "reports and {comparativos} % have a comparative design by abstract; resistance "
          "category cannot be assigned from the abstract in {sin_clase} %. In "
          "{sin_def} of the "
          "{brazos} extracted arms ({sin_def_pct} %) no operational definition of "

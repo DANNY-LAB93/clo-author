@@ -146,7 +146,10 @@ def main():
                         if (f["diseno_adjudicado"].split("; ") or [""])[0] in ENSAYOS | COHORTES]
     discordia = sorted(set(f["study_id"] for f in adj_comp)
                        - set(f["study_id"] for f in adj_comp_primero))
-    t5 = [f for f in filas if f["en_tabla_5"] == "sí"]
+    # Solo los VIVOS: el cuaderno de riesgo de sesgo conserva los juicios de
+    # los estudios que salieron despues (EST-055, EST-063, EST-132), y
+    # contarlos daba 12 evaluables donde la Tabla 5 tiene 9.
+    t5 = [f for f in vivos if f["en_tabla_5"] == "sí"]
     brazos_vivos = [b for eid, bs in brazos.items() if eid not in excl for b in bs]
     brazos_comp = [b for b in brazos_vivos if b["study_design"] in ENSAYOS | COHORTES]
     brazos_leg = [b for b in brazos_vivos if b["study_id"] in pdfs]
@@ -158,7 +161,7 @@ def main():
          "| Cifra del manuscrito | Valor | Unidad | Poblacion sobre la que se cuenta |",
          "|---|---|---|---|",
          "| Diseños comparativos, Tabla 2 | %d | estudios | de los %d recuperables, clasificados por el diseño **que declara el resumen**; NO incluye cohortes |" % (len(t2_comp), len(t2)),
-         "| Estudios con grupo de comparación, Resultados | %d | estudios | del corpus vivo, por el diseño **adjudicado sobre el artículo**; SÍ incluye cohortes. **Regla firmada el 2026-09-16**: un estudio es comparativo si CUALQUIERA de sus brazos lo es |" % len(adj_comp),
+         "| Estudios con diseño comparativo, Resultados | %d | estudios | del corpus vivo, por el diseño **adjudicado sobre el artículo**; SÍ incluye cohortes. **Regla firmada el 2026-09-16**: un estudio es comparativo si CUALQUIERA de sus brazos lo es |" % len(adj_comp),
          "| ídem, con la regla anterior | %d | estudios | mandaba el PRIMER brazo del CSV. Se anota porque explica por qué un borrador anterior decía %d; la diferencia es %s |" % (len(adj_comp_primero), len(adj_comp_primero), ", ".join(discordia) or "ninguno"),
          "| Comparativos evaluables, Tabla 5 | %d | estudios | los %d anteriores **que tienen texto completo** |" % (len(t5), len(adj_comp)),
          "| Primer filtro de la Tabla 6 | %d | **brazos** | brazos de esos estudios comparativos; un estudio aporta más de un brazo |" % len(brazos_comp),

@@ -56,6 +56,10 @@ def leer(p, enc="utf-8"):
 # 2026-10-03 (sin subgrupo separable); era un ECA con RoB 2, 6 celdas menos.
 # CUARTA, 2026-10-06: EST-045, EST-059 y EST-173 salen con NOREC (idioma no
 # verificable sin el articulo). Sin texto ni datos: no tocan la Tabla 5.
+# QUINTA, 2026-10-07: los dos autores firmaron el 2026-10-06 excluir todo
+# estudio sin el PDF del articulo completo (NOPDF, 63 estudios: 21 sin
+# texto y 42 fichas de registro). Ocho de las diecisiete se mueven: el
+# corpus pasa de 128 a 65 y deja de haber fichas sin publicacion.
 def main():
     corpus = leer(RS / "cribado" / "screening_corpus_all.csv")
     grupos = leer(RS / "cribado" / "study_groups.csv")
@@ -147,18 +151,18 @@ def main():
           "de los %d informes" % len(grupos),
           "study_groups.csv, valores distintos de la columna estudio",
           "%d informes agrupados en %d estudios" % (len(grupos), len(estudios)))
-    cifra("Estudios incluidos", 128, len(vivos), "estudios",
+    cifra("Estudios incluidos", 65, len(vivos), "estudios",
           "de los %d evaluados" % len(estudios),
           "study_groups.csv menos exclusiones_tras_texto_completo.csv",
           "%d − %d excluidos = %d" % (len(estudios), len(excl), len(vivos)))
-    cifra("Informes de los estudios incluidos", 161,
+    cifra("Informes de los estudios incluidos", 80,
           sum(len(v) for v in vivos.values()), "informes",
           "de los %d informes evaluados" % len(grupos),
           "study_groups.csv, filas cuyo estudio no está excluido",
           "%d − %d informes de estudios excluidos = %d"
           % (len(grupos), len(grupos) - sum(len(v) for v in vivos.values()),
              sum(len(v) for v in vivos.values())))
-    cifra("Estudios con publicación recuperable", 86, len(extraibles), "estudios",
+    cifra("Estudios con publicación recuperable", 65, len(extraibles), "estudios",
           "de los %d incluidos" % len(vivos),
           "study_groups.csv, situación «extraible» o «solo-resumen» del informe designado",
           "%d de %d; los otros %d son solo ficha de registro"
@@ -170,7 +174,7 @@ def main():
           "%d de %d recuperables = %.1f %%"
           % (len([e for e in vivos if e in pdfs]), len(extraibles),
              100.0 * len([e for e in vivos if e in pdfs]) / len(extraibles)))
-    cifra("Estudios solo con ficha de registro", 42, len(solo_registro), "estudios",
+    cifra("Estudios solo con ficha de registro", 0, len(solo_registro), "estudios",
           "de los %d incluidos" % len(vivos),
           "study_groups.csv, estudios cuyos informes son todos ficha de registro",
           "%d + %d recuperables = %d incluidos"
@@ -181,7 +185,7 @@ def main():
           "cuaderno A %d filas, cuaderno B %d filas, en común %d; es un recuento "
           "histórico e incluye estudios excluidos después"
           % (conc["filas_a"], conc["filas_b"], conc["filas_comparadas"]))
-    cifra("Brazos extraídos", 94, len(brazos_vivos), "brazos",
+    cifra("Brazos extraídos", 73, len(brazos_vivos), "brazos",
           "de los %d estudios incluidos" % len(vivos),
           "extraccion_adjudicada.csv menos los estudios excluidos",
           "%d filas adjudicadas − %d de estudios excluidos después = %d"
@@ -192,7 +196,7 @@ def main():
           "extraccion_adjudicada.csv cruzado con las carpetas de texto",
           "%d de %d brazos pertenecen a estudios con texto"
           % (len([r for r in brazos_vivos if r["study_id"] in pdfs]), len(brazos_vivos)))
-    cifra("Estudios con diseño comparativo", 12, len(comparativos), "estudios",
+    cifra("Estudios con diseño comparativo", 9, len(comparativos), "estudios",
           "de los %d incluidos" % len(vivos),
           "extraccion_adjudicada.csv, diseño adjudicado; regla firmada el 2026-09-16",
           "estudios con al menos un brazo de diseño %s = %d"
@@ -202,13 +206,13 @@ def main():
           "los comparativos cuyo estudio tiene texto completo",
           "%d − %d sin texto (%s) = %d"
           % (len(comparativos), len(sin_texto), ", ".join(sin_texto), len(evaluables)))
-    cifra("Ensayos en la Tabla 2", 7,
+    cifra("Ensayos en la Tabla 2", 2,
           sum(1 for r in pre if r["id_provisional"] in vivos
               and r["id_provisional"] in extraibles and r["study_design"] in ENSAYOS),
           "estudios", "de los %d recuperables" % len(extraibles),
           "pre_extraccion_desde_resumen.csv, diseño DECLARADO en el resumen",
           "criterio distinto del anterior: clasifica por el resumen y no cuenta cohortes")
-    cifra("Brazos con diseño comparativo", 15, len(brazos_comp), "brazos",
+    cifra("Brazos con diseño comparativo", 12, len(brazos_comp), "brazos",
           "de los %d brazos extraídos" % len(brazos_vivos),
           "extraccion_adjudicada.csv, brazos cuyo diseño es comparativo",
           "%d brazos aportados por los %d estudios comparativos"

@@ -194,9 +194,16 @@ def main():
     # registro se juzgo sobre la ficha, y uno extraible sobre su publicacion.
     _sit = {"EST-%03d" % int(g["estudio"]): g["situacion"] for g in grupos
             if g["informe_para_extraer"] == "SI"}
-    _pub = [r for r in excl_ft.values() if _sit.get(r["study_id"]) != "solo-registro"]
+    # Las 63 del criterio del texto completo (NOPDF, 2026-10-06) son una
+    # categoria propia: no se juzgaron ni sobre la publicacion ni sobre la
+    # ficha, sino por no tener el PDF del articulo. Meterlas en las otras dos
+    # casillas falseaba las dos.
+    _nopdf = {e for e, r in excl_ft.items() if r["codigo"] == "NOPDF"}
+    S["estudios_antes_de_nopdf"] = len(reps) + len(_nopdf)
+    _pub = [r for r in excl_ft.values() if _sit.get(r["study_id"]) != "solo-registro"
+            and r["codigo"] != "NOPDF"]
     S["excluidos_por_publicacion"] = len(_pub)
-    S["excluidos_por_ficha_de_registro"] = len(FUERA) - len(_pub)
+    S["excluidos_por_ficha_de_registro"] = len(FUERA) - len(_pub) - len(_nopdf)
     # De los juzgados sobre su publicacion, los que salieron de LEER el
     # articulo: los demas salieron por idioma (se ve en la pagina del editor)
     # o por no haberse podido leer ninguno.
@@ -250,6 +257,12 @@ def main():
     # prospectivas...»-- los llevaba TECLEADOS: al salir EST-063 del corpus el
     # «4 ensayos no aleatorizados» paso a ser 3 y nada fallo. Con nombre propio
     # los puede anclar `check_manuscript_claims.py`.
+    # Los disenos del vocabulario existen SIEMPRE, aunque valgan 0: al salir
+    # el ultimo ensayo no aleatorizado (2026-10-06) el escalar desaparecia y
+    # el sincronizador se caia con KeyError en vez de decir que la frase dice 1.
+    for _d in ("case report", "case series", "prospective cohort", "retrospective cohort",
+               "RCT", "non-randomised trial", "other", "no declarado"):
+        S["diseno_" + _d.replace(" ", "_").replace("-", "_")] = 0
     for _d, _n in disenos.items():
         S["diseno_" + _d.replace(" ", "_").replace("-", "_")] = _n
     comp = {k for k in extraibles
@@ -312,6 +325,17 @@ def main():
              if (pre.get(k, {}).get("publication_year") or "").isdigit()]
     S["anio_min"] = min(anios) if anios else None
     S["anio_max"] = max(anios) if anios else None
+    # LA VENTANA DE BUSQUEDA NO ES EL RECORRIDO DEL CORPUS. anio_min es el
+    # estudio mas antiguo que QUEDA; la ventana es el filtro que se aplico en
+    # la busqueda. Coincidian por azar hasta el 2026-10-06, cuando el corpus
+    # perdio su unico estudio de 2016 y la Tabla 1 y el resumen pasaron a
+    # decir «2017-2026» como criterio de elegibilidad. Se lee del filtro que
+    # ejecuto la consulta de PubMed.
+    _w = re.search(r'WINDOW\s*=\s*\'\("(\d{4})"\[dp\]\s*:\s*"(\d{4})"\[dp\]\)\'',
+                   (ROOT / "scripts" / "fetch_screening_corpus.py").read_text(encoding="utf-8"))
+    if not _w:
+        raise SystemExit("no encuentro la ventana de busqueda en fetch_screening_corpus.py")
+    S["ventana_desde"], S["ventana_hasta"] = int(_w.group(1)), int(_w.group(2))
     S["publicados_desde_2020"] = sum(1 for a in anios if a >= 2020)
     S["publicados_desde_2020_pct"] = round(
         100.0 * sum(1 for a in anios if a >= 2020) / len(anios), 1) if anios else 0
@@ -435,7 +459,7 @@ def main():
     if p_reg.exists():
         with open(p_reg, encoding="utf-8-sig", newline="") as fh:
             verificados = {r["study_id"] for r in csv.DictReader(fh)}
-    sobre_ficha = (FUERA - leidos) & verificados
+    sobre_ficha = (FUERA - leidos - _nopdf) & verificados
     S["excluidos_sobre_la_ficha_de_registro"] = len(sobre_ficha)
     if p_reg.exists():
         with open(p_reg, encoding="utf-8-sig", newline="") as fh:
@@ -445,7 +469,7 @@ def main():
         S["registros_organismo_cumple"] = vered.get("CUMPLE", 0)
         S["registros_organismo_no_cumple"] = vered.get("NO CUMPLE", 0)
         S["registros_organismo_indeterminado"] = vered.get("INDETERMINADO", 0)
-    S["excluidos_sin_poder_leer_nada"] = len(FUERA - leidos - sobre_ficha)
+    S["excluidos_sin_poder_leer_nada"] = len(FUERA - leidos - sobre_ficha - _nopdf)
     # Se conserva el nombre antiguo: es lo que NO se pudo leer en absoluto.
     S["excluidos_sin_texto_completo"] = S["excluidos_sin_poder_leer_nada"]
 
@@ -462,6 +486,43 @@ def main():
     S["ecas_si_se_excluye_lo_no_recuperado"] = sum(
         1 for k in extraibles - sin_texto
         if (pre.get(k, {}).get("study_design") or "") == "RCT")
+
+    # ---- EL CRITERIO DEL TEXTO COMPLETO, MEDIDO COMO EFECTO ----------------
+    # Desde el 2026-10-06 (NOREC ampliado como NOPDF, firmado por los dos) el
+    # corpus solo admite estudios con el PDF del articulo completo, y la
+    # recuperacion es del 100 % por construccion. Lo que antes media el sesgo
+    # de recuperacion --que disenos faltan-- se mide ahora sobre lo que el
+    # criterio excluye. Los autores pidieron declararlo asi, no quitarlo.
+    _cod = {e: r["codigo"] for e, r in excl_ft.items()}
+    _sit = {"EST-%03d" % int(g["estudio"]): g["situacion"] for g in grupos
+            if g["informe_para_extraer"] == "SI"}
+    _sin = {e for e, c in _cod.items() if c in ("NOREC", "NOPDF")}
+    _art = {e for e in _sin if _sit.get(e) in ("extraible", "solo-resumen")}
+    _fic = {e for e in _sin if _sit.get(e) == "solo-registro"}
+    S["criterio_texto_excluidos"] = len(_sin)
+    S["criterio_texto_articulos"] = len(_art)
+    S["criterio_texto_fichas"] = len(_fic)
+    _comp_fuera = {e for e in _art if pre.get(e, {}).get("study_design") in COMPARATIVOS}
+    S["criterio_texto_comparativos"] = len(_comp_fuera)
+    S["criterio_texto_ecas"] = sum(1 for e in _art
+                                   if pre.get(e, {}).get("study_design") == "RCT")
+    _comp_total = len(comp) + len(_comp_fuera)
+    S["criterio_texto_comparativos_pct"] = (round(100.0 * len(_comp_fuera) / _comp_total, 1)
+                                            if _comp_total else 0.0)
+    S["criterio_texto_comparativos_antes"] = _comp_total
+    S["criterio_texto_ecas_antes"] = S["ecas"] + S["criterio_texto_ecas"]
+    S["criterio_texto_pacientes"] = sum(n_de(k) for k in _art)
+    # El desglose de los NOPDF que da la seccion 3.1.1: articulos cuyo texto
+    # no se obtuvo, de ellos los que solo existen como resumen de congreso, y
+    # fichas de registro. NOREC (los 4 anteriores) va aparte.
+    _np = {e for e, c in _cod.items() if c == "NOPDF"}
+    S["criterio_texto_nopdf_articulos"] = len(_np & _art)
+    S["criterio_texto_nopdf_resumenes"] = sum(1 for e in _np & _art
+                                              if _sit.get(e) == "solo-resumen")
+    S["criterio_texto_nopdf_fichas"] = len(_np & _fic)
+    # Lo que salio por no cumplir los criterios, juzgado sobre el articulo o
+    # sobre la ficha: todo lo excluido tras el cribado menos NOPDF.
+    S["excluidos_por_criterios"] = len(FUERA - _np)
 
     S["comparativos_perdidos_por_idioma"] = (
         S["comparativos_antes_de_la_enmienda"] - comp_antes)
@@ -596,6 +657,18 @@ def main():
         S["extraccion_categoricos_total"] = C["categoricos_total"]
         pct = 100.0 * C["estudios_ambos"] / max(1, C["estudios_a"])
         S["extraccion_doble_pct"] = "%.0f" % pct
+    # El 98 % es de los 124 extraidos. Del corpus vigente se cuenta aparte:
+    # un estudio tiene doble extraccion si alguna casilla suya salio de
+    # acuerdo o de consenso entre los dos, no de una sola lectura.
+    proc = RS / "extraccion" / "extraccion_adjudicada_procedencia.csv"
+    if proc.exists():
+        dobles = set()
+        for r in leer(proc):
+            if r["study_id"] in reps and any(
+                    v in ("acuerdo", "consenso") for k, v in r.items()
+                    if k not in ("study_id", "arm_id")):
+                dobles.add(r["study_id"])
+        S["extraccion_doble_corpus"] = len(dobles)
 
     # Cuantos desacuerdos llegaron a firmarse. Se lee del CSV y no del JSON de
     # concordancia: el comparador reescribe ese fichero con las columnas de
@@ -631,6 +704,16 @@ def main():
         S["validacion_ic_sup_pct"] = "%.2f" % R["ic95_superior_pct"]
         S["validacion_cota_estudios"] = R["extrapolacion_marco_cota_superior"]
         S["validacion_primera_pasada_incluidos"] = V["primera_pasada"]["incluidos"]
+
+    # ---- la recuperacion ANTES del criterio del texto completo ---------------
+    # Con NOPDF la tasa del corpus es del 100 % por construccion y no mide
+    # nada. La que si mide la recuperacion es la de justo antes: los estudios
+    # con articulo o resumen que habia el 2026-10-06 (los 65 de hoy y los
+    # NOPDF que no eran fichas de registro).
+    base = S["estudios_extraibles"] + S["criterio_texto_nopdf_articulos"]
+    S["texto_completo_antes_de_nopdf_base"] = base
+    S["texto_completo_antes_de_nopdf_pct"] = (
+        round(100.0 * S["texto_completo_obtenido"] / base, 1) if base else 0.0)
 
     # ---- salida -------------------------------------------------------------
     sal = ROOT / "quality_reports" / "synthesis_scalars.json"

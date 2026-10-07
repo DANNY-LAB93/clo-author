@@ -92,6 +92,20 @@ CODES = {
     # Ver quality_reports/decisions/2026-09-14_diez-exclusiones-firmadas-y-un-codigo-que-falta.md
     "NOORG": ("La ficha de registro no declara ningun organismo: el criterio de "
               "P. aeruginosa no se puede verificar ni a favor ni en contra"),
+    # DUODECIMO CODIGO, PROPUESTO EL 2026-10-06 POR D. VALDIVIEZO. TERCERA
+    # ENMIENDA al protocolo: solo se admiten estudios con el PDF del articulo
+    # completo accesible. Saca a los que tienen articulo pero no se obtuvo, a
+    # los resumenes de congreso y a las fichas de registro sin articulo.
+    #
+    # Es NOREC generalizado, que la nota 4 de CLAUDE.md desaconsejaba: deja la
+    # recuperacion en 100 % por construccion. Los autores lo decidieron
+    # sabiendolo, y el sesgo de recuperacion se declara como efecto del
+    # criterio (que disenos se pierden), no se esconde. FIRMADO por los dos el
+    # 2026-10-06 en FIRMAR_texto_completo_2026-10-06.xlsx y aplicado a 63
+    # estudios. En el manuscrito es la ampliacion de la segunda enmienda
+    # (NOREC), con su fecha: NO se presenta como parte del protocolo inicial.
+    "NOPDF": ("Sin PDF del articulo completo con acceso: el texto no se obtuvo, o el "
+              "estudio solo existe como resumen de congreso o ficha de registro"),
 }
 
 # Patrones que mapean el texto libre ya registrado a su codigo. Se evaluan en

@@ -7,18 +7,22 @@ encabezaba cada fila con su dominio PICO: los criterios describen QUE ARTICULOS
 entran y cuales no, no la pregunta PICO. Cada fila es ahora una frase sobre el
 documento.
 
-FICHAS DE REGISTRO Y RESUMENES DE CONGRESO. La tabla anterior no decia nada de
-ellos, y sin embargo 60 de los 155 estudios del corpus existen unicamente como
-ficha de registro de ensayo y 3 solo como resumen de congreso: 63 de 155,
-admitidos de hecho pero no declarados en ningun criterio. Se declara ahora.
+FICHAS DE REGISTRO Y RESUMENES DE CONGRESO. Hasta el 2026-10-06 entraban por
+una fila de inclusion propia ("contabilizados como estudios identificados aunque
+no aporten resultados"): 42 fichas de registro y 3 resumenes llegaron a ser 45
+de los 128 estudios. Ese dia los dos autores firmaron excluir todo estudio sin
+el PDF del articulo completo con acceso (codigo NOPDF, 63 estudios), y la fila
+de inclusion desaparece: una ficha de registro o un resumen de congreso caen
+ahora en la fila de exclusion de NOREC/NOPDF. La fecha del criterio NO va en
+esta tabla --ninguna fila lleva marca, tampoco IDI ni NOREC, que tambien fueron
+enmiendas--: la da la seccion 2.9 del manuscrito, con su efecto medido. D.V.
+pidio presentarlo como criterio del protocolo inicial y no se hace: se decidio
+con el cribado y la extraccion terminados, y el registro de decision fechado
+viaja con el manuscrito.
 
 No confundir esa fila con el codigo PRO. PRO excluye ARTICULOS DE PROTOCOLO
 publicados en revista (EST-035, EST-052, EST-083, EST-122; el de CYPHY tiene 223
-ocurrencias de "will be"), que son un informe que anuncia lo que se hara. Una
-ficha de registro es otra cosa: es el rastro del ensayo en la corriente de
-registros que PRISMA 2020 obliga a separar, y se contabiliza como estudio
-identificado aunque no aporte resultados. Las dos filas lo dicen expresamente,
-porque juntas parecen contradecirse.
+ocurrencias de "will be"), que son un informe que anuncia lo que se hara.
 
 LOS CODIGOS NO SE IMPRIMEN. Cada motivo de exclusion lleva en el codigo fuente su
 codigo del vocabulario cerrado (`scripts/exclusion_codes.py`) --ORG, VET, LAB...
@@ -65,7 +69,9 @@ def ventana():
     d = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
                    .read_text(encoding="utf-8"))
     d = d.get("escalares", d)
-    return d["anio_min"], d["anio_max"]
+    # La ventana de BUSQUEDA (el filtro que se aplico), no el estudio mas
+    # antiguo del corpus: el criterio describe la busqueda.
+    return d["ventana_desde"], d["ventana_hasta"]
 
 
 def filas():
@@ -90,9 +96,8 @@ def filas():
         "Artículos que informen al menos uno de los desenlaces de interés: éxito "
         "clínico, erradicación microbiológica, mortalidad, eventos adversos o "
         "emergencia de resistencia al fago.",
-        "Fichas de registro de ensayos clínicos y resúmenes de congreso que cumplan "
-        "lo anterior, contabilizados como estudios identificados aunque no aporten "
-        "resultados publicados.",
+        "Artículos con el texto completo disponible en PDF, sobre el que se "
+        "verifican todos los criterios anteriores.",
     ]
     exclusion = [
         ("Artículos publicados fuera del período de estudio.", None),
@@ -111,8 +116,11 @@ def filas():
          "endolisinas u otros derivados administrados sin la partícula viral.", "INT"),
         ("Artículos de protocolo publicados en revista, que declaran lo que se hará "
          "sin presentar resultados.", "PRO"),
-        ("Estudios cuyo texto completo no se pudo recuperar, de modo que los "
-         "criterios no pudieron verificarse contra el artículo.", "NOREC"),
+        # NOREC (2026-09-02) y su ampliacion NOPDF (2026-10-06) son una sola
+        # regla vista desde el lector: sin el articulo completo, fuera.
+        ("Estudios sin el texto completo del artículo en PDF: no recuperado, o "
+         "disponible solo como resumen de congreso o ficha de registro de "
+         "ensayo clínico.", "NOREC/NOPDF"),
     ]
     # El codigo NO se imprime: D.V. lo quito de la tabla el 2026-09-03. Se
     # conserva junto a cada motivo porque es lo que ata esta fila con el recuento

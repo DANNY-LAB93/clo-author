@@ -58,39 +58,28 @@ AFIRMACIONES = [
     (EN, "**{letras_excluidos_texto_completo_NOREC}** left, finally, under **NOREC**"),
     (ES, "Los {excluidos_por_publicacion} anteriores se juzgaron sobre su publicación"),
     (EN, "The earlier {excluidos_por_publicacion} were judged on their publication"),
-    (ES, "los {sin_texto_completo_total} estudios sin texto completo no se han podido comprobar contra nada"),
-    (EN, "the {sin_texto_completo_total} studies without full text could not be checked against anything"),
     # ---- NOREC, 2026-10-06: el «1 estudio» iba tecleado
     (ES, "Su efecto medido: excluye **{excluidos_texto_completo_NOREC} estudios**"),
     (EN, "Its measured effect: it excludes **{excluidos_texto_completo_NOREC} studies**"),
     (JSR, "Se aplicó a **{excluidos_texto_completo_NOREC} estudios**"),
     # ---- 2026-10-06: procedencia (la escribe escribe_procedencia.py) y dos sueltas
     (EN, "of the {procedencia_declarada} studies that state their origin, {procedencia_europa_este} are from Russia, Poland, Georgia or Ukraine"),
-    (JSR, "sobre los {desenlace_brazos_legibles} brazos legibles las cifras suben"),
     (ES, "No consta en {procedencia_no_declarada} de los {estudios_extraibles} estudios"),
     (EN, "It is not stated in {procedencia_no_declarada} of the {estudios_extraibles} studies"),
     (ES, "—de {rusos_antes_de_la_enmienda} estudios a"),
     (EN, "from {rusos_antes_de_la_enmienda} studies to"),
-    (ES, "en {desenlace_diseno_no_clasificable} de los {desenlace_brazos} brazos no puede clasificarse —los dos revisores acordaron «NA» en los {desenlace_diseno_na_acordado}—, de modo que los recuentos por diseño son suelos sobre los {desenlace_brazos_con_diseno} restantes. De esos {desenlace_brazos_con_diseno}, **{desenlace_brazos_ensayo} brazos son ensayos**"),
-    (EN, "in {desenlace_diseno_no_clasificable} of the {desenlace_brazos} arms it cannot be classified — the two reviewers agreed on \"NA\" in all {desenlace_diseno_na_acordado} — so the design counts are floors over the remaining {desenlace_brazos_con_diseno}. Of those {desenlace_brazos_con_diseno}, **{desenlace_brazos_ensayo} arms are trials**"),
-    (EN, "That 42 of {estudios} studies are registry entries"),
     (EN, "Table 5 summarises it over the {desenlace_brazos} extracted arms."),
-    (EN, "Those percentages are computed over all {desenlace_brazos} arms"),
-    (JSR, "En {definicion_establecido_que_no_define} de ellos los revisores lo establecieron leyendo el artículo: {definicion_sin_definicion_declarada} declaran"),
     # ---- 2026-10-03: frases que solo pasaban por coincidencia (nota 16)
-    (EN, "Single case reports, {casos_unicos_pct} %; comparative, {estudios_comparativos_pct} %; resistance class unassignable, {sin_clase_util_pct} %. Full text was obtained for {texto_completo_obtenido} ({texto_completo_pct} %)"),
-    (EN, "the {texto_completo_pct} % figure coexists with an exclusion"),
-    (EN, "**{estudios_excluidos_tras_texto_completo} of them left the corpus** and were excluded; the next subsection details them. The evidence base stands at **{estudios} studies**, grouping {informes_agrupados} reports: {estudios_un_solo_informe} with a single report and {estudios_multiinforme} with several"),
-    (EN, "These {excluidos_entre_los_leidos} are the other side of that limitation, and they are **{excluidos_tras_texto_completo_pct} %** of the {estudios_leidos_a_texto_completo} studies whose full text could be read"),
-    (EN, "Of the {estudios} studies, **{estudios_extraibles} have a retrievable publication**: {estudios_con_articulo} articles and {estudios_solo_resumen} that exist only as conference abstracts"),
+    (EN, "These {excluidos_entre_los_leidos} are the other side of that limitation"),
+    (EN, "and they are **{excluidos_tras_texto_completo_pct} %** of the {estudios_leidos_a_texto_completo} studies whose full text could be read"),
     (EN, "**Route of administration** is not stated in **{sin_via_de_administracion_pct} %**"),
     (EN, "or is mixed with a separable subgroup, is not stated in **{sin_ambito_de_patogeno_pct} %**"),
     (EN, "(difficult-to-treat resistance) is not stated in **{sin_criterio_dtr_pct} %**"),
-    (EN, "Over the {desenlace_brazos_legibles} readable arms the figures rise — from {desenlace_adverse_event_n_pct_de_los_brazos} % to {desenlace_adverse_event_n_pct_de_los_legibles} % for adverse events, from {desenlace_resistance_emergence_n_pct_de_los_brazos} % to {desenlace_resistance_emergence_n_pct_de_los_legibles} % for resistance"),
     (EN, "That {desenlace_clinical_success_n_pct_de_los_brazos} % is misleading"),
     (ES, "El cumplimiento del criterio **DTR** (*difficult-to-treat resistance*) no consta en el **{sin_criterio_dtr_pct} %**"),
     (JSR, "El cumplimiento del criterio **DTR** no consta en el **{sin_criterio_dtr_pct} %**"),
     (ES, "Estos {excluidos_entre_los_leidos} son la otra cara de esa limitación"),
+    (ES, "y son el **{excluidos_tras_texto_completo_pct} %** de los {estudios_leidos_a_texto_completo} estudios cuyo texto completo se pudo leer"),
     # ---- las decisiones firmadas el 2026-10-01 sobre la lectura del 30-sep
     (ES, "Los otros {bajo_umbral_estudio_entero} —{lista_bajo_umbral_estudio_entero_ids}— son estudios de un solo brazo cuyo único paciente no es multirresistente. {lista_bajo_umbral_mantenidos_22sep_ids} se mantienen en el corpus por decisión firmada de los dos autores el 22 de septiembre de 2026, y {lista_bajo_umbral_mantenidos_01oct_ids}, que quedaron por debajo del umbral"),
     (ES, "y {lista_bajo_umbral_mantenidos_03oct_ids}, que pasó por debajo del umbral al resolverse su clase ese mismo día, por la firmada el 3 de octubre"),
@@ -153,21 +142,15 @@ AFIRMACIONES = [
     # porque esos valores existen en los escalares con otro significado, y el
     # sincronizador no las tocaba porque ninguna ancla las nombraba. Salieron
     # todas a la vez el 2026-09-22, al bajar el corpus a 136.
-    (JSR, "los {estudios_excluidos_tras_texto_completo} estudios detectados después, en la fase de texto completo"),
-    (JSR, "las {estudios_excluidos_tras_texto_completo} exclusiones detectadas en la fase de texto completo"),
     (JSR, "El examen se hizo sobre los {texto_completo_obtenido} textos completos"),
     (JSR, "procedencia geográfica de los {estudios_extraibles} estudios con publicación recuperable"),
-    (JSR, "(n = {estudios_extraibles} estudios recuperables, de los que {texto_completo_obtenido} tienen texto obtenido)"),
     (JSR, "{comparativos_un_brazo} + {brazos_del_comparativo_mayor} son los {desenlace_brazos_comparativos} brazos comparativos"),
     (ES, "—{estudios_extraibles} tras las exclusiones de la sección 3.1.1—"),
     (ES, "desde el resumen de los {estudios_extraibles} estudios vigentes"),
-    (ES, "sin los {estudios_excluidos_tras_texto_completo} que salieron después"),
     # Dos veces: en Metodos y en la descripcion de S4, que ahora genera
     # `build_lista_anexos.py`.
     (ES, "desde el resumen de los {estudios_extraibles} estudios con publicación recuperable", 2),
-    (EN, "and without the {estudios_excluidos_tras_texto_completo} that later left"),
-    (EN, "The result is {estudios} studies against the dozens handled by published reviews, and would have been {estudios_antes_de_la_enmienda} without the language restriction"),
-    (EN, "of the {desenlace_brazos} arms of this literature, **not one meets both the arithmetic conditions"),
+    (EN, "of the {desenlace_brazos} arms of this literature, **not one meets at once the arithmetic conditions"),
     (EN, "**{casos_unicos} single case reports ({casos_unicos_pct} %)**, {diseno_case_series} case series, {diseno_prospective_cohort} prospective cohorts, {diseno_RCT} randomised trials, {diseno_non_randomised_trial} non-randomised trials and {diseno_retrospective_cohort} retrospective cohorts"),
     (EN, "A further {diseno_no_declarado} do not state a recognisable design in the abstract"),
     (EN, "Comparative designs total **{estudios_comparativos} studies, {estudios_comparativos_pct} %** of the whole"),
@@ -222,9 +205,7 @@ AFIRMACIONES = [
     # manuscrito de la revista NO lo escribe `build_manuscript_tables.py`
     # --ese numera las tablas de otra manera-- y por eso seguia en 103.
     (ES, "de los {desenlace_brazos} brazos de esta literatura, **ninguno reúne a la vez"),
-    (ES, "Que {estudios_solo_registro} de {estudios} estudios sean fichas de registro"),
     (JSR, "Completitud de reporte de los cinco desenlaces declarados (n = {desenlace_brazos} brazos)"),
-    (JSR, "que {estudios_solo_registro} de {estudios} estudios identificados no han publicado resultados"),
     # La composicion por diseno iba entera tecleada, y el «4 ensayos no
     # aleatorizados» se volvio falso al salir EST-063. Ahora cada diseno tiene
     # su escalar.
@@ -236,15 +217,10 @@ AFIRMACIONES = [
     (ES, "Otros {diseno_no_declarado} no declaran su diseño de forma reconocible en el resumen"),
     (JSR, "Otros {diseno_no_declarado} no declaran su diseño de forma reconocible en el resumen"),
     # Las que quedaban sueltas por el corpus.
-    (ES, "la cifra del {texto_completo_pct} % convive con una exclusión"),
     (ES, "La tabla 5 lo resume sobre los {desenlace_brazos} brazos del corpus vigente"),
-    (ES, "Esos porcentajes se calculan sobre los {desenlace_brazos} brazos, e incluyen por tanto {desenlace_brazos_sin_texto_completo} de estudios"),
-    (JSR, "Esos porcentajes se calculan sobre los {desenlace_brazos} brazos extraídos"),
     (JSR, "el embudo que importa para esa pregunta parte de los {desenlace_brazos} brazos"),
-    (ES, "El resultado son {estudios} estudios frente a las decenas"),
     (JSR, "impide leer el corpus como {estudios} conjuntos disjuntos de pacientes"),
     (JSR, "no puede considerarse fiable, porque la categoría no puede asignarse en el **{sin_clase_util_pct} %** de los estudios"),
-    (JSR, "se obtuvo el texto completo del {texto_completo_pct} % de los estudios recuperables"),
 
     # ---- Anadido el 2026-09-22, al ingerir las nueve firmas de la auditoria.
     # Estas frases llevaban cifras que NINGUNA ancla vigilaba: la exclusion de
@@ -266,14 +242,10 @@ AFIRMACIONES = [
     (JSR, "consta con numerador y denominador en el **{desenlace_clinical_success_n_pct_de_los_brazos} %** de los brazos"),
     (ES, "Ese {desenlace_clinical_success_n_pct_de_los_brazos} % es, sin embargo, engañoso"),
     (JSR, "Ese {desenlace_clinical_success_n_pct_de_los_brazos} % es engañoso"),
-    (ES, "Se obtuvo el texto completo de **{texto_completo_obtenido} de los {estudios_extraibles} estudios recuperables ({texto_completo_pct} %)**"),
-    (JSR, "Se obtuvo el texto completo de {texto_completo_obtenido} de los {estudios_extraibles} estudios recuperables ({texto_completo_pct} %)"),
     (ES, "Casos únicos, {casos_unicos_pct} %; comparativos, {estudios_comparativos_pct} %; sin clase de resistencia asignable, {sin_clase_util_pct} %"),
-    (JSR, "{estudios_solo_registro} de los {estudios} identificados existen únicamente como registro"),
     (ES, "solo {desenlace_brazos_agregables_exito_clinico} de los {desenlace_brazos} brazos reúnen los requisitos mínimos para agregar"),
     (ES, "**En {definicion_sin_definicion_operativa} de los {desenlace_brazos} brazos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
     (JSR, "**En {definicion_sin_definicion_operativa} de {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
-    (ES, "De los {estudios} estudios, **{estudios_extraibles} tienen publicación recuperable**: {estudios_con_articulo} artículos"),
     # ---- La busqueda SI llevo ventana 2016-2026 (PubMed "2016"[dp]:"2026"[dp],
     # Scopus PUBYEAR, CENTRAL). El manuscrito lo decia al reves hasta el
     # 2026-08-23; ahora la ventana se declara en Metodos y en Limitaciones como
@@ -295,10 +267,8 @@ AFIRMACIONES = [
     # ---- doble extraccion. Se ancla entera porque el "98" anterior estaba
     # tecleado y sobrevivio sin avisar a que la segunda revisora pasara de 98 a
     # 122 estudios: el comprobador daba 37 de 37 con una cifra obsoleta dentro.
-    (ES, "el segundo extrajo {extraccion_estudios_r2} de ellos, de modo que el {extraccion_doble_pct} % del corpus tiene doble extracción"),
     (ES, "Sobre las {extraccion_filas_comparadas} filas de brazo comparables se registraron {extraccion_desacuerdos} desacuerdos de valor"),
     (ES, "fue del {extraccion_acuerdo_mediano_pct} % de acuerdo mediano y una kappa de Cohen mediana de {extraccion_kappa_mediana} sobre los {extraccion_kappas_informativas} de {extraccion_categoricos_total} campos categóricos en que resulta informativa, con un recorrido del {extraccion_acuerdo_min_pct} % al {extraccion_acuerdo_max_pct} %"),
-    (EN, "the second extracted {extraccion_estudios_r2} of them, so {extraccion_doble_pct} % of the corpus is double-extracted"),
     (EN, "Over the {extraccion_filas_comparadas} comparable arm rows, {extraccion_desacuerdos} value disagreements were recorded"),
     (EN, "was {extraccion_acuerdo_mediano_pct} % median agreement and a median Cohen's kappa of {extraccion_kappa_mediana} over the {extraccion_kappas_informativas} of {extraccion_categoricos_total} categorical fields where it is informative, ranging from {extraccion_acuerdo_min_pct} % to {extraccion_acuerdo_max_pct} %"),
 
@@ -325,20 +295,10 @@ AFIRMACIONES = [
     # El 60 estaba escrito a mano DENTRO del anclaje, asi que el comprobador
     # vigilaba una cifra y dejaba envejecer la de al lado. Ahora las dos son
     # escalares.
-    (ES, "En {definicion_establecido_que_no_define} de ellos los revisores lo establecieron leyendo el artículo: {definicion_sin_definicion_declarada} "),
-    (ES, "En los {definicion_extraccion_incompleta} restantes la extracción quedó incompleta"),
-    (ES, "en {desenlace_diseno_no_clasificable} de los {desenlace_brazos} brazos no puede clasificarse"),
-    (ES, "De esos {desenlace_brazos_con_diseno}, **{desenlace_brazos_ensayo} brazos son ensayos**"),
     (ES, "**{desenlace_brazos_cohorte} son cohortes**"),
     (ES, "y son {desenlace_brazos_comparativos} brazos"),
-    (ES, "sobre los {desenlace_brazos_legibles} brazos legibles, en {definicion_sin_definicion_en_legibles} ({definicion_sin_definicion_legibles_pct} %)"),
-    (EN, "In {definicion_establecido_que_no_define} of them the reviewers established this by reading the article: {definicion_sin_definicion_declarada} "),
-    (EN, "In the remaining {definicion_extraccion_incompleta} the extraction is incomplete"),
-    (EN, "in {desenlace_diseno_no_clasificable} of the {desenlace_brazos} arms it cannot be classified"),
-    (EN, "Of those {desenlace_brazos_con_diseno}, **{desenlace_brazos_ensayo} arms are trials**"),
     (EN, "**{desenlace_brazos_cohorte} are cohorts**"),
     (EN, "and there are {desenlace_brazos_comparativos} arms"),
-    (EN, "over the {desenlace_brazos_legibles} readable arms, in {definicion_sin_definicion_en_legibles} ({definicion_sin_definicion_legibles_pct} %)"),
     (EN, "reported with a denominator ({desenlace_adverse_event_n_pct_de_los_brazos} % of arms)"),
     (EN, "emergence of phage resistance the least ({desenlace_resistance_emergence_n_pct_de_los_brazos} %)"),
     (EN, "numerator and denominator in {desenlace_clinical_success_n_pct_de_los_brazos} % of arms"),
@@ -346,25 +306,11 @@ AFIRMACIONES = [
     (EN, "leave **{desenlace_brazos_agregables_exito_clinico} of the {desenlace_brazos} arms**"),
 
     (ES, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos"),
-    (ES, "{informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios y, al leer los textos completos, **{estudios_excluidos_tras_texto_completo} salieron del corpus**"),
-    (ES, "quedan **{estudios}**, {estudios_extraibles} con publicación recuperable."),
     (ES, "esos {informes_a_texto_completo} corresponden a **{estudios_antes_de_releer} estudios evaluados para elegibilidad**"),
-    (ES, "**{estudios_excluidos_tras_texto_completo} de ellos salieron del corpus**"),
     (ES, "queda en **{estudios} estudios**, que agrupan {informes_agrupados} informes: {estudios_un_solo_informe} con un solo informe y {estudios_multiinforme} con varios"),
     (ES, "el **{excluidos_tras_texto_completo_pct} %** de los {estudios_leidos_a_texto_completo} estudios cuyo texto completo se pudo leer"),
     (ES, "La **vía de administración** no consta en el **{sin_via_de_administracion_pct} %**"),
-    (ES, "Sobre los {desenlace_brazos_legibles} brazos legibles las cifras suben —del {desenlace_adverse_event_n_pct_de_los_brazos} % al {desenlace_adverse_event_n_pct_de_los_legibles} % en eventos adversos, del {desenlace_resistance_emergence_n_pct_de_los_brazos} % al {desenlace_resistance_emergence_n_pct_de_los_legibles} % en resistencia—"),
-    (ES, "Se obtuvo el texto completo de {texto_completo_obtenido} ({texto_completo_pct} %)"),
-    (ES, "**{texto_completo_obtenido} de los {estudios_extraibles} estudios recuperables ({texto_completo_pct} %)**"),
-    (ES, "Los {texto_completo_no_obtenido} restantes siguen sin obtenerse"),
-    (ES, "el texto completo se obtuvo para el {texto_completo_pct} % de los estudios recuperables"),
     (ES, "criterio de idioma eliminó {estudios_eliminados_por_idioma} estudios"),
-    (ES, "concentra el {comparativos_sin_texto_pct} % de los comparativos"),
-    (ES, "el corpus pasaría de {estudios} a {corpus_si_se_excluye_lo_no_recuperado} estudios, los comparativos de {estudios_comparativos} a {comparativos_si_se_excluye_lo_no_recuperado} y los ensayos aleatorizados de {ecas} a {ecas_si_se_excluye_lo_no_recuperado}**"),
-    (ES, "**ninguno de los {texto_completo_no_obtenido} tiene hoy una copia de acceso abierto**"),
-    (EN, "the corpus would fall from {estudios} to {corpus_si_se_excluye_lo_no_recuperado} studies, comparative designs from {estudios_comparativos} to {comparativos_si_se_excluye_lo_no_recuperado} and randomised trials from {ecas} to {ecas_si_se_excluye_lo_no_recuperado}**"),
-    (EN, "**none of the {texto_completo_no_obtenido} has an open-access copy today**"),
-    (ES, "Contiene {comparativos_sin_texto} de los {estudios_comparativos} estudios comparativos, el **{comparativos_sin_texto_pct} %**"),
     # La n aparece en dos leyendas, Tabla 1 y Figura 2. Se declaran las dos
     # apariciones a propósito: si un día solo se actualiza una, esto salta.
     (ES, "recuperable (n = {estudios_extraibles} estudios)", 2),
@@ -385,15 +331,7 @@ AFIRMACIONES = [
     (ES, "texto principal {palabras_cuerpo_es}."),
 
     (EN, "From {registros_identificados} records, {informes_unicos} unique reports remained"),
-    (EN, "{informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies and, on reading the full texts, **{estudios_excluidos_tras_texto_completo} left the corpus**"),
-    (EN, "leaving **{estudios}**, {estudios_extraibles} with a retrievable publication."),
-    (EN, "Full text was obtained for {texto_completo_obtenido} ({texto_completo_pct} %)"),
-    (EN, "**{texto_completo_obtenido} of the {estudios_extraibles} retrievable studies ({texto_completo_pct} %)**"),
-    (EN, "The remaining {texto_completo_no_obtenido} have not been obtained"),
-    (EN, "full text was obtained for {texto_completo_pct} % of the retrievable studies"),
     (EN, "language criterion removed {estudios_eliminados_por_idioma} studies"),
-    (EN, "concentrates {comparativos_sin_texto_pct} % of the comparative designs"),
-    (EN, "It contains {comparativos_sin_texto} of the {estudios_comparativos} comparative studies, **{comparativos_sin_texto_pct} %**"),
     (EN, "base (n = {estudios_extraibles} studies)", 2),
     (EN, "{decisiones_titulo} title decisions and {decisiones_resumen} abstract decisions"),
     (EN, "cannot be assigned in **{sin_clase_util_pct} %** of studies: {sin_clase_de_resistencia_pct} % do not mention it at all and a further {clase_mencionada_no_clasificable_pct} %"),
@@ -402,9 +340,6 @@ AFIRMACIONES = [
     # ---- El resumen del manuscrito de la revista. Es lo primero que lee un
     # editor y lo unico que leen muchos, y hasta hoy no lo cubria nada.
     (JSR, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos; {informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios evaluados para elegibilidad"),
-    (JSR, "de los que {estudios_excluidos_tras_texto_completo} se excluyeron: {excluidos_entre_los_leidos} por el artículo, {excluidos_sobre_la_ficha_de_registro} por la ficha del registro y {excluidos_sin_poder_leer_nada} sin poder leer ninguno"),
-    (JSR, "Quedan {estudios} estudios, {estudios_extraibles} con publicación recuperable y {texto_completo_obtenido} con texto obtenido ({texto_completo_pct} %)"),
-    (JSR, "De esos {estudios_extraibles}, el {casos_unicos_pct} % son reportes de caso único y el {estudios_comparativos_pct} % tiene diseño comparativo"),
     (JSR, "no puede asignarse desde el resumen en el {sin_clase_util_pct} %. En {definicion_sin_definicion_operativa} de {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
     (JSR, "con {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados"),
     # ---- La procedencia geografica venia de un corpus anterior: decia Rusia 7,
@@ -416,11 +351,9 @@ AFIRMACIONES = [
     # PRISMA 24c: las dos enmiendas y su efecto. Faltaban enteras en el
     # manuscrito de la revista, que declaraba CERO donde el maestro declara DOS.
     (JSR, "Excluyó **{estudios_eliminados_por_idioma} estudios completos** —el corpus pasó de {estudios_antes_de_la_enmienda} a {estudios_antes_de_releer}—, y la pérdida no fue uniforme: {comparativos_perdidos_por_idioma} de ellos tenían diseño comparativo y {ecas_perdidos_por_idioma} eran ensayos aleatorizados"),
-    (JSR, "extendida a los {texto_completo_no_obtenido} que siguen sin texto, el corpus caería de {estudios} a {corpus_si_se_excluye_lo_no_recuperado} estudios, los comparativos de {estudios_comparativos} a {comparativos_si_se_excluye_lo_no_recuperado} y los ensayos aleatorizados de {ecas} a {ecas_si_se_excluye_lo_no_recuperado}"),
     # El riesgo de sesgo simplificado: alcance y numero de celdas. Si manana se
     # consigue el texto del ECA que falta, o se readjudica un diseno, estas
     # frases dejan de ser ciertas y aqui salta.
-    (JSR, "identifica **{sesgo_comparativos_adjudicados} estudios con diseño comparativo**, de los cuales **{sesgo_evaluables} son evaluables**: {sesgo_instrumento_RoB2} ensayos aleatorizados con RoB 2 y {sesgo_instrumento_ROBINSI} ensayos no aleatorizados y cohortes con ROBINS-I"),
     # El recuento de juicios se ancla en el parrafo de alcance, que existe
     # tanto con la evaluacion pendiente como terminada. Estuvo anclado en el
     # aviso de PENDIENTE, que desaparece al completarse: al ingerir los 82
@@ -439,7 +372,6 @@ AFIRMACIONES = [
     # `build_rob_table.py` en vez de estar escrita a mano.
     (JSR, "Se cumple en los {sesgo_evaluables} estudios evaluados, sin excepciones"),
     # ---- lo que el articulo dice cuando el resumen calla
-    (JSR, "De los **{t3_con_texto}** estudios cuyo texto se obtuvo, **{t3_resistance_class_declarado}** declaran una categoría de resistencia asignable (**{t3_clase_declarada_pct} %**) —**{t3_clase_mdr_xdr_pdr}** en MDR, XDR o PDR y **{t3_clase_bajo_umbral}** por debajo del umbral de multirresistencia—, **{t3_resistance_class_no_clasificable}** la mencionan"),
     # ---- lo que acompana a cada juicio: cita, nota o nada
     (JSR, "De los {celdas_tabla5} juicios, **{citas_literales} se apoyan en una cita literal del artículo**, **{notas_del_revisor} en una nota metodológica escrita por los revisores** —una razón, no una cita— y **{juicios_sin_frase} no registran apoyo alguno**"),
     # ---- el solapamiento, con el examen sin terminar declarado
@@ -474,37 +406,139 @@ AFIRMACIONES = [
     # si mismo entre el resumen y los Resultados es lo primero que ve un arbitro.
     (JSR, "Agrupados por estudio, esos {informes_a_texto_completo} corresponden a "
           "**{estudios_antes_de_releer} estudios evaluados para elegibilidad**"),
-    (JSR, "De ellos se excluyeron **{estudios_excluidos_tras_texto_completo}**: "
-          "{excluidos_entre_los_leidos} tras leer el artículo, "
-          "{excluidos_sobre_la_ficha_de_registro} tras leer la ficha completa de su "
-          "registro de ensayos y {excluidos_sin_poder_leer_nada} sin poder leer "
-          "ninguno de los dos"),
     (JSR, "El cuerpo de evidencia queda en **{estudios} estudios**, que agrupan "
           "{informes_agrupados} informes: {estudios_un_solo_informe} con un solo "
           "informe y {estudios_multiinforme} con varios"),
-    (JSR, "De los {estudios} estudios, **{estudios_extraibles} tienen publicación "
-          "recuperable**: {estudios_con_articulo} artículos y {estudios_solo_resumen} "
-          "que solo existen como resumen de congreso. Los **{estudios_solo_registro} "
-          "restantes son únicamente fichas de registro de ensayo**"),
     (JSR, "Se identificaron **{registros_sin_organismo_n} fichas** en esa situación"),
-    (JSR, "El resultado son {estudios} estudios, frente a las decenas"),
-    (JSR, "Que {estudios_solo_registro} de {estudios} estudios sean fichas de registro"),
     (JSR, "Los eventos adversos son lo que más se reporta con denominador "
           "({desenlace_adverse_event_n_pct_de_los_brazos} % de los brazos)"),
     # Del resumen se ancla el trozo que sobrevive a las tres redacciones
     # --pendiente, terminada y terminada por consenso--, que es el alcance.
-    (JSR, "los {sesgo_evaluables} comparativos con texto completo (RoB 2, ROBINS-I)"),
-    (JSR, "the {sesgo_evaluables} comparative studies with full text (RoB 2, ROBINS-I)", 1, True),
     (JSR, "From {registros_identificados} records, {informes_unicos} unique reports remained; {informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies assessed for eligibility", 1, True),
-    (JSR, "of which {estudios_excluidos_tras_texto_completo} were excluded: {excluidos_entre_los_leidos} on the article, {excluidos_sobre_la_ficha_de_registro} on the registry record and {excluidos_sin_poder_leer_nada} without reading either", 1, True),
-    (JSR, "{estudios} studies remain, {estudios_extraibles} with a retrievable publication and {texto_completo_obtenido} with the text obtained ({texto_completo_pct} %)", 1, True),
-    (JSR, "Of those {estudios_extraibles}, {casos_unicos_pct} % are single case reports and {estudios_comparativos_pct} % have a comparative design", 1, True),
     (JSR, "cannot be assigned from the abstract in {sin_clase_util_pct} %. In {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
     (JSR, "with {extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements adjudicated", 1, True),
+    # ---- 2026-10-06: EL CRITERIO DEL TEXTO COMPLETO (NOPDF) ------------------
+    # El corpus dejo de tener estudios sin texto: las frases de «recuperables»,
+    # «legibles» y el contrafactual de NOREC se fueron con el, y estas atan las
+    # que las sustituyen. El criterio se declara como enmienda fechada y como
+    # efecto medido; ninguna de estas frases lo presenta como criterio inicial.
+    # -- maestro
+    (ES, "{informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios y **{estudios_excluidos_tras_texto_completo} salieron del corpus**: {excluidos_texto_completo_NOPDF} por no disponer del artículo completo —{criterio_texto_nopdf_fichas} solo existían como ficha de registro— y {excluidos_por_criterios} por no cumplir los criterios"),
+    (ES, "Quedan **{estudios}**, todos leídos a texto completo; exigirlo dejó fuera {criterio_texto_comparativos} de los {criterio_texto_comparativos_antes} estudios con diseño comparativo. Casos únicos, {casos_unicos_pct} %; comparativos, {estudios_comparativos_pct} %; sin clase de resistencia asignable, {sin_clase_util_pct} %; el criterio de idioma eliminó {estudios_eliminados_por_idioma} estudios más."),
+    (ES, "ventana {ventana_desde}–{ventana_hasta} donde la admiten"),
+    (ES, "La ventana de publicación de {ventana_desde} a {ventana_hasta} se aplicó"),
+    (ES, "Un revisor extrajo los {extraccion_estudios_r1} estudios que entonces tenían publicación recuperable —{estudios} tras las exclusiones de la sección 3.1.1—"),
+    (ES, "de modo que el {extraccion_doble_pct} % de lo extraído tiene doble extracción; de los {estudios} estudios del corpus vigente, la tienen {extraccion_doble_corpus}"),
+    (ES, "{criterio_texto_nopdf_articulos} estudios cuyo artículo no se obtuvo —{criterio_texto_nopdf_resumenes} de ellos solo existen como resumen de congreso— y {criterio_texto_nopdf_fichas} que solo existen como ficha de registro de ensayo", 2),
+    (ES, "ficha de registro de ensayo. El corpus pasó de {estudios_antes_de_nopdf} a {estudios} estudios"),
+    (ES, "Contando las dos fechas, el criterio deja fuera {criterio_texto_excluidos} estudios, y no son una muestra aleatoria: se lleva **{criterio_texto_comparativos} de los {criterio_texto_comparativos_antes} diseños comparativos ({criterio_texto_comparativos_pct} %)** y {criterio_texto_ecas} de los {criterio_texto_ecas_antes} ensayos aleatorizados"),
+    (ES, "De ellos, **{estudios_excluidos_tras_texto_completo} salieron del corpus**: {excluidos_texto_completo_NOPDF} por no disponer del PDF del artículo completo (sección 2.9) y {excluidos_por_criterios} por no cumplir los criterios de elegibilidad"),
+    (ES, "**{letras_excluidos_texto_completo_NOPDF} salieron por no disponer del artículo completo**"),
+    (ES, "Los otros {excluidos_por_criterios} salieron por no cumplir los criterios."),
+    (ES, "los {excluidos_texto_completo_NOPDF} que salieron por no disponer del artículo nunca se comprobaron contra él"),
+    (ES, "Los {excluidos_por_publicacion} anteriores se juzgaron sobre su publicación"),
+    (ES, "**{criterio_texto_nopdf_fichas} de los {estudios_antes_de_nopdf} estudios eran únicamente fichas de registro de ensayo**"),
+    (ES, "el texto se había obtenido para **{texto_completo_obtenido} de los {texto_completo_antes_de_nopdf_base} estudios con artículo o resumen ({texto_completo_antes_de_nopdf_pct} %)**. Los {criterio_texto_nopdf_articulos} restantes no se obtuvieron"),
+    (ES, "ninguno de los {criterio_texto_nopdf_articulos} tenía una copia de acceso abierto localizable: unos constan sin ella y otros, entre ellos los {criterio_texto_nopdf_resumenes} resúmenes de congreso"),
+    (ES, "Contando los {excluidos_texto_completo_NOREC} estudios de NOREC, los estudios que el criterio deja fuera contienen {criterio_texto_comparativos} de los {criterio_texto_comparativos_antes} diseños comparativos, el **{criterio_texto_comparativos_pct} %**"),
+    (ES, "De los {criterio_texto_ecas_antes} ensayos aleatorizados identificados con artículo o resumen, el corpus conserva {ecas}"),
+    (ES, "y los otros {criterio_texto_ecas} salieron por el criterio"),
+    (ES, "Los {estudios} estudios del corpus se publicaron entre **{anio_min} y {anio_max}**, y el **{publicados_desde_2020_pct} %** desde 2020"),
+    (ES, "y en los {definicion_establecido_que_no_define} los revisores lo establecieron leyendo el artículo: {definicion_sin_definicion_declarada} declaran"),
+    (ES, "El diseño consta en los {desenlace_brazos} brazos: **{desenlace_brazos_ensayo} brazos son ensayos**"),
+    (ES, "y por eso allí la cifra es {estudios_comparativos} estudios"),
+    (ES, "Más de la mitad de los estudios ({casos_unicos_pct} %) son casos únicos"),
+    (ES, "Agregar {estudios_denominador_uno} denominadores de uno"),
+    (ES, "**Los {ecas} ensayos aleatorizados del corpus no reportan una proporción binaria de éxito en absoluto**"),
+    (ES, "{criterio_texto_comparativos} de los {criterio_texto_comparativos_antes} diseños comparativos que el corpus habría podido aportar a una síntesis quedaron fuera de él"),
+    (ES, "El resultado son {estudios} estudios con su artículo completo; la búsqueda había delimitado {estudios_antes_de_la_enmienda} antes de la restricción de idioma que se adoptó al final, y {estudios_excluidos_tras_texto_completo} salieron después, {excluidos_texto_completo_NOPDF} de ellos por no disponer del artículo"),
+    (ES, "Más de la mitad de los estudios ({casos_unicos_pct} %) son un caso único. Solo {estudios_comparativos} de los {estudios} son comparativos según el resumen."),
+    (ES, "casi uno de cada tres estudios ({criterio_texto_nopdf_fichas} de {estudios_antes_de_nopdf}) existía únicamente como registro"),
+    (ES, "Que {criterio_texto_nopdf_fichas} de los {estudios_antes_de_nopdf} estudios que llegaron al criterio del texto completo fueran solo fichas de registro"),
+    (ES, "y que excluyó {excluidos_texto_completo_NOPDF} estudios, {criterio_texto_nopdf_fichas} de ellos fichas de registro sin publicación"),
+    (ES, "se lleva {criterio_texto_comparativos} de los {criterio_texto_comparativos_antes} diseños comparativos y {criterio_texto_ecas} de los {criterio_texto_ecas_antes} ensayos aleatorizados"),
+    (ES, "el texto completo se había obtenido para el {texto_completo_antes_de_nopdf_pct} % de los estudios con artículo o resumen ({texto_completo_obtenido} de {texto_completo_antes_de_nopdf_base})"),
+    # -- ingles
+    (EN, "{informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies and **{estudios_excluidos_tras_texto_completo} left the corpus**: {excluidos_texto_completo_NOPDF} for lacking the full article —{criterio_texto_nopdf_fichas} existed only as a registry entry— and {excluidos_por_criterios} for failing the criteria"),
+    (EN, "**{estudios}** remain, all read in full text; requiring it left out {criterio_texto_comparativos} of the {criterio_texto_comparativos_antes} studies with a comparative design. Single case reports, {casos_unicos_pct} %; comparative, {estudios_comparativos_pct} %; resistance class unassignable, {sin_clase_util_pct} %; the language criterion removed {estudios_eliminados_por_idioma} studies more."),
+    (EN, "One reviewer extracted the {extraccion_estudios_r1} studies that then had a retrievable publication —{estudios} after the exclusions in section 3.1.1—"),
+    (EN, "so {extraccion_doble_pct} % of what was extracted is double-extracted; of the {estudios} studies in the current corpus, {extraccion_doble_corpus} are"),
+    (EN, "{criterio_texto_nopdf_articulos} studies whose article was not obtained — {criterio_texto_nopdf_resumenes} of them exist only as conference abstracts — and {criterio_texto_nopdf_fichas} that exist only as a trial registry entry", 2),
+    (EN, "trial registry entry. The corpus went from {estudios_antes_de_nopdf} to {estudios} studies"),
+    (EN, "Counting both dates, the criterion leaves out {criterio_texto_excluidos} studies, and they are not a random sample: it takes **{criterio_texto_comparativos} of the {criterio_texto_comparativos_antes} comparative designs ({criterio_texto_comparativos_pct} %)** and {criterio_texto_ecas} of the {criterio_texto_ecas_antes} randomised trials"),
+    (EN, "Of these, **{estudios_excluidos_tras_texto_completo} left the corpus**: {excluidos_texto_completo_NOPDF} for lacking the PDF of the full article (section 2.9) and {excluidos_por_criterios} for failing the eligibility criteria"),
+    (EN, "**{letras_excluidos_texto_completo_NOPDF} left for lacking the full article**"),
+    (EN, "The other {excluidos_por_criterios} left for failing the criteria."),
+    (EN, "the {excluidos_texto_completo_NOPDF} that left for lacking the article were never checked against it"),
+    (EN, "The earlier {excluidos_por_publicacion} were judged on their publication"),
+    (EN, "**{criterio_texto_nopdf_fichas} of the {estudios_antes_de_nopdf} studies were trial registry entries alone**"),
+    (EN, "the text had been obtained for **{texto_completo_obtenido} of the {texto_completo_antes_de_nopdf_base} studies with an article or abstract ({texto_completo_antes_de_nopdf_pct} %)**. The remaining {criterio_texto_nopdf_articulos} were not obtained"),
+    (EN, "none of the {criterio_texto_nopdf_articulos} had a locatable open-access copy: some are listed without one and others, the {criterio_texto_nopdf_resumenes} conference abstracts among them"),
+    (EN, "Counting the {excluidos_texto_completo_NOREC} NOREC studies, the studies the criterion leaves out contain {criterio_texto_comparativos} of the {criterio_texto_comparativos_antes} comparative designs, **{criterio_texto_comparativos_pct} %**"),
+    (EN, "Of the {criterio_texto_ecas_antes} randomised trials identified with an article or abstract, the corpus keeps {ecas}"),
+    (EN, "and the other {criterio_texto_ecas} left under the criterion"),
+    (EN, "The {estudios} studies in the corpus were published between **{anio_min} and {anio_max}**, and **{publicados_desde_2020_pct} %** since 2020"),
+    (EN, "and in all {definicion_establecido_que_no_define} the reviewers established this by reading the article: {definicion_sin_definicion_declarada} state"),
+    (EN, "Study design is on record in all {desenlace_brazos} arms: **{desenlace_brazos_ensayo} arms are trials**"),
+    (EN, "which is why the figure there is {estudios_comparativos} studies"),
+    (EN, "More than half the studies ({casos_unicos_pct} %) are single cases"),
+    (EN, "Pooling {estudios_denominador_uno} denominators of one"),
+    (EN, "**The {ecas} randomised trials in the corpus report no binary success proportion at all**"),
+    (EN, "{criterio_texto_comparativos} of the {criterio_texto_comparativos_antes} comparative designs the corpus could have contributed to a synthesis were left out of it"),
+    (EN, "The result is {estudios} studies with their full article; the search had delimited {estudios_antes_de_la_enmienda} before the language restriction adopted at the end, and {estudios_excluidos_tras_texto_completo} left later, {excluidos_texto_completo_NOPDF} of them for lacking the article"),
+    (EN, "More than half the studies ({casos_unicos_pct} %) are a single case. Only {estudios_comparativos} of the {estudios} are comparative according to the abstract."),
+    (EN, "almost one study in three ({criterio_texto_nopdf_fichas} of {estudios_antes_de_nopdf}) existed only as a registry entry"),
+    (EN, "That {criterio_texto_nopdf_fichas} of the {estudios_antes_de_nopdf} studies that reached the full-text criterion were registry entries alone"),
+    (EN, "which excluded {excluidos_texto_completo_NOPDF} studies, {criterio_texto_nopdf_fichas} of them registry entries without publication"),
+    (EN, "it takes {criterio_texto_comparativos} of the {criterio_texto_comparativos_antes} comparative designs and {criterio_texto_ecas} of the {criterio_texto_ecas_antes} randomised trials"),
+    (EN, "the full text had been obtained for {texto_completo_antes_de_nopdf_pct} % of the studies with an article or abstract ({texto_completo_obtenido} of {texto_completo_antes_de_nopdf_base})"),
+    # -- revista: resumen (lo genera build_structured_abstract.py)
+    (JSR, "de los que {estudios_excluidos_tras_texto_completo} se excluyeron, {excluidos_texto_completo_NOPDF} por no disponer del artículo completo. Quedan {estudios} estudios, todos leídos a texto completo; exigirlo dejó fuera {criterio_texto_comparativos} de {criterio_texto_comparativos_antes} diseños comparativos. De ellos, el {casos_unicos_pct} % son reportes de caso único y el {estudios_comparativos_pct} % tiene diseño comparativo según el resumen"),
+    (JSR, "of which {estudios_excluidos_tras_texto_completo} were excluded, {excluidos_texto_completo_NOPDF} for lacking the full article. {estudios} studies remain, all read in full text; requiring it left out {criterio_texto_comparativos} of {criterio_texto_comparativos_antes} comparative designs. Of these, {casos_unicos_pct} % are single case reports and {estudios_comparativos_pct} % have a comparative design by abstract", 1, True),
+    (JSR, "en los {sesgo_evaluables} comparativos (RoB 2, ROBINS-I)"),
+    (JSR, "in the {sesgo_evaluables} comparative studies (RoB 2, ROBINS-I)", 1, True),
+    (JSR, "con ventana {ventana_desde}-{ventana_hasta} donde la interfaz la admite"),
+    # -- revista: cuerpo
+    (JSR, "La ventana de {ventana_desde} a {ventana_hasta} se aplicó en PubMed"),
+    (JSR, "**{excluidos_texto_completo_NOPDF} estudios**, {criterio_texto_nopdf_articulos} cuyo artículo no se obtuvo —{criterio_texto_nopdf_resumenes} de ellos solo existen como resumen de congreso— y {criterio_texto_nopdf_fichas} que solo existen como ficha de registro de ensayo"),
+    (JSR, "deja fuera {criterio_texto_comparativos} de los {criterio_texto_comparativos_antes} estudios con diseño comparativo ({criterio_texto_comparativos_pct} %) y {criterio_texto_ecas} de los {criterio_texto_ecas_antes} ensayos aleatorizados"),
+    (JSR, "los {excluidos_por_criterios} estudios que salieron después por no cumplir los criterios corresponden a ese segundo error; los {excluidos_texto_completo_NOPDF} que salieron por no disponer del artículo no son un error del cribado"),
+    (JSR, "De ellos se excluyeron **{estudios_excluidos_tras_texto_completo}**: {excluidos_texto_completo_NOPDF} por no disponer del PDF del artículo completo (segunda enmienda), {excluidos_entre_los_leidos} tras leer el artículo, {excluidos_sobre_la_ficha_de_registro} tras leer la ficha completa de su registro de ensayos y {excluidos_sin_poder_leer_nada} sin poder leer ninguno de los dos"),
+    (JSR, "{excluidos_leyendo_articulo_ORG} no tienen *P. aeruginosa* en ningún paciente"),
+    (JSR, "{excluidos_leyendo_articulo_PRO} son protocolos que describen lo que se hará sin reportar desenlaces; {excluidos_texto_completo_IDI} quedaron fuera por idioma"),
+    (JSR, "{excluidos_leyendo_articulo_LAB} no tienen pacientes (un modelo murino"),
+    (JSR, "{excluidos_leyendo_articulo_INT} administran algo que no es un bacteriófago"),
+    (JSR, "{excluidos_leyendo_articulo_OFF} no evalúan fagoterapia en pacientes; {excluidos_leyendo_articulo_REV} no aportan datos primarios propios; y {excluidos_texto_completo_NOREC} se excluyeron por no haberse conseguido su texto completo (NOREC)"),
+    (JSR, "**{criterio_texto_nopdf_fichas} de los {estudios_antes_de_nopdf} estudios eran únicamente fichas de registro de ensayo**"),
+    (JSR, "el texto completo se había obtenido para {texto_completo_obtenido} de los {texto_completo_antes_de_nopdf_base} estudios con artículo o resumen ({texto_completo_antes_de_nopdf_pct} %). Los {criterio_texto_nopdf_articulos} restantes"),
+    (JSR, "contiene {criterio_texto_comparativos} de los {criterio_texto_comparativos_antes} estudios con diseño comparativo ({criterio_texto_comparativos_pct} %)"),
+    (JSR, "{diseno_RCT} ensayos aleatorizados —de los {criterio_texto_ecas_antes} identificados con artículo o resumen"),
+    (JSR, "los otros {criterio_texto_ecas} salieron por no disponer del artículo completo"),
+    (JSR, "Los {estudios} estudios del corpus se publicaron entre **{anio_min} y {anio_max}**, y el **{publicados_desde_2020_pct} %** desde 2020"),
+    (JSR, "De los **{t3_con_texto}** estudios del corpus, todos con texto completo, **{t3_resistance_class_declarado}** declaran una categoría de resistencia asignable (**{t3_clase_declarada_pct} %**) —**{t3_clase_mdr_xdr_pdr}** en MDR, XDR o PDR y **{t3_clase_bajo_umbral}** por debajo del umbral de multirresistencia—, **{t3_resistance_class_no_clasificable}** la mencionan"),
+    (JSR, "(n = {estudios} estudios, todos con texto completo)"),
+    (JSR, "En los {definicion_establecido_que_no_define} los revisores lo establecieron leyendo el artículo: {definicion_sin_definicion_declarada} declaran"),
+    (JSR, "identifica **{sesgo_comparativos_adjudicados} estudios con diseño comparativo**, todos con texto completo, como el resto del corpus, y los {sesgo_evaluables} **son evaluables**: {sesgo_instrumento_RoB2} ensayos aleatorizados con RoB 2 y {sesgo_instrumento_ROBINSI} ensayos no aleatorizados y cohortes con ROBINS-I"),
+    (JSR, "Esos {brazos_agrupables} brazos son la razón por la que no se agrupó"),
+    (JSR, "y los {brazos_agrupables} que cumplen los seis requisitos aritméticos y de elegibilidad"),
+    (JSR, "Más de la mitad de los estudios ({casos_unicos_pct} %) son casos únicos"),
+    (JSR, "Agregar {estudios_denominador_uno} denominadores de uno"),
+    (JSR, "Los {ecas} ensayos aleatorizados del corpus no reportan una proporción binaria"),
+    (JSR, "El resultado son {estudios} estudios con su artículo completo, de {estudios_antes_de_releer} evaluados para elegibilidad; {excluidos_texto_completo_NOPDF} salieron por no disponer del artículo"),
+    (JSR, "solo {estudios_comparativos} de los {estudios} son ensayos según el resumen"),
+    (JSR, "{criterio_texto_nopdf_fichas} de los {estudios_antes_de_nopdf} estudios existían únicamente como registro"),
+    (JSR, "{criterio_texto_nopdf_fichas} de los {estudios_antes_de_nopdf} estudios que llegaron a la segunda enmienda no habían publicado resultados"),
+    (JSR, "Que {criterio_texto_nopdf_fichas} de los {estudios_antes_de_nopdf} estudios que llegaron a la segunda enmienda fueran solo fichas de registro"),
+    (JSR, "las {excluidos_por_criterios} exclusiones por criterios detectadas en la fase de texto completo"),
+    (JSR, "—{una_sola_fuente_desglose}—"),
+    (JSR, "y que excluyó {excluidos_texto_completo_NOPDF} estudios, {criterio_texto_nopdf_fichas} de ellos fichas de registro sin publicación"),
+    (JSR, "el texto completo se había obtenido para el {texto_completo_antes_de_nopdf_pct} % de los estudios con artículo o resumen"),
+    (ES, "y solo uno de esos {desenlace_brazos_agregables_exito_clinico} los sobrevive"),
+    (EN, "and only one of those {desenlace_brazos_agregables_exito_clinico} survives them"),
 ]
 
 
-SIN_MILLAR = {"anio_min", "anio_max"}
+SIN_MILLAR = {"anio_min", "anio_max", "ventana_desde", "ventana_hasta"}
 
 
 def formatea(valor, ingles, clave=None):

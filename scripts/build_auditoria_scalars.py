@@ -598,6 +598,16 @@ def main():
     S["estudios_una_sola_fuente_pct"] = round(100.0 * len(una) / len(fuentes), 1)
     S["una_sola_fuente_por_fuente"] = dict(collections.Counter(
         sorted(list(fuentes[e])[0] for e in una)).most_common())
+    # La frase del manuscrito de la revista, armada aqui: estaba tecleada
+    # («20 solo Cochrane CENTRAL, 9 solo ClinicalTrials.gov...») y sumaba 40
+    # cuando el total anclado al lado ya decia 6.
+    def _nombre(f):
+        m = _re.match(r"Scopus \(brazo (\w)\)", f)
+        return "el brazo %s de Scopus" % m.group(1) if m else f
+    _trozos = ["%d solo %s" % (n, _nombre(f))
+               for f, n in S["una_sola_fuente_por_fuente"].items()]
+    S["una_sola_fuente_desglose"] = (", ".join(_trozos[:-1]) + " y " + _trozos[-1]
+                                    if len(_trozos) > 1 else "".join(_trozos))
 
     # ---- solapamiento y enlace brazo-informe
     S["solapamiento_pares_examinados"] = len(solap)

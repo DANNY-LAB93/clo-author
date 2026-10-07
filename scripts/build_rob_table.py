@@ -143,6 +143,25 @@ ALCANCE = (
     "diseño promete no existe en el artículo. De los %(sin_texto)d sin texto "
     "completo no se sabe. %(contraste)s")
 
+# Desde el 2026-10-06 el corpus solo admite estudios con el PDF del articulo
+# completo (seccion 2.9). No queda ningun comparativo sin texto, y la version
+# de arriba diria «los 0 restantes no se evaluan» y «de los otros 0 no se
+# obtuvo el articulo». Esta es la que se escribe mientras no haya ninguno.
+ALCANCE_COMPLETO = (
+    "El diseño adjudicado sobre el artículo identifica **%(comp)d estudios con "
+    "diseño comparativo**, todos con texto completo, como el resto del corpus, "
+    "y los %(ev)d **son evaluables**: %(rob2)d ensayos aleatorizados con RoB 2 "
+    "y %(robins)d ensayos no aleatorizados y cohortes con ROBINS-I. Ese "
+    "conjunto no es el mismo que los %(t2)d ensayos que cuenta la Tabla 2: "
+    "aquella clasifica por lo que el resumen declara y no incluye las cohortes, "
+    "mientras que esta evaluación clasifica por lo que se leyó en el artículo y "
+    "sí las incluye. La Tabla 5 lleva %(celdas)d juicios de dominio%(recoge)s. "
+    "**La etiqueta de diseño tampoco garantiza un grupo de comparación:** de "
+    "los %(ev)d evaluables, %(grupo_si)d tienen un grupo con el que comparar "
+    "(%(grupo_si_ids)s) y en %(grupo_no)d las notas firmadas del dominio 1 "
+    "declaran que no lo hay, de modo que el contraste que su diseño promete no "
+    "existe en el artículo. %(contraste)s")
+
 
 def frase_contraste_con_entrada(ingles=False):
     """La misma frase para el maestro y el ingles, que no traen la del ALCANCE.
@@ -451,7 +470,7 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
     else:
         _frase = ("Los %d restantes no tienen texto completo y no se evalúan "
                   "(%s)" % (_n, _ids))
-    alcance = ALCANCE % {"comp": estado["comparativos_adjudicados"],
+    alcance = (ALCANCE_COMPLETO if _n == 0 else ALCANCE) % {"comp": estado["comparativos_adjudicados"],
                          "ev": estado["evaluables"],
                          "celdas": estado["celdas_totales"],
                          "recoge": ("" if estado["completa"]

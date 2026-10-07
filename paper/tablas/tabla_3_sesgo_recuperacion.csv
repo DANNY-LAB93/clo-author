@@ -1,7 +1,7 @@
-﻿,Con texto completo,Sin texto completo
-Estudios,65,21
-Diseños comparativos,2,5
-Comparativos (% de la columna),3.1,23.8
+﻿,Incluidos (texto completo leído),Excluidos por no tener el texto completo
+Estudios,65,25
+Diseños comparativos,2,7
+Comparativos (% de la columna),3.1,28.0
 Reportes de caso único,34,6
-Ensayos aleatorizados,2,4
-Pacientes declarados (suma de n por brazo),348,206
+Ensayos aleatorizados,2,5
+Pacientes declarados (suma de n por brazo),348,316

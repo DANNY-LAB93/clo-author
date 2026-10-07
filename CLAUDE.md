@@ -56,6 +56,7 @@ dar error. Ver su `LEEME.md`.
 python scripts/ingest_lectura_firmada.py --escribir   # la lectura del 2026-09-30 (idempotente)
 python scripts/ingest_firma_lectura.py --escribir     # lo firmado el 2026-10-01 (+ adenda si trae 2 firmas)
 python scripts/ingest_firma_idioma.py --escribir      # idioma, 2026-10-06: EST-045/059/173 (solo con 2 firmas)
+python scripts/ingest_firma_nopdf.py --escribir       # texto completo, 2026-10-06: los 63 NOPDF (solo con 2 firmas)
 python scripts/build_adjudicated_dataset.py
 python scripts/build_outcome_scalars.py
 
@@ -122,22 +123,22 @@ python scripts/sync_manuscript_numbers.py --escribir   # las pone al dia
 
 ---
 
-## Estado, a 2026-10-06
+## Estado, a 2026-10-07
 
 Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
 | Componente | Estado |
 |---|---|
-| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 55 excluidos (28 por el artículo, 17 por la ficha del registro, 10 sin poder leer ninguno) → **128 estudios, 86 extraíbles**, 94 brazos |
+| Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 118 excluidos (**63 NOPDF**, 28 por el artículo, 17 por la ficha del registro, 10 sin poder leer ninguno) → **65 estudios, todos con el artículo completo**, 73 brazos. Antes de NOPDF: 128 estudios, 86 con artículo o resumen, 42 solo ficha |
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
-| Texto completo | 65 de 86 (75,6 %). El hueco está sesgado: retiene el 71,4 % de los diseños comparativos. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
+| Texto completo | **100 % por construcción** desde NOPDF (2026-10-06). Justo antes: 65 de 86 (75,6 %). El criterio se mide como **efecto** (Tabla 3, escalares `criterio_texto_*`): deja fuera 7 de 9 comparativos y 5 de 7 ECA. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **emitido, completo y firmado**: 12 comparativos por diseño —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, 9 evaluables (2 RoB 2, 7 ROBINS-I), 3 sin texto. **68 celdas**. Doble lectura en 8 de los 9: acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
-| Lectura del 2026-09-30 | **firmada e ingerida**, lo abierto **firmado el 1-oct** y la adenda **el 3-oct**: 9 sin ningún paciente con *P. aeruginosa* tratado → **5 excluidos (ORG)**, 4 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, **los 6 mantenidos por firma**. **Solapamiento: 20 pacientes en 18 estudios**, 31 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
+| Riesgo de sesgo | **emitido, completo y firmado**: 9 comparativos por diseño, todos con texto —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, los 9 evaluables (2 RoB 2, 7 ROBINS-I). **68 celdas**. Doble lectura en 8 de los 9: acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
+| Lectura del 2026-09-30 | **firmada e ingerida**, lo abierto **firmado el 1-oct** y la adenda **el 3-oct**: 9 sin ningún paciente con *P. aeruginosa* tratado → **5 excluidos (ORG)**, 4 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, **los 6 mantenidos por firma**. **Solapamiento: 20 pacientes en 18 estudios**, 30 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
 | Idioma | **Solo inglés y español** (D.V., 2026-10-06). Los 65 PDF del corpus, comprobados sobre el cuerpo: 65 en inglés. EST-045, EST-059 y EST-173 salieron con NOREC: sin texto, revistas rusa y griega, idioma no verificable |
-| Manuscrito | 315 anclas, todas al día. Pasa del límite de 3 500 de CMI |
+| Manuscrito | 347 anclas, todas al día. Pasa del límite de 3 500 de CMI. La ventana de búsqueda (2016–2026) sale de `ventana_desde/hasta`, no de `anio_min` (el corpus empieza en 2017) |
 | Anexos | **S0–S24 (25 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
-| Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 8 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 30 suplementos |
+| Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 6 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 45 ficheros de suplementos |
 
 **Lo que falta, y es de los autores:** los dos ORCID, el grado académico de ambos, el
 correo de N. Trelles (un marcador en `manuscrito_JSR_final.md:11`), la aprobación ICMJE
@@ -164,11 +165,14 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
    se había verificado sobre el resumen para 29 de 98 estudios; cuatro rusos entraron
    así y salieron el 2026-09-01 (código IDI, 78–94 % de cirílico medido).
 
-4. **NOREC es una enmienda de otra clase.** Los demás códigos hablan de lo que el
-   artículo DICE; `NOREC` habla de lo que esta revisión NO PUDO LEER. Se aplica a un
-   estudio (EST-118). Extenderlo a los 24 sin texto hundiría el corpus a 113, los
-   comparativos a 5 y los ECA a 3, y dejaría la recuperación en 100 % **por
-   construcción**, destruyendo el sesgo que §3.2 mide. No lo extiendas sin releer eso.
+4. **NOREC se generalizó el 2026-10-06, y la nota que lo desaconsejaba queda SUPERADA.**
+   Los dos autores firmaron excluir todo estudio sin el PDF del artículo completo
+   (código **NOPDF**, 63 estudios: 18 artículos sin texto, 3 resúmenes, 42 fichas de
+   registro). La recuperación es del 100 % **por construcción** y el sesgo de
+   recuperación ya no se mide dentro del corpus: se declara como **efecto del
+   criterio** (Tabla 3 y escalares `criterio_texto_*`: se lleva 7 de los 9 diseños
+   comparativos y 5 de los 7 ECA). **No se presenta como parte del protocolo inicial**
+   aunque D.V. lo pidió dos veces: es la ampliación de la segunda enmienda, con fecha.
 
 5. **Un fichero derivado no sobrevive a sus datos.** Una prueba dejó
    `rob_comparativos_scalars.json` con 82 juicios inventados firmados «PRUEBA A y

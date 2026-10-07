@@ -392,12 +392,21 @@ def escribe_carta(destino, S, meta, n_anexos):
         "bases de datos y registros con %d consultas \u2014Scopus en dos brazos\u2014, "
         "incluidos BVS y SciELO, que las revisiones previas han cubierto de "
         "forma desigual, con una ventana de publicaci\u00f3n de %d a %d aplicada en las "
-        "que la admiten. De %s registros quedaron %s informes \u00fanicos, %d estudios y "
-        "%d con publicaci\u00f3n recuperable."
+        "que la admiten. De %s registros quedaron %s informes \u00fanicos y %d "
+        "estudios, todos con el art\u00edculo completo le\u00eddo. Ese requisito se "
+        "a\u00f1adi\u00f3 el 6 de octubre de 2026, con la extracci\u00f3n terminada, y el "
+        "manuscrito lo declara como enmienda, con su fecha y su efecto: deja "
+        "fuera %d de los %d estudios con dise\u00f1o comparativo."
+        # La ventana es el filtro de la busqueda, no el estudio mas antiguo
+        # del corpus; y \u00abcon publicacion recuperable\u00bb dejo de distinguir nada
+        # el 2026-10-06, cuando el corpus paso a exigir el articulo completo.
+        # La carta lo dice porque es lo primero que lee el Comite: presentar
+        # el criterio como si hubiera regido desde el principio seria falso.
         % ("*Pseudomonas aeruginosa*", S["fuentes_distintas_n"], S["fuentes_brazos_n"],
-           S["anio_min"], S["anio_max"],
+           S["ventana_desde"], S["ventana_hasta"],
            mil(S["registros_identificados"]), mil(S["informes_unicos"]),
-           S["estudios"], S["estudios_extraibles"]), WD_ALIGN_PARAGRAPH.JUSTIFY)
+           S["estudios"], S["criterio_texto_comparativos"],
+           S["criterio_texto_comparativos_antes"]), WD_ALIGN_PARAGRAPH.JUSTIFY)
 
     par("La conclusi\u00f3n es que el cuerpo de evidencia es amplio y a la vez "
         "estructuralmente inadecuado para agregarse en proporciones globales de "
@@ -949,9 +958,9 @@ def main():
          ROOT / "paper" / "figuras" / "figura_1_prisma.png",
          "Nota. Corrientes separadas para bases bibliográficas y registros de "
          "ensayos. La unidad de inclusión es el estudio, no el informe."),
-        ("Figura 2. Composición del cuerpo de evidencia recuperable.",
+        ("Figura 2. Composición del cuerpo de evidencia.",
          ROOT / "paper" / "figuras" / "figura_2_composicion.png",
-         "Nota. Sobre los estudios con publicación recuperable."),
+         "Nota. Sobre los estudios del corpus, todos con el artículo completo."),
     ]
     figuras = [(t_, r, n) for t_, r, n in figuras if r.exists()]
 

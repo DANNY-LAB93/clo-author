@@ -134,7 +134,10 @@ def main():
         molde = "".join(
             re.escape(p) if i % 2 == 0
             else (palabra if p.startswith("letras_")
-                  else lista if p.startswith(("lista_", "coma_")) else comodin)
+                  else lista if p.startswith(("lista_", "coma_"))
+                  # un «*_desglose» es una frase armada por el canal («4 solo
+                  # PubMed y 2 solo...»): casa hasta la raya que la cierra.
+                  else r"\d+ solo [^\n—]+" if p.endswith("_desglose") else comodin)
             for i, p in enumerate(partes))
         halladas = [m.group(0) for m in re.finditer(molde, textos[archivo])]
 
