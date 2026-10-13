@@ -345,6 +345,11 @@ def main():
     if i < 0 or j < 0:
         raise SystemExit("no encuentro el resumen dentro del manuscrito")
     fin = m.rfind("---", i, j)
+    # Sin cambios no se reescribe: mover la fecha del manuscrito deja el PDF
+    # maquetado «anterior a esta version» y el sobre sale sin el.
+    if m[:i] + nuevo + m[fin:] == m:
+        print("resumen de %s ya estaba al dia; no se reescribe" % MANUSCRITO.name)
+        return
     MANUSCRITO.write_text(m[:i] + nuevo + m[fin:], encoding="utf-8")
     print("resumen reemplazado dentro de %s" % MANUSCRITO.name)
 

@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 292; texto principal 9 808.
+**Recuento de palabras:** resumen 292; texto principal 10 283.
 **Tablas:** 7. **Figuras:** 2. **Material suplementario:** anexos S0–S24 y S18b, y su guía.
 
 ---
@@ -108,7 +108,7 @@ El riesgo de sesgo se evalúa **solo en los estudios con diseño comparativo**: 
 
 La evaluación se emite **a nivel de dominio**: un juicio por dominio con las categorías literales de cada instrumento, sin responder las preguntas de señalización con que RoB 2 deriva ese juicio por algoritmo. Es una simplificación deliberada en una revisión descriptiva sin estimación agrupada, y se declara para que no se le atribuya una reproducibilidad algorítmica que no tiene. Los reportes y las series de casos no se evalúan con instrumento formal, por decisión y no por imposibilidad: carecen de comparador, de asignación y de seguimiento estructurado, y una herramienta construida sobre esos supuestos produce un riesgo alto uniforme que informa del instrumento y no del estudio [@Murad2018_casereports; @Munn2020_jbicaseseries].
 
-**Los juicios los rellenó cada autor en su propio cuaderno y se resolvieron por consenso, pero la independencia de los dos cuadernos no está acreditada.** El 5 de septiembre de 2026 los dos compartían 7 418 caracteres idénticos en las notas de apoyo y, en una primera versión, todos los juicios; el cuaderno de consenso lo generó el canal con los juicios coincidentes precargados. La concordancia entre los dos cuadernos se reporta en la sección 3.7, pero no mide dos evaluaciones independientes. Un estudio, incorporado a la evaluación después de los demás, tiene una sola lectura y se declara como tal.
+**Hubo dos cuadernos, uno a nombre de cada autor, pero su independencia no está acreditada.** La noche del 4 al 5 de septiembre de 2026 los dos traían todos los juicios idénticos y, vueltos a guardar con dos segundos de diferencia, seguían compartiendo 7 418 caracteres idénticos en las notas de apoyo; el registro de ese día concluye que un cuaderno salió del otro. La evaluación se declaró entonces por consenso: el canal generó un cuaderno con los juicios coincidentes precargados y los discrepantes en blanco, y los dos autores lo firmaron el 9 de septiembre de 2026. La concordancia entre los dos cuadernos se reporta en la sección 3.7, pero no mide dos evaluaciones independientes. Un estudio, incorporado a la evaluación después de los demás, tiene una sola lectura y se declara como tal.
 
 **GRADE no se aplica**, y el motivo no depende de lo anterior: califica la certeza de una estimación agrupada y esta revisión no presenta ninguna. La sección 3.5 muestra que solo 2 de los 73 brazos reúnen los requisitos mínimos para agregar, y ninguno los conserva tras aplicar los criterios de elegibilidad. Calificar la certeza de un resultado que no existe sería un trámite, no una evaluación [@Guyatt2011_grade].
 
@@ -238,7 +238,7 @@ A ello se añade el efecto del criterio del texto completo documentado en la sec
 
 ### 3.7 Riesgo de sesgo de los estudios comparativos
 
-De los 2 estudios evaluados con RoB 2, el juicio global es de bajo riesgo en 1 y de algunas preocupaciones en 1. De los 7 estudios evaluados con ROBINS-I, el juicio global es sin información para juzgar en 1 y de riesgo grave en 6. El dominio que más juicios desfavorables concentra en ROBINS-I —alto riesgo en RoB 2; grave o crítico en ROBINS-I— es «sesgo por confusión», con 6 de 7. Los cuadernos de los dos revisores, en 8 de los 9 estudios evaluables, coinciden en 49 de los 60 juicios comparables (81,7 %; kappa de Cohen 0,74), una concordancia que no mide dos evaluaciones independientes (sección 2.7). Los 11 desacuerdos se resolvieron por consenso, los 11 hacia el juicio del cuaderno de D.V.. El estudio restante se evaluó en un cuaderno aparte y tiene una sola lectura.
+De los 2 estudios evaluados con RoB 2, el juicio global es de bajo riesgo en 1 y de algunas preocupaciones en 1. De los 7 estudios evaluados con ROBINS-I, el juicio global es sin información para juzgar en 1 y de riesgo grave en 6. El dominio que más juicios desfavorables concentra en ROBINS-I —alto riesgo en RoB 2; grave o crítico en ROBINS-I— es «sesgo por confusión», con 6 de 7. Los cuadernos de los dos revisores, en 8 de los 9 estudios evaluables, coinciden en 49 de los 60 juicios comparables (81,7 %; kappa de Cohen 0,74), una concordancia que no mide dos evaluaciones independientes (sección 2.7). Los 11 desacuerdos se resolvieron por consenso, los 11 hacia el juicio del cuaderno de D.V., ninguno hacia el del otro revisor. El estudio restante se evaluó en un cuaderno aparte y tiene una sola lectura.
 
 La etiqueta de diseño no garantiza un grupo de comparación: de los 9 evaluables, 3 lo tienen (EST-008, EST-021 y EST-108) y en 6 las notas firmadas del dominio 1 declaran que no lo hay. De los 3 con grupo, 2 comparan fago con ausencia de fago —EST-108 compara con y sin antibiótico dentro de los tratados con fago—, y los 2 dan un contraste entre brazos para *P. aeruginosa* (EST-008 y EST-021; el de EST-008, parcial).
 

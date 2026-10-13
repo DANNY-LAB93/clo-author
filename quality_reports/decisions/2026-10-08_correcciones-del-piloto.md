@@ -55,3 +55,28 @@ Un barrido posterior encontró la misma afirmación falsa en documentos que la p
 | `extraction_agreement.md` y `compare_extractions.py` | «Concordancia entre extracciones independientes» | «Concordancia entre las dos extracciones» |
 
 El canal se rehízo entero después; los cinco guardianes pasan con 375 anclas al día (la cifra de 369 de arriba es la de antes de esta pasada).
+
+## Tercera pasada (8 al 12 de octubre): lo que encontraron tres verificadores
+
+Tres verificadores adversariales (exactitud, barrido, papel del modelo) dieron 57 hallazgos. Cada hecho se comprobó contra los ficheros y el historial antes de corregir. Los hechos verificados, con la redacción que se fijó para todos los documentos, quedaron en una hoja de hechos que se usó para corregir los generadores. Lo principal:
+
+| Afirmación | Lo que hay | Prueba |
+|---|---|---|
+| El manuscrito de la revista declaraba el uso de IA | no tenía párrafo de IA desde el 2026-09-04 (commit `ebf2b27`); su CRediT daba a D.V. la «redacción del borrador original» | `git show ebf2b27`; ahora lleva el del maestro, literal, con guarda en `build_jsr_submission.py` |
+| Vocabulario cerrado de seis códigos «fijado antes de empezar» / «por los autores» | las 400 decisiones de títulos del 4-ago llevan el motivo en texto libre (20 redacciones en 234 exclusiones); los seis códigos, desde el 5-ago; ese día se añadieron a mitad de lote las reglas de endolisinas y veterinaria | `screening_stage2_pool_decisions.csv` por fecha; commit `4a4ba98`; `exclusion_codes.py` nace en `4258270` |
+| El cribado «lo condujo un solo revisor humano (D.V.)» | las decisiones las emitió el modelo como revisor único; D.V. fue el único revisor humano | columna `decided_by` |
+| «D.V. examinó… antes de agruparlos», «contra los criterios, todos» | la declaración de D.V. no dice eso; la agrupación la propuso un guion del modelo | declaración del 8-oct; `group_reports_into_studies.py` |
+| Riesgo de sesgo: «cada autor rellenó su propio cuaderno» (escrito en la primera pasada) | el registro del 5-sep concluye que un cuaderno salió del otro; consenso firmado por los dos el 9-sep | registro del 2026-09-05; hoja Firma del cuaderno de consenso |
+| S15 llamaba «consenso» a 520 casillas | 13 por los dos, 278 por uno (D.V.), 229 por uno (N.T.); ninguna cifra publicada cambia | `extraccion_adjudicada_procedencia.csv` frente a `resuelto_por` |
+| Controles: «40 de 40 en las tres etapas» | hasta la enmienda de idioma; Ronit 2024 salió en la etapa de resumen el 11-ago | `screening_stage3_pool_decisions.csv` |
+| Exclusiones a texto completo «que firmaron los autores» | 116 los dos; EST-118 y EST-205, D.V. solo; EST-205 por la indexación, sin leer el texto | `exclusiones_tras_texto_completo.csv` |
+| Fechas: «entre el 3 y el 10 de agosto» | ejecuciones documentadas el 3 y el 4; BVS incorporada el 10; Scopus sin fecha | registro del 2026-08-10 |
+| «Ambos autores aprobaron el texto final» | N.T. no ha aprobado por escrito | LEEME; marcador en su CRediT |
+| S0 sin firma, en primera persona de editor | lo redactó el modelo; ahora lo dice en el encabezado | docstring de `build_editorial_report.py` |
+| «Dos enmiendas» | NOORG (14-sep) es una tercera, firmada como enmienda | `exclusion_codes.py` |
+
+La declaración de IA del maestro se reescribió entera con lo que el historial muestra que hizo el modelo, y se copia literal a S7 y a la revista.
+
+**Lo que no se cambió y queda para los autores:** el resumen sigue sin mencionar el cribado por el modelo (se retiró por decisión del autor el 2026-08-23, commit `32f3f12`); el manuscrito de la revista ocupa 29 páginas de cuerpo frente a un límite de 25.
+
+El canal se rehízo entero; los cinco guardianes pasan con 386 anclas al día.
