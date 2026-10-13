@@ -78,12 +78,14 @@ def sesgo(R):
         # El resumen tiene que decir POR CONSENSO. Omitirlo dejaria al lector
         # suponer duplicado independiente, que es lo normal en una revision
         # sistematica y no es lo que se hizo.
-        return ("El riesgo de sesgo se evaluó por consenso, por dominios, en "
-                "los %d comparativos (RoB 2, ROBINS-I); no "
-                "se aplicó GRADE." % n,
-                "Risk of bias was assessed by consensus, by domain, in the %d "
-                "comparative studies (RoB 2, ROBINS-I); GRADE "
-                "was not applied." % n)
+        # Y tiene que decir que tampoco es independiente: «por consenso» a
+        # secas, al lado de una extraccion que si lo avisa, sugeria lo normal.
+        return ("El riesgo de sesgo se evaluó por consenso en los %d "
+                "comparativos (RoB 2, ROBINS-I), tampoco con independencia "
+                "acreditada; sin GRADE." % n,
+                "Risk of bias was assessed by consensus in the %d comparative "
+                "studies (RoB 2, ROBINS-I), likewise without established "
+                "independence; GRADE was not applied." % n)
     if R["completa"]:
         return ("El riesgo de sesgo se evaluó por dominios en los %d "
                 "comparativos (RoB 2, ROBINS-I); no se "
@@ -162,13 +164,13 @@ def textos(S, O, R):
          "Revisión sistemática conforme a PRISMA 2020, en dos corrientes: bases "
          "bibliográficas y registros de ensayos. {fuentes_may} fuentes, "
          "con ventana {anio_min}-{anio_max} donde la interfaz la admite. La unidad "
-         "de inclusión fue el estudio, con artículo completo (criterio añadido tras la extracción). Extracción por duplicado e "
-         "independiente, con {firmados} de {desacuerdos} desacuerdos adjudicados "
-         "por consenso. {sesgo_es}",
+         "de inclusión fue el estudio, con artículo completo (criterio añadido tras la extracción). Extracción por duplicado, "
+         "sin independencia acreditada; {firmados} de {desacuerdos} desacuerdos "
+         "adjudicados. {sesgo_es}",
          "Revisión sistemática conforme a PRISMA 2020 sobre {fuentes} fuentes "
          "—bases bibliográficas y registros de ensayos—, con ventana "
          "{anio_min}-{anio_max} donde la interfaz la admite. La unidad de inclusión fue el estudio, con artículo completo (criterio añadido tras la extracción). Extracción "
-         "por duplicado e independiente, con {firmados} de {desacuerdos} "
+         "por duplicado, sin independencia acreditada; {firmados} de {desacuerdos} "
          "desacuerdos adjudicados. {sesgo_es}"),
         ("Resultados",
          "De {registros} registros quedaron {unicos} informes únicos; {informes} "
@@ -205,13 +207,13 @@ def textos(S, O, R):
          "bibliographic databases and trial registries. Eight sources were queried "
          "with a {anio_min}-{anio_max} window where the interface allows it. The "
          "unit of inclusion was the study, with its full article (a criterion added after extraction). Extraction was in "
-         "duplicate and independent, with {firmados} of {desacuerdos} disagreements "
-         "adjudicated. {sesgo_en}",
+         "duplicate, without established independence; {firmados} of {desacuerdos} "
+         "disagreements adjudicated. {sesgo_en}",
          "A PRISMA 2020 systematic review across eight sources —bibliographic "
          "databases and trial registries—, with a {anio_min}-{anio_max} window "
          "where the interface allows it. The "
          "unit of inclusion was the study, with its full article (a criterion added after extraction). Data were extracted in "
-         "duplicate and independently, with {firmados} of {desacuerdos} "
+         "duplicate, without established independence; {firmados} of {desacuerdos} "
          "disagreements adjudicated. {sesgo_en}"),
         ("Results",
          "From {registros} records, {unicos} unique reports remained; {informes} "

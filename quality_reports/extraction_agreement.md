@@ -1,4 +1,4 @@
-# Concordancia entre extracciones independientes
+# Concordancia entre las dos extracciones
 
 Generado el 2026-08-31 por `scripts/compare_extractions.py`.
 
@@ -69,7 +69,7 @@ sobre un dato.
 
 1. Abrir `revision_sistematica/extraccion/extraction_conflicts.csv` y resolver fila a fila.
 2. Rellenar `resolucion`, `resuelto_por` y `fecha`: el rastro de la resolución
-   es lo que permite escribir en Métodos que los desacuerdos se resolvieron por
-   consenso, y con qué frecuencia hizo falta.
+   dice quién resolvió cada desacuerdo. Solo lo que firman los dos se puede
+   llamar consenso en Métodos.
 3. Volcar los valores acordados al dataset de extracción y volver a ejecutar
    este script para dejar constancia de la concordancia previa a la resolución.

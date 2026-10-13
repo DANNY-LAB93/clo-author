@@ -483,6 +483,123 @@ def main():
     S["conflictos_resueltos_por_uno"] = sum(
         1 for r in confl if (r["resuelto_por"] or "").upper().strip()
         in ("DANNY VALDIVIEZO", "NATALY TRELLES"))
+    S["conflictos_resueltos_solo_dv"] = sum(
+        1 for r in confl if (r["resuelto_por"] or "").upper().strip() == "DANNY VALDIVIEZO")
+    S["conflictos_resueltos_solo_nt"] = sum(
+        1 for r in confl if (r["resuelto_por"] or "").upper().strip() == "NATALY TRELLES")
+
+    # 8b. LA INDEPENDENCIA DE LA DOBLE EXTRACCION, MEDIDA (2026-10-08). Una
+    # revision adversarial encontro que la columna de texto libre que localiza
+    # cada dato («¿Donde viste estos datos?») coincide carácter por carácter
+    # entre los dos cuadernos, erratas incluidas, en todas las filas comparables.
+    # Los manuscritos decian «por duplicado e independiente». Se mide aqui para
+    # que la frase que lo declara no lleve una cifra tecleada. La columna de
+    # motivo de incompletitud NO se usa como prueba: es un desplegable.
+    try:
+        import openpyxl
+
+        def _cuaderno(p):
+            wb = openpyxl.load_workbook(p, read_only=True, data_only=True)
+            ws = wb["Extraccion"] if "Extraccion" in wb.sheetnames else wb.active
+            filas = list(ws.iter_rows(values_only=True))
+            cab = [str(c or "") for c in filas[0]]
+            return {(str(dict(zip(cab, f)).get("Nº")),
+                     str(dict(zip(cab, f)).get("Brazo") or "A")): dict(zip(cab, f))
+                    for f in filas[1:]}
+        _a = _cuaderno(RS / "extraccion" / "extraccion_danny_valdiviezo.xlsx")
+        _b = _cuaderno(RS / "extraccion" / "extraccion_nataly_trelles.xlsx")
+        _col = "¿Dónde viste estos datos?"
+        _comp = _igu = 0
+        _errata = 0
+        for k in _a.keys() & _b.keys():
+            va = str(_a[k].get(_col) or "").strip()
+            vb = str(_b[k].get(_col) or "").strip()
+            if len(va) > 3 and len(vb) > 3:
+                _comp += 1
+                if va == vb:
+                    _igu += 1
+                    _errata += va == "MATERILAES Y METODOS"
+        # Cuantas variables de datos tenian de verdad los cuadernos: el
+        # manuscrito decia 23 (las del esquema), pero el denominador y la
+        # persistencia de la erradicacion no llegaron nunca a los cuadernos.
+        import extraction_schema as _es
+        _cab = list(next(iter(_a.values())).keys()) if _a else []
+        S["extraccion_variables_cuaderno"] = sum(
+            1 for c in _cab if _es.CAMPO_DE_ETIQUETA.get(c, c) in _es.CAMPOS
+            and _es.CAMPO_DE_ETIQUETA.get(c, c) not in _es.CLAVE)
+        S["extraccion_localizacion_comparables"] = _comp
+        S["extraccion_localizacion_identicas"] = _igu
+        S["extraccion_localizacion_errata_compartida"] = _errata
+    except Exception as e:  # sin openpyxl o sin cuadernos: que se vea
+        print("AVISO: no se pudo medir la independencia de la extraccion: %s" % e)
+
+    # 8b-bis. LAS NOTAS IDENTICAS DE LOS DOS CUADERNOS DE RIESGO DE SESGO. El
+    # registro del 2026-09-05 dio 7 418 caracteres; el manuscrito lo dice desde
+    # el 2026-10-08 y la cifra tiene que salir de los ficheros, no del registro.
+    try:
+        def _notas_rob(p):
+            wb = openpyxl.load_workbook(p, data_only=True)
+            out = {}
+            for h in ("RoB 2 por dominio", "ROBINS-I por dominio"):
+                if h not in wb.sheetnames:
+                    continue
+                filas = list(wb[h].iter_rows(values_only=True))
+                hi = next(i for i, r in enumerate(filas)
+                          if any(x and "frase" in str(x).lower() for x in r))
+                cab = [str(x or "") for x in filas[hi]]
+                jf = next(j for j, x in enumerate(cab) if "frase" in x.lower())
+                for r in filas[hi + 1:]:
+                    if r[0]:
+                        out[(h, str(r[0]))] = str(r[jf] or "").strip()
+            return out
+        _ra = _notas_rob(RS / "riesgo_sesgo" / "riesgo_sesgo_comparativos_danny_valdiviezo.xlsx")
+        _rb = _notas_rob(RS / "riesgo_sesgo" / "riesgo_sesgo_comparativos_nataly_trelles.xlsx")
+        _par = [(_ra[k], _rb[k]) for k in _ra.keys() & _rb.keys() if _ra[k] and _rb[k]]
+        S["rob_notas_comparables"] = len(_par)
+        S["rob_notas_identicas"] = sum(1 for a, b in _par if a == b)
+        S["rob_notas_identicas_caracteres"] = sum(len(a) for a, b in _par if a == b)
+    except Exception as e:
+        print("AVISO: no se pudieron medir las notas de riesgo de sesgo: %s" % e)
+
+    # 8c. EL CONJUNTO DE CONTROL POSITIVO: 42 fijados, 40 comprobables por PMID
+    # durante el cribado, y cuantos siguen en el corpus. Los manuscritos decian
+    # «40 estudios fijados a priori» y «40 de 40»: el conjunto tiene 42, y la
+    # auditoria del cribado no sigue a los controles despues del texto completo.
+    _idx = collections.defaultdict(set)
+    for _l in (QR / "corpus_identifier_index.txt").read_text(encoding="utf-8").splitlines():
+        if _l.strip() and not _l.startswith("#"):
+            _i, _, _s = _l.partition("\t")
+            _idx[_s.strip()].add(_i.strip().lower())
+    S["controles_fijados"] = len(_idx)
+    S["controles_comprobables_pmid"] = sum(
+        1 for v in _idx.values() if any(i.startswith("pmid:") for i in v))
+    _ids_est = collections.defaultdict(set)
+    for g in grupos:
+        r = corpus.get(g["record_id"], {})
+        for c, pre_ in (("pmid", "pmid:"), ("doi", "doi:"), ("nct", "nct:")):
+            for v in _re.split(r"[;,\s]+", r.get(c) or ""):
+                if v.strip():
+                    _ids_est["EST-%03d" % int(g["estudio"])].add(pre_ + v.strip().lower())
+    _en_corpus = 0
+    for v in _idx.values():
+        hit = [e for e, ids in _ids_est.items() if ids & v]
+        if hit and hit[0] not in excl:
+            _en_corpus += 1
+    S["controles_en_corpus"] = _en_corpus
+    S["controles_fuera_del_corpus"] = len(_idx) - _en_corpus
+
+    # 8d. LAS EXCLUSIONES DE S16 QUE LLEVAN CITA. La lista de anexos decia que
+    # las 118 llevan «la frase del articulo que lo sostiene»; los NOPDF no
+    # tienen articulo y los NOREC no tienen texto legible. Mismo corte que
+    # build_lista_anexos.citas_s16, contado aqui para que la frase se ancle.
+    _ex = leer(ROOT / "revision_sistematica" / "cribado"
+               / "exclusiones_tras_texto_completo.csv", enc="utf-8-sig")
+    _con = sum(1 for r in _ex if r["codigo"] not in ("NOPDF", "NOREC")
+               and r["cita_del_texto"].strip()
+               and not r["cita_del_texto"].strip().startswith("("))
+    S["s16_con_cita"] = _con
+    S["s16_sin_cita_otros"] = sum(1 for r in _ex if r["codigo"]
+                                  not in ("NOPDF", "NOREC")) - _con
 
     # 10 y 13. el solapamiento, medido
     sol = leer(QR / "pendiente2_solapamiento.csv", enc="utf-8-sig")

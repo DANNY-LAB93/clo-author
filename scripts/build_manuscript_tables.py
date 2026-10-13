@@ -302,6 +302,14 @@ def main():
                 "%.1f" % d["pct_de_los_brazos"]]
                 + (["%.1f" % d["pct_de_los_legibles"]] if dos_denominadores else [])
                 + ["%.1f" % d["doble_lectura_pct"]])
+        # Decia «coincidieron o resolvieron por consenso». No se sostiene: el
+        # registro de adjudicacion (resuelto_por) anota a los dos revisores
+        # solo en una minoria de los desacuerdos y un unico responsable en el
+        # resto. Las dos cifras salen de los escalares, no se teclean.
+        adjudicado = (
+            "coincidieron o cuyo desacuerdo se adjudicó (con la firma de los "
+            "dos solo en %d de los %d desacuerdos del registro)"
+            % (S["conflictos_resueltos_por_los_dos"], S["extraccion_desacuerdos"]))
         if dos_denominadores:
             nota = (
                 "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador sin "
@@ -311,10 +319,10 @@ def main():
                 "ambos no es silencio de la literatura sino hueco documental nuestro: "
                 "de un artículo que no se ha podido leer no se puede afirmar que "
                 "calle. «Con doble lectura» es el porcentaje de esas casillas en que "
-                "los dos revisores coincidieron o resolvieron por consenso; el resto "
+                "los dos revisores %s; el resto "
                 "lo leyó un solo revisor, y en la fila de emergencia de resistencia "
                 "esas casillas las rellenó siempre el mismo. "
-                % (O["brazos"], O["brazos_legibles"]))
+                % (O["brazos"], O["brazos_legibles"], adjudicado))
         else:
             nota = (
                 "La tabla mide COMPLETITUD DE REPORTE, no eficacia: un numerador sin "
@@ -322,10 +330,10 @@ def main():
                 "estudios con el artículo completo leído (sección 2.9), de modo que "
                 "un desenlace que no consta es un desenlace que el artículo no "
                 "reporta. «Con doble lectura» es el porcentaje de esas casillas en "
-                "que los dos revisores coincidieron o resolvieron por consenso; el "
+                "que los dos revisores %s; el "
                 "resto lo leyó un solo revisor, y en la fila de emergencia de "
                 "resistencia esas casillas las rellenó siempre el mismo. "
-                % O["brazos"])
+                % (O["brazos"], adjudicado))
         if O.get("campos_del_esquema_no_extraidos"):
             nota += (
                 "La fila de erradicación usa el tamaño del brazo como denominador: "

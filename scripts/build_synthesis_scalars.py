@@ -659,13 +659,18 @@ def main():
         S["extraccion_doble_pct"] = "%.0f" % pct
     # El 98 % es de los 124 extraidos. Del corpus vigente se cuenta aparte:
     # un estudio tiene doble extraccion si alguna casilla suya salio de
-    # acuerdo o de consenso entre los dos, no de una sola lectura.
+    # acuerdo o de un desacuerdo adjudicado, no de una sola lectura.
+    # «consenso» se partio el 2026-10-08 en las tres etiquetas «adjudicada
+    # ...» (build_adjudicated_dataset.ADJUDICADAS); cuentan igual que contaba.
     proc = RS / "extraccion" / "extraccion_adjudicada_procedencia.csv"
     if proc.exists():
         dobles = set()
         for r in leer(proc):
             if r["study_id"] in reps and any(
-                    v in ("acuerdo", "consenso") for k, v in r.items()
+                    v in ("acuerdo", "adjudicada por los dos",
+                          "adjudicada por uno (D.V.)",
+                          "adjudicada por uno (N.T.)")
+                    for k, v in r.items()
                     if k not in ("study_id", "arm_id")):
                 dobles.add(r["study_id"])
         S["extraccion_doble_corpus"] = len(dobles)

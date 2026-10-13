@@ -162,3 +162,13 @@ Las tres columnas viven ya en `scripts/extraction_schema.py`, con esta regla
 completa en el texto de ayuda que sale al pasar el cursor por el encabezado. El
 formulario ofrece `sostenida / recaida / no evaluable` como desplegable cerrado,
 para que no vuelva a colarse un valor a mano.
+
+---
+
+## Nota — 2026-10-08
+
+D.V. declaró el 8 de octubre de 2026 que las reglas de desenlace las decidieron los dos
+autores sobre la propuesta del modelo. Este registro no lo respalda: la ratificación
+por los dos no consta. Los manuscritos lo escriben como declaración de D.V., junto a
+que este registro las dejó como propuesta sin ratificar. El estado de arriba no se
+cambia.

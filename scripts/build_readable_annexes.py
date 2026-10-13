@@ -49,9 +49,15 @@ QUE_ES = {
     "S3_decisiones_etapa3_resumen": (
         "Toda decisión de cribado por RESUMEN, una por fila, con su motivo y su marca de tiempo.",
         "Sección 2.4. Solo llegan aquí los registros que superaron el cribado por título."),
+    # Decia «la fuente de TODA cifra que el artículo publica» y no decia quien
+    # la emitio. Las dos cosas eran falsas o faltaban: la emitio el modelo, y
+    # la sección 3.5 y la tabla 5 salen de la extraccion adjudicada (S14), no
+    # de aqui.
     "S4_pre_extraccion_desde_resumen": (
-        "La pre-extracción desde el resumen, que es la fuente de TODA cifra que el artículo publica.",
-        "Sección 2.6. Cada fila va marcada PARCIAL: describe lo que el resumen declara, no el texto completo."),
+        "La pre-extracción desde el resumen, emitida por el modelo de lenguaje "
+        "(Claude Opus 5); fuente de las cifras estructurales (secciones 3.1 a 3.4).",
+        "Sección 2.6. Cada fila va marcada PARCIAL: describe lo que el resumen declara, no el texto completo. "
+        "Los desenlaces (sección 3.5, tabla 5) salen de la extracción adjudicada, S14."),
     "S5_listado_184_estudios": (
         "Los 184 estudios tras agrupar los informes, con su situación y si se obtuvo el texto completo.",
         "Sección 3.1. La unidad es el estudio, no el informe: un mismo estudio puede tener varios informes."),
@@ -79,6 +85,75 @@ QUE_ES = {
         "hasta cuándo y si hay un contraste para P. aeruginosa.",
         "Sección 3.7. «Grupo sin fago» y «contraste para P. aeruginosa» son la "
         "codificación del texto firmado que va al lado."),
+    # S15 y S18b salian con el texto por defecto, «Anexo del material
+    # suplementario.», y en S15 nadie explicaba las etiquetas: el lector tenia
+    # que adivinar que «consenso» (la etiqueta de entonces) cubria tambien
+    # casillas que el registro atribuye a un unico responsable.
+    "S15_procedencia_de_cada_casilla": (
+        "De dónde salió cada casilla de la extracción adjudicada (S14): el mismo "
+        "cuadro, una fila por brazo y una columna por variable, con la etiqueta de "
+        "procedencia en lugar del valor.",
+        "Sección 2.6 y tabla 5, cuyo «con doble lectura» cuenta las casillas con "
+        "acuerdo, adjudicadas o corregidas con dos firmas. Cada etiqueta se explica "
+        "abajo."),
+    "S18b_frases_cosechadas_por_tema": (
+        "Las frases de cada artículo que el modelo de lenguaje (Claude Opus 5) "
+        "localizó de forma automática, buscando expresiones, para cada dominio o "
+        "tema de riesgo de sesgo, y que puso como comentario en las casillas de los "
+        "formularios. Sirven para buscar en el artículo, no para sostener un juicio.",
+        "Sección 2.7. Lo que sostiene cada juicio está en S18. Un tema sin frases "
+        "quiere decir que el buscador no encontró la expresión, no que el artículo "
+        "no trate el asunto."),
+}
+
+# Lo que significa cada etiqueta de un anexo cuyas casillas son etiquetas y no
+# datos. El recuento de cada una se cuenta en el propio CSV al escribir el
+# Léeme, no se teclea. Si el CSV trae una etiqueta que no esta aqui, el guion
+# se para: un Léeme que no explica una de sus etiquetas es justo el defecto
+# que esto corrige.
+ETIQUETAS_DE = {
+    # Las tres «adjudicada ...» eran una sola, «consenso», hasta el 2026-10-08
+    # (build_adjudicated_dataset.py). La columna resuelto_por del registro de
+    # adjudicacion anota a los dos revisores en pocas filas y un unico
+    # responsable en el resto; la etiqueta dice lo que anota, no mas.
+    "S15_procedencia_de_cada_casilla": [
+        ("acuerdo", "Los dos revisores escribieron el mismo valor, una vez "
+                    "normalizado el vocabulario."),
+        ("adjudicada por los dos",
+         "Los dos revisores discreparon; el valor es el del registro de "
+         "adjudicación (extraction_conflicts.csv), que anota como responsables a "
+         "los dos. Solo estas constan como consenso."),
+        ("adjudicada por uno (D.V.)",
+         "Los dos revisores discreparon; el valor es el del registro de "
+         "adjudicación, que anota un único responsable: D.V."),
+        ("adjudicada por uno (N.T.)",
+         "Los dos revisores discreparon; el valor es el del registro de "
+         "adjudicación, que anota un único responsable: N.T."),
+        ("corregido por consenso contra el texto",
+         "Casilla ya cerrada que una corrección posterior, con su cita literal y "
+         "la firma de los dos autores, cambió contra el texto completo "
+         "(correcciones_tras_texto_completo.csv). Las correcciones de modalidad las "
+         "propuso el modelo de lenguaje tras leer los textos."),
+        ("corregido contra el texto (una firma)",
+         "Lo mismo, con la firma de un solo autor; no cuenta como doble lectura. "
+         "Entre ellas están las casillas del tercer paciente de EST-121, que "
+         "extrajo el modelo de lenguaje y firmó solo D.V."),
+        ("sin segunda lectura",
+         "Solo un revisor rellenó la casilla; no cuenta como doble lectura."),
+        ("ABIERTO",
+         "Los dos discreparon y el desacuerdo no está adjudicado; la casilla sale "
+         "vacía en S14. Así queda también un desacuerdo que se cerró por una "
+         "regla mecánica, sin firma conjunta: su valor no lo firmó nadie."),
+        ("vacio", "Ninguno de los dos rellenó la casilla."),
+    ],
+}
+NOTA_ETIQUETAS = {
+    "S15_procedencia_de_cada_casilla": (
+        "Una casilla adjudicada que después se corrigió contra el texto lleva la "
+        "etiqueta de la corrección; por eso las casillas «adjudicada» son menos "
+        "que los desacuerdos adjudicados del registro. Que el registro anote un "
+        "único responsable dice quién firmó, no cuántos leyeron: la casilla la "
+        "leyeron los dos, y por eso discreparon."),
 }
 
 # Cabeceras. Lo que el canal llama X, un revisor lo entiende como Y.
@@ -195,6 +270,38 @@ def main():
             p.cell(row=f, column=1, value=ETIQUETA.get(col, col)).font = Font(bold=True, size=10)
             p.cell(row=f, column=2, value="columna interna: %s" % col).font = Font(size=10, color="808080")
             f += 1
+        if clave in ETIQUETAS_DE:
+            # Las casillas de datos son etiquetas: se cuentan aqui, sobre las
+            # columnas que no son la clave del brazo.
+            ids = {i for i, c in enumerate(cab) if c in ("study_id", "arm_id")}
+            cuenta = {}
+            for fila in datos:
+                for i, v in enumerate(fila):
+                    if i not in ids:
+                        cuenta[v] = cuenta.get(v, 0) + 1
+            explicadas = dict(ETIQUETAS_DE[clave])
+            sobran = sorted(set(cuenta) - set(explicadas))
+            if sobran:
+                raise SystemExit("%s: etiquetas sin explicar en el Léeme: %s. "
+                                 "Añádelas a ETIQUETAS_DE." % (clave, sobran))
+            f += 1
+            c = p.cell(row=f, column=1, value="Qué significa cada etiqueta")
+            c.font = Font(size=12, bold=True, color="1F4E79")
+            f += 1
+            for etiqueta, sentido in ETIQUETAS_DE[clave]:
+                c = p.cell(row=f, column=1, value="%s (%d casillas)"
+                           % (etiqueta, cuenta.get(etiqueta, 0)))
+                c.font = Font(bold=True, size=10)
+                c.alignment = Alignment(wrap_text=True, vertical="top")
+                c = p.cell(row=f, column=2, value=sentido)
+                c.font = Font(size=10)
+                c.alignment = Alignment(wrap_text=True, vertical="top")
+                f += 1
+            if clave in NOTA_ETIQUETAS:
+                c = p.cell(row=f, column=2, value=NOTA_ETIQUETAS[clave])
+                c.font = Font(size=10, italic=True)
+                c.alignment = Alignment(wrap_text=True, vertical="top")
+                f += 1
         f += 1
         p.cell(row=f, column=1, value="El CSV con los nombres internos acompaña a este fichero: "
                "es la copia reproducible.").font = Font(size=10, italic=True)

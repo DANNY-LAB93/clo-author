@@ -186,6 +186,8 @@ def comprueba(ruta):
     # el parrafo de riesgo de sesgo nombra los que no tienen texto completo,
     # «EST-029» entraba como la cifra 29.
     texto = re.sub(r"EST-\d{3}", " ", texto)
+    # Los nombres de fago llevan numeros que no son cantidades: «Ps1N/734».
+    texto = re.sub(r"\b[A-Za-z]+\d*[A-Za-z]*/\d+\b", " ", texto)
     # La numeracion de secciones no es un dato: "seccion 3.2" y el encabezado
     # "## 3. Resultados" son referencias internas, no cifras que respaldar.
     texto = re.sub(r"(?m)^#{1,6}\s*\d+(\.\d+)*\.?\s", " ", texto)

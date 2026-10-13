@@ -6,11 +6,20 @@ Hasta ahora había tres ficheros y ninguno era «la extracción»: el cuaderno d
 D. Valdiviezo, el de N. Trelles, y la lista de desacuerdos con sus resoluciones.
 Este script los funde en uno, con una regla explícita por caso:
 
-  los dos coinciden        -> ese valor
-  discrepan y hay consenso -> el valor que firmaron los dos revisores
-  discrepan y NO hay consenso -> vacío, y la casilla queda marcada ABIERTA
-  solo uno rellenó         -> ese valor, marcado SIN SEGUNDA LECTURA
-  ninguno rellenó          -> vacío
+  los dos coinciden             -> ese valor
+  discrepan y está adjudicado   -> el valor del registro de adjudicación,
+                                   con quién lo firmó: «adjudicada por los
+                                   dos», «adjudicada por uno (D.V.)» o
+                                   «adjudicada por uno (N.T.)»
+  discrepan y NO está adjudicado -> vacío, y la casilla queda marcada ABIERTA
+  solo uno rellenó              -> ese valor, marcado SIN SEGUNDA LECTURA
+  ninguno rellenó               -> vacío
+
+Hasta el 2026-10-08 la segunda regla decía «hay consenso -> el valor que
+firmaron los dos revisores», y toda casilla adjudicada salía como «consenso».
+No se sostiene: la columna `resuelto_por` de extraction_conflicts.csv anota a
+los dos revisores en una minoría de filas y un único responsable en el resto.
+La etiqueta dice ahora lo que anota el registro, ni más ni menos.
 
 Las dos últimas reglas importan tanto como las otras. Una casilla que solo
 leyó un revisor no es equivalente a una que leyeron los dos y en la que
@@ -20,7 +29,7 @@ procedencia en una columna paralela. Quien reporte una cifra desde aquí puede
 
 QUÉ NO HACE
 
-No decide nada que los revisores no hayan decidido. Las casillas sin consenso
+No decide nada que los revisores no hayan decidido. Las casillas sin adjudicar
 salen vacías --el script dice cuántas al terminar-- y no se rellenan con la
 respuesta más frecuente ni con la del revisor más completo. Y no evalúa riesgo de sesgo: eso exige leer los artículos
 y es un juicio humano que este canal no puede emitir.
@@ -48,7 +57,7 @@ A = EXTR / "extraccion_danny_valdiviezo.xlsx"
 B = EXTR / "extraccion_nataly_trelles.xlsx"
 CONFLICTOS = EXTR / "extraction_conflicts.csv"
 # Correcciones posteriores a la adjudicacion. Son casillas YA CERRADAS --por
-# acuerdo de los dos o por consenso firmado-- que el texto completo contradice
+# acuerdo de los dos o por adjudicacion firmada-- que el texto completo contradice
 # literalmente. No se editan en el CSV de salida, que es un derivado: se
 # declaran aqui, con la cita que las sostiene y la firma de quien las asume, y
 # el constructor las aplica en la ultima capa. Asi los cuadernos siguen
@@ -59,6 +68,37 @@ CORRECCIONES = EXTR / "correcciones_tras_texto_completo.csv"
 SALIDA = EXTR / "extraccion_adjudicada.csv"
 PROCEDENCIA = EXTR / "extraccion_adjudicada_procedencia.csv"
 RESUMEN = ROOT / "quality_reports" / "extraccion_adjudicada.json"
+
+# Las tres etiquetas de una casilla cuyo desacuerdo se adjudico. Antes eran
+# una sola, «consenso», y no se sostenia: 520 casillas salian como consenso y
+# el registro solo anota a los dos revisores en una pequena parte. Quien las
+# lea fuera de aqui (build_outcome_scalars, build_synthesis_scalars) las cuenta
+# las tres como doble lectura, igual que contaba «consenso»: los dos revisores
+# leyeron la casilla --por eso discreparon--; lo que cambia es quien firmo.
+ADJ_DOS = "adjudicada por los dos"
+ADJ_DV = "adjudicada por uno (D.V.)"
+ADJ_NT = "adjudicada por uno (N.T.)"
+ADJUDICADAS = (ADJ_DOS, ADJ_DV, ADJ_NT)
+
+
+def quien_adjudico(resuelto_por):
+    """La etiqueta de procedencia segun la columna `resuelto_por`.
+
+    El mismo corte que build_auditoria_scalars (conflictos_resueltos_*): « Y »
+    entre dos nombres son los dos; un nombre solo es un unico responsable. Un
+    valor que no encaja no se adivina: se para, porque etiquetarlo mal es
+    justo el error que esta funcion existe para no cometer."""
+    rp = (resuelto_por or "").upper().strip()
+    if " Y " in rp:
+        return ADJ_DOS
+    if rp == "DANNY VALDIVIEZO":
+        return ADJ_DV
+    if rp == "NATALY TRELLES":
+        return ADJ_NT
+    raise SystemExit("resuelto_por no reconocido en %s: «%s». Añade el caso "
+                     "a quien_adjudico() antes de etiquetar la casilla."
+                     % (CONFLICTOS.name, resuelto_por))
+
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -92,13 +132,14 @@ def main():
 
     # Las resoluciones firmadas. Las cerradas por regla sin firma conjunta NO
     # cuentan: su valor no lo acordó nadie, asi que su casilla queda abierta.
+    # Cada una guarda, ademas del valor, la etiqueta de quien la firmo.
     SIN_FIRMA = "SIN firma conjunta"
-    consenso, abiertos = {}, set()
+    adjudicadas, abiertos = {}, set()
     for r in csv.DictReader(open(CONFLICTOS, encoding="utf-8")):
         clave = (r["study_id"], r["arm_id"], r["campo"])
         val = (r.get("resolucion") or "").strip()
         if val and SIN_FIRMA not in (r.get("resuelto_por") or ""):
-            consenso[clave] = val
+            adjudicadas[clave] = (val, quien_adjudico(r.get("resuelto_por")))
         else:
             abiertos.add(clave)
 
@@ -166,8 +207,9 @@ def main():
                     # que se entrega, y son 392 celdas.
                     valor = na if campo in CATEGORICOS else va
                     origen = "acuerdo"
-                elif ck in consenso:
-                    valor, origen = consenso[ck], "consenso"
+                elif ck in adjudicadas:
+                    # Decia «consenso» para todas. Ver ADJ_* arriba.
+                    valor, origen = adjudicadas[ck]
                 else:
                     valor, origen = "", "ABIERTO"
             elif va or vb:
@@ -212,7 +254,7 @@ def main():
             # El aviso dice «los dos coincidieron», asi que solo puede contar
             # celdas que leyeron los dos. Una que leyo uno solo es otra cosa y
             # se informa aparte.
-            if v and v not in ops and pr.get(campo) in ("acuerdo", "consenso"):
+            if v and v not in ops and pr.get(campo) in ("acuerdo",) + ADJUDICADAS:
                 fuera[campo][v] += 1
     if fuera:
         print()
@@ -229,7 +271,12 @@ def main():
     # Una correccion que firmaron los DOS es doble lectura: dos personas
     # miraron esa casilla y la firmaron. Una que firmo uno solo, no.
     CORR_DOS = "corregido por consenso contra el texto"
-    doble = cuenta["acuerdo"] + cuenta["consenso"] + cuenta[CORR_DOS]
+    # Una casilla adjudicada SI es doble lectura, la firme uno o los dos: la
+    # leyeron los dos revisores, y por eso hubo desacuerdo. Lo que la firma
+    # dice es quien adjudico, no cuantos leyeron. Es la misma cuenta que
+    # hacia «consenso» antes de partirse en tres.
+    adjudicadas_n = sum(cuenta[e] for e in ADJUDICADAS)
+    doble = cuenta["acuerdo"] + adjudicadas_n + cuenta[CORR_DOS]
     S = {
         "filas": len(filas),
         "estudios": len({k[0] for k in claves}),
@@ -237,7 +284,13 @@ def main():
         "casillas_totales": total,
         "casillas_con_dato": llenas,
         "por_acuerdo": cuenta["acuerdo"],
-        "por_consenso": cuenta["consenso"],
+        # Se llamaba «por_consenso» y contaba como consenso las 520 casillas
+        # adjudicadas, aunque el registro solo anota a los dos en una pequena
+        # parte. Mismo total, nombre que no promete lo que no hay, y desglose.
+        "por_adjudicacion": adjudicadas_n,
+        "adjudicadas_por_los_dos": cuenta[ADJ_DOS],
+        "adjudicadas_por_uno_dv": cuenta[ADJ_DV],
+        "adjudicadas_por_uno_nt": cuenta[ADJ_NT],
         "sin_segunda_lectura": cuenta["sin segunda lectura"],
         "corregidas_contra_el_texto_dos_firmas": cuenta[CORR_DOS],
         "corregidas_contra_el_texto_una_firma":
@@ -259,7 +312,10 @@ def main():
     print()
     print("  procedencia de las %s casillas con dato:" % f"{llenas:,}".replace(",", " "))
     print("    los dos coincidieron        %5d" % S["por_acuerdo"])
-    print("    resuelto por consenso       %5d" % S["por_consenso"])
+    print("    desacuerdo adjudicado       %5d  (firma de los dos %d; "
+          "un único responsable: D.V. %d, N.T. %d)"
+          % (S["por_adjudicacion"], S["adjudicadas_por_los_dos"],
+             S["adjudicadas_por_uno_dv"], S["adjudicadas_por_uno_nt"]))
     print("    solo lo leyó un revisor     %5d" % S["sin_segunda_lectura"])
     print("    abiertas (salen vacías)     %5d" % S["abiertas"])
     if cuenta[CORR_DOS] or cuenta["corregido contra el texto (una firma)"]:
@@ -272,7 +328,7 @@ def main():
     print()
     print("  por campo, las que menos doble lectura tienen:")
     def dobles(c):
-        return c["acuerdo"] + c["consenso"] + c[CORR_DOS]
+        return c["acuerdo"] + sum(c[e] for e in ADJUDICADAS) + c[CORR_DOS]
     orden = sorted(campos, key=lambda c: dobles(por_campo[c]))
     for campo in orden[:8]:
         c = por_campo[campo]

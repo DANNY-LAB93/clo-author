@@ -333,26 +333,52 @@ FRASES = {
            "coletilla": " —alto riesgo en RoB 2; grave o crítico en ROBINS-I—",
            # Reescrita el 2026-09-23. La anterior negaba la concordancia
            # que los dos cuadernos individuales permiten medir.
-           "consenso": ("Los dos revisores evaluaron por separado %(dos)d de los "
-                        "%(ev)d estudios evaluables y coincidieron en %(ac)d de los "
+           # CORREGIDA EL 2026-10-08: «evaluaron por separado» y «en la misma
+           # direccion» callaban que los cuadernos no son independientes y que
+           # todos los desacuerdos se resolvieron hacia el cuaderno de D.V.
+           "consenso": ("Los cuadernos de los dos revisores, en %(dos)d de los "
+                        "%(ev)d estudios evaluables, coinciden en %(ac)d de los "
                         "%(comp)d juicios comparables (%(pct)s %%; kappa de Cohen "
-                        "%(kappa)s). Los %(des)d restantes se discutieron uno a uno y "
-                        "se resolvieron por consenso, los %(des)d en la misma "
-                        "dirección. %(resto)s"),
-           "duplicado": ("Los dos revisores coincidieron en %d de los %d juicios y "
-                         "resolvieron los %d restantes por consenso.")},
+                        "%(kappa)s), una concordancia que no mide dos evaluaciones "
+                        "independientes (sección 2.7). Los %(des)d desacuerdos se "
+                        "resolvieron por consenso, %(direccion)s. %(resto)s"),
+           # Ruta latente: si algun dia el modo vuelve a «duplicado», no
+           # puede reintroducir la frase sin la advertencia.
+           "duplicado": ("Los dos revisores coincidieron en %d de los %d juicios, "
+                         "una concordancia que no mide dos evaluaciones "
+                         "independientes (sección 2.7), y resolvieron los %d "
+                         "restantes por consenso.")},
     "en": {"global": "Of the %d studies assessed with %s, the overall judgement is %s.",
            "en_n": "%s in %d",
            "peor": "The domain concentrating most unfavourable judgements%s in %s is “%s”, in %d of %d.",
            "coletilla": " —high risk under RoB 2; serious or critical under ROBINS-I—",
-           "consenso": ("The two reviewers assessed %(dos)d of the %(ev)d assessable "
-                        "studies independently and agreed on %(ac)d of the %(comp)d "
-                        "comparable judgements (%(pct)s %%; Cohen's kappa %(kappa)s). "
-                        "The remaining %(des)d were discussed one by one and resolved "
-                        "by consensus, all %(des)d in the same direction. %(resto)s"),
-           "duplicado": ("The two reviewers agreed on %d of the %d judgements and "
-                         "resolved the remaining %d by consensus.")},
+           "consenso": ("The two reviewers' notebooks, in %(dos)d of the %(ev)d "
+                        "assessable studies, agree on %(ac)d of the %(comp)d "
+                        "comparable judgements (%(pct)s %%; Cohen's kappa %(kappa)s), "
+                        "an agreement that does not measure two independent "
+                        "assessments (section 2.7). The %(des)d disagreements were "
+                        "resolved by consensus, %(direccion)s. %(resto)s"),
+           "duplicado": ("The two reviewers agreed on %d of the %d judgements, "
+                         "an agreement that does not measure two independent "
+                         "assessments (section 2.7), and resolved the remaining "
+                         "%d by consensus.")},
 }
+
+
+def _direccion(S_, idioma):
+    """Hacia que cuaderno se resolvieron los desacuerdos, contado y no supuesto."""
+    d, r1 = S_["rob_desacuerdos"], S_.get("rob_resueltos_hacia_r1", 0)
+    r2 = S_.get("rob_resueltos_hacia_r2", 0)
+    if idioma == "es":
+        if r1 == d:
+            # Sin acabar en «D.V.»: la plantilla pone el punto y salia «D.V..».
+            return ("los %d hacia el juicio del cuaderno de D.V., ninguno "
+                    "hacia el del otro revisor" % d)
+        return "%d hacia el cuaderno de D.V. y %d hacia el de N.T." % (r1, r2)
+    if r1 == d:
+        return ("all %d towards the judgement in D.V.'s notebook, none "
+                "towards the other reviewer's" % d)
+    return "%d towards D.V.'s notebook and %d towards N.T.'s" % (r1, r2)
 
 
 def _resto(n, idioma):
@@ -437,6 +463,7 @@ def resumen_prosa(evaluables, orden, titulo, J, proc, idioma="es"):
             "kappa": (_S["rob_kappa"].replace(".", ",")
                       if idioma == "es" else _S["rob_kappa"]),
             "des": _S["rob_desacuerdos"],
+            "direccion": _direccion(_S, idioma),
             "resto": _resto(_S["rob_estudios_con_una_lectura"], idioma),
         })
     elif ac or co:
@@ -625,6 +652,8 @@ def escribe_otros(estado):
     import json as _json
     _O = _json.loads((ROOT / "quality_reports" / "outcome_scalars.json")
                      .read_text(encoding="utf-8"))
+    _S_n = _json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                       .read_text(encoding="utf-8")).get("rob_notas_identicas_caracteres", 0)
     ctx = {"comp": estado["comparativos_adjudicados"],
            "ev": estado["evaluables"],
            "celdas": estado["celdas_totales"],
@@ -634,7 +663,13 @@ def escribe_otros(estado):
            # pasada los devolvia a 103. Salen del canal desde el
            # 2026-09-22.
            "brazos": _O["brazos"],
-           "agregables": _O["brazos_agregables_exito_clinico"]}
+           "agregables": _O["brazos_agregables_exito_clinico"],
+           # Caracteres identicos entre las notas de los dos cuadernos de riesgo
+           # de sesgo (build_auditoria_scalars.py, 8b-bis), con millar a la
+           # espanola y a la inglesa.
+           "notas_es": "{:,}".format(_S_n).replace(",", " "),
+           # El ingles del manuscrito usa el mismo espacio de millar ("13 661").
+           "notas_en": "{:,}".format(_S_n).replace(",", " ")}
     # Metodos del propio manuscrito de la revista: mismo mecanismo.
     met = ROOT / "paper" / "manuscrito_JSR_final.md"
     s = met.read_text(encoding="utf-8")

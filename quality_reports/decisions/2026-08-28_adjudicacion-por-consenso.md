@@ -433,3 +433,15 @@ conclusión general justificada. Lo que no se sostenía era la cadena numérica.
   falta dos lectores y faltan 31 textos para el riesgo de sesgo, valdría igual
   para la Tabla 5, que sí se publica.
 - Una segunda enmienda no declarada, en S13.
+
+---
+
+## SUPERADO en parte — 2026-10-08
+
+Este registro dice que los desacuerdos se resolvieron «por consenso», firmando cada
+fila. El fichero de adjudicación no lo sostiene: la columna `resuelto_por` de
+`extraction_conflicts.csv` anota **a los dos revisores en 14** filas y **a uno solo en
+525** (293 D.V., 232 N.T.); otras 2 se cerraron por una regla mecánica. Solo las 14
+constan como consenso. Los manuscritos y los anexos lo dicen así desde el 2026-10-08
+(`2026-10-08_correcciones-del-piloto.md`). Lo de arriba se conserva tal como se
+escribió.

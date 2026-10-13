@@ -82,7 +82,11 @@ ENSAYOS = {"RCT", "non-randomised trial"}
 COHORTES = {"prospective cohort", "retrospective cohort"}
 COMPARATIVOS = ENSAYOS | COHORTES
 
-DOBLE = {"acuerdo", "consenso"}
+# «consenso» se partio el 2026-10-08 en las tres etiquetas de abajo, segun
+# quien firmo la adjudicacion (build_adjudicated_dataset.ADJUDICADAS). Las tres
+# cuentan como doble lectura, igual que contaba «consenso».
+DOBLE = {"acuerdo", "adjudicada por los dos", "adjudicada por uno (D.V.)",
+         "adjudicada por uno (N.T.)"}
 
 
 def es_numero(v):

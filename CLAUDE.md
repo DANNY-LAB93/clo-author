@@ -132,8 +132,8 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 | Búsqueda y cribado | 23 057 registros → 17 129 únicos → 233 informes → 183 valorados → 118 excluidos (**63 NOPDF**, 28 por el artículo, 17 por la ficha del registro, 10 sin poder leer ninguno) → **65 estudios, todos con el artículo completo**, 73 brazos. Antes de NOPDF: 128 estudios, 86 con artículo o resumen, 42 solo ficha |
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
 | Texto completo | **100 % por construcción** desde NOPDF (2026-10-06). Justo antes: 65 de 86 (75,6 %). El criterio se mide como **efecto** (Tabla 3, escalares `criterio_texto_*`): deja fuera 7 de 9 comparativos y 5 de 7 ECA. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
-| Extracción | doble y adjudicada. 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: 539 firmados por consenso, 2 por una regla superada, **0 abiertos** |
-| Riesgo de sesgo | **emitido, completo y firmado**: 9 comparativos por diseño, todos con texto —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, los 9 evaluables (2 RoB 2, 7 ROBINS-I). **68 celdas**. Doble lectura en 8 de los 9: acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
+| Extracción | doble y adjudicada, **sin independencia acreditada**: la columna de texto libre «¿Dónde viste estos datos?» coincide carácter por carácter entre los dos cuadernos en 107 de 107 filas, erratas incluidas (el 23-ago, 0 de 84). 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: el registro anota a los dos en 14, a uno solo en 525 (293 D.V., 232 N.T.), 2 por una regla superada. Los manuscritos lo dicen desde el 2026-10-08 |
+| Riesgo de sesgo | **emitido, completo y firmado**: 9 comparativos por diseño, todos con texto —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, los 9 evaluables (2 RoB 2, 7 ROBINS-I). **68 celdas**. Dos cuadernos en 8 de los 9, **sin independencia acreditada** (7 418 caracteres de notas idénticos el 5-sep; el de consenso, precargado por el canal, coincide con el de D.V.): acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso, los 11 hacia D.V.. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
 | Lectura del 2026-09-30 | **firmada e ingerida**, lo abierto **firmado el 1-oct** y la adenda **el 3-oct**: 9 sin ningún paciente con *P. aeruginosa* tratado → **5 excluidos (ORG)**, 4 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, **los 6 mantenidos por firma**. **Solapamiento: 20 pacientes en 18 estudios**, 30 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
 | Idioma | **Solo inglés y español** (D.V., 2026-10-06). Los 65 PDF del corpus, comprobados sobre el cuerpo: 65 en inglés. EST-045, EST-059 y EST-173 salieron con NOREC: sin texto, revistas rusa y griega, idioma no verificable |
 | Manuscrito | 347 anclas, todas al día. Pasa del límite de 3 500 de CMI. La ventana de búsqueda (2016–2026) sale de `ventana_desde/hasta`, no de `anio_min` (el corpus empieza en 2017) |
@@ -142,8 +142,10 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 
 **Lo que falta, y es de los autores:** los dos ORCID, el grado académico de ambos, el
 correo de N. Trelles (un marcador en `manuscrito_JSR_final.md:11`), la aprobación ICMJE
-escrita de N.T. sobre la versión final, los dos formularios obligatorios de la revista,
-y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
+escrita de N.T. sobre la versión final (su CRediT lleva un marcador ‹‹N. TRELLES: REVISIÓN Y
+EDICIÓN…›› en los tres manuscritos: nada puede decir que N.T. revisó o aprobó el texto
+mientras no conste por escrito), los dos formularios obligatorios de la revista,
+y el **protocolo de la fase definitiva**: el 2026-10-07 D.V. eligió depositarlo en OSF y rehacer la revisión bajo él, con lo anterior como piloto (`quality_reports/plans/2026-10-07_protocolo-y-fase-definitiva.md`). PROSPERO ya no es posible: la extracción está hecha.
 
 ---
 
@@ -248,11 +250,18 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
     defensa real son las anclas de `check_manuscript_claims.py`, que atan cada frase a SU
     escalar. Si añades una cifra al manuscrito, ánclala.
 
-17. **El cribado NO lo hizo Rayyan, y confundirlo falsifica los Métodos.** Las etapas 2
-    y 3 —13 894 títulos y 460 resúmenes— las condujo **un solo revisor humano (D.V.),
-    sin duplicación**, y las decisiones registro a registro **las emitió Claude Opus 5**.
+17. **El cribado NO lo hizo Rayyan, y confundirlo falsifica los Métodos.** Las decisiones
+    registro a registro de las etapas 2 y 3 —13 894 títulos y 460 resúmenes— **las emitió
+    Claude Opus 5 como revisor único, sin duplicación**. D.V. fue el único revisor humano y,
+    según declara (8-oct), examinó uno a uno lo que superó el cribado, sin registro. Hasta el
+    2026-10-08 esta nota decía que el cribado «lo condujo un solo revisor humano», que se
+    lee como si un humano hubiera revisado las decisiones. **El vocabulario de seis códigos
+    no estaba fijado antes de empezar**: el 4-ago el modelo escribió los motivos en texto
+    libre (20 redacciones) y los códigos se usaron desde el 5-ago.
     Rayyan se usó **solo** en el recribado ciego de los 350 excluidos, que es la
-    validación, y ahí sí lo hicieron los dos autores. Un encargo externo del 2026-09-23
+    validación, y **lo hizo D.V. solo** (`validacion_rayyan/resultado.json`: «revisor»
+    D. Valdiviezo; «No es una doble revisión»). Esta nota decía hasta el 2026-10-08 que
+    lo hicieron los dos autores, y era falso. Un encargo externo del 2026-09-23
     pedía describir Rayyan como la herramienta de cribado; aplicarlo habría convertido
     una declaración correcta en una falsa.
 
@@ -276,3 +285,13 @@ y el registro en PROSPERO (que sigue sin hacerse y el manuscrito declara así).
     `record_id`, que se derivan del contenido: si el grupo de hoy comparte un informe con
     un estudio de ayer, es ese estudio. Reejecutarlo es idempotente — compruébalo con
     `git diff` sobre `study_groups.csv`.
+
+20. **La declaración de uso de IA viaja entera, y en la revista también.** El manuscrito
+    de la revista no la llevó desde el 2026-09-04 hasta el 2026-10-08, mientras el LEEME
+    afirmaba que las declaraciones «viajaron enteras» y su CRediT atribuía a D.V. la
+    «redacción del borrador original». Ahora el párrafo «Uso de inteligencia artificial»
+    del maestro se copia literal en `manuscrito_JSR_final.md` (con «(secciones 2.6 y 2.7)»
+    → «(véase Métodos)»). Si cambias la declaración del maestro, cópiala igual a la
+    revista. Las tres declaraciones de D.V. del 8-oct (ejecutó las búsquedas, examinó lo
+    que superó el cribado, decidieron los dos las reglas de desenlace) se escriben SIEMPRE
+    como declaraciones suyas, sin añadidos: el registro no las respalda o las contradice.

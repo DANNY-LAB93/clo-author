@@ -1,4 +1,4 @@
-"""Compara dos extracciones independientes: concordancia y lista de conflictos.
+"""Compara dos extracciones: concordancia y lista de conflictos.
 
 QUÉ CONVIERTE ESTO. "Revisor único" es una limitación que un referee marca de
 inmediato. "Doble extracción independiente con resolución de conflictos
@@ -241,7 +241,7 @@ def main():
               if r[1] == "categórico" and r[5][0].isdigit()
               and "no es informativa" not in r[5]]
     acuerdos = [100.0 * r[3] / r[2] for r in resumen if r[2]]
-    lin = ["# Concordancia entre extracciones independientes", "",
+    lin = ["# Concordancia entre las dos extracciones", "",
            "Generado el %s por `scripts/compare_extractions.py`." % datetime.date.today().isoformat(),
            "", "| | |", "|---|---:|",
            "| %s | %d filas |" % (args.nombre_a, len(A)),
@@ -293,8 +293,8 @@ def main():
     lin += ["", "## Qué hacer ahora", "",
             "1. Abrir `revision_sistematica/extraccion/extraction_conflicts.csv` y resolver fila a fila.",
             "2. Rellenar `resolucion`, `resuelto_por` y `fecha`: el rastro de la resolución",
-            "   es lo que permite escribir en Métodos que los desacuerdos se resolvieron por",
-            "   consenso, y con qué frecuencia hizo falta.",
+            "   dice quién resolvió cada desacuerdo. Solo lo que firman los dos se puede",
+            "   llamar consenso en Métodos.",
             "3. Volcar los valores acordados al dataset de extracción y volver a ejecutar",
             "   este script para dejar constancia de la concordancia previa a la resolución.", ""]
     INFORME.write_text("\n".join(lin), encoding="utf-8")

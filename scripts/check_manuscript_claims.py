@@ -85,7 +85,7 @@ AFIRMACIONES = [
     (ES, "y {lista_bajo_umbral_mantenidos_03oct_ids}, que pasó por debajo del umbral al resolverse su clase ese mismo día, por la firmada el 3 de octubre"),
     (ES, "Los dos autores releyeron los {lectura_clase_estudios_leidos} estudios que entonces tenían texto completo"),
     (ES, "En {lectura_sin_pa_total} la lectura no encontró ningún paciente con *P. aeruginosa* tratado con fagos. Los dos autores excluyeron {lectura_sin_pa_excluidos} con el código ORG ({lista_lectura_sin_pa_excluidos_ids}"),
-    (ES, "y mantuvieron {lectura_sin_pa_mantenidos}, que se declaran aquí con lo que el artículo dice: en {lista_lectura_sin_pa_cita_ids} la única mención de *P. aeruginosa* es la descripción del paciente de otro estudio del corpus ({lista_lectura_sin_pa_citados_ids}), y en {lista_lectura_sin_pa_no_diana_ids} el paciente tuvo *P. aeruginosa*, pero el fago no se dirigió contra ella. Lo mismo ocurre en {lista_lectura_dudosos_mantenidos_ids}, que también se mantienen"),
+    (ES, "y mantuvieron {lectura_sin_pa_mantenidos}, que se declaran aquí con lo que el artículo dice: en {lista_lectura_sin_pa_cita_ids} la única mención de *P. aeruginosa* es la descripción del paciente de otro estudio del corpus ({lista_lectura_sin_pa_citados_ids}), y en {lista_lectura_sin_pa_no_diana_ids} el paciente tuvo *P. aeruginosa*, pero el fago no se dirigió contra ella."),
     (ES, "De los {lectura_clase_estudios} estudios con texto completo que quedan en el corpus, la clase pudo comprobarse en {lectura_clase_verificables}: en {lectura_clase_antibiograma} contra un antibiograma impreso y en {lectura_clase_texto} contra una descripción de la sensibilidad en el texto; en {lectura_clase_no_verificable} no hay con qué comprobarla"),
     (ES, "y los {lectura_clase_no_aplica} restantes son los mantenidos sin *P. aeruginosa* tratada"),
     (ES, "Las {lectura_correcciones} correcciones que la lectura deja inequívocas para el brazo entero —{lectura_correcciones_clase} de clase, {lectura_correcciones_procedencia} de su procedencia y {lectura_correcciones_dtr} del criterio DTR— entraron en la extracción con la firma de los dos autores. Los {lectura_abiertos_resueltos} estudios en que dejaba un brazo con más de un valor los resolvieron los dos autores el 1 de octubre de 2026: en {lectura_abiertos_corregidos} se corrigió la extracción ({lista_lectura_abiertos_corregidos_ids}) y en {lectura_abiertos_sin_cambio} se dejó como estaba ({lista_lectura_abiertos_sin_cambio_ids})"),
@@ -96,7 +96,7 @@ AFIRMACIONES = [
     (JSR, "y {lista_bajo_umbral_mantenidos_03oct_ids}, que pasó por debajo del umbral al resolverse su clase ese mismo día, por la firmada el 3 de octubre"),
     (JSR, "Los dos autores releyeron los {lectura_clase_estudios_leidos} estudios que entonces tenían texto completo"),
     (JSR, "En {lectura_sin_pa_total} la lectura no encontró ningún paciente con *P. aeruginosa* tratado con fagos. Los dos autores excluyeron {lectura_sin_pa_excluidos} con el código ORG ({lista_lectura_sin_pa_excluidos_ids}"),
-    (JSR, "y mantuvieron {lectura_sin_pa_mantenidos}, que se declaran aquí con lo que el artículo dice: en {lista_lectura_sin_pa_cita_ids} la única mención de *P. aeruginosa* es la descripción del paciente de otro estudio del corpus ({lista_lectura_sin_pa_citados_ids}), y en {lista_lectura_sin_pa_no_diana_ids} el paciente tuvo *P. aeruginosa*, pero el fago no se dirigió contra ella. Lo mismo ocurre en {lista_lectura_dudosos_mantenidos_ids}, que también se mantienen"),
+    (JSR, "y mantuvieron {lectura_sin_pa_mantenidos}, que se declaran aquí con lo que el artículo dice: en {lista_lectura_sin_pa_cita_ids} la única mención de *P. aeruginosa* es la descripción del paciente de otro estudio del corpus ({lista_lectura_sin_pa_citados_ids}), y en {lista_lectura_sin_pa_no_diana_ids} el paciente tuvo *P. aeruginosa*, pero el fago no se dirigió contra ella."),
     (JSR, "De los {lectura_clase_estudios} estudios con texto completo que quedan en el corpus, la clase pudo comprobarse en {lectura_clase_verificables}: en {lectura_clase_antibiograma} contra un antibiograma impreso y en {lectura_clase_texto} contra una descripción de la sensibilidad en el texto; en {lectura_clase_no_verificable} no hay con qué comprobarla"),
     (JSR, "y los {lectura_clase_no_aplica} restantes son los mantenidos sin *P. aeruginosa* tratada"),
     (JSR, "Las {lectura_correcciones} correcciones que la lectura deja inequívocas para el brazo entero —{lectura_correcciones_clase} de clase, {lectura_correcciones_procedencia} de su procedencia y {lectura_correcciones_dtr} del criterio DTR— entraron en la extracción con la firma de los dos autores. Los {lectura_abiertos_resueltos} estudios en que dejaba un brazo con más de un valor los resolvieron los dos autores el 1 de octubre de 2026: en {lectura_abiertos_corregidos} se corrigió la extracción ({lista_lectura_abiertos_corregidos_ids}) y en {lectura_abiertos_sin_cambio} se dejó como estaba ({lista_lectura_abiertos_sin_cambio_ids})"),
@@ -106,7 +106,7 @@ AFIRMACIONES = [
     (EN, "and {lista_bajo_umbral_mantenidos_03oct_ids}, which fell below the threshold when its class was resolved that same day, by the one signed on 3 October"),
     (EN, "The two authors re-read the {lectura_clase_estudios_leidos} studies that then had full text"),
     (EN, "In {lectura_sin_pa_total} the reading found no patient with *P. aeruginosa* treated with phages. The two authors excluded {lectura_sin_pa_excluidos} with code ORG ({lista_lectura_sin_pa_excluidos_ids}"),
-    (EN, "and kept {lectura_sin_pa_mantenidos}, which are declared here with what the article says: in {lista_lectura_sin_pa_cita_ids} the only mention of *P. aeruginosa* is the description of the patient of another study in the corpus ({lista_lectura_sin_pa_citados_ids}), and in {lista_lectura_sin_pa_no_diana_ids} the patient had *P. aeruginosa*, but the phage was not directed against it. The same holds in {lista_lectura_dudosos_mantenidos_ids}, which are also kept"),
+    (EN, "and kept {lectura_sin_pa_mantenidos}, which are declared here with what the article says: in {lista_lectura_sin_pa_cita_ids} the only mention of *P. aeruginosa* is the description of the patient of another study in the corpus ({lista_lectura_sin_pa_citados_ids}), and in {lista_lectura_sin_pa_no_diana_ids} the patient had *P. aeruginosa*, but the phage was not directed against it."),
     (EN, "Of the {lectura_clase_estudios} studies with full text that remain in the corpus, the class could be checked in {lectura_clase_verificables}: in {lectura_clase_antibiograma} against a printed antibiogram and in {lectura_clase_texto} against a description of susceptibility in the text; in {lectura_clase_no_verificable} there is nothing to check it against"),
     (EN, "the remaining {lectura_clase_no_aplica} are those kept without treated *P. aeruginosa*"),
     (EN, "The {lectura_correcciones} corrections the reading leaves unambiguous for the whole arm — {lectura_correcciones_clase} of class, {lectura_correcciones_procedencia} of its source and {lectura_correcciones_dtr} of the DTR criterion — entered the extraction with the signature of both authors. The {lectura_abiertos_resueltos} studies in which it left an arm with more than one value were resolved by the two authors on 1 October 2026: in {lectura_abiertos_corregidos} the extraction was corrected ({lista_lectura_abiertos_corregidos_ids}) and in {lectura_abiertos_sin_cambio} it was left as it was ({lista_lectura_abiertos_sin_cambio_ids})"),
@@ -119,13 +119,13 @@ AFIRMACIONES = [
     # ---- concordancia en riesgo de sesgo, medida el 2026-09-23 -----------
     # El manuscrito afirmaba que NO se podia medir. Los dos cuadernos
     # individuales existen y difieren en 12 juicios sobre el corpus vigente.
-    (ES, "coincidieron en {rob_acuerdo_bruto} de los {rob_juicios_comparables} juicios comparables ({rob_acuerdo_pct} %; kappa de Cohen {rob_kappa})"),
-    (EN, "agreed on {rob_acuerdo_bruto} of the {rob_juicios_comparables} comparable judgements ({rob_acuerdo_pct} %; Cohen's kappa {rob_kappa})"),
-    (ES, "Los dos revisores evaluaron por separado {rob_estudios_con_dos_lecturas} de los {rob_estudios_evaluables} estudios evaluables"),
-    (EN, "The two reviewers assessed {rob_estudios_con_dos_lecturas} of the {rob_estudios_evaluables} assessable studies independently"),
-    (ES, "la concordancia previa al consenso fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), con {rob_desacuerdos} desacuerdos"),
-    (JSR, "la concordancia previa fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), y los {rob_desacuerdos} desacuerdos"),
-    (EN, "pre-consensus agreement was {rob_acuerdo_pct} % ({rob_acuerdo_bruto} of {rob_juicios_comparables} judgements; Cohen's kappa {rob_kappa}), with {rob_desacuerdos} disagreements"),
+    (ES, "coinciden en {rob_acuerdo_bruto} de los {rob_juicios_comparables} juicios comparables ({rob_acuerdo_pct} %; kappa de Cohen {rob_kappa}), una concordancia que no mide dos evaluaciones independientes"),
+    (EN, "agree on {rob_acuerdo_bruto} of the {rob_juicios_comparables} comparable judgements ({rob_acuerdo_pct} %; Cohen's kappa {rob_kappa}), an agreement that does not measure two independent assessments"),
+    (ES, "Los cuadernos de los dos revisores, en {rob_estudios_con_dos_lecturas} de los {rob_estudios_evaluables} estudios evaluables"),
+    (EN, "The two reviewers' notebooks, in {rob_estudios_con_dos_lecturas} of the {rob_estudios_evaluables} assessable studies"),
+    (ES, "La concordancia entre los dos de riesgo de sesgo fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), y los {rob_desacuerdos} desacuerdos"),
+    (JSR, "la concordancia entre ellos fue del {rob_acuerdo_pct} % ({rob_acuerdo_bruto} de {rob_juicios_comparables} juicios; kappa de Cohen {rob_kappa}), y los {rob_desacuerdos} desacuerdos"),
+    (EN, "Agreement between the two risk-of-bias notebooks was {rob_acuerdo_pct} % ({rob_acuerdo_bruto} of {rob_juicios_comparables} judgements; Cohen's kappa {rob_kappa}), and the {rob_desacuerdos} disagreements"),
     # ---- la lectura firmada del 2026-09-30: umbral, clase comprobada, metodos
     (EN, "**In {brazos_bajo_umbral} of the {desenlace_brazos} arms the class falls below the multidrug-resistance threshold** ({coma_brazos_bajo_umbral_ids}). {brazos_bajo_umbral_estrato} are strata"),
     (EN, "Of the {lectura_clase_verificables} checked, the class matched the coded one in {lectura_clase_coincide}; in {lectura_clase_antes_no_clasificable} the extraction had it as not classifiable and the article allowed it to be assigned — {lectura_clase_antes_nc_bajo_umbral} below the threshold and {lectura_clase_antes_nc_xdr} XDR —; in {lectura_clase_mas_grave} it was more severe than coded ({lista_lectura_clase_mas_grave_ids}); in {lectura_clase_no_se_sostiene} the declared class was not confirmed ({lista_lectura_clase_no_se_sostiene_ids}), and in {lectura_clase_mixta} it changes between patients or between isolates of the same arm ({lista_lectura_clase_mixta_ids})"),
@@ -160,11 +160,11 @@ AFIRMACIONES = [
     # son protocolos», las tres a la vez y en los tres manuscritos.
     (ES, "### 3.1.1 Los {estudios_excluidos_tras_texto_completo} estudios que el cribado admitió y que salieron después"),
     (EN, "### 3.1.1 The {estudios_excluidos_tras_texto_completo} studies the screening admitted and that later left"),
-    (ES, "**{letras_excluidos_por_publicacion} salieron al juzgarlos sobre su publicación.**"),
-    (EN, "**{letras_excluidos_por_publicacion} left when judged on their publication.**"),
-    (JSR, "**{letras_excluidos_por_publicacion} exclusiones se decidieron sobre el artículo.**"),
-    (ES, "**{letras_excluidos_leyendo_articulo}** salieron de leer su artículo"),
-    (EN, "**{letras_excluidos_leyendo_articulo}** came from reading the article"),
+    (ES, "**{letras_excluidos_por_publicacion} salieron sobre su publicación o por no poder leerla.**"),
+    (EN, "**{letras_excluidos_por_publicacion} left on their publication or because it could not be read.**"),
+    (JSR, "**{letras_excluidos_por_publicacion} exclusiones se decidieron sobre la publicación o por no poder leerla.**"),
+    (ES, "**{letras_excluidos_leyendo_articulo}** salieron al juzgar su artículo, leyéndolo en todos los casos salvo un editorial"),
+    (EN, "**{letras_excluidos_leyendo_articulo}** came from judging the article, read in every case except one editorial"),
     (ES, "**{letras_excluidos_leyendo_articulo_ORG}** no tienen a *P. aeruginosa* en ningún paciente"),
     (EN, "**{letras_excluidos_leyendo_articulo_ORG}** have *P. aeruginosa* in no patient"),
     (ES, "**{letras_excluidos_leyendo_articulo_PRO}** son protocolos de estudio"),
@@ -198,7 +198,10 @@ AFIRMACIONES = [
     (JSR, "y en {comparativos_sin_grupo_real} las notas firmadas del dominio 1 declaran que no lo hay"),
     # Pies de tabla y descripcion de anexos: tambien llevan cifras.
     (ES, "declarados, sobre la extracción adjudicada (n = {desenlace_brazos} brazos)"),
-    (ES, "Listado de los {estudios} estudios con su situación y sus informes agrupados, y de los {estudios_excluidos_tras_texto_completo} excluidos"),
+    # Decia «y de los N excluidos»: S5 solo trae los estudios del corpus.
+    (ES, "Listado de los {estudios} estudios del corpus, con su situación y sus informes agrupados. Los {estudios_excluidos_tras_texto_completo} excluidos después del cribado están en S16"),
+    (ES, "{s16_con_cita} llevan la cita en que se apoya; los {excluidos_texto_completo_NOPDF} sin el artículo completo (NOPDF) y los {excluidos_texto_completo_NOREC} sin texto que se pudiera leer (NOREC) no tienen nada que citar, y {s16_sin_cita_otros} más van sin cita"),
+    (EN, "{s16_con_cita} carry the quotation that supports it; the {excluidos_texto_completo_NOPDF} without the full article (NOPDF) and the {excluidos_texto_completo_NOREC} without readable text (NOREC) have nothing to quote, and {s16_sin_cita_otros} more carry no quotation"),
     (JSR, "de una proporción agrupada de éxito clínico (n = {desenlace_brazos} brazos)"),
     (ES, "sobreviven a cada requisito de una proporción agrupada de éxito clínico (n = {desenlace_brazos} brazos)"),
     # Las tres ultimas que quedaban sin ancla. El pie de la Tabla 4 del
@@ -254,10 +257,10 @@ AFIRMACIONES = [
     # es la cifra mas facil de citar mal: la tasa y su cota no significan nada
     # separadas del tamano de muestra ni del marco.
     (ES, "una muestra aleatoria de {validacion_muestra} de los {validacion_marco} registros excluidos"),
-    (ES, "Los {validacion_primera_pasada_incluidos} registros marcados como incluibles en la primera pasada"),
+    (ES, "Los {validacion_primera_pasada_incluidos} registros que marcó como incluibles resultaron, contrastados por D.V."),
     (ES, "fue del {validacion_tasa_pct} % ({validacion_falsos_negativos} de {validacion_muestra}; IC 95 % exacto, 0,00 a {validacion_ic_sup_pct} %)**, lo que sobre el marco de {validacion_marco} admite hasta {validacion_cota_estudios} registros perdidos"),
     (EN, "a random sample of {validacion_muestra} of the {validacion_marco} records excluded"),
-    (EN, "The {validacion_primera_pasada_incluidos} records marked as includable on the first pass"),
+    (EN, "The {validacion_primera_pasada_incluidos} records D.V. marked as includable proved, when D.V. checked them"),
     (EN, "was {validacion_tasa_pct} % ({validacion_falsos_negativos} of {validacion_muestra}; exact 95 % CI, 0.00 to {validacion_ic_sup_pct} %)**, which over the frame of {validacion_marco} admits up to {validacion_cota_estudios} lost records"),
 
     # Se ancla porque esta frase se escribio desde un diccionario truncado y
@@ -272,7 +275,6 @@ AFIRMACIONES = [
     (EN, "Over the {extraccion_filas_comparadas} comparable arm rows, {extraccion_desacuerdos} value disagreements were recorded"),
     (EN, "was {extraccion_acuerdo_mediano_pct} % median agreement and a median Cohen's kappa of {extraccion_kappa_mediana} over the {extraccion_kappas_informativas} of {extraccion_categoricos_total} categorical fields where it is informative, ranging from {extraccion_acuerdo_min_pct} % to {extraccion_acuerdo_max_pct} %"),
 
-    (ES, "hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} adjudicadas"),
     # El RESTO tambien se ancla. El 14 de septiembre se firmaron las 14 que
     # quedaban abiertas, el escalar de firmadas subio de 525 a 539, y estas
     # frases siguieron diciendo «de las 16 restantes» y «hay 525 de 541»: el
@@ -282,9 +284,8 @@ AFIRMACIONES = [
     (EN, "The remaining {extraccion_cerrados_por_regla} had been closed earlier"),
     (JSR, "Hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados. El registro de adjudicación anota un único responsable en {conflictos_resueltos_por_uno} de las {extraccion_desacuerdos} filas y a los dos revisores en {conflictos_resueltos_por_los_dos}"),
     (JSR, "Los {extraccion_cerrados_por_regla} restantes se cerraron por una regla mecánica"),
-    (ES, "extracción de datos independiente ({extraccion_estudios_r2} de los {extraccion_estudios_r1} estudios)"),
-    (EN, "{extraccion_conflictos_firmados} of {extraccion_desacuerdos} are adjudicated"),
-    (EN, "independent data extraction ({extraccion_estudios_r2} of the {extraccion_estudios_r1} studies)"),
+    (ES, "extracción de datos ({extraccion_estudios_r2} de los {extraccion_estudios_r1} estudios)"),
+    (EN, "data extraction ({extraccion_estudios_r2} of the {extraccion_estudios_r1} studies)"),
 
     # --- desenlaces, sobre la extraccion adjudicada (seccion 3.5 y tabla 5) ---
     (ES, "Los eventos adversos son lo que más se reporta con denominador ({desenlace_adverse_event_n_pct_de_los_brazos} %"),
@@ -341,13 +342,15 @@ AFIRMACIONES = [
     # editor y lo unico que leen muchos, y hasta hoy no lo cubria nada.
     (JSR, "De {registros_identificados} registros quedaron {informes_unicos} informes únicos; {informes_a_texto_completo} informes formaron {estudios_antes_de_releer} estudios evaluados para elegibilidad"),
     (JSR, "no puede asignarse desde el resumen en el {sin_clase_util_pct} %. En {definicion_sin_definicion_operativa} de {desenlace_brazos} brazos extraídos ({definicion_sin_definicion_pct} %) no consta una definición operativa"),
-    (JSR, "con {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados"),
+    (JSR, "sin independencia acreditada; {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados"),
     # ---- La procedencia geografica venia de un corpus anterior: decia Rusia 7,
     # Polonia y Georgia 6, y "no consta en 76", cuando son 3, 5 y 58. Nombraba
     # ademas a Iran, que no aparece en ningun estudio del corpus vigente. Las
     # cuatro exclusiones por idioma (IDI) son justo las que bajaron Rusia de 7 a 3,
     # y el parrafo no se recalculo. Se ancla el recuento que mas se cita.
     (JSR, "No consta en {procedencia_no_declarada} de los {estudios_extraibles} estudios"),
+    (ES, "excluyó {excluidos_texto_completo_NOORG} estudios (sección 3.1.1). Como NOREC"),
+    (EN, "it excluded {excluidos_texto_completo_NOORG} studies (section 3.1.1). Like NOREC"),
     # PRISMA 24c: las dos enmiendas y su efecto. Faltaban enteras en el
     # manuscrito de la revista, que declaraba CERO donde el maestro declara DOS.
     (JSR, "Excluyó **{estudios_eliminados_por_idioma} estudios completos** —el corpus pasó de {estudios_antes_de_la_enmienda} a {estudios_antes_de_releer}—, y la pérdida no fue uniforme: {comparativos_perdidos_por_idioma} de ellos tenían diseño comparativo y {ecas_perdidos_por_idioma} eran ensayos aleatorizados"),
@@ -416,7 +419,7 @@ AFIRMACIONES = [
     # --pendiente, terminada y terminada por consenso--, que es el alcance.
     (JSR, "From {registros_identificados} records, {informes_unicos} unique reports remained; {informes_a_texto_completo} reports formed {estudios_antes_de_releer} studies assessed for eligibility", 1, True),
     (JSR, "cannot be assigned from the abstract in {sin_clase_util_pct} %. In {definicion_sin_definicion_operativa} of the {desenlace_brazos} extracted arms ({definicion_sin_definicion_pct} %) no operational definition", 1, True),
-    (JSR, "with {extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements adjudicated", 1, True),
+    (JSR, "without established independence; {extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements adjudicated", 1, True),
     # ---- 2026-10-06: EL CRITERIO DEL TEXTO COMPLETO (NOPDF) ------------------
     # El corpus dejo de tener estudios sin texto: las frases de «recuperables»,
     # «legibles» y el contrafactual de NOREC se fueron con el, y estas atan las
@@ -535,6 +538,47 @@ AFIRMACIONES = [
     (JSR, "el texto completo se había obtenido para el {texto_completo_antes_de_nopdf_pct} % de los estudios con artículo o resumen"),
     (ES, "y solo uno de esos {desenlace_brazos_agregables_exito_clinico} los sobrevive"),
     (EN, "and only one of those {desenlace_brazos_agregables_exito_clinico} survives them"),
+    # ---- 2026-10-08: LO QUE EL PILOTO NO PUEDE AFIRMAR -----------------------
+    # Independencia de la doble extraccion y del riesgo de sesgo, quien resolvio
+    # los desacuerdos, el conjunto de control, el formulario. Cada cifra, de un
+    # escalar medido en los ficheros (build_auditoria_scalars.py, 8b y 8c).
+    (ES, "El formulario de extracción tuvo {extraccion_variables_cuaderno} variables de datos, las categóricas con vocabulario controlado; no consta un piloteo documentado."),
+    (EN, "The extraction form had {extraccion_variables_cuaderno} data variables, the categorical ones with a controlled vocabulary; no documented pilot is on record."),
+    (JSR, "El formulario tuvo {extraccion_variables_cuaderno} variables de datos, las categóricas con vocabulario controlado; no consta un piloteo documentado."),
+    (ES, "coincide carácter por carácter con el del primero en {extraccion_localizacion_identicas} de las {extraccion_localizacion_comparables} filas comparables, con las mismas erratas —«MATERILAES Y METODOS», {extraccion_localizacion_errata_compartida} veces—"),
+    (EN, "character for character in {extraccion_localizacion_identicas} of the {extraccion_localizacion_comparables} comparable rows, with the same typos («MATERILAES Y METODOS», {extraccion_localizacion_errata_compartida} times)"),
+    (JSR, "coincide carácter por carácter entre los dos cuadernos en {extraccion_localizacion_identicas} de las {extraccion_localizacion_comparables} filas comparables"),
+    (ES, "El registro de adjudicación anota un único responsable en {conflictos_resueltos_por_uno} de las {extraccion_desacuerdos} filas ({conflictos_resueltos_solo_dv} D.V. y {conflictos_resueltos_solo_nt} N.T.) y a los dos revisores en {conflictos_resueltos_por_los_dos}"),
+    (EN, "The adjudication record names a single person in {conflictos_resueltos_por_uno} of the {extraccion_desacuerdos} rows ({conflictos_resueltos_solo_dv} D.V. and {conflictos_resueltos_solo_nt} N.T.) and both reviewers in {conflictos_resueltos_por_los_dos}"),
+    (ES, "Hay {extraccion_conflictos_firmados} de {extraccion_desacuerdos} desacuerdos adjudicados."),
+    (EN, "{extraccion_conflictos_firmados} of {extraccion_desacuerdos} disagreements are adjudicated."),
+    (ES, "se fijó un conjunto de {controles_fijados} estudios conocidos a priori como elegibles, procedentes del metaanálisis exploratorio de julio de 2026, que se hizo con asistencia de modelos de lenguaje; la comprobación automática alcanzaba a los {controles_comprobables_pmid} que tenían PMID."),
+    (EN, "a set of {controles_fijados} studies known a priori to be eligible was fixed, drawn from the exploratory meta-analysis of July 2026, which was carried out with the assistance of language models; the automated check reached the {controles_comprobables_pmid} that had a PMID."),
+    (ES, "el cribado no perdió ninguno de los {controles_comprobables_pmid} comprobables por PMID hasta la enmienda de idioma"),
+    (EN, "screening lost none of the {controles_comprobables_pmid} checkable by PMID until the language amendment"),
+    (ES, "sobre el marco de {validacion_marco} excluidos, el recribado admite hasta {validacion_cota_estudios} registros perdidos"),
+    (EN, "over the frame of {validacion_marco} exclusions, the re-screen admits up to {validacion_cota_estudios} lost records"),
+    (ES, "salvo una muestra de {validacion_muestra} registros, recribada por un solo revisor"),
+    (EN, "except a sample of {validacion_muestra} records, re-screened by a single reviewer"),
+    (JSR, "En la primera pasada marcó {validacion_primera_pasada_incluidos} como incluibles y, al contrastarlos con los criterios, los reclasificó como excluidos."),
+    (ES, "de los {controles_fijados}, {controles_en_corpus} siguen en el corpus final"),
+    (EN, "of the {controles_fijados}, {controles_en_corpus} remain in the final corpus"),
+    (ES, "pertenecía al conjunto de {controles_fijados} estudios fijados a priori como elegibles"),
+    (EN, "belonged to the set of {controles_fijados} studies fixed a priori as eligible"),
+    (ES, "ninguno de los {controles_comprobables_pmid} estudios del conjunto de control comprobables por PMID"),
+    (EN, "none of the {controles_comprobables_pmid} control studies checkable by PMID"),
+    (ES, "y los {rob_desacuerdos} desacuerdos se resolvieron todos hacia el cuaderno de D.V."),
+    (EN, "and the {rob_desacuerdos} disagreements were all resolved towards D.V.'s notebook"),
+    (JSR, "y los {rob_desacuerdos} desacuerdos se resolvieron todos hacia el cuaderno de D.V."),
+    (ES, "Los {rob_desacuerdos} desacuerdos se resolvieron por consenso, los {rob_resueltos_hacia_r1} hacia el juicio del cuaderno de D.V., ninguno hacia el del otro revisor."),
+    (ES, "incluidas las {estudios_eliminados_por_idioma} exclusiones por idioma de la etapa de resumen"),
+    (EN, "including the {estudios_eliminados_por_idioma} language exclusions at the abstract stage"),
+    (ES, "El 5 de septiembre de 2026 los dos compartían {rob_notas_identicas_caracteres} caracteres idénticos en las notas de apoyo"),
+    (EN, "On 5 September 2026 the two shared {rob_notas_identicas_caracteres} identical characters in their supporting notes"),
+    (JSR, "el 5 de septiembre de 2026 compartían {rob_notas_identicas_caracteres} caracteres idénticos en las notas de apoyo"),
+    (ES, "y los de riesgo de sesgo, {rob_notas_identicas_caracteres} caracteres de notas (sección 2.7)"),
+    (EN, "and the risk-of-bias notebooks {rob_notas_identicas_caracteres} characters of notes (section 2.7)"),
+    (JSR, "compartían {rob_notas_identicas_caracteres} caracteres idénticos de notas"),
 ]
 
 
