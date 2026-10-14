@@ -8,8 +8,9 @@ grouped by reason, so the grouping has to be stable or it has to be redone by
 hand at the end -- which is how transcription errors get in.
 
 NO CODE IS INVENTED MID-BATCH. If a record does not fit one of these, it does
-not get a new code made up for it on the spot: it advances to stage 3, where a
-human reads the abstract. A new code is a change to the protocol and is added
+not get a new code made up for it on the spot: it advances to stage 3, where the
+same model reads the abstract (no human screened stage 3 either; corrected
+2026-10-13, this used to say a human read it). A new code is a change to the protocol and is added
 here deliberately, with the date and the reason written next to it. The list
 started with six; the three that came later (IDI, PRO, INT) each carry that
 declaration below.

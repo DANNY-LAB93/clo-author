@@ -563,6 +563,8 @@ def escribe_manuscrito(estado, evaluables, orden, titulo, J):
                                "notas": _S["notas_del_revisor"],
                                "sin_frase": _S["juicios_sin_frase"]}
     nuevo = "%s\n\n%s\n\n%s\n\n%s\n\n%s\n\n" % (MARCA_INI, alcance, segundo, desglose, coherencia)
+    # La revista no numera secciones: «(sección 2.7)» no llevaba a ninguna parte.
+    nuevo = nuevo.replace("(sección 2.7)", "(véase Métodos)")
     MANUSCRITO.write_text(s[:ini] + nuevo + s[fin:], encoding="utf-8")
     print("bloque de riesgo de sesgo reescrito en %s (%s)"
           % (MANUSCRITO.name, "resultados" if estado["completa"] else "aviso"))

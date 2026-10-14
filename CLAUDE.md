@@ -133,10 +133,10 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 | Fuentes | **8 fuentes distintas en 9 brazos de búsqueda** (Scopus va en dos brazos). `fuentes_distintas_n` ≠ `fuentes_brazos_n`: no los confundas |
 | Texto completo | **100 % por construcción** desde NOPDF (2026-10-06). Justo antes: 65 de 86 (75,6 %). El criterio se mide como **efecto** (Tabla 3, escalares `criterio_texto_*`): deja fuera 7 de 9 comparativos y 5 de 7 ECA. **No se pide nada a nadie**, por decisión de D.V. del 2026-09-02 |
 | Extracción | doble y adjudicada, **sin independencia acreditada**: la columna de texto libre «¿Dónde viste estos datos?» coincide carácter por carácter entre los dos cuadernos en 107 de 107 filas, erratas incluidas (el 23-ago, 0 de 84). 124 estudios D.V., 122 N.T. **541 de 541 desacuerdos cerrados**: el registro anota a los dos en 14, a uno solo en 525 (293 D.V., 232 N.T.), 2 por una regla superada. Los manuscritos lo dicen desde el 2026-10-08 |
-| Riesgo de sesgo | **emitido, completo y firmado**: 9 comparativos por diseño, todos con texto —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, los 9 evaluables (2 RoB 2, 7 ROBINS-I). **68 celdas**. Dos cuadernos en 8 de los 9, **sin independencia acreditada** (7 418 caracteres de notas idénticos el 5-sep; el de consenso, precargado por el canal, coincide con el de D.V.): acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso, los 11 hacia D.V.. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
+| Riesgo de sesgo | **emitido, completo y firmado**: 9 comparativos por diseño, todos con texto —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, los 9 evaluables (2 RoB 2, 7 ROBINS-I). **68 celdas**. Dos cuadernos en 8 de los 9, **sin independencia acreditada** (7 418 caracteres de notas idénticos el 5-sep; el de consenso, precargado por el canal, coincide con el de D.V.): acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso, los 11 hacia el cuaderno de D.V. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
 | Lectura del 2026-09-30 | **firmada e ingerida**, lo abierto **firmado el 1-oct** y la adenda **el 3-oct**: 9 sin ningún paciente con *P. aeruginosa* tratado → **5 excluidos (ORG)**, 4 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, **los 6 mantenidos por firma**. **Solapamiento: 20 pacientes en 18 estudios**, 30 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
 | Idioma | **Solo inglés y español** (D.V., 2026-10-06). Los 65 PDF del corpus, comprobados sobre el cuerpo: 65 en inglés. EST-045, EST-059 y EST-173 salieron con NOREC: sin texto, revistas rusa y griega, idioma no verificable |
-| Manuscrito | 386 anclas, todas al día (2026-10-12). Pasa del límite de 3 500 de CMI. **El de la revista, 29 páginas de cuerpo contra un límite de 25** (27 antes de la declaración de IA completa): qué se recorta lo deciden los autores, y la declaración no. La ventana de búsqueda (2016–2026) sale de `ventana_desde/hasta`, no de `anio_min` (el corpus empieza en 2017) |
+| Manuscrito | 386 anclas, todas al día (2026-10-12). Pasa del límite de 3 500 de CMI. **El de la revista, 30 páginas de cuerpo contra un límite de 25** a 2026-10-14 (27 antes de la declaración de IA completa; lo mide `build_cesion_datos.py`): qué se recorta lo deciden los autores, y la declaración no. La ventana de búsqueda (2016–2026) sale de `ventana_desde/hasta`, no de `anio_min` (el corpus empieza en 2017) |
 | Anexos | **S0–S24 (25 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 6 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 45 ficheros de suplementos |
 
@@ -153,9 +153,11 @@ y el **protocolo de la fase definitiva**: el 2026-10-07 D.V. eligió depositarlo
 
 1. **Las cifras publicadas vienen de DOS sitios.** Tablas 1–4 y el PRISMA, de `cribado/`
    y `pre_extraccion_desde_resumen.csv`; las de desenlaces, de la extracción adjudicada
-   vía `build_adjudicated_dataset.py` → `build_outcome_scalars.py`. El titular: **69 de
-   102 brazos (67,6 %) no definen éxito clínico**, y solo 2 pasan los cuatro requisitos
-   para agrupar — uno de ellos mide tiempo, así que no queda ninguno. **GRADE no se hace
+   vía `build_adjudicated_dataset.py` → `build_outcome_scalars.py`. El titular sale de
+   los escalares `definicion_sin_definicion_operativa`, `desenlace_brazos` y
+   `definicion_sin_definicion_pct` (a 2026-10-12: 43 de 73, 58,9 %; hasta septiembre se
+   citaba aquí «69 de 102», ya caducado). Ningún brazo pasa los siete requisitos de una
+   proporción agrupada (Tabla 6). No copies estas cifras: cítalas por su escalar. **GRADE no se hace
    y no se hará**: no hay estimador agrupado cuya certeza calificar.
 
 2. **Dos medidas de «antes» que no se mezclan.** La enmienda de idioma y la relectura de

@@ -271,17 +271,64 @@ def main():
         filas.append([cod, desc, t, r, t + r])
     filas.append(["", "**Total**", S["excluidos_titulo"], S["excluidos_resumen"],
                   S["excluidos_titulo"] + S["excluidos_resumen"]])
+    # La nota decia «Los seis primeros códigos se fijaron antes de iniciar el
+    # cribado» y que lo que no encaja avanza «para lectura humana». Las dos
+    # cosas eran falsas: el primer dia los motivos van en texto libre y los
+    # codigos se usaron desde el dia siguiente, y la etapa siguiente tambien
+    # la emitio el modelo. Las fechas y los recuentos se leen del registro,
+    # y si el registro deja de sostener la frase, el guion se para.
+    from exclusion_codes import code_for
+    MESES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+             "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+
+    def dia(iso, con_anio=False):
+        a, m, d = iso[:10].split("-")
+        return "%d de %s%s" % (int(d), MESES[int(m) - 1],
+                               (" de %s" % a) if con_anio else "")
+
+    p2 = leer(RS / "cribado" / "screening_stage2_pool_decisions.csv")
+    dias = sorted({r["decided_at"][:10] for r in p2})
+    dia1 = dias[0]
+    seis = list(CODIGOS)[:6]
+    despues = {r["reason"] for r in p2 if r["verdict"] == "EXCLUDE"
+               and r["decided_at"][:10] != dia1}
+    if len(despues) != len(seis) or {code_for(x) for x in despues} != set(seis):
+        raise SystemExit("Tabla 4: la nota dice que desde el día siguiente al "
+                         "primero se usaron solo los seis primeros códigos, y "
+                         "el registro trae %d motivos distintos." % len(despues))
+    p3 = leer(RS / "cribado" / "screening_stage3_pool_decisions.csv")
+    heredadas = [r for r in p3
+                 if (r.get("decided_by") or "").startswith("heredada del brazo")]
+    her_fechas = sorted({r["decided_at"][:10] for r in heredadas})
+    # La fecha de la primera pasada sale de su propio registro, no del pozo.
+    pasada1 = min(r["decided_at"][:10] for r in
+                  leer(RS / "cribado" / "screening_stage3_decisions.csv"))
+    heredadas_txt = (
+        "Las %d decisiones de resumen heredadas de la primera pasada del %s "
+        "sobre el brazo A de PubMed llevan fecha del %s y conservan su motivo "
+        "libre (%d son exclusiones); esa primera pasada, que el cribado del "
+        "pozo sustituyó, consta en el repositorio y no en S3. "
+        % (len(heredadas), dia(pasada1), " y del ".join(dia(f) for f in her_fechas),
+           sum(1 for r in heredadas if r["verdict"] == "EXCLUDE"))
+        if heredadas else "")
     escribe("tabla_4_exclusiones", ["Código", "Motivo", "Por título",
                                     "Por resumen", "Total"], filas,
             "Tabla 4. Motivos de exclusión por etapa, con el vocabulario cerrado.",
-            "Los seis primeros códigos se fijaron antes de iniciar el cribado. Un "
-            "motivo que no encaje en ellos no recibe otro improvisado sobre la "
-            "marcha: el registro avanza a la etapa siguiente para lectura "
-            "humana. IDI es una ENMIENDA posterior al protocolo, incorporada el "
-            "11 de agosto de 2026 y aplicada solo en la etapa de resumen; su "
-            "adopción y su impacto se declaran en Métodos y en Limitaciones. El "
-            "registro de decisiones es solo-anexar y conserva el texto literal "
-            "escrito al decidir, del que se deriva el código.")
+            "El vocabulario no se fijó antes de empezar el cribado. Las "
+            "decisiones de título y de resumen las emitió el modelo de "
+            "lenguaje; las del primer día de cribado de títulos (%s) llevan el "
+            "motivo en texto libre, y los seis primeros códigos, cuya redacción "
+            "procede de esos textos, se usaron desde el día siguiente. Las "
+            "exclusiones del primer día se asignaron después a un código, y así "
+            "se cuentan aquí. %sUn registro cuyo motivo de exclusión no encaje "
+            "en los códigos no recibe uno improvisado: avanza a la etapa "
+            "siguiente, y las decisiones de la etapa de resumen también las "
+            "emitió el modelo. IDI es una ENMIENDA posterior al protocolo, "
+            "incorporada el 11 de agosto de 2026 y aplicada solo en la etapa de "
+            "resumen; su adopción y su impacto se declaran en Métodos y en "
+            "Limitaciones. El registro de decisiones es solo-anexar y conserva "
+            "el texto literal escrito al decidir, del que se deriva el código."
+            % (dia(dia1, con_anio=True), heredadas_txt))
 
     # ---- Tabla 5: que reporta el corpus en cada desenlace -------------------
     # Primera tabla del manuscrito que sale de los cuadernos de extraccion y no
@@ -320,7 +367,8 @@ def main():
                 "de un artículo que no se ha podido leer no se puede afirmar que "
                 "calle. «Con doble lectura» es el porcentaje de esas casillas en que "
                 "los dos revisores %s; el resto "
-                "lo leyó un solo revisor, y en la fila de emergencia de resistencia "
+                "lo leyó un solo revisor o se corrigió después contra el texto, "
+                "y en la fila de emergencia de resistencia "
                 "esas casillas las rellenó siempre el mismo. "
                 % (O["brazos"], O["brazos_legibles"], adjudicado))
         else:
@@ -331,7 +379,8 @@ def main():
                 "un desenlace que no consta es un desenlace que el artículo no "
                 "reporta. «Con doble lectura» es el porcentaje de esas casillas en "
                 "que los dos revisores %s; el "
-                "resto lo leyó un solo revisor, y en la fila de emergencia de "
+                "resto lo leyó un solo revisor o se corrigió después contra el "
+                "texto, y en la fila de emergencia de "
                 "resistencia esas casillas las rellenó siempre el mismo. "
                 % (O["brazos"], adjudicado))
         if O.get("campos_del_esquema_no_extraidos"):

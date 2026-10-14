@@ -34,6 +34,7 @@ import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 PAQ = ROOT / "verificables revisión sistemática"
 csv.field_size_limit(200_000_000)
 try:
@@ -58,12 +59,22 @@ QUE_ES = {
         "(Claude Opus 5); fuente de las cifras estructurales (secciones 3.1 a 3.4).",
         "Sección 2.6. Cada fila va marcada PARCIAL: describe lo que el resumen declara, no el texto completo. "
         "Los desenlaces (sección 3.5, tabla 5) salen de la extracción adjudicada, S14."),
-    "S5_listado_184_estudios": (
-        "Los 184 estudios tras agrupar los informes, con su situación y si se obtuvo el texto completo.",
+    # La clave llevaba el recuento de un corpus viejo y no casaba con el
+    # fichero: S5 salia con la Léeme generica. Ahora se busca sin recuento.
+    "S5_listado": (
+        "Los estudios del corpus tras agrupar los informes, con su situación y si se obtuvo el texto completo.",
         "Sección 3.1. La unidad es el estudio, no el informe: un mismo estudio puede tener varios informes."),
+    # Decia «Cómo se localizó cada texto completo, o por qué no se pudo» y
+    # «Explica el sesgo de recuperación que el artículo mide». S8 no es eso: es
+    # la vía resuelta de los informes sin DOI editorial (fulltext_identifiers),
+    # y desde NOPDF (2026-10-06) la recuperación es del 100 % por construcción.
+    # Se alinea con la descripción del índice (build_editorial_report).
     "S8_recuperacion_texto_completo": (
-        "Cómo se localizó cada texto completo, o por qué no se pudo.",
-        "Sección 3.2. Explica el sesgo de recuperación que el artículo mide."),
+        "La vía de recuperación resuelta para cada informe sin DOI editorial "
+        "(resúmenes de congreso, fichas de registro y algunos artículos): el "
+        "identificador que se resolvió y cómo. No es el registro de los intentos "
+        "de obtener cada texto completo.",
+        "Sección 3.2."),
     "S9_idioma_por_informe_y_clase_de_evidencia": (
         "El idioma de cada informe y de dónde se determinó, informe a informe.",
         "Sección 2.9. Sostiene la enmienda de idioma y su impacto medido."),
@@ -73,7 +84,11 @@ QUE_ES = {
     "S21_solapamiento_de_pacientes": (
         "Cada par de estudios que podía describir a los mismos pacientes, con el veredicto "
         "tras leer los dos artículos y los pacientes que comparten, una clave por persona.",
-        "Sección 4.4, limitación séptima. Un paciente que sale en tres pares tiene la misma "
+        # Decia «limitación séptima»: al añadir la limitación del cribado por
+        # el modelo pasó a ser la octava en el maestro, y en el manuscrito de
+        # la revista es otra. Se remite por su asunto, sin ordinal.
+        "Sección 4.4, en la limitación sobre pacientes descritos en más de un "
+        "estudio. Un paciente que sale en tres pares tiene la misma "
         "clave en los tres y se cuenta una vez."),
     "S23_clase_de_resistencia_comprobada": (
         "La clase de resistencia de cada estudio con texto completo, comprobada contra el "
@@ -93,8 +108,13 @@ QUE_ES = {
         "De dónde salió cada casilla de la extracción adjudicada (S14): el mismo "
         "cuadro, una fila por brazo y una columna por variable, con la etiqueta de "
         "procedencia en lugar del valor.",
+        # Decia que «con doble lectura» contaba tambien las «corregidas con dos
+        # firmas». No es el calculo: build_outcome_scalars.DOBLE cuenta acuerdo
+        # y las tres «adjudicada ...», y ninguna corregida. main() lo comprueba
+        # contra DOBLE antes de escribirlo (DOBLE_DE_LA_TABLA, abajo).
         "Sección 2.6 y tabla 5, cuyo «con doble lectura» cuenta las casillas con "
-        "acuerdo, adjudicadas o corregidas con dos firmas. Cada etiqueta se explica "
+        "acuerdo o adjudicadas, por uno o por los dos; las corregidas contra el "
+        "texto no cuentan, tampoco las de dos firmas. Cada etiqueta se explica "
         "abajo."),
     "S18b_frases_cosechadas_por_tema": (
         "Las frases de cada artículo que el modelo de lenguaje (Claude Opus 5) "
@@ -119,21 +139,31 @@ ETIQUETAS_DE = {
     "S15_procedencia_de_cada_casilla": [
         ("acuerdo", "Los dos revisores escribieron el mismo valor, una vez "
                     "normalizado el vocabulario."),
+        # «Solo estas constan como consenso» chocaba con la etiqueta
+        # «corregido por consenso contra el texto» de la misma hoja; esa
+        # etiqueta es ahora «corregido contra el texto (dos firmas)», y la
+        # frase se acota a las adjudicadas: una casilla adjudicada por los dos
+        # que despues se corrigio lleva la etiqueta de la correccion.
         ("adjudicada por los dos",
          "Los dos revisores discreparon; el valor es el del registro de "
          "adjudicación (extraction_conflicts.csv), que anota como responsables a "
-         "los dos. Solo estas constan como consenso."),
+         "los dos. Entre las casillas adjudicadas, solo estas constan como "
+         "consenso."),
         ("adjudicada por uno (D.V.)",
          "Los dos revisores discreparon; el valor es el del registro de "
          "adjudicación, que anota un único responsable: D.V."),
         ("adjudicada por uno (N.T.)",
          "Los dos revisores discreparon; el valor es el del registro de "
          "adjudicación, que anota un único responsable: N.T."),
-        ("corregido por consenso contra el texto",
+        # Se llamaba «corregido por consenso contra el texto» hasta el
+        # 2026-10-13 (build_adjudicated_dataset.CORR_DOS). Ahora dice cuantas
+        # firmas lleva, simetrica con la de una firma.
+        ("corregido contra el texto (dos firmas)",
          "Casilla ya cerrada que una corrección posterior, con su cita literal y "
          "la firma de los dos autores, cambió contra el texto completo "
          "(correcciones_tras_texto_completo.csv). Las correcciones de modalidad las "
-         "propuso el modelo de lenguaje tras leer los textos."),
+         "propuso el modelo de lenguaje tras leer los textos. No cuenta como "
+         "doble lectura en la tabla 5."),
         ("corregido contra el texto (una firma)",
          "Lo mismo, con la firma de un solo autor; no cuenta como doble lectura. "
          "Entre ellas están las casillas del tercer paciente de EST-121, que "
@@ -155,6 +185,54 @@ NOTA_ETIQUETAS = {
         "único responsable dice quién firmó, no cuántos leyeron: la casilla la "
         "leyeron los dos, y por eso discreparon."),
 }
+
+# Las etiquetas que la Léeme de S15 dice que cuentan como doble lectura en la
+# tabla 5. La frase la escribe QUE_ES; esto la ata al calculo: si
+# build_outcome_scalars.DOBLE cambia, el guion se para en vez de publicar una
+# descripcion que ya no es la del calculo.
+DOBLE_DE_LA_TABLA = {"acuerdo", "adjudicada por los dos",
+                     "adjudicada por uno (D.V.)", "adjudicada por uno (N.T.)"}
+
+# Las Léeme remiten a la numeracion del informe extendido (el maestro). El
+# manuscrito de la revista no numera las secciones y numera las tablas de otro
+# modo, y estos .xlsx viajan tambien en el sobre de la revista. Decia «el
+# manuscrito enviado a la revista»: no se ha enviado, y enviarlo o no lo
+# deciden los autores.
+NUMERACION = ("Las secciones y tablas que se citan son las del informe extendido "
+              "(manuscrito maestro). En el manuscrito preparado para la revista "
+              "las secciones no van numeradas")
+NUMERACION_TABLA5 = "; allí la tabla 5 (desenlaces) es la Tabla 4"
+
+
+def numeracion(donde):
+    """La advertencia de numeracion, con la equivalencia de la tabla 5 solo
+    donde la Léeme la cita."""
+    return NUMERACION + (NUMERACION_TABLA5 if "tabla 5" in donde else "") + "."
+
+
+def alcance_s18b(datos, cab):
+    """Qué estudios trae S18b frente a los que tienen juicio en S18.
+
+    S18b llegó a traer frases de tres estudios sin juicio en S18 (EST-055,
+    EST-063 y EST-132, en el consejo del 2026-10-13). El filtro a los estudios
+    con juicio en S18 se hace en build_verifiables_package; la Léeme lo dice,
+    y lo dice leyendo los dos CSV, de modo que no puede afirmar un filtro que
+    no se hizo: si quedan estudios sin juicio, los nombra.
+    """
+    s18 = PAQ / "S18_cada_juicio_con_su_frase.csv"
+    if "study_id" not in cab or not s18.exists():
+        return ""
+    i = cab.index("study_id")
+    propios = {f[i] for f in datos if len(f) > i and f[i].strip()}
+    with open(s18, encoding="utf-8-sig", newline="") as fh:
+        con_juicio = {r["estudio"] for r in csv.DictReader(fh)}
+    fuera = sorted(propios - con_juicio)
+    if not fuera:
+        return (" Solo trae los %d estudios que tienen juicio en S18; las frases "
+                "cosechadas para cualquier otro estudio no se incluyen."
+                % len(propios))
+    return (" Trae %d estudios; %d de ellos (%s) no tienen juicio en S18."
+            % (len(propios), len(fuera), ", ".join(fuera)))
 
 # Cabeceras. Lo que el canal llama X, un revisor lo entiende como Y.
 ETIQUETA = {
@@ -235,12 +313,24 @@ def main():
 
     for csvf in sorted(PAQ.glob("S*.csv")):
         clave = csvf.stem
+        # Solo para buscar la descripción: el nombre del fichero no se toca.
+        busca = "S5_listado" if clave.startswith("S5_listado_") else clave
         with open(csvf, encoding="utf-8-sig", newline="") as fh:
             filas = list(csv.reader(fh))
         if not filas:
             continue
         cab, datos = filas[0], filas[1:]
-        que, donde = QUE_ES.get(clave, ("Anexo del material suplementario.", ""))
+        que, donde = QUE_ES.get(busca, ("Anexo del material suplementario.", ""))
+        if clave == "S18b_frases_cosechadas_por_tema":
+            que += alcance_s18b(datos, cab)
+        if clave == "S15_procedencia_de_cada_casilla":
+            from build_outcome_scalars import DOBLE
+            if set(DOBLE) != DOBLE_DE_LA_TABLA:
+                raise SystemExit(
+                    "La Léeme de S15 dice que la doble lectura de la tabla 5 "
+                    "cuenta %s, y build_outcome_scalars.DOBLE cuenta %s. "
+                    "Corrige la frase de QUE_ES y DOBLE_DE_LA_TABLA."
+                    % (sorted(DOBLE_DE_LA_TABLA), sorted(DOBLE)))
 
         wb = openpyxl.Workbook()
 
@@ -255,6 +345,7 @@ def main():
             ("Qué es", 12, True), (que, 11, False),
             ("", 11, False),
             ("Dónde se usa", 12, True), (donde, 11, False),
+        ] + ([(numeracion(donde), 10, False)] if donde else []) + [
             ("", 11, False),
             ("Cuántas filas", 12, True), ("%d filas de datos" % len(datos), 11, False),
             ("", 11, False),

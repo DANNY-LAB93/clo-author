@@ -80,3 +80,37 @@ La declaración de IA del maestro se reescribió entera con lo que el historial 
 **Lo que no se cambió y queda para los autores:** el resumen sigue sin mencionar el cribado por el modelo (se retiró por decisión del autor el 2026-08-23, commit `32f3f12`); el manuscrito de la revista ocupa 29 páginas de cuerpo frente a un límite de 25.
 
 El canal se rehízo entero; los cinco guardianes pasan con 386 anclas al día.
+
+## Nota del 13-oct sobre este mismo registro
+
+Arriba quedaron pronombres de género para D.V. («Son hechos que solo él puede dar», «Las
+ejecutó él», «Lo hizo él», «reclasificó él mismo»), contra la regla del proyecto. Léase
+«solo D.V.», «las ejecutó D.V.», «lo hizo D.V.» y «D.V. reclasificó». El texto de arriba
+no se borra porque el registro es solo-anexar.
+
+## Consejo del 13-oct sobre la tercera pasada
+
+Tres críticos (exactitud, barrido, papel del modelo) revisaron la tercera pasada: 53
+hallazgos, ninguno crítico, todos comprobados contra los ficheros antes de corregir. Lo
+principal que se corrigió:
+
+- La declaración de uso de IA había perdido en la tercera pasada que el modelo redactó
+  las propuestas de criterios (unidad de inclusión, códigos PRO, INT y NOORG, las dos
+  reglas del 4-ago); ahora lo dice, junto con que redactó los registros de decisión,
+  tradujo a categorías la relectura firmada, leyó las 29 fichas de registro y que la
+  primera pasada del 4-ago sobre el brazo A no está en S3.
+- «Los autores asumen la responsabilidad» hablaba por N.T., que no la ha aceptado: ahora
+  la asume D.V. y la de N.T. queda pendiente.
+- «55 por no cumplir los criterios»: 44 por incumplirlos y 11 que no pudieron
+  verificarse (NOREC y NOORG). Escalares nuevos y anclados.
+- La concordancia modelo-lector sí se midió sobre los 350 excluidos del recribado (344
+  y 350); no se midió sobre lo que el modelo admitió.
+- Pronombres para D.V. en el inglés y el protocolo; «revisor humano» en el protocolo;
+  remisiones numeradas del maestro en documentos que viajan con la revista; S10 (copia
+  del 13-ago, no la comprobación sobre el cuerpo del 6-oct); etiqueta «corregido por
+  consenso» de S15; nota de la Tabla 4; caja de la Figura 1.
+
+**Lo que queda para los autores, sin tocar:** el resumen no menciona el cribado por el
+modelo (decisión del 23-ago); el protocolo de la fase definitiva dice que este informe
+piloto «no se enviará como tal» y el sobre está listo para enviarlo; el cuerpo del
+manuscrito de la revista ocupa 29 páginas frente a 25.

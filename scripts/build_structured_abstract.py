@@ -225,9 +225,9 @@ def textos(S, O, R):
          "category cannot be assigned from the abstract in {sin_clase} %. In "
          "{sin_def} of the "
          "{brazos} extracted arms ({sin_def_pct} %) no operational definition of "
-         "clinical success is on record. No arm meets all seven requirements of a "
-         "pooled proportion; of the {agrupables} meeting the other six, {n1} have "
-         "a single-patient denominator."),
+         "clinical success is on record. No arm meets at once the arithmetic, "
+         # Fiel al español: el inglés añadía una cifra que el español no da.
+         "eligibility and metric requirements of a pooled proportion."),
         ("Conclusions",
          "The evidence base is broad but unsuited to a quantitative synthesis of "
          "efficacy: the published proportions rest on assumptions that these data "

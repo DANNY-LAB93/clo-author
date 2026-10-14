@@ -601,6 +601,16 @@ def main():
     S["s16_sin_cita_otros"] = sum(1 for r in _ex if r["codigo"]
                                   not in ("NOPDF", "NOREC")) - _con
 
+    # 8e. LOS 55 «POR LOS CRITERIOS»: NOREC y NOORG no incumplen un criterio,
+    # no se pudieron verificar. Y el recribado si midio cuanto coincidia el
+    # lector con el modelo sobre los excluidos de la muestra.
+    S["excluidos_criterio_no_verificable"] = (S["excluidos_texto_completo_NOREC"]
+                                             + S["excluidos_texto_completo_NOORG"])
+    S["excluidos_criterio_incumplido"] = (S["excluidos_por_criterios"]
+                                         - S["excluidos_criterio_no_verificable"])
+    S["validacion_primera_pasada_coinciden"] = (S["validacion_muestra"]
+                                               - S["validacion_primera_pasada_incluidos"])
+
     # 10 y 13. el solapamiento, medido
     sol = leer(QR / "pendiente2_solapamiento.csv", enc="utf-8-sig")
     S["pares_solapamiento_examinados"] = len(sol)
@@ -634,6 +644,13 @@ def main():
         1 for r in sol if r["veredicto"].startswith("SIN RESOLVER"))
     S["pares_solapamiento_por_lectura"] = sum(
         1 for r in sol if r["senal_que_lo_marco"].startswith("NO lo marco"))
+    # De los que encontro la lectura, cuales la relectura firmada del 30-sep y
+    # cuales la lectura del modelo del 22-sep (las filas sin fecha).
+    S["pares_solapamiento_lectura_autores"] = sum(
+        1 for r in sol if r["senal_que_lo_marco"].startswith("NO lo marco")
+        and "2026-09-30" in r["senal_que_lo_marco"])
+    S["pares_solapamiento_lectura_modelo"] = (S["pares_solapamiento_por_lectura"]
+                                             - S["pares_solapamiento_lectura_autores"])
     S["pares_solapamiento_por_detector"] = (S["pares_solapamiento_examinados"]
                                             - S["pares_solapamiento_por_lectura"])
     # Los tres grupos donde se concentra, contados desde los datos.

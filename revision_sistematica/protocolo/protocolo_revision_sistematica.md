@@ -52,7 +52,7 @@ Las preguntas de la sección 7 se formularon, por tanto, conociendo el corpus de
   - **Lo que hizo D.V.** Fue el único revisor humano. D.V. examinó uno a uno los informes que superaron el cribado (declaración de D.V., 8 de octubre de 2026), pero ese examen no quedó registrado: las columnas de decisión y de revisor de la hoja Texto_completo están vacías.
   - Lo que el modelo excluyó no lo releyó ningún humano, salvo una muestra de 350 que D.V. recribó en Rayyan sin otro revisor y sin los criterios a la vista. Incluyó 6, y al contrastarlos con los criterios D.V. los reclasificó como excluidos (0 de 350).
   - La restricción de idioma se aplicó el 11 de agosto de 2026, con el cribado concluido. El modelo emitió las 35 exclusiones de la etapa de resumen: 32 al aplicar la restricción y 3 tras consultar el texto completo o la web del editor. Entre ellas hay un control positivo (Ronit 2024, en danés).
-  - Siguieron la agrupación de informes en estudios y la lectura de los textos completos. En esa lectura el modelo localizó y propuso las exclusiones, con la frase del artículo. Los dos autores las firmaron todas salvo dos, que firmó D.V. solo el 2 de septiembre de 2026: EST-118 (NOREC) y EST-205 (REV, decidida sobre la indexación de SciELO sin leer el texto). En las fichas de registro, el cuaderno llevaba ya el veredicto y la frase propuestos.
+  - Siguieron la agrupación de informes en estudios y la lectura de los textos completos. En esa lectura el modelo localizó y propuso las exclusiones, con la frase del artículo o de la ficha cuando la hubo; las 63 por no disponer del artículo (NOPDF) responden a un criterio que pidió D.V. el 6 de octubre de 2026. Los dos autores las firmaron todas salvo dos, que firmó D.V. solo el 2 de septiembre de 2026: EST-118 (NOREC) y EST-205 (REV, decidida sobre la indexación de SciELO sin leer el texto). En las fichas de registro, el cuaderno llevaba ya el veredicto y la frase propuestos.
   - Además, 4 estudios salieron por IDI a texto completo el 1 de septiembre de 2026, firmados por los dos, y 3 por idioma no verificable el 6 de octubre (NOREC).
 - **Pre-extracción desde el resumen.** La emitió el modelo, y fue la fuente de las cifras estructurales del piloto: diseño, completitud en el resumen y efecto de los criterios.
 - **Extracción.**
@@ -94,7 +94,7 @@ Los autores esperan que la fase definitiva dé resultados del mismo orden.
 |---|---|---|---|
 | Pregunta y objetivos | eficacia, con metaanálisis | completitud del reporte y viabilidad de la síntesis (sección 7) | metaanálisis aparcado y pregunta reformulada el 10-ago-2026; renombrada el 14-sep-2026 |
 | Unidad de inclusión y resúmenes de congreso | por informe; los resúmenes de congreso, elegibles | por estudio; los resúmenes de congreso, excluidos (NOTXT) | unidad por estudio y resúmenes elegibles decididos el 5-ago-2026, con el cribado en curso; la exclusión de los resúmenes revierte esa decisión |
-| Reglas de extracción | definiciones de cada estudio, salvo DTR (definición propia según Kadri 2018, desde el 28-jul-2026) | reglas propias de erradicación, éxito clínico, clase, DTR y colonización de vía aérea (anexo B) | DTR corregida el 30-jul-2026 sobre los datos del metaanálisis exploratorio y registrada el 13-ago, con una ayuda del formulario que listaba solo dos agentes posteriores a 2018; la excepción de vía aérea, motivada por ese metaanálisis, escrita el 11-ago y cerrada el 12-ago; erradicación y éxito clínico, 11 y 12-ago, con la extracción piloto a la vista; la regla del 12-ago quedó como propuesta que N.T. no ratificó; las reglas de clase de resistencia, de las nueve decisiones firmadas el 1-oct-2026 |
+| Reglas de extracción | definiciones de cada estudio, salvo DTR (definición propia según Kadri 2018, desde el 28-jul-2026) | reglas propias de erradicación, éxito clínico, clase, DTR y colonización de vía aérea (anexo B) | DTR corregida el 30-jul-2026 sobre los datos del metaanálisis exploratorio y registrada el 13-ago, con una ayuda del formulario que listaba solo dos agentes posteriores a 2018; la excepción de vía aérea, motivada por ese metaanálisis, escrita el 11-ago y cerrada el 12-ago; erradicación y éxito clínico, 11 y 12-ago, con la extracción piloto a la vista; la regla del 12-ago quedó en el registro como propuesta sin ratificar por los dos (según declara D.V., 8-oct-2026, la decidieron los dos autores); las reglas de clase de resistencia, de las nueve decisiones firmadas el 1-oct-2026 |
 | Idioma | sin restricción | inglés o español, comprobado sobre el cuerpo del artículo y sin traducción automática (IDI) | restricción adoptada el 11-ago-2026, con el cribado concluido; comprobación sobre el cuerpo el 1-sep y el 6-oct |
 | Texto completo | no se exigía; las fichas de registro y los resúmenes de congreso eran estudios del corpus | se exige el texto completo de un artículo publicado (NOTXT) | 2-sep-2026 para un estudio (NOREC) y 6-oct-2026 para todos (NOPDF), con la extracción terminada |
 | NOREC, NOORG y NOPDF | no existían | sustituidos por NOTXT | 2-sep, 14-sep y 6-oct-2026 |
@@ -108,7 +108,7 @@ Los autores esperan que la fase definitiva dé resultados del mismo orden.
 | Vocabulario de las etapas 2 y 3 | texto libre el primer día (4-ago-2026); seis códigos desde el 5-ago, redactados por el modelo a partir de esos textos | siete (se añade PRF), fijados antes de empezar | nueva; en el piloto el vocabulario no estaba fijado antes del cribado |
 | Riesgo de sesgo | estudios con diseño comparativo, por etiqueta de diseño | estudios con grupo concurrente sin fago (sección 15) | en el piloto, 7 de 9 evaluados no tenían grupo concurrente sin fago, y 6 de 9 no tenían ningún grupo de comparación |
 | Requisitos de agrupación y umbral (sección 16.3) | no fijados | fijados aquí | los requisitos 3 a 5 se añadieron en el piloto el 1-sep-2026 con reglas aproximadas; el umbral se fija conociendo el recuento de la sección 3.2 |
-| Recribado ciego | un revisor (D.V.), sin los criterios a la vista; incluyó 6 de 350 y él mismo los reclasificó como excluidos | los dos autores, de forma independiente, con la sección 8 a la vista y consenso entre ellos | nuevo |
+| Recribado ciego | un revisor (D.V.), sin los criterios a la vista; incluyó 6 de 350, y D.V. los reclasificó como excluidos | los dos autores, de forma independiente, con la sección 8 a la vista y consenso entre ellos | nuevo |
 | Formulario de extracción | 21 variables de datos durante toda la extracción; el denominador y la persistencia de la erradicación se añadieron al esquema el 12-ago-2026, pero no llegaron a los cuadernos | revisado (sección 14.2) y pilotado antes de extraer | nuevo; no consta un piloteo documentado del formulario del piloto |
 
 ### 3.4 Qué se reutiliza y qué no
@@ -390,7 +390,7 @@ Cada exclusión nombra la regla que la disparó:
    - Un registro sin año avanza.
 
 ### 12.2 Etapas 2 (títulos) y 3 (resúmenes)
-Las conduce **un solo revisor humano (D.V.), sin duplicación**. Las decisiones registro a registro las emite el **modelo de lenguaje** de la sección 19, con las instrucciones literales del anexo C y el aislamiento de la sección 3.5.
+Las decisiones registro a registro las emite el **modelo de lenguaje** de la sección 19 como **revisor único, sin duplicación**; D.V. es el único revisor humano. El modelo trabaja con las instrucciones literales del anexo C y el aislamiento de la sección 3.5.
 
 **Qué ve el modelo:**
 - etapa 2: el título;
@@ -676,7 +676,7 @@ Cada etapa queda fechada en el registro de decisiones.
 
 ## 19. Uso de inteligencia artificial
 
-**Cribado.** El cribado de títulos y resúmenes lo conduce un solo revisor humano (D.V.), sin duplicación por un segundo revisor.
+**Cribado.** Las decisiones registro a registro de las etapas 2 y 3 las emite un modelo de lenguaje como revisor único, sin duplicación. D.V. es el único revisor humano: examina y registra lo que avanza, sin poder excluir.
 - Un modelo de lenguaje generativo de la familia Claude (Anthropic) emite las decisiones registro a registro de las etapas 2 y 3. Aplica los criterios y el vocabulario cerrado de este protocolo y las instrucciones literales del anexo C, que redactó él mismo.
 - Las decisiones se emiten en sesiones de Claude Code aisladas del repositorio (sección 3.5). No se controlan la temperatura ni la semilla de generación; se registra el identificador del modelo en cada decisión.
 - Los informes que superan la etapa 3 los examina D.V. uno a uno. **Los que el modelo excluye no los relee ningún humano**, salvo los 350 de la muestra de la sección 12.6.

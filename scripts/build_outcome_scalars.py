@@ -23,8 +23,8 @@ es baja, la primera no habilita una síntesis: habilita describir un problema.
 CADA CIFRA LLEVA SU DOBLE LECTURA
 
 `extraccion_adjudicada_procedencia.csv` dice, casilla a casilla, si el valor lo
-acordaron los dos revisores, lo resolvieron por consenso, lo escribió uno solo,
-o sigue abierto. Toda cifra que salga de aquí se acompaña del porcentaje de sus
+acordaron los dos revisores, se adjudicó (por los dos o por uno), se corrigió
+después contra el texto, lo escribió uno solo, o sigue abierto. Toda cifra que salga de aquí se acompaña del porcentaje de sus
 casillas que tuvieron doble lectura. Una completitud del 73 % calculada sobre
 casillas que leyó una sola persona no es lo mismo que sobre casillas leídas por
 dos, y el lector tiene que poder distinguirlas.

@@ -175,10 +175,10 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `excluidos_resumen_IDI` | 35 |
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
-| `palabras_resumen_es` | 292 |
-| `palabras_cuerpo_es` | 10283 |
-| `palabras_resumen_en` | 302 |
-| `palabras_cuerpo_en` | 9682 |
+| `palabras_resumen_es` | 295 |
+| `palabras_cuerpo_es` | 10372 |
+| `palabras_resumen_en` | 308 |
+| `palabras_cuerpo_en` | 9764 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 122 |
 | `extraccion_estudios_ambos` | 122 |

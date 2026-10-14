@@ -99,6 +99,189 @@ def vocabulario_de_motivos():
             "primer_dia_codigos": min(codificado)}
 
 
+def fecha_corta(iso):
+    """«2026-08-04» -> «4 de agosto», para frases en que el año ya consta."""
+    a, m, d = (int(x) for x in iso[:10].split("-"))
+    return "%d de %s" % (d, MESES[m - 1])
+
+
+ETIQUETA_ASISTIDA = "LLM-assisted; pending human verification"
+
+
+def primera_pasada():
+    """La primera pasada del cribado, que S3 no trae.
+
+    AÑADIDO EL 2026-10-13. S1, S6 y S19 contaban el cribado desde el registro
+    del pozo (S3), cuyo primer lote es del 4 de agosto de 2026 a las 23:49. El
+    cribado habia empezado esa mañana: el modelo cribo el brazo A de PubMed
+    (screening_stage2_decisions.csv, titulos; screening_stage3_decisions.csv,
+    resumenes), con la etiqueta «LLM-assisted; pending human verification», y
+    en esa pasada entraron las dos reglas del 4 de agosto y la auditoria cazo
+    la exclusion de Ronit 2024. El cribado del pozo la sustituyo, salvo las
+    decisiones de resumen que el pozo heredo por PMID con la fecha de la copia.
+    Todo se cuenta aqui sobre los ficheros; nada se teclea.
+    """
+    crib = RS / "cribado"
+    t2 = leer_bom(crib / "screening_stage2_decisions.csv")
+    t3 = leer_bom(crib / "screening_stage3_decisions.csv")
+    pozo2 = leer(crib / "screening_stage2_pool_decisions.csv")
+    pozo3 = leer(crib / "screening_stage3_pool_decisions.csv")
+    dias = {r["decided_at"][:10] for r in t2 + t3}
+    if len(dias) != 1:
+        raise SystemExit("S1/S6/S19: la primera pasada ya no es de un solo día "
+                         "(%s); revisa la redacción." % sorted(dias))
+    dia = dias.pop()
+    inicio_pozo = min(r["decided_at"] for r in pozo2)
+    fin = max(r["decided_at"] for r in t2 + t3)
+    if inicio_pozo[:10] != dia or inicio_pozo[11:16] <= fin[11:16]:
+        raise SystemExit("S1/S6/S19: el cribado del pozo (%s) ya no empieza el "
+                         "mismo día y después de la primera pasada (%s)."
+                         % (inicio_pozo, fin))
+    etiquetas = collections.Counter(r["decided_by"] for r in t2 + t3)
+    if not any(ETIQUETA_ASISTIDA in e for e in etiquetas):
+        raise SystemExit("S19: la primera pasada ya no lleva la etiqueta «%s»; "
+                         "revisa la nota que la acompaña." % ETIQUETA_ASISTIDA)
+
+    # Registro -> PMID, para seguir por PMID lo que el pozo heredo y la
+    # correccion de Ronit 2024.
+    pmids_de = {r["record_id"]: {v.strip() for v in re.split(r"[;,\s]+", r.get("pmid") or "")
+                                 if v.strip()}
+                for r in leer(crib / "screening_corpus_all.csv")}
+    # Que el pozo volvio a decidir en el titulo todos los registros de la
+    # primera pasada: S19 lo afirma, y aqui se comprueba por PMID.
+    pmids_pozo2 = set().union(*(pmids_de.get(r["record_id"], set()) for r in pozo2))
+    sin_redecidir = sorted({r["pmid"] for r in t2} - pmids_pozo2)
+    if sin_redecidir:
+        raise SystemExit("S19: %d registros de la primera pasada no tienen decisión "
+                         "de título en el pozo; revisa la nota." % len(sin_redecidir))
+    correcciones = []
+    for r in t2:
+        if not r["reason"].startswith("CORRECTION"):
+            continue
+        recs = {k for k, v in pmids_de.items() if r["pmid"] in v}
+        correcciones.append({"fila": r, "en_el_pozo": [x for x in pozo2
+                                                       if x["record_id"] in recs]})
+
+    # Las filas del pozo «heredadas del brazo por PMID»: llevan la fecha en que
+    # se copiaron, no la de la decision. Cada una tiene que repetir, con el
+    # mismo veredicto y el mismo motivo, una decision de resumen de la primera
+    # pasada; si alguna deja de hacerlo, la frase de S19 ya no vale.
+    por_pmid3 = {r["pmid"]: r for r in t3}
+    her = [r for r in pozo3 if r["decided_by"].startswith("heredada del brazo por PMID")]
+    originales = []
+    for r in her:
+        o = [por_pmid3[p] for p in sorted(pmids_de.get(r["record_id"], ())) if p in por_pmid3]
+        if not o or o[0]["verdict"] != r["verdict"] or o[0]["reason"] != r["reason"]:
+            raise SystemExit("S19: la fila heredada %s ya no repite una decisión de "
+                             "resumen de la primera pasada." % r["record_id"])
+        originales.append(o[0]["decided_at"])
+    copias = sorted({r["decided_at"] for r in her})
+    if her and len(copias) != 1:
+        raise SystemExit("S19: las filas heredadas tienen ahora varias fechas de "
+                         "copia (%s); revisa la frase." % copias)
+    muestra = {r["key"] for r in leer_bom(RS / "validacion_rayyan" / "clave_muestra.csv")}
+    her_ex = [r for r in her if r["verdict"] == "EXCLUDE"]
+    return {"dia": dia,
+            "n_titulo": len(t2),
+            "excl_titulo": sum(1 for r in t2 if r["verdict"] == "EXCLUDE"),
+            "titulo_desde": min(r["decided_at"] for r in t2)[11:16],
+            "titulo_hasta": max(r["decided_at"] for r in t2)[11:16],
+            "n_resumen": len(t3),
+            "resumen_desde": min(r["decided_at"] for r in t3)[11:16],
+            "resumen_hasta": max(r["decided_at"] for r in t3)[11:16],
+            "inicio_pozo": inicio_pozo[11:16],
+            "etiquetas": etiquetas,
+            "correcciones": correcciones,
+            "heredadas": len(her),
+            "heredadas_copia": copias[0] if copias else "",
+            "heredadas_desde": min(originales)[11:16] if originales else "",
+            "heredadas_hasta": max(originales)[11:16] if originales else "",
+            "heredadas_dia": min(originales)[:10] if originales else "",
+            "heredadas_excl": len(her_ex),
+            "heredadas_excl_en_muestra": sum(1 for r in her_ex if r["record_id"] in muestra)}
+
+
+def nota_etiqueta_asistida(n_filas, n_excl, n_en_muestra):
+    """La nota que va bajo la etiqueta «LLM-assisted; pending human verification».
+
+    AÑADIDO EL 2026-10-13. S19 transcribia la etiqueta sin nota, y la etiqueta
+    dice dos cosas que no son: que el cribado fue «asistido» por el modelo
+    (fue el revisor unico) y que habia una verificacion humana pendiente, que
+    para las exclusiones no se hizo. Lo unico que un humano releyo de lo
+    excluido es la muestra del recribado; cuantas de estas filas cayeron en
+    ella se cuenta sobre la clave de la muestra.
+    """
+    # 2026-10-14. Decia «no se hizo para las exclusiones: de sus N, 2 cayeron
+    # en la muestra...», que se leia como si esas 2 tampoco las hubiera releido
+    # nadie. Las que cayeron en la muestra si las releyo D.V.; las demas, no.
+    if n_en_muestra:
+        resto = ("de estas %d filas, %d son exclusiones; solo %d las releyó un "
+                 "humano, porque cayeron en la muestra del recribado (D.V., a "
+                 "ciegas, en Rayyan), y las otras %d no las releyó ningún humano"
+                 % (n_filas, n_excl, n_en_muestra, n_excl - n_en_muestra))
+    else:
+        resto = ("de estas %d filas, %d son exclusiones; ninguna cayó en la muestra "
+                 "del recribado, y no las releyó ningún humano" % (n_filas, n_excl))
+    return ("Etiqueta original, transcrita tal cual. El modelo fue el revisor "
+            "único, no un asistente, y la verificación humana que la etiqueta "
+            "anuncia no se hizo para las exclusiones: %s." % resto)
+
+
+def idioma_cuerpo(S):
+    """S10: el idioma del CUERPO de cada PDF del corpus vigente, comprobado.
+
+    CORREGIDO EL 2026-10-13. S10 era una copia (copy2) de
+    revision_sistematica/cribado/idioma_texto_completo.csv, del 13 de agosto
+    de 2026: 80 filas, 47 de los 65 estudios del corpus y 20 ya excluidos,
+    anterior a la comprobacion sobre el cuerpo de los 65 que hace
+    comprueba_idioma_cuerpo.py desde el 6 de octubre de 2026. S1, el indice y
+    S0 la citaban como esa comprobacion. Ahora S10 sale de
+    quality_reports/idioma_cuerpo_pdf.csv, y aqui se comprueba que cubre
+    exactamente el corpus vigente y que cuadra con los escalares. El fichero
+    del 13 de agosto sigue en el repositorio y no viaja.
+    """
+    origen = ROOT / "quality_reports" / "idioma_cuerpo_pdf.csv"
+    if not origen.exists():
+        raise SystemExit("S10: no hay %s; corre scripts/comprueba_idioma_cuerpo.py"
+                         % origen.relative_to(ROOT))
+    filas = leer_bom(origen)
+    fuera = {r["study_id"] for r in
+             leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv")}
+    corpus = {"EST-%03d" % int(g["estudio"])
+              for g in leer(RS / "cribado" / "study_groups.csv")} - fuera
+    ids = [r["study_id"] for r in filas]
+    if set(ids) != corpus or len(ids) != len(set(ids)):
+        raise SystemExit("S10: idioma_cuerpo_pdf.csv no cubre exactamente el corpus "
+                         "vigente (faltan %s, sobran %s); corre "
+                         "scripts/comprueba_idioma_cuerpo.py."
+                         % (sorted(corpus - set(ids)), sorted(set(ids) - corpus)))
+    for clave, valor in (("estudios", len(filas)),
+                         ("idioma_cuerpo_comprobados", len(filas)),
+                         ("idioma_cuerpo_ingles",
+                          sum(1 for r in filas if r["idioma_del_cuerpo"] == "eng"))):
+        if S.get(clave) != valor:
+            raise SystemExit("S10: %s es %s en los escalares y %s en "
+                             "idioma_cuerpo_pdf.csv." % (clave, S.get(clave), valor))
+    # S1 dice que mirar_a_mano marca un PDF «por su fracción de cirílico o
+    # CJK». comprueba_idioma_cuerpo.py lo marca también cuando el idioma
+    # detectado no es inglés ni español; si eso pasa, la frase de S1 ya no
+    # vale y hay que reescribirla.
+    otra_razon = sorted(r["study_id"] for r in filas if r["mirar_a_mano"].strip()
+                        and r["idioma_del_cuerpo"] not in ("eng", "spa"))
+    if otra_razon:
+        raise SystemExit("S1/S10: %s se marcan para mirarlos a mano por su idioma, "
+                         "no por su fracción de cirílico o CJK; revisa el ítem 5."
+                         % ", ".join(otra_razon))
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from comprueba_idioma_cuerpo import VACIAS
+    return {"filas": filas, "n": len(filas),
+            "ingles": S["idioma_cuerpo_ingles"],
+            "espanol": S.get("idioma_cuerpo_espanol", 0),
+            "otro": S.get("idioma_cuerpo_otro", 0),
+            "idiomas_probados": len(VACIAS),
+            "a_mano": sorted(r["study_id"] for r in filas if r["mirar_a_mano"].strip())}
+
+
 def auditoria_controles(S):
     """La auditoría de controles positivos, recalculada desde los datos.
 
@@ -184,7 +367,7 @@ def auditoria_controles(S):
                      "pmid": any(i.startswith("pmid:") for i in v),
                      "exclusion": [excl[e] for e in est if e in excl]}
 
-    A = {"fijados": sorted(idx), "comprobables": comprobables,
+    A = {"fijados": sorted(idx), "comprobables": comprobables, "ids": idx,
          "sin_pmid": sorted(s for s in idx if s not in comprobables),
          "etapas": etapas, "perdidos_enmienda": perdidos_enmienda,
          "decision_enmienda": decision_enmienda,
@@ -334,6 +517,21 @@ def v1_prisma(S):
     ROB = estado_riesgo_de_sesgo(S)
     VOC = vocabulario_de_motivos()
     CTRL = auditoria_controles(S)
+    PP = primera_pasada()
+    if VOC["dias_libre"][0] != PP["dia"]:
+        raise SystemExit("S1: el primer día del pozo ya no es el de la primera "
+                         "pasada; revisa el ítem 8.")
+    IC = idioma_cuerpo(S)
+    # S9: de que prueba sale el idioma de cada informe. Se cuenta sobre la
+    # misma fuente que S9, no se teclea.
+    S9 = leer_bom(RS / "cribado" / "idioma_verificacion.csv")
+    s9_resumen = sum(1 for r in S9 if r["clase_de_evidencia"].startswith("A."))
+    # PRISMA 27. El parrafo de disponibilidad del manuscrito lleva un marcador
+    # de DOI pendiente: mientras lo lleve, el deposito publico no existe y el
+    # item no puede marcarse CUMPLE.
+    disp = del_manuscrito("**Disponibilidad de datos y código.**",
+                          "la disponibilidad de datos y código")
+    deposito_pendiente = "PENDIENTE" in disp
     # PRISMA 16b. Decia que las exclusiones a texto completo llevaban «cada
     # una ... la frase del articulo que lo sostiene», y no es asi: las NOPDF y
     # NOREC no tienen articulo, otras filas solo traen el motivo, y EST-205 se
@@ -368,8 +566,9 @@ def v1_prisma(S):
                   "Fagoterapia en Pseudomonas aeruginosa multirresistente. "
                   "Estado a %s." % fecha_larga())
     # A DONDE APUNTAN LAS REFERENCIAS. La columna "dónde mirar" usa la
-    # numeracion del informe extendido (§2.1 a §4.4), que NO viaja en el sobre
-    # de la revista: alli va el manuscrito con secciones sin numerar. Un editor
+    # numeracion del informe extendido (§2.1 a §4.4), que en el sobre de la
+    # revista solo viaja como referencia (para_leer/): lo que se sube es el
+    # manuscrito con secciones sin numerar. Un editor
     # que siga "§2.7" no encuentra nada. La correspondencia se declara aqui, en
     # vez de dejar 27 remisiones colgando.
     d.add_heading("Cómo leer la columna «dónde mirar»", level=2)
@@ -401,9 +600,30 @@ def v1_prisma(S):
         ("2", "Resumen estructurado", "Ver lista PRISMA for Abstracts", "CUMPLE", "Resumen"),
         ("3", "Justificación", "Base racional en el contexto de lo conocido", "CUMPLE", "§1"),
         ("4", "Objetivos", "Pregunta explícita", "CUMPLE", "§1, último párrafo"),
+        # CORREGIDO EL 2026-10-13. Decia «verificado ... sobre el texto
+        # completo en S10», y S10 era una copia del 13 de agosto, anterior a la
+        # comprobacion sobre el cuerpo de los 65 estudios (ver idioma_cuerpo).
         ("5", "Criterios de elegibilidad", "Y cómo se agruparon los estudios", "CUMPLE",
-         "§2.2, incluido el criterio de idioma (inglés o español), verificado "
-         "informe por informe en S9 y sobre el texto completo en S10"),
+         "§2.2, incluido el criterio de idioma (inglés o español). S9 da el "
+         "idioma informe por informe y la prueba en que se apoya (el título y el "
+         "resumen en %d de los %d informes). S10 da el idioma del cuerpo del PDF "
+         % (s9_resumen, len(S9)) +
+         "de cada uno de los %d estudios del corpus: una detección mecánica "
+         % IC["n"] +
+         "(palabras vacías de %d idiomas y fracción de caracteres cirílicos y "
+         % IC["idiomas_probados"] +
+         "CJK) que hace comprueba_idioma_cuerpo.py, un guion del canal escrito "
+         "por el modelo, introducida el 6 de octubre de 2026 y rehecha en cada "
+         "pasada del canal. " +
+         ("Da inglés en los %d" % IC["n"] if IC["ingles"] == IC["n"] else
+          "Da inglés en %d, español en %d y otro idioma en %d, de los %d"
+          % (IC["ingles"], IC["espanol"], IC["otro"], IC["n"])) +
+         ("" if not IC["a_mano"] else
+          "; la columna mirar_a_mano marca %d PDF para %s página a página por "
+          "su fracción de cirílico o CJK (%s)"
+          % (len(IC["a_mano"]),
+             "revisarlo" if len(IC["a_mano"]) == 1 else "revisarlos",
+             ", ".join(IC["a_mano"])))),
         # CORREGIDO EL 2026-10-08. Estaba en CUMPLE, y no hay fecha de ejecucion
         # por fuente: la ejecucion de Scopus cuya exportacion entro al corpus no
         # tiene fecha registrada.
@@ -419,26 +639,44 @@ def v1_prisma(S):
         # que los autores fijaran los codigos antes), y daba como hecho, con un
         # añadido («antes de agruparlos en estudios»), lo que es una declaracion
         # de D.V.: la agrupacion la propuso un guion del modelo.
+        # 2026-10-13. Contaba el cribado desde el registro del pozo (S3) y
+        # decia que «el registro completo» esta en S3: la primera pasada del 4
+        # de agosto por la mañana, sobre el brazo A de PubMed, no esta en S3
+        # (ver primera_pasada). Las dos reglas del 4 de agosto iban en pasiva:
+        # las metio el modelo en sus guiones de lote.
         ("8", "Proceso de selección", "Cuántos revisores, cómo trabajaron", "PARCIAL",
          "§2.4; la etapa 1 aplica reglas deterministas, y las decisiones "
          "registro a registro de las etapas 2 y 3 las emitió un modelo de "
          "lenguaje (Claude Opus 5) como revisor único, sin duplicación. El "
-         "vocabulario de motivos no se fijó antes de empezar: el %s "
+         "cribado empezó el %s por la mañana con una primera pasada del modelo "
+         % fecha_es(PP["dia"]) +
+         "sobre el brazo A de PubMed (%s filas de título y %s de resumen), que "
+         % (miles(PP["n_titulo"]), miles(PP["n_resumen"])) +
+         "el cribado del pozo sustituyó desde las %s del mismo día; en ella el "
+         % PP["inicio_pozo"] +
+         "modelo metió en sus guiones, a mitad de lote, dos reglas que concretan "
+         "los criterios —endolisinas aisladas fuera (intervención) e informes "
+         "veterinarios fuera (población)—, y la auditoría de controles positivos "
+         "cazó la exclusión de Ronit 2024 (S6 y S19). El vocabulario de motivos "
+         "no se fijó antes de empezar: el %s (primer día de cribado de títulos) "
          % fecha_es(VOC["dias_libre"][0]) +
-         "(primer día de cribado de títulos) el modelo escribió los motivos en "
-         "texto libre, y los códigos, cuya redacción procede de esos textos, se "
-         "usaron desde el %s; no consta que los autores los fijaran antes. Ese "
+         "el modelo escribió los motivos en texto libre, y los códigos, cuya "
+         "redacción procede de esos textos, se usaron en el título desde el %s; "
          % fecha_es(VOC["primer_dia_codigos"]) +
-         "primer día se añadieron además, a mitad de lote, dos reglas que "
-         "concretan los criterios: endolisinas aisladas fuera (intervención) e "
-         "informes veterinarios fuera (población). D.V. fue el único revisor "
+         "no consta que los autores los fijaran antes. En la etapa de resumen, "
+         "las %d filas que el pozo heredó de la primera pasada conservan su "
+         % PP["heredadas"] +
+         "motivo en inglés (S19). D.V. fue el único revisor "
          "humano. Según declara D.V. (8 de octubre de 2026), examinó uno a uno "
          "los informes que superaron el cribado; ese examen no quedó "
          "registrado. Lo que el modelo excluyó no lo releyó ningún humano, "
          "salvo la muestra de %s del recribado (S19). Declarado en §2.4 y como "
          % S["validacion_muestra"] +
-         "primera limitación en §4.4; el registro completo, con modelo y marca "
-         "de tiempo por decisión, está en S3"),
+         "primera limitación en §4.4. Cada decisión del cribado vigente está "
+         "registrada con su motivo y su marca de tiempo, y se aporta íntegra "
+         "(S3, S4); la primera pasada del %s sobre el brazo A de PubMed, que el "
+         % fecha_corta(PP["dia"]) +
+         "cribado del pozo sustituyó, consta en el repositorio y no en S3"),
         ("9", "Proceso de extracción", "Cuántos revisores, herramientas", "CUMPLE",
          "§2.6; extracción por duplicado (%d de %d "
          % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"]) +
@@ -501,9 +739,16 @@ def v1_prisma(S):
          "decidido sobre la indexación de SciELO sin leer el texto. Las "
          "firmaron los dos autores salvo %d, que firmó D.V. solo (%s). El "
          % (len(solo_uno), " y ".join(solo_uno)) +
-         "modelo leyó los textos completos y propuso, con su cita, las "
-         "exclusiones que se apoyan en ellos. S3 recoge además los motivos de "
-         "las etapas 2 y 3 tal como se escribieron"),
+         # 2026-10-13: decia solo «los textos completos»; las fichas de
+         # registro tambien las descargo y leyo el modelo. (2026-10-14: «que se
+         # apoyan en ellos» pasa a la redaccion de la hoja de hechos, «en los
+         # textos que leyó»: las NOPDF y NOREC no se apoyan en ningun texto, y
+         # EST-205 se apoya en la indexacion de SciELO.)
+         "modelo leyó los textos completos y las fichas de registro y propuso, "
+         "con su cita, las exclusiones que se apoyan en los textos que leyó. S3 "
+         "recoge además "
+         "los motivos de las etapas 2 y 3 del cribado vigente tal como se "
+         "escribieron"),
         ("17", "Características de los estudios", "De cada uno", "CUMPLE",
          "Tabla 1, y listado completo en S5"),
         ("18", "Riesgo de sesgo por estudio", "", ROB["18"][0], ROB["18"][1]),
@@ -548,7 +793,13 @@ def v1_prisma(S):
          "corpus previo"),
         ("25", "Apoyo económico", "", "CUMPLE", "Declaraciones"),
         ("26", "Conflictos de interés", "", "CUMPLE", "Declaraciones"),
-        ("27", "Disponibilidad de datos y código", "", "CUMPLE", "Declaraciones y S3–S6"),
+        # 2026-10-13. Estaba en CUMPLE mientras el parrafo del manuscrito lleva
+        # el DOI del deposito como pendiente: el deposito publico no existe aun.
+        ("27", "Disponibilidad de datos y código", "",
+         "PARCIAL" if deposito_pendiente else "CUMPLE",
+         "Declaraciones y S3–S6" + (
+             "; el depósito público que la declaración anuncia y su DOI están "
+             "pendientes" if deposito_pendiente else "")),
     ]
     tabla(d, ["Ítem", "Elemento", "Qué exige", "Estado", "Dónde está"],
           [(a, b, c, e, f) for a, b, c, e, f in ITEMS],
@@ -580,8 +831,14 @@ def v2_busquedas(S):
     # agosto»: no hay fecha de ejecucion por fuente, el 10 de agosto es cuando
     # la exportacion de BVS entro al corpus, y la ejecucion de Scopus cuya
     # exportacion entro al corpus no tiene fecha registrada.
+    # 2026-10-13. El encabezado no decia quien redacto el documento de trabajo
+    # cuyas secciones 1 a 3 se copian abajo: lo redacto el modelo (el fichero
+    # entra al repositorio en el commit 4258270, con el modelo como coautor), y
+    # trae instrucciones suyas de manejo de las interfaces y del navegador.
     d = doc_nuevo("S2. Estrategias de búsqueda",
-                  "Sintaxis literal por fuente y número de resultados. No hay "
+                  "Sintaxis literal por fuente y número de resultados. Las "
+                  "ecuaciones literales se copian del documento de trabajo de "
+                  "las búsquedas, que redactó el modelo de lenguaje. No hay "
                   "fecha de ejecución por fuente: las ejecuciones documentadas "
                   "son del 3 y el 4 de agosto de 2026, y la exportación de BVS "
                   "se incorporó al corpus el 10 de agosto; la ejecución de "
@@ -641,8 +898,11 @@ def v2_busquedas(S):
         d.add_heading("Ecuaciones literales", level=2)
         nota(d, "Copia de las secciones 1 a 3 de quality_reports/"
                 "ecuaciones_busqueda_final.md, el documento de trabajo de las "
-                "búsquedas, cuyo inventario de bases se verificó por última vez "
-                "el 4 de agosto de 2026. Los recuentos son los que anota ese "
+                "búsquedas, que redactó el modelo de lenguaje; también son "
+                "suyas las indicaciones que trae sobre cómo manejar cada "
+                "interfaz y el navegador. El documento da el 4 de agosto de "
+                "2026 como última verificación de su inventario de bases. Los "
+                "recuentos son los que anota ese "
                 "documento, y sus avisos de estado («pendiente», «sin probar») "
                 "son de ese documento de trabajo, no el estado final: lo que "
                 "entró al corpus es lo de las dos tablas de arriba, según el "
@@ -852,10 +1112,14 @@ def v6_auditoria(S):
               % A["perdidos_otros"])
     tabla(d, ["Etapa", "Controles comprobables", "Conservan informe", "Veredicto"],
           filas, [6.0, 3.6, 3.6, 3.0])
+    # 2026-10-14: «los registros solo-anexar de las etapas 2 y 3» a secas; hay
+    # dos, y este recalculo usa el del cribado vigente (S3), no el de la
+    # primera pasada (ver la incidencia, abajo).
     nota(d, "Recalculado en cada pasada desde los registros de cribado "
             "(screening_stage1_all.csv y los registros solo-anexar de las "
-            "etapas 2 y 3) y desde quality_reports/corpus_identifier_index.txt, "
-            "por PMID y a nivel de estudio, como la auditoría del canal.")
+            "etapas 2 y 3 del cribado vigente, que son S3) y desde "
+            "quality_reports/corpus_identifier_index.txt, por PMID y a nivel de "
+            "estudio, como la auditoría del canal.")
 
     d.add_heading("Pérdida por la enmienda de idioma", level=2)
     d.add_paragraph(
@@ -865,7 +1129,11 @@ def v6_auditoria(S):
         "prótesis vascular infectada por P. aeruginosa publicado en danés en "
         "Ugeskrift for Læger. No es un fallo del cribado, porque el estudio se "
         "identificó y se clasificó correctamente, sino el precio del criterio. "
-        "Hasta esa enmienda, la auditoría pasaba %d de %d en las tres etapas."
+        # 2026-10-14: «en las tres etapas» a secas chocaba con la incidencia
+        # de abajo, en la que la auditoria fallo; esta cuenta es la del
+        # cribado vigente.
+        "Hasta esa enmienda, la auditoría pasaba %d de %d en las tres etapas "
+        "del cribado vigente (el fallo de la primera pasada se cuenta abajo)."
         % (len(A["perdidos_enmienda"]), n_comp,
            min(E["e1"], E["e2"], E["e3_antes"]), n_comp))
     d.add_paragraph(
@@ -933,16 +1201,47 @@ def v6_auditoria(S):
             ", ".join(e["estudios"]) or "—", "sí" if e["en_corpus"] else "no")
            for s, e in sorted(A["estado"].items())], [4.0, 3.2, 3.0, 3.6])
 
+    # CORREGIDO EL 2026-10-13. Decia que «la corrección se añadió como fila
+    # nueva del registro solo-anexar», y quien la buscara en S3 no la
+    # encontraba: esta en el registro de la primera pasada del 4 de agosto
+    # sobre el brazo A de PubMed (screening_stage2_decisions.csv), que el
+    # cribado del pozo sustituyo. En S3 el registro de Ronit 2024 tiene una
+    # sola fila de titulo. Se comprueba aqui fila a fila.
+    PP = primera_pasada()
+    pm_ronit = {i[len("pmid:"):] for i in A["ids"].get("Ronit2024", ())
+                if i.startswith("pmid:")}
+    corr = [c for c in PP["correcciones"] if c["fila"]["pmid"] in pm_ronit]
+    if len(PP["correcciones"]) != 1 or len(corr) != 1 or len(corr[0]["en_el_pozo"]) != 1:
+        raise SystemExit("S6: la primera pasada ya no trae una sola corrección, la "
+                         "de Ronit 2024, con una sola fila de título en el pozo; "
+                         "revisa la incidencia.")
+    en_pozo = corr[0]["en_el_pozo"][0]
+    VEREDICTO = {"ADVANCE": "pasa a resumen", "EXCLUDE": "excluido"}
+    # 2026-10-14. Decia que «el modelo corrigió la regla en su guion de lote»:
+    # el commit 39b2291 no cambia ninguna regla en un guion (solo añade a
+    # screen_stage2.py la opcion de anexar una correccion); la regla que
+    # faltaba la enuncia el modelo en el mensaje del commit, del que es
+    # coautor, y la aplica con la fila de correccion, que firma el modelo.
     d.add_heading("Incidencia detectada y corregida", level=2)
     d.add_paragraph(
-        "En una ejecución intermedia la auditoría falló: una regla de exclusión "
-        "mal calibrada eliminaba todos los informes de un estudio incluido. La "
-        "regla se corrigió antes de continuar. El fallo y su corrección constan "
-        "en el registro del proyecto (commit 39b2291, 4 de agosto de 2026: un "
-        "lote de títulos que emitió el modelo excluyó a Ronit 2024 porque su "
-        "título en PubMed era «[Not Available]»; la corrección se añadió como "
-        "fila nueva del registro solo-anexar). Se informa aquí porque una "
-        "auditoría que solo se reporta cuando pasa no demuestra nada.")
+        "En la primera pasada del cribado, el %s por la mañana sobre el brazo A "
+        "de PubMed, la auditoría falló: un hueco en las reglas —el lote excluía "
+        "por defecto un título que no se podía juzgar— eliminaba todos los "
+        "informes de un estudio incluido. El modelo enunció entonces la regla "
+        "que faltaba (un título que no se puede juzgar no se excluye por el "
+        "título) y la aplicó antes de continuar. El fallo y su corrección constan "
+        "en el registro del proyecto (commit 39b2291: un lote de títulos que emitió el "
+        "modelo excluyó a Ronit 2024 porque su título en PubMed era «[Not "
+        "Available]»; la corrección, que emitió también el modelo, se añadió a "
+        "las %s como fila nueva del registro solo-anexar de esa pasada). Esa "
+        "fila está en revision_sistematica/cribado/screening_stage2_decisions.csv, "
+        "no en S3: el cribado del pozo sustituyó a la primera pasada, y en S3 el "
+        "registro de Ronit 2024 tiene una sola decisión de título (%s, el %s a "
+        "las %s). Se informa aquí porque una auditoría que solo se reporta "
+        "cuando pasa no demuestra nada."
+        % (fecha_es(PP["dia"]), corr[0]["fila"]["decided_at"][11:16],
+           VEREDICTO.get(en_pozo["verdict"], en_pozo["verdict"]),
+           fecha_es(en_pozo["decided_at"]), en_pozo["decided_at"][11:16]))
     # La nota decia solo que el conjunto se fijo antes del cribado. Es cierto,
     # pero callaba que con el mismo conjunto se diseñaron las ecuaciones.
     nota(d, "El conjunto de control se fijó antes del cribado: elegirlo después "
@@ -952,6 +1251,23 @@ def v6_auditoria(S):
             "selección, no la sensibilidad de la búsqueda.")
     d.save(OUT / "S6_auditoria_controles_positivos.docx")
 
+
+
+def v10_idioma_cuerpo(S):
+    """S10: el idioma del cuerpo de cada PDF del corpus vigente (ver idioma_cuerpo).
+
+    Se escribe, no se copia con copy2: la copia conservaba la fecha de la
+    fuente y el anexo parecia anterior a lo que dice.
+    """
+    IC = idioma_cuerpo(S)
+    destino = OUT / "S10_idioma_verificado_sobre_texto_completo.csv"
+    with open(destino, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(IC["filas"][0].keys()))
+        w.writeheader()
+        w.writerows(IC["filas"])
+    print("  S10 idioma del cuerpo de los %d PDF del corpus: inglés %d, español %d, "
+          "otro %d; a mano: %s" % (IC["n"], IC["ingles"], IC["espanol"], IC["otro"],
+                                   ", ".join(IC["a_mano"]) or "ninguno"))
 
 
 def v18_evidencia_sesgo(S):
@@ -980,15 +1296,49 @@ def v18_evidencia_sesgo(S):
         print("  S18 %d juicios, %d con frase firmada, %d sin ella (todos globales)"
               % (len(filas), len(filas) - sin, sin))
         # la cosecha tematica se conserva aparte: sirve para buscar, no para
-        # respaldar, y decirlo es parte del anexo
-        viejo = OUT / "S18_evidencia_por_dominio.csv"
-        if viejo.exists():
-            viejo.rename(OUT / "S18b_frases_cosechadas_por_tema.csv")
-        for q in OUT.glob("S18_evidencia_por_dominio.xlsx"):
+        # respaldar, y decirlo es parte del anexo.
+        # CORREGIDO EL 2026-10-13. S18b solo se renombraba y no se regeneraba:
+        # seguia siendo el fichero del 16-sep, con frases de estudios que
+        # salieron despues del corpus (EST-055, EST-063, EST-132) y no tienen
+        # juicio en S18. Ahora se escribe en cada pasada, filtrado a los
+        # estudios con juicio en S18.
+        for q in OUT.glob("S18_evidencia_por_dominio.*"):
             q.unlink()
+        _v18b_cosecha({r["estudio"] for r in filas})
         return
     print("  AVISO: no hay pendiente1_juicios.csv; corre scripts/audita_pendientes.py")
     _v18_antiguo(S)
+
+
+def _v18b_cosecha(estudios):
+    """S18b: las frases que el modelo cosecho por tema, solo de los estudios con
+    juicio en S18.
+
+    La cosecha (revision_sistematica/riesgo_sesgo/evidencia_por_dominio.csv,
+    de evidencia_riesgo_sesgo.py) cubre todos los estudios que se miraron; el
+    anexo acompaña a los juicios de S18, y un estudio sin juicio no tiene nada
+    que la cosecha ayude a buscar. Cada estudio con juicio debe estar en la
+    cosecha: si falta alguno, el anexo no es lo que dice ser y se para.
+    """
+    origen = RS / "riesgo_sesgo" / "evidencia_por_dominio.csv"
+    if not origen.exists():
+        raise SystemExit("S18b: no hay %s." % origen.relative_to(ROOT))
+    todas = leer_bom(origen)
+    filas = [r for r in todas if r["study_id"] in estudios]
+    faltan = sorted(estudios - {r["study_id"] for r in filas})
+    if faltan:
+        raise SystemExit("S18b: la cosecha no tiene frases de %s, que tienen "
+                         "juicio en S18." % ", ".join(faltan))
+    with open(OUT / "S18b_frases_cosechadas_por_tema.csv", "w",
+              encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(todas[0].keys()))
+        w.writeheader()
+        w.writerows(filas)
+    fuera = sorted({r["study_id"] for r in todas} - estudios)
+    print("  S18b %d filas de los %d estudios con juicio en S18 (la cosecha tiene "
+          "%d estudios; quedan fuera %d)" % (len(filas), len(estudios),
+                                             len({r["study_id"] for r in todas}),
+                                             len(fuera)))
 
 
 def _v18_antiguo(S):
@@ -1043,6 +1393,11 @@ def v19_cribado_modelo(S):
     quien = collections.Counter(r.get("decided_by", "") for r in d2 + d3)
     fechas = sorted({(r.get("decided_at") or "")[:10] for r in d2 + d3 if r.get("decided_at")})
     VOC = vocabulario_de_motivos()
+    PP = primera_pasada()
+    if VOC["dias_libre"][0] != PP["dia"]:
+        raise SystemExit("S19: el primer día del pozo (%s) ya no es el de la primera "
+                         "pasada (%s); «ese mismo día» no se sostiene."
+                         % (VOC["dias_libre"][0], PP["dia"]))
     corpus = {r["record_id"] for r in leer(RS / "cribado" / "screening_corpus_all.csv")}
 
     def coma(x):
@@ -1084,52 +1439,101 @@ def v19_cribado_modelo(S):
              "(abajo)"),
             ("Fechas de uso", "del %s al %s" % (fecha_es(fechas[0]), fecha_es(fechas[-1]))
              if fechas else "[DATO FALTANTE]"),
-            ("Decisiones emitidas por el modelo",
+            # 2026-10-13. Cerraba con «Cada fila lleva su motivo y su marca de
+            # tiempo», contando solo el registro del pozo: la primera pasada
+            # del 4 de agosto no esta en S3 (entrada siguiente).
+            ("Decisiones emitidas por el modelo en el cribado vigente",
              "en la etapa de título, %s filas, una por registro (%d de esos registros "
              "ya no están en el corpus vigente); en la de resumen, %s filas en el "
              "registro solo-anexar, que son %s decisiones vigentes: las %d filas de "
-             "idioma del %s corrigen filas anteriores. Cada fila lleva su motivo y su "
-             "marca de tiempo"
+             "idioma del %s corrigen filas anteriores. Cada decisión del cribado "
+             "vigente está registrada con su motivo y su marca de tiempo, y se aporta "
+             "íntegra (S3, S4); la primera pasada del %s sobre el brazo A de PubMed, "
+             "que el cribado del pozo sustituyó, consta en el repositorio y no en S3"
              % (miles(len(d2)), fuera2, miles(len(d3)), miles(vigentes3),
-                len(repetidas), fecha_es(dias_rep[0]))),
+                len(repetidas), fecha_es(dias_rep[0]), fecha_corta(PP["dia"]))),
+            # AÑADIDO EL 2026-10-13: S19 contaba el cribado desde el pozo, y el
+            # cribado empezo esa mañana. Ver primera_pasada().
+            ("Primera pasada, fuera de S3",
+             "el cribado empezó el %s por la mañana con una primera pasada del "
+             "modelo sobre el brazo A de PubMed: %s filas de título (de las %s a las "
+             "%s; %s de exclusión, con el motivo en texto libre en inglés) y %s de "
+             "resumen (de las %s a las %s). La etiqueta de %s de esas %s filas incluye "
+             "«%s» (abajo, con su nota). El cribado del pozo la sustituyó desde las "
+             "%s del mismo día, "
+             "salvo %d decisiones de resumen que el pozo heredó por PMID (abajo). En "
+             "esa pasada el modelo metió en sus guiones, a mitad de lote, las dos "
+             "reglas que concretan los criterios (siguiente entrada), y la auditoría "
+             "de controles positivos cazó la exclusión de Ronit 2024, que el modelo "
+             "corrigió con una fila nueva (S6). Consta en el repositorio, en "
+             "revision_sistematica/cribado/screening_stage2_decisions.csv y "
+             "screening_stage3_decisions.csv"
+             % (fecha_es(PP["dia"]), miles(PP["n_titulo"]), PP["titulo_desde"],
+                PP["titulo_hasta"], miles(PP["excl_titulo"]), miles(PP["n_resumen"]),
+                PP["resumen_desde"], PP["resumen_hasta"],
+                miles(sum(v for k, v in PP["etiquetas"].items() if ETIQUETA_ASISTIDA in k)),
+                miles(PP["n_titulo"] + PP["n_resumen"]), ETIQUETA_ASISTIDA,
+                PP["inicio_pozo"], PP["heredadas"])),
             # main() añade a S3 la columna en_corpus_actual: «sin reelaborar»
-            # a secas no era exacto.
+            # a secas no era exacto. (2026-10-13: «el registro original» a secas
+            # tampoco: es el del cribado vigente, sin la primera pasada.)
             ("Ficheros de entrada y salida",
              "entrada: revision_sistematica/cribado/screening_corpus_all.csv; salida: los "
-             "anexos S3, que son el registro original sin reelaborar, con una sola "
-             "columna añadida (en_corpus_actual)"),
+             "anexos S3, que son el registro del cribado vigente sin reelaborar, con "
+             "una sola columna añadida (en_corpus_actual); la primera pasada se queda "
+             "en los dos ficheros del repositorio que se citan arriba"),
             # CORREGIDO EL 2026-10-08. Decia «cerrado y fijado por los autores
             # antes del cribado». El registro lo desmiente: ver
             # vocabulario_de_motivos(). Y remitia a «la Tabla 1», que en el
             # informe extendido es la de caracteristicas del corpus.
+            # 2026-10-13. «Las decisiones del primer día» contaba solo el
+            # primer lote del pozo (S3); esa mañana la primera pasada ya habia
+            # excluido con motivos en ingles. Y «se usaron desde el 5 de
+            # agosto» no vale para las filas de resumen heredadas, que S3 fecha
+            # el 5 y llevan el motivo en ingles. Las dos reglas iban en pasiva.
             ("Vocabulario de motivos",
-             "no se fijó antes de empezar. Las decisiones del primer día de cribado "
-             "de títulos (%s) llevan el motivo en texto libre (%s exclusiones); los "
-             "códigos del vocabulario cerrado, cuya redacción procede de esos textos, "
-             "se usaron desde el %s, y las exclusiones del primer día se asignaron "
-             "después a un código (exclusion_codes.code_for). No consta que los "
-             "autores fijaran los códigos antes de empezar. Ese mismo %s se añadieron "
-             "a mitad de lote dos reglas que concretan los criterios: endolisinas "
-             "aisladas fuera (intervención) e informes veterinarios fuera "
-             "(población). El vocabulario se publica en scripts/exclusion_codes.py y "
-             "en la tabla de motivos de exclusión por etapa del informe extendido "
-             "(Tabla 4)"
+             "no se fijó antes de empezar. En el registro del cribado vigente (S3), "
+             "las decisiones de título del primer día (%s) llevan el motivo en texto "
+             "libre (%s exclusiones), como lo llevaban, en inglés, las %s exclusiones "
+             "de título de la primera pasada de esa mañana; los códigos del "
+             "vocabulario cerrado, cuya redacción procede de esos textos, se usaron "
+             "en el título desde el %s, y las exclusiones del primer día del pozo se "
+             "asignaron después a un código (exclusion_codes.code_for). En la etapa "
+             "de resumen de S3, las %d filas heredadas de la primera pasada conservan "
+             "su motivo en inglés aunque lleven la fecha de su copia (abajo). No "
+             "consta que los autores fijaran los códigos antes de empezar. Ese mismo "
+             "%s, en la primera pasada, el modelo metió en sus guiones, a mitad de "
+             "lote, dos reglas que concretan los criterios: endolisinas aisladas "
+             "fuera (intervención) e informes veterinarios fuera (población). El "
+             "vocabulario se publica en scripts/exclusion_codes.py y en la tabla de "
+             "motivos de exclusión por etapa del informe extendido (Tabla 4)"
              % (fecha_es(VOC["dias_libre"][0]), miles(VOC["n_libre"]),
-                fecha_es(VOC["primer_dia_codigos"]), fecha_es(VOC["dias_libre"][0]))),
+                miles(PP["excl_titulo"]), fecha_es(VOC["primer_dia_codigos"]),
+                PP["heredadas"], fecha_corta(VOC["dias_libre"][0]))),
             # Decia «recribado ciego ... 0 falsos negativos» sin decir que en la
             # primera pasada D.V. marco registros como incluibles y los
             # reclasifico despues al contrastarlos con los criterios.
+            # 2026-10-14. «En la primera pasada» se confundia con la primera
+            # pasada del modelo (arriba): es la del recribado. Y no decia que
+            # lo que no se midio es la concordancia sobre lo que el modelo
+            # admitio (hoja de hechos, 13-oct).
             ("Validación del error de exclusión",
              "recribado en Rayyan, a ciegas, por un solo revisor (D.V.), de %s de "
              "los %s registros excluidos en las etapas de título y resumen. En la "
-             "primera pasada, sin los criterios a la vista, D.V. marcó %s como "
-             "incluibles y, al contrastarlos con los criterios, los reclasificó como "
-             "excluidos: %s falsos negativos de %s (%s %%; IC 95 %% exacto, 0,00 a "
-             "%s %%)"
+             "primera pasada del recribado, sin los criterios a la vista, D.V. "
+             "marcó %s como incluibles y, al contrastarlos con los criterios, los "
+             "reclasificó como excluidos: %s falsos negativos de %s (%s %%; IC 95 %% "
+             "exacto, 0,00 a %s %%). Sobre esos %s excluidos, el lector coincidió "
+             "con el modelo en %s en la primera pasada y en %s tras contrastar los "
+             "criterios; lo que no se midió es la concordancia sobre lo que el "
+             "modelo admitió"
              % (S["validacion_muestra"], miles(S["validacion_marco"]),
                 S["validacion_primera_pasada_incluidos"],
                 S["validacion_falsos_negativos"], S["validacion_muestra"],
-                coma(S["validacion_tasa_pct"]), coma(S["validacion_ic_sup_pct"])))):
+                coma(S["validacion_tasa_pct"]), coma(S["validacion_ic_sup_pct"]),
+                S["validacion_muestra"],
+                S["validacion_muestra"] - S["validacion_primera_pasada_incluidos"],
+                S["validacion_muestra"] - S["validacion_falsos_negativos"]))):
         pp = d.add_paragraph()
         pp.add_run(k + ". ").bold = True
         # tras el punto del rotulo va mayuscula, y cada entrada cierra con punto
@@ -1143,8 +1547,9 @@ def v19_cribado_modelo(S):
     # D.V. declaro. Va aqui, con la redaccion de la declaracion.
     faltan = ["[DATO FALTANTE] El texto literal e íntegro de la instrucción con "
               "que se aplicaron los criterios registro a registro. Lo que sí consta "
-              "son los criterios de elegibilidad, las dos reglas añadidas el %s a "
-              "mitad de lote y, desde el %s, el vocabulario de motivos (arriba)."
+              "son los criterios de elegibilidad, las dos reglas que el modelo metió "
+              "en sus guiones el %s, a mitad de lote, y, desde el %s, el vocabulario "
+              "de motivos (arriba)."
               % (fecha_es(VOC["dias_libre"][0]), fecha_es(VOC["primer_dia_codigos"])),
               "[DATO FALTANTE] Los parámetros de generación (temperatura, longitud "
               "máxima, semilla).",
@@ -1179,11 +1584,48 @@ def v19_cribado_modelo(S):
         % (coma(S["validacion_tasa_pct"]), S["validacion_muestra"],
            S["validacion_falsos_negativos"], coma(S["validacion_ic_sup_pct"]),
            miles(S["validacion_marco"]), S["validacion_cota_estudios"]))
+    # 2026-10-13. La etiqueta «LLM-assisted; pending human verification» se
+    # transcribia sin nota (ver nota_etiqueta_asistida), las filas heredadas
+    # aparecian solo con la fecha de su copia, y la primera pasada no salia.
     d.add_heading("Quién emitió cada fila del registro", level=2)
+    d.add_paragraph("En el registro del cribado vigente (S3), con la etiqueta tal "
+                    "como está escrita en la columna decided_by:")
     for k, v in quien.most_common():
         d.add_paragraph("%s — %s %s" % (k or "sin declarar", miles(v),
                                         "fila" if v == 1 else "filas"),
                         style="List Bullet")
+        if k.startswith("heredada del brazo por PMID"):
+            if ETIQUETA_ASISTIDA not in k or v != PP["heredadas"]:
+                raise SystemExit("S19: la etiqueta de las filas heredadas ya no es "
+                                 "la que describe la nota; revísala.")
+            d.add_paragraph(
+                "Estas %d filas llevan la fecha en que se copiaron al pozo (%s, a "
+                "las %s). Cada una repite, con el mismo veredicto y el mismo motivo, "
+                "una decisión de resumen de la primera pasada, tomada el %s entre "
+                "las %s y las %s (screening_stage3_decisions.csv). %s"
+                % (v, fecha_es(PP["heredadas_copia"]), PP["heredadas_copia"][11:16],
+                   fecha_es(PP["heredadas_dia"]), PP["heredadas_desde"],
+                   PP["heredadas_hasta"],
+                   nota_etiqueta_asistida(v, PP["heredadas_excl"],
+                                          PP["heredadas_excl_en_muestra"])))
+        elif ETIQUETA_ASISTIDA in k:
+            raise SystemExit("S19: hay en S3 otra etiqueta «%s» sin nota: %s"
+                             % (ETIQUETA_ASISTIDA, k))
+    d.add_paragraph("En la primera pasada del %s, que no está en S3 "
+                    "(screening_stage2_decisions.csv y screening_stage3_decisions.csv):"
+                    % fecha_es(PP["dia"]))
+    for k, v in PP["etiquetas"].most_common():
+        d.add_paragraph("%s — %s %s" % (k or "sin declarar", miles(v),
+                                        "fila" if v == 1 else "filas"),
+                        style="List Bullet")
+    d.add_paragraph(
+        "Etiqueta original, transcrita tal cual. El modelo fue el revisor único, no "
+        "un asistente, y la verificación humana que la etiqueta anuncia no se hizo "
+        "para las exclusiones. El cribado del pozo, que también emitió el modelo, "
+        "volvió a decidir en el título todos los registros de esta pasada, y en "
+        "el resumen heredó %d de sus decisiones en vez de volver a tomarlas "
+        "(arriba). Lo que el modelo excluyó no lo releyó ningún humano, salvo la "
+        "muestra del recribado." % PP["heredadas"])
     d.save(OUT / "S19_cribado_con_modelo_de_lenguaje.docx")
     print("  S19 cribado con modelo: %d filas de %d emisores"
           % (len(d2) + len(d3), len(quien)))
@@ -1406,34 +1848,58 @@ def del_manuscrito(marca, que_es):
     return texto.replace("**", "")
 
 
+def frase_destacada_del_manuscrito(inicio, que_es):
+    """Una frase en negrita del maestro, copiada literal (sin los asteriscos)."""
+    md = (ROOT / "paper" / "manuscrito_revision_sistematica.md").read_text(
+        encoding="utf-8")
+    i = md.find("**" + inicio)
+    j = md.find("**", i + 2) if i >= 0 else -1
+    if i < 0 or j < 0:
+        raise SystemExit("S7: no encuentro «%s» en el manuscrito. %s sale de ahí y "
+                         "no se redacta en este script." % (inicio, que_es))
+    return md[i + 2:j].strip()
+
+
 def v7_declaraciones(S):
     d = doc_nuevo("S7. Declaraciones y requisitos del ICMJE",
                   "Documento de acompañamiento al envío.")
+    # 2026-10-13. Financiación, conflictos y ética tambien se copian ahora del
+    # maestro, como el resto: la de ética decia otra cosa con otras palabras.
+    no_registro = frase_destacada_del_manuscrito(
+        "La revisión no se registró", "la declaración de no registro")
     for tit, txt in [
         ("Financiación",
-         "Esta revisión no recibió financiación específica de agencias "
-         "públicas, comerciales o sin ánimo de lucro."),
+         del_manuscrito("**Financiación.**", "la declaración de financiación")),
         ("Conflictos de interés",
-         "Los autores declaran no tener conflictos de interés. Cada autor debe "
-         "adjuntar además el formulario ICMJE Disclosure of Interest firmado."),
+         del_manuscrito("**Conflictos de interés.**",
+                        "la declaración de conflictos de interés")),
+        ("Formulario ICMJE de conflictos de interés",
+         "Cada autor debe adjuntar el formulario ICMJE Disclosure of Interest "
+         "firmado."),
         # Tampoco esta se redacta aqui: el manuscrito ya reparte las categorias
         # entre los dos autores y el anexo seguia diciendo «PENDIENTE DE
         # COMPLETAR». Un comite que abra los dos documentos ve la contradiccion.
         ("Contribución de los autores (CRediT)",
          del_manuscrito("**Contribución de los autores (CRediT).**",
                         "la contribución de los autores")),
+        # CORREGIDO EL 2026-10-13. Decia «Si se registra antes del envío, debe
+        # sustituirse esa declaración por el número de registro». El unico
+        # protocolo que va a OSF es el de la fase definitiva, redactado despues
+        # de este trabajo: su numero aqui presentaria como registro de este
+        # informe un protocolo que no lo cubre. La frase de no registro se
+        # copia del maestro (§2.1).
         ("Registro del protocolo",
-         "PENDIENTE. La revisión no está registrada en PROSPERO ni en OSF. El "
-         "manuscrito declara la ausencia de forma explícita en §2.1. Si se "
-         "registra antes del envío, debe sustituirse esa declaración por el "
-         "número de registro; no debe declararse un registro retrospectivo como "
-         "si fuera prospectivo."),
+         "%s (§2.1 del informe extendido; en el manuscrito de la "
+         "revista, METODOLOGÍA › Protocolo y reporte). El protocolo de la fase "
+         "definitiva de la revisión se depositará en OSF; no cubre este informe, "
+         "que es anterior a él." % no_registro.rstrip(".")),
+        # CORREGIDO EL 2026-10-13. Este parrafo se redactaba aqui y decia otra
+        # cosa que el manuscrito («disponibles en el repositorio del
+        # proyecto», sin deposito publico ni DOI). Se copia literal del
+        # maestro, como el CRediT y la declaracion de IA.
         ("Disponibilidad de datos y código",
-         "El corpus de cribado, los registros de decisión completos, el "
-         "formulario de extracción y todo el código del canal están disponibles "
-         "en el repositorio del proyecto. Los registros de decisión son "
-         "solo-anexar y conservan cada corrección junto con la decisión "
-         "original."),
+         del_manuscrito("**Disponibilidad de datos y código.**",
+                        "la disponibilidad de datos y código")),
         # Esta declaracion NO se redacta aqui: se copia literal del manuscrito.
         # La version que habia decia «asistencia en la programacion del canal de
         # cribado» y «los autores revisaron y verificaron todo el contenido».
@@ -1446,8 +1912,8 @@ def v7_declaraciones(S):
          del_manuscrito("**Uso de inteligencia artificial.**",
                         "la declaración de uso de IA")),
         ("Ética y consentimiento",
-         "No aplica: la revisión se basa en literatura publicada y en registros "
-         "públicos de ensayos, sin datos individuales de pacientes."),
+         del_manuscrito("**Aprobación ética y consentimiento.**",
+                        "la declaración de ética y consentimiento")),
     ]:
         d.add_heading(tit, level=2)
         d.add_paragraph(txt)
@@ -1472,12 +1938,16 @@ def main():
             ("extraccion/pre_extraccion_desde_resumen.csv",
              "S4_pre_extraccion_desde_resumen.csv"),
             ("textos_completos/fulltext_identifiers.csv",
-             "S8_recuperacion_texto_completo.csv"),
-            ("cribado/idioma_texto_completo.csv",
-             "S10_idioma_verificado_sobre_texto_completo.csv")):
+             "S8_recuperacion_texto_completo.csv")):
         p = RS / origen
         if p.exists():
             shutil.copy2(p, OUT / destino)
+    # S3 trae el registro del cribado vigente (el del pozo). La primera pasada
+    # del 4-ago sobre el brazo A de PubMed (screening_stage2_decisions.csv y
+    # screening_stage3_decisions.csv) no viaja; S1, S6 y S19 lo dicen.
+    # S10 ya no es una copia de cribado/idioma_texto_completo.csv (13-ago):
+    # sale de la comprobacion sobre el cuerpo de los PDF del corpus vigente.
+    v10_idioma_cuerpo(S)
 
     # S9: la prueba del criterio de idioma, informe por informe. Se copiaba tal
     # cual y salia con 234 filas, todas ADMITIDO, cuando los informes incluidos
@@ -1587,7 +2057,6 @@ def main():
     print("  S7  declaraciones ICMJE")
     print("  S8  registro de recuperacion de texto completo")
     print("  S9  idioma por informe, con clase de evidencia")
-    print("  S10 idioma verificado sobre el texto completo")
     # figuras y tablas, ya listas
     fig = OUT / "figuras y tablas"
     fig.mkdir(exist_ok=True)

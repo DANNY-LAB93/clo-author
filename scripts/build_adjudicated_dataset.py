@@ -80,6 +80,16 @@ ADJ_DV = "adjudicada por uno (D.V.)"
 ADJ_NT = "adjudicada por uno (N.T.)"
 ADJUDICADAS = (ADJ_DOS, ADJ_DV, ADJ_NT)
 
+# Las dos etiquetas de una casilla corregida contra el texto despues de
+# cerrada. La de dos firmas decia «corregido por consenso contra el texto»
+# hasta el 2026-10-13, y chocaba con la Léeme de S15, que dice que solo las
+# «adjudicada por los dos» constan como consenso: entre estas hay correcciones
+# de modalidad que propuso el modelo de lenguaje y los dos autores firmaron.
+# Ahora dicen cuantas firmas llevan, simetricas, y nada mas. Los recuentos no
+# cambian: solo el texto de la etiqueta.
+CORR_DOS = "corregido contra el texto (dos firmas)"
+CORR_UNA = "corregido contra el texto (una firma)"
+
 
 def quien_adjudico(resuelto_por):
     """La etiqueta de procedencia segun la columna `resuelto_por`.
@@ -153,14 +163,19 @@ def main():
                 sin_firma += 1
                 continue
             # Cuantas personas la firmaron decide la etiqueta, y con ella si la
-            # casilla cuenta como doble lectura. Con una firma NO cuenta: la
-            # corrigio uno solo. Con las dos si, porque es lo que es un
-            # consenso -- dos personas mirando la misma casilla y firmandola.
+            # casilla cuenta como doble lectura en el resumen de este guion
+            # (extraccion_adjudicada.json). Con una firma NO cuenta: la corrigio
+            # uno solo. Con las dos si: dos personas firmaron la casilla. Decia
+            # «porque es lo que es un consenso», y la etiqueta decia «por
+            # consenso»: no se sostiene, porque varias (las de modalidad) las
+            # propuso el modelo de lenguaje y las firmaron los dos autores, y
+            # el registro no anota mas que esas firmas. OJO: la doble lectura de
+            # la tabla de desenlaces (build_outcome_scalars.DOBLE) no cuenta
+            # ninguna casilla corregida, tampoco las de dos firmas.
             firmas = [x for x in (r.get("firmado_por") or "").split(";") if x.strip()]
             correcciones[(r["study_id"], r["arm_id"], r["campo"])] = (
                 (r.get("valor_corregido") or "").strip(),
-                "corregido por consenso contra el texto" if len(firmas) > 1
-                else "corregido contra el texto (una firma)")
+                CORR_DOS if len(firmas) > 1 else CORR_UNA)
     if sin_firma:
         print(f"  aviso: {sin_firma} correcciones sin firmar, NO aplicadas")
 
@@ -268,9 +283,13 @@ def main():
     # Una casilla ABIERTA sale vacia del CSV igual que una «vacio»: contarla
     # como rellena inflaba el denominador del porcentaje de doble lectura.
     llenas = total - cuenta["vacio"] - cuenta["ABIERTO"]
-    # Una correccion que firmaron los DOS es doble lectura: dos personas
-    # miraron esa casilla y la firmaron. Una que firmo uno solo, no.
-    CORR_DOS = "corregido por consenso contra el texto"
+    # En ESTE resumen (el JSON), una correccion que firmaron los DOS cuenta
+    # como doble lectura: la firmaron dos personas. Decia «dos personas
+    # miraron esa casilla»: el registro solo anota las firmas. Una que firmo
+    # uno solo, no cuenta. La tabla de desenlaces (build_outcome_scalars.DOBLE)
+    # no cuenta ninguna corregida, y por eso su porcentaje no es este; el
+    # «doble_lectura» del JSON no lo publica ningun guion. (CORR_DOS y CORR_UNA
+    # estan arriba, junto a las etiquetas de adjudicacion.)
     # Una casilla adjudicada SI es doble lectura, la firme uno o los dos: la
     # leyeron los dos revisores, y por eso hubo desacuerdo. Lo que la firma
     # dice es quien adjudico, no cuantos leyeron. Es la misma cuenta que
@@ -293,8 +312,7 @@ def main():
         "adjudicadas_por_uno_nt": cuenta[ADJ_NT],
         "sin_segunda_lectura": cuenta["sin segunda lectura"],
         "corregidas_contra_el_texto_dos_firmas": cuenta[CORR_DOS],
-        "corregidas_contra_el_texto_una_firma":
-            cuenta["corregido contra el texto (una firma)"],
+        "corregidas_contra_el_texto_una_firma": cuenta[CORR_UNA],
         "abiertas": cuenta["ABIERTO"],
         "doble_lectura": doble,
         "doble_lectura_pct": round(100.0 * doble / max(1, llenas), 1),
@@ -318,11 +336,9 @@ def main():
              S["adjudicadas_por_uno_dv"], S["adjudicadas_por_uno_nt"]))
     print("    solo lo leyó un revisor     %5d" % S["sin_segunda_lectura"])
     print("    abiertas (salen vacías)     %5d" % S["abiertas"])
-    if cuenta[CORR_DOS] or cuenta["corregido contra el texto (una firma)"]:
+    if cuenta[CORR_DOS] or cuenta[CORR_UNA]:
         print("    corregido contra el texto   %5d  (%d con las dos firmas)"
-              % (cuenta[CORR_DOS]
-                 + cuenta["corregido contra el texto (una firma)"],
-                 cuenta[CORR_DOS]))
+              % (cuenta[CORR_DOS] + cuenta[CORR_UNA], cuenta[CORR_DOS]))
     print("    -> con doble lectura        %5d  (%.1f %%)"
           % (doble, S["doble_lectura_pct"]))
     print()

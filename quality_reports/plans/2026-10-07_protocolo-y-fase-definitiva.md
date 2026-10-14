@@ -35,7 +35,7 @@ Son los 14 marcadores ‹‹…›› del protocolo, agrupados.
 4. **Repositorio y DOI** de los datos de la fase definitiva. Sección 11.
 5. **Fecha de corte** para obtener los textos. Sección 13.
 
-**Hechos del piloto: resueltos el 2026-10-08.** D.V. declaró que ejecutó las búsquedas en cada interfaz, con ecuaciones diseñadas con la asistencia del modelo; que examinó uno a uno lo que pasó el cribado, sin registrarlo; y que las reglas de desenlace las decidieron los dos. Están en la sección 3.1 y en la 4 del protocolo, y los manuscritos del piloto están corregidos (`quality_reports/decisions/2026-10-08_correcciones-del-piloto.md`).
+**Hechos del piloto: resueltos el 2026-10-08.** D.V. declaró que diseñó las ecuaciones con la participación del modelo y que las ejecutó en cada interfaz con la guía del modelo; que examinó uno a uno lo que pasó el cribado, sin registrarlo; y que las reglas de desenlace las decidieron los dos. Están en la sección 3.1 y en la 4 del protocolo, y los manuscritos del piloto están corregidos (`quality_reports/decisions/2026-10-08_correcciones-del-piloto.md`).
 
 **Decisiones metodológicas**
 

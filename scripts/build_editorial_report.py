@@ -171,22 +171,97 @@ def firmas_rob():
     return len(filas), dos, (fs[0] if fs else ""), (fs[-1] if fs else "")
 
 
+# Una cita que empieza por un campo de la ficha entre corchetes
+# («[eligibilityCriteria]», «[briefSummary, donde se nombra]») sale de la ficha
+# del registro de ensayos, no de un articulo.
+CITA_FICHA = re.compile(r"^\[[a-z][A-Za-z]*(?:,[^\]]*)?\]")
+# Una cita que empieza por el nombre de una base bibliografica y dos puntos
+# («SciELO: «Tipo de literatura: Editorial»») sale de como esa base indexa el
+# informe, no de su texto.
+CITA_INDEXACION = re.compile(r"^(SciELO|PubMed|Scopus|LILACS|BVS|Europe PMC|"
+                             r"OpenAlex|Semantic Scholar)\s*:", re.I)
+
+
 def resumen_exclusiones():
-    """Las exclusiones tras el cribado: cuantas, quien las firmo y cuantas sin cita.
+    """Las exclusiones tras el cribado: cuantas, quien las firmo y que citan.
 
     Una fila sin cita es la que trae la celda vacia o una nota entre parentesis
-    («(sin PDF del articulo completo)»): no hay frase del articulo que citar.
+    («(sin PDF del articulo completo)»): no hay frase que citar. De las que si
+    la llevan se cuentan las que citan la ficha del registro (CITA_FICHA) y las
+    que citan la indexacion en una base (CITA_INDEXACION).
     """
     filas = leer_csv(RS / "cribado" / "exclusiones_tras_texto_completo.csv")
     una = [r for r in filas if " y " not in r["decidido_por"]]
-    sin_cita = sum(1 for r in filas if not r["cita_del_texto"].strip()
-                   or r["cita_del_texto"].strip().startswith("("))
+
+    def cita(r):
+        return r["cita_del_texto"].strip()
+    sin = [r for r in filas if not cita(r) or cita(r).startswith("(")]
+    con = [r for r in filas if cita(r) and not cita(r).startswith("(")]
+    sin_por_codigo, total_por_codigo = {}, {}
+    for r in sin:
+        sin_por_codigo[r["codigo"]] = sin_por_codigo.get(r["codigo"], 0) + 1
+    for r in filas:
+        total_por_codigo[r["codigo"]] = total_por_codigo.get(r["codigo"], 0) + 1
+    indexa = [r for r in con if CITA_INDEXACION.match(cita(r))]
     por_quien = {}
     for r in una:
         por_quien[r["decidido_por"]] = por_quien.get(r["decidido_por"], 0) + 1
     return {"n": len(filas), "dos": len(filas) - len(una), "una": len(una),
             "una_quien": sorted(por_quien), "una_por_quien": por_quien,
-            "sin_cita": sin_cita}
+            "sin_cita": len(sin), "con_cita": len(con),
+            "sin_por_codigo": sin_por_codigo, "total_por_codigo": total_por_codigo,
+            "cita_ficha": sum(1 for r in con if CITA_FICHA.match(cita(r))),
+            "cita_indexacion": sorted(r["study_id"] for r in indexa),
+            "bases_indexacion": sorted({CITA_INDEXACION.match(cita(r)).group(1)
+                                        for r in indexa})}
+
+
+def enumera(partes):
+    """[a, b, c] -> «a, b y c»."""
+    partes = [p for p in partes if p]
+    if len(partes) < 2:
+        return "".join(partes)
+    return ", ".join(partes[:-1]) + " y " + partes[-1]
+
+
+def frase_citas_s16(ex, S):
+    """Cuantas exclusiones de S16 no llevan cita, y que citan las que si.
+
+    El indice decia «71 no llevan cita del articulo, entre ellos los 63 ... y
+    los 4 ...». Sin cita del articulo hay mas: de las que llevan cita, las de
+    las fichas del registro (14-sep) citan la ficha y EST-205 cita la
+    indexacion de SciELO. Todo se cuenta del registro de exclusiones.
+    """
+    NOMBRE = {"NOPDF": "sin el artículo completo (NOPDF)",
+              "NOREC": "sin texto que se pudiera leer (NOREC)"}
+    orden = sorted(ex["sin_por_codigo"].items(),
+                   key=lambda kv: (kv[0] not in NOMBRE, kv[0] != "NOPDF", -kv[1], kv[0]))
+    partes = []
+    for c, n in orden:
+        todos = n == ex["total_por_codigo"].get(c)
+        que = NOMBRE.get(c, "con el código %s" % c)
+        partes.append(("los %d %s" % (n, que)) if todos else
+                      ("%d de los %d %s" % (n, ex["total_por_codigo"][c], que)))
+    texto = "%d no llevan cita: %s." % (ex["sin_cita"], enumera(partes))
+    citan = []
+    if ex["cita_ficha"]:
+        citan.append("%d citan la ficha del registro" % ex["cita_ficha"])
+    if ex["cita_indexacion"]:
+        citan.append("%d (%s) la indexación en %s" % (
+            len(ex["cita_indexacion"]), ", ".join(ex["cita_indexacion"]),
+            " y ".join(ex["bases_indexacion"])))
+    if citan:
+        texto += " De las %d que la llevan, %s." % (ex["con_cita"], enumera(citan))
+    # Los mismos cortes que build_auditoria_scalars (s16_*): si discrepan, uno
+    # de los dos guiones cuenta mal y la frase no debe salir sin aviso.
+    otros = sum(n for c, n in ex["sin_por_codigo"].items() if c not in NOMBRE)
+    for clave, valor in (("s16_con_cita", ex["con_cita"]),
+                         ("s16_sin_cita_otros", otros)):
+        if clave in S and S[clave] != valor:
+            print("  AVISO: %s = %s en los escalares y %s contado aquí"
+                  % (clave, S[clave], valor))
+    # Las demas descripciones del indice no cierran con punto.
+    return texto.rstrip(".")
 
 
 def iniciales(nombre):
@@ -239,6 +314,123 @@ def validacion_rayyan():
     return {"revisor": j.get("revisor", ""),
             "quien_reclasifica": adj.get("quien", ""),
             "reclasificados": adj.get("reclasificados_a_excluido", 0)}
+
+
+def primera_pasada():
+    """(fecha, «, salvo ...», franja) de la primera pasada; («», «», «») si no consta.
+
+    El 4-ago por la manana el modelo cribo el brazo A de PubMed por titulo
+    (screening_stage2_decisions.csv) y por resumen (screening_stage3_decisions.csv).
+    El cribado del pozo la sustituyo, y S3 lleva el vigente, con las decisiones
+    de resumen que el pozo heredo por PMID de esa pasada. El indice decia que
+    S3 trae «cada decision de cribado por titulo», y esa pasada no esta en S3.
+    La franja («por la manana») y las heredadas salen de los ficheros: solo se
+    cuentan como heredadas de esa pasada las filas cuyo veredicto y motivo estan
+    en screening_stage3_decisions.csv.
+    """
+    t2 = [r["decided_at"] for r in leer_csv(
+        RS / "cribado" / "screening_stage2_decisions.csv")
+        if r.get("decided_at", "").strip()]
+    if not t2:
+        return "", "", ""
+    s3 = leer_csv(RS / "cribado" / "screening_stage3_decisions.csv")
+    horas = [int(t[11:13]) for t in t2 + [r["decided_at"] for r in s3
+                                           if r.get("decided_at", "").strip()]]
+    franja = ("por la mañana" if max(horas) < 12 else
+              "por la tarde" if min(horas) >= 12 and max(horas) < 21 else "")
+    de_la_pasada = {(r["verdict"], r["reason"].strip()) for r in s3}
+    heredadas = [r for r in leer_csv(
+        RS / "cribado" / "screening_stage3_pool_decisions.csv")
+        if r.get("decided_by", "").startswith("heredada del brazo")]
+    n_her = sum(1 for r in heredadas
+                if (r["verdict"], r["reason"].strip()) in de_la_pasada)
+    if n_her != len(heredadas):
+        print("  AVISO: %d filas «heredadas del brazo» y solo %d coinciden con la "
+              "primera pasada de resumen" % (len(heredadas), n_her))
+    return (fecha_de(min(t2)),
+            (", salvo %d decisiones de resumen que el cribado del pozo heredó "
+             "de ella por PMID" % n_her) if n_her else "",
+            franja)
+
+
+_S10 = []
+
+
+def s10_en_disco(S):
+    """Que trae S10 en el paquete: [(nombre, descripcion, es la del cuerpo)].
+
+    S10 era una copia sin rehacer de idioma_texto_completo.csv (13-ago), anterior
+    a la comprobacion sobre el cuerpo de los 65 estudios del corpus
+    (quality_reports/idioma_cuerpo_pdf.csv, 6-oct), y el indice la describia
+    como si fuera esa comprobacion. build_verifiables_package.py la rehace desde
+    idioma_cuerpo_pdf.csv. La descripcion no se fija aqui: se lee del fichero
+    que haya en disco (si trae la columna del idioma del cuerpo, es la
+    comprobacion nueva), y si es el viejo se dice y se avisa. Se calcula una
+    vez: lo usan S0 y el indice, y los avisos no deben salir dos veces.
+    """
+    if _S10:
+        return _S10
+    cuerpo_ids = {r["study_id"] for r in leer_csv(QR / "idioma_cuerpo_pdf.csv")}
+    n_corpus = S["idioma_cuerpo_comprobados"]
+    # «S10*» y no «S10_*»: si el fichero viejo se conserva rotulado como
+    # historico (S10b_...), el indice tiene que listarlo y decir que es.
+    # Es la comprobacion sobre el cuerpo si trae una columna del idioma del
+    # cuerpo o si sus estudios son, uno a uno, los de idioma_cuerpo_pdf.csv.
+    leidos = []
+    for p in sorted(OUT.glob("S10*.csv")):
+        datos = leer_csv(p)
+        cols = list(datos[0].keys()) if datos else []
+        ests = {v.strip() for r in datos for v in r.values()
+                if re.fullmatch(r"EST-\d+", (v or "").strip())}
+        es = (any("cuerpo" in c.lower() for c in cols)
+              or (bool(cuerpo_ids) and ests == cuerpo_ids
+                  and len(datos) == len(cuerpo_ids)))
+        leidos.append((p, datos, cols, es))
+    nuevo = [p.stem for p, _, _, es in leidos if es]
+    filas = []
+    for p, datos, cols, es in leidos:
+        nombre = p.stem + ".xlsx + .csv"
+        if es:
+            if len(datos) == n_corpus:
+                otros = [("%d en español" % S["idioma_cuerpo_espanol"]
+                          if S["idioma_cuerpo_espanol"] else ""),
+                         ("%d en otro idioma" % S["idioma_cuerpo_otro"]
+                          if S["idioma_cuerpo_otro"] else "")]
+                reparto = (("los %d en inglés" % S["idioma_cuerpo_ingles"])
+                           if S["idioma_cuerpo_ingles"] == n_corpus else
+                           enumera(["%d en inglés" % S["idioma_cuerpo_ingles"]] + otros))
+                # Como S1: el guion lo escribio el modelo, y se dice.
+                desc = ("Idioma del cuerpo del PDF de cada uno de los %d estudios "
+                        "del corpus, comprobado por un guion del canal escrito "
+                        "por el modelo sobre el texto del artículo y no sobre "
+                        "los metadatos: %s"
+                        % (n_corpus, reparto))
+            else:
+                print("  AVISO: %s trae %d filas y el corpus tiene %d estudios"
+                      % (p.name, len(datos), n_corpus))
+                desc = ("Idioma del cuerpo del PDF, comprobado sobre el texto "
+                        "del artículo: %d filas, frente a %d estudios en el corpus"
+                        % (len(datos), n_corpus))
+        else:
+            ids = {(r.get(cols[0]) or "").strip() for r in datos} if cols else set()
+            if not nuevo:
+                print("  AVISO: %s no es la comprobación sobre el cuerpo de los "
+                      "%d estudios del corpus (quality_reports/idioma_cuerpo_pdf.csv)"
+                      % (p.name, n_corpus))
+            desc = ("Comprobación del idioma sobre el texto completo anterior a "
+                    "la comprobación sobre el cuerpo de los %d estudios del "
+                    "corpus: %d filas, que cubren %d de esos %d estudios. La "
+                    "comprobación sobre el cuerpo está %s"
+                    % (n_corpus, len(datos), len(ids & cuerpo_ids), n_corpus,
+                       ("en " + ", ".join(nuevo)) if nuevo else
+                       "en el repositorio y no en este anexo"))
+        filas.append((nombre, desc, es))
+    if not filas:
+        print("  AVISO: no hay S10 en el paquete")
+        filas.append(("S10_idioma_verificado_sobre_texto_completo.xlsx + .csv",
+                       "No está en el paquete", False))
+    _S10.extend(filas)
+    return _S10
 
 
 def rango(nums):
@@ -300,6 +492,18 @@ def informe_editorial(S):
         "autoevaluación no es independiente." % fecha_larga())
     p.runs[0].italic = True
     p.runs[0].font.size = Pt(9.5)
+    # S0 remite a «§2.9 y Tabla 3» y viaja tambien en el sobre de la revista,
+    # cuyo manuscrito no numera secciones y cuya Tabla 3 es otra (la de
+    # completitud). Sin este aviso las remisiones llevaban a otra parte.
+    p = d.add_paragraph(
+        "Las remisiones a secciones (§) y a tablas son las del manuscrito "
+        "maestro (el informe extendido). El manuscrito preparado para la "
+        "revista no numera las secciones y numera las tablas de otro modo; S1 "
+        "da la equivalencia de las secciones.")
+    p.runs[0].italic = True
+    p.runs[0].font.size = Pt(9.5)
+    f_pp = primera_pasada()
+    s10_cuerpo = any(es for _, _, es in s10_en_disco(S))
 
     d.add_heading("Valoración del modelo", level=1)
     p = d.add_paragraph()
@@ -389,17 +593,34 @@ def informe_editorial(S):
         # El registro lo desmiente: el primer dia de cribado de titulos los
         # motivos van en texto libre y los codigos se usaron desde el dia
         # siguiente. Lo que merece elogio es que el manuscrito ya lo declare.
+        # Decia «las exclusiones del primer dia se asignaron despues a un
+        # codigo» y «Ese mismo 4 de agosto se anadieron, a mitad de lote, las
+        # reglas». El primer dia hubo, por la manana, una primera pasada del
+        # modelo sobre el brazo A de PubMed, que el cribado del pozo sustituyo
+        # y que no esta en S3: el codigo se asigno a las exclusiones del primer
+        # dia del cribado vigente. Las dos reglas entraron en esa pasada, en
+        # los guiones de lote del modelo, que las propuso; las decidieron los
+        # autores (hoja de hechos, 13-oct). La pasiva callaba quien las metio.
         "El cribado acabó usando un vocabulario cerrado de %d motivos, y el "
         "manuscrito declara que no se fijó antes de empezar (§2.4): las "
         "decisiones del primer día de cribado de títulos, el 4 de agosto de "
         "2026, llevan el motivo en texto libre; los códigos, cuya redacción "
         "procede de esos textos, se usaron desde el 5 de agosto, y las "
-        "exclusiones del primer día se asignaron después a un código. Ese mismo "
-        "4 de agosto se añadieron, a mitad de lote, las reglas que dejan fuera "
-        "las endolisinas aisladas, por la intervención, y los informes "
-        "veterinarios, por la población. Declararlo así es lo correcto; "
-        "presentarlo como un vocabulario fijado de antemano no lo sería."
-        % len(S["exclusiones_titulo"]),
+        "exclusiones del primer día que siguen en el cribado vigente se "
+        "asignaron después a un código. "
+        % len(S["exclusiones_titulo"]) +
+        (("El %s%s, el modelo había hecho una primera pasada sobre "
+          "el brazo A de PubMed, que el cribado del pozo sustituyó y que consta "
+          "en el repositorio y no en S3%s. En esa pasada entraron, a mitad de "
+          "lote, "
+          % (f_pp[0], (", " + f_pp[2]) if f_pp[2] else "", f_pp[1]))
+         if f_pp[0] else
+         "Ese mismo 4 de agosto entraron, a mitad de lote, ") +
+        "las reglas que dejan fuera las endolisinas aisladas, por la "
+        "intervención, y los informes veterinarios, por la población, que "
+        "propuso el modelo y metió en sus guiones de lote, y que decidieron los "
+        "autores. Declararlo así es lo correcto; presentarlo como un vocabulario "
+        "fijado de antemano no lo sería.",
         # Era «La seccion 3.5»: al entrar la completitud por desenlace como
         # 3.5, la viabilidad de la sintesis paso a la 3.6.
         "La sección 3.6 argumenta explícitamente por qué NO se agrupa. Es lo "
@@ -420,6 +641,9 @@ def informe_editorial(S):
         # dos: el tercero solo se vio en la web del editor. Se cuentan desde el
         # registro (informes_ruso_por_metadatos). Esas exclusiones las firma en
         # el registro el modelo (decided_by), y el texto lo dice.
+        # Remitia a «S9 y S10» y S10 era una copia del 13-ago, anterior a la
+        # comprobacion sobre el cuerpo: ahora se remite a S10 solo si S10 es
+        # esa comprobacion (s10_en_disco), y la clase de evidencia, a S9.
         "El criterio de idioma no se dio por supuesto. Se tomó del campo de "
         "idioma de la fuente y, donde había texto completo, se comprobó sobre "
         "él; esa comprobación, que hizo el modelo, destapó %d informes cuyos "
@@ -427,10 +651,14 @@ def informe_editorial(S):
         "cuyo cuerpo está en ruso, que se excluyeron: %d se vieron en el PDF y "
         "%d solo en la web del editor. El 6 de octubre de 2026 se repitió sobre "
         "el cuerpo de los %d estudios del corpus vigente, y los %d están en "
-        "inglés. Los %d informes del corpus quedan con su clase de evidencia y "
-        "ninguno sin prueba (S9 y S10)."
+        "inglés%s. Los %d informes del corpus quedan con su clase de evidencia y "
+        "ninguno sin prueba (S9)."
         % (n_ruso, n_ruso_pdf, n_ruso_web, S["idioma_cuerpo_comprobados"],
-           S["idioma_cuerpo_ingles"], S["informes_agrupados"]),
+           S["idioma_cuerpo_ingles"],
+           (" (S10)" if s10_cuerpo else
+            "; esa comprobación consta en el repositorio y no en S10, que es "
+            "anterior"),
+           S["informes_agrupados"]),
     ]:
         d.add_paragraph(t, style="List Bullet")
 
@@ -624,11 +852,18 @@ def informe_editorial(S):
            # mayoria de revistas», como si faltara entera. El CRediT esta; lo que
            # falta es la parte de N.T. y su aprobacion escrita de la version
            # final, que ningun documento puede dar por hecha.
+           # Decia solo que N.T. no habia aprobado ni revisado la version final
+           # y «Sin esa aprobacion», como si fuera lo unico que falta. N.T.
+           # tampoco ha aceptado responder por el trabajo (hoja de hechos,
+           # 13-oct), que es otro criterio del ICMJE.
            ("B6", "Contribución de N.T. y aprobación de la versión final",
             "El CRediT está en el manuscrito, pero la parte de N.T. lleva un "
-            "marcador hasta que conste por escrito, y N.T. no ha aprobado ni "
-            "revisado por escrito la versión final. Sin esa aprobación no se "
-            "cumplen los criterios de autoría del ICMJE.",
+            "marcador hasta que conste por escrito. N.T. no ha aprobado ni "
+            "revisado por escrito la versión final, ni ha aceptado responder "
+            "por el trabajo: D.V. asume la responsabilidad por la exactitud e "
+            "integridad del trabajo; la de N.T. queda pendiente de su "
+            "aprobación escrita. Sin esos actos de N.T. no se cumplen los "
+            "criterios de autoría del ICMJE.",
             "N.T., por escrito")],
           [1.2, 4.6, 6.4, 4.4])
 
@@ -747,9 +982,14 @@ def informe_editorial(S):
                 "Hacerlo sería reproducir el defecto que este trabajo denuncia.")],
               [4.2, 6.4, 6.0])
     else:
+        # Decia «El manuscrito se envia como ...», como cosa hecha. Si se envia
+        # o no lo deciden los autores: el borrador del protocolo de la fase
+        # definitiva dice que el informe piloto no se enviara como tal, y el
+        # sobre esta preparado para enviarlo (hoja de hechos, 13-oct).
         d.add_paragraph(
             "La disyuntiva que planteaba esta sección cuando la extracción "
-            "estaba sin adjudicar ya no existe. El manuscrito se envía como "
+            "estaba sin adjudicar ya no existe. Enviar o no el manuscrito lo "
+            "deciden los autores; si se envía, va como "
             "revisión sistemática de la estructura del cuerpo de evidencia, de "
             "su recuperabilidad y de la completitud de su reporte, con la "
             "completitud por desenlace (§3.5) y el riesgo de sesgo de los "
@@ -840,12 +1080,18 @@ def indice(S):
     ex = resumen_exclusiones()
     ray = validacion_rayyan()
     _, f_nopdf = firmas_criterio_texto()
+    f_pp = primera_pasada()
     sin_texto = S["texto_completo_no_obtenido"]
+    # Las remisiones del indice («§2.1», «Sección 3.2», «tablas 1 a 7») son del
+    # maestro, y el indice viaja tambien en el sobre de la revista, cuyo
+    # manuscrito no numera secciones y numera las tablas de otro modo.
     d = doc_nuevo("Verificables — Revisión sistemática de fagoterapia en "
                   "Pseudomonas aeruginosa multirresistente",
                   "Índice del paquete. Cada archivo responde a un ítem de "
                   "PRISMA 2020, a un requisito del ICMJE o a una comprobación "
-                  "metodológica.")
+                  "metodológica. Las remisiones a secciones (§) y a tablas son "
+                  "las del manuscrito maestro (el informe extendido), no las "
+                  "del manuscrito preparado para la revista.")
     tabla(d, ["Archivo", "Qué contiene", "Responde a"],
           # Decia «Uso interno», y el paquete lo manda a la revista. El
           # manuscrito declara S0 como anexo del material suplementario, asi
@@ -880,11 +1126,16 @@ def indice(S):
             "Sintaxis literal por fuente, con su número de resultados",
             "PRISMA 2020, ítem 7; el 6, en parte: la ejecución de Scopus cuya "
             "exportación entró al corpus no tiene fecha registrada"),
-           # No decia quien emitio las decisiones.
+           # No decia quien emitio las decisiones. Despues decia «cada decision
+           # de cribado por titulo», y la primera pasada del 4-ago sobre el
+           # brazo A de PubMed no esta en S3: S3 lleva el cribado vigente.
            ("S3_decisiones_etapa2_titulo.xlsx + .csv",
-            "Registro solo-anexar de cada decisión de cribado por título, con "
-            "su motivo y su marca de tiempo; las emitió el modelo de lenguaje "
-            "(Claude Opus 5) como revisor único, sin duplicación",
+            "Registro solo-anexar de cada decisión del cribado vigente por "
+            "título, con su motivo y su marca de tiempo; las emitió el modelo de "
+            "lenguaje (Claude Opus 5) como revisor único, sin duplicación" +
+            ((". La primera pasada del %s sobre el brazo A de PubMed, que el "
+              "cribado del pozo sustituyó, consta en el repositorio y no en "
+              "S3%s" % f_pp[:2]) if f_pp[0] else ""),
             "PRISMA 2020, ítem 8"),
            ("S3_decisiones_etapa3_resumen.xlsx + .csv",
             "Ídem para el cribado por resumen, con la corriente PRISMA; una "
@@ -927,9 +1178,11 @@ def indice(S):
             "Idioma de cada informe que superó el cribado, con la clase de "
             "evidencia y la "
             "prueba concreta", "PRISMA 2020, ítem 5"),
-           ("S10_idioma_verificado_sobre_texto_completo.xlsx + .csv",
-            "Idioma determinado sobre el texto completo de cada PDF recuperado",
-            "PRISMA 2020, ítem 5"),
+           # Decia «Idioma determinado sobre el texto completo de cada PDF
+           # recuperado» de una copia del 13-ago que no cubria el corpus vigente.
+           # Se describe lo que trae el fichero en disco (s10_en_disco).
+           *[(nombre, desc, "PRISMA 2020, ítem 5")
+             for nombre, desc, _ in s10_en_disco(S)],
            ("S11_concordancia_entre_extractores.pdf",
             "Concordancia entre las dos extracciones, variable a variable, antes "
             "de resolver nada; su independencia no está acreditada",
@@ -961,16 +1214,16 @@ def indice(S):
             "sola lectura o abierta", "PRISMA 2020, ítem 9"),
            # El indice se quedaba en S15 y el paquete trae hasta S24.
            ("S16_excluidos_tras_leer_el_texto_completo.xlsx + .csv",
+            # Decia «71 no llevan cita del articulo, entre ellos los 63 ...»: sin
+            # cita del articulo hay mas, porque parte de las que llevan cita
+            # citan la ficha del registro o la indexacion (frase_citas_s16).
             "Los %d estudios que el cribado admitió y que salieron después, con "
-            "su código de motivo y quién firmó cada exclusión (%s). %d no llevan "
-            "cita del artículo, entre ellos los %d sin el artículo completo "
-            "(NOPDF) y los %d sin texto que se pudiera leer (NOREC)"
+            "su código de motivo y quién firmó cada exclusión (%s). %s"
             % (ex["n"],
                "; ".join(["los dos autores en %d" % ex["dos"]] +
                          ["%s en %d" % (quien_firmo(q), ex["una_por_quien"][q])
                           for q in ex["una_quien"]]),
-               ex["sin_cita"], S["excluidos_texto_completo_NOPDF"],
-               S["excluidos_texto_completo_NOREC"]),
+               frase_citas_s16(ex, S)),
             "PRISMA 2020, ítem 16b"),
            ("S17_tabla6_brazo_a_brazo.xlsx + .csv",
             "La Tabla 6 desglosada: los requisitos para agrupar, brazo a brazo, "
@@ -1034,7 +1287,8 @@ def indice(S):
     un_revisor = bool(ray["revisor"]) and " y " not in ray["revisor"]
     incl1 = S["validacion_primera_pasada_incluidos"]
     if un_revisor:
-        rayyan = ("COMPLETA — un solo revisor (%s) recribió a ciegas %d "
+        # «recribio» era una errata por «recribo».
+        rayyan = ("COMPLETA — un solo revisor (%s) recribó a ciegas %d "
                   "registros excluidos" % (rev, S["validacion_muestra"]))
     else:
         rayyan = ("COMPLETA — %d registros excluidos, recribados a ciegas"
@@ -1118,8 +1372,10 @@ def indice(S):
             "NO SE REGISTRÓ — la ausencia se declara (§2.1); PROSPERO ya no "
             "admite una revisión con la extracción hecha"),
            ("Manuscrito y figuras",
+            # Faltaba que N.T. tampoco ha aceptado responder por el trabajo.
             "REDACTADOS — los borradores los redactó el modelo de lenguaje; N.T. "
-            "no ha aprobado ni revisado por escrito la versión final")],
+            "no ha aprobado ni revisado por escrito la versión final ni ha "
+            "aceptado responder por el trabajo")],
           [8.0, 8.6])
     # Decia «Todas las cifras ... se generan desde el canal» sin decir quien
     # escribio el canal, y que la comprobacion automatica «falla si alguna

@@ -10,7 +10,9 @@ WHO DECIDES. The `--by` field is mandatory and is written into every row. When a
 assistant model screens, `--by` names the model. This is not bookkeeping: an
 assisted screen is publishable when it is disclosed, logged per decision, and
 verified by a human, and unpublishable when it is not. The log is what makes the
-first three true; stage 3 is the fourth.
+first three true. The fourth never happened for the exclusions: stage 3 was
+screened by the same model, and no human re-read what it excluded except a
+350-record sample (corrected 2026-10-13; this used to say stage 3 was the check).
 
 THE TITLE-STAGE RULE IS DELIBERATELY PERMISSIVE. Exclude only what is clearly not
 a report of phage administered to human patients. Anything ambiguous advances --

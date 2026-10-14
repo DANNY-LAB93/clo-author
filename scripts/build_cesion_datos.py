@@ -22,6 +22,14 @@ ponia en 27 paginas contra un limite de 25, no la miraba nadie. La
 extension se mide sobre el PDF maquetado: esta hoja va bien despues de
 `build_jsr_pdf.py`; si va antes, lo dice.
 
+LO QUE AVISA. Desde el 2026-10-13, ademas: si el protocolo de la fase
+definitiva sigue diciendo que el informe piloto «no se enviará como tal» (y
+firmar la cesion es enviarlo), y si el manuscrito hace responder por el trabajo
+a los dos autores cuando N.T. no lo ha aceptado. Las dos cosas se leen de los
+ficheros con las funciones del sobre, no se teclean. Desde el 2026-10-14 el
+aviso del protocolo va al principio, y la hoja nombra la frase que deja
+pendiente la responsabilidad de N.T. y la ultima extension medida.
+
 Salida:
     paper/docx/datos_carta_cesion.docx
 
@@ -41,8 +49,10 @@ except ImportError:
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from build_jsr_docx import escribe
-from build_jsr_submission import (TOPE_TITULO, exige_declaracion_ia, marcadores,
-                                   medidas_formato, normas_formato)
+from build_jsr_submission import (PROTOCOLO, TOPE_PAGINAS, TOPE_TITULO,
+                                   exige_declaracion_ia, frase_piloto, marcadores,
+                                   medidas_formato, normas_formato,
+                                   responsabilidad_ajena, responsabilidad_pendiente)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 JSR = ROOT / "paper" / "manuscrito_JSR_final.md"
@@ -194,16 +204,34 @@ def main():
         ia, ia_mal = "", str(e).split("\n")[0]
     autoria_ia = ("Ninguna herramienta de IA figura como autora, conforme a las "
                   "recomendaciones del ICMJE.")
-    redaccion_ia = ("redactó los borradores del manuscrito, de los anexos y de la "
-                    "carta de presentación")
+    # DECIA la frase entera tecleada --«redactó los borradores del manuscrito,
+    # de los anexos y de la carta de presentación»-- y bastaba con que la
+    # declaración añadiera «y de los registros de decisión» (2026-10-13) para
+    # que la hoja dijera que no pasaba la guarda. Se cita lo que la declaración
+    # dice, hasta el punto o el punto y coma, en vez de exigir unas palabras.
+    m_red = re.search(r"redactó los borradores[^.;]*", ia.replace("*", ""))
+    redaccion_ia = m_red.group(0).strip() if m_red else ""
+    # La responsabilidad por el trabajo: N.T. no ha aceptado responder por él.
+    resp = responsabilidad_ajena(cuerpo)
+    # Y la frase que la deja pendiente, que cambia con el mismo escrito.
+    resp_pendiente = responsabilidad_pendiente(cuerpo)
+    piloto = frase_piloto()
     m_orden = re.search(r"Danny Valdiviezo\*\*.{0,20}\*\*Nataly Trelles", cuerpo)
+    aprobacion = ("ATENCIÓN: lo firman los dos autores, y la aprobación escrita de "
+                  "N. Trelles sobre esta versión no consta todavía: su CRediT lleva "
+                  "aún el marcador %s. Ver el punto pendiente al final." % trelles
+                  if trelles else
+                  "Lo firman los dos autores. Ver el punto pendiente al final.")
+    if resp:
+        # El manuscrito no puede hacer responder por el trabajo a quien no lo
+        # ha aceptado; si vuelve a decirlo, la hoja lo avisa aqui, en rojo.
+        aprobacion = ("%s Y el manuscrito dice «%s», cuando N. Trelles no ha "
+                      "aceptado responder por el trabajo: mientras no conste por "
+                      "escrito, la frase solo puede hablar por D. Valdiviezo."
+                      % (aprobacion if aprobacion.startswith("ATENCIÓN") else
+                         "ATENCIÓN: " + aprobacion, resp.rstrip(".")))
     datos = {
-        "aprobacion": (
-            "ATENCIÓN: lo firman los dos autores, y la aprobación escrita de "
-            "N. Trelles sobre esta versión no consta todavía: su CRediT lleva aún "
-            "el marcador %s. Ver el punto pendiente al final." % trelles
-            if trelles else
-            "Lo firman los dos autores. Ver el punto pendiente al final."),
+        "aprobacion": aprobacion,
         "orden": ("D. Valdiviezo en primer lugar y N. Trelles en segundo, como en "
                   "el manuscrito." if m_orden else
                   "OJO: no se encuentra en el manuscrito la línea de autores con "
@@ -223,15 +251,23 @@ def main():
             "declaración «Uso de inteligencia artificial» del manuscrito, en "
             "Declaraciones, que no se retira: dice, entre otras cosas, que el "
             "modelo de lenguaje «%s»." % (fm["referencias"], redaccion_ia)
-            if ia and redaccion_ia in ia else
+            if ia and redaccion_ia else
             "OJO: la declaración «Uso de inteligencia artificial» del manuscrito "
             "no pasa la guarda del sobre (%s). No se firma este punto sin ella."
             % (ia_mal or "ya no dice que el modelo redactó los borradores")),
+        # Decia «hoy no se cumplen 1»: el plural no se ajustaba.
         "formato": (
-            "OJO: hoy no se cumplen %d: %s. El detalle, al final de esta hoja."
-            % (len(falla), "; ".join(falla)) if falla else
-            "OJO: la extensión no está medida sobre esta versión del manuscrito. "
-            "El detalle, al final de esta hoja." if sin_medir else
+            "OJO: hoy no se %s %d: %s. El detalle, al final de esta hoja."
+            % ("cumple" if len(falla) == 1 else "cumplen", len(falla),
+               "; ".join(falla)) if falla else
+            # Sin medir decia solo eso, y callaba que la ultima medida ya pasaba
+            # del limite (2026-10-14). La cifra sale del PDF anterior.
+            "OJO: la extensión no está medida sobre esta versión del manuscrito%s. "
+            "El detalle, al final de esta hoja."
+            % ("; la última medida, sobre el PDF maquetado anterior, daba %d páginas "
+               "de cuerpo contra un límite de %d" % (fm["paginas_previas"], TOPE_PAGINAS)
+               if fm["paginas_previas"] and fm["paginas_previas"] > TOPE_PAGINAS else "")
+            if sin_medir else
             "Las cinco normas de formato que el manuscrito incumplía el 14 de "
             "septiembre están corregidas, y las que se miden se cumplen. El "
             "detalle, al final de esta hoja."),
@@ -250,6 +286,21 @@ def main():
                "de que **no se inicia la revisión** si no llegan el artículo, esta carta y "
                "el formato de información de autores, en los formatos de ellos. Aquí está "
                "lo que va en cada hueco." % FORMULARIO, size=10.5)
+    # ANTES QUE NADA, SI SE ENVIA. La hoja preparaba la firma de una cesion sin
+    # decir que el protocolo de la fase definitiva dice que este informe no se
+    # enviara como tal (consejo del 2026-10-13). Se cita del protocolo; si la
+    # frase cambia, este parrafo cambia o desaparece. Iba al final de la hoja,
+    # despues de todos los datos que rellenar: va aqui, antes de ellos
+    # (2026-10-14).
+    if piloto:
+        p = d.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        escribe(p, "**Antes de firmar nada: si este informe se envía.** El protocolo "
+                   "de la fase definitiva (borrador para OSF, %s) dice: «%s» Firmar "
+                   "esta cesión es enviarlo. Los autores deciden antes: o no se envía, "
+                   "o se cambia esa frase del protocolo antes de depositarlo y el "
+                   "manuscrito se presenta como piloto." % (PROTOCOLO.name, piloto),
+                size=10.5)
 
     h(d, "Lo que hay que escribir en la carta")
     fila(d, "Lugar y fecha:", "Cuenca, Ecuador — dd/mm/aa el día que se firme")
@@ -351,6 +402,15 @@ def main():
                "el manuscrito: lo que nombra se añade solo si consta por escrito, y si "
                "no consta el marcador se borra sin añadirlo." % trelles
                if trelles else ""), size=10.5)
+    # La frase de responsabilidad de la declaracion de uso de IA depende del
+    # mismo escrito de N.T. (2026-10-13): se cita del manuscrito.
+    if resp_pendiente:
+        p = d.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        escribe(p, "Del mismo escrito depende la frase de la declaración «Uso de "
+                   "inteligencia artificial»: «%s» Cuando conste, se cambia en el "
+                   "maestro y se copia igual al manuscrito de la revista; mientras no "
+                   "conste, se queda como está." % resp_pendiente, size=10.5)
 
     DEST.mkdir(parents=True, exist_ok=True)
     salida = DEST / "datos_carta_cesion.docx"
@@ -366,6 +426,10 @@ def main():
           % (len(falla), "; extension SIN MEDIR sobre esta version" if sin_medir else ""))
     print("  declaracion de uso de IA: %s" % ("literal desde el maestro" if ia else
                                               "NO PASA LA GUARDA: " + ia_mal))
+    if resp:
+        print("  AVISO: el manuscrito hace responder por el trabajo a los dos autores")
+    if piloto:
+        print("  AVISO: el protocolo dice que el informe piloto no se enviara como tal")
 
 
 if __name__ == "__main__":

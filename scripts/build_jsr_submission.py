@@ -27,6 +27,12 @@ letra por letra, el del maestro con las sustituciones de `SUSTITUCIONES_IA` y
 ninguna más. Es la parte del trabajo que más fácil se cae al cambiar de
 plantilla y la que no puede caerse.
 
+Desde el 2026-10-13 la carta y el LEEME tampoco pueden afirmar lo que el
+manuscrito de la revista no dice: lo que la carta declara y no sale de una
+cifra se comprueba contra ese manuscrito (`CARTA_EN_REVISTA`), y lo que no
+recoge pasa a la lista de lo que bloquea el envío. El LEEME abre, además, con
+lo que dice el protocolo de la fase definitiva sobre el destino del piloto.
+
 Uso:
     python scripts/build_jsr_submission.py [carpeta_destino]
 """
@@ -62,6 +68,12 @@ PORTAL = "https://revistas.utb.edu.ec/index.php/sr/about/submissions"
 JSR_MD = ROOT / "paper" / "manuscrito_JSR_final.md"
 JSR_PDF = ROOT / "paper" / "pdf" / "manuscrito_JSR_final.pdf"
 
+# EL PROTOCOLO DE LA FASE DEFINITIVA (borrador para OSF). Dice que el informe
+# piloto «no se enviará como tal», y este sobre es ese informe preparado para
+# enviarse. El LEEME lo pone en cabeza mientras la frase siga ahí: se lee del
+# protocolo y no se teclea.
+PROTOCOLO = ROOT / "revision_sistematica" / "protocolo" / "protocolo_revision_sistematica.md"
+
 # EL PARRAFO DE USO DE IA VIAJA LITERAL, Y SE COMPRUEBA. La declaracion
 # canonica es la del maestro; el manuscrito de la revista la copia letra por
 # letra. La unica diferencia admitida es la remision a las secciones del
@@ -69,6 +81,12 @@ JSR_PDF = ROOT / "paper" / "pdf" / "manuscrito_JSR_final.pdf"
 # frase de menos, una palabra cambiada-- hace que el sobre no se construya.
 CABEZA_IA = "**Uso de inteligencia artificial.**"
 SUSTITUCIONES_IA = (("(secciones 2.6 y 2.7)", "(véase Métodos)"),)
+# Las que `exige_declaracion_ia` aplicó de verdad en esta ejecución. Desde el
+# 2026-10-13 una sustitución cuya remisión el maestro ya no lleva se salta (si
+# no queda ninguna remisión numerada), y el LEEME no puede decir que se aplicó.
+IA_SUSTITUIDAS = None
+# Una remisión a secciones numeradas, que el manuscrito de la revista no tiene.
+REMISION_NUMERADA = re.compile(r"secci[oó]n(?:es)?\s+\d+\.\d")
 
 # LAS NORMAS DE FORMATO QUE SE MIDEN, leidas en el portal el 2026-09-14. Son
 # topes de la revista, no datos del trabajo: lo que se mide contra ellos sale
@@ -97,8 +115,14 @@ except Exception:
 # --------------------------------------------------------------------------
 # Guardas: lo que tiene que ser cierto antes de construir el sobre
 # --------------------------------------------------------------------------
-def sustituciones_txt():
-    return "; ".join("«%s» por «%s»" % par for par in SUSTITUCIONES_IA)
+def sustituciones_txt(pares=None):
+    """Las sustituciones, en texto. Por defecto, las aplicadas en esta ejecución
+    si ya corrió la guarda, y si no las previstas."""
+    if pares is None:
+        pares = IA_SUSTITUIDAS if IA_SUSTITUIDAS is not None else SUSTITUCIONES_IA
+    if not pares:
+        return "ninguna sustitución"
+    return "; ".join("«%s» por «%s»" % par for par in pares)
 
 
 def parrafo_ia(ruta):
@@ -146,9 +170,16 @@ def exige_declaracion_ia():
                          "inteligencia artificial» (línea %d) está bajo «%s», no en "
                          "DECLARACIONES." % (JSR_MD.name, n + 1,
                                              titulos[-1] if titulos else "ninguna sección"))
-    esperado = maestro
+    global IA_SUSTITUIDAS
+    esperado, hechas = maestro, []
     for viejo, nuevo in SUSTITUCIONES_IA:
         veces = esperado.count(viejo)
+        if veces == 0 and not REMISION_NUMERADA.search(esperado):
+            # El maestro ya no remite a secciones numeradas: no hay nada que
+            # sustituir y los dos parrafos tienen que ser iguales sin mas. Se
+            # anadio el 2026-10-13, cuando el parrafo se reescribio a la vez en
+            # los dos manuscritos; una remision numerada distinta sigue parando.
+            continue
         if veces != 1:
             # El maestro cambio su remision. No se adivina la nueva: se para y
             # se corrige aqui, a la vista, y en el manuscrito de la revista.
@@ -158,6 +189,18 @@ def exige_declaracion_ia():
                              "SUSTITUCIONES_IA en este guion y volved a copiar el "
                              "párrafo en %s." % (viejo, veces, JSR_MD.name))
         esperado = esperado.replace(viejo, nuevo)
+        hechas.append((viejo, nuevo))
+    # Lo que quede numerado colgaria en la revista, que no numera secciones:
+    # paso con «(sección 2.7)» en el bloque de riesgo de sesgo. En la
+    # declaracion se para aqui en vez de viajar.
+    m = REMISION_NUMERADA.search(esperado)
+    if m:
+        raise SystemExit("NO SE CONSTRUYE EL SOBRE: la declaración de uso de IA del "
+                         "maestro remite a «%s», y el manuscrito de la revista no "
+                         "numera secciones. Añadid esa remisión a SUSTITUCIONES_IA "
+                         "en este guion y copiad el párrafo a %s con ella sustituida."
+                         % (esperado[max(0, m.start() - 10):m.end() + 10], JSR_MD.name))
+    IA_SUSTITUIDAS = hechas
     if revista != esperado:
         i = next((k for k, (a, b) in enumerate(zip(esperado, revista)) if a != b),
                  min(len(esperado), len(revista)))
@@ -207,8 +250,15 @@ def pdf_al_dia(pdf, parrafo):
         except ImportError:
             return False, ("falta pymupdf para comprobar que el PDF lleva la "
                            "declaración de uso de IA")
+    # Sin la cabecera ni el folio de cada página: un párrafo que cruza un
+    # salto de página llevaba en medio «30 JOURNAL OF SCIENCE AND RESEARCH
+    # E-ISSN…», y la comprobación daba por ausente un párrafo que estaba.
+    def sin_cabecera(t):
+        return "\n".join(
+            l for l in t.split("\n")
+            if not re.fullmatch(r"\s*\d*\s*(JOURNAL OF SCIENCE AND RESEARCH.*)?\s*", l))
     with pymupdf.open(str(pdf)) as doc:
-        texto = "".join(p.get_text() for p in doc)
+        texto = "".join(sin_cabecera(p.get_text()) for p in doc)
     # El maquetador parte lineas, puede cortar palabras con guion y usar
     # ligaduras: se compara sin espacios ni guiones y en forma NFKC.
     def plano(t):
@@ -265,6 +315,103 @@ def marcadores(cuerpo):
             m = re.match(r"^\*\*([^*]+?)\*\*", l)
             fuera.append(((m.group(1) if m else l[:40]).strip().rstrip(".:"), ms))
     return fuera
+
+
+def recoge(cuerpo, *alternativas):
+    """Si algún párrafo del manuscrito lleva todos los trozos de alguna alternativa.
+
+    Cada alternativa es una tupla de trozos que tienen que estar en el MISMO
+    párrafo; no se distinguen mayúsculas ni el marcado de negrita y cursiva.
+    """
+    parrafos = [p.replace("*", "").lower() for p in re.split(r"\n\s*\n", cuerpo)]
+    return any(all(t.lower() in p for t in alt)
+               for alt in alternativas for p in parrafos)
+
+
+# LO QUE LA CARTA AFIRMA Y TIENE QUE ESTAR EN EL MANUSCRITO DE LA REVISTA. La
+# carta remata «Todo ello consta en Métodos y en Limitaciones», y el LEEME
+# resume las declaraciones «el texto que vale es el del manuscrito». El
+# 2026-10-13 la carta decia cosas que el manuscrito de la revista no traia
+# --Rayyan, la fecha de cierre de la adjudicacion, el numero de anexos, que los
+# 65 del corpus estaban entre los de doble extraccion-- y el LEEME, las 2
+# casillas abiertas. Lo que no estaba se quito o paso a «dato del sobre». Lo que
+# queda en la carta y no sale de una cifra del canal se comprueba aqui contra el
+# manuscrito de la revista: (que dice la carta, alternativas de trozos que un
+# mismo parrafo del manuscrito tiene que llevar). Si falta, el LEEME lo pone
+# entre lo que bloquea el envio.
+#
+# Ajustado el 2026-10-14: la alternativa («endolisinas», «modelo») de las dos
+# reglas pasaba con un parrafo que nombra las endolisinas y, en otra frase, una
+# propuesta del modelo sobre la unidad de inclusion --no decia que el modelo
+# metiera las reglas en sus guiones--; y («adjudica», «14 de septiembre») podia
+# pasar con el parrafo de NOORG, firmado ese mismo dia. Se exige lo que la
+# carta dice, no dos palabras sueltas.
+CARTA_EN_REVISTA = (
+    ("que el recribado de la muestra se hizo en Rayyan", (("Rayyan",),)),
+    ("que la adjudicación de los desacuerdos se cerró el 14 de septiembre de 2026",
+     (("adjudicación", "cerr", "14 de septiembre de 2026"),)),
+    ("que el modelo propuso las dos reglas del primer día de cribado y las "
+     "incorporó a sus guiones", (("dos reglas", "guiones de"),)),
+    ("que el modelo redactó las propuestas de criterios que decidieron los autores",
+     (("propuestas de criterios",),)),
+    ("que las reglas de desenlace las decidieron los dos autores según declara "
+     "D.V., y que el registro las dejó como propuesta sin ratificar",
+     (("reglas de desenlace", "según declara", "sin ratificar"),)),
+    ("que el modelo propuso, con su cita, las exclusiones que se apoyan en lo que "
+     "leyó", (("exclusiones que se apoyan",),)),
+    ("que la concordancia del cribado sobre lo que el modelo admitió no se midió",
+     (("concordancia", "no se midió", "admitió"),)),
+    ("que el modelo redactó los registros de decisión",
+     (("redactó", "registros de decisión"),)),
+    ("que ProQuest se interrogó y lo que devolvió no se exportó",
+     (("ProQuest", "no se exportaron"), ("ProQuest", "no se exportó"))),
+)
+
+
+def carta_sin_respaldo(cuerpo):
+    """Lo que la carta afirma y el manuscrito de la revista no recoge."""
+    return [que for que, alts in CARTA_EN_REVISTA if not recoge(cuerpo, *alts)]
+
+
+def frase_piloto():
+    """La frase del protocolo de la fase definitiva que dice que el informe
+    piloto no se enviará, literal; o None si el protocolo ya no la lleva."""
+    if not PROTOCOLO.exists():
+        return None
+    m = re.search(r"[^.\n›]*no se enviar[áa][^.\n]*\.",
+                  PROTOCOLO.read_text(encoding="utf-8"))
+    return m.group(0).strip() if m else None
+
+
+def responsabilidad_ajena(cuerpo):
+    """La frase del manuscrito que hace responder por el trabajo a los dos
+    autores, o None. N.T. no ha aceptado responder por él (criterio 4 del
+    ICMJE): mientras no conste por escrito, la frase solo puede hablar por D.V.
+    El 2026-10-13 la declaración de IA decía «Los autores asumen la
+    responsabilidad», y el LEEME, a la vez, que N.T. no lo había aceptado."""
+    m = re.search(r"(?:Los|Ambos|Los dos) autores asumen la responsabilidad[^.]*\.",
+                  cuerpo)
+    return m.group(0) if m else None
+
+
+def responsabilidad_pendiente(cuerpo):
+    """La frase del manuscrito que deja pendiente la responsabilidad de N.T., o
+    None. Desde el 2026-10-13 la declaración de uso de IA dice «D.V. asume la
+    responsabilidad [...]; la de N.T. queda pendiente de su aprobación escrita».
+    Depende del mismo escrito que el marcador del CRediT de N.T.: cuando conste,
+    la frase cambia en el maestro y se copia igual a la revista, o el
+    manuscrito seguiría diciendo «pendiente» de algo ya hecho."""
+    m = re.search(r"(?:D\.\s?V\.|D\. Valdiviezo) asume la responsabilidad"
+                  r"[^\n]*?pendiente de su aprobación escrita\.", cuerpo)
+    return m.group(0) if m else None
+
+
+def resumen_sin_modelo(cuerpo):
+    """(el RESUMEN no nombra el modelo, el ABSTRACT tampoco)."""
+    r = re.search(r"^## RESUMEN\s*\n(.*?)^## ", cuerpo, re.M | re.S)
+    a = re.search(r"^## ABSTRACT\s*\n(.*?)^(?:## |---)", cuerpo, re.M | re.S)
+    return (bool(r) and "modelo" not in r.group(1).lower(),
+            bool(a) and "model" not in a.group(1).lower())
 
 
 def palabras_word(t):
@@ -722,11 +869,16 @@ def escribe_carta(destino, S, meta, n_anexos):
         # cuenta brazos y no fuentes. Ahora los dos vienen del canal, y la
         # frase dice lo que de verdad paso: nueve consultas porque Scopus se
         # interrogo dos veces.
-        "evidencia admite una s\u00edntesis cuantitativa de eficacia. Se interrogaron %d "
-        "bases de datos y registros con %d consultas \u2014Scopus en dos brazos\u2014, "
-        "incluidos BVS y SciELO, que las revisiones previas han cubierto de "
-        "forma desigual, con una ventana de publicaci\u00f3n de %d a %d aplicada en las "
-        "que la admiten. De %s registros quedaron %s informes \u00fanicos y %d "
+        # DECIA \u00abSe interrogaron 8 bases de datos y registros con 9 consultas\u00bb, y
+        # ProQuest tambien se interrogo: devolvio registros que no se exportaron
+        # (el manuscrito de la revista lo dice en Metodos). Las 8 son las que
+        # aportaron el corpus (2026-10-14).
+        "evidencia admite una s\u00edntesis cuantitativa de eficacia. El corpus procede "
+        "de %d bases de datos y registros, interrogados con %d consultas \u2014Scopus "
+        "en dos brazos\u2014, incluidos BVS y SciELO, que las revisiones previas han "
+        "cubierto de forma desigual, con una ventana de publicaci\u00f3n de %d a %d "
+        "aplicada en las que la admiten; ProQuest tambi\u00e9n se interrog\u00f3, pero lo "
+        "que devolvi\u00f3 no se export\u00f3. De %s registros quedaron %s informes \u00fanicos y %d "
         "estudios, todos con el art\u00edculo completo le\u00eddo. Ese requisito se "
         "a\u00f1adi\u00f3 el 6 de octubre de 2026, con la extracci\u00f3n terminada, y el "
         "manuscrito lo declara como enmienda, con su fecha y su efecto: deja "
@@ -777,14 +929,20 @@ def escribe_carta(destino, S, meta, n_anexos):
     #   que nacieron despues del cribado (NOPDF, NOORG), y el primer dia se
     #   anadieron a mitad de lote dos reglas que concretan los criterios. Va
     #   la redaccion de la hoja de hechos del 2026-10-08.
+    # - DECIA \u00abese mismo dia se anadieron a mitad de lote dos reglas\u00bb, en
+    #   pasiva: callaba que las propuso el modelo y que el modelo las
+    #   incorporo a sus guiones de cribado (hoja de hechos, 2026-10-13). Las
+    #   decidieron los autores, y asi lo dice ahora, como la declaracion de IA.
     par("Declaro lo siguiente, por si el Comit\u00e9 lo considera al evaluar el trabajo. "
         "La revisi\u00f3n no est\u00e1 registrada en PROSPERO ni en ning\u00fan otro registro "
         "prospectivo, y as\u00ed se declara en el manuscrito. El cribado de t\u00edtulos y "
         "res\u00famenes lo emiti\u00f3 un modelo de lenguaje (Claude Opus 5, Anthropic) "
         "como revisor \u00fanico y sin duplicaci\u00f3n. El primer d\u00eda de cribado, el 4 "
         "de agosto de 2026, escribi\u00f3 los motivos de exclusi\u00f3n en texto libre, y "
-        "ese mismo d\u00eda se a\u00f1adieron a mitad de lote dos reglas que concretan los "
-        "criterios: fuera las endolisinas aisladas y los informes veterinarios. "
+        "ese mismo d\u00eda propuso dos reglas que concretan los criterios \u2014fuera las "
+        "endolisinas aisladas y los informes veterinarios\u2014, que decidieron los "
+        "autores y que el modelo incorpor\u00f3 a mitad de lote a sus guiones de "
+        "cribado. "
         "Despu\u00e9s us\u00f3 seis motivos cuya redacci\u00f3n procede de esos textos, y no "
         "consta que los autores los fijaran antes de empezar. Seg\u00fan "
         "declara D.V. (8 de octubre de 2026), examin\u00f3 uno a uno los informes que "
@@ -809,14 +967,14 @@ def escribe_carta(destino, S, meta, n_anexos):
         # DECIA \u00absobre 122 de los 124 estudios\u00bb, sin decir cuales, en una carta
         # que dos frases antes da 65 estudios: el Comite no podia casar las dos
         # cifras. Los 124 son los extraidos antes de NOPDF.
+        # Y DESPUES DECIA \u00ab(entre ellos, los 65 del corpus final)\u00bb, que es cierto
+        # pero que el manuscrito de la revista no dice, en una carta que remata
+        # \u00abTodo ello consta en Metodos\u00bb. Se quita (2026-10-13); el dato queda en
+        # el LEEME como dato del sobre.
         "La extracci\u00f3n de datos se hizo por duplicado, sin independencia "
-        "acreditada, sobre %d de los %d estudios extra\u00eddos (%s), y la "
+        "acreditada, sobre %d de los %d estudios extra\u00eddos, y la "
         "adjudicaci\u00f3n de los desacuerdos "
-        % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
-           "entre ellos, los %d del corpus final" % S["estudios"]
-           if S["extraccion_doble_corpus"] == S["estudios"] else
-           "%d de los %d del corpus final" % (S["extraccion_doble_corpus"],
-                                              S["estudios"]))
+        % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"])
         # Dos redacciones, segun queden desacuerdos abiertos o no. Decir \u00abno ha
         # concluido\u00bb y anadir \u00ab0 de 541 siguen sin firmar\u00bb era un sinsentido.
         # DECIA \u00abPOR ESO NINGUNA CIFRA DEL ARTICULO PROCEDE DE ESOS CUADERNOS\u00bb
@@ -839,8 +997,10 @@ def escribe_carta(destino, S, meta, n_anexos):
            "qued\u00f3 cerrada el 14 de septiembre de 2026: se adjudicaron %d de %d; "
            "el registro anota la firma de los dos revisores en %d \u2014los \u00fanicos que "
            "constan como consenso\u2014 y un \u00fanico responsable en %d; los %d "
+           # Decia \u00absin firma conjunta\u00bb: cierto, pero no son las palabras del
+           # manuscrito de la revista, que dice que no se cuentan como consenso.
            "restantes se cerraron por una regla mec\u00e1nica sobre una comparaci\u00f3n "
-           "posteriormente rehecha, sin firma conjunta. "
+           "posteriormente rehecha y no se cuentan como consenso. "
            % (S["extraccion_conflictos_firmados"], S["extraccion_desacuerdos"],
               S["conflictos_resueltos_por_los_dos"],
               S["conflictos_resueltos_por_uno"],
@@ -852,7 +1012,24 @@ def escribe_carta(destino, S, meta, n_anexos):
         "tambi\u00e9n emiti\u00f3 el modelo\u2014, pero la completitud de reporte por "
         "desenlace s\u00ed: procede de la extracci\u00f3n adjudicada sobre el texto "
         "completo, y as\u00ed se declara en M\u00e9todos. Todo ello consta en M\u00e9todos y "
-        "en Limitaciones, con la concordancia medida. "
+        "en Limitaciones. "
+        # DECIA \u00abTodo ello consta [...], con la concordancia medida\u00bb, justo
+        # despues del cribado por el modelo: se leia como si se hubiera medido
+        # tambien la del cribado. Las medidas son las de la extraccion y el
+        # riesgo de sesgo; la del cribado sobre lo que el modelo admitio no se
+        # midio, y sobre los excluidos lo que hay es el recribado (2026-10-13).
+        # Y se dice, como el manuscrito, que esas dos no miden lecturas
+        # independientes; y quien coincidio con el modelo es D.V., el unico
+        # que recribo (2026-10-14).
+        "Las concordancias medidas son las de la extracci\u00f3n y la del riesgo de "
+        "sesgo, entre dos lecturas cuya independencia no est\u00e1 acreditada. La "
+        "concordancia entre el modelo y un lector humano no se midi\u00f3 sobre lo que "
+        "el modelo admiti\u00f3; sobre los %d excluidos recribados, D.V. coincidi\u00f3 con "
+        "el modelo en %d en la primera pasada y en los %d tras contrastar los "
+        "criterios. "
+        % (S["validacion_muestra"],
+           S["validacion_muestra"] - S["validacion_primera_pasada_incluidos"],
+           S["validacion_muestra"] - S["validacion_falsos_negativos"]) +
         # DECIA \u00abPreferimos\u00bb, en una carta que firma D.V. solo y en primera
         # persona del singular: hablaba por N.T., que no ha aprobado por
         # escrito la version final.
@@ -864,19 +1041,39 @@ def escribe_carta(destino, S, meta, n_anexos):
     # remite a ella y se nombra lo esencial con sus mismas palabras. Que el
     # parrafo exista en el manuscrito de la revista lo garantiza
     # `exige_declaracion_ia`, que corre antes de escribir nada.
+    #
+    # Tres cosas de este parrafo se corrigieron el 2026-10-13 (hoja de hechos):
+    # - DECIA que el modelo \u00abpropuso, con su cita, las exclusiones\u00bb, las 118;
+    #   63 NOPDF y 4 NOREC no tienen cita y 4 ORG tampoco. Va la redaccion
+    #   fijada: las que se apoyan en los textos que leyo, fichas incluidas.
+    # - Callaba que redacto las propuestas de criterios que decidieron los
+    #   autores y los registros de decision, que el manuscrito presenta como
+    #   salvaguarda.
+    # - Y al reponerlo DECIA \u00ablas propuestas de criterios y de reglas que
+    #   decidieron los autores\u00bb, sin mas: de las reglas de desenlace eso es una
+    #   declaracion de D.V., y el registro del 12-ago las dejo como propuesta
+    #   sin ratificar (2026-10-14). Va como lo dice la declaracion.
+    # Todo ello lo dice ya la declaracion; `CARTA_EN_REVISTA` lo comprueba.
     par("El modelo de lenguaje intervino en todas las fases de esta revisi\u00f3n, y "
         "el manuscrito lo detalla en su declaraci\u00f3n \u00abUso de inteligencia "
-        "artificial\u00bb, en Declaraciones. Adem\u00e1s del cribado, el modelo ley\u00f3 los "
-        "textos completos y propuso, con su cita, las exclusiones; escribi\u00f3 y "
+        "artificial\u00bb, en Declaraciones. Adem\u00e1s del cribado, el modelo redact\u00f3 "
+        "las propuestas de criterios que decidieron los autores y las reglas de "
+        "desenlace, que seg\u00fan declara D.V. decidieron los dos autores, aunque el "
+        "registro del 12 de agosto de 2026 las dej\u00f3 como propuesta sin ratificar; "
+        "ley\u00f3 los textos completos y las fichas de registro y propuso, con su "
+        "cita, las exclusiones que se apoyan en ellos; escribi\u00f3 y "
         "ejecut\u00f3 todo el c\u00f3digo del canal, del que sale cada cifra, tabla y "
-        "figura; y redact\u00f3 los borradores del manuscrito, de los anexos y de "
-        "esta carta.", WD_ALIGN_PARAGRAPH.JUSTIFY)
+        "figura; y redact\u00f3 los borradores del manuscrito, de los anexos, de "
+        "esta carta y de los registros de decisi\u00f3n.", WD_ALIGN_PARAGRAPH.JUSTIFY)
 
+    # DECIA \u00abjunto con los 25 anexos del material suplementario\u00bb: el numero de
+    # anexos no lo da el manuscrito de la revista. Va como dato del sobre, que
+    # es lo que es (2026-10-13).
     par("El manuscrito es original, no ha sido publicado ni est\u00e1 sometido a "
         "consideraci\u00f3n en otra revista. El canal de b\u00fasqueda, cribado y c\u00e1lculo est\u00e1 "
-        "escrito en c\u00f3digo versionado y es reejecutable; queda a disposici\u00f3n de los "
-        "revisores, junto con los %d anexos del material suplementario."
-        % n_anexos, WD_ALIGN_PARAGRAPH.JUSTIFY)
+        "escrito en c\u00f3digo versionado y es reejecutable, y queda a disposici\u00f3n de "
+        "los revisores. El material suplementario va en este mismo env\u00edo, en %d "
+        "anexos." % n_anexos, WD_ALIGN_PARAGRAPH.JUSTIFY)
 
     par("Agradezco de antemano su consideraci\u00f3n.", WD_ALIGN_PARAGRAPH.JUSTIFY)
     d.add_paragraph("")
@@ -916,9 +1113,10 @@ def poda(dst, escritos, etiqueta):
 def organismo_pendiente(S):
     """El punto que bloquea el envio mientras el organismo de las fichas siga abierto.
 
-    El 2026-09-14 se leyeron contra su registro las 29 fichas cuyo titulo,
-    resumen y MeSH no decian que organismo se trata. Los dos revisores firmaron
-    el cuaderno y diez exclusiones se aplicaron. Siete filas quedaron abiertas,
+    Las 29 fichas cuyo titulo, resumen y MeSH no decian que organismo se trata
+    las descargo y leyo el modelo, que propuso con su frase un veredicto para
+    cada una (decia «se leyeron», en pasiva; 2026-10-14). Los dos revisores
+    firmaron el cuaderno el 2026-09-14 y diez exclusiones se aplicaron. Siete filas quedaron abiertas,
     y son justo las que no se pueden cerrar solas: seis firmadas NO CUMPLE sin
     codigo del vocabulario --un codigo nuevo es una enmienda al protocolo-- y
     una sin decidir.
@@ -973,6 +1171,21 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
                            if l.startswith("**Disponibilidad")), "")
     hueco_deposito = "[DATO FALTANTE" in disponibilidad
     a_peticion = "se facilita a petición" in disponibilidad
+    # Lo que se mide del formato, una vez: lo usan la seccion de las normas, lo
+    # que deciden los autores y la lista de lo que bloquea el envio.
+    fm = medidas_formato()
+    cumple, falla, sin_medir = normas_formato()
+    # Lo que el 2026-10-13 el LEEME no decia y tenia que decir: que el
+    # protocolo de la fase definitiva dice que este informe no se enviara, que
+    # el resumen no nombra el modelo, si el manuscrito hace responder por el
+    # trabajo a quien no lo ha aceptado, y si la carta afirma algo que el
+    # manuscrito de la revista no recoge. Todo se lee de los ficheros.
+    piloto = frase_piloto()
+    n_piloto = len(re.findall(r"\bpiloto\b", cuerpo, re.I))
+    resp_ajena = responsabilidad_ajena(cuerpo)
+    resp_pendiente = responsabilidad_pendiente(cuerpo)
+    resumen_calla, abstract_calla = resumen_sin_modelo(cuerpo)
+    sin_respaldo = carta_sin_respaldo(cuerpo)
 
     pendientes = [
         "**ORCID de los dos autores.** La revista los pone en la nota al pie de "
@@ -996,8 +1209,16 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
          "N. Trelles, `%s`: lo que nombra se añade solo si consta por escrito, y "
          "si no consta el marcador se borra sin añadirlo." % trelles
          if trelles else
+         "" if resp_pendiente else
          "Esto no deja rastro en el documento: no hay marcador que quitar, y el "
-         "artículo se puede enviar sin que nada avise de que falta."),
+         "artículo se puede enviar sin que nada avise de que falta.") +
+        # Y de el depende tambien la frase de responsabilidad de la declaracion
+        # de uso de IA (2026-10-13): se cita del manuscrito, no se teclea.
+        ("%s la frase de la declaración de uso de IA «%s»: cuando conste el "
+         "escrito, se cambia en el maestro y se copia igual a la revista."
+         % (" Y también" if trelles else "Del mismo escrito depende",
+            resp_pendiente.rstrip("."))
+         if resp_pendiente else ""),
         # Decia «Tampoco hay marcador», y la declaracion de disponibilidad del
         # manuscrito de la revista lleva un [DATO FALTANTE] sobre el deposito.
         ("**El depósito de datos y código.** La declaración de disponibilidad "
@@ -1029,6 +1250,37 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
 
     md = []
     md.append("# Env\u00edo a *Journal of Science and Research* \u2014 qu\u00e9 hay aqu\u00ed y qu\u00e9 falta")
+    # LO PRIMERO, ANTES QUE LA CARPETA: si este sobre se envia o no. El
+    # protocolo de la fase definitiva dice que el informe piloto no se enviara,
+    # y el sobre estaba listo para enviarlo sin que nada lo dijera (consejo del
+    # 2026-10-13). La frase se cita del protocolo; si cambia, este aviso cambia.
+    if piloto:
+        md.append("")
+        # DECIA \u00abNO SE ENV\u00cdA\u00bb: el protocolo dice \u00abno se enviar\u00e1 como tal\u00bb, que
+        # deja abierto enviarlo como piloto. El titular no dice mas que la frase.
+        md.append("> ## ANTES DE NADA: EL PROTOCOLO DICE QUE ESTE INFORME NO SE "
+                  "ENVIAR\u00c1 COMO TAL")
+        md.append(">")
+        md.append("> El protocolo de la fase definitiva (borrador para OSF, "
+                  "`revision_sistematica/protocolo/%s`) dice: \u00ab%s\u00bb Este sobre es ese "
+                  "informe, preparado para enviarse. **Enviarlo exige que los autores "
+                  "decidan antes una de dos cosas: o no se env\u00eda, o se cambia esa frase "
+                  "del protocolo antes de depositarlo y el manuscrito se presenta como "
+                  "piloto.** Hoy la palabra \u00abpiloto\u00bb aparece %d %s en el manuscrito de "
+                  "la revista, y la carta lo presenta como \u00abart\u00edculo original de "
+                  "revisi\u00f3n sistem\u00e1tica\u00bb: si se env\u00eda como piloto, cambian los dos."
+                  % (PROTOCOLO.name, piloto, n_piloto,
+                     "vez" if n_piloto == 1 else "veces"))
+        md.append(">")
+        md.append("> En ning\u00fan caso se pone en este manuscrito el n\u00famero de registro "
+                  "de OSF: el protocolo es el de la fase definitiva y no cubre este "
+                  "informe.")
+    elif not n_piloto:
+        md.append("")
+        md.append("> **El protocolo de la fase definitiva ya no dice que el informe "
+                  "piloto no se enviar\u00e1, pero el manuscrito de la revista no se "
+                  "presenta como piloto** (la palabra no aparece). Comprobad que es "
+                  "lo que hab\u00e9is decidido antes de enviarlo.")
     # Si Word tenia el .docx abierto, el constructor escribio el bueno al lado
     # con el sufijo _NUEVO y el viejo sigue en la carpeta con el contenido de
     # la ejecucion anterior. El aviso va aqui, en la hoja que se lee antes de
@@ -1058,13 +1310,76 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
     md.append("")
     md.append("## Por qué este envío existe")
     md.append("")
+    # DECIA «el exceso son justamente las declaraciones de honestidad» --nadie
+    # lo midio: el exceso son miles de palabras-- y «En JSR el problema
+    # desaparece: el articulo que sirvio de modelo ocupa 19 paginas», con el 19
+    # tecleado y mientras el de la revista pasaba de su limite de paginas. Y
+    # que el de CMI «sigue vivo», cuando el protocolo de la fase definitiva dice
+    # que el informe piloto no se enviara como tal (2026-10-13).
     md.append("Es una desviación deliberada. El manuscrito estaba preparado para "
               "*Clinical Microbiology and Infection*, y ahí no cabe: **%s palabras de "
-              "texto principal contra un límite de 3 500**, y el exceso son justamente "
-              "las declaraciones de honestidad, que no se recortan. En JSR el problema "
-              "desaparece: el artículo que sirvió de modelo ocupa 19 páginas. El "
-              "manuscrito de CMI sigue vivo en el repositorio; esto no lo sustituye."
-              % mil(S["palabras_cuerpo_es"]))
+              "texto principal contra un límite de 3 500**. JSR no limita palabras "
+              "sino páginas: %d de cuerpo en los artículos de revisión, sin contar "
+              "las referencias, y %s. El manuscrito de CMI sigue en el repositorio, "
+              "sin someter; esto no lo sustituye."
+              % (mil(S["palabras_cuerpo_es"]), TOPE_PAGINAS,
+                 "hoy el de la revista tampoco cabe: %d páginas de cuerpo en el PDF "
+                 "maquetado" % fm["paginas"]
+                 if fm["paginas"] is not None and fm["paginas"] > TOPE_PAGINAS else
+                 "el de la revista cabe: %d páginas de cuerpo en el PDF maquetado"
+                 % fm["paginas"] if fm["paginas"] is not None else
+                 # Sin medir, se da la ultima medida en vez de callarla.
+                 "la extensión del de la revista no está medida sobre esta versión: "
+                 "el PDF maquetado anterior daba %d páginas de cuerpo (ver abajo)"
+                 % fm["paginas_previas"] if fm["paginas_previas"] else
+                 "la extensión del de la revista no está medida sobre esta versión "
+                 "(ver abajo)"))
+
+    # LO QUE DECIDEN LOS AUTORES, y nadie puede decidir por ellos. Hasta el
+    # 2026-10-13 el LEEME no lo separaba: el destino del piloto no estaba, el
+    # resumen sin el modelo lo dejaba un registro de decisiones «para los
+    # autores» sin que el sobre lo dijera, y la extension solo constaba en la
+    # frase de las normas, no entre lo que bloquea.
+    decide = []
+    if piloto:
+        decide.append("**Si este informe se envía.** Ver el aviso de arriba: el "
+                      "protocolo de la fase definitiva dice que no se enviará como tal.")
+    if resumen_calla:
+        decide.append(
+            "**El resumen no dice que el cribado lo emitió un modelo de lenguaje.** "
+            "El RESUMEN del manuscrito de la revista no nombra el modelo%s, y es lo "
+            "primero que lee el lector de la revista, aunque las decisiones del "
+            "cribado de títulos y resúmenes, que delimitan el corpus, las emitió el "
+            "modelo como revisor único. La frase estaba en el resumen del maestro y se "
+            "retiró el 23 de agosto de 2026 en el commit `32f3f12`; el registro de "
+            "decisiones del 8 de octubre de 2026 dice que se retiró por decisión del "
+            "autor (el mensaje del commit enumera otras retiradas «por decisión del "
+            "autor» y no nombra esta). Si se repone, va en el RESUMEN y en el "
+            "ABSTRACT, y el resumen no puede pasar de %d palabras: hoy tiene %s."
+            % (" (el ABSTRACT tampoco)" if abstract_calla else "",
+               TOPE_RESUMEN,
+               fm["resumen"] if fm["resumen"] is not None else "un número que no se "
+               "pudo contar"))
+    if fm["paginas"] is not None and fm["paginas"] > TOPE_PAGINAS:
+        decide.append(
+            "**Qué se recorta.** El cuerpo mide **%d páginas** en el PDF maquetado "
+            "antes de las referencias, y el límite de la revista es de %d. Qué se "
+            "recorta lo deciden los autores; las declaraciones de honestidad no se "
+            "recortan." % (fm["paginas"], TOPE_PAGINAS))
+    elif fm["paginas"] is None and fm["paginas_previas"]:
+        decide.append(
+            "**Qué se recorta, si hace falta.** La extensión no está medida sobre esta "
+            "versión (%s); el PDF anterior daba **%d páginas** de cuerpo, y el límite "
+            "de la revista es de %d. Qué se recorta lo deciden los autores; las "
+            "declaraciones de honestidad no se recortan."
+            % (fm["por_que"], fm["paginas_previas"], TOPE_PAGINAS))
+    if decide:
+        md.append("")
+        md.append("## Lo que deciden los autores antes de enviar")
+        md.append("")
+        for i, t in enumerate(decide, start=1):
+            md.append("%d. %s" % (i, t))
+            md.append("")
     # Ni el numero de anexos ni el de tablas se teclean: el primero sale de lo
     # que se acaba de copiar y el segundo del propio manuscrito. Escritos a mano
     # envejecian en silencio --el LEEME anunciaba 14 anexos «S0 a S13» cuando ya
@@ -1160,7 +1475,7 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
     # sostenia: el PDF maquetado del 8 de octubre pone las referencias en la
     # pagina 28. Ahora todo lo que se mide sale de `medidas_formato`, y \u00ablas
     # cumple todas\u00bb solo se escribe si de verdad se ha medido y se cumple.
-    cumple, falla, sin_medir = normas_formato()
+    # (`cumple`, `falla` y `sin_medir` se calculan arriba, una vez.)
     if not falla and sin_medir is None:
         texto = ("Sus normas de formato, le\u00eddas el mismo d\u00eda, el manuscrito **las "
                  "cumple todas**: %s." % ", ".join(cumple))
@@ -1219,11 +1534,12 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
     # lo que es: un recordatorio de lo que declara el manuscrito, no su texto.
     md.append("Las declaraciones de honestidad. La de uso de inteligencia artificial "
               "viaja literal: el párrafo «Uso de inteligencia artificial» del "
-              "manuscrito de la revista es el del maestro con %s, y este guion se "
+              "manuscrito de la revista es el del maestro %s, y este guion se "
               "niega a construir el sobre si no lo es, o si el `.docx` no lo lleva "
               "entero. Las demás que no se pueden quitar son estas, resumidas aquí "
               "para vigilarlas; el texto que vale es el del manuscrito:"
-              % sustituciones_txt())
+              % ("letra por letra" if IA_SUSTITUIDAS == [] else
+                 "con " + sustituciones_txt()))
     md.append("")
     md.append("- la revisión **no está registrada** en PROSPERO ni en ningún registro "
               "prospectivo;")
@@ -1238,21 +1554,22 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
     # DECIA «(122 de 124 estudios)» sin decir que los 124 son los extraidos
     # antes de NOPDF, y «a uno solo en 525»: lo comprobado es que el registro
     # anota un unico responsable, no que lo decidiera uno solo.
+    # Y DESPUES DECIA «entre ellos los 65 del corpus final» y, de los 2 de la
+    # regla, «sin firma conjunta»: lo primero el manuscrito de la revista no lo
+    # dice, y lo segundo lo dice con otras palabras («no se cuentan como
+    # consenso»). En una lista cuyo texto «que vale es el del manuscrito», lo
+    # que el manuscrito no recoge pasa abajo, como dato del sobre (2026-10-13).
     md.append("- la extracción por duplicado **está completa** (%d de los %d estudios "
-              "extraídos, %s) y "
-              % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"],
-                 "entre ellos los %d del corpus final" % S["estudios"]
-                 if S["extraccion_doble_corpus"] == S["estudios"] else
-                 "%d de los %d del corpus final" % (S["extraccion_doble_corpus"],
-                                                    S["estudios"])) +
+              "extraídos) y "
+              % (S["extraccion_estudios_ambos"], S["extraccion_estudios_r1"]) +
               ("**la adjudicación no**: %d de los %d desacuerdos siguen sin firmar;"
                % (S["extraccion_conflictos_sin_firmar"], S["extraccion_desacuerdos"])
                if S["extraccion_conflictos_sin_firmar"] else
                "**la adjudicación también**: %d de %d adjudicados; el registro anota "
                "la firma de los dos revisores en %d —los únicos que constan como "
                "consenso— y un único responsable en %d, y %d se cerraron por una "
-               "regla mecánica, sin firma conjunta; ni la extracción ni el riesgo de "
-               "sesgo acreditan independencia;"
+               "regla mecánica y no se cuentan como consenso; ni la extracción ni el "
+               "riesgo de sesgo acreditan independencia;"
                % (S["extraccion_conflictos_firmados"], S["extraccion_desacuerdos"],
                   S["conflictos_resueltos_por_los_dos"],
                   S["conflictos_resueltos_por_uno"],
@@ -1270,25 +1587,41 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
     abiertas, son_las_de_regla = casillas_abiertas()
     if not abiertas:
         sobre_abiertas = "No queda ninguna casilla abierta."
+    # «ese conjunto» remitia a la extraccion adjudicada de la frase de al lado;
+    # al pasar esto a «Datos del sobre» se quedo colgando (2026-10-14).
     elif son_las_de_regla:
         sobre_abiertas = ("Las %d casillas abiertas son las de los %d desacuerdos que "
                           "se cerraron por la regla mecánica sin firma conjunta: el "
                           "registro de conflictos los da por cerrados, pero salen "
-                          "vacías de ese conjunto, se cuentan como abiertas y no se "
-                          "rellenan con una conjetura." % (abiertas, abiertas))
+                          "vacías de la extracción adjudicada, se cuentan como "
+                          "abiertas y no se rellenan con una conjetura."
+                          % (abiertas, abiertas))
     else:
-        sobre_abiertas = ("Las %d casillas abiertas salen vacías de ese conjunto, se "
-                          "cuentan como abiertas y no se rellenan con una conjetura."
-                          % abiertas)
+        sobre_abiertas = ("Las %d casillas abiertas salen vacías de la extracción "
+                          "adjudicada, se cuentan como abiertas y no se rellenan con "
+                          "una conjetura." % abiertas)
+    # Y LAS CASILLAS ABIERTAS IBAN AQUI, en la lista de lo que dice el
+    # manuscrito, y el de la revista no las cuenta: solo dice que los 2 de la
+    # regla no se cuentan como consenso. Pasan abajo, como dato del sobre.
     md.append("- **las cifras del artículo tienen dos orígenes, y el manuscrito dice "
               "cuál es cuál**: la caracterización estructural del corpus sale del "
               "cribado y de la pre-extracción desde los resúmenes, que emitió el "
               "modelo; la completitud de reporte por desenlace sale de la extracción "
-              "adjudicada sobre el texto completo. %s" % sobre_abiertas)
+              "adjudicada sobre el texto completo.")
     md.append("")
     md.append("Quitar cualquiera de estas frases para que el art\u00edculo \u00abpase mejor\u00bb "
               "convierte un trabajo honesto en uno que no lo es. Si un revisor objeta "
               "alguna, se le contesta con los datos, que est\u00e1n todos en `suplementos/`.")
+    md.append("")
+    md.append("**Datos del sobre, no del manuscrito.** Salen del canal y son ciertos, "
+              "pero el manuscrito de la revista no los recoge, as\u00ed que no van ni en la "
+              "lista de arriba ni en la carta, y nadie debe citarlos como suyos: %s %s"
+              % ("los %d estudios del corpus final est\u00e1n todos entre los %d con doble "
+                 "extracci\u00f3n." % (S["estudios"], S["extraccion_estudios_ambos"])
+                 if S["extraccion_doble_corpus"] == S["estudios"] else
+                 "%d de los %d estudios del corpus final tienen doble extracci\u00f3n."
+                 % (S["extraccion_doble_corpus"], S["estudios"]),
+                 sobre_abiertas))
     md.append("")
     md.append("## C\u00f3mo se regenera")
     md.append("")
@@ -1322,7 +1655,48 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
     # las notas de autor no se borra sino que se rellena, y «No hay marcador que
     # quitar» del deposito, cuando la declaracion de disponibilidad lleva uno.
     # Todo lo que depende de un marcador se lee ahora de `huecos`.
-    antes = list(organismo_pendiente(S))
+    #
+    # Y desde el 2026-10-13 abre la lista lo que el consejo encontro sin
+    # bloquear: el destino del piloto, lo que la carta afirma y el manuscrito
+    # no recoge, una frase de responsabilidad que habla por N.T., la extension
+    # (29 paginas contra 25 ese dia, y solo constaba en la frase de las
+    # normas) y el resumen sin el modelo, que es decision de los autores.
+    antes = []
+    if piloto:
+        antes.append("**Decidido por los autores si este informe se envía**: el "
+                     "protocolo de la fase definitiva dice «%s». O no se envía, o se "
+                     "cambia esa frase antes de depositar el protocolo y el manuscrito "
+                     "y la carta lo presentan como piloto" % piloto.rstrip("."))
+    for que in sin_respaldo:
+        antes.append("**La carta dice %s, y el manuscrito de la revista no lo "
+                     "recoge.** O lo recoge el manuscrito o lo quita la carta (en "
+                     "`escribe_carta` de este guion): la carta remata «Todo ello consta "
+                     "en Métodos y en Limitaciones»" % que)
+    if resp_ajena:
+        antes.append("**Cambiada la frase «%s»**: N. Trelles no ha aceptado responder "
+                     "por el trabajo. Mientras no conste por escrito, la redacción es "
+                     "«D.V. asume la responsabilidad por la exactitud e integridad del "
+                     "trabajo; la de N.T. queda pendiente de su aprobación escrita». Si "
+                     "está en la declaración de uso de IA, se cambia en el maestro y se "
+                     "copia igual a la revista" % resp_ajena.rstrip("."))
+    for f in falla:
+        antes.append("**Corregido lo que incumple las normas de la revista**: %s" % f)
+    if sin_medir:
+        antes.append("**Medida la extensión sobre esta versión del manuscrito**: %s"
+                     % sin_medir)
+        # Sin medir, «medida la extension» no decia que la ultima medida ya
+        # pasaba del limite: se pide tambien el recorte, con la cifra que dio
+        # el PDF anterior, leida y no tecleada (2026-10-14).
+        if fm["paginas_previas"] and fm["paginas_previas"] > TOPE_PAGINAS:
+            antes.append("**Recortado el cuerpo a %d páginas como máximo**: la última "
+                         "medida, sobre el PDF maquetado anterior, daba %d páginas "
+                         "antes de las referencias. Qué se recorta lo deciden los "
+                         "autores (ver «Lo que deciden los autores antes de enviar»)"
+                         % (TOPE_PAGINAS, fm["paginas_previas"]))
+    if resumen_calla:
+        antes.append("Decidido por los autores si el resumen dice que el cribado lo "
+                     "emitió un modelo de lenguaje (ver «Lo que deciden los autores»)")
+    antes += list(organismo_pendiente(S))
     antes.append("**Aprobada por escrito por N. Trelles esta versión final** (ICMJE: "
                  "revisión crítica, aprobación y aceptación de responder por el "
                  "trabajo), y guardado ese escrito. Sin ese escrito, D. Valdiviezo no "
@@ -1331,6 +1705,11 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
         antes.append("Resuelto el marcador `%s` del CRediT de N. Trelles: lo que nombra "
                      "se añade solo si consta por escrito; si no consta, se borra sin "
                      "añadirlo" % trelles)
+    if resp_pendiente:
+        antes.append("Revisada la frase «%s» de la declaración de uso de IA: si consta "
+                     "el escrito de N. Trelles, se cambia en el maestro y se copia igual "
+                     "a la revista; si no consta, se queda como está"
+                     % resp_pendiente.rstrip("."))
     antes += [
         "**Descargada, rellenada y FIRMADA la carta de cesión de derechos de la "
         "revista**, con los dos autores y después de la aprobación escrita de "
@@ -1689,6 +2068,14 @@ def main():
 
     carta = escribe_carta(destino, S, meta, n_anexos)
     print("  %-42s carta al comite" % carta.name)
+    # Lo que bloquea y el LEEME ya dice, tambien aqui: el de la consola es el
+    # aviso que ve quien corre el canal.
+    for que in carta_sin_respaldo(JSR_MD.read_text(encoding="utf-8")):
+        print("  AVISO: la carta dice %s, y el manuscrito de la revista no lo "
+              "recoge" % que)
+    if frase_piloto():
+        print("  AVISO: el protocolo de la fase definitiva dice que el informe "
+              "piloto no se enviara como tal; el LEEME lo pone en cabeza")
 
     # El marcador de autor viaja dentro del .docx a proposito: sin el, un ORCID
     # que falta no se distingue de un ORCID que nadie pidio. El aviso suena en

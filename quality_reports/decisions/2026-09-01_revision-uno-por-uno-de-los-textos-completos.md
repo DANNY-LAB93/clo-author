@@ -395,3 +395,13 @@ los que sí se pudieron leer-- y se reporta tal cual.
 **No cambia:** el hallazgo. El embudo sigue acabando en **cero**
 (110 → 17 → 5 → 2 → 1 → 1 → 0). Ninguna de las 79 afirmaciones ancladas quedó
 sin respaldo.
+
+---
+
+## SUPERADO en parte — 2026-10-13
+
+Arriba se dice que «la lectura la hace una persona». La lectura de los 93 textos y las
+propuestas de exclusión, con su cita, las hizo el modelo de lenguaje (commit `5749bca`,
+con Claude como coautor); los autores firmaron las exclusiones. Así lo dicen desde el
+2026-10-08 los manuscritos y la declaración de uso de IA. Lo de arriba se conserva tal
+como se escribió.

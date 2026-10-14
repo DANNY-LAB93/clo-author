@@ -196,8 +196,11 @@ def figura_prisma(S):
     h_el = alto(t_el)
     caja(ax, X_IZQ, y - HUECO - h_el, ANCHO_IZQ, h_el, t_el)
     flecha(ax, (CENTRO, y), (CENTRO, y - HUECO))
+    # Decia «Excluidos al releer el texto completo», y en esta caja estan los
+    # NOPDF, sin articulo, y los NOREC, sin texto legible: a esos no los
+    # releyo nadie. El rotulo dice la fase, no que se leyeran.
     excluidos(y - HUECO - h_el / 2,
-              "Excluidos al releer el texto completo\n"
+              "Excluidos en la fase de texto completo\n"
               "n = %d estudios (%d informes)\n\n%s"
               % (S["estudios_excluidos_tras_texto_completo"],
                  S["informes_excluidos_tras_texto_completo"],
