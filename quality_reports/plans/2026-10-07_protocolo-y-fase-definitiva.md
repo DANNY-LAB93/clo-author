@@ -106,13 +106,13 @@ Todos están verificados contra los ficheros, y la sección 3 del protocolo los 
 5. **Independencia del riesgo de sesgo.** Los manuscritos dicen «por duplicado independiente», con kappa 0,74.
    - El 5 de septiembre los dos cuadernos tenían primero los 82 juicios idénticos; 75 minutos después tenían 13 discrepancias y seguían compartiendo 7 418 caracteres idénticos de notas.
    - El cuaderno de consenso lo generó el canal con 69 juicios precargados y coincide con el de D.V. en todos.
-6. **Recribado ciego.** Lo hizo D.V. solo, sin los criterios a la vista. Incluyó 6 de 350 y él mismo los reclasificó como excluidos. Los manuscritos no dicen quién lo hizo. La nota 17 de CLAUDE.md, que decía «los dos autores», ya está corregida.
+6. **Recribado ciego.** Lo hizo D.V. solo, sin los criterios a la vista. Incluyó 6 de 350, y D.V. los reclasificó como excluidos. Los manuscritos no dicen quién lo hizo. La nota 17 de CLAUDE.md, que decía «los dos autores», ya está corregida.
 7. **«Piloteo» del formulario.** Los manuscritos dicen que se piloteó sobre cinco estudios, y no hay registro de ello.
 8. **«23 variables».** Los cuadernos tuvieron 21 durante toda la extracción. El denominador y la persistencia de la erradicación se añadieron al esquema el 12 de agosto, pero no llegaron a los cuadernos.
 9. **Control positivo.** Los manuscritos dicen 40 estudios «fijados a priori», y 40 de 40 superados.
    - El conjunto fijado tiene 42 estudios. La auditoría solo comprobaba los 40 con PMID, y solo durante el cribado.
    - Del corpus final del piloto salieron 7: Ronit 2024 por idioma, Leitner 2021 por NOREC y 5 por NOPDF. Comprobado hoy.
-10. **Idioma.** Los manuscritos dan 35 estudios excluidos por idioma. Son 39: 35 en el resumen, cuyas exclusiones emitió el modelo el 11 de agosto, y 4 a texto completo. A ellos se suman 3 por idioma no verificable.
+10. **Idioma.** Los manuscritos dan 35 estudios excluidos por idioma. Son 39: 35 en el resumen, cuyas exclusiones emitió el modelo el 11 de agosto, y 4 a texto completo. A ellos se suman 3 por idioma no verificable. Corregido en la limitación de idioma de los tres manuscritos el 2026-10-15.
 
 ## Antes del depósito: lo que hago yo, si lo aprueban
 

@@ -353,6 +353,10 @@ AFIRMACIONES = [
     (EN, "it excluded {excluidos_texto_completo_NOORG} studies (section 3.1.1). Like NOREC"),
     (ES, "sobre {validacion_muestra} excluidos, el lector del recribado (sección 2.5) coincidió con el modelo en {validacion_primera_pasada_coinciden} en la primera pasada"),
     (EN, "over {validacion_muestra} excluded records, the re-screening reader (section 2.5) agreed with the model on {validacion_primera_pasada_coinciden} in the first pass"),
+    # La limitacion de idioma decia 35: son 35 + 4, y 3 por idioma no verificable.
+    (ES, "eliminó {estudios_eliminados_por_idioma} estudios en el cribado de resúmenes, {comparativos_perdidos_por_idioma} de ellos comparativos y uno del conjunto de control positivo, y {excluidos_texto_completo_IDI} más al leer el texto completo; otros {idioma_no_verificable_excluidos} salieron porque su idioma no pudo verificarse"),
+    (EN, "removed {estudios_eliminados_por_idioma} studies at abstract screening, {comparativos_perdidos_por_idioma} of them comparative and one from the positive-control set, and {excluidos_texto_completo_IDI} more on reading the full text; another {idioma_no_verificable_excluidos} left because their language could not be verified"),
+    (JSR, "eliminó {estudios_eliminados_por_idioma} estudios en el cribado de resúmenes y {excluidos_texto_completo_IDI} más al leer el texto completo, y otros {idioma_no_verificable_excluidos} salieron porque su idioma no pudo verificarse"),
     # PRISMA 24c: las dos enmiendas y su efecto. Faltaban enteras en el
     # manuscrito de la revista, que declaraba CERO donde el maestro declara DOS.
     (JSR, "Excluyó **{estudios_eliminados_por_idioma} estudios completos** —el corpus pasó de {estudios_antes_de_la_enmienda} a {estudios_antes_de_releer}—, y la pérdida no fue uniforme: {comparativos_perdidos_por_idioma} de ellos tenían diseño comparativo y {ecas_perdidos_por_idioma} eran ensayos aleatorizados"),
