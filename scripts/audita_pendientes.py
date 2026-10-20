@@ -342,6 +342,14 @@ def tabla_solapamiento():
             veredicto="DESCARTADO POR LECTURA",
             accion="Ninguna."),
     }
+    # 2026-10-20. El valor por defecto era 1 para todos, y los dos pares que
+    # descarto el modelo sin firma (EST-108 con EST-034 y con EST-044) salian
+    # en S21 con «Clave del paciente: ninguno» y «Pacientes con esa clave: 1».
+    # Un descartado no tiene paciente compartido: su defecto es 0.
+    def n_pacientes(d):
+        return d.get("n_pacientes",
+                     0 if d["veredicto"].startswith("DESCARTADO") else 1)
+
     pac, brazos = {}, collections.defaultdict(list)
     for r in leer(RS / "extraccion" / "extraccion_adjudicada.csv"):
         brazos[r["study_id"]].append(r["arm_id"])
@@ -355,7 +363,7 @@ def tabla_solapamiento():
         filas.append({
             "estudio_1": a, "estudio_2": b,
             "clave_del_paciente": (d.get("clave_del_paciente", "") if d else "") or FALTA,
-            "pacientes_de_esa_clave": (d.get("n_pacientes", 1) if d else ""),
+            "pacientes_de_esa_clave": (n_pacientes(d) if d else ""),
             "paciente_o_identificador": d["paciente"] if d else FALTA,
             "senal_que_lo_marco": r["fuerza"],
             "evidencia": d["evidencia"] if d else (r["fragmento"][:280] or
@@ -382,7 +390,7 @@ def tabla_solapamiento():
         filas.append({
             "estudio_1": a, "estudio_2": b,
             "clave_del_paciente": d.get("clave_del_paciente", "") or FALTA,
-            "pacientes_de_esa_clave": d.get("n_pacientes", 1),
+            "pacientes_de_esa_clave": n_pacientes(d),
             "paciente_o_identificador": d["paciente"],
             # Decia «lo encontro la lectura», sin autor ni fecha, junto a las
             # filas fechadas de la relectura de los autores: se leia como

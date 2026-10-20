@@ -934,11 +934,14 @@ def v1_prisma(S):
         ("26", "Conflictos de interés", "", "CUMPLE", "Declaraciones"),
         # 2026-10-13. Estaba en CUMPLE mientras el parrafo del manuscrito lleva
         # el DOI del deposito como pendiente: el deposito publico no existe aun.
+        # 2026-10-20. Decia «el depósito público que la declaración anuncia»: la
+        # declaracion no anuncia ningun deposito, deja pendiente decidir si se
+        # hace.
         ("27", "Disponibilidad de datos y código", "",
          "PARCIAL" if deposito_pendiente else "CUMPLE",
          "Declaraciones y S3–S6" + (
-             "; el depósito público que la declaración anuncia y su DOI están "
-             "pendientes" if deposito_pendiente else "")),
+             "; la decisión sobre un depósito público con DOI está pendiente"
+             if deposito_pendiente else "")),
     ]
     tabla(d, ["Ítem", "Elemento", "Qué exige", "Estado", "Dónde está"],
           [(a, b, c, e, f) for a, b, c, e, f in ITEMS],
@@ -1015,16 +1018,92 @@ def v2_busquedas(S):
             "los de la interfaz.")
     man = json.loads((RS / "busqueda" / "sources.json").read_text(encoding="utf-8"))
     REG = {"ClinicalTrials.gov", "EudraCT", "CTIS"}
-    # «registros_por_fuente» cuenta registros recuperados, no informes: la
-    # columna decia «Informes en el corpus».
+    # CORREGIDO EL 2026-10-20. Decia «"registros_por_fuente" cuenta registros
+    # recuperados, no informes», y es falso: build_synthesis_scalars.py suma 1
+    # por informe deduplicado y fuente (por_fuente[f] += 1). La columna se
+    # rotulaba «Registros en el corpus» y sus filas no sumaban los registros
+    # identificados de la Figura 1. Se rotula como lo que es, y los registros
+    # exportados se cuentan aparte, fichero a fichero del manifiesto.
+    PF = S["registros_por_fuente"]
+
+    def exportados(p):
+        if p.suffix.lower() == ".ris":
+            return sum(1 for l in p.read_text(encoding="utf-8-sig",
+                                              errors="replace").splitlines()
+                       if l.startswith("TY  -"))
+        with open(p, encoding="utf-8-sig", newline="") as fh:
+            return sum(1 for _ in csv.DictReader(fh))
+    EXP = {k: exportados(ROOT / v) for k, v in man.items()}
+    # Las mismas cuentas que identificacion_por_corriente
+    # (build_manuscript_figures.py): registros por corriente = suma de
+    # n_source_records sobre screening_corpus_all.csv. Y, informe a informe,
+    # los registros que una fuente aporto de mas a un informe que ya habia
+    # aportado: n_source_records menos sus fuentes distintas.
+    reg_b = reg_r = extra = n_inf_extra = 0
+    for c in leer(RS / "cribado" / "screening_corpus_all.csv"):
+        lst = [x.strip() for x in c["sources"].split(";") if x.strip()]
+        n = int(c["n_source_records"] or 1)
+        if len(lst) != len(set(lst)):
+            raise SystemExit("S2: el informe %s repite una fuente en «sources»; "
+                             "por_fuente la contaria dos veces y la nota de "
+                             "la tabla ya no vale." % c["record_id"])
+        if n < len(lst):
+            raise SystemExit("S2: el informe %s tiene menos registros que "
+                             "fuentes." % c["record_id"])
+        extra += n - len(lst)
+        n_inf_extra += n > len(lst)
+        if set(lst) - REG:
+            reg_b += n
+        elif lst:
+            reg_r += n
+    suma_pf = sum(PF.get(k, 0) for k in man)
+    fallos = []
+    if sum(EXP[k] for k in man if k not in REG) != reg_b:
+        fallos.append("bases: exportados %d != registros de la corriente %d"
+                      % (sum(EXP[k] for k in man if k not in REG), reg_b))
+    if sum(EXP[k] for k in man if k in REG) != reg_r:
+        fallos.append("registros de ensayos: exportados %d != %d"
+                      % (sum(EXP[k] for k in man if k in REG), reg_r))
+    if reg_b + reg_r != S["registros_identificados"]:
+        fallos.append("corrientes %d + %d != registros_identificados %d"
+                      % (reg_b, reg_r, S["registros_identificados"]))
+    if suma_pf != sum(PF.values()):
+        fallos.append("registros_por_fuente trae fuentes fuera del manifiesto")
+    if any(EXP[k] < PF.get(k, 0) for k in man):
+        fallos.append("alguna fuente tiene más informes que registros exportados")
+    # La diferencia entre las dos columnas, fuente a fuente, tiene que ser
+    # exactamente la de los registros repetidos dentro de una misma fuente.
+    if sum(EXP[k] - PF.get(k, 0) for k in man) != extra:
+        fallos.append("exportados - informes por fuente %d != registros "
+                      "repetidos dentro de una fuente %d"
+                      % (sum(EXP[k] - PF.get(k, 0) for k in man), extra))
+    if S["registros_identificados"] - suma_pf != extra:
+        fallos.append("registros_identificados - suma por fuente %d != %d"
+                      % (S["registros_identificados"] - suma_pf, extra))
+    if fallos:
+        raise SystemExit("S2: las tablas por fuente no cuadran:\n  "
+                         + "\n  ".join(fallos))
+    cab = ["Fuente", "Registros exportados", "Informes únicos con esa fuente",
+           "Archivo de exportación"]
     d.add_heading("Corriente 1. Bases bibliográficas", level=2)
-    tabla(d, ["Fuente", "Registros en el corpus", "Archivo de exportación"],
-          [(k, miles(S["registros_por_fuente"].get(k, 0)), pathlib.Path(v).name)
-           for k, v in man.items() if k not in REG], [5.0, 4.0, 7.0])
+    tabla(d, cab,
+          [(k, miles(EXP[k]), miles(PF.get(k, 0)), pathlib.Path(v).name)
+           for k, v in man.items() if k not in REG], [4.2, 3.2, 3.6, 5.0])
     d.add_heading("Corriente 2. Registros de ensayos", level=2)
-    tabla(d, ["Fuente", "Registros en el corpus", "Archivo de exportación"],
-          [(k, miles(S["registros_por_fuente"].get(k, 0)), pathlib.Path(v).name)
-           for k, v in man.items() if k in REG], [5.0, 4.0, 7.0])
+    tabla(d, cab,
+          [(k, miles(EXP[k]), miles(PF.get(k, 0)), pathlib.Path(v).name)
+           for k, v in man.items() if k in REG], [4.2, 3.2, 3.6, 5.0])
+    nota(d, "La columna «Registros exportados» cuenta los registros de cada "
+            "fichero del manifiesto de fuentes y suma %s, los registros "
+            "identificados de la Figura 1 (%s de bases y %s de registros de "
+            "ensayos). La columna «Informes únicos con esa fuente» cuenta cada "
+            "informe deduplicado una vez por fuente: un informe que "
+            "recuperaron dos fuentes cuenta en las dos, y uno que llegó más de "
+            "una vez desde la misma fuente cuenta una vez. Por eso sus filas "
+            "suman %s: %s registros llegaron a un informe que la misma fuente "
+            "ya había aportado, repartidos entre %s informes."
+            % (miles(S["registros_identificados"]), miles(reg_b), miles(reg_r),
+               miles(suma_pf), miles(extra), miles(n_inf_extra)))
     fuente = ROOT / "quality_reports" / "ecuaciones_busqueda_final.md"
     if fuente.exists():
         # CORREGIDO EL 2026-10-08. Se copiaba el documento de trabajo ENTERO,
@@ -1048,9 +1127,9 @@ def v2_busquedas(S):
                 "2026 como última verificación de su inventario de bases. Los "
                 "recuentos son los que anota ese "
                 "documento, y sus avisos de estado («pendiente», «sin probar») "
-                "son de ese documento de trabajo, no el estado final: lo que "
-                "entró al corpus es lo de las dos tablas de arriba, según el "
-                "manifiesto de fuentes. ProQuest se interrogó, pero no se "
+                "son de ese documento de trabajo, no el estado final: las "
+                "fuentes y los ficheros que entraron al corpus son los de las "
+                "dos tablas de arriba, según el manifiesto de fuentes. ProQuest se interrogó, pero no se "
                 "exportó y no forma parte del corpus. Las secciones de recuento "
                 "consolidado, tareas pendientes y redacción de Métodos de ese "
                 "documento no se copian: eran notas de trabajo del 4 de agosto "
@@ -1972,8 +2051,9 @@ def v9_idioma(S):
           % (n, fuera))
 
 
-def del_manuscrito(marca, que_es):
-    """Un párrafo del manuscrito autoritativo, copiado literal.
+def del_manuscrito(marca, que_es, fichero="manuscrito_revision_sistematica.md"):
+    """Un párrafo del manuscrito autoritativo, copiado literal. Con
+    fichero="manuscrito_JSR_final.md", el mismo párrafo del de la revista.
 
     Ninguna declaración del anexo se redacta aquí. Se leen porque las versiones
     paralelas divergen y siempre en la misma dirección: la del anexo salía más
@@ -1983,14 +2063,13 @@ def del_manuscrito(marca, que_es):
     excluidos no los releyó nadie. La de CRediT decía «PENDIENTE DE COMPLETAR»
     cuando el manuscrito ya repartía las categorías entre los dos autores.
     """
-    md = (ROOT / "paper" / "manuscrito_revision_sistematica.md").read_text(
-        encoding="utf-8")
+    md = (ROOT / "paper" / fichero).read_text(encoding="utf-8")
     i = md.find(marca)
     if i < 0:
         raise SystemExit(
-            "S7: no encuentro «%s» en el manuscrito. %s sale de ahí y no se "
+            "S7: no encuentro «%s» en %s. %s sale de ahí y no se "
             "redacta en este script; si la sección se renombró, actualiza la "
-            "marca." % (marca, que_es))
+            "marca." % (marca, fichero, que_es))
     texto = md[i + len(marca):].split("\n\n")[0].strip()
     # El .docx no lleva marcado Markdown: los asteriscos quedarian a la vista.
     return texto.replace("**", "")
@@ -2034,12 +2113,23 @@ def v7_declaraciones(S):
     aviso_ia = ("Las secciones citadas son las del informe extendido; en el "
                 "manuscrito de la revista, METODOLOGÍA › Extracción de datos y "
                 "Evaluación del riesgo de sesgo.") if citadas else None
+    # 2026-10-20. S7 viaja con el manuscrito de la revista y copiaba las
+    # declaraciones del maestro sin decirlo; la de disponibilidad de datos de
+    # la revista es otra. Si la de la revista difiere, se avisa y se copia
+    # tambien, literal: ninguna de las dos se redacta aqui.
+    def con_revista(marca, que_es):
+        m = del_manuscrito(marca, que_es)
+        r = del_manuscrito(marca, que_es + " (revista)", "manuscrito_JSR_final.md")
+        return (m, None if m == r else
+                "Es la declaración del informe extendido. La del manuscrito de "
+                "la revista dice: «%s»" % r)
+
     for tit, txt, *aviso in [
         ("Financiación",
-         del_manuscrito("**Financiación.**", "la declaración de financiación")),
+         *con_revista("**Financiación.**", "la declaración de financiación")),
         ("Conflictos de interés",
-         del_manuscrito("**Conflictos de interés.**",
-                        "la declaración de conflictos de interés")),
+         *con_revista("**Conflictos de interés.**",
+                      "la declaración de conflictos de interés")),
         ("Formulario ICMJE de conflictos de interés",
          "Cada autor debe adjuntar el formulario ICMJE Disclosure of Interest "
          "firmado."),
@@ -2065,8 +2155,8 @@ def v7_declaraciones(S):
         # proyecto», sin deposito publico ni DOI). Se copia literal del
         # maestro, como el CRediT y la declaracion de IA.
         ("Disponibilidad de datos y código",
-         del_manuscrito("**Disponibilidad de datos y código.**",
-                        "la disponibilidad de datos y código")),
+         *con_revista("**Disponibilidad de datos y código.**",
+                      "la disponibilidad de datos y código")),
         # Esta declaracion NO se redacta aqui: se copia literal del manuscrito.
         # La version que habia decia «asistencia en la programacion del canal de
         # cribado» y «los autores revisaron y verificaron todo el contenido».
@@ -2077,8 +2167,8 @@ def v7_declaraciones(S):
         # mismo envio es peor que no adjuntarla.
         ("Uso de inteligencia artificial", ia, aviso_ia),
         ("Ética y consentimiento",
-         del_manuscrito("**Aprobación ética y consentimiento.**",
-                        "la declaración de ética y consentimiento")),
+         *con_revista("**Aprobación ética y consentimiento.**",
+                      "la declaración de ética y consentimiento")),
     ]:
         d.add_heading(tit, level=2)
         if aviso and aviso[0]:

@@ -457,6 +457,45 @@ def nombrados_sin_viajar(copiados):
     return salida
 
 
+def leeme_sin_viajar(copiados):
+    """Lo que la hoja «Léeme» de cada .xlsx de `suplementos/` nombra y no viaja,
+    como {fichero: [raíces]}. La verificación de exactitud (2026-10-20) vio que
+    la Léeme de S18 remite a S18b, que no va en el sobre, y el LEEME solo
+    avisaba de lo que nombran el índice y la guía."""
+    ausentes = [p for p in SUPLEMENTOS.iterdir() if p.name not in copiados]
+    if not ausentes:
+        return {}
+    import openpyxl
+    plano = lambda t: re.sub(r"\s+", "", t).lower()
+    clave = lambda p: p.stem if (p.is_file() and re.match(r"S\d", p.name)) else p.name
+    salida = {}
+    for x in sorted(SUPLEMENTOS.glob("*.xlsx")):
+        if x.name not in copiados:
+            continue
+        wb = openpyxl.load_workbook(str(x), read_only=True)
+        if "Léeme" not in wb.sheetnames:
+            wb.close()
+            continue
+        crudo = " ".join(str(c) for fila in wb["Léeme"].iter_rows(values_only=True)
+                         for c in fila if c is not None)
+        texto = plano(crudo)
+        wb.close()
+        # Las Léeme citan los anexos por su código («están en S18b»), no por el
+        # nombre del fichero: se busca también el código como palabra suelta
+        # («S18» no casa dentro de «S18b»). Su propia raíz no cuenta.
+        def codigo(p):
+            m = re.match(r"(S\d+[a-z]?)_", p.name)
+            return m.group(1) if m else None
+        vistos = sorted({clave(p) for p in ausentes
+                         if not x.stem.startswith(clave(p)) and (
+                             plano(clave(p)) in texto or (
+                                 codigo(p) and codigo(p) != codigo(x) and re.search(
+                                     r"(?<![\w])%s(?![\w])" % codigo(p), crudo)))})
+        if vistos:
+            salida[x.name] = vistos
+    return salida
+
+
 def y_lista(cosas):
     """«a, b y c»."""
     cosas = list(cosas)
@@ -476,7 +515,10 @@ def ojo_indice_guia(copiados):
                                   "describen" if len(docs) > 1 else "describe",
                                   "nombran" if len(docs) > 1 else "nombra",
                                   y_lista("`%s`" % n for n in ns))
-        for ns, docs in por_lista.items())
+        for ns, docs in por_lista.items()) + "".join(
+        ". La hoja Léeme de `%s` remite también a %s, que no %s en este sobre"
+        % (x, y_lista("`%s`" % n for n in ns), "van" if len(ns) > 1 else "va")
+        for x, ns in leeme_sin_viajar(copiados).items())
 
 
 def pendiente_de_nt(S):

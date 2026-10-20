@@ -126,6 +126,33 @@ def identificacion_por_corriente(S):
             "fuentes_bases_rotulo": rotulo}
 
 
+def restas_del_flujo(S):
+    """Cada caja de excluidos cuelga de la caja que se cribó en ese paso, así
+    que la figura afirma «caja − excluidos = caja siguiente». Se comprueba con
+    los escalares antes de dibujar, y también que los motivos de cada caja gris
+    sumen su total. Si algo no cuadra, se para."""
+    pasos = (
+        ("registros_identificados", "duplicados_eliminados", "informes_unicos"),
+        ("informes_unicos", "excluidos_etapa1", "cribados_por_titulo"),
+        ("cribados_por_titulo", "excluidos_titulo", "a_resumen"),
+        ("a_resumen", "excluidos_resumen", "informes_a_texto_completo"),
+        ("estudios_antes_de_releer", "estudios_excluidos_tras_texto_completo",
+         "estudios"),
+        ("informes_a_texto_completo", "informes_excluidos_tras_texto_completo",
+         "informes_agrupados"))
+    fallos = ["%s %d - %s %d != %s %d" % (a, S[a], b, S[b], c, S[c])
+              for a, b, c in pasos if S[a] - S[b] != S[c]]
+    for total, mot in (("excluidos_titulo", "exclusiones_titulo"),
+                       ("excluidos_resumen", "exclusiones_resumen"),
+                       ("estudios_excluidos_tras_texto_completo",
+                        "exclusiones_tras_texto_completo")):
+        if sum(S[mot].values()) != S[total]:
+            fallos.append("los motivos de %s suman %d y %s es %d"
+                          % (mot, sum(S[mot].values()), total, S[total]))
+    if fallos:
+        raise SystemExit("Figura 1, restas del flujo: " + "; ".join(fallos))
+
+
 def figura_prisma(S):
     """Flujo PRISMA 2020 con las dos corrientes de identificacion separadas.
 
@@ -134,6 +161,7 @@ def figura_prisma(S):
     desborda por arriba y por abajo sin que nada avise: fue lo que paso en el
     primer intento con las dos cajas de motivos de exclusion.
     """
+    restas_del_flujo(S)
     fig, ax = plt.subplots(figsize=(7.4, ALTO_FIG))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
@@ -159,7 +187,9 @@ def figura_prisma(S):
     # se empuja hacia abajo lo justo cuando haria falta.
     ultimo = [1.0]
 
-    def excluidos(y_centro, texto, tam=7.5):
+    def excluidos(y_centro, texto, tam=7.5, x_origen=None):
+        """x_origen: de donde sale el codo; por defecto, el borde derecho de la
+        caja del flujo. Con CENTRO sale de la flecha entre dos cajas."""
         h = alto(texto, tam)
         techo = min(y_centro + h / 2, ultimo[0] - 0.010)
         caja(ax, X_DER, techo - h, ANCHO_DER, h, texto, SUAVE, tam)
@@ -169,8 +199,8 @@ def figura_prisma(S):
         # dos extremos son horizontales, porque no hay rectas que cortar.
         y_entrada = techo - h / 2
         medio = (X_IZQ + ANCHO_IZQ + X_DER) / 2
-        ax.plot([X_IZQ + ANCHO_IZQ, medio], [y_centro, y_centro],
-                color=BORDE, linewidth=0.8, zorder=1)
+        ax.plot([X_IZQ + ANCHO_IZQ if x_origen is None else x_origen, medio],
+                [y_centro, y_centro], color=BORDE, linewidth=0.8, zorder=1)
         if abs(y_entrada - y_centro) > 0.003:
             ax.plot([medio, medio], [y_centro, y_entrada],
                     color=BORDE, linewidth=0.8, zorder=1)
@@ -223,13 +253,22 @@ def figura_prisma(S):
            "angle,angleA=-90,angleB=180,rad=4")
     y = y_cribado_top - h_u
 
+    # CORREGIDO EL 2026-10-20 (verificacion de exactitud). Cada caja de
+    # excluidos colgaba de la caja SIGUIENTE a la que se cribo: la figura
+    # decia que de 460 resumenes se excluyeron 13 434. Ahora cada una sale de
+    # la caja cribada; la de etapa 1, de la flecha que lleva al cribado de
+    # titulos, porque el borde derecho de «Informes unicos» lo ocupa el
+    # conector de la corriente de registros.
+    excluidos(y - HUECO / 2,
+              "Excluidos por reglas explícitas de\netapa 1\nn = %s"
+              % mil(S["excluidos_etapa1"]), x_origen=CENTRO)
     t_t = "Títulos cribados\nn = %s" % mil(S["cribados_por_titulo"])
     h_t = alto(t_t)
     caja(ax, X_IZQ, y - HUECO - h_t, ANCHO_IZQ, h_t, t_t)
     flecha(ax, (CENTRO, y), (CENTRO, y - HUECO))
     excluidos(y - HUECO - h_t / 2,
-              "Excluidos por reglas explícitas de\netapa 1\nn = %s"
-              % mil(S["excluidos_etapa1"]))
+              "Excluidos por título — n = %s\n\n%s"
+              % (mil(S["excluidos_titulo"]), motivos(S["exclusiones_titulo"])))
     y = y - HUECO - h_t
 
     t_r = "Resúmenes evaluados\nn = %d" % S["a_resumen"]
@@ -237,8 +276,8 @@ def figura_prisma(S):
     caja(ax, X_IZQ, y - HUECO - h_r, ANCHO_IZQ, h_r, t_r)
     flecha(ax, (CENTRO, y), (CENTRO, y - HUECO))
     excluidos(y - HUECO - h_r / 2,
-              "Excluidos por título — n = %s\n\n%s"
-              % (mil(S["excluidos_titulo"]), motivos(S["exclusiones_titulo"])))
+              "Excluidos por resumen — n = %d\n\n%s"
+              % (S["excluidos_resumen"], motivos(S["exclusiones_resumen"])))
     y = y - HUECO - h_r
 
     t_f = ("Informes evaluados a texto completo\nn = %d"
@@ -246,9 +285,6 @@ def figura_prisma(S):
     h_f = alto(t_f)
     caja(ax, X_IZQ, y - HUECO - h_f, ANCHO_IZQ, h_f, t_f)
     flecha(ax, (CENTRO, y), (CENTRO, y - HUECO))
-    excluidos(y - HUECO - h_f / 2,
-              "Excluidos por resumen — n = %d\n\n%s"
-              % (S["excluidos_resumen"], motivos(S["exclusiones_resumen"])))
     y = y - HUECO - h_f
 
     # Los informes se agrupan en estudios y AHI se evalua la elegibilidad. Este

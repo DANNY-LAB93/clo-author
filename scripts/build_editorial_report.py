@@ -637,11 +637,18 @@ def informe_editorial(S):
     # S0 remite a «§2.9 y Tabla 3» y viaja tambien en el sobre de la revista,
     # cuyo manuscrito no numera secciones y cuya Tabla 3 es otra (la de
     # completitud). Sin este aviso las remisiones llevaban a otra parte.
+    # 2026-10-20: decia que S1 «da la equivalencia de las secciones», y S1 no
+    # recoge §2.5 ni la Tabla 3 del maestro, que la revista no tiene. De las
+    # remisiones de S0, son las dos unicas sin equivalente (comprobado contra
+    # la lista de S1; §4.2 cae bajo §4).
     p = d.add_paragraph(
         "Las remisiones a secciones (§) y a tablas son las del manuscrito "
         "maestro (el informe extendido). El manuscrito preparado para la "
         "revista no numera las secciones y numera las tablas de otro modo; S1 "
-        "da la equivalencia de las secciones.")
+        "da la equivalencia de las secciones y de las tablas que tienen "
+        "correspondencia. De las que cita este informe, no la tienen §2.5 (la "
+        "auditoría de controles positivos, que está en S6) ni la Tabla 3 del "
+        "informe extendido.")
     p.runs[0].italic = True
     p.runs[0].font.size = Pt(9.5)
     f_pp = primera_pasada()
@@ -724,8 +731,11 @@ def informe_editorial(S):
         "de idioma, que excluyó en la etapa de resumen a Ronit 2024. Las "
         "ecuaciones de búsqueda se diseñaron para recuperar ese conjunto, así "
         "que la auditoría acota lo que pierde la selección, no la sensibilidad "
-        "de la búsqueda. Hoy siguen en el corpus %d de los %d (§2.5 dice cuáles "
-        "salieron y por qué). Que se declare la regla de exclusión mal calibrada "
+        # 2026-10-20: remitia solo a §2.5, que no esta en el manuscrito de la
+        # revista ni en la equivalencia de S1. S6 da cuales salieron y por que.
+        "de la búsqueda. Hoy siguen en el corpus %d de los %d (S6 dice cuáles "
+        "salieron y por qué; en el informe extendido, §2.5). Que se declare la "
+        "regla de exclusión mal calibrada "
         "que la auditoría detectó en una ejecución intermedia la hace más "
         "creíble, no menos."
         % (S["controles_fijados"], S["controles_comprobables_pmid"],
@@ -833,6 +843,10 @@ def informe_editorial(S):
           # perdida contra su propio antes, como en build_synthesis_scalars: la
           # columna del medio es *_antes_de_releer. La fila de procedencia rusa
           # no tiene escalar despues de la enmienda y pasa a la nota.
+          # 2026-10-20: la columna del medio mide solo la enmienda del 11-ago.
+          # Lo que salio al releer NO es todo ajeno al idioma: el mismo
+          # criterio saco en la fase de texto completo los IDI del 1-sep y los
+          # NOREC por idioma no verificable. La nota de abajo los cuenta.
           [("Estudios", S["estudios_antes_de_la_enmienda"],
             S["estudios_antes_de_releer"], S["estudios"]),
            ("Con publicación recuperable", S["extraibles_antes_de_la_enmienda"],
@@ -842,16 +856,26 @@ def informe_editorial(S):
            ("Ensayos aleatorizados", S["ecas_antes_de_la_enmienda"],
             S["ecas_antes_de_releer"], S["ecas"])],
           [5.4, 3.7, 3.7, 3.7])
+    # 2026-10-20. Decia que lo que salio al releer y con la segunda enmienda
+    # «no es efecto del idioma», y era falso: en la fase de texto completo el
+    # criterio saco los IDI y los NOREC por idioma no verificable. Y «los N
+    # informes que excluyo» eran solo los del cribado de resumenes.
     nota(d, "«Después de la enmienda» es el corpus el día en que se adoptó. El "
             "corpus vigente recoge además lo que salió al releer los textos "
             "completos y con la segunda enmienda (solo estudios con el artículo "
-            "completo), que no es efecto del idioma. La procedencia rusa pasó de "
-            "%d estudios antes de la enmienda a %d en el corpus vigente, sobre "
-            "todo por este criterio. De los %d informes que excluyó, %d se "
-            "detectaron solo al comprobar el texto completo: sus metadatos "
-            "declaraban inglés y el cuerpo está en ruso. Se pierde además Ronit "
-            "2024, del conjunto de control positivo."
-            % (S["rusos_antes_de_la_enmienda"], S["procedencia"].get("Rusia", 0),
+            "completo). Casi todo eso no es efecto del idioma: la excepción son "
+            "%d estudios que el mismo criterio excluyó en la fase de texto "
+            "completo (código IDI) y otros %d, sin texto completo, que salieron "
+            "con NOREC porque su idioma no pudo verificarse sobre el artículo. "
+            "La procedencia rusa pasó de %d estudios antes de la enmienda a %d "
+            "en el corpus vigente, sobre todo por este criterio. De los %d "
+            "informes que excluyó en el cribado de resúmenes, %d se detectaron "
+            "solo al comprobar el texto completo: sus metadatos declaraban "
+            "inglés y el cuerpo está en ruso. Se pierde además Ronit 2024, del "
+            "conjunto de control positivo."
+            % (S["excluidos_texto_completo_IDI"],
+               S["idioma_no_verificable_excluidos"],
+               S["rusos_antes_de_la_enmienda"], S["procedencia"].get("Rusia", 0),
                S["enmienda_idioma_informes_excluidos"], n_ruso))
 
     R = estado_rob()
@@ -943,8 +967,11 @@ def informe_editorial(S):
              "de %d estudios con artículo o resumen (%s %%). El sesgo no "
              "desaparece, cambia de sitio: contando las dos fechas, el criterio "
              "se lleva %d de los %d diseños comparativos y %d de los %d ensayos "
+             # 2026-10-20: decia «(§2.9 y Tabla 3)»; la Tabla 3 de la revista
+             # es la de completitud y la del maestro no tiene equivalente alli.
              "aleatorizados, y el manuscrito lo declara como efecto del "
-             "criterio (§2.9 y Tabla 3)."
+             "criterio (§2.9; el informe extendido lo detalla además en su "
+             "Tabla 3, que no tiene equivalente en el manuscrito de la revista)."
              % (f_nopdf, coma(S["texto_completo_pct"]),
                 S["texto_completo_obtenido"],
                 S["estudios_extraibles"], S["texto_completo_obtenido"],

@@ -459,6 +459,112 @@ def s10(e, en):
             "pasada. Da %s%s" % (quienes, lista, cola))
 
 
+# De aquí sale S8 (build_verifiables_package.py lo copia tal cual), y del pozo
+# de resumen el último veredicto de cada informe.
+FT_IDS = (ROOT / "revision_sistematica" / "textos_completos"
+          / "fulltext_identifiers.csv")
+POZO_RESUMEN = (ROOT / "revision_sistematica" / "cribado"
+                / "screening_stage3_pool_decisions.csv")
+
+
+def cuenta_s8(e):
+    """Cuántas filas tiene S8 y por qué, contado sobre los ficheros.
+
+    La lista, la Léeme y la guía decían «cada informe que pasó a texto completo
+    sin DOI editorial, PMID ni NCT», y S8 trae más filas que esos informes: la
+    tabla se resolvió en agosto de 2026 y la enmienda de idioma excluyó después
+    en la etapa de resumen algunos de los que ya habían pasado. Se cuentan las
+    dos clases por el último veredicto de cada fila en el pozo de resumen, y se
+    contrastan con los escalares; si una fila no es de ninguna de las dos, o la
+    cobertura deja de ser completa, el guion se para."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from exclusion_codes import code_for
+    from resolve_fulltext_ids import POOL, real_doi
+    with open(FT_IDS, encoding="utf-8-sig", newline="") as fh:
+        ids = [r["record_id"] for r in csv.DictReader(fh)]
+    if len(set(ids)) != len(ids):
+        raise SystemExit("S8: fulltext_identifiers.csv repite informes")
+    ultimo = {}
+    with open(POZO_RESUMEN, encoding="utf-8-sig", newline="") as fh:
+        for r in csv.DictReader(fh):
+            ultimo[r["record_id"]] = r
+    ft = {k for k, r in ultimo.items() if r["verdict"] == "FULLTEXT"}
+    idi = {k for k, r in ultimo.items()
+           if r["verdict"] == "EXCLUDE" and code_for(r["reason"]) == "IDI"}
+    if len(ft) != e["informes_a_texto_completo"]:
+        raise SystemExit("S8: %d informes con último veredicto FULLTEXT y el "
+                         "escalar informes_a_texto_completo dice %d"
+                         % (len(ft), e["informes_a_texto_completo"]))
+    if len(idi) != e["enmienda_idioma_informes_excluidos"]:
+        raise SystemExit("S8: %d informes excluidos por la enmienda de idioma y "
+                         "el escalar enmienda_idioma_informes_excluidos dice %d"
+                         % (len(idi), e["enmienda_idioma_informes_excluidos"]))
+    en_ft = [k for k in ids if k in ft]
+    en_idi = [k for k in ids if k in idi]
+    otras = [k for k in ids if k not in ft and k not in idi]
+    if otras:
+        raise SystemExit("S8: filas que ni siguen a texto completo ni las excluyó "
+                         "la enmienda de idioma: %s" % ", ".join(otras))
+    # «Cada informe [...] sin DOI editorial, PMID ni NCT» es una afirmación de
+    # cobertura: se comprueba con el mismo criterio que resolve_fulltext_ids.py.
+    csv.field_size_limit(200_000_000)
+    with open(POOL, encoding="utf-8", newline="") as fh:
+        sin_ids = {p["record_id"] for p in csv.DictReader(fh)
+                   if p["record_id"] in ft and not (
+                       real_doi(p) or p["pmid"].strip() or p["nct"].strip())}
+    if sin_ids != set(en_ft):
+        raise SystemExit("S8: los informes a texto completo sin DOI editorial, "
+                         "PMID ni NCT (%d) no son las %d filas de S8 que siguen a "
+                         "texto completo" % (len(sin_ids), len(en_ft)))
+    dias = sorted({ultimo[k]["decided_at"][:10] for k in en_idi})
+    if len(dias) > 1:
+        raise SystemExit("S8: la enmienda de idioma excluyó sus filas en más de "
+                         "un día (%s); la frase da uno" % ", ".join(dias))
+    return {"n_s8": len(ids), "n_ft": len(en_ft), "n_idioma": len(en_idi),
+            "n_fulltext": len(ft), "dia_idioma": dias[0] if dias else None}
+
+
+def s8_inciso(e, en):
+    """« (45 filas: ...)» tras «sin DOI editorial, PMID ni NCT», o nada si S8
+    trae solo informes que siguen a texto completo."""
+    c = cuenta_s8(e)
+    if not c["n_idioma"]:
+        return ""
+    uno = c["n_idioma"] == 1
+    if en:
+        return (" (%d rows: the %d reports, of the %d that went to full text, "
+                "that lacked those identifiers, and %d that had also gone to "
+                "full text and that the language amendment %s later excluded "
+                "at abstract screening)"
+                % (c["n_s8"], c["n_ft"], c["n_fulltext"], c["n_idioma"],
+                   _fechas([c["dia_idioma"]], True)))
+    return (" (%d filas: los %d informes, de los %d que pasaron a texto "
+            "completo, que no tenían esos identificadores, y %d que también "
+            "%s pasado a texto completo y que la enmienda de idioma %s excluyó "
+            "después en la etapa de resumen)"
+            % (c["n_s8"], c["n_ft"], c["n_fulltext"], c["n_idioma"],
+               "había" if uno else "habían",
+               _fechas([c["dia_idioma"]], False)))
+
+
+def s8(e, en):
+    if en:
+        return ("Retrieval route resolved in August 2026 for each report that "
+                "went to full text without an editorial DOI, PMID or NCT%s: the "
+                "registry identifier or protocol code, the DOI located, the "
+                "already identified trial it reports on, or the citation to "
+                "search by. It does not record the download attempts or their "
+                "outcome; the studies left without the full article are in S16 "
+                "(NOPDF)." % s8_inciso(e, True))
+    return ("Vía de recuperación resuelta en agosto de 2026 para cada informe "
+            "que pasó a texto completo sin DOI editorial, PMID ni NCT%s: el "
+            "identificador del registro o el código de protocolo, el DOI "
+            "localizado, el ensayo ya identificado del que es informe o la cita "
+            "por la que buscarlo. No registra los intentos de descarga ni su "
+            "resultado; los estudios que se quedaron sin el artículo completo "
+            "están en S16 (NOPDF)." % s8_inciso(e, False))
+
+
 # (codigo, texto es, texto en). Los huecos {x} son escalares. Un texto puede
 # ser también una función de los escalares cuando la frase cambia de forma
 # según el estado, no solo de cifra (S10, S12, S16).
@@ -537,19 +643,9 @@ ANEXOS = [
     # PMID ni NCT, con el identificador resuelto y la vía para buscarlo. No
     # registra los intentos de descarga ni su resultado; lo que no se consiguió
     # salió con NOPDF y está en S16.
-    ("S8", "Vía de recuperación resuelta en agosto de 2026 para cada informe que "
-           "pasó a texto completo sin DOI editorial, PMID ni NCT: el "
-           "identificador del registro o el código de protocolo, el DOI "
-           "localizado, el ensayo ya identificado del que es informe o la cita "
-           "por la que buscarlo. No registra los intentos de descarga ni su "
-           "resultado; los estudios que se quedaron sin el artículo completo "
-           "están en S16 (NOPDF).",
-     "Retrieval route resolved in August 2026 for each report that went to "
-     "full text without an editorial DOI, PMID or NCT: the registry identifier "
-     "or protocol code, the DOI located, the already identified trial it "
-     "reports on, or the citation to search by. It does not record the "
-     "download attempts or their outcome; the studies left without the full "
-     "article are in S16 (NOPDF)."),
+    # Callaba que S8 trae, además, informes que la enmienda de idioma excluyó
+    # después en la etapa de resumen: ahora s8() dice cuántas filas y por qué.
+    ("S8", lambda e: s8(e, False), lambda e: s8(e, True)),
     ("S9", "Idioma por informe, con la clase de evidencia que aportaba.",
      "Language by report, with the class of evidence it provided."),
     ("S10", lambda e: s10(e, False), lambda e: s10(e, True)),

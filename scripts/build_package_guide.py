@@ -209,6 +209,13 @@ def _figuras_y_tablas():
 
 
 # Qué es cada anexo y qué deja comprobar. El orden es el del paquete.
+# S8 trae mas filas que los informes a texto completo sin identificadores
+# (exactitud, 20-oct): la frase sale de la misma cuenta que la lista.
+sys.path.insert(0, str(ROOT / "scripts"))
+from build_lista_anexos import s8_inciso  # noqa: E402
+_S8 = s8_inciso(_S, False).strip()
+_S8 = (" Tiene " + _S8[1:-1] + ".") if _S8 else ""
+
 CATALOGO = [
     ("Manuscrito", [
         # Decía «El documento que se envía, en su forma final». No es el que se
@@ -350,7 +357,7 @@ CATALOGO = [
          "resuelta en agosto de 2026 para cada informe que pasó a texto completo "
          "sin DOI editorial, PMID ni NCT: el identificador del registro o el "
          "código de protocolo, el DOI localizado, el ensayo ya identificado del "
-         "que es informe o la cita por la que buscarlo.",
+         "que es informe o la cita por la que buscarlo." + _S8,
          # «Por qué vía se buscó» afirmaba una búsqueda que S8 no registra:
          # resolve_fulltext_ids.py deja escrito por dónde había que buscar
          # cada informe, no que se buscara ni con qué resultado.

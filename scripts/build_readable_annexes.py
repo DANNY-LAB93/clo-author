@@ -44,6 +44,12 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from build_lista_anexos import (ES, EXCLUSIONES, REVISTA, _pies,  # noqa: E402
                                 citas_s16, de_las_citadas)
 from build_lista_anexos import numeracion as numeracion_manuscritos  # noqa: E402
+from build_lista_anexos import s8_inciso  # noqa: E402
+# S8 trae mas filas que los informes a texto completo sin identificadores
+# (exactitud, 20-oct): la frase sale de la misma cuenta que la lista.
+_S8 = s8_inciso(json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
+                           .read_text(encoding="utf-8")), False).strip()
+_S8 = (" Tiene " + _S8[1:-1] + ".") if _S8 else ""
 from build_verifiables_package import (ETIQUETA_ASISTIDA, fecha_es,  # noqa: E402
                                        fechas_es, nota_etiqueta_asistida,
                                        primera_pasada)
@@ -101,7 +107,7 @@ QUE_ES = {
         "La vía de recuperación resuelta para cada informe sin DOI editorial "
         "(resúmenes de congreso, fichas de registro y algunos artículos): el "
         "identificador que se resolvió y cómo. No es el registro de los intentos "
-        "de obtener cada texto completo.",
+        "de obtener cada texto completo." + _S8,
         "Sección 3.2."),
     "S9_idioma_por_informe_y_clase_de_evidencia": (
         "El idioma de cada informe y de dónde se determinó, informe a informe.",

@@ -671,6 +671,24 @@ def main():
                                         - S["pares_solapamiento_firmados"])
     S["pares_solapamiento_por_detector"] = (S["pares_solapamiento_examinados"]
                                             - S["pares_solapamiento_por_lectura"])
+    # Decisiones de resumen que el pozo heredo por PMID de la primera pasada
+    # del 4-ago: en S3 llevan la fecha en que se copiaron, no la de la
+    # decision (verificacion de exactitud, 20-oct). Una sola fecha de copia.
+    _her = [r for r in leer(RS / "cribado" / "screening_stage3_pool_decisions.csv")
+            if r["decided_by"].startswith("heredada del brazo por PMID")]
+    _copias = sorted({r["decided_at"][:10] for r in _her})
+    if len(_copias) != 1 or _copias[0] != "2026-08-05":
+        raise SystemExit("resumen_heredadas_primera_pasada: la fecha de copia ya no "
+                         "es una sola, el 2026-08-05 (%s); revisa la frase." % _copias)
+    S["resumen_heredadas_primera_pasada"] = len(_her)
+    # S8: cuantas filas y de que clase (exactitud, 20-oct). La cuenta es la de
+    # build_lista_anexos.cuenta_s8, que se para si algo no cuadra.
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from build_lista_anexos import cuenta_s8
+    _c8 = cuenta_s8(S)
+    S["s8_filas"] = _c8["n_s8"]
+    S["s8_siguen_texto_completo"] = _c8["n_ft"]
+    S["s8_excluidos_idioma"] = _c8["n_idioma"]
     # Los tres grupos donde se concentra, contados desde los datos.
     S["est003_pacientes_compartidos"] = len(pac_de["EST-003"])
     _p003_070 = set()

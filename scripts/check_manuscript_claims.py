@@ -363,6 +363,20 @@ AFIRMACIONES = [
     (ES, "Ese mismo día el modelo añadió, a mitad de lote, dos reglas que concretan los criterios, sin que conste una decisión de los autores"),
     (EN, "On that same day the model added, mid-batch, two rules making the criteria concrete, with no record of a decision by the authors"),
     (JSR, "que el modelo añadió el primer día de cribado sin que conste una decisión de los autores, y salvo la unidad de inclusión por estudio y la elegibilidad de los resúmenes de congreso, que decidió D.V. el 5 de agosto de 2026"),
+    # Verificacion de exactitud (20-oct): quien encontro cada par, y las
+    # decisiones heredadas que en S3 llevan la fecha de su copia.
+    (ES, "marcó con un detector que escribió {pares_solapamiento_por_detector} de los {pares_solapamiento_examinados} pares de estudios que podían compartir pacientes y encontró otros {pares_solapamiento_lectura_modelo} en su lectura del 22 de septiembre de 2026, antes de la relectura de los autores, que encontró los {pares_solapamiento_lectura_autores} restantes"),
+    (JSR, "marcó con un detector que escribió {pares_solapamiento_por_detector} de los {pares_solapamiento_examinados} pares de estudios que podían compartir pacientes y encontró otros {pares_solapamiento_lectura_modelo} en su lectura del 22 de septiembre de 2026, antes de la relectura de los autores, que encontró los {pares_solapamiento_lectura_autores} restantes"),
+    (EN, "it flagged with a detector it wrote {pares_solapamiento_por_detector} of the {pares_solapamiento_examinados} pairs of studies that could share patients and found another {pares_solapamiento_lectura_modelo} in its reading of 22 September 2026, before the authors' re-reading, which found the remaining {pares_solapamiento_lectura_autores}"),
+    (ES, "salvo {resumen_heredadas_primera_pasada} decisiones de resumen que el pozo heredó por PMID de la primera pasada del 4 de agosto"),
+    (ES, "salvo que {resumen_heredadas_primera_pasada} decisiones de resumen heredadas por PMID de la primera pasada del 4 de agosto"),
+    (JSR, "salvo que {resumen_heredadas_primera_pasada} decisiones de resumen heredadas por PMID de la primera pasada del 4 de agosto"),
+    (JSR, "{resumen_heredadas_primera_pasada} decisiones de resumen heredadas de una primera pasada del 4 de agosto"),
+    (EN, "except {resumen_heredadas_primera_pasada} abstract decisions that the pool inherited by PMID"),
+    (EN, "except that {resumen_heredadas_primera_pasada} abstract decisions inherited by PMID"),
+    (JSR, "D.V. decidió excluir, con un código nuevo (NOREC), un estudio cuyo texto completo no pudo obtenerse"),
+    (ES, "({s8_filas} filas: los {s8_siguen_texto_completo} informes, de los {informes_a_texto_completo} que pasaron a texto completo, que no tenían esos identificadores, y {s8_excluidos_idioma} que también"),
+    (EN, "({s8_filas} rows: the {s8_siguen_texto_completo} reports, of the {informes_a_texto_completo} that went to full text, that lacked those identifiers, and {s8_excluidos_idioma} that had also gone to full text"),
     # Quien firmo cada exclusion y cada veredicto de solapamiento (15-oct).
     (ES, "de las {estudios_excluidos_tras_texto_completo} exclusiones a texto completo, {exclusiones_firmadas_los_dos} las firmaron los dos autores, {exclusiones_firmadas_solo_dv} las firmó D.V. solo y {exclusiones_orden_dv_sin_firma_nt} se registraron por orden de D.V."),
     (EN, "of the {estudios_excluidos_tras_texto_completo} full-text exclusions, both authors signed {exclusiones_firmadas_los_dos}, D.V. alone signed {exclusiones_firmadas_solo_dv}, and {exclusiones_orden_dv_sin_firma_nt} were recorded on D.V.'s instruction"),

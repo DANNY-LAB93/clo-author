@@ -176,9 +176,9 @@ manuscrito se teclea a mano: se cita por su nombre desde esta tabla.**
 | `decisiones_titulo` | 13917 |
 | `decisiones_resumen` | 460 |
 | `palabras_resumen_es` | 295 |
-| `palabras_cuerpo_es` | 10499 |
+| `palabras_cuerpo_es` | 10556 |
 | `palabras_resumen_en` | 308 |
-| `palabras_cuerpo_en` | 9885 |
+| `palabras_cuerpo_en` | 9945 |
 | `extraccion_estudios_r1` | 124 |
 | `extraccion_estudios_r2` | 122 |
 | `extraccion_estudios_ambos` | 122 |
