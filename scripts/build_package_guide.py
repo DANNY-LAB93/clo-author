@@ -307,7 +307,7 @@ CATALOGO = [
         # «el texto completo desmintió» a todos. Los NOPDF salieron por no tener
         # el artículo, no porque el texto los desmintiera, y ni ellos ni los
         # NOREC tienen frase que citar.
-        ("S16_excluidos_tras_leer_el_texto_completo.xlsx + .csv",
+        ("S16_excluidos_en_la_fase_de_texto_completo.xlsx + .csv",
          "Los %d estudios que el cribado admitió y que salieron después, con su "
          "código de motivo y quién firmó la exclusión. %d llevan la cita en que "
          "se apoya; los %d sin el artículo completo (NOPDF) y los %d sin texto "

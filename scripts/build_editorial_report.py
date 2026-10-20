@@ -20,7 +20,7 @@ los dos sentidos: que lo citado existe y que no queda fichero sin citar.
 
 SALIDA
     verificables revisión sistemática/00_INDICE.docx
-    verificables revisión sistemática/S0_informe_editorial.docx
+    verificables revisión sistemática/S0_autoevaluacion_del_modelo.docx
     verificables revisión sistemática/manuscrito_*.docx
 """
 import csv
@@ -1001,7 +1001,7 @@ def informe_editorial(S):
     nota(d, "Que un cuerpo de evidencia no admita la síntesis que se le viene "
             "aplicando es un resultado por derecho propio, y el manuscrito lo "
             "sostiene con datos y no con opinión.")
-    d.save(OUT / "S0_informe_editorial.docx")
+    d.save(OUT / "S0_autoevaluacion_del_modelo.docx")
 
 
 def md_a_docx(origen, destino, titulo):
@@ -1100,7 +1100,7 @@ def indice(S):
           # Despues decia «Evaluacion editorial previa» y «PRISMA item 27»: lo
           # redacto el modelo en el papel de un editor, y no es un informe de
           # una revista ni responde a ese item (disponibilidad de datos).
-          [("S0_informe_editorial.docx",
+          [("S0_autoevaluacion_del_modelo.docx",
             "Autoevaluación redactada por el modelo de lenguaje (Claude Opus 5) "
             "a petición de los autores; no es un informe de un editor ni una "
             "revisión externa. Qué bloquea la publicación y qué solo la mejora",
@@ -1213,7 +1213,7 @@ def indice(S):
             "por los dos, adjudicada por uno, corregida contra el texto, una "
             "sola lectura o abierta", "PRISMA 2020, ítem 9"),
            # El indice se quedaba en S15 y el paquete trae hasta S24.
-           ("S16_excluidos_tras_leer_el_texto_completo.xlsx + .csv",
+           ("S16_excluidos_en_la_fase_de_texto_completo.xlsx + .csv",
             # Decia «71 no llevan cita del articulo, entre ellos los 63 ...»: sin
             # cita del articulo hay mas, porque parte de las que llevan cita
             # citan la ficha del registro o la indexacion (frase_citas_s16).

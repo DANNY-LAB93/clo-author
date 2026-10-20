@@ -611,6 +611,15 @@ def main():
     S["validacion_primera_pasada_coinciden"] = (S["validacion_muestra"]
                                                - S["validacion_primera_pasada_incluidos"])
 
+    # 8f. QUIEN FIRMO CADA EXCLUSION. 27 filas del 1 y 2-sep decian «D. Valdiviezo
+    # y N. Trelles» sin cuaderno firmado detras: solo consta la orden de D.V.
+    # Se corrigieron el 2026-10-15 y aqui se cuentan, no se teclean.
+    S["exclusiones_firmadas_los_dos"] = sum(1 for r in _ex if " y " in r["decidido_por"])
+    S["exclusiones_orden_dv_sin_firma_nt"] = sum(
+        1 for r in _ex if "no consta firma de N. Trelles" in r["decidido_por"])
+    S["exclusiones_firmadas_solo_dv"] = (len(_ex) - S["exclusiones_firmadas_los_dos"]
+                                        - S["exclusiones_orden_dv_sin_firma_nt"])
+
     # 10 y 13. el solapamiento, medido
     sol = leer(QR / "pendiente2_solapamiento.csv", enc="utf-8-sig")
     S["pares_solapamiento_examinados"] = len(sol)
@@ -651,6 +660,15 @@ def main():
         and "2026-09-30" in r["senal_que_lo_marco"])
     S["pares_solapamiento_lectura_modelo"] = (S["pares_solapamiento_por_lectura"]
                                              - S["pares_solapamiento_lectura_autores"])
+    # Veredictos con firma: los pares del cuaderno firmado del 30-sep. Los que
+    # no estan ahi los descarto la lectura del modelo del 22-sep, sin firma.
+    _firm = leer(ROOT / "revision_sistematica" / "lectura_pendiente"
+                 / "lectura_solapamiento_firmada.csv", enc="utf-8-sig")
+    _pf = {frozenset((r["estudio_1"], r["estudio_2"])) for r in _firm}
+    S["pares_solapamiento_firmados"] = sum(
+        1 for r in sol if frozenset((r["estudio_1"], r["estudio_2"])) in _pf)
+    S["pares_solapamiento_sin_firma"] = (S["pares_solapamiento_examinados"]
+                                        - S["pares_solapamiento_firmados"])
     S["pares_solapamiento_por_detector"] = (S["pares_solapamiento_examinados"]
                                             - S["pares_solapamiento_por_lectura"])
     # Los tres grupos donde se concentra, contados desde los datos.

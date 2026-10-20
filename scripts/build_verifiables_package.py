@@ -1738,7 +1738,7 @@ def v16_exclusiones(S):
     sys.path.insert(0, str(ROOT / "scripts"))
     from exclusion_codes import CODES
     filas = leer(fuente)
-    destino = OUT / "S16_excluidos_tras_leer_el_texto_completo.csv"
+    destino = OUT / "S16_excluidos_en_la_fase_de_texto_completo.csv"
     cab = ["study_id", "codigo", "que_significa_el_codigo", "motivo",
            "cita_del_texto", "titulo", "decidido_por", "fecha"]
     with open(destino, "w", encoding="utf-8-sig", newline="") as fh:

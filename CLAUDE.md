@@ -136,7 +136,7 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 | Riesgo de sesgo | **emitido, completo y firmado**: 9 comparativos por diseño, todos con texto —**3 con grupo de comparación** (EST-008, EST-021, EST-108), 2 de fago frente a no fago y los 2 con contraste para *P. aeruginosa* (EST-008 parcial, EST-021)—, los 9 evaluables (2 RoB 2, 7 ROBINS-I). **68 celdas**. Dos cuadernos en 8 de los 9, **sin independencia acreditada** (7 418 caracteres de notas idénticos el 5-sep; el de consenso, precargado por el canal, coincide con el de D.V.): acuerdo 81,7 % (49/60), **kappa 0,74**, 11 desacuerdos resueltos por consenso, los 11 hacia el cuaderno de D.V. EST-055 (1-oct) y EST-132 (3-oct) salieron con ORG y con ellos sus juicios |
 | Lectura del 2026-09-30 | **firmada e ingerida**, lo abierto **firmado el 1-oct** y la adenda **el 3-oct**: 9 sin ningún paciente con *P. aeruginosa* tratado → **5 excluidos (ORG)**, 4 mantenidos y declarados (EST-152 y EST-170 solo la nombran al citar a EST-049 y EST-106). 35 + 7 correcciones. Bajo el umbral: 8 brazos, 6 estudios enteros, **los 6 mantenidos por firma**. **Solapamiento: 20 pacientes en 18 estudios**, 30 pares. Leyeron los dos autores; las 23 figuras las comprobaron ellos |
 | Idioma | **Solo inglés y español** (D.V., 2026-10-06). Los 65 PDF del corpus, comprobados sobre el cuerpo: 65 en inglés. EST-045, EST-059 y EST-173 salieron con NOREC: sin texto, revistas rusa y griega, idioma no verificable |
-| Manuscrito | 386 anclas, todas al día (2026-10-12). Pasa del límite de 3 500 de CMI. **El de la revista, 30 páginas de cuerpo contra un límite de 25** a 2026-10-14 (27 antes de la declaración de IA completa; lo mide `build_cesion_datos.py`): qué se recorta lo deciden los autores, y la declaración no. La ventana de búsqueda (2016–2026) sale de `ventana_desde/hasta`, no de `anio_min` (el corpus empieza en 2017) |
+| Manuscrito | 400 anclas, todas al día (2026-10-19). Pasa del límite de 3 500 de CMI. **El de la revista, 30 páginas de cuerpo contra un límite de 25** a 2026-10-19 (27 antes de la declaración de IA completa; lo mide `build_cesion_datos.py`): qué se recorta lo deciden los autores, y la declaración no. La ventana de búsqueda (2016–2026) sale de `ventana_desde/hasta`, no de `anio_min` (el corpus empieza en 2017) |
 | Anexos | **S0–S24 (25 documentos)** + guía + índice. Los de datos viajan dos veces: `.xlsx` para leer, `.csv` para rehacer |
 | Sobre JSR | `~/Escritorio/Envio_JSR_Fagoterapia_Pseudomonas/`. Manuscrito, carta, LEEME, 6 ficheros de tablas, 4 de figuras (2 figuras en `.pdf` y `.png`), 45 ficheros de suplementos |
 
@@ -144,7 +144,9 @@ Todas las cifras de abajo salen del canal. Re-derívalas antes de fiarte.
 correo de N. Trelles (un marcador en `manuscrito_JSR_final.md:11`), la aprobación ICMJE
 escrita de N.T. sobre la versión final (su CRediT lleva un marcador ‹‹N. TRELLES: REVISIÓN Y
 EDICIÓN…›› en los tres manuscritos: nada puede decir que N.T. revisó o aprobó el texto
-mientras no conste por escrito), los dos formularios obligatorios de la revista,
+mientras no conste por escrito), su ratificación escrita, si está de acuerdo, de las 27
+exclusiones registradas por orden de D.V. y de 2 descartes de solapamiento del modelo
+(nota 21), los dos formularios obligatorios de la revista,
 y el **protocolo de la fase definitiva**: el 2026-10-07 D.V. eligió depositarlo en OSF y rehacer la revisión bajo él, con lo anterior como piloto (`quality_reports/plans/2026-10-07_protocolo-y-fase-definitiva.md`). PROSPERO ya no es posible: la extracción está hecha.
 
 ---
@@ -297,3 +299,13 @@ y el **protocolo de la fase definitiva**: el 2026-10-07 D.V. eligió depositarlo
     revista. Las tres declaraciones de D.V. del 8-oct (ejecutó las búsquedas, examinó lo
     que superó el cribado, decidieron los dos las reglas de desenlace) se escriben SIEMPRE
     como declaraciones suyas, sin añadidos: el registro no las respalda o las contradice.
+
+21. **N.T. no firmó todo lo que figuraba a su nombre, y nada debe decir que lo hizo.**
+    27 exclusiones del 1 y 2-sep llevaban «D. Valdiviezo y N. Trelles» en
+    `exclusiones_tras_texto_completo.csv` sin cuaderno firmado detrás: las escribió el
+    modelo a mano siguiendo una orden de D.V. Desde el 2026-10-15 dicen «orden de D.V.;
+    no consta firma de N. Trelles» (escalares `exclusiones_*`: 89 / 2 / 27). El mensaje
+    con que se pidió a N.T. firmar las correcciones de modalidad (1-sep) lo redactó el
+    modelo en primera persona de D.V. (`firma_nataly/NOTA_2026-10-15.md`). Toda firma
+    nueva de N.T. entra por un cuaderno `FIRMAR_*` y un guion `ingest_*`, nunca escrita a
+    mano en un CSV. Ver `quality_reports/decisions/2026-10-15_firmas-de-n-trelles-sin-respaldo.md`.
