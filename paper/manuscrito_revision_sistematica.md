@@ -6,7 +6,7 @@
 
 **Autor de correspondencia:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Correo: dvchiqui@gmail.com
 
-**Recuento de palabras:** resumen 295; texto principal 10 490.
+**Recuento de palabras:** resumen 295; texto principal 10 499.
 **Tablas:** 7. **Figuras:** 2. **Material suplementario:** anexos S0–S24 y S18b, y su guía.
 
 ---
@@ -78,7 +78,7 @@ Las ecuaciones de cada plataforma y sus reglas de diseño las redactó el modelo
 
 La deduplicación cruzó DOI, PMID y NCT de forma transitiva mediante *union-find*. Los identificadores se leyeron **solo** de campos identificadores, nunca del texto libre. La razón es concreta: al rastrear los resúmenes en una prueba, cuatro artículos sin relación entre sí quedaron fusionados porque los cuatro citaban el mismo trabajo previo. Los registros sin identificador se compararon por título normalizado y año, sin coincidencia difusa.
 
-La selección se hizo en tres etapas. La **etapa 1** aplicó reglas explícitas y auditables: sin título, tipo documental sin datos primarios, ámbito animal declarado en MeSH, y fago empleado como herramienta de laboratorio. La **etapa 2** cribó títulos y la **etapa 3**, resúmenes. Ambas acabaron usando un **vocabulario cerrado de seis códigos** (ORG, REV, SEC, LAB, VET, OFF), pero **no estaba fijado antes de empezar**: las decisiones del primer día de cribado de títulos, el 4 de agosto de 2026, llevan el motivo en texto libre, y los seis códigos, cuya redacción procede de esos textos, se usaron desde el día siguiente; las exclusiones de ese primer día se asignaron después a un código. Ese mismo día se añadieron, a mitad de lote, dos reglas que concretan los criterios: las endolisinas aisladas quedan fuera por la intervención, y los informes veterinarios, por la población. Un motivo que no encaje en uno de los seis no recibe un código improvisado sobre la marcha: el registro avanza a la etapa siguiente en lugar de excluirse.
+La selección se hizo en tres etapas. La **etapa 1** aplicó reglas explícitas y auditables: sin título, tipo documental sin datos primarios, ámbito animal declarado en MeSH, y fago empleado como herramienta de laboratorio. La **etapa 2** cribó títulos y la **etapa 3**, resúmenes. Ambas acabaron usando un **vocabulario cerrado de seis códigos** (ORG, REV, SEC, LAB, VET, OFF), pero **no estaba fijado antes de empezar**: las decisiones del primer día de cribado de títulos, el 4 de agosto de 2026, llevan el motivo en texto libre, y los seis códigos, cuya redacción procede de esos textos, se usaron desde el día siguiente; las exclusiones de ese primer día se asignaron después a un código. Ese mismo día el modelo añadió, a mitad de lote, dos reglas que concretan los criterios, sin que conste una decisión de los autores: las endolisinas aisladas quedan fuera por la intervención, y los informes veterinarios, por la población. Un motivo que no encaje en uno de los seis no recibe un código improvisado sobre la marcha: el registro avanza a la etapa siguiente en lugar de excluirse.
 
 La etapa 1 es determinista: la ejecuta un script y cada exclusión nombra la regla que disparó. Las decisiones registro a registro de las etapas 2 y 3 las emitió un modelo de lenguaje (Claude Opus 5, Anthropic) como **revisor único, sin duplicación**: 13 917 decisiones de título y 460 de resumen. D.V. fue el único revisor humano. Según declara (8 de octubre de 2026), examinó uno a uno los informes que superaron el cribado, pero ese examen no quedó registrado. La agrupación de esos informes en estudios la propuso un guion escrito por el modelo, y se aporta íntegra (S5). Los registros que el modelo excluyó no los releyó ningún humano, salvo la muestra de la sección 2.5. Cada decisión del cribado vigente quedó registrada con su motivo y su marca de tiempo en un registro solo-anexar que se aporta íntegro (S3); la primera pasada del 4 de agosto sobre el brazo A de PubMed, que el cribado del pozo sustituyó, consta en el repositorio y no en S3.
 
@@ -317,7 +317,7 @@ Las seis tablas se aportan como archivos independientes (`paper/tablas/`), cada 
 
 ## Material suplementario
 
-- **S0.** Evaluación previa del manuscrito que redactó el modelo de lenguaje en el papel de un editor de revista; no es una evaluación editorial externa.
+- **S0.** Autoevaluación del manuscrito que redactó el modelo de lenguaje (Claude Opus 5) desde el punto de vista de un editor de revista; no es un informe de un editor ni una revisión externa.
 - **S1.** Lista de comprobación PRISMA 2020.
 - **S2.** Ecuaciones de búsqueda literales por fuente, con su número de resultados.
 - **S3.** Las decisiones del cribado vigente, en dos ficheros: etapa 2 (título) y etapa 3 (resumen), cada una con su motivo, quién la emitió y su marca de tiempo. La primera pasada del 4 de agosto de 2026 sobre el brazo A de PubMed, que el cribado del pozo sustituyó, consta en el repositorio y no en S3.
@@ -333,15 +333,15 @@ Las seis tablas se aportan como archivos independientes (`paper/tablas/`), cada 
 - **S13.** Reglas de extracción de desenlaces, con su corrección documentada. Las redactó el modelo de lenguaje; según declara D.V., las decidieron los dos autores, y el registro del 12 de agosto de 2026 las dejó como propuesta sin ratificar.
 - **S14.** Extracción adjudicada: un valor por casilla, brazo a brazo, tras la adjudicación de los desacuerdos. Sostiene la sección 3.5 y las tablas 5 y 6.
 - **S15.** Procedencia de cada casilla de S14: acuerdo, adjudicada por los dos, adjudicada por uno, corregida contra el texto, una sola lectura o abierta.
-- **S16.** Los 118 estudios que el cribado admitió y que salieron después, con su código de motivo y quién firmó la exclusión. 47 llevan la cita en que se apoya; los 63 sin el artículo completo (NOPDF) y los 4 sin texto que se pudiera leer (NOREC) no tienen nada que citar, y 4 más van sin cita. De las que llevan cita, 17 citan la ficha del registro y 1, la indexación de SciELO.
+- **S16.** Los 118 estudios que el cribado admitió y que salieron después, con su código de motivo y quién decidió cada exclusión según el registro: 89 las firmaron los dos autores, 2 las firmó D.V. solo y 27 se registraron por orden de D.V. del 1 y el 2 de septiembre de 2026 sin que conste la firma de N.T. 47 llevan la cita en que se apoya; los 63 sin el artículo completo (NOPDF) y los 4 sin texto que se pudiera leer (NOREC) no tienen nada que citar, y 4 más van sin cita. De las que llevan cita, 17 citan la ficha del registro y 1, la indexación de SciELO.
 - **S17.** La Tabla 6 desglosada: los siete requisitos, brazo a brazo sobre los 73 brazos, con el primero que falla y por qué.
 - **S18.** Los 68 juicios de riesgo de sesgo, uno por fila, con lo que sostiene cada uno en el cuaderno firmado: una cita literal en 24, una nota sin cita en 36 y nada en 8, marcados como dato faltante.
 - **S18b.** Las frases de cada artículo que el modelo de lenguaje localizó de forma automática para cada dominio de riesgo de sesgo y puso como comentario en los formularios; acompañan a lo que sostiene cada juicio en S18, no lo sustituyen.
 - **S19.** Qué modelo emitió las decisiones de cribado, cuándo, sobre qué ficheros, qué examinó D.V., según su declaración, y qué no quedó registrado, marcado como dato faltante.
 - **S20.** De qué informe salió cada uno de los 73 brazos, y con qué prueba se estableció el vínculo.
-- **S21.** Los 30 pares de estudios que podían describir a los mismos pacientes, con la señal que los marcó, el veredicto tras leer los dos artículos, los pacientes compartidos y la frase firmada en que se apoya.
+- **S21.** Los 30 pares de estudios que podían describir a los mismos pacientes, con la señal que los marcó, el veredicto tras leer los dos artículos, los pacientes compartidos y la frase en que se apoya. 28 de los 30 veredictos llevan la firma de los dos autores; los otros 2, descartes que hizo la lectura del modelo del 22 de septiembre de 2026, no constan firmados.
 - **S22.** Para cada variable de estratificación, cuántos estudios la declaran en el texto completo, cuántos la mencionan sin poder clasificarla, cuántos callan y de cuántos no hay texto.
-- **S23.** La clase de resistencia de los 70 estudios que tenían texto completo, comprobada contra el antibiograma del artículo: la conclusión firmada, la frase o la tabla en que se apoya, cómo se codificó y qué cambió en la extracción.
+- **S23.** La clase de resistencia de los 70 estudios que tenían texto completo, comprobada contra el antibiograma del artículo: la conclusión firmada, la frase o la tabla en que se apoya, cómo la codificó el modelo de lenguaje a partir de esa conclusión y qué cambió en la extracción.
 - **S24.** Los 14 estudios con diseño comparativo, reextraídos: comparador, asignación, tiempo cero, tiempo de evaluación, cointervenciones, pérdidas, estimando y si hay un contraste para *P. aeruginosa*.
 
 Los acompaña una guía que explica, fichero a fichero, qué contiene y qué pregunta permite contestar.

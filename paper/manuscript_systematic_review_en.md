@@ -6,7 +6,7 @@
 
 **Corresponding author:** Danny Valdiviezo. Universidad Católica de Cuenca, Av. de las Américas y Humboldt, Cuenca, Ecuador. Email: dvchiqui@gmail.com
 
-**Word count:** abstract 308; main text 9 875.
+**Word count:** abstract 308; main text 9 885.
 **Tables:** 7. **Figures:** 2. **Supplementary files:** S0–S24 and S18b, plus a guide.
 
 ---
@@ -80,7 +80,7 @@ The equations for each platform and their design rules were drafted by the langu
 
 Deduplication matched DOI, PMID and NCT transitively using union-find. Identifiers were read **only** from identifier fields, never from free text. The reason is concrete: in a trial run that scanned abstracts, four unrelated articles were merged because all four cited the same earlier paper. Records without an identifier were compared by normalised title and year, with no fuzzy matching.
 
-Selection proceeded in three stages. **Stage 1** applied explicit, auditable rules: no title, publication type without primary data, animal scope declared in MeSH, and phage used as a laboratory tool. **Stage 2** screened titles and **stage 3** screened abstracts. Both ended up using a **closed vocabulary of six exclusion codes** (ORG, REV, SEC, LAB, VET, OFF), but **it was not fixed before screening began**: the decisions of the first day of title screening, 4 August 2026, carry a free-text reason, and the six codes, whose wording comes from those texts, were used from the following day; that first day's exclusions were later assigned a code. On that same day two rules making the criteria concrete were added mid-batch: isolated endolysins are out on the intervention, and veterinary reports on the population. A reason that fits none of the six does not receive an improvised code: the record advances to the next stage instead of being excluded.
+Selection proceeded in three stages. **Stage 1** applied explicit, auditable rules: no title, publication type without primary data, animal scope declared in MeSH, and phage used as a laboratory tool. **Stage 2** screened titles and **stage 3** screened abstracts. Both ended up using a **closed vocabulary of six exclusion codes** (ORG, REV, SEC, LAB, VET, OFF), but **it was not fixed before screening began**: the decisions of the first day of title screening, 4 August 2026, carry a free-text reason, and the six codes, whose wording comes from those texts, were used from the following day; that first day's exclusions were later assigned a code. On that same day the model added, mid-batch, two rules making the criteria concrete, with no record of a decision by the authors: isolated endolysins are out on the intervention, and veterinary reports on the population. A reason that fits none of the six does not receive an improvised code: the record advances to the next stage instead of being excluded.
 
 Stage 1 is deterministic: a script runs it and every exclusion names the rule that fired. The record-by-record decisions of stages 2 and 3 were issued by a large language model (Claude Opus 5, Anthropic) as **sole reviewer, without duplication**: 13 917 title decisions and 460 abstract decisions. D.V. was the only human reviewer. According to D.V.'s statement (8 October 2026), D.V. examined one by one the reports that survived screening, but that examination was not recorded. The grouping of those reports into studies was proposed by a script written by the model and is supplied in full (S5). The records the model excluded were not re-read by any human, except the sample of section 2.5. Every decision of the current screening was logged with its reason and timestamp in an append-only record supplied in full (S3); the first pass of 4 August over PubMed arm A, which the pool screening replaced, is kept in the repository and not in S3.
 
@@ -321,7 +321,7 @@ The six tables are supplied as separate files (`paper/tablas/`), each with its o
 
 ## Supplementary material
 
-- **S0.** Pre-review assessment of the manuscript drafted by the language model in the role of a journal editor; it is not an external editorial assessment.
+- **S0.** Self-assessment of the manuscript drafted by the language model (Claude Opus 5) from the standpoint of a journal editor; it is not an editor's report or an external review.
 - **S1.** PRISMA 2020 checklist.
 - **S2.** Verbatim search strings by source, with their number of results.
 - **S3.** The decisions of the screening in force, in two files: stage 2 (title) and stage 3 (abstract), each with its reason, who issued it and its timestamp. The first pass of 4 August 2026 over arm A of PubMed, which the pool screening replaced, is kept in the repository and not in S3.
@@ -337,15 +337,15 @@ The six tables are supplied as separate files (`paper/tablas/`), each with its o
 - **S13.** Outcome extraction rules, with their documented correction. The language model drafted them; according to D.V., both authors decided them, and the record of 12 August 2026 left them as an unratified proposal.
 - **S14.** Adjudicated extraction: one value per cell, arm by arm, after the disagreements were adjudicated. Underpins section 3.5 and Tables 5 and 6.
 - **S15.** Provenance of every cell in S14: agreement, adjudicated by both reviewers, adjudicated by one, corrected against the text, single reading, or open.
-- **S16.** The 118 studies the screening admitted that were excluded afterwards, with their reason code and who signed the exclusion. 47 carry the quotation that supports it; the 63 without the full article (NOPDF) and the 4 without readable text (NOREC) have nothing to quote, and 4 more carry no quotation. Of those with a quotation, 17 quote the registry record and 1 the SciELO indexing.
+- **S16.** The 118 studies the screening admitted that were excluded afterwards, with their reason code and who decided each exclusion according to the record: both authors signed 89, D.V. alone signed 2, and 27 were recorded on D.V.'s instruction of 1 and 2 September 2026 with no record of N.T.'s signature. 47 carry the quotation that supports it; the 63 without the full article (NOPDF) and the 4 without readable text (NOREC) have nothing to quote, and 4 more carry no quotation. Of those with a quotation, 17 quote the registry record and 1 the SciELO indexing.
 - **S17.** Table 6 broken down: the seven requirements, arm by arm over the 73 arms, with the first one that fails and why.
 - **S18.** The 68 risk-of-bias judgements, one per row, with what supports each in the signed notebook: a verbatim quotation in 24, a note without a quotation in 36 and nothing in 8, flagged as missing data.
 - **S18b.** The sentences from each article that the language model located automatically for each risk-of-bias domain and placed as comments in the forms; they accompany what supports each judgement in S18, they do not replace it.
 - **S19.** Which model issued the screening decisions, when, over which files, what D.V. examined, according to D.V.'s statement, and what was not recorded, flagged as missing data.
 - **S20.** Which report each of the 73 arms came from, and with what evidence the link was established.
-- **S21.** The 30 pairs of studies that could describe the same patients, with the signal that flagged them, the verdict after reading both articles, the patients shared and the signed sentence it rests on.
+- **S21.** The 30 pairs of studies that could describe the same patients, with the signal that flagged them, the verdict after reading both articles, the patients shared and the sentence it rests on. 28 of the 30 verdicts carry the signature of both authors; the other 2, rulings-out made by the model's reading of 22 September 2026, are not recorded as signed.
 - **S22.** For each stratification variable, how many studies state it in the full text, how many mention it without allowing classification, how many are silent, and how many have no text at all.
-- **S23.** The resistance class of the 70 studies that had full text, checked against the article's antibiogram: the signed conclusion, the sentence or table it rests on, how it was coded and what changed in the extraction.
+- **S23.** The resistance class of the 70 studies that had full text, checked against the article's antibiogram: the signed conclusion, the sentence or table it rests on, how the language model coded it from that conclusion and what changed in the extraction.
 - **S24.** The 14 studies with a comparative design, re-extracted: comparator, allocation, time zero, assessment time, co-interventions, losses, estimand and whether there is a contrast for *P. aeruginosa*.
 
 A guide accompanies them explaining, file by file, what each contains and what question it lets the reader answer.

@@ -64,6 +64,20 @@ def fecha_es(iso):
     return "%d de %s de %d" % (d, MESES[m - 1], a)
 
 
+def fechas_es(isos):
+    """[«2026-09-01», «2026-09-02»] -> «1 y el 2 de septiembre de 2026»; si
+    cambian el mes o el año, cada fecha entera."""
+    if not isos:
+        return ""
+    if len({i[:7] for i in isos}) == 1:
+        dias = [str(int(i[8:10])) for i in isos]
+        a, m = int(isos[0][:4]), int(isos[0][5:7])
+        lista = dias[0] if len(dias) == 1 else (
+            ", ".join(dias[:-1]) + " y el " + dias[-1])
+        return "%s de %s de %d" % (lista, MESES[m - 1], a)
+    return ", ".join(fecha_es(i) for i in isos[:-1]) + " y el " + fecha_es(isos[-1])
+
+
 def miles(n):
     """13917 -> «13 917», con espacio duro, como en el manuscrito."""
     return "{:,}".format(int(n)).replace(",", " ")
@@ -432,8 +446,9 @@ def nota(d, texto):
     r.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
 
 
-def estado_riesgo_de_sesgo(S):
-    """Los items 11 y 18 de PRISMA, redactados desde el canal.
+def estado_riesgo_de_sesgo(S, N):
+    """Los items 11 y 18 de PRISMA, redactados desde el canal. N es
+    numeracion_revista().
 
     Devuelve {item: (veredicto, texto)}. Si el fichero de estado no existe
     todavia, se dice eso y no se inventa un veredicto.
@@ -484,10 +499,17 @@ def estado_riesgo_de_sesgo(S):
         "estudio comparativo" if sin_texto == 1 else "estudios comparativos",
         "evalúa" if sin_texto == 1 else "evalúan") if sin_texto else "")
     if R.get("completa"):
+        # 2026-10-19: decia solo «en §3.7», sin el numero de la tabla ni su
+        # equivalente en la revista (alli la de riesgo de sesgo es otra).
+        t = N["riesgo"]
         return {
             "11": ("CUMPLE", alcance + resto + "La limitación consta en §4.4"),
             "18": ("CUMPLE", "Tabla de dominios con los %d juicios, estudio "
-                   "por estudio, en §3.7" % R["celdas_totales"]),
+                   "por estudio: §%s y Tabla %d (en el manuscrito de la "
+                   "revista, la Tabla %d, en %s › %s)"
+                   % (R["celdas_totales"], t["seccion_maestro"],
+                      t["tabla_maestro"], t["tabla_revista"],
+                      t["capitulo_revista"], t["apartado_revista"])),
         }
     return {
         "11": ("PARCIAL", alcance + resto + "La evaluación está EN CURSO: faltan %d de "
@@ -498,6 +520,54 @@ def estado_riesgo_de_sesgo(S):
                "derivado del diseño. §2.7 y §4.4"
                % (R["celdas_pendientes"], R["celdas_totales"])),
     }
+
+
+def numeracion_revista():
+    """Número de tabla y de sección de cada tema en el informe extendido y su
+    equivalente en el manuscrito de la revista, leídos de los dos .md.
+
+    2026-10-19. La equivalencia de S1 se tecleaba y estaba incompleta: no daba
+    §3.4 ni §3.7, y de las tablas solo la 1 y la 2, así que el ítem 19 mandaba
+    al lector de la revista a la Tabla 5, que allí es la de riesgo de sesgo.
+    Los tres temas que ya citan la lista de anexos y la guía salen de
+    build_lista_anexos.numeracion(); los otros dos se leen igual, por su pie y
+    por el título de su apartado (distinto en cada manuscrito para §3.4)."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import build_lista_anexos as BLA
+    N = dict(BLA.numeracion())
+    tm = BLA.ES.read_text(encoding="utf-8")
+    tr = BLA.REVISTA.read_text(encoding="utf-8")
+    pm, pr = BLA._pies(tm), BLA._pies(tr)
+    _, am = BLA._resultados(tm)
+    cap_r, ar = BLA._resultados(tr)
+    # tema: (pie en el maestro, pie en la revista, título en el maestro,
+    # título en la revista)
+    for tema, (pie_m, pie_r, tit_m, tit_r) in {
+            "caracteristicas": (r"^características del cuerpo de evidencia",
+                                r"^características del cuerpo de evidencia",
+                                r"^características del cuerpo de evidencia",
+                                r"^características del cuerpo de evidencia"),
+            "estratificacion": (r"variables .*estratificación",
+                                r"variables .*estratificación",
+                                r"no declara",
+                                r"variables de estratificación"),
+    }.items():
+        N[tema] = {
+            "tabla_maestro": BLA._uno(
+                [n for n, p in pm.items() if re.search(pie_m, p, re.I)],
+                "la tabla de «%s»" % tema, BLA.ES),
+            "tabla_revista": BLA._uno(
+                [n for n, p in pr.items() if re.search(pie_r, p, re.I)],
+                "la tabla de «%s»" % tema, BLA.REVISTA),
+            "seccion_maestro": BLA._uno(
+                [n for n, t in am if n and re.search(tit_m, t, re.I)],
+                "el apartado de resultados de «%s»" % tema, BLA.ES),
+            "apartado_revista": BLA._uno(
+                [t for _, t in ar if re.search(tit_r, t, re.I)],
+                "el apartado de resultados de «%s»" % tema, BLA.REVISTA),
+            "capitulo_revista": cap_r,
+        }
+    return N
 
 
 # ---------------------------------------------------------------- documentos
@@ -514,7 +584,8 @@ def v1_prisma(S):
     como cumplido es la forma mas rapida de perder la confianza del editor: los
     items que esta revision no cumple, si los hay, se declaran como tales.
     """
-    ROB = estado_riesgo_de_sesgo(S)
+    NUM = numeracion_revista()
+    ROB = estado_riesgo_de_sesgo(S, NUM)
     VOC = vocabulario_de_motivos()
     CTRL = auditoria_controles(S)
     PP = primera_pasada()
@@ -547,7 +618,27 @@ def v1_prisma(S):
                 if not (r["cita_del_texto"] or "").strip()
                 or (r["cita_del_texto"] or "").strip().startswith("(")]
     sin_cita_resto = [r for r in sin_cita if r["codigo"] not in sin_articulo]
-    solo_uno = sorted(r["study_id"] for r in EX if " y " not in r["decidido_por"])
+    # 2026-10-19. Decia «las firmaron los dos autores salvo dos», y era falso:
+    # 27 filas del 1 y el 2 de septiembre las escribio a mano el modelo con los
+    # dos nombres y solo consta la orden de D.V. (registro de decision
+    # 2026-10-15_firmas-de-n-trelles-sin-respaldo). Se cuentan aqui las tres
+    # clases sobre el CSV y se contrastan con sus escalares.
+    sin_firma_nt = [r for r in EX if "no consta firma" in r["decidido_por"]]
+    solo_uno = sorted(r["study_id"] for r in EX
+                      if " y " not in r["decidido_por"]
+                      and "no consta firma" not in r["decidido_por"])
+    los_dos = len(EX) - len(sin_firma_nt) - len(solo_uno)
+    if (los_dos, len(solo_uno), len(sin_firma_nt)) != (
+            S["exclusiones_firmadas_los_dos"], S["exclusiones_firmadas_solo_dv"],
+            S["exclusiones_orden_dv_sin_firma_nt"]):
+        raise SystemExit("S1: firmas de las exclusiones %d / %d / %d en el CSV y "
+                         "%d / %d / %d en los escalares; corre "
+                         "build_auditoria_scalars.py."
+                         % (los_dos, len(solo_uno), len(sin_firma_nt),
+                            S["exclusiones_firmadas_los_dos"],
+                            S["exclusiones_firmadas_solo_dv"],
+                            S["exclusiones_orden_dv_sin_firma_nt"]))
+    orden_fechas = sorted({r["fecha"][:10] for r in sin_firma_nt})
     est205 = [r for r in EX if r["study_id"] == "EST-205"]
     if not (est205 and est205[0]["codigo"] == "REV"
             and est205[0]["cita_del_texto"].startswith("SciELO")):
@@ -576,25 +667,49 @@ def v1_prisma(S):
         "Las remisiones §1 a §4.4 corresponden al informe extendido. En el "
         "manuscrito enviado a la revista, cuyas secciones no van numeradas, "
         "equivalen a:")
-    for a, b in (("§1", "INTRODUCCIÓN"),
-                 ("§2.1", "METODOLOGÍA › Protocolo y reporte"),
-                 ("§2.2", "METODOLOGÍA › Criterios de elegibilidad (Tabla 1)"),
-                 ("§2.3", "METODOLOGÍA › Fuentes de información y estrategia de búsqueda"),
-                 ("§2.4", "METODOLOGÍA › Selección de los estudios"),
-                 ("§2.6", "METODOLOGÍA › Extracción de datos"),
-                 ("§2.7", "METODOLOGÍA › Evaluación del riesgo de sesgo"),
-                 ("§2.8", "METODOLOGÍA › Síntesis"),
-                 ("§2.9", "METODOLOGÍA › Enmiendas al protocolo"),
-                 ("§3.1 y §3.1.1", "RESULTADOS › Selección de los estudios (Figura 1)"),
-                 ("§3.3", "RESULTADOS › Características del cuerpo de evidencia (Tabla 2)"),
-                 ("§3.5", "RESULTADOS › Reporte de los desenlaces (Tabla 4)"),
-                 ("§3.6", "RESULTADOS › Viabilidad de la síntesis cuantitativa (Tabla 6)"),
-                 ("§4, §4.3 y §4.4", "DISCUSIÓN Y CONCLUSIONES")):
+    # 2026-10-19. Faltaban §3.4 y §3.7, y los apartados de resultados con
+    # tabla se tecleaban; ahora salen de numeracion_revista(), leidos de los
+    # dos manuscritos, ordenados por su seccion en el informe extendido.
+    resultados = [("§" + t["seccion_maestro"],
+                   "%s › %s (Tabla %d)" % (t["capitulo_revista"],
+                                           t["apartado_revista"],
+                                           t["tabla_revista"]))
+                  for t in sorted(NUM.values(), key=lambda t: [
+                      int(x) for x in t["seccion_maestro"].split(".")])]
+    for a, b in ([("§1", "INTRODUCCIÓN"),
+                  ("§2.1", "METODOLOGÍA › Protocolo y reporte"),
+                  ("§2.2", "METODOLOGÍA › Criterios de elegibilidad (Tabla 1)"),
+                  ("§2.3", "METODOLOGÍA › Fuentes de información y estrategia de búsqueda"),
+                  ("§2.4", "METODOLOGÍA › Selección de los estudios"),
+                  ("§2.6", "METODOLOGÍA › Extracción de datos"),
+                  ("§2.7", "METODOLOGÍA › Evaluación del riesgo de sesgo"),
+                  ("§2.8", "METODOLOGÍA › Síntesis"),
+                  ("§2.9", "METODOLOGÍA › Enmiendas al protocolo"),
+                  ("§3.1 y §3.1.1", "RESULTADOS › Selección de los estudios (Figura 1)")]
+                 + resultados
+                 + [("§4, §4.3 y §4.4", "DISCUSIÓN Y CONCLUSIONES")]):
         d.add_paragraph("%s  →  %s" % (a, b), style="List Bullet")
+    # 2026-10-19. Solo daba la equivalencia de las tablas 1 y 2: el item 19
+    # mandaba a la «Tabla 5», que en la revista es la de riesgo de sesgo.
+    nombres_tabla = {"caracteristicas": "la de características del corpus",
+                     "estratificacion": "la de completitud en las variables "
+                                        "de estratificación",
+                     "desenlaces": "la de desenlaces",
+                     "riesgo": "la de riesgo de sesgo",
+                     "embudo": "la del embudo de agregabilidad"}
+    trozos = ["%s%s la Tabla %d (%s%sla %d)"
+              % (nombres_tabla[k], " es allí" if i == 0 else ",",
+                 t["tabla_revista"],
+                 "en el informe extendido, " if i == 0 else "",
+                 "también " if t["tabla_revista"] == t["tabla_maestro"] else "",
+                 t["tabla_maestro"])
+              for i, (k, t) in enumerate(sorted(
+                  NUM.items(), key=lambda kv: kv[1]["tabla_revista"]))]
     d.add_paragraph(
-        "Las tablas también se renumeran entre los dos documentos: la Tabla 1 "
-        "del manuscrito de la revista es la de criterios de elegibilidad, y la "
-        "de características del corpus es allí la Tabla 2.")
+        "Las tablas también se renumeran entre los dos documentos, y la "
+        "columna «dónde mirar» las cita con el número del informe extendido: "
+        "la Tabla 1 del manuscrito de la revista es la de criterios de "
+        "elegibilidad; " + "; ".join(trozos[:-1]) + ", y " + trozos[-1] + ".")
     ITEMS = [
         ("1", "Título", "Identifica el informe como revisión sistemática", "CUMPLE", "Título"),
         ("2", "Resumen estructurado", "Ver lista PRISMA for Abstracts", "CUMPLE", "Resumen"),
@@ -656,7 +771,10 @@ def v1_prisma(S):
          % PP["inicio_pozo"] +
          "modelo metió en sus guiones, a mitad de lote, dos reglas que concretan "
          "los criterios —endolisinas aisladas fuera (intervención) e informes "
-         "veterinarios fuera (población)—, y la auditoría de controles positivos "
+         # 2026-10-19: se añade «sin que conste una decision de los autores»,
+         # como en la declaracion de uso de IA (registro 2026-10-15).
+         "veterinarios fuera (población)—, sin que conste una decisión de los "
+         "autores, y la auditoría de controles positivos "
          "cazó la exclusión de Ronit 2024 (S6 y S19). El vocabulario de motivos "
          "no se fijó antes de empezar: el %s (primer día de cribado de títulos) "
          % fecha_es(VOC["dias_libre"][0]) +
@@ -717,7 +835,14 @@ def v1_prisma(S):
          "aplicaron pruebas estadísticas por no haber síntesis cuantitativa"),
         ("15", "Certeza de la evidencia", "GRADE u otro", "NO APLICA",
          "§2.7: GRADE califica la certeza de una estimación agrupada y este "
-         "informe no presenta ninguna. §3.5 y la Tabla 6 muestran que, tras "
+         "informe no presenta ninguna. §%s y la Tabla %d (en el manuscrito de "
+         # (en el informe extendido el embudo se presenta en la seccion de los
+         # desenlaces, y en la revista en la de viabilidad de la sintesis)
+         % (NUM["desenlaces"]["seccion_maestro"], NUM["embudo"]["tabla_maestro"]) +
+         "la revista, %sla Tabla %d) muestran que, tras "
+         % ("también " if NUM["embudo"]["tabla_revista"]
+            == NUM["embudo"]["tabla_maestro"] else "",
+            NUM["embudo"]["tabla_revista"]) +
          "aplicar los criterios de elegibilidad de §2.2, NINGÚN brazo del "
          "corpus podría entrar en una proporción agrupada de éxito clínico"),
         ("16a", "Selección de estudios", "Flujo con números", "CUMPLE", "§3.1 y Figura 1"),
@@ -736,9 +861,14 @@ def v1_prisma(S):
          "motivo. Los %d restantes llevan la frase del texto leído (artículo o "
          % con_cita +
          "ficha de registro) que sostiene la exclusión, salvo EST-205 (REV), "
-         "decidido sobre la indexación de SciELO sin leer el texto. Las "
-         "firmaron los dos autores salvo %d, que firmó D.V. solo (%s). El "
-         % (len(solo_uno), " y ".join(solo_uno)) +
+         "decidido sobre la indexación de SciELO sin leer el texto. "
+         # 2026-10-19: decia «Las firmaron los dos autores salvo %d, que firmo
+         # D.V. solo»; ver el recuento de sin_firma_nt arriba.
+         "De las %d exclusiones, %d llevan la firma de los dos autores, %d la "
+         % (len(EX), los_dos, len(solo_uno)) +
+         "de D.V. solo (%s) y %d se registraron por orden de D.V. del %s, "
+         % (" y ".join(solo_uno), len(sin_firma_nt), fechas_es(orden_fechas)) +
+         "sin que conste la firma de N.T. El "
          # 2026-10-13: decia solo «los textos completos»; las fichas de
          # registro tambien las descargo y leyo el modelo. (2026-10-14: «que se
          # apoyan en ellos» pasa a la redaccion de la hoja de hechos, «en los
@@ -750,10 +880,19 @@ def v1_prisma(S):
          "los motivos de las etapas 2 y 3 del cribado vigente tal como se "
          "escribieron"),
         ("17", "Características de los estudios", "De cada uno", "CUMPLE",
-         "Tabla 1, y listado completo en S5"),
+         "Tabla %d (en el manuscrito de la revista, Tabla %d), y listado "
+         "completo en S5" % (NUM["caracteristicas"]["tabla_maestro"],
+                             NUM["caracteristicas"]["tabla_revista"])),
         ("18", "Riesgo de sesgo por estudio", "", ROB["18"][0], ROB["18"][1]),
+        # 2026-10-19: «las Tablas 5 y 6» sin su equivalente; en la revista la
+        # Tabla 5 es la de riesgo de sesgo.
         ("19", "Resultados de los estudios", "", "PARCIAL",
-         "§3.5 y las Tablas 5 y 6 reportan la COMPLETITUD con que cada estudio "
+         "§%s y las Tablas %d y %d (en el manuscrito de la revista, Tablas %d "
+         % (NUM["desenlaces"]["seccion_maestro"],
+            NUM["desenlaces"]["tabla_maestro"], NUM["embudo"]["tabla_maestro"],
+            NUM["desenlaces"]["tabla_revista"]) +
+         "y %d) reportan la COMPLETITUD con que cada estudio "
+         % NUM["embudo"]["tabla_revista"] +
          "declara los cinco desenlaces, no sus estimaciones de efecto. El "
          "dato brazo a brazo se aporta en S14, y la procedencia de cada "
          "casilla en S15"),
@@ -858,12 +997,17 @@ def v2_busquedas(S):
     # ClinicalTrials.gov.
     # «la sección 2.4» es numeración del informe extendido; el manuscrito de la
     # revista, que viaja con este anexo, no numera sus secciones.
-    nota(d, "Según declara D.V. (8 de octubre de 2026), diseñó estas ecuaciones "
-            "con la participación del modelo de lenguaje cuya intervención se "
-            "declara en la selección de los estudios (§2.4 del informe "
-            "extendido) y en la declaración de uso de inteligencia artificial "
-            "del manuscrito, y las ejecutó en cada interfaz con la "
-            "guía del modelo. Los mensajes de los commits del 3 de agosto de "
+    # 2026-10-19. Decia «Según declara D.V., diseñó estas ecuaciones con la
+    # participación del modelo»: las redacto el modelo (commit 923bbe7, «Write
+    # search equations for all seven databases»), y la declaracion de D.V. del
+    # 8-oct solo dice que las ejecuto (registro 2026-10-15).
+    nota(d, "Estas ecuaciones y sus reglas de diseño las redactó el modelo de "
+            "lenguaje (3 de agosto de 2026), cuya intervención detallan la "
+            "declaración de uso de inteligencia artificial del manuscrito y "
+            "la selección de los estudios (§2.4 del informe extendido; en el "
+            "manuscrito de la revista, METODOLOGÍA › Selección de los "
+            "estudios). Según declara D.V. (8 de octubre de 2026), las ejecutó "
+            "en cada interfaz con la guía del modelo. Los mensajes de los commits del 3 de agosto de "
             "2026, que redactó el modelo, narran esa ejecución en primera "
             "persona. Los registros de PubMed y de ClinicalTrials.gov que "
             "entraron al corpus los descargaron por API guiones escritos por el "
@@ -1504,7 +1648,9 @@ def v19_cribado_modelo(S):
              "consta que los autores fijaran los códigos antes de empezar. Ese mismo "
              "%s, en la primera pasada, el modelo metió en sus guiones, a mitad de "
              "lote, dos reglas que concretan los criterios: endolisinas aisladas "
-             "fuera (intervención) e informes veterinarios fuera (población). El "
+             "fuera (intervención) e informes veterinarios fuera (población), "
+             # 2026-10-19: se añade, como en la declaracion de uso de IA.
+             "sin que conste una decisión de los autores. El "
              "vocabulario se publica en scripts/exclusion_codes.py y en la tabla de "
              "motivos de exclusión por etapa del informe extendido (Tabla 4)"
              % (fecha_es(VOC["dias_libre"][0]), miles(VOC["n_libre"]),
@@ -1721,7 +1867,8 @@ def v17_tabla6(S):
 
 
 def v16_exclusiones(S):
-    """S16: los estudios excluidos al leer el texto completo, con su motivo.
+    """S16: los estudios excluidos en la fase de texto completo, con su motivo
+    (no todos se leyeron: las NOPDF y NOREC no tienen texto).
 
     Es lo que pide PRISMA 16b, y es el anexo que permite a un revisor
     discrepar: cada fila lleva el codigo de motivo, la explicacion y, cuando
@@ -1736,7 +1883,8 @@ def v16_exclusiones(S):
     if not fuente.exists():
         return
     sys.path.insert(0, str(ROOT / "scripts"))
-    from exclusion_codes import CODES
+    # Con tildes: ETIQUETAS; CODES es la grafia del registro de decisiones.
+    from exclusion_codes import ETIQUETAS
     filas = leer(fuente)
     destino = OUT / "S16_excluidos_en_la_fase_de_texto_completo.csv"
     cab = ["study_id", "codigo", "que_significa_el_codigo", "motivo",
@@ -1745,7 +1893,7 @@ def v16_exclusiones(S):
         w = csv.DictWriter(fh, fieldnames=cab)
         w.writeheader()
         for r in filas:
-            r["que_significa_el_codigo"] = CODES.get(r["codigo"], "")
+            r["que_significa_el_codigo"] = ETIQUETAS.get(r["codigo"], "")
             w.writerow({c: r.get(c, "") for c in cab})
     if len(filas) != S["estudios_excluidos_tras_texto_completo"]:
         raise SystemExit(
@@ -1753,7 +1901,7 @@ def v16_exclusiones(S):
             % (len(filas), S["estudios_excluidos_tras_texto_completo"]))
     import collections as _c
     c = _c.Counter(r["codigo"] for r in filas)
-    print("  S16 %d estudios excluidos al releer: %s"
+    print("  S16 %d estudios excluidos en la fase de texto completo: %s"
           % (len(filas), ", ".join("%s %d" % kv for kv in c.most_common())))
 
 def v9_idioma(S):
@@ -1867,7 +2015,26 @@ def v7_declaraciones(S):
     # maestro, como el resto: la de ética decia otra cosa con otras palabras.
     no_registro = frase_destacada_del_manuscrito(
         "La revisión no se registró", "la declaración de no registro")
-    for tit, txt in [
+    # 2026-10-19. La declaracion de IA se copia literal y cita «(secciones 2.6
+    # y 2.7)», numeracion del informe extendido; S7 viaja con el manuscrito de
+    # la revista, que no numera secciones, y no lo avisaba. Se mantiene la
+    # copia literal y se avisa justo antes. Si la declaracion pasa a citar
+    # otras secciones, el aviso ya no vale y el guion se para.
+    ia = del_manuscrito("**Uso de inteligencia artificial.**",
+                        "la declaración de uso de IA")
+    citadas = re.findall(r"secci[oó]n(?:es)? \d[\d.]*(?: y \d[\d.]*)?", ia)
+    revista = (ROOT / "paper" / "manuscrito_JSR_final.md").read_text(encoding="utf-8")
+    if citadas and (citadas != ["secciones 2.6 y 2.7"]
+                    or "### Extracción de datos" not in revista
+                    or "### Evaluación del riesgo de sesgo" not in revista):
+        raise SystemExit("S7: la declaración de IA cita %s, o la revista ya no "
+                         "tiene los apartados «Extracción de datos» y «Evaluación "
+                         "del riesgo de sesgo»; revisa el aviso de numeración."
+                         % citadas)
+    aviso_ia = ("Las secciones citadas son las del informe extendido; en el "
+                "manuscrito de la revista, METODOLOGÍA › Extracción de datos y "
+                "Evaluación del riesgo de sesgo.") if citadas else None
+    for tit, txt, *aviso in [
         ("Financiación",
          del_manuscrito("**Financiación.**", "la declaración de financiación")),
         ("Conflictos de interés",
@@ -1908,14 +2075,14 @@ def v7_declaraciones(S):
         # excluyo no los releyo ningun humano. Es justo la declaracion que un
         # comite mira primero, y tener dos versiones distintas de ella en el
         # mismo envio es peor que no adjuntarla.
-        ("Uso de inteligencia artificial",
-         del_manuscrito("**Uso de inteligencia artificial.**",
-                        "la declaración de uso de IA")),
+        ("Uso de inteligencia artificial", ia, aviso_ia),
         ("Ética y consentimiento",
          del_manuscrito("**Aprobación ética y consentimiento.**",
                         "la declaración de ética y consentimiento")),
     ]:
         d.add_heading(tit, level=2)
+        if aviso and aviso[0]:
+            nota(d, aviso[0])
         d.add_paragraph(txt)
     d.save(OUT / "S7_declaraciones_ICMJE.docx")
 

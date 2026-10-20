@@ -47,6 +47,11 @@ except Exception:
     pass
 
 FALTA = "[DATO FALTANTE]"
+# El dia en que el modelo leyo los pares de LEIDO (tabla_solapamiento), antes
+# de la relectura firmada por los dos autores del 2026-09-30.
+LECTURA_DEL_MODELO = "2026-09-22"
+SIN_FIRMA_MODELO = ("sin firma: descarte de la lectura del modelo del %s"
+                    % LECTURA_DEL_MODELO)
 COMPARATIVOS = {"RCT", "non-randomised trial", "retrospective cohort",
                 "prospective cohort"}
 
@@ -379,7 +384,13 @@ def tabla_solapamiento():
             "clave_del_paciente": d.get("clave_del_paciente", "") or FALTA,
             "pacientes_de_esa_clave": d.get("n_pacientes", 1),
             "paciente_o_identificador": d["paciente"],
-            "senal_que_lo_marco": "NO lo marco el detector: lo encontro la lectura",
+            # Decia «lo encontro la lectura», sin autor ni fecha, junto a las
+            # filas fechadas de la relectura de los autores: se leia como
+            # lectura humana. La de LEIDO es la del modelo (commits e44be67 y
+            # 284cc14, 2026-09-22). build_auditoria_scalars cuenta por el
+            # prefijo «NO lo marco» y por «2026-09-30»: el recuento no cambia.
+            "senal_que_lo_marco": "NO lo marco el detector: lo encontro la "
+                                  "lectura del modelo, %s" % LECTURA_DEL_MODELO,
             "evidencia": d["evidencia"],
             "pacientes_potencialmente_duplicados": d["n_duplicados"],
             "brazos_afectados": "%s: %s | %s: %s" % (a, ",".join(brazos.get(a, [])) or "—",
@@ -441,6 +452,32 @@ def tabla_solapamiento():
              leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv")}
     filas = [f for f in filas
              if f["estudio_1"] not in fuera and f["estudio_2"] not in fuera]
+
+    # QUIEN FIRMO CADA VEREDICTO. Añadido el 2026-10-19: S21 no tenia columna
+    # de firma y los manuscritos remitian a S21 para «la firma de los dos
+    # autores». La firma sale del cuaderno firmado de la relectura; un par que
+    # no esta ahi solo puede ser un descarte de la lectura del modelo (LEIDO),
+    # y se dice que no lleva firma. Cualquier otro caso para el guion: no se
+    # le inventa una firma ni una procedencia.
+    firmas = {}
+    if firmada.exists():
+        for r in leer(firmada, enc="utf-8-sig"):
+            firmas[frozenset((r["estudio_1"], r["estudio_2"]))] = (
+                r["firmado_por"], r["fecha"])
+    for f in filas:
+        par = frozenset((f["estudio_1"], f["estudio_2"]))
+        if par in firmas:
+            f["firmado_por"], f["fecha"] = firmas[par]
+            continue
+        del_modelo = ((f["estudio_1"], f["estudio_2"]) in LEIDO
+                      or (f["estudio_2"], f["estudio_1"]) in LEIDO)
+        if not (del_modelo and f["veredicto"].startswith("DESCARTADO")):
+            raise SystemExit("S21: el par %s + %s no está en %s y no es un "
+                             "descarte de la lectura del modelo; no se sabe "
+                             "quién firmó su veredicto (%s)."
+                             % (f["estudio_1"], f["estudio_2"], firmada.name,
+                                f["veredicto"]))
+        f["firmado_por"], f["fecha"] = SIN_FIRMA_MODELO, LECTURA_DEL_MODELO
 
     filas.sort(key=lambda f: (0 if f["veredicto"].startswith("SOLAPAMIENTO") else
                               1 if f["veredicto"].startswith("DESCARTADO") else 2,

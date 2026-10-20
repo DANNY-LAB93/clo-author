@@ -192,6 +192,128 @@ def de_las_citadas(e, en):
              " De las que llevan cita, ") + y.join(partes) + ".").format(**e)
 
 
+_MESES_ES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+             "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+_MESES_EN = ("January", "February", "March", "April", "May", "June", "July",
+             "August", "September", "October", "November", "December")
+
+
+def _fechas(isos, en):
+    """[«2026-09-01», «2026-09-02»] -> «del 1 y el 2 de septiembre de 2026» /
+    «of 1 and 2 September 2026»."""
+    def una(i, con_mes=True):
+        a, m, d = (int(x) for x in i.split("-"))
+        if not con_mes:
+            return "%d" % d
+        return ("%d %s %d" % (d, _MESES_EN[m - 1], a) if en else
+                "%d de %s de %d" % (d, _MESES_ES[m - 1], a))
+    isos = sorted(set(isos))
+    mismo_mes = len({i[:7] for i in isos}) == 1
+    trozos = [una(i, not mismo_mes or k == len(isos) - 1)
+              for k, i in enumerate(isos)]
+    if en:
+        return "of " + (" and ".join(trozos) if len(trozos) < 3 else
+                        ", ".join(trozos[:-1]) + " and " + trozos[-1])
+    trozos = ["el " + t for t in trozos]
+    texto = (" y ".join(trozos) if len(trozos) < 3 else
+             ", ".join(trozos[:-1]) + " y " + trozos[-1])
+    return "d" + texto  # «del 1 y el 2 ...»
+
+
+def firmas_s16(e, en):
+    """Quién decidió las exclusiones de S16, según la celda «decidido_por».
+
+    La lista decía «quién firmó la exclusión», y 27 filas solo registran la
+    orden de D.V. del 1 y el 2 de septiembre de 2026, sin que conste la firma
+    de N.T. (registro de decisión del 2026-10-15). Las cifras van por escalar
+    (exclusiones_*) y las fechas se leen del fichero del que sale S16; si el
+    fichero y los escalares no cuentan lo mismo, se para."""
+    with open(EXCLUSIONES, encoding="utf-8-sig", newline="") as fh:
+        filas = list(csv.DictReader(fh))
+    orden = [r for r in filas if "no consta firma" in r["decidido_por"].lower()]
+    resto = [r for r in filas if r not in orden]
+    dos = sum(1 for r in resto if " y " in r["decidido_por"])
+    solo_dv = sum(1 for r in resto if " y " not in r["decidido_por"]
+                  and "valdiviezo" in r["decidido_por"].lower())
+    cuenta = {"exclusiones_firmadas_los_dos": dos,
+              "exclusiones_firmadas_solo_dv": solo_dv,
+              "exclusiones_orden_dv_sin_firma_nt": len(orden)}
+    if (any(e.get(k) != v for k, v in cuenta.items())
+            or sum(cuenta.values()) != len(filas)):
+        raise SystemExit("S16: las firmas de %s (%r, %d filas) no cuadran con "
+                         "los escalares exclusiones_*. No se escribe."
+                         % (EXCLUSIONES.name, cuenta, len(filas)))
+    f = _fechas([r["fecha"][:10] for r in orden], en) if orden else ""
+    n2, n1, no = (e["exclusiones_firmadas_los_dos"],
+                  e["exclusiones_firmadas_solo_dv"],
+                  e["exclusiones_orden_dv_sin_firma_nt"])
+    if en:
+        partes = ["both authors signed %d" % n2]
+        if n1:
+            partes.append("D.V. alone signed %d" % n1)
+        if no:
+            partes.append("%d %s recorded on D.V.'s instruction %s with no "
+                          "record of N.T.'s signature"
+                          % (no, "were" if no != 1 else "was", f))
+        y = ", and " if len(partes) > 2 else " and "
+    else:
+        partes = ["%d %s los dos autores" % (n2, "las firmaron" if n2 != 1
+                                              else "la firmaron")]
+        if n1:
+            partes.append("%d %s D.V. solo" % (n1, "las firmó" if n1 != 1
+                                                else "la firmó"))
+        if no:
+            partes.append("%d %s por orden de D.V. %s sin que conste la firma "
+                          "de N.T." % (no, "se registraron" if no != 1
+                                       else "se registró", f))
+        y = " y "
+    if len(partes) == 1:
+        return partes[0]
+    return ", ".join(partes[:-1]) + y + partes[-1]
+
+
+def s21(e, en):
+    """S21 y quién firmó sus veredictos. La usa también la guía del paquete.
+
+    Decía «la frase firmada en que se apoya» de los 30 pares, y 2 (EST-108
+    con EST-034 y con EST-044) los descartó la lectura del modelo del 22 de
+    septiembre de 2026, sin firma: misma redacción que el cuerpo de los
+    manuscritos, y sin la segunda frase si un día no queda ninguno."""
+    fir, sin = e["pares_solapamiento_firmados"], e["pares_solapamiento_sin_firma"]
+    if fir + sin != e["pares_solapamiento_examinados"]:
+        raise SystemExit("S21: %d firmados + %d sin firma != %d examinados"
+                         % (fir, sin, e["pares_solapamiento_examinados"]))
+    if en:
+        t = ("The {pares_solapamiento_examinados} pairs of studies that could "
+             "describe the same patients, with the signal that flagged them, "
+             "the verdict after reading both articles, the patients shared and "
+             "the sentence it rests on. ")
+        t += ("{pares_solapamiento_firmados} of the {pares_solapamiento_examinados} "
+              "verdicts carry the signature of both authors; the other "
+              + ("{pares_solapamiento_sin_firma}, rulings-out made by the model's "
+                 "reading of 22 September 2026, are not recorded as signed."
+                 if sin > 1 else
+                 "one, a ruling-out made by the model's reading of 22 September "
+                 "2026, is not recorded as signed.")
+              if sin else "All verdicts carry the signature of both authors.")
+    else:
+        t = ("Los {pares_solapamiento_examinados} pares de estudios que podían "
+             "describir a los mismos pacientes, con la señal que los marcó, el "
+             "veredicto tras leer los dos artículos, los pacientes compartidos "
+             "y la frase en que se apoya. ")
+        t += ("{pares_solapamiento_firmados} de los "
+              "{pares_solapamiento_examinados} veredictos llevan la firma de los "
+              "dos autores; "
+              + ("los otros {pares_solapamiento_sin_firma}, descartes que hizo "
+                 "la lectura del modelo del 22 de septiembre de 2026, no constan "
+                 "firmados." if sin > 1 else
+                 "el otro, un descarte que hizo la lectura del modelo del 22 de "
+                 "septiembre de 2026, no consta firmado.")
+              if sin else "Todos los veredictos llevan la firma de los dos "
+              "autores.")
+    return t.format(**e)
+
+
 def s12(e, en):
     """S12 con dos redacciones, según queden o no desacuerdos sin adjudicar.
 
@@ -220,10 +342,17 @@ def s12(e, en):
 
 def s16(e, en):
     """S16 separando lo que tiene cita de lo que no puede tenerla."""
+    # Decía «quién firmó la exclusión» (en inglés, «who signed»), y 27 filas
+    # solo registran la orden de D.V. sin firma de N.T.: ahora se dice quién
+    # decidió cada una según el registro (firmas_s16).
+    firmas = firmas_s16(e, en)
+    firmas += "" if firmas.endswith(".") else "."
     if en:
         t = ("The {estudios_excluidos_tras_texto_completo} studies the screening "
              "admitted that were excluded afterwards, with their reason code and "
-             "who signed the exclusion. {s16_con_cita} carry the quotation that "
+             "who decided each exclusion according to the record: "
+             + firmas.replace("{", "{{").replace("}", "}}") +
+             " {s16_con_cita} carry the quotation that "
              "supports it; the {excluidos_texto_completo_NOPDF} without the full "
              "article (NOPDF) and the {excluidos_texto_completo_NOREC} without "
              "readable text (NOREC) have nothing to quote")
@@ -237,7 +366,9 @@ def s16(e, en):
     else:
         t = ("Los {estudios_excluidos_tras_texto_completo} estudios que el "
              "cribado admitió y que salieron después, con su código de motivo y "
-             "quién firmó la exclusión. {s16_con_cita} llevan la cita en que se "
+             "quién decidió cada exclusión según el registro: "
+             + firmas.replace("{", "{{").replace("}", "}}") +
+             " {s16_con_cita} llevan la cita en que se "
              "apoya; los {excluidos_texto_completo_NOPDF} sin el artículo "
              "completo (NOPDF) y los {excluidos_texto_completo_NOREC} sin texto "
              "que se pudiera leer (NOREC) no tienen nada que citar")
@@ -337,12 +468,15 @@ ANEXOS = [
     # el docstring de build_editorial_report.py) y la declaración de uso de IA
     # le atribuye la redacción de los anexos: un lector podía tomarlo por la
     # valoración de una persona.
-    ("S0", "Evaluación previa del manuscrito que redactó el modelo de lenguaje "
-           "en el papel de un editor de revista; no es una evaluación editorial "
-           "externa.",
-     "Pre-review assessment of the manuscript drafted by the language model in "
-     "the role of a journal editor; it is not an external editorial "
-     "assessment."),
+    # Después se llamaba «Evaluación previa», y el fichero
+    # «S0_informe_editorial.docx»; desde el 2026-10-15 es
+    # S0_autoevaluacion_del_modelo.docx y la entrada lo dice igual.
+    ("S0", "Autoevaluación del manuscrito que redactó el modelo de lenguaje "
+           "(Claude Opus 5) desde el punto de vista de un editor de revista; no "
+           "es un informe de un editor ni una revisión externa.",
+     "Self-assessment of the manuscript drafted by the language model (Claude "
+     "Opus 5) from the standpoint of a journal editor; it is not an editor's "
+     "report or an external review."),
     ("S1", "Lista de comprobación PRISMA 2020.",
      "PRISMA 2020 checklist."),
     # Prometía «con fecha» por fuente y no la hay: la ejecución de Scopus cuya
@@ -491,28 +625,28 @@ ANEXOS = [
             "qué prueba se estableció el vínculo.",
      "Which report each of the {desenlace_brazos} arms came from, and with what "
      "evidence the link was established."),
-    ("S21", "Los {pares_solapamiento_examinados} pares de estudios que podían "
-            "describir a los mismos pacientes, con la señal que los marcó, el "
-            "veredicto tras leer los dos artículos, los pacientes compartidos y "
-            "la frase firmada en que se apoya.",
-     "The {pares_solapamiento_examinados} pairs of studies that could describe "
-     "the same patients, with the signal that flagged them, the verdict after "
-     "reading both articles, the patients shared and the signed sentence it "
-     "rests on."),
+    # Decía «la frase firmada en que se apoya» de los 30, y 2 (EST-108 con
+    # EST-034 y con EST-044) los descartó la lectura del modelo del 22-sep sin
+    # firma: misma redacción que el cuerpo de los manuscritos.
+    ("S21", lambda e: s21(e, False), lambda e: s21(e, True)),
     ("S22", "Para cada variable de estratificación, cuántos estudios la declaran "
             "en el texto completo, cuántos la mencionan sin poder clasificarla, "
             "cuántos callan y de cuántos no hay texto.",
      "For each stratification variable, how many studies state it in the full "
      "text, how many mention it without allowing classification, how many are "
      "silent, and how many have no text at all."),
+    # «Cómo se codificó» callaba quién: la conclusión la firmaron los autores
+    # en texto libre y el valor categórico lo derivó el modelo
+    # (ingest_lectura_firmada.py, columna clase_verificada_codificada).
     ("S23", "La clase de resistencia de los {lectura_clase_estudios_leidos} estudios que "
             "tenían texto completo, comprobada contra el antibiograma del artículo: la "
-            "conclusión firmada, la frase o la tabla en que se apoya, cómo se "
-            "codificó y qué cambió en la extracción.",
+            "conclusión firmada, la frase o la tabla en que se apoya, cómo la "
+            "codificó el modelo de lenguaje a partir de esa conclusión y qué "
+            "cambió en la extracción.",
      "The resistance class of the {lectura_clase_estudios_leidos} studies that had full "
      "text, checked against the article's antibiogram: the signed conclusion, "
-     "the sentence or table it rests on, how it was coded and what changed in "
-     "the extraction."),
+     "the sentence or table it rests on, how the language model coded it from "
+     "that conclusion and what changed in the extraction."),
     ("S24", "Los {comparativos_reextraidos_leidos} estudios con diseño comparativo, "
             "reextraídos: comparador, asignación, tiempo cero, tiempo de "
             "evaluación, cointervenciones, pérdidas, estimando y si hay un "

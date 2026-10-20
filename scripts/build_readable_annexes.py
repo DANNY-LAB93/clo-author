@@ -28,14 +28,30 @@ solo trae la cruda no la comunica.
 Uso:
     python scripts/build_readable_annexes.py
 """
+import collections
 import csv
 import datetime
+import json
 import pathlib
+import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+# Lo que las Léeme dicen con cifras, fechas o números de tabla y de sección se
+# lee de donde ya se calcula (escalares, manuscritos, generadores), no se
+# teclea.
+from build_lista_anexos import (ES, EXCLUSIONES, REVISTA, _pies,  # noqa: E402
+                                citas_s16, de_las_citadas)
+from build_lista_anexos import numeracion as numeracion_manuscritos  # noqa: E402
+from build_verifiables_package import (ETIQUETA_ASISTIDA, fecha_es,  # noqa: E402
+                                       fechas_es, nota_etiqueta_asistida,
+                                       primera_pasada)
+from extraction_schema import ETIQUETAS as ETIQUETAS_EXTRACCION  # noqa: E402
+import ingest_lectura_firmada as ILF  # noqa: E402
+
 PAQ = ROOT / "verificables revisión sistemática"
+SCALARS = ROOT / "quality_reports" / "synthesis_scalars.json"
 csv.field_size_limit(200_000_000)
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -44,11 +60,23 @@ except Exception:
 
 # Qué es cada anexo, en una frase que un revisor entienda sin abrir el fichero.
 QUE_ES = {
+    # Decian «Toda decision de cribado»: S3 lleva solo el cribado vigente (el
+    # del pozo), no la primera pasada del 4-ago ni la fila que corrigio en ella
+    # la exclusion de Ronit 2024. Tampoco decian quien emitio las decisiones,
+    # ni que 77 filas de la etapa 3 llevan la fecha de su copia y la etiqueta
+    # «pending human verification». Lo que va entre llaves lo cuenta
+    # complementos() sobre el CSV y sobre primera_pasada().
     "S3_decisiones_etapa2_titulo": (
-        "Toda decisión de cribado por TÍTULO, una por fila, con su motivo y su marca de tiempo.",
+        "Cada decisión del cribado vigente por TÍTULO, una por fila, con su motivo y "
+        "su marca de tiempo. Las emitió todas el modelo de lenguaje (Claude Opus 5) "
+        "como revisor único, sin duplicación; «Quién decidió» lo dice fila a fila. "
+        "{primera_pasada}",
         "Sección 2.4. El registro es solo-anexar: una corrección es una fila nueva y ambas permanecen."),
     "S3_decisiones_etapa3_resumen": (
-        "Toda decisión de cribado por RESUMEN, una por fila, con su motivo y su marca de tiempo.",
+        "Cada decisión del cribado vigente por RESUMEN, una por fila, con su motivo y "
+        "su marca de tiempo. Las emitió todas el modelo de lenguaje (Claude Opus 5) "
+        "como revisor único, sin duplicación; «Quién decidió» lo dice fila a fila. "
+        "{heredadas} {primera_pasada}",
         "Sección 2.4. Solo llegan aquí los registros que superaron el cribado por título."),
     # Decia «la fuente de TODA cifra que el artículo publica» y no decia quien
     # la emitio. Las dos cosas eran falsas o faltaban: la emitio el modelo, y
@@ -81,25 +109,43 @@ QUE_ES = {
     "S10_idioma_verificado_sobre_texto_completo": (
         "El idioma comprobado sobre el PDF, no sobre lo que declaraba la base de datos.",
         "Sección 2.9. El nombre de la revista no determina el idioma del artículo."),
+    # No decia quien firmo cada veredicto, y S21 no tenia columna de firma: 2
+    # de los pares los descarto la lectura del modelo y no constan firmados.
+    # Desde el 2026-10-19 audita_pendientes.py escribe «firmado_por» y
+    # «fecha», y la Léeme las cuenta (complementos()).
     "S21_solapamiento_de_pacientes": (
         "Cada par de estudios que podía describir a los mismos pacientes, con el veredicto "
-        "tras leer los dos artículos y los pacientes que comparten, una clave por persona.",
+        "tras leer los dos artículos y los pacientes que comparten, una clave por persona. "
+        "En «Señal que lo marcó», «NO lo marco el detector» quiere decir que el par "
+        "lo encontró una lectura, y la etiqueta dice cuál: la del modelo de lenguaje "
+        "o la relectura de los autores, con su fecha.{s21_firmas}",
         # Decia «limitación séptima»: al añadir la limitación del cribado por
         # el modelo pasó a ser la octava en el maestro, y en el manuscrito de
         # la revista es otra. Se remite por su asunto, sin ordinal.
         "Sección 4.4, en la limitación sobre pacientes descritos en más de un "
         "estudio. Un paciente que sale en tres pares tiene la misma "
         "clave en los tres y se cuenta una vez."),
+    # S23 y S24 no decian quien codifico: los dos autores firmaron la
+    # conclusion en texto libre y el valor categorico lo derivo el modelo
+    # (ingest_lectura_firmada.py). Las columnas que nombran son las de ETIQUETA.
     "S23_clase_de_resistencia_comprobada": (
         "La clase de resistencia de cada estudio con texto completo, comprobada contra el "
-        "antibiograma del artículo, con la conclusión firmada por los dos autores.",
-        "Sección 3.4. La columna «queda abierto» dice lo que la lectura no resolvió y no "
-        "se cambió en la extracción."),
+        "antibiograma del artículo, con la conclusión firmada por los dos autores en la "
+        "relectura del {relectura_fecha}. Lo firmado es el texto libre de «Clase "
+        "verificada (texto firmado)» y «Criterio o antibiograma (texto firmado)». Las "
+        "columnas «Verificación», «Clase verificada», «Relación con la clase "
+        "declarada», «Qué cambia en la extracción» y «Queda abierto» las derivó de ese "
+        "texto el modelo de lenguaje ({ingest}), y su rótulo lo dice: «(lo codificó "
+        "el modelo)».",
+        "Sección 3.4. «Queda abierto» dice lo que la lectura no resolvió y no se "
+        "cambió en la extracción."),
     "S24_comparativos_reextraidos": (
         "Los estudios con diseño comparativo, reextraídos: qué comparan, desde cuándo, "
         "hasta cuándo y si hay un contraste para P. aeruginosa.",
-        "Sección 3.7. «Grupo sin fago» y «contraste para P. aeruginosa» son la "
-        "codificación del texto firmado que va al lado."),
+        "Sección 3.7. «Grupo sin fago» y «Contraste para P. aeruginosa» los derivó el "
+        "modelo de lenguaje ({ingest}) del texto que los dos autores firmaron en la "
+        "relectura del {relectura_fecha} y que va al lado: lo firmado es ese texto, no "
+        "su codificación."),
     # S15 y S18b salian con el texto por defecto, «Anexo del material
     # suplementario.», y en S15 nadie explicaba las etiquetas: el lector tenia
     # que adivinar que «consenso» (la etiqueta de entonces) cubria tambien
@@ -107,7 +153,7 @@ QUE_ES = {
     "S15_procedencia_de_cada_casilla": (
         "De dónde salió cada casilla de la extracción adjudicada (S14): el mismo "
         "cuadro, una fila por brazo y una columna por variable, con la etiqueta de "
-        "procedencia en lugar del valor.",
+        "procedencia en lugar del valor.{fuera_del_corpus}",
         # Decia que «con doble lectura» contaba tambien las «corregidas con dos
         # firmas». No es el calculo: build_outcome_scalars.DOBLE cuenta acuerdo
         # y las tres «adjudicada ...», y ninguna corregida. main() lo comprueba
@@ -124,6 +170,69 @@ QUE_ES = {
         "Sección 2.7. Lo que sostiene cada juicio está en S18. Un tema sin frases "
         "quiere decir que el buscador no encontró la expresión, no que el artículo "
         "no trate el asunto."),
+    # S14, S16, S17, S18, S20 y S22 salian con la plantilla vacía («Anexo del
+    # material suplementario.» y un «Dónde se usa» en blanco). Lo que dicen
+    # sale de la guía y del índice (build_package_guide, build_editorial_report);
+    # los números de sección y de tabla se leen de los manuscritos (numeros()) y
+    # las cifras, de los escalares o del propio CSV (complementos()).
+    "S14_extraccion_adjudicada": (
+        "La extracción definitiva: un valor por casilla, brazo a brazo, tras la "
+        "adjudicación de los desacuerdos entre las dos extracciones, cuya "
+        "independencia no está acreditada (S11). De dónde sale cada valor (acuerdo, "
+        "adjudicada por los dos o por uno, corregida contra el texto, una sola "
+        "lectura o abierta) está en S15, que tiene la misma forma.{fuera_del_corpus}",
+        "Sostiene la sección {sec_desenlaces} (tabla {tab_desenlaces}) y el embudo "
+        "de agregabilidad (sección {sec_embudo}, tabla {tab_embudo})."),
+    "S16_excluidos_en_la_fase_de_texto_completo": (
+        "Los estudios que el cribado admitió y que salieron después, en la fase de "
+        "texto completo: uno por fila, con su código de motivo y lo que significa, "
+        "la cita en que se apoya cuando la hay, quién decidió la exclusión y cuándo. "
+        "El modelo de lenguaje leyó los textos completos y las fichas de registro y "
+        "propuso, con su cita, las exclusiones que se apoyan en los textos que leyó. "
+        "En «Quién decidió», {s16_dos} llevan la firma de los dos autores, "
+        "{s16_solo} la de D.V. solo y {s16_orden} se registraron por orden de D.V., "
+        "sin que conste la firma de N.T. Los NOPDF salieron por no tener el artículo "
+        "completo, no porque se comprobara que incumplen los criterios; ni ellos ni "
+        "los NOREC tienen nada que citar{s16_sin_cita}.{s16_citadas}",
+        "Sección {sec_exclusiones} y Figura 1 (PRISMA 2020, ítem 16b)."),
+    "S17_tabla6_brazo_a_brazo": (
+        "La tabla del embudo de agregabilidad desglosada brazo a brazo: si cada brazo "
+        "cumple cada requisito de una proporción agrupada de éxito clínico («cumple», "
+        "«no cumple» o «no evaluable»), el primero que falla y por qué. La calcula "
+        "el canal (build_tabla6_brazos.py) sobre la extracción adjudicada (S14), con "
+        "las reglas del embudo, y se detiene si sus recuentos no coinciden con los "
+        "publicados. «¿Texto completo obtenido?» no es uno de los requisitos.",
+        "Sección {sec_embudo}, tabla {tab_embudo}."),
+    "S18_cada_juicio_con_su_frase": (
+        "Cada juicio de riesgo de sesgo, uno por fila, con lo que lo sostiene en el "
+        "cuaderno firmado (una cita literal, una nota sin cita o nada, marcado como "
+        "dato faltante), el cuaderno de que sale («Fuente documental»), quién lo "
+        "firmó y cuándo. Los del cuaderno de consenso parten de dos cuadernos, uno a "
+        "nombre de cada autor, sin independencia acreditada; el canal generó el de "
+        "consenso con los juicios coincidentes ya escritos y los discrepantes en "
+        "blanco. Las frases que el modelo de lenguaje localizó de forma automática y "
+        "puso como comentario en los formularios están en S18b: acompañan a lo que "
+        "sostiene cada juicio, no lo sustituyen.",
+        "Secciones {sec_rob_metodos} y {sec_riesgo}, tabla {tab_riesgo}."),
+    "S20_de_que_informe_salio_cada_brazo": (
+        "De qué informe salió cada brazo extraído y con qué prueba se estableció el "
+        "vínculo ({s20_vias}); «Evidencia» guarda la frase que lo demuestra. Lo "
+        "establece el canal (build_brazo_informe.py), que no afirma de qué página "
+        "sale cada casilla: eso es «¿Dónde viste estos datos?», el texto libre de la "
+        "extracción, recortado.",
+        "Sección {sec_extraccion}. Dónde mirar para comprobar cualquier dato de "
+        "cualquier brazo (PRISMA 2020, ítem 10a)."),
+    "S22_completitud_resumen_frente_a_texto": (
+        "Para cada variable de estratificación, cuántos estudios la declaran en el "
+        "texto completo, cuántos la mencionan sin poder clasificarla, cuántos callan "
+        "y de cuántos no hay texto, y en cuántos el resumen no permite asignarla: "
+        "separa el silencio del resumen del silencio del artículo. En «No asignable "
+        "en el resumen» cuenta tanto el resumen sin valor como el que la deja como no "
+        "clasificable. Lo calcula el canal (build_tabla3_completitud.py) sobre la "
+        "pre-extracción desde el resumen (S4) y la extracción adjudicada (S14).",
+        "Sección {sec_no_declara}. Las columnas del texto completo son las de la "
+        "tabla {tab_completitud}; la columna del resumen de esa tabla se calcula "
+        "aparte, sobre S4."),
 }
 
 # Lo que significa cada etiqueta de un anexo cuyas casillas son etiquetas y no
@@ -158,12 +267,17 @@ ETIQUETAS_DE = {
         # Se llamaba «corregido por consenso contra el texto» hasta el
         # 2026-10-13 (build_adjudicated_dataset.CORR_DOS). Ahora dice cuantas
         # firmas lleva, simetrica con la de una firma.
+        # Solo atribuia al modelo las correcciones de modalidad. Las de la
+        # relectura del 2026-09-30 llevan la firma de los dos, pero lo que
+        # firmaron es la conclusion en texto libre: el valor de la casilla lo
+        # derivo el modelo (ingest_lectura_firmada.py). {relectura} lo cuenta
+        # frase_relectura_s15() sobre S15 y correcciones_tras_texto_completo.csv.
         ("corregido contra el texto (dos firmas)",
          "Casilla ya cerrada que una corrección posterior, con su cita literal y "
          "la firma de los dos autores, cambió contra el texto completo "
          "(correcciones_tras_texto_completo.csv). Las correcciones de modalidad las "
-         "propuso el modelo de lenguaje tras leer los textos. No cuenta como "
-         "doble lectura en la tabla 5."),
+         "propuso el modelo de lenguaje tras leer los textos.{relectura} No cuenta "
+         "como doble lectura en la tabla 5."),
         ("corregido contra el texto (una firma)",
          "Lo mismo, con la firma de un solo autor; no cuenta como doble lectura. "
          "Entre ellas están las casillas del tercer paciente de EST-121, que "
@@ -201,13 +315,73 @@ DOBLE_DE_LA_TABLA = {"acuerdo", "adjudicada por los dos",
 NUMERACION = ("Las secciones y tablas que se citan son las del informe extendido "
               "(manuscrito maestro). En el manuscrito preparado para la revista "
               "las secciones no van numeradas")
-NUMERACION_TABLA5 = "; allí la tabla 5 (desenlaces) es la Tabla 4"
+
+
+def _uno(hallados, que, ruta):
+    if len(hallados) != 1:
+        raise SystemExit("NO SE ESCRIBE: %s aparece %d veces en %s, y su número "
+                         "no se puede leer del manuscrito" % (que, len(hallados),
+                                                              ruta.name))
+    return hallados[0]
+
+
+_NUMEROS = {}
+
+
+def numeros():
+    """Números de sección del maestro y de tabla de los dos manuscritos que
+    citan las Léeme, leídos de los .md (una vez). Antes solo se conocía la
+    equivalencia de la tabla 5, tecleada («allí la tabla 5 (desenlaces) es la
+    Tabla 4»); las Léeme nuevas citan además las tablas de riesgo de sesgo y de
+    completitud, que en la revista llevan otro número."""
+    if _NUMEROS:
+        return _NUMEROS
+    N = numeracion_manuscritos()
+    tm = ES.read_text(encoding="utf-8")
+    tr = REVISTA.read_text(encoding="utf-8")
+    patron_comp = r"completitud del? reporte en las variables"
+    comp = (_uno([n for n, p in _pies(tm).items() if re.search(patron_comp, p, re.I)],
+                 "la tabla de completitud de las variables", ES),
+            _uno([n for n, p in _pies(tr).items() if re.search(patron_comp, p, re.I)],
+                 "la tabla de completitud de las variables", REVISTA))
+    apartados = [(m.group(1), m.group(2).strip()) for m in re.finditer(
+        r"(?m)^#{2,4} +(\d+(?:\.\d+)+) +(.+?)\s*$", tm)]
+
+    def sec(patron):
+        return _uno([n for n, t in apartados if re.search(patron, t, re.I)],
+                    "el apartado «%s»" % patron, ES)
+
+    _NUMEROS.update({
+        "sec_desenlaces": N["desenlaces"]["seccion_maestro"],
+        "tab_desenlaces": N["desenlaces"]["tabla_maestro"],
+        "sec_embudo": N["embudo"]["seccion_maestro"],
+        "tab_embudo": N["embudo"]["tabla_maestro"],
+        "sec_riesgo": N["riesgo"]["seccion_maestro"],
+        "tab_riesgo": N["riesgo"]["tabla_maestro"],
+        "tab_completitud": comp[0],
+        "sec_no_declara": sec(r"no declara$"),
+        "sec_exclusiones": sec(r"que salieron después$"),
+        "sec_extraccion": sec(r"^extracción de datos$"),
+        "sec_rob_metodos": sec(r"^riesgo de sesgo y certeza$"),
+        # (nombre, número en el maestro, número en la revista)
+        "_tablas": [("desenlaces", N["desenlaces"]["tabla_maestro"],
+                     N["desenlaces"]["tabla_revista"]),
+                    ("riesgo de sesgo", N["riesgo"]["tabla_maestro"],
+                     N["riesgo"]["tabla_revista"]),
+                    ("embudo de agregabilidad", N["embudo"]["tabla_maestro"],
+                     N["embudo"]["tabla_revista"]),
+                    ("completitud de las variables", comp[0], comp[1])],
+    })
+    return _NUMEROS
 
 
 def numeracion(donde):
-    """La advertencia de numeracion, con la equivalencia de la tabla 5 solo
-    donde la Léeme la cita."""
-    return NUMERACION + (NUMERACION_TABLA5 if "tabla 5" in donde else "") + "."
+    """La advertencia de numeracion, con la equivalencia en la revista de cada
+    tabla que la Léeme cita y que allí lleva otro número."""
+    otras = ["la tabla %d (%s) es la Tabla %d" % (m, nombre, r)
+             for nombre, m, r in numeros()["_tablas"]
+             if m != r and re.search(r"\btabla %d\b" % m, donde, re.I)]
+    return NUMERACION + ("; allí " + ", y ".join(otras) if otras else "") + "."
 
 
 def alcance_s18b(datos, cab):
@@ -267,7 +441,91 @@ ETIQUETA = {
     "motivo_de_la_exclusion": "Por qué se excluyó",
     "campo": "Variable", "resolucion": "Valor acordado",
     "resuelto_por": "Quién lo resolvió", "fecha": "Fecha",
+    # Añadidas el 2026-10-19: S14, S16, S17, S18, S20, S21, S22, S23 y S24
+    # salian con sus columnas internas. Las de la extracción (S4, S14, S15)
+    # toman el rótulo de los formularios que rellenaron los revisores
+    # (extraction_schema.ETIQUETAS), en rotulo().
+    "firmado_por": "Firmado por",
+    "codigo": "Código del motivo", "que_significa_el_codigo": "Qué significa el código",
+    "motivo": "Motivo", "cita_del_texto": "Cita en que se apoya",
+    "decidido_por": "Quién decidió",
+    "diseno_adjudicado": "Diseño adjudicado", "n_exito": "Éxito clínico (n)",
+    "N_brazo": "Pacientes en el brazo (N)",
+    "diseno_comparativo": "Requisito: diseño comparativo",
+    "numerador_valido": "Requisito: numerador válido",
+    "denominador_valido": "Requisito: denominador válido",
+    "definicion_operativa": "Requisito: definición operativa de éxito",
+    "atribuible_a_P_aeruginosa": "Requisito: atribuible a P. aeruginosa",
+    "terapeutica_no_profilactica": "Requisito: terapéutica, no profiláctica",
+    "proporcion_no_tiempo": "Requisito: proporción, no tiempo",
+    "primer_requisito_que_falla": "Primer requisito que falla",
+    "informe": "Informe", "referencia_del_informe": "Referencia del informe",
+    "instrumento": "Instrumento", "item": "Dominio (código)", "dominio": "Dominio",
+    "tipo_de_juicio": "Tipo de juicio", "valor": "Juicio",
+    "fuente_documental": "Fuente documental",
+    "cita_que_lo_respalda": "Lo que lo sostiene (cita o nota)",
+    "tipo_informe": "Tipo de informe",
+    "identificadores": "Identificadores (PMID, DOI, NCT)",
+    "informes_del_estudio": "Informes del estudio",
+    "documento_leido": "Documento leído",
+    "cita_de_extraccion": ETIQUETAS_EXTRACCION["extraction_citation"],
+    "titulo_del_informe": "Título del informe",
+    "variable": "Variable",
+    "declarado_texto_completo": "Declarado en el texto completo",
+    "declarado_no_clasificable": "Declarado pero no clasificable",
+    "no_declarado_texto_completo": "No declarado en el texto completo",
+    "texto_no_recuperado": "Texto completo no recuperado",
+    "total": "Estudios",
+    "no_asignable_en_el_resumen": "No asignable en el resumen",
+    "no_asignable_en_el_resumen_pct": "No asignable en el resumen (%)",
+    "silencio_del_articulo_pct": "No declarado en el texto completo (%)",
+    "estudio_1": "Estudio 1", "estudio_2": "Estudio 2",
+    "clave_del_paciente": "Clave del paciente",
+    "pacientes_de_esa_clave": "Pacientes con esa clave",
+    "paciente_o_identificador": "Paciente o identificador",
+    "senal_que_lo_marco": "Señal que lo marcó",
+    "pacientes_potencialmente_duplicados": "Pacientes posiblemente duplicados",
+    "brazos_afectados": "Brazos afectados",
+    "se_conto_una_o_dos_veces": "¿Se contó una o dos veces?",
+    "veredicto": "Veredicto", "accion_necesaria": "Acción necesaria",
+    "clase_en_la_extraccion_antes": "Clase en la extracción, antes",
+    "procedencia_antes": "Procedencia de la clase, antes",
+    "verificacion": "Verificación (lo codificó el modelo)",
+    "clase_verificada_codificada": "Clase verificada (lo codificó el modelo)",
+    "relacion_con_la_declarada": "Relación con la clase declarada (lo codificó el modelo)",
+    "cambia_en_la_extraccion": "Qué cambia en la extracción (lo codificó el modelo)",
+    "queda_abierto": "Queda abierto (lo codificó el modelo)",
+    "clase_verificada_firmada": "Clase verificada (texto firmado)",
+    "criterio_o_antibiograma_firmado": "Criterio o antibiograma (texto firmado)",
+    "disenos": "Diseños",
+    "grupo_de_comparacion_firmado_2026_09_22": "Grupo de comparación (firmado el 2026-09-22)",
+    "grupo_sin_fago": "Grupo sin fago (lo codificó el modelo)",
+    "contraste_para_p_aeruginosa": "Contraste para P. aeruginosa (lo codificó el modelo)",
+    "brazo_control_identificado": "Brazo control identificado",
+    "tipo_y_unidad_de_asignacion": "Tipo y unidad de asignación",
+    "tiempo_cero": "Tiempo cero",
+    "tiempo_de_evaluacion_del_desenlace": "Tiempo de evaluación del desenlace",
+    "cointervenciones_y_antibiotico_concomitante": "Cointervenciones y antibiótico concomitante",
+    "perdidas_y_datos_faltantes": "Pérdidas y datos faltantes",
+    "estimando_reportado": "Estimando reportado",
+    "hay_contraste_extraible": "¿Hay contraste extraíble?",
 }
+
+# Donde una misma columna interna significa otra cosa en un anexo concreto.
+ETIQUETA_DE = {
+    "S18_cada_juicio_con_su_frase": {"n": "Nº de juicio"},
+    # En S8, «via» es por dónde buscar el texto; en S20, la prueba del vínculo.
+    "S20_de_que_informe_salio_cada_brazo": {"via": "Cómo se estableció el vínculo"},
+    # «campo» es «Variable» en el resto; aquí la variable ya va en «variable».
+    "S22_completitud_resumen_frente_a_texto": {"campo": "Nombre interno de la variable"},
+}
+
+
+def rotulo(clave, col):
+    """El rótulo legible de una columna: el propio del anexo, el general, el
+    del formulario de extracción o, si no hay ninguno, el nombre interno."""
+    return (ETIQUETA_DE.get(clave, {}).get(col) or ETIQUETA.get(col)
+            or ETIQUETAS_EXTRACCION.get(col) or col)
 
 # Códigos internos -> castellano. Solo donde el código no se entiende solo.
 VALOR = {
@@ -297,7 +555,177 @@ VALOR = {
     "no-latino": "no latino",
     "INCLUIDO": "incluido", "EXCLUIDO DESPUES": "excluido después",
     "ADMITIDO": "admitido",
+    # «Primer requisito que falla» de S17 traía el nombre interno del requisito.
+    "diseno_comparativo": "diseño comparativo", "numerador_valido": "numerador válido",
+    "denominador_valido": "denominador válido",
+    "definicion_operativa": "definición operativa de éxito",
+    "atribuible_a_P_aeruginosa": "atribuible a P. aeruginosa",
+    "terapeutica_no_profilactica": "terapéutica, no profiláctica",
+    "proporcion_no_tiempo": "proporción, no tiempo",
 }
+
+
+_PP = {}
+
+
+def _primera_pasada():
+    """primera_pasada() de build_verifiables_package (la que usan S1, S6 y
+    S19), una sola vez."""
+    if not _PP:
+        _PP.update(primera_pasada())
+    return _PP
+
+
+def frase_relectura_s15(cab, datos):
+    """Cuántas casillas «corregido contra el texto (dos firmas)» de S15 son
+    correcciones de la relectura del 2026-09-30, y qué firmaron los autores.
+
+    Las escribe ingest_lectura_firmada.py con su FECHA y su FIRMA_CORR. Se
+    cuentan sobre correcciones_tras_texto_completo.csv y se comprueba en S15 la
+    etiqueta de cada una: si alguna llevara otra, la frase no valdría."""
+    with open(ILF.CORR, encoding="utf-8-sig", newline="") as fh:
+        corr = [r for r in csv.DictReader(fh)
+                if r["fecha"] == ILF.FECHA and r["firmado_por"] == ILF.FIRMA_CORR]
+    if not corr:
+        return ""
+    col = {c: i for i, c in enumerate(cab)}
+    fila_de = {(f[col["study_id"]], f[col["arm_id"]]): f for f in datos}
+    n = 0
+    for r in corr:
+        f = fila_de.get((r["study_id"], r["arm_id"]))
+        if f is None:
+            continue          # un estudio que ya no está en el corpus
+        if f[col[r["campo"]]] != "corregido contra el texto (dos firmas)":
+            raise SystemExit("S15: la corrección de la relectura %s %s %s lleva la "
+                             "etiqueta «%s»; revisa la Léeme."
+                             % (r["study_id"], r["arm_id"], r["campo"],
+                                f[col[r["campo"]]]))
+        n += 1
+    campos = ["«%s»" % c for c in sorted(
+        {rotulo("S15_procedencia_de_cada_casilla", r["campo"]) for r in corr})]
+    campos = (", ".join(campos[:-1]) + " y " + campos[-1]) if len(campos) > 1 else campos[0]
+    return (" %d de estas casillas (%s) son correcciones de la relectura del %s: "
+            "los dos autores firmaron su conclusión en texto libre, y el valor que "
+            "entró en la casilla lo derivó de ese texto el modelo de lenguaje "
+            "(ingest_lectura_firmada.py). Lo firmado es la conclusión, no el valor."
+            % (n, campos, fecha_es(ILF.FECHA.split(";")[0].strip())))
+
+
+def complementos(clave, cab, datos):
+    """Lo que va entre llaves en QUE_ES y ETIQUETAS_DE: números de sección y de
+    tabla, y las cifras y fechas que cada Léeme da, contadas sobre el propio
+    CSV, los escalares o el fichero del que sale el anexo. Nada se teclea, y si
+    lo que la frase afirma deja de ser cierto en los datos, el guion se para."""
+    out = {k: v for k, v in numeros().items() if not k.startswith("_")}
+    col = {c: i for i, c in enumerate(cab)}
+
+    def columna(c):
+        return [f[col[c]] if len(f) > col[c] else "" for f in datos]
+
+    out["ingest"] = "ingest_lectura_firmada.py"
+    if "fecha" in col and clave.startswith(("S23_", "S24_")):
+        out["relectura_fecha"] = fechas_es(sorted(set(columna("fecha"))))
+
+    if clave.startswith("S3_"):
+        PP = _primera_pasada()
+        ajenas = sorted({q for q in columna("decided_by") if "claude-opus-5" not in q})
+        if ajenas:
+            raise SystemExit("%s: la Léeme dice que todas las decisiones las emitió el "
+                             "modelo, y estas no: %s" % (clave, ajenas))
+        n_corr = len(PP["correcciones"])
+        out["primera_pasada"] = (
+            "La primera pasada del %s sobre el brazo A de PubMed, que el cribado del "
+            "pozo sustituyó, consta en el repositorio y no en S3 (S19)%s."
+            % (fecha_es(PP["dia"]),
+               "" if not n_corr else
+               (", y con ella la fila que corrigió una exclusión errónea (S6)"
+                if n_corr == 1 else
+                ", y con ella las %d filas que corrigieron exclusiones erróneas (S6)"
+                % n_corr)))
+        if clave == "S3_decisiones_etapa3_resumen":
+            her = [f for f in datos
+                   if f[col["decided_by"]].startswith("heredada del brazo por PMID")]
+            copias = sorted({f[col["decided_at"]] for f in her})
+            excl = sum(1 for f in her if f[col["verdict"]] == "EXCLUDE")
+            if (len(her) != PP["heredadas"] or excl != PP["heredadas_excl"]
+                    or (her and copias != [PP["heredadas_copia"]])
+                    or any(ETIQUETA_ASISTIDA not in f[col["decided_by"]] for f in her)):
+                raise SystemExit("S3 etapa 3: las filas heredadas (%d, %d exclusiones, "
+                                 "copiadas %s) ya no son las que describe S19 (%d, %d, "
+                                 "%s); regenera el paquete o revisa la Léeme."
+                                 % (len(her), excl, copias, PP["heredadas"],
+                                    PP["heredadas_excl"], PP["heredadas_copia"]))
+            out["heredadas"] = "" if not her else (
+                "Las %d filas que «Quién decidió» marca como «heredada del brazo por "
+                "PMID» llevan la fecha en que se copiaron al pozo (%s, a las %s), no la "
+                "de la decisión: cada una repite, con el mismo veredicto y el mismo "
+                "motivo, una decisión de resumen que el modelo tomó en la primera "
+                "pasada. Llevan la etiqueta «%s». %s S19 explica de dónde salen."
+                % (len(her), fecha_es(copias[0]), copias[0][11:16], ETIQUETA_ASISTIDA,
+                   nota_etiqueta_asistida(len(her), PP["heredadas_excl"],
+                                          PP["heredadas_excl_en_muestra"])))
+
+    if clave == "S16_excluidos_en_la_fase_de_texto_completo":
+        S = json.loads(SCALARS.read_text(encoding="utf-8"))
+        quien = columna("decidido_por")
+        orden = sum(1 for q in quien if "no consta firma de N. Trelles" in q)
+        dos = sum(1 for q in quien if " y " in q)
+        # Las mismas reglas que build_auditoria_scalars (8f); si el S16 que
+        # viaja no da lo mismo que los escalares, está desfasado.
+        cuentas = {"exclusiones_firmadas_los_dos": dos,
+                   "exclusiones_orden_dv_sin_firma_nt": orden,
+                   "exclusiones_firmadas_solo_dv": len(quien) - dos - orden}
+        distintas = {k: (v, S.get(k)) for k, v in cuentas.items() if S.get(k) != v}
+        if distintas:
+            raise SystemExit("S16: quién decidió cada exclusión no cuadra con los "
+                             "escalares (S16, escalar): %s" % distintas)
+        out.update(s16_dos=dos, s16_orden=orden, s16_solo=len(quien) - dos - orden)
+        e = citas_s16(S)
+        out["s16_sin_cita"] = (", y %d más %s sin cita" % (
+            e["s16_sin_cita_otros"], "van" if e["s16_sin_cita_otros"] > 1 else "va")
+            if e["s16_sin_cita_otros"] else "")
+        out["s16_citadas"] = de_las_citadas(e, False)
+
+    if clave == "S20_de_que_informe_salio_cada_brazo":
+        out["s20_vias"] = " o ".join("«%s»" % v for v in sorted(set(columna("via"))))
+
+    if clave == "S21_solapamiento_de_pacientes":
+        if "firmado_por" in col:
+            c = collections.Counter(columna("firmado_por"))
+            out["s21_firmas"] = (" Quién firmó cada veredicto y cuándo está en «Firmado "
+                                 "por» y «Fecha»: %s." % "; ".join(
+                                     "%d, «%s»" % (n, v) for v, n in c.most_common()))
+        else:
+            # El S21 que hay en el paquete es anterior a audita_pendientes.py del
+            # 2026-10-19: la Léeme no nombra columnas que el fichero no trae.
+            print("  AVISO: S21 no trae «firmado_por»; corre audita_pendientes.py y "
+                  "build_verifiables_package.py antes que este guion.")
+            out["s21_firmas"] = ""
+
+    # S14 y S15 son copias enteras de la extracción adjudicada: traen también
+    # los brazos de los estudios excluidos después, y las tablas cuentan solo
+    # los del corpus. Sin decirlo, «132 filas» chocaba con «n = 73 brazos».
+    if clave in ("S14_extraccion_adjudicada", "S15_procedencia_de_cada_casilla"):
+        with open(EXCLUSIONES, encoding="utf-8-sig", newline="") as fh:
+            fuera = {r["study_id"] for r in csv.DictReader(fh)}
+        ids = columna("study_id")
+        n_fuera = sum(1 for i in ids if i in fuera)
+        brazos = json.loads((ROOT / "quality_reports" / "outcome_scalars.json")
+                            .read_text(encoding="utf-8"))["brazos"]
+        if len(ids) - n_fuera != brazos:
+            raise SystemExit("%s: %d brazos del corpus, y outcome_scalars dice %d."
+                             % (clave, len(ids) - n_fuera, brazos))
+        out["fuera_del_corpus"] = "" if not n_fuera else (
+            " De sus %d filas, %d son brazos de estudios que salieron después del "
+            "cribado (S16); la sección y las tablas que se citan abajo cuentan solo "
+            "los %d brazos de los estudios que siguen en el corpus%s."
+            % (len(ids), n_fuera, brazos,
+               "" if clave.startswith("S14_") else
+               ", y los recuentos de etiquetas de esta hoja incluyen todas las filas"))
+
+    if clave == "S15_procedencia_de_cada_casilla":
+        out["relectura"] = frase_relectura_s15(cab, datos)
+    return out
 
 
 def main():
@@ -320,7 +748,15 @@ def main():
         if not filas:
             continue
         cab, datos = filas[0], filas[1:]
-        que, donde = QUE_ES.get(busca, ("Anexo del material suplementario.", ""))
+        # Un anexo sin entrada salía con «Anexo del material suplementario.» y
+        # un «Dónde se usa» en blanco (seis viajaron así hasta el 2026-10-19).
+        # Ahora el guion se para: una Léeme vacía no se publica.
+        if busca not in QUE_ES:
+            raise SystemExit("%s: no tiene entrada en QUE_ES; escribe qué es y "
+                             "dónde se usa antes de publicarlo." % clave)
+        que, donde = QUE_ES[busca]
+        extra = complementos(clave, cab, datos)
+        que, donde = que.format_map(extra), donde.format_map(extra)
         if clave == "S18b_frases_cosechadas_por_tema":
             que += alcance_s18b(datos, cab)
         if clave == "S15_procedencia_de_cada_casilla":
@@ -358,7 +794,7 @@ def main():
             c.alignment = Alignment(wrap_text=True, vertical="top")
             f += 1
         for col in cab:
-            p.cell(row=f, column=1, value=ETIQUETA.get(col, col)).font = Font(bold=True, size=10)
+            p.cell(row=f, column=1, value=rotulo(clave, col)).font = Font(bold=True, size=10)
             p.cell(row=f, column=2, value="columna interna: %s" % col).font = Font(size=10, color="808080")
             f += 1
         if clave in ETIQUETAS_DE:
@@ -384,7 +820,7 @@ def main():
                            % (etiqueta, cuenta.get(etiqueta, 0)))
                 c.font = Font(bold=True, size=10)
                 c.alignment = Alignment(wrap_text=True, vertical="top")
-                c = p.cell(row=f, column=2, value=sentido)
+                c = p.cell(row=f, column=2, value=sentido.format_map(extra))
                 c.font = Font(size=10)
                 c.alignment = Alignment(wrap_text=True, vertical="top")
                 f += 1
@@ -401,7 +837,7 @@ def main():
 
         # ---- datos ---------------------------------------------------------
         h = wb.create_sheet("Datos")
-        h.append([ETIQUETA.get(c, c) for c in cab])
+        h.append([rotulo(clave, c) for c in cab])
         for c in h[1]:
             c.fill, c.font = AZUL, Font(color="FFFFFF", bold=True, size=10)
             c.alignment = Alignment(wrap_text=True, vertical="center")
@@ -412,7 +848,10 @@ def main():
         h.auto_filter.ref = "A1:%s%d" % (get_column_letter(len(cab)), h.max_row)
         for i, col in enumerate(cab, start=1):
             ancho = 46 if col in ("titulo", "reason", "evidencia", "nota",
-                                  "titulo_alternativo", "via", "motivo_de_la_exclusion") else 20
+                                  "titulo_alternativo", "via", "motivo_de_la_exclusion",
+                                  "motivo", "cita_del_texto", "cita_que_lo_respalda",
+                                  "titulo_del_informe", "decidido_por",
+                                  "senal_que_lo_marco") else 20
             h.column_dimensions[get_column_letter(i)].width = ancho
 
         sal = PAQ / (clave + ".xlsx")

@@ -88,6 +88,38 @@ def main():
               "en el orden de CLAUDE.md, pasos 9 a 12.", file=sys.stderr)
         raise SystemExit(1)
 
+    # --- LAS TABLAS Y LOS ESCALARES DE DESENLACE, CONTRA SU GENERADOR ---
+    #
+    # La guarda de arriba no las miraba, y el consejo encontro (15-oct)
+    # outcome_scalars.json, que alimenta la tabla de desenlaces de la revista,
+    # anterior a su generador y a su fuente: build_outcome_scalars.py no
+    # estaba en la reconstruccion. Cada producto se compara con lo que lo
+    # escribe y con lo que lee.
+    PROD = ROOT / "paper" / "tablas"
+    SCR = ROOT / "scripts"
+    QR = ROOT / "quality_reports"
+    oc = QR / "outcome_scalars.json"
+    pares = [(oc, [SCR / "build_outcome_scalars.py", ROOT / "revision_sistematica"
+                   / "extraccion" / "extraccion_adjudicada_procedencia.csv"])]
+    for n in range(1, 7):
+        for p in PROD.glob("tabla_%d_*" % n):
+            if p.suffix in (".md", ".csv"):
+                pares.append((p, [SCR / "build_manuscript_tables.py", oc]))
+    for p in PROD.glob("tabla_7_*"):
+        if p.suffix in (".md", ".csv"):
+            pares.append((p, [SCR / "build_rob_table.py"]))
+    viejas = ["%s (anterior a %s)" % (p.relative_to(ROOT), q.name)
+              for p, origen in pares if p.exists()
+              for q in origen if q.exists() and p.stat().st_mtime < q.stat().st_mtime]
+    if viejas:
+        print("EL ZIP NO SE ESCRIBE. Estos productos son mas viejos que lo que "
+              "los escribe o lo que leen:", file=sys.stderr)
+        for v in viejas:
+            print("  " + v, file=sys.stderr)
+        print("\nRehaz el canal en el orden de CLAUDE.md, paso 0 incluido.",
+              file=sys.stderr)
+        raise SystemExit(1)
+
     # --- y el sobre, contra el manuscrito ---
     ficheros = sorted(p for p in sobre.rglob("*") if p.is_file())
     doc = (sobre / "manuscrito_JSR_final.docx").stat().st_mtime

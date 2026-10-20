@@ -37,7 +37,8 @@ COMPARATIVOS = {"RCT", "non-randomised trial"}
 # de sumar sin que nada avise.
 import sys as _sys, pathlib as _pl
 _sys.path.insert(0, str(_pl.Path(__file__).resolve().parent))
-from exclusion_codes import CODES as _CODES
+# Los rotulos con tildes (ETIQUETAS); CODES es la grafia del registro.
+from exclusion_codes import ETIQUETAS as _CODES
 CODIGOS = dict(_CODES)
 CODIGOS['ORG'] = 'Organismo distinto de *P. aeruginosa*, sin subgrupo separable'
 CODIGOS['IDI'] = 'Informe no redactado en inglés ni en español (enmienda)'
@@ -165,13 +166,15 @@ def main():
                       S["t3_%s_no_clasificable" % campo],
                       S["t3_%s_silencio" % campo]]
                      + ([] if todo_texto else [S["t3_%s_sin_texto" % campo]]))
+    # Decia «Tabla 3.»: el maestro la numera 2 y la 3 es la del criterio
+    # del texto completo (dos «Tabla 3» en «figuras y tablas/»).
     if todo_texto:
         escribe("tabla_2_completitud",
                 ["Variable", "No asignable en el resumen",
                  "Declarado en el texto completo", "Declarado pero no clasificable",
                  "No declarado en el texto completo"],
                 filas,
-                "Tabla 3. Completitud del reporte en las variables de "
+                "Tabla 2. Completitud del reporte en las variables de "
                 "estratificación, en el resumen y en el texto completo "
                 "(n = %d estudios, todos con texto completo)." % n,
                 "La segunda columna mide el RESUMEN indexado, que es lo que "
@@ -190,7 +193,7 @@ def main():
              "Declarado en el texto completo", "Declarado pero no clasificable",
              "No declarado en el texto completo", "Texto completo no recuperado"],
             filas,
-            "Tabla 3. Completitud del reporte en las variables de "
+            "Tabla 2. Completitud del reporte en las variables de "
             "estratificación, en el resumen y en el texto completo "
             "(n = %d estudios recuperables, %d con texto obtenido)."
             % (n, S["t3_con_texto"]),
@@ -264,11 +267,46 @@ def main():
                "más" if psn > pcn else "menos", mil(psn), mil(pcn)))
 
     # ---- Tabla 4: motivos de exclusion -------------------------------------
+    # Los codigos creados despues del cribado (PRO, INT, NOREC, NOORG, NOPDF)
+    # salian con 0, 0 y 0 y sin explicacion, al lado de una Figura 1 que da
+    # «NOPDF 63» (consejo del 2026-10-15). No se usaron en el cribado: se
+    # quitan de esta tabla y la nota dice por que. Se comprueba en los
+    # registros, no se supone: ninguna decision del cribado los usa, todos
+    # aparecen en exclusiones_tras_texto_completo.csv, y alli su primer uso es
+    # posterior a la ultima decision del cribado.
+    fin_cribado = max(r["decided_at"][:10] for f in (
+        "screening_stage2_pool_decisions.csv", "screening_stage3_pool_decisions.csv")
+        for r in leer(RS / "cribado" / f))
+    primer_uso_tc = {}
+    for r in leer(RS / "cribado" / "exclusiones_tras_texto_completo.csv"):
+        primer_uso_tc[r["codigo"]] = min(r["fecha"][:10],
+                                         primer_uso_tc.get(r["codigo"], "9999"))
+    posteriores = [c for c in CODIGOS
+                   if not S["exclusiones_titulo"].get(c, 0)
+                   and not S["exclusiones_resumen"].get(c, 0)]
+    for c in posteriores:
+        if c not in primer_uso_tc or primer_uso_tc[c] <= fin_cribado:
+            raise SystemExit("Tabla 4: la nota dice que %s se creó después del "
+                             "cribado (última decisión: %s) y que solo se usó a "
+                             "texto completo; su primer uso allí es %s."
+                             % (c, fin_cribado, primer_uso_tc.get(c, "ninguno")))
     filas = []
     for cod, desc in CODIGOS.items():
+        if cod in posteriores:
+            continue
         t = S["exclusiones_titulo"].get(cod, 0)
         r = S["exclusiones_resumen"].get(cod, 0)
         filas.append([cod, desc, t, r, t + r])
+    posteriores_txt = "" if not posteriores else (
+        "%s no figuran en esta tabla: se crearon después del cribado, que no "
+        "%s usó, y solo se aplicaron en la fase de texto completo (Figura 1, "
+        "anexo S16). " % (
+            (", ".join(posteriores[:-1]) + " y " + posteriores[-1])
+            if len(posteriores) > 1 else posteriores[0],
+            "los" if len(posteriores) > 1 else "lo"))
+    if len(posteriores) == 1:
+        posteriores_txt = posteriores_txt.replace("no figuran", "no figura").replace(
+            "se crearon", "se creó").replace("se aplicaron", "se aplicó")
     filas.append(["", "**Total**", S["excluidos_titulo"], S["excluidos_resumen"],
                   S["excluidos_titulo"] + S["excluidos_resumen"]])
     # La nota decia «Los seis primeros códigos se fijaron antes de iniciar el
@@ -324,11 +362,17 @@ def main():
             "en los códigos no recibe uno improvisado: avanza a la etapa "
             "siguiente, y las decisiones de la etapa de resumen también las "
             "emitió el modelo. IDI es una ENMIENDA posterior al protocolo, "
-            "incorporada el 11 de agosto de 2026 y aplicada solo en la etapa de "
-            "resumen; su adopción y su impacto se declaran en Métodos y en "
-            "Limitaciones. El registro de decisiones es solo-anexar y conserva "
-            "el texto literal escrito al decidir, del que se deriva el código."
-            % (dia(dia1, con_anio=True), heredadas_txt))
+            "incorporada el 11 de agosto de 2026 y aplicada en el cribado solo "
+            "en la etapa de resumen%s; su adopción y su impacto se declaran en "
+            "Métodos y en Limitaciones. %sEl registro de decisiones es "
+            "solo-anexar y conserva el texto literal escrito al decidir, del que "
+            "se deriva el código."
+            % (dia(dia1, con_anio=True), heredadas_txt,
+               # Decia «aplicada solo en la etapa de resumen»: IDI se uso
+               # despues tambien a texto completo (S16), y se lee del registro.
+               ", y después también en la fase de texto completo (Figura 1, "
+               "anexo S16)" if "IDI" in primer_uso_tc else "",
+               posteriores_txt))
 
     # ---- Tabla 5: que reporta el corpus en cada desenlace -------------------
     # Primera tabla del manuscrito que sale de los cuadernos de extraccion y no

@@ -350,10 +350,26 @@ CARTA_EN_REVISTA = (
     ("que el recribado de la muestra se hizo en Rayyan", (("Rayyan",),)),
     ("que la adjudicación de los desacuerdos se cerró el 14 de septiembre de 2026",
      (("adjudicación", "cerr", "14 de septiembre de 2026"),)),
-    ("que el modelo propuso las dos reglas del primer día de cribado y las "
-     "incorporó a sus guiones", (("dos reglas", "guiones de"),)),
-    ("que el modelo redactó las propuestas de criterios que decidieron los autores",
-     (("propuestas de criterios",),)),
+    # DECIA «que el modelo propuso las dos reglas [...]» y «las propuestas de
+    # criterios que decidieron los autores». Las dos reglas del 4-ago las añadió
+    # el modelo sin decisión registrada, y de las propuestas solo NOORG consta
+    # firmada por los dos (hoja de hechos, correcciones del 15-oct). Se exige
+    # ahora quién decidió cada cosa, como lo dice la declaración.
+    ("que el modelo añadió a mitad de lote, en sus guiones de cribado, las dos "
+     "reglas del primer día sin que conste una decisión de los autores",
+     (("dos reglas", "guiones de cribado",
+       "sin que conste una decisión de los autores"),)),
+    ("que el modelo redactó las propuestas de criterios que se adoptaron, y quién "
+     "decidió cada una (D.V., por orden de D.V., o los dos autores)",
+     (("propuestas de criterios que se adoptaron", "que decidió D.V.",
+       "por orden de D.V.", "que firmaron los dos autores"),)),
+    ("que el modelo redactó las ecuaciones de búsqueda y que, según declara D.V., "
+     "D.V. las ejecutó", (("redactó las ecuaciones", "según declara D.V.",
+                          "ejecutó D.V."),)),
+    ("quién firmó las exclusiones a texto completo: los dos autores, D.V. solo, "
+     "o la orden de D.V. sin que conste la firma de N.T.",
+     (("exclusiones a texto completo", "las firmaron los dos autores",
+       "las firmó D.V. solo", "sin que conste la firma de N.T."),)),
     ("que las reglas de desenlace las decidieron los dos autores según declara "
      "D.V., y que el registro las dejó como propuesta sin ratificar",
      (("reglas de desenlace", "según declara", "sin ratificar"),)),
@@ -371,6 +387,140 @@ CARTA_EN_REVISTA = (
 def carta_sin_respaldo(cuerpo):
     """Lo que la carta afirma y el manuscrito de la revista no recoge."""
     return [que for que, alts in CARTA_EN_REVISTA if not recoge(cuerpo, *alts)]
+
+
+def firmas_exclusiones(S):
+    """Quién firmó las exclusiones a texto completo, desde los escalares
+    `exclusiones_*` (2026-10-15). Hasta ese día 27 figuraban a nombre de los
+    dos autores y solo consta la orden de D.V.; la carta, el LEEME y la hoja de
+    cesión lo dicen con esta misma frase. Si N.T. ratifica por escrito alguna,
+    el escalar baja y la frase cambia sola; con 0, la cláusula desaparece."""
+    partes = ["%d las firmaron los dos autores" % S["exclusiones_firmadas_los_dos"]]
+    if S["exclusiones_firmadas_solo_dv"]:
+        partes.append("%d las firmó D.V. solo" % S["exclusiones_firmadas_solo_dv"])
+    if S["exclusiones_orden_dv_sin_firma_nt"]:
+        partes.append("%d se registraron por orden de D.V. sin que conste la firma "
+                      "de N.T." % S["exclusiones_orden_dv_sin_firma_nt"])
+    # Sin punto final: lo pone quien la usa. Si acaba en «N.T.», ya lo lleva.
+    return ("De las %d exclusiones a texto completo, %s"
+            % (S["estudios_excluidos_tras_texto_completo"], y_lista(partes)))
+
+
+def con_punto(t):
+    """La frase con su punto final, sin duplicarlo tras «N.T.»."""
+    return t if t.endswith(".") else t + "."
+
+
+def nombrados_sin_viajar(copiados):
+    """Lo que el índice y la guía de `suplementos/` nombran y no viaja en el
+    sobre, como {fichero de índice o guía: [nombres]}.
+
+    Los dos se generan para el paquete entero del repositorio y se copian tal
+    cual (consejo del 2026-10-15): nombraban S18b, «figuras y tablas» y los
+    manuscritos de referencia, que `PATRON_ANEXO` deja fuera. Lo correcto es
+    generarlos para el sobre en `build_editorial_report.py` y
+    `build_package_guide.py`; mientras no se haga, el LEEME lo dice. Se busca
+    sin espacios ni saltos de línea, porque el PDF parte los nombres largos."""
+    ausentes = [p for p in SUPLEMENTOS.iterdir() if p.name not in copiados]
+    if not ausentes:
+        return {}
+    plano = lambda t: re.sub(r"\s+", "", t).lower()
+    textos = {}
+    indice = SUPLEMENTOS / "00_INDICE.docx"
+    if indice.exists():
+        import docx
+        dd = docx.Document(str(indice))
+        trozos = [p.text for p in dd.paragraphs]
+        trozos += [c.text for t in dd.tables for r in t.rows for c in r.cells]
+        textos[indice.name] = plano("\n".join(trozos))
+    guia = SUPLEMENTOS / "00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf"
+    if guia.exists():
+        try:
+            import pymupdf
+        except ImportError:
+            try:
+                import fitz as pymupdf
+            except ImportError:
+                pymupdf = None
+        if pymupdf:
+            with pymupdf.open(str(guia)) as doc:
+                textos[guia.name] = plano("".join(pg.get_text() for pg in doc))
+    # Un anexo se busca por su raíz («S18b_…», que el índice da como
+    # «.xlsx + .csv»); lo demás, por el nombre entero, para no tomar por el
+    # PDF de un manuscrito una mención de su `.md`.
+    clave = lambda p: p.stem if (p.is_file() and re.match(r"S\d", p.name)) else p.name
+    salida = {}
+    for nombre, texto in textos.items():
+        vistos = sorted({clave(p) for p in ausentes if plano(clave(p)) in texto})
+        if vistos:
+            salida[nombre] = vistos
+    return salida
+
+
+def y_lista(cosas):
+    """«a, b y c»."""
+    cosas = list(cosas)
+    return (", ".join(cosas[:-1]) + " y " + cosas[-1]) if len(cosas) > 1 else \
+        "".join(cosas)
+
+
+def ojo_indice_guia(copiados):
+    """El aviso del LEEME sobre lo que el índice y la guía nombran y no viaja
+    (consejo del 2026-10-15): se dice, no se calla. Vacío si no nombran nada."""
+    por_lista = {}
+    for doc, ns in nombrados_sin_viajar(copiados).items():
+        por_lista.setdefault(tuple(ns), []).append(doc)
+    return "".join(
+        ". **Ojo**: %s %s el paquete entero del repositorio y %s también %s, que "
+        "no van en este sobre" % (y_lista("`%s`" % d for d in docs),
+                                  "describen" if len(docs) > 1 else "describe",
+                                  "nombran" if len(docs) > 1 else "nombra",
+                                  y_lista("`%s`" % n for n in ns))
+        for ns, docs in por_lista.items())
+
+
+def pendiente_de_nt(S):
+    """Lo que N.T. tiene que saber o ratificar antes de aprobar la versión
+    final, como (título, texto). Lo comparten el LEEME («Lo que deciden los
+    autores antes de enviar») y la hoja de cesión (`build_cesion_datos.py`):
+    firmar la cesión es aprobar el contenido. Sale del registro de decisión
+    del 2026-10-15 (`2026-10-15_firmas-de-n-trelles-sin-respaldo.md`); las
+    cifras, de los escalares, y cada punto desaparece cuando su escalar llega a
+    0. El del mensaje del 1-sep no lo cierra ningún dato: lo cierra que N.T. lo
+    sepa antes de aprobar."""
+    nota = "revision_sistematica/extraccion/firma_nataly/NOTA_2026-10-15.md"
+    registro = "quality_reports/decisions/2026-10-15_firmas-de-n-trelles-sin-respaldo.md"
+    puntos = []
+    if S["exclusiones_orden_dv_sin_firma_nt"]:
+        puntos.append((
+            "Las %d exclusiones registradas por orden de D.V. sin firma de N.T."
+            % S["exclusiones_orden_dv_sin_firma_nt"],
+            "Se registraron el 1 y el 2 de septiembre de 2026 por orden de D.V.; "
+            "figuraban a nombre de los dos autores sin cuaderno firmado detrás, y "
+            "desde el 15 de octubre `exclusiones_tras_texto_completo.csv` dice que "
+            "no consta la firma de N.T. Si N.T. está de acuerdo, las ratifica por "
+            "escrito en un cuaderno de firma como los demás, que entra por un "
+            "guion `ingest_*`, nunca escrito a mano en el CSV. Mientras no lo haga, "
+            "los documentos dicen que no consta su firma (ver `%s`)." % registro))
+    puntos.append((
+        "El mensaje del 1 de septiembre de 2026 con el que se pidió a N.T. firmar "
+        "las correcciones de modalidad lo redactó el modelo",
+        "Lo redactó el modelo en primera persona de D.V., y presentaba como lectura "
+        "de D.V. la que había hecho el modelo; N.T. firmó con ese texto delante. "
+        "N.T. tiene que saberlo antes de aprobar la versión final (ver `%s`)."
+        % nota))
+    if S["pares_solapamiento_sin_firma"]:
+        puntos.append((
+            "Los %d descartes de solapamiento del modelo sin firma"
+            % S["pares_solapamiento_sin_firma"],
+            "De los %d pares de estudios que podían compartir pacientes, %d "
+            "veredictos llevan la firma de los dos autores; los otros %d los "
+            "descartó la lectura del modelo del 22 de septiembre de 2026, y no "
+            "consta la firma de ninguno de los dos autores. Los autores deciden si "
+            "los firman, por escrito (ver `%s`)."
+            % (S["pares_solapamiento_examinados"], S["pares_solapamiento_firmados"],
+               S["pares_solapamiento_sin_firma"], registro)))
+    return puntos
 
 
 def frase_piloto():
@@ -930,19 +1080,22 @@ def escribe_carta(destino, S, meta, n_anexos):
     #   anadieron a mitad de lote dos reglas que concretan los criterios. Va
     #   la redaccion de la hoja de hechos del 2026-10-08.
     # - DECIA \u00abese mismo dia se anadieron a mitad de lote dos reglas\u00bb, en
-    #   pasiva: callaba que las propuso el modelo y que el modelo las
-    #   incorporo a sus guiones de cribado (hoja de hechos, 2026-10-13). Las
-    #   decidieron los autores, y asi lo dice ahora, como la declaracion de IA.
+    #   pasiva: callaba que el modelo las incorporo a sus guiones de cribado.
+    # - Y DESPUES DECIA que el modelo las «propuso» y que «decidieron los
+    #   autores». Falso: lo tomo de un error de la hoja de hechos del 13-oct,
+    #   corregido el 15-oct. Las anadio el modelo a mitad de lote, sin decision
+    #   registrada de nadie (commits 54e5fc4 y 4a4ba98; el primer registro de
+    #   decision es del 5-ago). Va como la declaracion de IA.
     par("Declaro lo siguiente, por si el Comit\u00e9 lo considera al evaluar el trabajo. "
         "La revisi\u00f3n no est\u00e1 registrada en PROSPERO ni en ning\u00fan otro registro "
         "prospectivo, y as\u00ed se declara en el manuscrito. El cribado de t\u00edtulos y "
         "res\u00famenes lo emiti\u00f3 un modelo de lenguaje (Claude Opus 5, Anthropic) "
         "como revisor \u00fanico y sin duplicaci\u00f3n. El primer d\u00eda de cribado, el 4 "
         "de agosto de 2026, escribi\u00f3 los motivos de exclusi\u00f3n en texto libre, y "
-        "ese mismo d\u00eda propuso dos reglas que concretan los criterios \u2014fuera las "
-        "endolisinas aisladas y los informes veterinarios\u2014, que decidieron los "
-        "autores y que el modelo incorpor\u00f3 a mitad de lote a sus guiones de "
-        "cribado. "
+        "ese mismo d\u00eda a\u00f1adi\u00f3 a mitad de lote, en sus guiones de cribado, dos "
+        "reglas que concretan los criterios \u2014fuera las endolisinas aisladas y "
+        "los informes veterinarios\u2014, sin que conste una decisi\u00f3n de los "
+        "autores. "
         "Despu\u00e9s us\u00f3 seis motivos cuya redacci\u00f3n procede de esos textos, y no "
         "consta que los autores los fijaran antes de empezar. Seg\u00fan "
         "declara D.V. (8 de octubre de 2026), examin\u00f3 uno a uno los informes que "
@@ -1053,18 +1206,32 @@ def escribe_carta(destino, S, meta, n_anexos):
     #   decidieron los autores\u00bb, sin mas: de las reglas de desenlace eso es una
     #   declaracion de D.V., y el registro del 12-ago las dejo como propuesta
     #   sin ratificar (2026-10-14). Va como lo dice la declaracion.
+    # Y el 2026-10-15 (segunda ronda del consejo) otras tres:
+    # - DECIA \u00ablas propuestas de criterios que decidieron los autores\u00bb. La
+    #   unidad de inclusion la decidio D.V.; PRO e INT, por orden de D.V.; solo
+    #   NOORG consta firmado por los dos. Se dice quien decidio cada una.
+    # - Callaba que las ecuaciones de busqueda las redacto el modelo (commit
+    #   923bbe7); la declaracion de D.V. es solo que las ejecuto.
+    # - Callaba quien firmo las exclusiones a texto completo: 27 constaban a
+    #   nombre de los dos y solo hay la orden de D.V. Cifras de los escalares.
     # Todo ello lo dice ya la declaracion; `CARTA_EN_REVISTA` lo comprueba.
     par("El modelo de lenguaje intervino en todas las fases de esta revisi\u00f3n, y "
         "el manuscrito lo detalla en su declaraci\u00f3n \u00abUso de inteligencia "
         "artificial\u00bb, en Declaraciones. Adem\u00e1s del cribado, el modelo redact\u00f3 "
-        "las propuestas de criterios que decidieron los autores y las reglas de "
-        "desenlace, que seg\u00fan declara D.V. decidieron los dos autores, aunque el "
-        "registro del 12 de agosto de 2026 las dej\u00f3 como propuesta sin ratificar; "
-        "ley\u00f3 los textos completos y las fichas de registro y propuso, con su "
-        "cita, las exclusiones que se apoyan en ellos; escribi\u00f3 y "
-        "ejecut\u00f3 todo el c\u00f3digo del canal, del que sale cada cifra, tabla y "
-        "figura; y redact\u00f3 los borradores del manuscrito, de los anexos, de "
-        "esta carta y de los registros de decisi\u00f3n.", WD_ALIGN_PARAGRAPH.JUSTIFY)
+        "las ecuaciones de b\u00fasqueda de cada plataforma, que seg\u00fan declara D.V. "
+        "ejecut\u00f3 D.V. en cada interfaz con la gu\u00eda del modelo; redact\u00f3 las "
+        "propuestas de criterios que se adoptaron \u2014la unidad de inclusi\u00f3n por "
+        "estudio y la elegibilidad de los res\u00famenes de congreso, que decidi\u00f3 D.V.; "
+        "los c\u00f3digos PRO e INT, por orden de D.V.; y el c\u00f3digo NOORG, que "
+        "firmaron los dos autores\u2014 y las reglas de desenlace, que seg\u00fan declara "
+        "D.V. decidieron los dos autores, aunque el registro del 12 de agosto de "
+        "2026 las dej\u00f3 como propuesta sin ratificar; ley\u00f3 los textos completos y "
+        "las fichas de registro y propuso, con su cita, las exclusiones que se "
+        "apoyan en ellos. %s El modelo escribi\u00f3 y ejecut\u00f3 todo el "
+        "c\u00f3digo del canal, del que sale cada cifra, tabla y figura, y redact\u00f3 los "
+        "borradores del manuscrito, de los anexos, de esta carta y de los "
+        "registros de decisi\u00f3n." % con_punto(firmas_exclusiones(S)),
+        WD_ALIGN_PARAGRAPH.JUSTIFY)
 
     # DECIA \u00abjunto con los 25 anexos del material suplementario\u00bb: el numero de
     # anexos no lo da el manuscrito de la revista. Va como dato del sobre, que
@@ -1373,6 +1540,13 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
             "de la revista es de %d. Qué se recorta lo deciden los autores; las "
             "declaraciones de honestidad no se recortan."
             % (fm["por_que"], fm["paginas_previas"], TOPE_PAGINAS))
+    # LO QUE N.T. TIENE QUE SABER O RATIFICAR (2026-10-15). El LEEME no lo
+    # decia: 27 exclusiones figuraban firmadas por N.T. sin que conste, el
+    # mensaje con que se le pidio firmar el 1-sep lo redacto el modelo en
+    # primera persona de D.V., y 2 descartes de solapamiento son del modelo
+    # sin firma. Lo comparte la hoja de cesion (`pendiente_de_nt`).
+    for titulo, texto in pendiente_de_nt(S):
+        decide.append("**%s** %s" % (con_punto(titulo), texto))
     if decide:
         md.append("")
         md.append("## Lo que deciden los autores antes de enviar")
@@ -1420,7 +1594,8 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
     md.append("| `suplementos/` | Los %d anexos (S%d a S%d), el índice y la guía, en %d "
               "ficheros: los de datos van en `.xlsx` y en `.csv`. Empieza por "
               "`00_GUIA_DEL_MATERIAL_SUPLEMENTARIO.pdf`, que dice qué pregunta contesta "
-              "cada uno |" % (len(numeros), min(numeros), max(numeros), len(anexos)))
+              "cada uno%s |" % (len(numeros), min(numeros), max(numeros), len(anexos),
+                               ojo_indice_guia(set(anexos))))
     md.append("| `figuras/`, `tablas/` | Las mismas figuras y tablas del artículo, sueltas "
               "y numeradas COMO EN EL ARTÍCULO, por si las piden aparte |")
     leer = destino / "para_leer"
@@ -1551,6 +1726,10 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
               "escribió los motivos en texto libre, después usó seis motivos cuya "
               "redacción procede de esos textos, y no consta que los autores los "
               "fijaran antes de empezar;")
+    # Quien firmo las exclusiones no estaba en esta lista, y 27 figuraban
+    # firmadas por N.T. sin que conste (2026-10-15). La frase es la de la carta.
+    fx = firmas_exclusiones(S)
+    md.append("- %s%s;" % (fx[:1].lower(), fx[1:]))
     # DECIA «(122 de 124 estudios)» sin decir que los 124 son los extraidos
     # antes de NOPDF, y «a uno solo en 525»: lo comprobado es que el registro
     # anota un unico responsable, no que lo decidiera uno solo.
@@ -1697,6 +1876,11 @@ def escribe_leeme(destino, S, anexos, pdf_fuera=""):
         antes.append("Decidido por los autores si el resumen dice que el cribado lo "
                      "emitió un modelo de lenguaje (ver «Lo que deciden los autores»)")
     antes += list(organismo_pendiente(S))
+    # Antes de esa aprobacion, lo que N.T. tiene que saber o ratificar
+    # (2026-10-15; el detalle, en «Lo que deciden los autores antes de enviar»).
+    for titulo, _ in pendiente_de_nt(S):
+        antes.append("Resuelto antes de la aprobación de N. Trelles: «%s» (ver «Lo "
+                     "que deciden los autores antes de enviar»)" % titulo)
     antes.append("**Aprobada por escrito por N. Trelles esta versión final** (ICMJE: "
                  "revisión crítica, aprobación y aceptación de responder por el "
                  "trabajo), y guardado ese escrito. Sin ese escrito, D. Valdiviezo no "

@@ -32,7 +32,12 @@ from build_extraction_verifiables import ANCHO, SIN_CITAS, cuadro, documento  # 
 # La misma cuenta de S16 que escribe la lista de anexos de los manuscritos: la
 # guía y la lista no pueden describir el anexo con cifras distintas. Lo mismo
 # para S10 y para la numeración de tablas y secciones, leída de los manuscritos.
-from build_lista_anexos import citas_s16, de_las_citadas, numeracion, s10  # noqa: E402
+from build_lista_anexos import (citas_s16, de_las_citadas, firmas_s16,  # noqa: E402
+                                numeracion, s10, s21)
+# Qué fichero del paquete viaja en suplementos/ del sobre de la revista lo
+# decide este patrón del generador del sobre; la guía viaja ahí y lo lee de
+# ahí para marcar lo que no va.
+from build_jsr_submission import PATRON_ANEXO  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "verificables revisión sistemática"
@@ -43,6 +48,8 @@ OUT = ROOT / "verificables revisión sistemática"
 _S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
                 .read_text(encoding="utf-8"))
 _S16 = citas_s16(_S)
+_E16 = dict(_S, **_S16)
+NO_VIAJA = "No va en el envío a la revista"
 # Desacuerdos de extracción que siguen sin adjudicar. Cambia la forma de varias
 # frases, no solo una cifra: con 0 no se puede decir «no ha concluido».
 _PENDIENTES = _S["extraccion_conflictos_sin_firmar"]
@@ -232,11 +239,14 @@ CATALOGO = [
         # modelo de lenguaje haciendo de editor de revista (docstring de
         # build_editorial_report.py), y así podía tomarse por la valoración de
         # una persona.
-        # Por patrón: el nombre del fichero («informe editorial») está en
-        # discusión y la guía no debe darlo por NO ENCONTRADO si cambia.
-        ("S0_*.docx", "Evaluación previa del manuscrito que "
-         "redactó el modelo de lenguaje en el papel de un editor de revista; no "
-         "es una evaluación editorial externa.",
+        # Iba por patrón («S0_*.docx») mientras el nombre «informe editorial»
+        # estaba en discusión. Desde el 2026-10-15 el fichero es
+        # S0_autoevaluacion_del_modelo.docx: se nombra, y si vuelve a cambiar
+        # la guía lo dirá como NO ENCONTRADO. La descripción, como la del índice.
+        ("S0_autoevaluacion_del_modelo.docx", "Autoevaluación del manuscrito "
+         "que redactó el modelo de lenguaje (Claude Opus 5) desde el punto de "
+         "vista de un editor de revista; no es un informe de un editor ni una "
+         "revisión externa.",
          "Si alguna decisión metodológica se tomó después de ver los resultados."),
     ]),
     # Se llamaba «Protocolo y reporte», y el paquete no lleva ningún protocolo.
@@ -307,12 +317,18 @@ CATALOGO = [
         # «el texto completo desmintió» a todos. Los NOPDF salieron por no tener
         # el artículo, no porque el texto los desmintiera, y ni ellos ni los
         # NOREC tienen frase que citar.
+        # «Quién firmó la exclusión»: 27 filas solo registran la orden de D.V.,
+        # sin firma de N.T. Misma frase que la lista de anexos (firmas_s16).
         ("S16_excluidos_en_la_fase_de_texto_completo.xlsx + .csv",
          "Los %d estudios que el cribado admitió y que salieron después, con su "
-         "código de motivo y quién firmó la exclusión. %d llevan la cita en que "
+         "código de motivo y quién decidió cada exclusión según el registro: %s "
+         "%d llevan la cita en que "
          "se apoya; los %d sin el artículo completo (NOPDF) y los %d sin texto "
          "que se pudiera leer (NOREC) no tienen nada que citar%s"
-         % (_S["estudios_excluidos_tras_texto_completo"], _S16["s16_con_cita"],
+         % (_S["estudios_excluidos_tras_texto_completo"],
+            (lambda t: t if t.endswith(".") else t + ".")(
+                firmas_s16(_E16, False)),
+            _S16["s16_con_cita"],
             _S["excluidos_texto_completo_NOPDF"],
             _S["excluidos_texto_completo_NOREC"],
             (", y %d más %s sin cita." % (_S16["s16_sin_cita_otros"],
@@ -347,10 +363,9 @@ CATALOGO = [
          "localizado dentro del documento leído, el informe único del estudio o el único "
          "artículo del grupo.",
          "Dónde mirar para comprobar cualquier dato de cualquier brazo (PRISMA 10)."),
-        ("S21_solapamiento_de_pacientes.xlsx + .csv", "Los %d pares de estudios que "
-         "podían describir a los mismos pacientes, con la señal que los marcó, el "
-         "veredicto tras leer los dos artículos, los pacientes compartidos y la frase "
-         "firmada en que se apoya." % _S["pares_solapamiento_examinados"],
+        # Decía «la frase firmada en que se apoya» de los 30, y 2 los descartó
+        # la lectura del modelo del 22-sep sin firma. Misma frase que la lista.
+        ("S21_solapamiento_de_pacientes.xlsx + .csv", s21(_S, False),
          "Si el corpus cuenta a algún paciente dos veces, y cuál."),
     ]),
     ("Extracción", [
@@ -363,8 +378,11 @@ CATALOGO = [
          "Separar la ausencia en el resumen de la ausencia en el estudio."),
         ("S23_clase_de_resistencia_comprobada.xlsx + .csv", "La clase de resistencia de "
          "los %d estudios que tenían texto completo, comprobada contra el antibiograma: la "
-         "conclusión firmada, la frase o la tabla en que se apoya, cómo se codificó y qué "
-         "cambió en la extracción." % _S["lectura_clase_estudios_leidos"],
+         "conclusión firmada, la frase o la tabla en que se apoya, cómo la codificó el "
+         "modelo de lenguaje a partir de esa conclusión y qué cambió en la extracción."
+         % _S["lectura_clase_estudios_leidos"],
+         # «Cómo se codificó» callaba quién: el valor categórico lo derivó el
+         # modelo (ingest_lectura_firmada.py) del texto firmado.
          "Comprobar si un paciente es multirresistente sin fiarse de la etiqueta del autor."),
         ("S24_comparativos_reextraidos.xlsx + .csv", "Los %d estudios con diseño "
          "comparativo, reextraídos: comparador, asignación, tiempo cero, tiempo de "
@@ -509,6 +527,16 @@ def main():
     # La guía viaja con el manuscrito de la revista y cita la numeración del
     # maestro: lo dice al principio, con la equivalencia leída de los dos.
     c.append(Paragraph(_nota_numeracion(), st["cuerpo"]))
+    # Y es la misma en el paquete y en suplementos/ del sobre: dice qué
+    # entradas describen ficheros que el sobre no lleva (PATRON_ANEXO).
+    n_fuera = sum(1 for _, entradas in CATALOGO for nombre, _, _ in entradas
+                  if not PATRON_ANEXO.match(nombre.split("+")[0].strip()))
+    if n_fuera:
+        c.append(Paragraph(
+            "<b>Qué viaja.</b> Esta guía es la misma en el paquete de "
+            "verificables y en suplementos/ del envío a la revista. Las %d "
+            "entradas marcadas «%s» describen ficheros del paquete que el "
+            "envío no lleva." % (n_fuera, NO_VIAJA), st["cuerpo"]))
     # Decía «ningún dato se transcribió a mano», y la extracción y los juicios
     # de riesgo de sesgo los emitieron los autores en sus cuadernos (así lo dice
     # la declaración de uso de IA). Y no decía quién escribió el canal. La
@@ -562,10 +590,17 @@ def main():
                 descritos.add(x)
             faltan = [x for x in reales if not (OUT / x).exists()]
             if faltan:
-                filas.append([f"<b>{nombre}</b>", "NO ENCONTRADO: %s" % ", ".join(faltan),
+                # Era «<b>…</b>», y cuadro() escapa las etiquetas: salían a la vista.
+                filas.append([f"**{nombre}**", "NO ENCONTRADO: %s" % ", ".join(faltan),
                               "—", "—"])
                 continue
             tam = tamano(OUT / reales[0])
+            # La guía viaja también en suplementos/ del sobre, y describía como
+            # presentes S18b, «figuras y tablas» y los renderizados del maestro,
+            # que el sobre no lleva (consejo, 15-oct): se marcan.
+            # En Markdown: cuadro() escapa las etiquetas y convierte los «**».
+            if not PATRON_ANEXO.match(partes[0]):
+                que_es = "**%s.** %s" % (NO_VIAJA, que_es)
             filas.append([nombre, que_es, para_que, tam])
         c.append(Paragraph(seccion, st["h1"]))
         c.append(cuadro(st, filas,

@@ -357,6 +357,12 @@ AFIRMACIONES = [
     (ES, "eliminó {estudios_eliminados_por_idioma} estudios en el cribado de resúmenes, {comparativos_perdidos_por_idioma} de ellos comparativos y uno del conjunto de control positivo, y {excluidos_texto_completo_IDI} más al leer el texto completo; otros {idioma_no_verificable_excluidos} salieron porque su idioma no pudo verificarse"),
     (EN, "removed {estudios_eliminados_por_idioma} studies at abstract screening, {comparativos_perdidos_por_idioma} of them comparative and one from the positive-control set, and {excluidos_texto_completo_IDI} more on reading the full text; another {idioma_no_verificable_excluidos} left because their language could not be verified"),
     (JSR, "eliminó {estudios_eliminados_por_idioma} estudios en el cribado de resúmenes y {excluidos_texto_completo_IDI} más al leer el texto completo, y otros {idioma_no_verificable_excluidos} salieron porque su idioma no pudo verificarse"),
+    # Las dos reglas del 4-ago las anadio el modelo, sin decision registrada;
+    # la unidad de inclusion la decidio D.V. (hoja de hechos, 15-oct). Sin
+    # cifras: el ancla impide que vuelvan a la pasiva.
+    (ES, "Ese mismo día el modelo añadió, a mitad de lote, dos reglas que concretan los criterios, sin que conste una decisión de los autores"),
+    (EN, "On that same day the model added, mid-batch, two rules making the criteria concrete, with no record of a decision by the authors"),
+    (JSR, "que el modelo añadió el primer día de cribado sin que conste una decisión de los autores, y salvo la unidad de inclusión por estudio y la elegibilidad de los resúmenes de congreso, que decidió D.V. el 5 de agosto de 2026"),
     # Quien firmo cada exclusion y cada veredicto de solapamiento (15-oct).
     (ES, "de las {estudios_excluidos_tras_texto_completo} exclusiones a texto completo, {exclusiones_firmadas_los_dos} las firmaron los dos autores, {exclusiones_firmadas_solo_dv} las firmó D.V. solo y {exclusiones_orden_dv_sin_firma_nt} se registraron por orden de D.V."),
     (EN, "of the {estudios_excluidos_tras_texto_completo} full-text exclusions, both authors signed {exclusiones_firmadas_los_dos}, D.V. alone signed {exclusiones_firmadas_solo_dv}, and {exclusiones_orden_dv_sin_firma_nt} were recorded on D.V.'s instruction"),

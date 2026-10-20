@@ -68,6 +68,64 @@ def mil(n):
     return f"{n:,}".replace(",", FINO)
 
 
+# Las fuentes de la corriente de registros de ensayos. Es la misma regla que
+# build_synthesis_scalars (REGISTROS): un informe que llega por las dos
+# corrientes se asigna a bases. Se comprueba contra sus escalares.
+REGISTROS = {"ClinicalTrials.gov", "EudraCT", "CTIS"}
+
+
+def identificacion_por_corriente(S):
+    """Registros identificados en cada corriente, ANTES de deduplicar, y el
+    rótulo de fuentes de la caja de bases.
+
+    ESCALAR NUEVO, calculado aquí (no está en synthesis_scalars.json):
+    registros_bases = suma de n_source_records de los informes de la corriente
+    de bases, sobre screening_corpus_all.csv, el mismo fichero y la misma
+    columna de los que build_synthesis_scalars saca registros_identificados.
+    Si las dos corrientes no suman registros_identificados, si las fuentes no
+    suman fuentes_distintas_n o si la corriente de registros trae duplicados
+    (la figura la hace entrar sin pasar por la deduplicación), se para."""
+    with open(RS / "cribado" / "screening_corpus_all.csv", encoding="utf-8",
+              newline="") as fh:
+        corpus = list(csv.DictReader(fh))
+    reg_b = reg_r = inf_b = inf_r = 0
+    for c in corpus:
+        f = {x.strip() for x in c["sources"].split(";") if x.strip()}
+        n = int(c["n_source_records"] or 1)
+        if f - REGISTROS:
+            reg_b, inf_b = reg_b + n, inf_b + 1
+        elif f:
+            reg_r, inf_r = reg_r + n, inf_r + 1
+    nombres = set(S["fuentes_nombres"])
+    bases_distintas = S["fuentes_distintas_n"] - S["fuentes_registros_n"]
+    fallos = []
+    if reg_b + reg_r != S["registros_identificados"]:
+        fallos.append("bases %d + registros %d != registros_identificados %d"
+                      % (reg_b, reg_r, S["registros_identificados"]))
+    if (inf_b, inf_r) != (S["informes_de_bases"], S["informes_de_registros"]):
+        fallos.append("informes por corriente (%d, %d) != escalares (%d, %d)"
+                      % (inf_b, inf_r, S["informes_de_bases"],
+                         S["informes_de_registros"]))
+    if len(nombres & REGISTROS) != S["fuentes_registros_n"]:
+        fallos.append("REGISTROS no coincide con fuentes_registros_n")
+    if S["fuentes_bases_n"] + S["fuentes_registros_n"] != S["fuentes_brazos_n"]:
+        fallos.append("brazos de bases + registros != fuentes_brazos_n")
+    if reg_r != inf_r:
+        fallos.append("la corriente de registros trae %d duplicados y la figura "
+                      "no la deduplica" % (reg_r - inf_r))
+    if reg_b - inf_b != S["duplicados_eliminados"]:
+        fallos.append("duplicados de bases %d != duplicados_eliminados %d"
+                      % (reg_b - inf_b, S["duplicados_eliminados"]))
+    if fallos:
+        raise SystemExit("Figura 1, identificación: " + "; ".join(fallos))
+    rotulo = ("%d fuentes, %d brazos de búsqueda"
+              % (bases_distintas, S["fuentes_bases_n"])
+              if S["fuentes_bases_n"] != bases_distintas
+              else "%d fuentes" % bases_distintas)
+    return {"registros_bases": reg_b, "registros_registros": reg_r,
+            "fuentes_bases_rotulo": rotulo}
+
+
 def figura_prisma(S):
     """Flujo PRISMA 2020 con las dos corrientes de identificacion separadas.
 
@@ -128,15 +186,23 @@ def figura_prisma(S):
     y0 = 0.982
 
     # --- Identificacion -----------------------------------------------------
-    t_bases = ("Registros identificados en bases\nbibliográficas (%d fuentes)\n"
+    # CORREGIDO EL 2026-10-19 (consejo del 15-oct). La caja de bases ponia
+    # registros_identificados (23 057), que es el total de las OCHO fuentes,
+    # registros de ensayos incluidos, y «6 fuentes», que cuenta los dos brazos
+    # de Scopus; la de registros sumaba aparte sus 134. La figura daba a
+    # entender 23 191 registros y 9 fuentes, y el texto dice «Las ocho fuentes
+    # aportaron 23 057». Ahora cada caja lleva lo de su corriente
+    # (identificacion_por_corriente) y las dos suman lo que dice el texto.
+    I = identificacion_por_corriente(S)
+    t_bases = ("Registros identificados en bases\nbibliográficas (%s)\n"
                "n = %s registros"
-               % (S["fuentes_bases_n"], mil(S["registros_identificados"])))
+               % (I["fuentes_bases_rotulo"], mil(I["registros_bases"])))
     h = alto(t_bases)
     caja(ax, X_IZQ, y0 - h, ANCHO_IZQ, h, t_bases)
     caja(ax, X_DER, y0 - h, ANCHO_DER, h,
          "Registros identificados en registros\nde ensayos (%d fuentes)\n"
-         "n = %d informes"
-         % (S["fuentes_registros_n"], S["informes_de_registros"]))
+         "n = %s registros"
+         % (S["fuentes_registros_n"], mil(I["registros_registros"])))
     y_id = y0 - h
 
     y = flujo(y_id - HUECO, "Duplicados eliminados\nn = %s"

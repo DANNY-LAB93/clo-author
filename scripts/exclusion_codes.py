@@ -109,6 +109,38 @@ CODES = {
               "estudio solo existe como resumen de congreso o ficha de registro"),
 }
 
+# ROTULOS PARA LEER. CODES guarda la grafia sin tildes porque es la cadena que
+# se escribio en el registro de decisiones y contra la que se emparejan los
+# motivos; cambiarla romperia ese emparejamiento. Lo que se ve (Tabla 4, S16)
+# sale de aqui, con tildes. La comprobacion de abajo exige que digan lo mismo.
+ETIQUETAS = {
+    "ORG": "Organismo distinto de P. aeruginosa, sin subgrupo separable",
+    "REV": "Revisión narrativa o comentario, sin datos primarios propios",
+    "SEC": "Síntesis secundaria (revisión sistemática o scoping)",
+    "LAB": "Trabajo de laboratorio, preclínico o de modelización; sin pacientes tratados",
+    "VET": "Aislados o infección veterinaria, no humana",
+    "OFF": "No evalúa fagoterapia en pacientes (encuesta, epidemiología, prensa, otra terapia)",
+    "IDI": "Informe no redactado en inglés ni en español (criterio de idioma, enmienda 2026-08-11)",
+    "PRO": "Protocolo de estudio: declara lo que se hará, sin resultados",
+    "INT": "La intervención no es un bacteriófago (endolisina u otro derivado)",
+    "NOREC": "Texto completo no recuperado: no se pudo verificar contra el artículo",
+    "NOORG": ("La ficha de registro no declara ningún organismo: el criterio de "
+              "P. aeruginosa no se puede verificar ni a favor ni en contra"),
+    "NOPDF": ("Sin PDF del artículo completo con acceso: el texto no se obtuvo, o el "
+              "estudio solo existe como resumen de congreso o ficha de registro"),
+}
+
+
+def _sin_tildes(s):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", s)
+                   if unicodedata.category(c) != "Mn")
+
+
+if list(ETIQUETAS) != list(CODES) or any(
+        _sin_tildes(ETIQUETAS[k]) != CODES[k] for k in CODES):
+    raise SystemExit("exclusion_codes: ETIQUETAS y CODES ya no dicen lo mismo")
+
 # Patrones que mapean el texto libre ya registrado a su codigo. Se evaluan en
 # orden; el primero que coincide gana. Deliberadamente estrictos: cualquier
 # motivo que no coincida se reporta en vez de asignarse a una categoria por

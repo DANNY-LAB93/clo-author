@@ -1,4 +1,4 @@
-**Tabla 3. Completitud del reporte en las variables de estratificación, en el resumen y en el texto completo (n = 65 estudios, todos con texto completo).**
+**Tabla 2. Completitud del reporte en las variables de estratificación, en el resumen y en el texto completo (n = 65 estudios, todos con texto completo).**
 
 | Variable | No asignable en el resumen | Declarado en el texto completo | Declarado pero no clasificable | No declarado en el texto completo |
 |---|---|---|---|---|

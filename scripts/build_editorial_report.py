@@ -1,7 +1,8 @@
 """Autoevaluacion del manuscrito (S0), indice del paquete y manuscritos en Word.
 
-QUIEN ESCRIBE S0. El modelo de lenguaje (Claude Opus 5), a peticion de los
-autores. Adopta el punto de vista de un editor que decide si el manuscrito
+QUIEN ESCRIBE S0. El modelo de lenguaje (Claude Opus 5). Hasta el 2026-10-19
+decia «a peticion de los autores», y no consta que N.T. lo pidiera: el commit
+que lo creo (5b85e51, 11-ago) no lo dice. Adopta el punto de vista de un editor que decide si el manuscrito
 puede entrar en revision por pares, pero NO es un informe editorial ni una
 revision externa, y el documento lo dice en su titulo, en su primera frase y en
 la cabecera de cada pagina. Hasta el 2026-10-08 este docstring decia «EL PAPEL
@@ -37,6 +38,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 # La fecha larga se define una sola vez, en el constructor del paquete. Dos
 # anexos la imprimen y no pueden discrepar.
 from build_verifiables_package import fecha_larga, MESES
+# Que fichero del paquete viaja en suplementos/ del sobre lo decide este patron
+# del generador del sobre; el indice lo lee de ahi para no discrepar.
+from build_jsr_submission import PATRON_ANEXO
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "verificables revisión sistemática"
@@ -192,6 +196,20 @@ def resumen_exclusiones():
     """
     filas = leer_csv(RS / "cribado" / "exclusiones_tras_texto_completo.csv")
     una = [r for r in filas if " y " not in r["decidido_por"]]
+    # Las «una» no son todas firmas de una persona: desde el 2026-10-15, 27
+    # filas dicen «D. Valdiviezo (orden del ...; no consta firma de N.
+    # Trelles)», y el indice las daba por «D.V. solo». Se separan por la celda.
+    orden = [r for r in una if clase_firma(r["decidido_por"]) == "orden"]
+    solo = [r for r in una if clase_firma(r["decidido_por"]) == "solo"]
+    solo_por_quien, orden_por_quien = {}, {}
+    for r in solo:
+        q = iniciales(r["decidido_por"])
+        solo_por_quien[q] = solo_por_quien.get(q, 0) + 1
+    for r in orden:
+        m = re.search(r"no consta firma de ([^)]+)\)", r["decidido_por"])
+        clave = (iniciales(r["decidido_por"].split("(")[0]),
+                 iniciales(m.group(1)) if m else "")
+        orden_por_quien.setdefault(clave, []).append(r["fecha"][:10])
 
     def cita(r):
         return r["cita_del_texto"].strip()
@@ -208,6 +226,7 @@ def resumen_exclusiones():
         por_quien[r["decidido_por"]] = por_quien.get(r["decidido_por"], 0) + 1
     return {"n": len(filas), "dos": len(filas) - len(una), "una": len(una),
             "una_quien": sorted(por_quien), "una_por_quien": por_quien,
+            "solo_por_quien": solo_por_quien, "orden_por_quien": orden_por_quien,
             "sin_cita": len(sin), "con_cita": len(con),
             "sin_por_codigo": sin_por_codigo, "total_por_codigo": total_por_codigo,
             "cita_ficha": sum(1 for r in con if CITA_FICHA.match(cita(r))),
@@ -274,9 +293,132 @@ def iniciales(nombre):
     return nombre.strip()
 
 
+def clase_firma(nombre):
+    """«dos» (firmaron los dos), «solo» (firmó uno) u «orden» (la celda dice
+    que se registró por orden de uno y que no consta la firma del otro)."""
+    if "no consta firma" in nombre.lower():
+        return "orden"
+    return "dos" if " y " in nombre else "solo"
+
+
 def quien_firmo(nombre):
-    """La celda «decidido_por» en palabras: los dos autores o uno solo."""
+    """La celda «decidido_por» en palabras: los dos autores o uno solo.
+
+    Una celda «D. Valdiviezo (orden del ...; no consta firma de N. Trelles)»
+    salia «D.V. solo», como si D.V. la hubiera firmado sola."""
+    if clase_firma(nombre) == "orden":
+        m = re.search(r"no consta firma de ([^)]+)\)", nombre)
+        return "orden de %s, sin que conste la firma de %s" % (
+            iniciales(nombre.split("(")[0]),
+            iniciales(m.group(1)) if m else "la otra persona")
     return "los dos autores" if " y " in nombre else "%s solo" % iniciales(nombre)
+
+
+def con_punto(t):
+    """Cierra la frase sin duplicar el punto de una abreviatura («N.T.»)."""
+    return t if t.endswith(".") else t + "."
+
+
+def frase_firmas_s21(S):
+    """Cuántos veredictos de solapamiento firmaron los dos autores.
+
+    Indice y S0 decian, o daban a entender, que los 30 llevan firma; 2 (EST-108
+    con EST-034 y con EST-044) los descarto la lectura del modelo del 22-sep y
+    no estan en el cuaderno firmado. Misma redaccion que los manuscritos."""
+    fir, sin = S["pares_solapamiento_firmados"], S["pares_solapamiento_sin_firma"]
+    tot = S["pares_solapamiento_examinados"]
+    if fir + sin != tot:
+        print("  AVISO: pares_solapamiento_firmados (%d) + _sin_firma (%d) != "
+              "pares_solapamiento_examinados (%d)" % (fir, sin, tot))
+    if not sin:
+        return "Los %d veredictos llevan la firma de los dos autores" % tot
+    return ("%d de los %d veredictos llevan la firma de los dos autores; %s"
+            % (fir, tot,
+               "los otros %d, descartes que hizo la lectura del modelo del 22 de "
+               "septiembre de 2026, no constan firmados" % sin if sin > 1 else
+               "el otro, un descarte que hizo la lectura del modelo del 22 de "
+               "septiembre de 2026, no consta firmado"))
+
+
+def sin_firma_de_nt(S):
+    """(frase, responsable) para B6 de S0: lo que el registro no respalda.
+
+    Se lee del registro de exclusiones (las filas «no consta firma») y de los
+    escalares de solapamiento; si no queda nada, la frase sale vacia."""
+    ex = resumen_exclusiones()
+    trozos = []
+    for (q, falta), fechas in sorted(ex["orden_por_quien"].items()):
+        trozos.append("%d de las %d exclusiones a texto completo se %s por orden "
+                      "de %s %s sin que conste la firma de %s"
+                      % (len(fechas), ex["n"],
+                         "registraron" if len(fechas) != 1 else "registró", q,
+                         fechas_y(fechas).replace("el ", "del ", 1),
+                         falta or "la otra persona"))
+    sin = S["pares_solapamiento_sin_firma"]
+    if sin:
+        trozos.append("%d de los %d veredictos de solapamiento, %s que hizo la "
+                      "lectura del modelo del 22 de septiembre de 2026, no "
+                      "%s firmados por ninguno de los dos"
+                      % (sin, S["pares_solapamiento_examinados"],
+                         "descartes" if sin > 1 else "un descarte",
+                         "constan" if sin > 1 else "consta"))
+    if not trozos:
+        return "", "N.T., por escrito"
+    frase = (" Además, según el registro, %s El mensaje con que se pidió a N.T. "
+             "que firmara las correcciones de modalidad (1 de septiembre de "
+             "2026) lo redactó el modelo en primera persona de D.V. y "
+             "presentaba como lectura de D.V. la que había hecho el modelo; "
+             "N.T. debe saberlo antes de aprobar el manuscrito. Ratificar o no "
+             "por escrito lo que no consta firmado lo deciden los autores."
+             # «; y»: con «y» a secas se leía «la firma de N.T. y 2 de los 30».
+             % con_punto(trozos[0] if len(trozos) == 1 else
+                         "; ".join(trozos[:-1]) + "; y " + trozos[-1]))
+    return frase, ("N.T., por escrito; los descartes sin firma, los dos autores"
+                   if sin else "N.T., por escrito")
+
+
+def fechas_y(isos):
+    """[«2026-09-01», «2026-09-02»] -> «el 1 y el 2 de septiembre de 2026»."""
+    isos = sorted({i[:10] for i in isos if i})
+    if not isos:
+        return "sin fecha en el registro"
+    if len({i[:7] for i in isos}) == 1:
+        dias = ["el %d" % int(i[8:10]) for i in isos]
+        dias[-1] = "el " + fecha_de(isos[-1])
+        return enumera(dias)
+    return enumera(["el " + fecha_de(i) for i in isos])
+
+
+def frase_firmas_s16(ex, S):
+    """Quién firmó cada exclusión de S16, leído de la celda «decidido_por».
+
+    El indice decia «los dos autores en 89; D.V. solo en 26; D.V. solo en 1;
+    D.V. solo en 2»: contaba como firmas de D.V. las 27 que se registraron por
+    su orden sin que conste la firma de N.T. Misma redaccion que la declaracion
+    de uso de IA del maestro, y se contrasta con los escalares exclusiones_*."""
+    def las(n, verbo_pl, verbo_sg):
+        return "%d %s" % (n, verbo_pl if n != 1 else verbo_sg)
+    partes = [las(ex["dos"], "las firmaron los dos autores",
+                  "la firmaron los dos autores")]
+    for q in sorted(ex["solo_por_quien"]):
+        n = ex["solo_por_quien"][q]
+        partes.append(las(n, "las firmó %s solo" % q, "la firmó %s solo" % q))
+    for (q, falta), fechas in sorted(ex["orden_por_quien"].items()):
+        partes.append("%s por orden de %s %s sin que conste la firma de %s" % (
+            las(len(fechas), "se registraron", "se registró"), q,
+            fechas_y(fechas).replace("el ", "del ", 1),
+            falta or "la otra persona"))
+    # Si el CSV y los escalares no cuentan lo mismo, uno de los dos guiones
+    # cuenta mal: se avisa en vez de callarlo.
+    n_orden = sum(len(f) for f in ex["orden_por_quien"].values())
+    for clave, valor in (("exclusiones_firmadas_los_dos", ex["dos"]),
+                         ("exclusiones_firmadas_solo_dv",
+                          ex["solo_por_quien"].get("D.V.", 0)),
+                         ("exclusiones_orden_dv_sin_firma_nt", n_orden)):
+        if clave in S and S[clave] != valor:
+            print("  AVISO: %s = %s en los escalares y %s contado aquí"
+                  % (clave, S[clave], valor))
+    return enumera(partes)
 
 
 def firmas_criterio_texto():
@@ -470,11 +612,11 @@ def informe_editorial(S):
     # microbiologia clinica / revisiones sistematicas», que es la cabecera de
     # un informe de revista, y hablaba en primera persona de editor. Lo redacto
     # el modelo y viaja en el sobre: ahora lo dicen el titulo, la primera frase
-    # y la cabecera de cada pagina. El nombre del fichero no se toca aqui: lo
-    # citan la guia, la lista de anexos y el sobre, que son de otros guiones.
-    AVISO = ("Autoevaluación redactada por el modelo de lenguaje (Claude Opus 5) "
-             "a petición de los autores. No es un informe de un editor ni una "
-             "revisión externa.")
+    # y la cabecera de cada pagina. Desde el 2026-10-15 tambien el nombre del
+    # fichero (S0_autoevaluacion_del_modelo.docx).
+    # Decia «a peticion de los autores»: no consta que N.T. lo pidiera.
+    AVISO = ("Autoevaluación redactada por el modelo de lenguaje (Claude Opus 5). "
+             "No es un informe de un editor ni una revisión externa.")
     d = doc_nuevo("Autoevaluación del manuscrito, redactada por el modelo de "
                   "lenguaje")
     for sec in d.sections:
@@ -599,8 +741,11 @@ def informe_editorial(S):
         # modelo sobre el brazo A de PubMed, que el cribado del pozo sustituyo
         # y que no esta en S3: el codigo se asigno a las exclusiones del primer
         # dia del cribado vigente. Las dos reglas entraron en esa pasada, en
-        # los guiones de lote del modelo, que las propuso; las decidieron los
-        # autores (hoja de hechos, 13-oct). La pasiva callaba quien las metio.
+        # los guiones de lote del modelo. La pasiva callaba quien las metio.
+        # Despues decia «que propuso el modelo [...] y que decidieron los
+        # autores», y era falso: las añadio el modelo por su cuenta mientras
+        # cribaba sus lotes, sin propuesta ni decision registradas (commits
+        # 54e5fc4 y 4a4ba98; hoja de hechos, correccion del 15-oct).
         "El cribado acabó usando un vocabulario cerrado de %d motivos, y el "
         "manuscrito declara que no se fijó antes de empezar (§2.4): las "
         "decisiones del primer día de cribado de títulos, el 4 de agosto de "
@@ -617,10 +762,10 @@ def informe_editorial(S):
          if f_pp[0] else
          "Ese mismo 4 de agosto entraron, a mitad de lote, ") +
         "las reglas que dejan fuera las endolisinas aisladas, por la "
-        "intervención, y los informes veterinarios, por la población, que "
-        "propuso el modelo y metió en sus guiones de lote, y que decidieron los "
-        "autores. Declararlo así es lo correcto; presentarlo como un vocabulario "
-        "fijado de antemano no lo sería.",
+        "intervención, y los informes veterinarios, por la población, que el "
+        "modelo añadió en sus guiones de cribado sin que conste una decisión "
+        "de los autores. Declararlo así es lo correcto; presentarlo como un "
+        "vocabulario fijado de antemano no lo sería.",
         # Era «La seccion 3.5»: al entrar la completitud por desenlace como
         # 3.5, la viabilidad de la sintesis paso a la 3.6.
         "La sección 3.6 argumenta explícitamente por qué NO se agrupa. Es lo "
@@ -714,6 +859,7 @@ def informe_editorial(S):
     n18, n18_dos, f18_ini, f18_fin = firmas_rob()
     sin_texto = S["texto_completo_no_obtenido"]
     firmas_texto, f_nopdf = firmas_criterio_texto()
+    sin_firma_b6 = sin_firma_de_nt(S)
     # «(bloqueantes)» a secas, con B1, B3 y B4 ya resueltos en la tabla.
     d.add_heading("Condiciones para publicar: las que bloquean y las ya "
                   "resueltas", level=1)
@@ -856,15 +1002,20 @@ def informe_editorial(S):
            # y «Sin esa aprobacion», como si fuera lo unico que falta. N.T.
            # tampoco ha aceptado responder por el trabajo (hoja de hechos,
            # 13-oct), que es otro criterio del ICMJE.
-           ("B6", "Contribución de N.T. y aprobación de la versión final",
+           # No decia que el registro atribuia a N.T. firmas que no constan
+           # (27 exclusiones, 2 descartes de solapamiento) ni que el mensaje con
+           # que se le pidio firmar lo redacto el modelo como si fuera de D.V.
+           # (registro 2026-10-15_firmas-de-n-trelles-sin-respaldo.md).
+           ("B6", "Contribución de N.T., firmas que no constan y aprobación "
+                  "de la versión final",
             "El CRediT está en el manuscrito, pero la parte de N.T. lleva un "
             "marcador hasta que conste por escrito. N.T. no ha aprobado ni "
             "revisado por escrito la versión final, ni ha aceptado responder "
             "por el trabajo: D.V. asume la responsabilidad por la exactitud e "
             "integridad del trabajo; la de N.T. queda pendiente de su "
             "aprobación escrita. Sin esos actos de N.T. no se cumplen los "
-            "criterios de autoría del ICMJE.",
-            "N.T., por escrito")],
+            "criterios de autoría del ICMJE." + sin_firma_b6[0],
+            sin_firma_b6[1])],
           [1.2, 4.6, 6.4, 4.4])
 
     # La tabla de cuatro ensayos «prioritarios» se retira. Era del corpus de
@@ -944,9 +1095,12 @@ def informe_editorial(S):
             "a una figura suplementaria.")
     if not endolisinas_en_discusion:
         obs.append(
+            # Decia «La decision es defendible»: no consta decision de nadie; la
+            # regla la añadio el modelo en sus guiones de lote.
             "Falta un párrafo sobre por qué se excluyeron las endolisinas. La "
-            "decisión es defendible y está en Métodos (§2.2; §2.4 declara que la "
-            "regla se añadió a mitad de lote el 4 de agosto de 2026), pero "
+            "regla es defendible y está en Métodos (§2.2; §2.4 declara que se "
+            "añadió a mitad de lote el 4 de agosto de 2026, y la declaración de "
+            "uso de IA, que la añadió el modelo), pero "
             "merece una frase en Discusión, porque hay literatura que las cuenta "
             "como fagoterapia.")
     obs.append("Declarar en Métodos qué se hará si un estudio aparece publicado "
@@ -1045,6 +1199,23 @@ def coma(x):
     """73.4 -> «73,4». El documento esta en castellano y el manuscrito usa coma."""
     return ("%s" % x).replace(".", ",")
 
+NO_VIAJA = "No va en el envío a la revista"
+
+
+def marca_envio(filas, fuera):
+    """Antepone NO_VIAJA a la descripcion de cada fila cuyo fichero no copia
+    build_jsr_submission.py a suplementos/ (no pasa PATRON_ANEXO), y apunta su
+    nombre en `fuera`. El nombre (columna 0) no se toca: lo comprueba indice()."""
+    out = []
+    for f in filas:
+        if PATRON_ANEXO.match(f[0].strip()):
+            out.append(f)
+        else:
+            fuera.append(f[0])
+            out.append((f[0], "%s. %s" % (NO_VIAJA, f[1])) + tuple(f[2:]))
+    return out
+
+
 def nombre_s5():
     """El listado lleva el recuento en el nombre, asi que se busca en disco."""
     hit = sorted(OUT.glob("S5_listado_*_estudios.csv"))
@@ -1092,7 +1263,12 @@ def indice(S):
                   "metodológica. Las remisiones a secciones (§) y a tablas son "
                   "las del manuscrito maestro (el informe extendido), no las "
                   "del manuscrito preparado para la revista.")
-    tabla(d, ["Archivo", "Qué contiene", "Responde a"],
+    # El mismo indice viaja en suplementos/ del sobre y describia como
+    # presentes S18b, «figuras y tablas/» y los cuatro renderizados del maestro,
+    # que el sobre no lleva (consejo, 15-oct). Cada fila que no pasa el patron
+    # del sobre (PATRON_ANEXO) se marca; las marcadas se cuentan en `fuera`.
+    fuera = []
+    tabla(d, ["Archivo", "Qué contiene", "Responde a"], marca_envio(
           # Decia «Uso interno», y el paquete lo manda a la revista. El
           # manuscrito declara S0 como anexo del material suplementario, asi
           # que lo que estaba mal era la etiqueta, no que viaje: se adjunta a
@@ -1100,10 +1276,11 @@ def indice(S):
           # Despues decia «Evaluacion editorial previa» y «PRISMA item 27»: lo
           # redacto el modelo en el papel de un editor, y no es un informe de
           # una revista ni responde a ese item (disponibilidad de datos).
+          # Decia «a peticion de los autores»: no consta que N.T. lo pidiera.
           [("S0_autoevaluacion_del_modelo.docx",
-            "Autoevaluación redactada por el modelo de lenguaje (Claude Opus 5) "
-            "a petición de los autores; no es un informe de un editor ni una "
-            "revisión externa. Qué bloquea la publicación y qué solo la mejora",
+            "Autoevaluación redactada por el modelo de lenguaje (Claude Opus 5); "
+            "no es un informe de un editor ni una revisión externa. Qué bloquea "
+            "la publicación y qué solo la mejora",
             "Se adjunta a propósito; no es un requisito de PRISMA ni del ICMJE"),
            # Los dos decian «Envio», y el ingles «para envio a revista». A la
            # revista va manuscrito_JSR_final, que deriva del maestro; el ingles
@@ -1217,12 +1394,13 @@ def indice(S):
             # Decia «71 no llevan cita del articulo, entre ellos los 63 ...»: sin
             # cita del articulo hay mas, porque parte de las que llevan cita
             # citan la ficha del registro o la indexacion (frase_citas_s16).
+            # Decia «quien firmo cada exclusion (los dos autores en 89; D.V.
+            # solo en ...)» y daba por firmadas por D.V. las 27 registradas por
+            # su orden sin firma de N.T. (frase_firmas_s16).
             "Los %d estudios que el cribado admitió y que salieron después, con "
-            "su código de motivo y quién firmó cada exclusión (%s). %s"
-            % (ex["n"],
-               "; ".join(["los dos autores en %d" % ex["dos"]] +
-                         ["%s en %d" % (quien_firmo(q), ex["una_por_quien"][q])
-                          for q in ex["una_quien"]]),
+            "su código de motivo y quién decidió cada exclusión según el "
+            "registro: %s %s"
+            % (ex["n"], con_punto(frase_firmas_s16(ex, S)),
                frase_citas_s16(ex, S)),
             "PRISMA 2020, ítem 16b"),
            ("S17_tabla6_brazo_a_brazo.xlsx + .csv",
@@ -1247,11 +1425,13 @@ def indice(S):
            ("S20_de_que_informe_salio_cada_brazo.xlsx + .csv",
             "De qué informe salió cada brazo extraído, y con qué prueba se "
             "estableció el vínculo", "PRISMA 2020, ítem 10a"),
+           # Decia «y la frase firmada en que se apoya» de los 30, y 2 los
+           # descarto la lectura del modelo del 22-sep sin firma de nadie.
            ("S21_solapamiento_de_pacientes.xlsx + .csv",
             "Los %d pares de estudios que podían describir a los mismos "
             "pacientes, con la señal que los marcó, el veredicto tras leer los "
-            "dos artículos y la frase firmada en que se apoya"
-            % S["pares_solapamiento_examinados"],
+            "dos artículos y la frase en que se apoya. %s"
+            % (S["pares_solapamiento_examinados"], frase_firmas_s21(S)),
             "Metodológico; pacientes contados dos veces"),
            ("S22_completitud_resumen_frente_a_texto.xlsx + .csv",
             "Para cada variable de estratificación, cuántos estudios la declaran "
@@ -1271,8 +1451,13 @@ def indice(S):
            # Decia «Figuras 1 y 2 ...; tablas 1 a 4 en CSV», tecleado, y la
            # carpeta trae mas tablas. Se lee del disco.
            ("figuras y tablas/", contenido_figuras_y_tablas(),
-            "PRISMA 2020, ítem 16a")],
+            "PRISMA 2020, ítem 16a")], fuera),
           [5.6, 7.4, 3.6])
+    if fuera:
+        nota(d, "Este índice es el mismo en el paquete de verificables y en "
+                "suplementos/ del envío a la revista. Las %d filas marcadas «%s» "
+                "describen ficheros del paquete que el envío no lleva."
+                % (len(fuera), NO_VIAJA))
 
     # Cada estado se escribe desde el canal. Salian caducados: «Riesgo de sesgo
     # y GRADE: PENDIENTE — depende de la adjudicacion» con el riesgo de sesgo
@@ -1434,7 +1619,7 @@ def main():
     S = json.loads((ROOT / "quality_reports" / "synthesis_scalars.json")
                    .read_text(encoding="utf-8"))
     informe_editorial(S)
-    print("  S0  informe editorial")
+    print("  S0  autoevaluación del modelo")
     md_a_docx(ROOT / "paper" / "manuscrito_revision_sistematica.md",
               OUT / "manuscrito_es.docx", "Manuscrito (español)")
     md_a_docx(ROOT / "paper" / "manuscript_systematic_review_en.md",

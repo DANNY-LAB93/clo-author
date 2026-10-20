@@ -28,7 +28,10 @@ firmar la cesion es enviarlo), y si el manuscrito hace responder por el trabajo
 a los dos autores cuando N.T. no lo ha aceptado. Las dos cosas se leen de los
 ficheros con las funciones del sobre, no se teclean. Desde el 2026-10-14 el
 aviso del protocolo va al principio, y la hoja nombra la frase que deja
-pendiente la responsabilidad de N.T. y la ultima extension medida.
+pendiente la responsabilidad de N.T. y la ultima extension medida. Desde el
+2026-10-15, quien firmo las exclusiones a texto completo y lo que N.T. tiene que
+conocer o ratificar antes de aprobar, con el mismo texto que el LEEME
+(`pendiente_de_nt`) y las cifras de `synthesis_scalars.json`.
 
 Salida:
     paper/docx/datos_carta_cesion.docx
@@ -36,6 +39,7 @@ Salida:
 Uso:
     python scripts/build_cesion_datos.py
 """
+import json
 import pathlib
 import re
 import sys
@@ -49,14 +53,16 @@ except ImportError:
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from build_jsr_docx import escribe
-from build_jsr_submission import (PROTOCOLO, TOPE_PAGINAS, TOPE_TITULO,
-                                   exige_declaracion_ia, frase_piloto, marcadores,
-                                   medidas_formato, normas_formato,
+from build_jsr_submission import (PROTOCOLO, TOPE_PAGINAS, TOPE_TITULO, con_punto,
+                                   exige_declaracion_ia, firmas_exclusiones,
+                                   frase_piloto, marcadores,
+                                   medidas_formato, normas_formato, pendiente_de_nt,
                                    responsabilidad_ajena, responsabilidad_pendiente)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 JSR = ROOT / "paper" / "manuscrito_JSR_final.md"
 DEST = ROOT / "paper" / "docx"
+ESCALARES = ROOT / "quality_reports" / "synthesis_scalars.json"
 TNR = "Times New Roman"
 
 FORMULARIO = "https://revistas.utb.edu.ec/index.php/sr/about/submissions"
@@ -216,12 +222,22 @@ def main():
     # Y la frase que la deja pendiente, que cambia con el mismo escrito.
     resp_pendiente = responsabilidad_pendiente(cuerpo)
     piloto = frase_piloto()
+    # Lo que N.T. tiene que saber o ratificar antes de aprobar (2026-10-15): 27
+    # exclusiones registradas por orden de D.V. sin su firma, el mensaje del
+    # 1-sep que redacto el modelo en primera persona de D.V. y 2 descartes de
+    # solapamiento del modelo sin firma. La hoja no lo decia, y firmar el punto 1
+    # es estar de acuerdo con ese contenido. Lo mismo que el LEEME.
+    S = json.loads(ESCALARES.read_text(encoding="utf-8"))
+    sabe_nt = pendiente_de_nt(S)
     m_orden = re.search(r"Danny Valdiviezo\*\*.{0,20}\*\*Nataly Trelles", cuerpo)
     aprobacion = ("ATENCIÓN: lo firman los dos autores, y la aprobación escrita de "
                   "N. Trelles sobre esta versión no consta todavía: su CRediT lleva "
                   "aún el marcador %s. Ver el punto pendiente al final." % trelles
                   if trelles else
                   "Lo firman los dos autores. Ver el punto pendiente al final.")
+    if sabe_nt:
+        aprobacion += (" Antes de aprobar, N. Trelles tiene que conocer o ratificar "
+                       "lo que se lista al final de esta hoja.")
     if resp:
         # El manuscrito no puede hacer responder por el trabajo a quien no lo
         # ha aceptado; si vuelve a decirlo, la hoja lo avisa aqui, en rojo.
@@ -411,6 +427,23 @@ def main():
                    "inteligencia artificial»: «%s» Cuando conste, se cambia en el "
                    "maestro y se copia igual al manuscrito de la revista; mientras no "
                    "conste, se queda como está." % resp_pendiente, size=10.5)
+    # Lo que N.T. tiene que saber o ratificar antes de aprobar, con el texto del
+    # LEEME (`pendiente_de_nt`); las comillas invertidas son de markdown.
+    if sabe_nt:
+        p = d.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        escribe(p, "**Antes de que N. Trelles apruebe esta versión y firme.** %s "
+                   "Firmar el punto 1 es estar de acuerdo con ese contenido, y N. "
+                   "Trelles tiene que conocer o ratificar antes esto:"
+                % con_punto(firmas_exclusiones(S)), size=10.5)
+        for titulo, texto in sabe_nt:
+            p = d.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            p.paragraph_format.left_indent = Inches(0.35)
+            p.paragraph_format.first_line_indent = Inches(-0.35)
+            p.paragraph_format.space_after = Pt(3)
+            escribe(p, "• **%s** %s" % (con_punto(titulo), texto.replace("`", "")),
+                    size=10.5)
 
     DEST.mkdir(parents=True, exist_ok=True)
     salida = DEST / "datos_carta_cesion.docx"
@@ -426,6 +459,8 @@ def main():
           % (len(falla), "; extension SIN MEDIR sobre esta version" if sin_medir else ""))
     print("  declaracion de uso de IA: %s" % ("literal desde el maestro" if ia else
                                               "NO PASA LA GUARDA: " + ia_mal))
+    if sabe_nt:
+        print("  pendiente de N.T. antes de aprobar: %d punto(s)" % len(sabe_nt))
     if resp:
         print("  AVISO: el manuscrito hace responder por el trabajo a los dos autores")
     if piloto:
